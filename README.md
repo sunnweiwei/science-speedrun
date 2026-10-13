@@ -39,6 +39,7 @@ runner/selftest.sh                                              # install check,
 runner/prepare.sh surface-code-decoding /data/surface-code      # data + $EVAL_ROOT/envs/<task>.env
 AGENT_KIND=codex HOURS=24 runner/run.sh surface-code-decoding   # session, then independent score
 AGENT_KIND=claude-code HOURS=48 runner/run.sh pde-surrogate
+runner/score_snapshots.sh NAME 6                                # reward over time from the run's snapshots
 ```
 
 Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code authentication, resources, two-phase scoring and pitfalls.
@@ -47,9 +48,7 @@ Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code
 
 ```text
 tasks/<task>/        Harbor tasks (instruction, environment, tests, docs); see TASK_STANDARD.md
-runner/              one-command sessions and scoring (Harbor 0.23, Codex or Claude Code)
-agent-runner/        T0-RSI/agent-runner (e75f5f2): detached long-running sessions with live
-                     snapshots and independent evaluation of any snapshot
+runner/              one-command sessions, snapshots and scoring (Harbor 0.23, Codex or Claude Code)
 TASK_STANDARD.md     the task format: workspace, instruction, verifier, data
 ```
 

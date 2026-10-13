@@ -7,12 +7,20 @@
 #   submission/                the package the agent published
 #   agent/                     the agent's trajectory and session logs
 #   notes/                     the agent's markdown notes from /workspace/research
+#   snapshots/                 every version the agent published, by seconds since start
+# Score snapshots afterwards for reward over time: score_snapshots.sh NAME [K].
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; source "$here/config.sh"
 task=$1; name=${2:-$task-$AGENT_KIND-$(date -u +%Y%m%d-%H%M%S)}
-out="$EVAL_ROOT/results/$name"; mkdir -p "$out"
+out="$EVAL_ROOT/results/$name"; mkdir -p "$out"; echo "$task" > "$out/task"; echo "$TASKS_DIR" > "$out/tasks_dir"
 echo "[run] $name: $AGENT_KIND on $task for ${HOURS:-24} h (GPUs: ${GPUS:-task})"
-"$here/run_trial.sh" "$name" "$task" "${HOURS:-24}" > "$out/trial.log" 2>&1 || true
+"$here/run_trial.sh" "$name" "$task" "${HOURS:-24}" > "$out/trial.log" 2>&1 &
+trial_pid=$!
+until $DOCKER ps --format '{{.Names}}' | grep -q "^run-$name$" || ! kill -0 $trial_pid 2>/dev/null; do sleep 5; done
+"$here/snapshot.sh" "$name" "$out" > "$out/snapshot.log" 2>&1 &
+wait $trial_pid || true
+wait || true
+echo "[run] $(($(wc -l < "$out/snapshots/index.tsv" 2>/dev/null || echo 1) - 1)) snapshot(s) kept"
 trial="$EVAL_ROOT/trials/$name"
 $DOCKER run --rm -v "$EVAL_ROOT:$EVAL_ROOT" --entrypoint bash "$RUNNER_IMAGE" -c "
   set -e; cp -a '$trial/agent' '$out/agent' 2>/dev/null || true

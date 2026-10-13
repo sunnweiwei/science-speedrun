@@ -1,1 +1,1 @@
-Write the current UTC time as one line to /workspace/submission/answer.txt, then reply with a one-sentence summary and stop.
+Write the current UTC time as one line to /workspace/submission/answer.txt, then reply with a one-sentence summary and stop. Whenever you are asked to continue, overwrite the file again with the new current UTC time and stop.

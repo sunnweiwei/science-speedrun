@@ -8,6 +8,8 @@ task's own verifier. It is the tooling behind the agent-behavior tests of the ta
 | `run.sh TASK [NAME]` | one command: session, collection, independent score |
 | `prepare.sh TASK DATA_ROOT` | downloads or builds a task's data, writes `$EVAL_ROOT/envs/TASK.env` |
 | `selftest.sh` | install check on a 1-minute task (no GPU): expect reward 1 and a few resumed turns |
+| `snapshot.sh` | started by `run.sh`: keeps every version of `/workspace/submission` the agent publishes |
+| `score_snapshots.sh NAME [K]` | scores K snapshots spread over the run plus the last: reward over time in `curve.tsv` |
 | `run_trial.sh`, `run_verify.sh` | the two halves of `run.sh` |
 | `config.sh` | every setting, overridable from the environment |
 | `Dockerfile.runner`, `Dockerfile.prepare` | the Harbor runner image and the data-preparation image |
@@ -47,9 +49,11 @@ AGENT_KIND=claude-code HOURS=48 runner/run.sh single-cell-perturbation-predictio
   - `reward.json` (and `report.json` where the task writes one);
   - `submission/` (the published package);
   - `agent/` (trajectory and session logs);
-  - `notes/` (the agent's markdown notes from `/workspace/research`).
+  - `notes/` (the agent's markdown notes from `/workspace/research`);
+  - `snapshots/` (every published version, with `index.tsv`).
 
   Copy them somewhere durable after each run.
+- **Snapshots and curves.** Every `SNAPSHOT_INTERVAL` seconds (default 60), `snapshot.sh` hashes the package's file list and copies the package when it changed. It keeps the copy only if the hash is unchanged after copying, so a half-written package is never kept. `score_snapshots.sh NAME 6` then scores 6 evenly spaced snapshots plus the last with the task's verifier and writes `curve.tsv`: hours since start, then one column per reward key. Each point costs one verifier run.
 - **Continuation.** Codex and Claude Code end their turn whenever the model answers without a tool call ("research remains active …"), even while training runs in the background. The continuing agents resume the same thread with a prompt that mentions no time budget, until Harbor's agent timeout (`HOURS`). Three resumes in a row that end within 120 s stop the loop. The tasks never tell the agent its budget.
 - **Two-phase scoring.** Harbor applies resource overrides to the separate verifier too, and a busy agent host should not also grade. So the session's verifier is deferred (the trial then records "verification deferred"), and `run_verify.sh` scores the collected package in a fresh trial with the task's verifier resources.
 

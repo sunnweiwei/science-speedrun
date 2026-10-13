@@ -5,4 +5,4 @@
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; source "$here/config.sh"
 mkdir -p "$ENVS_DIR"; printf 'X=1\n' > "$ENVS_DIR/resume-smoke.env"
-TASKS_DIR="$here/selftest" HOURS=0.15 GPUS=0 "$here/run.sh" resume-smoke "selftest-$AGENT_KIND-$(date -u +%H%M%S)"
+TASKS_DIR="$here/selftest" HOURS=0.15 GPUS=0 SNAPSHOT_INTERVAL=${SNAPSHOT_INTERVAL:-10} "$here/run.sh" resume-smoke "selftest-$AGENT_KIND-$(date -u +%H%M%S)"

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genome-sequence-to-function-benchmark-data"
+version = "0.1.0"
+description = "Human 1-Mb, eleven-family genome sequence-to-function benchmark"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy==1.26.4",
+  "numcodecs==0.15.1",
+  "pandas==2.2.3",
+  "pyarrow==19.0.1",
+  "pysam==0.23.3",
+  "huggingface_hub[hf_xet]==2.0.0",
+  "tensorflow-cpu==2.20.0; platform_machine == 'x86_64'",
+  "tensorflow==2.20.0; platform_machine != 'x86_64'",
+  "zarr==2.18.7",
+  "isal==1.7.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.5", "scipy==1.14.1", "scikit-learn==1.5.2"]
+
+[project.scripts]
+agbench = "agbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# The tests live in the task's tests/ directory; run them with tests/run_unit_tests.sh.

@@ -1,0 +1,27 @@
+{
+ "protocol": "NOT the task protocol: 10 context frames, K=4, same 200 PDEArena trajectories; context only",
+ "contract": "pde-surrogate-rollout/v1",
+ "n_cases": 200,
+ "n_failed": 0,
+ "failures": [],
+ "datasets": {
+  "pdearena/navier_stokes_2d": {
+   "n_cases": 200,
+   "n_failed": 0,
+   "n_steps": 4,
+   "vrmse": 0.140056684766936,
+   "nrmse_joint": 0.06798692386798008,
+   "reward": 0.6178987192999886
+  }
+ },
+ "groups": {
+  "pdearena/navier_stokes_2d": {
+   "n_datasets": 1,
+   "vrmse": 0.140056684766936,
+   "reward": 0.6178987192999886
+  }
+ },
+ "mean_vrmse": 0.140056684766936,
+ "reward": 0.6178987192999886,
+ "note": " per-case records omitted from the committed copy; regenerate with score.py"
+}

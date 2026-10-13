@@ -1,0 +1,185 @@
+{
+ "what": "The Well CNextU-net recipe (experiment=unet_convnext, the_well @ ad50de0e) trained from scratch on the PDEArena Navier-Stokes split converted into The Well's layout, stopped by the 12-hour cap at epoch 124 of 200, best-validation checkpoint packaged and replayed through tests/main_verifier.py",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,185 held-out cases, 4 context frames, sealed contract; per-dataset model, so only the pdearena/navier_stokes_2d group is a real forecast",
+ "training": {
+  "epochs_completed": 123,
+  "epochs_requested": 200,
+  "stopped_by": "12-hour cap (rc 124) at 2026-09-18T14:44:56Z",
+  "best_validation_epoch": 120,
+  "best_validation_loss": 0.00040918707964010537,
+  "final_validation_loss": 0.0004529404977802187,
+  "note": "The Well's trainer rejects dataset names outside its released list, so the converted set is registered first by environment/reference/well_cnext/register_local_dataset.py; nothing else about the recipe changes"
+ },
+ "package": {
+  "name": "cnextunet-well-recipe-navier_stokes_2d",
+  "parameters": 18573453,
+  "context_frames": 4,
+  "pretrained_assets": [],
+  "sources_used": [
+   "pdearena/navier_stokes_2d"
+  ]
+ },
+ "result": {
+  "reward": 0.34462620712152353,
+  "mean_vrmse": 1.0919,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": {
+    "n_datasets": 16,
+    "vrmse": 1.1878,
+    "reward": 0.30842061808588433
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_datasets": 1,
+    "vrmse": 0.2978,
+    "reward": 0.5087087472618438
+   },
+   "well/active_matter": {
+    "n_datasets": 1,
+    "vrmse": 1.5235,
+    "reward": 0.27238781994648203
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_datasets": 1,
+    "vrmse": 1.3584,
+    "reward": 0.28898764319188414
+   }
+  },
+  "datasets": {
+   "ape2d/burgers": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.5139153215593075
+   },
+   "ape2d/decay_turb": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0876377342041943
+   },
+   "ape2d/diff": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.6842929294243985
+   },
+   "ape2d/fisher": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 2.7042629562937877
+   },
+   "ape2d/gs_alpha": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.347657487713888
+   },
+   "ape2d/gs_beta": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.6088926575276987
+   },
+   "ape2d/gs_delta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.7358952935210277
+   },
+   "ape2d/gs_epsilon": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.701737377843992
+   },
+   "ape2d/gs_gamma": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.8033791798972509
+   },
+   "ape2d/gs_iota": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.6950130224331375
+   },
+   "ape2d/gs_kappa": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 0.9580198426663117
+   },
+   "ape2d/gs_theta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.687338657537656
+   },
+   "ape2d/kdv": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.33485731611214825
+   },
+   "ape2d/kolm_flow": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.2171370855213588
+   },
+   "ape2d/ks": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0986021185877142
+   },
+   "ape2d/sh": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.8259345529367659
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_cases": 200,
+    "n_failed": 0,
+    "vrmse": 0.29776507527903623
+   },
+   "well/active_matter": {
+    "n_cases": 26,
+    "n_failed": 0,
+    "vrmse": 1.5234792384695126
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_cases": 9,
+    "n_failed": 0,
+    "vrmse": 1.358429394191932
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 43.8
+ },
+ "determinism": {
+  "checked": 3,
+  "rerun_exit_code": 0,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json); the per-dataset means come from the run's verifier report.json and are now embedded",
+  "before": {
+   "reward": 0.3455400699274802,
+   "mean_vrmse": 1.0844605808557826,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1581686154826494,
+    "pdearena/navier_stokes_2d": 0.29776507527903623,
+    "well/active_matter": 1.5234792384695126,
+    "well/turbulent_radiative_layer_2D": 1.358429394191932
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 0.6842929294243985,
+     "nrmse_joint": 0.6842981499653845,
+     "vrmse_steps_1_5": 0.18855248722062562,
+     "vrmse_steps_6_12": 0.5018782643086028,
+     "reward": 0.3882526491345688
+    }
+   }
+  }
+ }
+}

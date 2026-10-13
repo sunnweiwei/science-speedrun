@@ -1,0 +1,10 @@
+d3_bX_center_3_5
+d3_bX_center_5_3
+d3_bX_center_5_7
+d3_bX_center_7_5
+d3_bZ_center_3_5
+d3_bZ_center_5_3
+d3_bZ_center_5_7
+d3_bZ_center_7_5
+d5_bX_center_5_5
+d5_bZ_center_5_5

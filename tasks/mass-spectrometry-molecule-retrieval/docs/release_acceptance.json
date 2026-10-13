@@ -1,0 +1,121 @@
+{
+  "schema": "massspec-release-acceptance/v1",
+  "data_and_metric_contract_status": "passed",
+  "scope": "Frozen scratch-hybrid trusted rescoring plus fresh complete frozen DeepSets inference in an offline input-only rootless Apptainer container. No training, no new GLACIER inference, no production Docker/H100 certification.",
+  "scratch_hybrid_rescore": {
+    "scope": "Independent trusted rescoring of all frozen scratch GLACIER + DeepSets test rankings; no model inference or training in this step.",
+    "status": "passed",
+    "queries": 17556,
+    "metrics": {
+      "hit_rate_at_1": 0.4032239690134427,
+      "hit_rate_at_5": 0.5684666210982,
+      "hit_rate_at_20": 0.7077352472089314,
+      "mces_at_1": 13.1696001367054
+    },
+    "benchmark_score": {
+      "version": "massspecgym-retrieval-score/v1",
+      "metric": "hit_rate_at_1",
+      "direction": "maximize",
+      "raw_performance": 0.4032239690134427,
+      "lower_reference": 0.04004329004329004,
+      "upper_reference": 0.4939052175894281,
+      "score": 0.8002008032128514,
+      "unclipped_score": 0.8002008032128514,
+      "saturation": null,
+      "at_or_above_upper_reference": false
+    },
+    "elapsed_seconds": 250.53770405240357,
+    "mces_workers": 8,
+    "source_rankings_sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26",
+    "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+    "grader_sha256": "190d1eeb7cf107e34cefa891fd30fcd557f0d4726cfaed83146f3b9e18c9c717",
+    "score_bounds_sha256": "241401d4ca7a6936409b9485c0a25ca60e2e5e233a70e873097e388214853fa4",
+    "historical_metrics_identical": true,
+    "docker_acceptance": false,
+    "h100_timing_acceptance": false
+  },
+  "fresh_deepsets_replay": {
+    "scope": "Fresh full-test inference of the frozen repaired Fourier-DeepSets starter in an input-only, offline rootless Apptainer container; separate host-side trusted grading after inference.",
+    "status": "different_from_frozen_reference",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "metrics": {
+      "hit_rate_at_1": 0.04004329004329004,
+      "hit_rate_at_5": 0.12354750512645249,
+      "hit_rate_at_20": 0.2740373661426293,
+      "mces_at_1": 22.559580770107086
+    },
+    "benchmark_score": {
+      "version": "massspecgym-retrieval-score/v1",
+      "metric": "hit_rate_at_1",
+      "direction": "maximize",
+      "raw_performance": 0.04004329004329004,
+      "lower_reference": 0.04004329004329004,
+      "upper_reference": 0.4939052175894281,
+      "score": 0.0,
+      "unclipped_score": 0.0,
+      "saturation": null,
+      "at_or_above_upper_reference": false
+    },
+    "inference_seconds": 294.446280437056,
+    "grading_seconds": 222.9951627170667,
+    "historical_metrics_identical": true,
+    "historical_rankings_byte_identical": false,
+    "rankings_sha256": "c6567a09ca92aa2c129ab0dc20bacdd534588ba96de134b9dca2a7b98a8b911e",
+    "historical_rankings_sha256": "d72a08ee074dd095cd151003a3218317742bcc4aacdff55159da0cd6b8fb0ccc",
+    "checkpoint_sha256": "46576b464979b0c076e2cd2dd5baa05fa42c05941f61d0d7c630c8502fd28a04",
+    "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+    "image_sha256": "e30c47eb337804952da808ee65676d531503ef20d99d28c59ad847100a535a67",
+    "image_source": "docker://python:3.11-slim-bookworm",
+    "image_runtime": "Apptainer 1.5.3",
+    "host_uid": 1577836,
+    "cpu_threads": 4,
+    "gpu_used": false,
+    "isolation": "--containall --cleanenv --net --network none; only package, verifier inputs, runtime/interpreter, probe and output mounted; no training data, grader labels or credentials visible; package/input readonly; capabilities empty",
+    "docker_acceptance": false,
+    "h100_timing_acceptance": false
+  },
+  "bitwise_determinism": {
+    "status": "not_identical",
+    "historical_torch": "2.6.0+cu124",
+    "replay_torch": "2.7.1+cu128",
+    "queries_with_full_ranking_order_difference": 28,
+    "earliest_changed_rank_1based": 184,
+    "all_top20_rankings_identical": true,
+    "all_scientific_metrics_identical": true,
+    "strict_replay_script_exit_code": 1,
+    "reason_for_nonzero_wrapper_exit": "The optional complete-file byte-identity assertion failed after successful inference and trusted grading. Data/metric acceptance passed; the failure and original report are retained.",
+    "causal_interpretation": "Different numerical runtimes are a plausible cause of lower-rank ordering changes; no causal attribution experiment was performed."
+  },
+  "unit_tests": {
+    "passed": 44,
+    "log_sha256": "43cd09b84a574b14fdecc7f9537c1072c15364887c3069a51721c1a5c7f11ca5"
+  },
+  "limitations": [
+    "No new training or full GLACIER inference was required because data/model semantics were unchanged.",
+    "This is Apptainer acceptance, not a Docker image build or H100 deadline acceptance.",
+    "These inference inputs used the preserved materialized local source; root separately verifies HF download byte equality."
+  ],
+  "huggingface_roundtrip": {
+    "status": "passed",
+    "empty_destination": true,
+    "public_bytes": 38019369914,
+    "private_bytes": 3810324,
+    "public_files": 17,
+    "private_files": 2,
+    "pins": {
+      "schema": "massspecgym-hf-release-pins/v1",
+      "public": {
+        "repo_id": "Corning/ai4sci-massspecgym-retrieval",
+        "revision": "4a0c890f9a27685b1cffb5b131a501828abb4d1f",
+        "manifest_sha256": "e638ec58b51286bf1cec1ee65e52e75d47485779ceaf354d6728dedb284baadd"
+      },
+      "private": {
+        "repo_id": "Corning/ai4sci-massspecgym-retrieval-evaluation",
+        "revision": "061195f660391d40fa18a422edf175699fe0d771",
+        "manifest_sha256": "13b479504b841c4860d2034719b4066b6bf2bc6cf9747beeb4f099f60b743c76"
+      }
+    },
+    "verification": "All payload files match pinned per-file SHA256, nested manifests and exact split counts; cold download followed by verified reuse. Operator-only HF cache excluded from payload."
+  }
+}

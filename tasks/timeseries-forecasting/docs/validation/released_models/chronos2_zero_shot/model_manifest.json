@@ -1,0 +1,39 @@
+{
+ "name": "chronos2_zero_shot",
+ "contract": "timeseries-forecast/v1",
+ "parameters": 119477664,
+ "pretrained_assets": [
+  {
+   "repo": "amazon/chronos-2",
+   "revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+   "license": "Apache-2.0"
+  }
+ ],
+ "sources_used": [],
+ "settings": {
+  "library": "chronos-forecasting==2.3.2",
+  "pipeline": "chronos.Chronos2Pipeline via BaseChronosPipeline.from_pretrained",
+  "device_map": "cuda",
+  "torch_dtype": "float32",
+  "call": "predict_quantiles(inputs=[{'target': ...}], prediction_length=H, batch_size=100, quantile_levels=[0.1..0.9], cross_learning=True)",
+  "quantile_levels": [
+   0.1,
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6,
+   0.7,
+   0.8,
+   0.9
+  ],
+  "point_forecast": "0.5 quantile (what gluonts uses as the mean of a QuantileForecast)",
+  "model_context_length": 8192,
+  "model_prediction_length": 1024,
+  "cross_learning": true,
+  "cross_learning_note": "one rolling window at a time, as in the notebook, so windows of the same series never share a batch",
+  "multivariate": "native: (D, T) target passed to the model",
+  "nan_handling": "passed through to the model as missing observations",
+  "batch_size": 100
+ }
+}

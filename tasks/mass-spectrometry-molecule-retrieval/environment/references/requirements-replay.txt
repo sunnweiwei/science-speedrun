@@ -1,0 +1,16 @@
+# Install PyTorch separately for the target GPU/CUDA runtime.  The local
+# A5000 replay used torch 2.7.0+cu118; Blackwell training used 2.7.1+cu128.
+CairoSVG==2.8.2
+einops==0.8.1
+h5py==3.14.0
+matplotlib==3.10.3
+numpy==1.26.4
+pandas==2.2.3
+pathos==0.3.4
+pytorch-lightning==2.5.3
+rdkit==2023.9.6
+scikit-learn==1.6.1
+scipy==1.14.1
+seaborn==0.13.2
+setuptools==78.1.0
+wandb==0.21.0

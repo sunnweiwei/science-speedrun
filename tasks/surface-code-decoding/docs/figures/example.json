@@ -1,0 +1,743 @@
+{
+  "schema": "surface-code-science-example/v1",
+  "split": "validation",
+  "source_url": "https://zenodo.org/records/6804040",
+  "source_license": "CC-BY-4.0",
+  "source_attribution": "Google Quantum AI, Sycamore surface-code memory experiments",
+  "condition": "surface_code_bZ_d3_r09_center_3_5",
+  "source_shot_index_zero_based": 39760,
+  "selection": "First validation shot for the fixed d3/Z/r9/center_3_5 condition; no prediction-based selection",
+  "source_sha256": {
+    "circuit_ideal.stim": "81a26915aa77d74c16190927fb88d5c6524f35062af1cfafd3f265cb3f63b850",
+    "detection_events.b8": "023e37f8f3df5bb63974e88469403218872cf214a0889e5fe39ef922bec17207",
+    "obs_flips_actual.01": "10d0a8137815cc001d44cd061fb7ef54781c191f34776e71eef5602e54d0de81"
+  },
+  "distance": 3,
+  "basis": "Z",
+  "rounds": 9,
+  "data_qubits": [
+    [
+      1.0,
+      5.0
+    ],
+    [
+      2.0,
+      4.0
+    ],
+    [
+      2.0,
+      6.0
+    ],
+    [
+      3.0,
+      3.0
+    ],
+    [
+      3.0,
+      5.0
+    ],
+    [
+      3.0,
+      7.0
+    ],
+    [
+      4.0,
+      4.0
+    ],
+    [
+      4.0,
+      6.0
+    ],
+    [
+      5.0,
+      5.0
+    ]
+  ],
+  "check_qubits": [
+    [
+      1.0,
+      4.0
+    ],
+    [
+      2.0,
+      5.0
+    ],
+    [
+      2.0,
+      7.0
+    ],
+    [
+      3.0,
+      4.0
+    ],
+    [
+      3.0,
+      6.0
+    ],
+    [
+      4.0,
+      3.0
+    ],
+    [
+      4.0,
+      5.0
+    ],
+    [
+      5.0,
+      6.0
+    ]
+  ],
+  "detectors": [
+    {
+      "id": 0,
+      "coords": [
+        2.0,
+        5.0,
+        0.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 1,
+      "coords": [
+        4.0,
+        3.0,
+        0.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 2,
+      "coords": [
+        2.0,
+        7.0,
+        0.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 3,
+      "coords": [
+        4.0,
+        5.0,
+        0.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 4,
+      "coords": [
+        1.0,
+        4.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 5,
+      "coords": [
+        2.0,
+        5.0,
+        1.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 6,
+      "coords": [
+        2.0,
+        7.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 7,
+      "coords": [
+        3.0,
+        4.0,
+        1.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 8,
+      "coords": [
+        3.0,
+        6.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 9,
+      "coords": [
+        4.0,
+        3.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 10,
+      "coords": [
+        4.0,
+        5.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 11,
+      "coords": [
+        5.0,
+        6.0,
+        1.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 12,
+      "coords": [
+        1.0,
+        4.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 13,
+      "coords": [
+        2.0,
+        5.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 14,
+      "coords": [
+        2.0,
+        7.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 15,
+      "coords": [
+        3.0,
+        4.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 16,
+      "coords": [
+        3.0,
+        6.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 17,
+      "coords": [
+        4.0,
+        3.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 18,
+      "coords": [
+        4.0,
+        5.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 19,
+      "coords": [
+        5.0,
+        6.0,
+        2.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 20,
+      "coords": [
+        1.0,
+        4.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 21,
+      "coords": [
+        2.0,
+        5.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 22,
+      "coords": [
+        2.0,
+        7.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 23,
+      "coords": [
+        3.0,
+        4.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 24,
+      "coords": [
+        3.0,
+        6.0,
+        3.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 25,
+      "coords": [
+        4.0,
+        3.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 26,
+      "coords": [
+        4.0,
+        5.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 27,
+      "coords": [
+        5.0,
+        6.0,
+        3.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 28,
+      "coords": [
+        1.0,
+        4.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 29,
+      "coords": [
+        2.0,
+        5.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 30,
+      "coords": [
+        2.0,
+        7.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 31,
+      "coords": [
+        3.0,
+        4.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 32,
+      "coords": [
+        3.0,
+        6.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 33,
+      "coords": [
+        4.0,
+        3.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 34,
+      "coords": [
+        4.0,
+        5.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 35,
+      "coords": [
+        5.0,
+        6.0,
+        4.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 36,
+      "coords": [
+        1.0,
+        4.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 37,
+      "coords": [
+        2.0,
+        5.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 38,
+      "coords": [
+        2.0,
+        7.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 39,
+      "coords": [
+        3.0,
+        4.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 40,
+      "coords": [
+        3.0,
+        6.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 41,
+      "coords": [
+        4.0,
+        3.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 42,
+      "coords": [
+        4.0,
+        5.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 43,
+      "coords": [
+        5.0,
+        6.0,
+        5.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 44,
+      "coords": [
+        1.0,
+        4.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 45,
+      "coords": [
+        2.0,
+        5.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 46,
+      "coords": [
+        2.0,
+        7.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 47,
+      "coords": [
+        3.0,
+        4.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 48,
+      "coords": [
+        3.0,
+        6.0,
+        6.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 49,
+      "coords": [
+        4.0,
+        3.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 50,
+      "coords": [
+        4.0,
+        5.0,
+        6.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 51,
+      "coords": [
+        5.0,
+        6.0,
+        6.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 52,
+      "coords": [
+        1.0,
+        4.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 53,
+      "coords": [
+        2.0,
+        5.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 54,
+      "coords": [
+        2.0,
+        7.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 55,
+      "coords": [
+        3.0,
+        4.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 56,
+      "coords": [
+        3.0,
+        6.0,
+        7.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 57,
+      "coords": [
+        4.0,
+        3.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 58,
+      "coords": [
+        4.0,
+        5.0,
+        7.0
+      ],
+      "event": 1
+    },
+    {
+      "id": 59,
+      "coords": [
+        5.0,
+        6.0,
+        7.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 60,
+      "coords": [
+        1.0,
+        4.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 61,
+      "coords": [
+        2.0,
+        5.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 62,
+      "coords": [
+        2.0,
+        7.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 63,
+      "coords": [
+        3.0,
+        4.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 64,
+      "coords": [
+        3.0,
+        6.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 65,
+      "coords": [
+        4.0,
+        3.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 66,
+      "coords": [
+        4.0,
+        5.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 67,
+      "coords": [
+        5.0,
+        6.0,
+        8.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 68,
+      "coords": [
+        2.0,
+        5.0,
+        9.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 69,
+      "coords": [
+        4.0,
+        3.0,
+        9.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 70,
+      "coords": [
+        2.0,
+        7.0,
+        9.0
+      ],
+      "event": 0
+    },
+    {
+      "id": 71,
+      "coords": [
+        4.0,
+        5.0,
+        9.0
+      ],
+      "event": 0
+    }
+  ],
+  "target_logical_flip": 0,
+  "model_probability": null,
+  "output_note": "Decoder probability and threshold are symbolic, not an inference result. The label is a public validation target."
+}

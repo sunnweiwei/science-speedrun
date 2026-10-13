@@ -1,0 +1,47 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/timeseries-forecasting"
+version = "0.2.0"
+description = "Pretrain one zero-shot probabilistic forecasting model from scratch on the GiftEvalPretrain corpus and beat the released time-series foundation models on all 97 GIFT-Eval configurations."
+authors = [{ name = "Deqing Fu" }, { name = "T0-RSI contributors" }]
+keywords = ["model-development", "time-series", "forecasting", "foundation-model", "zero-shot", "gift-eval"]
+
+[metadata]
+data_status = "two public sources pinned to HF commit SHAs (Salesforce/GiftEval; the 95-directory allow-listed subset of Salesforce/GiftEvalPretrain (273 GB; v2 adds buildings_900k, borg_cluster_data_2011, ERA5 2010-2018 and three CMIP6 shards, content-checked for leakage), Apache-2.0 card with CC BY-NC constituents, not redistributed) plus the pinned leaderboard snapshot; every file of the lock verified on real downloads (LFS SHA-256 or git blob SHA-1), receipt in docs/validation/"
+research_starter = "main baseline: the TimesFM-3 architecture (timesfm 3.0.2 code, random init) at 50.9M parameters, trained data-parallel on 8 GPUs with source-balanced sampling (baseline/timesfm3-50m); reference baselines: the 41.8M and 6.4M starter patched transformers"
+research_starter_reference_status = "main baseline trained on 8 H100s and replayed through the sealed verifier on all 97 configs (docs/validation/timesfm3_50m_baseline.json); starter runs in docs/validation/task_trained_baseline.json"
+initialization = "random; no pretrained assets supplied or permitted"
+contract = "timeseries-forecast/v1"
+primary_metric = "reward = clip(1 - sqrt(gmean(rel MASE) * gmean(rel WQL)), 0, 1) over the 97 GIFT-Eval configs, relative to Seasonal Naive (see environment/contract.md)"
+primary_metric_direction = "maximize"
+external_target = "google/timesfm-3.0-pytorch, the best single zero-shot model on the GIFT-Eval board, replayed under the task protocol: relative MASE 0.6685, relative WQL 0.4583, reward 0.4465 (board: 0.667 / 0.456 / 0.449; docs/validation/timesfm3_zero_shot.json). Secondary targets replayed the same way: TimesFM-2.5 0.4121, Chronos-2 0.4180, Chronos-Bolt-base 0.3254"
+reference_baseline = "timesfm3-50m: the TimesFM-3 architecture at 50.9M trained from scratch on 8 H100s in 3 h 14 min: reward 0.275 on all 97 configs (relative MASE 0.873, relative WQL 0.603); references: starter-41m 0.200, starter 0.161"
+task_trained_baseline_reward = 0.275
+seasonal_naive_replay_reward = 0.0075
+
+[agent]
+timeout_sec = 172800.0
+
+[environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 21600.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100", "A100"]
+build_timeout_sec = 7200.0

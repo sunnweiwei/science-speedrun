@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+outputs/
+materialized/
+!environment/data/cms-2018-gem.zip

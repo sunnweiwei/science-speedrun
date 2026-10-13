@@ -1,0 +1,5030 @@
+{
+"schema": "pde-surrogate-split/v1",
+"contract": "pde-surrogate-rollout/v1",
+"corpus": "reduced",
+"warning": "plumbing only: the reduced release is a different draw of the corpus parameters, not a subset of the full release; never compare smoke numbers with canonical ones",
+"context_frames": 4,
+"n_steps_out": {
+"ape2d": 26,
+"well": 30,
+"pdearena": 10
+},
+"n_steps_out_long": 96,
+"pools": {
+"train": [
+{
+"source": "ape2d",
+"dataset": "ape2d/burgers",
+"file": "burgers/burgers.hdf5",
+"trajectories": [
+0,
+48
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/decay_turb",
+"file": "decay_turb/decay_turb.hdf5",
+"trajectories": [
+0,
+54
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/diff",
+"file": "diff/diff.hdf5",
+"trajectories": [
+0,
+48
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/fisher",
+"file": "fisher/fisher.hdf5",
+"trajectories": [
+0,
+48
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_alpha",
+"file": "gs_alpha/gs_alpha.hdf5",
+"trajectories": [
+0,
+9
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_beta",
+"file": "gs_beta/gs_beta.hdf5",
+"trajectories": [
+0,
+9
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_delta",
+"file": "gs_delta/gs_delta.hdf5",
+"trajectories": [
+0,
+7
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_epsilon",
+"file": "gs_epsilon/gs_epsilon.hdf5",
+"trajectories": [
+0,
+9
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_gamma",
+"file": "gs_gamma/gs_gamma.hdf5",
+"trajectories": [
+0,
+9
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_iota",
+"file": "gs_iota/gs_iota.hdf5",
+"trajectories": [
+0,
+7
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_kappa",
+"file": "gs_kappa/gs_kappa.hdf5",
+"trajectories": [
+0,
+7
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_theta",
+"file": "gs_theta/gs_theta.hdf5",
+"trajectories": [
+0,
+7
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/kdv",
+"file": "kdv/kdv.hdf5",
+"trajectories": [
+0,
+48
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/kolm_flow",
+"file": "kolm_flow/kolm_flow.hdf5",
+"trajectories": [
+0,
+54
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/ks",
+"file": "ks/ks.hdf5",
+"trajectories": [
+0,
+54
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/sh",
+"file": "sh/sh.hdf5",
+"trajectories": [
+0,
+48
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.03.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.06.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.10.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.18.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.32.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_0.56.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_1.00.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_1.78.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/train/turbulent_radiative_layer_tcool_3.16.hdf5",
+"trajectories": [
+0,
+8
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+4
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+5
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_126288_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_142103_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_144307_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_153264_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_198010_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_234461_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_238834_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_296423_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_337393_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_350040_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_391455_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_392020_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_403221_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_415374_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_429773_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_431752_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_433143_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_445636_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_452245_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_453445_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_471651_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_496019_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_509578_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_516076_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_540888_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_585598_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_588419_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_597635_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_597861_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_600790_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_61749_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_61991_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_646044_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_666597_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_766153_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_772245_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_788727_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_792179_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_795128_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_795933_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_806439_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_857042_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_857466_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_874947_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_891593_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_901448_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_946191_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_950647_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_954413_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_97473_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_975533_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_train_991670_0.50000_100.h5",
+"trajectories": [
+0,
+100
+]
+}
+],
+"valid": [
+{
+"source": "ape2d",
+"dataset": "ape2d/burgers",
+"file": "burgers/burgers.hdf5",
+"trajectories": [
+48,
+50
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/decay_turb",
+"file": "decay_turb/decay_turb.hdf5",
+"trajectories": [
+54,
+60
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/diff",
+"file": "diff/diff.hdf5",
+"trajectories": [
+48,
+50
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/fisher",
+"file": "fisher/fisher.hdf5",
+"trajectories": [
+48,
+50
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_alpha",
+"file": "gs_alpha/gs_alpha.hdf5",
+"trajectories": [
+9,
+10
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_beta",
+"file": "gs_beta/gs_beta.hdf5",
+"trajectories": [
+9,
+10
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_delta",
+"file": "gs_delta/gs_delta.hdf5",
+"trajectories": [
+7,
+8
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_epsilon",
+"file": "gs_epsilon/gs_epsilon.hdf5",
+"trajectories": [
+9,
+10
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_gamma",
+"file": "gs_gamma/gs_gamma.hdf5",
+"trajectories": [
+9,
+10
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_iota",
+"file": "gs_iota/gs_iota.hdf5",
+"trajectories": [
+7,
+8
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_kappa",
+"file": "gs_kappa/gs_kappa.hdf5",
+"trajectories": [
+7,
+8
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/gs_theta",
+"file": "gs_theta/gs_theta.hdf5",
+"trajectories": [
+7,
+8
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/kdv",
+"file": "kdv/kdv.hdf5",
+"trajectories": [
+48,
+50
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/kolm_flow",
+"file": "kolm_flow/kolm_flow.hdf5",
+"trajectories": [
+54,
+60
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/ks",
+"file": "ks/ks.hdf5",
+"trajectories": [
+54,
+60
+]
+},
+{
+"source": "ape2d",
+"dataset": "ape2d/sh",
+"file": "sh/sh.hdf5",
+"trajectories": [
+48,
+50
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.03.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.06.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.10.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.18.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.32.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_0.56.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_1.00.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_1.78.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-turbulent_radiative_layer_2D",
+"dataset": "well/turbulent_radiative_layer_2D",
+"file": "data/valid/turbulent_radiative_layer_tcool_3.16.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_1.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_1.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+3
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_13.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_13.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_3.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_5.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_5.0_alpha_-4.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+"trajectories": [
+0,
+1
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_7.0_alpha_-3.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "well-active_matter",
+"dataset": "well/active_matter",
+"file": "data/valid/active_matter_L_10.0_zeta_9.0_alpha_-1.0.hdf5",
+"trajectories": [
+0,
+2
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_126388_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_142203_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_144407_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_153364_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_198110_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_234561_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_238934_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+},
+{
+"source": "pdearena-ns",
+"dataset": "pdearena/navier_stokes_2d",
+"file": "NavierStokes2D_valid_296523_0.50000.h5",
+"trajectories": [
+0,
+25
+]
+}
+]
+},
+"cases": [
+{
+"case_id": "ape2d-burgers-0050",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 50,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0051",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 51,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0052",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 52,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0053",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 53,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0054",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 54,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0055",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 55,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0056",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 56,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0057",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 57,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0058",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 58,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-burgers-0059",
+"dataset": "ape2d/burgers",
+"source": "ape2d",
+"file": "burgers/burgers.hdf5",
+"trajectory": 59,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-test-0000",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-testlong-0000",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-decay_turb-test-0001",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-testlong-0001",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-decay_turb-test-0002",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-testlong-0002",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-decay_turb-test-0003",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-testlong-0003",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-decay_turb-test-0004",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-decay_turb-testlong-0004",
+"dataset": "ape2d/decay_turb",
+"source": "ape2d",
+"file": "decay_turb_test/decay_turb_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-diff-0050",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 50,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0051",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 51,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0052",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 52,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0053",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 53,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0054",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 54,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0055",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 55,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0056",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 56,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0057",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 57,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0058",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 58,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-diff-0059",
+"dataset": "ape2d/diff",
+"source": "ape2d",
+"file": "diff/diff.hdf5",
+"trajectory": 59,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0050",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 50,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0051",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 51,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0052",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 52,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0053",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 53,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0054",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 54,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0055",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 55,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0056",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 56,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0057",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 57,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0058",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 58,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-fisher-0059",
+"dataset": "ape2d/fisher",
+"source": "ape2d",
+"file": "fisher/fisher.hdf5",
+"trajectory": 59,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_alpha-test-0000",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_alpha-testlong-0000",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_alpha-test-0001",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_alpha-testlong-0001",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_alpha-test-0002",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_alpha-testlong-0002",
+"dataset": "ape2d/gs_alpha",
+"source": "ape2d",
+"file": "gs_alpha_test/gs_alpha_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_beta-test-0000",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_beta-testlong-0000",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_beta-test-0001",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_beta-testlong-0001",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_beta-test-0002",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_beta-testlong-0002",
+"dataset": "ape2d/gs_beta",
+"source": "ape2d",
+"file": "gs_beta_test/gs_beta_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_delta-0008",
+"dataset": "ape2d/gs_delta",
+"source": "ape2d",
+"file": "gs_delta/gs_delta.hdf5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_delta-0009",
+"dataset": "ape2d/gs_delta",
+"source": "ape2d",
+"file": "gs_delta/gs_delta.hdf5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_epsilon-test-0000",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_epsilon-testlong-0000",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_epsilon-test-0001",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_epsilon-testlong-0001",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_epsilon-test-0002",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_epsilon-testlong-0002",
+"dataset": "ape2d/gs_epsilon",
+"source": "ape2d",
+"file": "gs_epsilon_test/gs_epsilon_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_gamma-test-0000",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_gamma-testlong-0000",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_gamma-test-0001",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_gamma-testlong-0001",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_gamma-test-0002",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_gamma-testlong-0002",
+"dataset": "ape2d/gs_gamma",
+"source": "ape2d",
+"file": "gs_gamma_test/gs_gamma_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-gs_iota-0008",
+"dataset": "ape2d/gs_iota",
+"source": "ape2d",
+"file": "gs_iota/gs_iota.hdf5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_iota-0009",
+"dataset": "ape2d/gs_iota",
+"source": "ape2d",
+"file": "gs_iota/gs_iota.hdf5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_kappa-0008",
+"dataset": "ape2d/gs_kappa",
+"source": "ape2d",
+"file": "gs_kappa/gs_kappa.hdf5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_kappa-0009",
+"dataset": "ape2d/gs_kappa",
+"source": "ape2d",
+"file": "gs_kappa/gs_kappa.hdf5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_theta-0008",
+"dataset": "ape2d/gs_theta",
+"source": "ape2d",
+"file": "gs_theta/gs_theta.hdf5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-gs_theta-0009",
+"dataset": "ape2d/gs_theta",
+"source": "ape2d",
+"file": "gs_theta/gs_theta.hdf5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0050",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 50,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0051",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 51,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0052",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 52,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0053",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 53,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0054",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 54,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0055",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 55,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0056",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 56,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0057",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 57,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0058",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 58,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kdv-0059",
+"dataset": "ape2d/kdv",
+"source": "ape2d",
+"file": "kdv/kdv.hdf5",
+"trajectory": 59,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-test-0000",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-testlong-0000",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-kolm_flow-test-0001",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-testlong-0001",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-kolm_flow-test-0002",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-testlong-0002",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-kolm_flow-test-0003",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-testlong-0003",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-kolm_flow-test-0004",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-kolm_flow-testlong-0004",
+"dataset": "ape2d/kolm_flow",
+"source": "ape2d",
+"file": "kolm_flow_test/kolm_flow_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-ks-test-0000",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-ks-testlong-0000",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-ks-test-0001",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-ks-testlong-0001",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-ks-test-0002",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-ks-testlong-0002",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-ks-test-0003",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-ks-testlong-0003",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-ks-test-0004",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-ks-testlong-0004",
+"dataset": "ape2d/ks",
+"source": "ape2d",
+"file": "ks_test/ks_test.hdf5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 96,
+"split": "test_long"
+},
+{
+"case_id": "ape2d-sh-0050",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 50,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0051",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 51,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0052",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 52,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0053",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 53,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0054",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 54,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0055",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 55,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0056",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 56,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0057",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 57,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0058",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 58,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "ape2d-sh-0059",
+"dataset": "ape2d/sh",
+"source": "ape2d",
+"file": "sh/sh.hdf5",
+"trajectory": 59,
+"start": 0,
+"n_steps_out": 26,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.03-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.03.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.06-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.06.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.10-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.10.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.18-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.18.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.32-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.32.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_0.56-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_0.56.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_1.00-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_1.00.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_1.78-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_1.78.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-turbulent_radiative_layer_2D-turbulent_radiative_layer_tcool_3.16-0",
+"dataset": "well/turbulent_radiative_layer_2D",
+"source": "well-turbulent_radiative_layer_2D",
+"file": "data/test/turbulent_radiative_layer_tcool_3.16.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_1.0_alpha_-1.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_1.0_alpha_-1.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_1.0_alpha_-1.0-1",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_1.0_alpha_-1.0.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_1.0_alpha_-2.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_1.0_alpha_-2.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_11.0_alpha_-1.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-1.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_11.0_alpha_-2.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_11.0_alpha_-3.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-3.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_11.0_alpha_-3.0-1",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-3.0.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_11.0_alpha_-4.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_13.0_alpha_-1.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_13.0_alpha_-1.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_13.0_alpha_-5.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_13.0_alpha_-5.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_15.0_alpha_-2.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_15.0_alpha_-2.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_15.0_alpha_-5.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_17.0_alpha_-3.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_17.0_alpha_-3.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_17.0_alpha_-3.0-1",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_17.0_alpha_-3.0.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_17.0_alpha_-4.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_3.0_alpha_-3.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_3.0_alpha_-3.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_3.0_alpha_-3.0-1",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_3.0_alpha_-3.0.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_3.0_alpha_-4.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_3.0_alpha_-4.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_5.0_alpha_-2.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-2.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_5.0_alpha_-3.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-3.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_5.0_alpha_-3.0-1",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-3.0.hdf5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_5.0_alpha_-5.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-5.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_7.0_alpha_-2.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_7.0_alpha_-5.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_7.0_alpha_-5.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_9.0_alpha_-3.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_9.0_alpha_-3.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "well-active_matter-active_matter_L_10.0_zeta_9.0_alpha_-4.0-0",
+"dataset": "well/active_matter",
+"source": "well-active_matter",
+"file": "data/test/active_matter_L_10.0_zeta_9.0_alpha_-4.0.hdf5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 30,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-126488-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_126488_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-142303-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_142303_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-144507-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_144507_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-153464-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_153464_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-198210-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_198210_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-234661-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_234661_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-239034-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_239034_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-00",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 0,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-01",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 1,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-02",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 2,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-03",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 3,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-04",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 4,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-05",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 5,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-06",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 6,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-07",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 7,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-08",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 8,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-09",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 9,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-10",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 10,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-11",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 11,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-12",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 12,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-13",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 13,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-14",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 14,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-15",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 15,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-16",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 16,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-17",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 17,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-18",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 18,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-19",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 19,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-20",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 20,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-21",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 21,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-22",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 22,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-23",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 23,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+},
+{
+"case_id": "pdearena-296623-24",
+"dataset": "pdearena/navier_stokes_2d",
+"source": "pdearena-ns",
+"file": "NavierStokes2D_test_296623_0.50000.h5",
+"trajectory": 24,
+"start": 0,
+"n_steps_out": 10,
+"split": "test"
+}
+]
+}

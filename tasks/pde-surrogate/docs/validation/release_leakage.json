@@ -1,0 +1,78 @@
+{
+ "what": "content check that the release's train/ subtree carries no held-out trajectory",
+ "release_kind": "derived-only",
+ "method": "hash every trajectory array present in the release, hash every held-out trajectory from the source materialization, and require the two sets to be disjoint. Structure is re-read from the release rather than assumed from the build.",
+ "release_id": "pde-surrogate-split-v2",
+ "release_files": 18,
+ "files_checked": 9,
+ "held_out_trajectories_checked": 580,
+ "truncated_file_structure": [
+  {
+   "file": "ape2d-full/burgers.hdf5",
+   "expected_keep": 500,
+   "found": 500,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/diff.hdf5",
+   "expected_keep": 500,
+   "found": 500,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/fisher.hdf5",
+   "expected_keep": 500,
+   "found": 500,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/gs_delta.hdf5",
+   "expected_keep": 80,
+   "found": 80,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/gs_iota.hdf5",
+   "expected_keep": 80,
+   "found": 80,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/gs_kappa.hdf5",
+   "expected_keep": 80,
+   "found": 80,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/gs_theta.hdf5",
+   "expected_keep": 80,
+   "found": 80,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/kdv.hdf5",
+   "expected_keep": 500,
+   "found": 500,
+   "contiguous_from_zero": true,
+   "ok": true
+  },
+  {
+   "file": "ape2d-full/sh.hdf5",
+   "expected_keep": 500,
+   "found": 500,
+   "contiguous_from_zero": true,
+   "ok": true
+  }
+ ],
+ "content_collisions": [],
+ "test_only_files_wrongly_present": [],
+ "expected_files_missing": [],
+ "clean": true
+}

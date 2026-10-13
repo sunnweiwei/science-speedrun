@@ -1,0 +1,95 @@
+{
+ "contract": "pde-surrogate-rollout/v1",
+ "n_cases": 270,
+ "n_failed": 0,
+ "failures": [],
+ "datasets": {
+  "ape2d/decay_turb": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 0.24970914105008835,
+   "nrmse_joint": 0.2497110459166397,
+   "vrmse_steps_1_5": 0.057505722214752135,
+   "vrmse_steps_6_12": 0.11159802210751786,
+   "vrmse_steps_13_30": 0.17554506983458004,
+   "reward": 0.5341885197435856
+  },
+  "ape2d/gs_alpha": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 1.0131962481079102,
+   "nrmse_joint": 0.2928471210014164,
+   "vrmse_steps_1_5": 0.06302037094066616,
+   "vrmse_steps_6_12": 0.22723846063158068,
+   "vrmse_steps_13_30": 0.6148948740410958,
+   "reward": 0.33143547569409576
+  },
+  "ape2d/gs_beta": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 0.8854411600820505,
+   "nrmse_joint": 0.19604658826119034,
+   "vrmse_steps_1_5": 0.09536717422638673,
+   "vrmse_steps_6_12": 0.27820356541489105,
+   "vrmse_steps_13_30": 0.4512957062838835,
+   "reward": 0.3509467645124664
+  },
+  "ape2d/gs_epsilon": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 0.7287494313504851,
+   "nrmse_joint": 0.22241041390475697,
+   "vrmse_steps_1_5": 0.038359551423331965,
+   "vrmse_steps_6_12": 0.1269398142588143,
+   "vrmse_steps_13_30": 0.33846711650423555,
+   "reward": 0.37914059037218534
+  },
+  "ape2d/gs_gamma": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 1.0142178239608968,
+   "nrmse_joint": 0.3121309576788888,
+   "vrmse_steps_1_5": 0.10843940805846862,
+   "vrmse_steps_6_12": 0.39654943718066993,
+   "vrmse_steps_13_30": 0.7833823841780028,
+   "reward": 0.3312895871294596
+  },
+  "ape2d/kolm_flow": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 1.0827700153861861,
+   "nrmse_joint": 1.0827782763603166,
+   "vrmse_steps_1_5": 0.14299310119677933,
+   "vrmse_steps_6_12": 0.37627404312682733,
+   "vrmse_steps_13_30": 0.9228914877707999,
+   "reward": 0.32182125981234017
+  },
+  "ape2d/ks": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 96,
+   "vrmse": 1.4009660382334843,
+   "nrmse_joint": 1.400976726878369,
+   "vrmse_steps_1_5": 0.06603994522987203,
+   "vrmse_steps_6_12": 0.3016031668400423,
+   "vrmse_steps_13_30": 0.9623946538206748,
+   "reward": 0.28452413087109135
+  }
+ },
+ "groups": {
+  "ape2d": {
+   "n_datasets": 7,
+   "vrmse": 0.9107214083101572,
+   "reward": 0.3468714847841186
+  }
+ },
+ "mean_vrmse": 0.9107214083101572,
+ "reward": 0.3468714847841186,
+ "note": " per-case records omitted from the committed copy; regenerate with score.py"
+}

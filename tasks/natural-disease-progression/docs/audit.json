@@ -1,0 +1,128 @@
+{
+  "source_version": "MIMIC-IV 3.1",
+  "gem_sha256": "1c5e5f14026ace48437a0d1c485d282fb5d171c357c6ab4f7798fc0a1e3624a2",
+  "adult_inpatient_patients": 223452,
+  "adult_admissions": 546028,
+  "admissions_per_patient": {
+    "1": 123289,
+    "2": 44123,
+    "3": 20108,
+    "4": 11172,
+    "5": 6629,
+    "6": 4312,
+    "7": 2964,
+    "8": 2187,
+    "9": 1651,
+    "10_plus": 7017
+  },
+  "new_disease_events": {
+    "after_first": 1351782,
+    "initial": 1353056
+  },
+  "new_disease_events_per_patient_quantiles": [
+    0.0,
+    0.0,
+    0.0,
+    7.0,
+    20.0,
+    59.0,
+    191.0
+  ],
+  "mapping_rows": [
+    {
+      "version": 9,
+      "status": "ambiguous",
+      "rows": 1813659
+    },
+    {
+      "version": 9,
+      "status": "clear",
+      "rows": 1046121
+    },
+    {
+      "version": 9,
+      "status": "unmapped",
+      "rows": 48961
+    },
+    {
+      "version": 10,
+      "status": "direct",
+      "rows": 3455747
+    }
+  ],
+  "modality_coverage": {
+    "labevents": {
+      "rows": 158374764,
+      "patients": 313442,
+      "admissions": 447689
+    },
+    "prescriptions": {
+      "rows": 20292611,
+      "patients": 196738,
+      "admissions": 463328
+    },
+    "emar": {
+      "rows": 42808593,
+      "patients": 195717,
+      "admissions": 292430
+    }
+  },
+  "timestamp_audit": {
+    "admissions": [
+      0,
+      0,
+      175,
+      745
+    ],
+    "labevents": [
+      0,
+      2568511,
+      1372,
+      [
+        1.0,
+        5.0,
+        20.0
+      ]
+    ],
+    "prescriptions": [
+      21890,
+      31436,
+      816994
+    ],
+    "emar": [
+      0,
+      0,
+      1457991,
+      [
+        0.0,
+        0.0,
+        4.0
+      ]
+    ],
+    "death": [
+      144966,
+      22,
+      32,
+      1
+    ]
+  },
+  "candidate_windows": {
+    "30": {
+      "surviving_index": 218049,
+      "conservative_diagnosis_coverage": 213552
+    },
+    "90": {
+      "surviving_index": 218049,
+      "conservative_diagnosis_coverage": 208900
+    },
+    "180": {
+      "surviving_index": 218049,
+      "conservative_diagnosis_coverage": 201797
+    },
+    "365": {
+      "surviving_index": 218049,
+      "conservative_diagnosis_coverage": 188030
+    }
+  },
+  "per_target_positive_counts": "See scored_diseases.json for the frozen target list."
+}

@@ -1,0 +1,40 @@
+{
+ "schema": "surface-code-decoding-hf-release/v1",
+ "release": "sycamore-hard-v1",
+ "release_revision": "v1.1",
+ "note": "v1.1: development ships reference results and a weightless template instead of trained weights; verifier/grader bytes identical to v1 (first published under Corning/); reference-model is operator-only",
+ "artifacts": {
+  "development": {
+   "repo_id": "sunweiwei/ai4sci-surface-code-decoding",
+   "revision": "0329286e6d7a17c683825ff3c82c5735835e99c0",
+   "filename": "development.tar.gz",
+   "bytes": 77424105,
+   "sha256": "0e9ce836eb1b142c6f96ec088d32031759ff54ae0913884567a6b3c291f06e2b",
+   "expanded_bytes": 124842724
+  },
+  "verifier": {
+   "repo_id": "sunweiwei/ai4sci-surface-code-decoding",
+   "revision": "0329286e6d7a17c683825ff3c82c5735835e99c0",
+   "filename": "verifier-inputs.tar.gz",
+   "bytes": 64789453,
+   "sha256": "e3be733f50de3dfb798d95661c5a9d7128787c2eee57f85b60c7abc004fab636",
+   "expanded_bytes": 87166817
+  },
+  "grader": {
+   "repo_id": "sunweiwei/ai4sci-surface-code-decoding-evaluation",
+   "revision": "d1985d6041a00491b3fca9254f44457a5ca0012f",
+   "filename": "grader-labels.tar.gz",
+   "bytes": 26738048,
+   "sha256": "32d02dd2083b2dd89d48a0ace680ec8b92a45e00388d1cb9c1df9287b0486876",
+   "expanded_bytes": 29372924
+  },
+  "reference-model": {
+   "repo_id": "sunweiwei/ai4sci-surface-code-decoding-evaluation",
+   "revision": "d1985d6041a00491b3fca9254f44457a5ca0012f",
+   "filename": "reference-model.tar.gz",
+   "bytes": 313866583,
+   "sha256": "16df96c11d826eaf88b4dbd8c2010558171b958512cb221135303a4551b46db2",
+   "expanded_bytes": 339321840
+  }
+ }
+}

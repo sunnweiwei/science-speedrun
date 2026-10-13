@@ -1,0 +1,12 @@
+# Runtime pins recorded from the contributor's working environment on 2026-09-17 (Python 3.11).
+# torch comes from the pytorch/pytorch:2.14.0-cuda12.6-cudnn9-runtime base image (cu130 needs driver >= 580).
+torch==2.14.0
+numpy==2.4.6
+h5py==3.16.0
+pandas==2.3.3
+scipy==1.17.1
+pyarrow==25.0.1
+huggingface-hub==0.36.2
+einops==0.8.2
+safetensors==0.8.0
+pytest==9.1.1

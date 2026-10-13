@@ -1,0 +1,19 @@
+services:
+  main:
+    command: ["sleep", "infinity"]
+    cpus: 16
+    mem_limit: "64g"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - type: bind
+        source: ${MASSSPECGYM_SUBMISSION_DIR:?Set MASSSPECGYM_SUBMISSION_DIR}
+        target: /workspace/submission
+        read_only: true
+        bind:
+          create_host_path: false

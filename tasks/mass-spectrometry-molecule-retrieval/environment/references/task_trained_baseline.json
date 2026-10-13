@@ -1,0 +1,290 @@
+{
+  "schema": "massspecgym-task-trained-baseline/v1",
+  "date": "2026-09-13",
+  "method": "scratch GLACIER no-CF with trained Fourier-DeepSets fallback",
+  "status": "full_test_score_complete",
+  "community_sota_claim": false,
+  "matched_h100_reference": false,
+  "data": {
+    "hf_dataset": "roman-bushuiev/MassSpecGym",
+    "hf_revision": "d2e86d0c3bd905a6d578c0dd6053ed2bd41f9c2a",
+    "experimental_folds": {
+      "train": 194119,
+      "validation": 19429,
+      "test": 17556
+    },
+    "magma": {
+      "schema": "massspecgym-glacier-training/v1",
+      "config": {
+        "source_files": {
+          "train": "de7f46e91f7b67eb5ca67468381abbdb20a8f739a0ae4b27070276798ecad0fc",
+          "validation": "26788b56a3cb9d19c265c925504a4ce4e77e4c6b65b2a11068be6f24d15bf70f"
+        },
+        "limits": [
+          null,
+          null
+        ],
+        "max_peaks": 50,
+        "ppm_diff": 20,
+        "domain": "released_glacier_conditions",
+        "native_source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6"
+      },
+      "counts": {
+        "train": {
+          "available": 194119,
+          "eligible": 99341,
+          "selected": 99341,
+          "annotated": 99119
+        },
+        "validation": {
+          "available": 19429,
+          "eligible": 9734,
+          "selected": 9734,
+          "annotated": 9720
+        }
+      },
+      "excluded_reasons": {
+        "no_magma_fragment": 236
+      },
+      "files": {
+        "targets.sqlite": "8e39e4100dc3913e84691e74cbfb3402c630bd357c02e7793c147f207bc7a9b2",
+        "train.jsonl": "55b1ad03b7c6c7da153358c372ca47310b01767c5cb837cfad8ecb1eb2b43159",
+        "validation.jsonl": "6aa281281b2ef3db520be3907ffb83523f7af87e5fed081c50d43538e4b4ecb2"
+      },
+      "elapsed_seconds": 2142.0769281890243,
+      "policy": "Train for fitting; validation for selection only; no test inputs consumed."
+    },
+    "magma_manifest_sha256": "d0679cf32d694776c237e00f964abe37ab12ae7ff06ba083d9b4823732506d73",
+    "optional_clean_synthetic_rows_supplied": 2333485,
+    "synthetic_rows_used_by_this_baseline": 0,
+    "validation_policy": "selection only; not fitting",
+    "test_policy": "frozen evaluation only; no model selection"
+  },
+  "glacier_training": {
+    "global_step": 24186,
+    "elapsed_seconds": 20988.441496657208,
+    "selected_checkpoint": "/workspace/native-fit/checkpoints/best.ckpt",
+    "validation_loss": 0.4375574588775635,
+    "last_validation_loss": 0.4463026821613312,
+    "source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6",
+    "data_manifest_sha256": "d0679cf32d694776c237e00f964abe37ab12ae7ff06ba083d9b4823732506d73",
+    "hardware": "NVIDIA H200",
+    "peak_cuda_allocated_bytes": 2950235136,
+    "selected_on": "validation spectrum loss; retrieval must be measured separately"
+  },
+  "model_config": {
+    "method": "native-glacier-with-trained-deepsets-fallback",
+    "routing": "released_conditions_with_usable_observation_and_supported_pool",
+    "distance": "entropy",
+    "batch_size": 8,
+    "workers": 2,
+    "feature_cache_size": 64,
+    "fallback_checkpoint_sha256": "46576b464979b0c076e2cd2dd5baa05fa42c05941f61d0d7c630c8502fd28a04",
+    "inference_runtime": "/opt/glacier/bin/python",
+    "training": {
+      "initialization": "random",
+      "data_manifest_sha256": "d0679cf32d694776c237e00f964abe37ab12ae7ff06ba083d9b4823732506d73",
+      "config": {
+        "hidden_size": 256,
+        "graphormer_layers": 5,
+        "graphormer_dropout": 0.1,
+        "frag_decoder_layers": 4,
+        "frag_encoder_layers": 0,
+        "frag_dropout": 0.1,
+        "inten_decoder_layers": 4,
+        "inten_encoder_layers": 3,
+        "inten_dropout": 0.1,
+        "max_breakpoints": 200,
+        "max_broken_bonds": 6,
+        "multi_hop_max_dist": 10,
+        "num_edge_dis": 10,
+        "pe_embed_k": 14,
+        "embed_elem_group": true,
+        "embed_adduct": true,
+        "embed_collision": true,
+        "embed_instrument": true,
+        "encode_forms": true,
+        "num_bins": 150000,
+        "enable_aux_loss": true,
+        "enable_decoder_norm": false,
+        "sk_tau": 0.05,
+        "linsat_tau": 15,
+        "inten_weight": 1,
+        "frag_weight": 0.1,
+        "warmup": 2000,
+        "magma_warmup_steps": 2500,
+        "magma_decay_rate": 0.9,
+        "magma_decay_steps": 2500,
+        "inten_loss_fn": "cosine",
+        "lr": 0.0004,
+        "lr_decay_rate": 0.9,
+        "weight_decay": 0
+      },
+      "source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6",
+      "seed": 1,
+      "batch_size": 8,
+      "devices": 1,
+      "accumulate_grad_batches": 4,
+      "loader": "torchdata-stateful-separate-generators-v2",
+      "elapsed_seconds": 20643.999838279095
+    }
+  },
+  "fallback_training": {
+    "gpu": "NVIDIA H200",
+    "gpus": 1,
+    "cpus": 16,
+    "memory_gib": 64,
+    "epochs": 50,
+    "training_rows": 194119,
+    "validation_rows": 19429,
+    "seed": 0,
+    "elapsed_seconds": 504.7920264028944
+  },
+  "fallback_selected_checkpoint": {
+    "batch_size": 256,
+    "best_validation_cosine_loss": 0.5662532976954919,
+    "config": {
+      "dropout": 0.1,
+      "fingerprint_radius": 2,
+      "fingerprint_size": 4096,
+      "hidden_size": 128,
+      "layers_per_mlp": 4,
+      "max_peaks": 60,
+      "mz_max": 1000.0,
+      "mz_min": 10.0
+    },
+    "elapsed_seconds": 43.8034905414097,
+    "initialization": "random",
+    "learning_rate": 0.0003,
+    "schema": "massspecgym-retrieval-fit/v1",
+    "seed": 0,
+    "selected_epoch": 1,
+    "train_records": 194119,
+    "train_sha256": "de7f46e91f7b67eb5ca67468381abbdb20a8f739a0ae4b27070276798ecad0fc",
+    "validation_records": 19429,
+    "validation_sha256": "26788b56a3cb9d19c265c925504a4ce4e77e4c6b65b2a11068be6f24d15bf70f"
+  },
+  "checkpoint_sha256": "2619bfbf041bc9a115b286fa2a9b02856081528942de6ef90f2ec2c46d46b0fd",
+  "model_manifest_sha256": "7fd7b4c11cfbe9f4b2e19316806374688d818431526deaece36f5fa5855d5f69",
+  "fallback_checkpoint_sha256": "46576b464979b0c076e2cd2dd5baa05fa42c05941f61d0d7c630c8502fd28a04",
+  "full_validation_scoring": {
+    "queries": 19429,
+    "valid_rankings": 19429,
+    "global_error": null,
+    "metrics": {
+      "hit_rate_at_1": 0.3598744145349735,
+      "hit_rate_at_20": 0.6346698234597766,
+      "hit_rate_at_5": 0.49966544855628187
+    }
+  },
+  "full_test_report": {
+    "evaluation_mode": "isolated_model_replay",
+    "global_error": null,
+    "invalid_or_missing_rankings": 0,
+    "metric_directions": {
+      "hit_rate_at_1": "maximize",
+      "hit_rate_at_20": "maximize",
+      "hit_rate_at_5": "maximize",
+      "mces_at_1": "minimize"
+    },
+    "metrics": {
+      "hit_rate_at_1": 0.4032239690134427,
+      "hit_rate_at_20": 0.7077352472089314,
+      "hit_rate_at_5": 0.5684666210982,
+      "mces_at_1": 13.1696001367054
+    },
+    "model_quality_measured": true,
+    "queries": 17556,
+    "reference_comparison": {
+      "beats_reference": false,
+      "comparable": true,
+      "hit_rate_at_1": 0.4939052175894281,
+      "name": "GLACIER no-CF with strict-clean MIST fallback",
+      "reference_delta_hit_at_1": -0.09068124857598542
+    },
+    "schema": "massspecgym-retrieval-report/v1",
+    "status": "complete",
+    "valid_rankings": 17556
+  },
+  "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+  "ranking_sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26",
+  "report_sha256": "eea990e4bce6e56888856d40fd7f7a86682e813af2f5b4ce72c15462c7179ac4",
+  "branch_comparison": {
+    "scope": "Post hoc explanation of frozen existing test rankings; no fitting, model selection, or new inference. Reference fallback counts derived by subtracting the published native-domain hit counts from full hybrid counts.",
+    "groups": {
+      "native": {
+        "queries": 9954,
+        "hits": {
+          "1": 6524,
+          "5": 8384,
+          "20": 9148
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.6554149085794655,
+          "hit_rate_at_5": 0.842274462527627,
+          "hit_rate_at_20": 0.9190275266224633
+        },
+        "reference_hits": {
+          "1": 6718,
+          "5": 8407,
+          "20": 9126
+        },
+        "reference_metrics": {
+          "hit_rate_at_1": 0.6749045609805103,
+          "hit_rate_at_5": 0.8445850914205345,
+          "hit_rate_at_20": 0.9168173598553345
+        },
+        "delta_contribution_to_full_hit1_pp": -1.1050353155616313
+      },
+      "fallback": {
+        "queries": 7602,
+        "hits": {
+          "1": 555,
+          "5": 1596,
+          "20": 3277
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.07300710339384373,
+          "hit_rate_at_5": 0.20994475138121546,
+          "hit_rate_at_20": 0.43107077084977635
+        },
+        "reference_hits": {
+          "1": 1953,
+          "5": 2862,
+          "20": 3942
+        },
+        "reference_metrics": {
+          "hit_rate_at_1": 0.2569060773480663,
+          "hit_rate_at_5": 0.3764798737174428,
+          "hit_rate_at_20": 0.5185477505919495
+        },
+        "delta_contribution_to_full_hit1_pp": -7.9630895420369106
+      }
+    },
+    "rankings_sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26"
+  },
+  "execution": {
+    "prediction_cluster": "CS",
+    "prediction_job": "12582664",
+    "prediction_gpu": "4 NVIDIA RTX A5000",
+    "prediction_numerical_control": {
+      "spectra": 63,
+      "max_relative_l1": 0.0,
+      "method": "Preserve original full batches; assign complete batches across GPUs."
+    },
+    "combined_prediction_and_serial_ranking_attempt": "timeout after 13800 seconds; closed prediction shards retained",
+    "cpu_recovery_allocation": "12473780",
+    "cpu_recovery_workers": 16,
+    "cpu_recovery_elapsed_seconds": 488.08950800681487,
+    "original_partial_rows_matched": 2537,
+    "missing_supported_predictions": 0,
+    "native_rankings": 9954,
+    "fallback_rankings": 7602,
+    "model_execution": "Input-only offline namespaces; trusted grading receives private labels separately. Operator repartitioned cached prediction scoring; not an unmodified single-H100 timing acceptance.",
+    "production_docker_acceptance": false,
+    "single_h100_acceptance": false,
+    "raw_evidence_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913",
+    "cpu_recovery_script_sha256": "e08c5fd8d8d614aade8f13b733be7ca7fd594ff666063d11a91d8cce1bf706b5"
+  },
+  "interpretation": "Task-owned from-scratch model quality measured on the full test fold. Different initialization, fallback, and heterogeneous commissioning hardware from the external reference; not a matched-budget agent comparison."
+}

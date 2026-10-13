@@ -1,0 +1,49 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/surface-code-decoding"
+version = "1.2.0"
+description = "Improve logical-error decoding from repeated Sycamore surface-code syndrome measurements."
+authors = [{ name = "T0-RSI contributors" }]
+keywords = ["model-development", "quantum-error-correction", "surface-code", "AlphaQubit"]
+
+[metadata]
+data_status = "physically split Sycamore hard-readout d3/d5; immutable Hugging Face materialization"
+initialization = "random; no trained weights supplied (reference AlphaQubit code and results only)"
+reference_model = "independent AlphaQubit v1 reproduction: P=0.7550607692307693, normalized 0.8580; weights withheld from agents"
+reference_training_gpu_hours = 200.4
+reference_training_hardware = "RTX PRO 6000 Blackwell Max-Q 96GB, up to 8 concurrent GPUs, 47.9 h wall including queueing (180.0 pretraining + 19.9 fine-tuning + 0.4 replay GPU-hours)"
+agent_budget_status = "8 H100 GPUs x 48 h; reference recipe uses two waves of ten single-GPU specialists (estimated 36-40 h wall, pending matched-H100 training completion)"
+primary_metric = "one_minus_balanced_logical_failure"
+primary_metric_direction = "maximize"
+normalized_score_version = "1.0.0"
+reference_lower_bound = 0.7160463461538461
+reference_upper_bound = 0.7615159615384615
+reference_upper = "released tensor-network predictions rescored on identical held-out shots"
+input_schema = "surface-code-decoding-input/v1"
+
+[agent]
+timeout_sec = 172800.0
+
+[environment]
+network_mode = "no-network"
+cpus = 16
+memory_mb = 131072
+storage_mb = 102400
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 3900.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

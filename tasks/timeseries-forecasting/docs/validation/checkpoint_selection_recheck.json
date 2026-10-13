@@ -1,0 +1,37 @@
+{
+ "what": "checkpoint selection re-checked on the corrected validation split (15 configs stratified over terms)",
+ "protocol": "validation split staged against the earliest held-out region of every config sharing each series; scored against seasonal_naive_reference_valid.json",
+ "configs": [
+  "m4_weekly__W__short",
+  "m4_hourly__H__short",
+  "electricity__T__short",
+  "electricity__H__short",
+  "electricity__D__short",
+  "electricity__T__medium",
+  "electricity__H__medium",
+  "solar__T__medium",
+  "solar__H__medium",
+  "kdd_cup_2018_with_missing__H__medium",
+  "electricity__T__long",
+  "electricity__H__long",
+  "solar__T__long",
+  "solar__H__long",
+  "kdd_cup_2018_with_missing__H__long"
+ ],
+ "checkpoints": {
+  "best.pt": {
+   "step": 17500,
+   "skill": -0.10682475082663734,
+   "rel_mase": 1.3060982753804116,
+   "rel_wql": 0.937954709943736,
+   "n_configs": 15
+  },
+  "last.pt": {
+   "step": 30000,
+   "skill": -0.11814153014566386,
+   "rel_mase": 1.3098400224939375,
+   "rel_wql": 0.9544986104913993,
+   "n_configs": 15
+  }
+ }
+}

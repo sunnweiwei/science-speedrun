@@ -1,0 +1,6 @@
+# Data-preparation image for prepare.sh: Python 3.12 with uv; each task installs its own pins in a
+# throwaway virtual environment at run time.
+#   docker build -f runner/Dockerfile.prepare -t speedrun-prepare:1 runner
+FROM python:3.12-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl git \
+ && rm -rf /var/lib/apt/lists/* && pip install --no-cache-dir uv==0.9.5

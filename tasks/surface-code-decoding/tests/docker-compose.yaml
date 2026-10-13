@@ -1,0 +1,48 @@
+volumes:
+  sealed:
+  verifier_logs:
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    shm_size: "16gb"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the public surface-code materialization}/verifier
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    cpus: 4
+    mem_limit: "16g"
+    command: ["python", "/opt/task/tests/grader.py"]
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the public surface-code materialization}/verifier
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the grader label directory}
+        target: /private
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

@@ -1,0 +1,24 @@
+{
+  "schema": "natural-disease-progression-controlled-release/v2",
+  "repository": "ScienceRSI/natural-disease-progression",
+  "repository_visibility": "private",
+  "gated": false,
+  "revision": "f7da2d06295f1ed614de0ceb5619b3f72dbaedd7",
+  "runtime_manifest_sha256": "10ce6beb5a6e441afd903804329768c48fbdc0c1adb44c2c3a262d574c65d3be",
+  "inventoried_files": 13,
+  "inventoried_bytes": 1075921290,
+  "access_condition": "Each accessor must independently hold current PhysioNet credentialing, required CITI training, and the MIMIC-IV DUA; repository admin verification is required.",
+  "source": "MIMIC-IV 3.1",
+  "source_doi": "10.13026/kpb9-mt58",
+  "published_tree": "runtime/development",
+  "forbidden": [
+    "public/test",
+    "trusted/test",
+    "controller_patient_splits.parquet",
+    "subject_split.parquet",
+    "working.duckdb",
+    "raw MIMIC tables or identifiers"
+  ],
+  "superseded_insecure_revision": "6b9c2cd9c92a0dfd795b51e04451a2b9507a027a",
+  "superseded_revision_history_status": "still_addressable_pending_explicit_irreversible_history_purge"
+}

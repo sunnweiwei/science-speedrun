@@ -1,0 +1,53 @@
+{
+  "checkpoint": {
+    "path": "last.pt",
+    "sha256": "5388434c21c6f42713b6d6a11d05e0e64c547d094ba262a38f0e0b16f19677ee"
+  },
+  "completed_epochs": 14,
+  "config": {
+    "attention_head_dim": 64,
+    "channel_growth": 96,
+    "contact_bin_size": 2048,
+    "contact_tracks": 28,
+    "conv_kernel_size": 5,
+    "dense_bin_size": 128,
+    "dna_kernel_size": 15,
+    "dropout": 0.0,
+    "enable_pairwise": false,
+    "encoder_width": 96,
+    "gradient_checkpointing": true,
+    "head_hidden_size": 768,
+    "hidden_dim": 1024,
+    "input_length": 1048576,
+    "junction_rank": 32,
+    "junction_tracks": 734,
+    "mlp_expansion": 4.0,
+    "num_attention_heads": 16,
+    "num_downsampling_blocks": 7,
+    "num_sequence_blocks": 16,
+    "pair_downsample": 16,
+    "pair_update_interval": 2,
+    "pair_width": 32,
+    "splice_usage_tracks": 734,
+    "stem_stride": 8,
+    "target_length": 196608,
+    "trunk_bin_size": 1024
+  },
+  "epochs": 14,
+  "global_step": 71792,
+  "output_families": [
+    "atac",
+    "dnase",
+    "procap",
+    "cage",
+    "rna_seq",
+    "chip_tf",
+    "chip_histone",
+    "splice_sites",
+    "splice_usage",
+    "junctions",
+    "contact_maps"
+  ],
+  "parameters": 215286020,
+  "schema": "alphagenome-50m-real/v3"
+}

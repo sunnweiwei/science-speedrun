@@ -1,0 +1,13 @@
+{
+  "schema": "ai4sci-score-bounds/v1",
+  "version": "massspecgym-retrieval-score/v1",
+  "metric": "hit_rate_at_1",
+  "direction": "maximize",
+  "lower": 0.04004329004329004,
+  "upper": 0.4939052175894281,
+  "lower_reference": "Repaired Fourier-DeepSets full-test acceptance replay (17,556 queries)",
+  "upper_reference": "Official GLACIER no-CF + independently trained strict-clean MIST fallback (17,556 queries)",
+  "lower_evidence": "docs/release_validation.json: trusted_test_report",
+  "upper_evidence": "docs/baseline_score.json",
+  "policy": "Frozen empirical reference anchors. Upper is not a theoretical optimum; performance above it clips to 1 while raw and unclipped values remain reported."
+}

@@ -1,0 +1,91 @@
+{
+ "kind": "temporal",
+ "seed": 20260929,
+ "epochs_completed": 11,
+ "best_internal_val_macro_time_averaged_auroc": 0.8473284019887919,
+ "parameters": 1660043,
+ "duration_seconds": 204.36998331407085,
+ "device": "cuda",
+ "history": [
+  {
+   "epoch": 1,
+   "train_loss": 0.5592065915605272,
+   "internal_val_loss": 0.46727191242906785,
+   "internal_val_macro_time_averaged_auroc": 0.8010407759543856,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 2,
+   "train_loss": 0.4606415457988569,
+   "internal_val_loss": 0.4388353144405065,
+   "internal_val_macro_time_averaged_auroc": 0.8216212089861968,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 3,
+   "train_loss": 0.4374981159475488,
+   "internal_val_loss": 0.4421543102297518,
+   "internal_val_macro_time_averaged_auroc": 0.8324977463663177,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 4,
+   "train_loss": 0.4234888686365645,
+   "internal_val_loss": 0.4383023938647023,
+   "internal_val_macro_time_averaged_auroc": 0.8369721166228988,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 5,
+   "train_loss": 0.4117921363265022,
+   "internal_val_loss": 0.42071573643220794,
+   "internal_val_macro_time_averaged_auroc": 0.8429561978921203,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 6,
+   "train_loss": 0.3989495007155087,
+   "internal_val_loss": 0.42257266946964794,
+   "internal_val_macro_time_averaged_auroc": 0.8452948063215489,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 7,
+   "train_loss": 0.3887475680017695,
+   "internal_val_loss": 0.42354663902962647,
+   "internal_val_macro_time_averaged_auroc": 0.8464849022452902,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 8,
+   "train_loss": 0.3773131307581781,
+   "internal_val_loss": 0.4218367789354589,
+   "internal_val_macro_time_averaged_auroc": 0.8473284019887919,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 9,
+   "train_loss": 0.36629923196955466,
+   "internal_val_loss": 0.4253284648336746,
+   "internal_val_macro_time_averaged_auroc": 0.8451853655529146,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 10,
+   "train_loss": 0.35536010530143275,
+   "internal_val_loss": 0.43070711305847875,
+   "internal_val_macro_time_averaged_auroc": 0.8442421685780582,
+   "lr": 0.0003
+  },
+  {
+   "epoch": 11,
+   "train_loss": 0.33633170407177976,
+   "internal_val_loss": 0.4521445808587251,
+   "internal_val_macro_time_averaged_auroc": 0.8414777787391109,
+   "lr": 0.00015
+  }
+ ],
+ "checkpoint_rule": "maximum full internal validation macro time-averaged AUROC",
+ "objective": "equal-cell capped train-prevalence-balanced binary cross entropy plus 0.1 mortality Brier",
+ "split": "sha256(sample_id) mod 10: 0-7 fit, 8 early-stop, 9 reserved calibration"
+}

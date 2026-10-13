@@ -1,0 +1,3 @@
+# pip constraints for the task images: keep the base image's torch build
+torch==2.14.0
+torchvision==0.29.0

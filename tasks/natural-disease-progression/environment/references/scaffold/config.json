@@ -1,0 +1,15 @@
+{
+  "model": {
+    "architecture": "implement-me"
+  },
+  "data": {
+    "max_events": null,
+    "batch_size": 128
+  },
+  "training": {
+    "epochs": 1,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "checkpoint": "checkpoint.pt"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "natural-disease-progression-protocol/v2",
+  "name": "longitudinal-v2",
+  "source": "MIMIC-IV 3.1",
+  "index_time": "second_eligible_live_adult_discharge",
+  "samples_per_patient": 1,
+  "selection_uses_future_information": false,
+  "input_rule": "event_time_and_available_time_at_or_before_index_discharge",
+  "target": "first_subsequent_inpatient_record_of_a_previously_unrecorded_disease_category",
+  "horizons_days": [30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 365],
+  "train_min_365d_events": 50,
+  "split_unit": "patient",
+  "split_seed": "natural-disease-progression-mimic-iv-3.1-v1",
+  "primary_metric": "macro_time_averaged_auroc",
+  "secondary_metrics": [
+    "macro_auroc_365d",
+    "macro_auprc",
+    "raw_disease_time_brier",
+    "age_sex_normalized_disease_time_brier",
+    "mortality_brier",
+    "macro_auroc_by_horizon",
+    "calibration_slope_and_intercept"
+  ],
+  "patient_weighting": "one_index_sample_per_patient",
+  "notes": [
+    "The first eligible discharge used by v1 contains virtually no prior inpatient history. The second eligible discharge is the earliest index that guarantees an observed prior eligible stay without conditioning on future return after the index.",
+    "Disease inclusion and every fitted preprocessing artifact use train only.",
+    "The endpoint is first recorded inpatient diagnosis, not biological onset. Absence means no record through the documented observation boundary and must not be described as confirmed disease absence.",
+    "This is the only supported runtime protocol; first-discharge artifacts are rejected."
+  ]
+}

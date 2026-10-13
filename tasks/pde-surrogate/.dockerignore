@@ -1,0 +1,13 @@
+.git
+submission
+research
+data-cache
+docs/validation/
+docs/
+**/__pycache__
+**/*.pyc
+*.hdf5
+*.h5
+*.pt
+*.safetensors
+.pytest_cache

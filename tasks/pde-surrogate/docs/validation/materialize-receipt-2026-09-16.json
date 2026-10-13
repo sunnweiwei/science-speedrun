@@ -1,0 +1,1690 @@
+{
+ "schema": "pde-surrogate-materialize-receipt/v1",
+ "note": "verify-only over every file present on the contributor machine on 2026-09-16; per-file digests omitted for size",
+ "sources": {
+  "ape2d": {
+   "repo": "thuerey-group/pde-transformer-ape2d",
+   "revision": "abd0a02dab9ee28dda6cc7ef5cbaa95ce414c942",
+   "files": [
+    {
+     "path": "adv/adv.hdf5",
+     "bytes": 471898803,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "adv/meta_all.json",
+     "bytes": 156,
+     "status": "ok"
+    },
+    {
+     "path": "adv_diff/adv_diff.hdf5",
+     "bytes": 471908531,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "adv_diff/meta_all.json",
+     "bytes": 166,
+     "status": "ok"
+    },
+    {
+     "path": "burgers/burgers.hdf5",
+     "bytes": 943755443,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "burgers/meta_all.json",
+     "bytes": 179,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb/decay_turb.hdf5",
+     "bytes": 471896243,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb/meta_all.json",
+     "bytes": 182,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb_test/decay_turb_test.hdf5",
+     "bytes": 262160051,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb_test/meta_all.json",
+     "bytes": 182,
+     "status": "ok"
+    },
+    {
+     "path": "diff/diff.hdf5",
+     "bytes": 471898803,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "diff/meta_all.json",
+     "bytes": 157,
+     "status": "ok"
+    },
+    {
+     "path": "disp/disp.hdf5",
+     "bytes": 471898803,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "disp/meta_all.json",
+     "bytes": 157,
+     "status": "ok"
+    },
+    {
+     "path": "fisher/fisher.hdf5",
+     "bytes": 471898803,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "fisher/meta_all.json",
+     "bytes": 163,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha/gs_alpha.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha_test/gs_alpha_test.hdf5",
+     "bytes": 157302451,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha_test/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta/gs_beta.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta/meta_all.json",
+     "bytes": 197,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta_test/gs_beta_test.hdf5",
+     "bytes": 157302451,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta_test/meta_all.json",
+     "bytes": 197,
+     "status": "ok"
+    },
+    {
+     "path": "gs_delta/gs_delta.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_delta/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon/gs_epsilon.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon/meta_all.json",
+     "bytes": 200,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon_test/gs_epsilon_test.hdf5",
+     "bytes": 157302451,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma/gs_gamma.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma_test/gs_gamma_test.hdf5",
+     "bytes": 157302451,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma_test/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_iota/gs_iota.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_iota/meta_all.json",
+     "bytes": 197,
+     "status": "ok"
+    },
+    {
+     "path": "gs_kappa/gs_kappa.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_kappa/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "gs_theta/gs_theta.hdf5",
+     "bytes": 157306035,
+     "n_trajectories": 10,
+     "status": "ok"
+    },
+    {
+     "path": "gs_theta/meta_all.json",
+     "bytes": 198,
+     "status": "ok"
+    },
+    {
+     "path": "hyp/hyp.hdf5",
+     "bytes": 471896243,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "hyp_diff/meta_all.json",
+     "bytes": 162,
+     "status": "ok"
+    },
+    {
+     "path": "kdv/kdv.hdf5",
+     "bytes": 943758003,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "kdv/meta_all.json",
+     "bytes": 189,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow/kolm_flow.hdf5",
+     "bytes": 471896243,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow/meta_all.json",
+     "bytes": 178,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow_test/kolm_flow_test.hdf5",
+     "bytes": 262160051,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow_test/meta_all.json",
+     "bytes": 178,
+     "status": "ok"
+    },
+    {
+     "path": "ks/ks.hdf5",
+     "bytes": 471896243,
+     "n_trajectories": 60,
+     "status": "ok"
+    },
+    {
+     "path": "ks/meta_all.json",
+     "bytes": 167,
+     "status": "ok"
+    },
+    {
+     "path": "ks_test/ks_test.hdf5",
+     "bytes": 262160051,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "ks_test/meta_all.json",
+     "bytes": 167,
+     "status": "ok"
+    },
+    {
+     "path": "sh/meta_all.json",
+     "bytes": 168,
+     "status": "ok"
+    },
+    {
+     "path": "sh/sh.hdf5",
+     "bytes": 471898803,
+     "n_trajectories": 60,
+     "status": "ok"
+    }
+   ],
+   "ok": 53,
+   "total": 53
+  },
+  "ape2d-full": {
+   "repo": "thuerey-group/pde-transformer-ape2d-full",
+   "revision": "fa711d56a1a58705c3d8e889830b459fd92733f0",
+   "files": [
+    {
+     "path": "README.md",
+     "bytes": 21,
+     "status": "ok"
+    },
+    {
+     "path": "burgers.hdf5",
+     "bytes": 9437411800,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "burgers.json",
+     "bytes": 115401,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb.json",
+     "bytes": 115976,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb_test.hdf5",
+     "bytes": 2621557840,
+     "n_trajectories": 50,
+     "status": "ok"
+    },
+    {
+     "path": "decay_turb_test.json",
+     "bytes": 10624,
+     "status": "ok"
+    },
+    {
+     "path": "diff.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "diff.json",
+     "bytes": 141615,
+     "status": "ok"
+    },
+    {
+     "path": "fisher.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "fisher.json",
+     "bytes": 139846,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha.json",
+     "bytes": 11595,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha_test.hdf5",
+     "bytes": 1572940880,
+     "n_trajectories": 30,
+     "status": "ok"
+    },
+    {
+     "path": "gs_alpha_test.json",
+     "bytes": 4206,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta.json",
+     "bytes": 11594,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta_test.hdf5",
+     "bytes": 1572940880,
+     "n_trajectories": 30,
+     "status": "ok"
+    },
+    {
+     "path": "gs_beta_test.json",
+     "bytes": 4175,
+     "status": "ok"
+    },
+    {
+     "path": "gs_delta.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_delta.json",
+     "bytes": 11669,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon.json",
+     "bytes": 11595,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon_test.hdf5",
+     "bytes": 1572940880,
+     "n_trajectories": 30,
+     "status": "ok"
+    },
+    {
+     "path": "gs_epsilon_test.json",
+     "bytes": 4176,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma.json",
+     "bytes": 11695,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma_test.hdf5",
+     "bytes": 1572940880,
+     "n_trajectories": 30,
+     "status": "ok"
+    },
+    {
+     "path": "gs_gamma_test.json",
+     "bytes": 4176,
+     "status": "ok"
+    },
+    {
+     "path": "gs_iota.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_iota.json",
+     "bytes": 11769,
+     "status": "ok"
+    },
+    {
+     "path": "gs_kappa.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_kappa.json",
+     "bytes": 11697,
+     "status": "ok"
+    },
+    {
+     "path": "gs_theta.hdf5",
+     "bytes": 1573084240,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "gs_theta.json",
+     "bytes": 11467,
+     "status": "ok"
+    },
+    {
+     "path": "hyp.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "hyp.json",
+     "bytes": 141615,
+     "status": "ok"
+    },
+    {
+     "path": "kdv.hdf5",
+     "bytes": 9438436432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "kdv.json",
+     "bytes": 141248,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow.hdf5",
+     "bytes": 4718819800,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow.json",
+     "bytes": 20072,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow_test.hdf5",
+     "bytes": 2621557840,
+     "n_trajectories": 50,
+     "status": "ok"
+    },
+    {
+     "path": "kolm_flow_test.json",
+     "bytes": 10609,
+     "status": "ok"
+    },
+    {
+     "path": "ks.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "ks.json",
+     "bytes": 114811,
+     "status": "ok"
+    },
+    {
+     "path": "ks_test.hdf5",
+     "bytes": 2621557840,
+     "n_trajectories": 50,
+     "status": "ok"
+    },
+    {
+     "path": "ks_test.json",
+     "bytes": 10524,
+     "status": "ok"
+    },
+    {
+     "path": "sh.hdf5",
+     "bytes": 4719844432,
+     "n_trajectories": 600,
+     "status": "ok"
+    },
+    {
+     "path": "sh.json",
+     "bytes": 141506,
+     "status": "ok"
+    }
+   ],
+   "ok": 49,
+   "total": 49
+  },
+  "well-turbulent_radiative_layer_2D": {
+   "repo": "polymathic-ai/turbulent_radiative_layer_2D",
+   "revision": "2ee7756575ff6f90981d0308cbcb6a2ab5995bdc",
+   "files": [
+    {
+     "path": "README.md",
+     "bytes": 5804,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.03.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.06.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.10.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.18.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.32.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_0.56.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_1.00.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_1.78.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/turbulent_radiative_layer_tcool_3.16.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.03.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.06.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.10.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.18.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.32.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_0.56.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_1.00.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_1.78.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/turbulent_radiative_layer_tcool_3.16.hdf5",
+     "bytes": 654311424,
+     "n_trajectories": 8,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.03.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.06.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.10.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.18.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.32.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_0.56.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_1.00.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_1.78.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/turbulent_radiative_layer_tcool_3.16.hdf5",
+     "bytes": 109051904,
+     "n_trajectories": 1,
+     "status": "ok"
+    }
+   ],
+   "ok": 28,
+   "total": 28
+  },
+  "well-active_matter": {
+   "repo": "polymathic-ai/active_matter",
+   "revision": "dc3e9135a75b4e5a0d979086219fc97fe668f7a3",
+   "files": [
+    {
+     "path": "README.md",
+     "bytes": 4337,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_1.0_alpha_-1.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_1.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-1.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_13.0_alpha_-1.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_13.0_alpha_-5.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_15.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_17.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_3.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_3.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_5.0_alpha_-5.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_7.0_alpha_-5.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_9.0_alpha_-3.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/test/active_matter_L_10.0_zeta_9.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-1.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-2.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-4.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_1.0_alpha_-5.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-1.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_11.0_alpha_-5.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-1.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-2.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-4.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_13.0_alpha_-5.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-1.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-2.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-3.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-4.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-1.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-2.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_17.0_alpha_-5.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-1.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-2.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-4.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_3.0_alpha_-5.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-1.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-2.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-4.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_5.0_alpha_-5.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-1.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-3.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-4.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_7.0_alpha_-5.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-1.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-2.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-3.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-4.0.hdf5",
+     "bytes": 973078528,
+     "n_trajectories": 4,
+     "status": "ok"
+    },
+    {
+     "path": "data/train/active_matter_L_10.0_zeta_9.0_alpha_-5.0.hdf5",
+     "bytes": 1199570944,
+     "n_trajectories": 5,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_1.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_1.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_11.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_11.0_alpha_-4.0.hdf5",
+     "bytes": 738197504,
+     "n_trajectories": 3,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_13.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_13.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-1.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_15.0_alpha_-5.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_17.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_3.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_5.0_alpha_-1.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_5.0_alpha_-4.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_7.0_alpha_-2.0.hdf5",
+     "bytes": 276824064,
+     "n_trajectories": 1,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_7.0_alpha_-3.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    },
+    {
+     "path": "data/valid/active_matter_L_10.0_zeta_9.0_alpha_-1.0.hdf5",
+     "bytes": 511705088,
+     "n_trajectories": 2,
+     "status": "ok"
+    }
+   ],
+   "ok": 83,
+   "total": 83
+  },
+  "pdearena-ns": {
+   "repo": "pdearena/NavierStokes-2D",
+   "revision": "cd99556a883a20acb9102c1f4bfdfae66ae33495",
+   "files": [
+    {
+     "path": "NavierStokes2D_test_126488_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_142303_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_144507_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_153464_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_198210_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_234661_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_239034_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_test_296623_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_126288_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_142103_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_144307_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_153264_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_198010_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_234461_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_238834_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_296423_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_337393_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_350040_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_391455_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_392020_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_403221_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_415374_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_429773_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_431752_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_433143_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_445636_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_452245_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_453445_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_471651_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_496019_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_509578_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_516076_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_540888_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_585598_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_588419_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_597635_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_597861_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_600790_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_61749_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_61991_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_646044_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_666597_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_766153_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_772245_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_788727_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_792179_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_795128_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_795933_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_806439_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_857042_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_857466_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_874947_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_891593_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_901448_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_946191_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_950647_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_954413_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_97473_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_975533_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_train_991670_0.50000_100.h5",
+     "bytes": 550726984,
+     "n_trajectories": 100,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_126388_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_142203_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_144407_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_153364_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_198110_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_234561_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_238934_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "NavierStokes2D_valid_296523_0.50000.h5",
+     "bytes": 137685784,
+     "n_trajectories": 25,
+     "status": "ok"
+    },
+    {
+     "path": "README.md",
+     "bytes": 21,
+     "status": "ok"
+    }
+   ],
+   "ok": 69,
+   "total": 69
+  }
+ },
+ "ok": true,
+ "totals": {
+  "files": 282,
+  "bytes": 182438635181,
+  "hdf5_trajectories": 13212
+ }
+}

@@ -1,0 +1,18 @@
+schema_version = "agent-runner-compute-profiles/v1"
+default = "local-zifengpc-rtx3070"
+
+[profiles.default]
+gpus = "task"
+
+[profiles.local-zifengpc-rtx3070]
+gpus = 1
+gpu_types = ["RTX 3070"]
+cpus = 10
+memory_mb = 22528
+storage_mb = 131072
+
+[profiles.cpu-smoke]
+gpus = 0
+cpus = 4
+memory_mb = 8192
+storage_mb = 32768

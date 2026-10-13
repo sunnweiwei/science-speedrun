@@ -1,0 +1,20 @@
+diff --git a/src/mist/utils/misc_utils.py b/src/mist/utils/misc_utils.py
+index 3775fcd..5295322 100644
+--- a/src/mist/utils/misc_utils.py
++++ b/src/mist/utils/misc_utils.py
+@@ -151,7 +151,7 @@ def setup_train(save_dir: Path, kwargs):
+ 
+     """
+     # Seed everything
+-    #pl.utilities.seed.seed_everything(kwargs.get("seed"))
++    pl.seed_everything(kwargs.get("seed"), workers=True)
+ 
+     # Define default root dir
+     setup_logger(save_dir, debug=kwargs["debug"])
+@@ -290,4 +290,4 @@ def reverse_packed_tensor(packed_tensor, lengths):
+ 
+ 
+ def unpack_bits(vec, num_bits):
+-    return np.unpackbits(vec, axis=-1)[..., -num_bits:]
+\ No newline at end of file
++    return np.unpackbits(vec, axis=-1)[..., -num_bits:]

@@ -1,0 +1,936 @@
+{
+ "what": "the task starter scaled 6.5x in parameters (d_model 512, 12 layers, 8 heads; 41.8M) and trained for 2,000,000 steps, about 28 GPU-hours on a shared A100-40GB, to test whether a bigger version of the same recipe approaches the released models; packaged by starter/publish.py from its best-validation checkpoint and replayed through tests/main_verifier.py",
+ "protocol": "task test split, all 97 configs, 326,490 instances, sealed cohort-wise verifier (tests/main_verifier.py --manifest environment/data/split.json), Bubblewrap namespace",
+ "date": "2026-09-22",
+ "training": {
+  "d_model": 512,
+  "layers": 12,
+  "heads": 8,
+  "steps": 2000000,
+  "batch": 256,
+  "context": 1024,
+  "horizon": 128,
+  "patch": 32,
+  "lr": 0.0004,
+  "warmup": 5000,
+  "schedule": "cosine over the 2,000,000 steps",
+  "synthetic_fraction": 0.1,
+  "seed": 0,
+  "corpus": "the 81 non-leaking directories (packed_clean) + 10% KernelSynth-style synthetic",
+  "seconds_total": 99317,
+  "gpu_hours": 27.6,
+  "skipped_non_finite_batches": 142,
+  "eval_every": 10000,
+  "validation_curve_summary": {
+   "best_skill": 0.037819849725813315,
+   "best_step": 560000,
+   "final_skill": -0.04327441007064592,
+   "final_step": 2000000,
+   "note": "validation skill (15 stratified configs, validation-split Seasonal Naive reference) peaked at step 560,000 while the learning rate was still 89% of peak and drifted down through the whole cosine decay as the training loss kept falling; the shipped checkpoint is that peak, about 8 of the run's 28 GPU-hours"
+  }
+ },
+ "package": {
+  "name": "starter-patch-transformer-41m",
+  "parameters": 41815296,
+  "training_step_of_best": 560000,
+  "weights_file": "best.pt",
+  "weights_sha256": "51ce6185a907689d1b7f59ea03f5caa82b035ff314a0b73f37e36769fd36bc74",
+  "synthetic": [
+   "synthetic:kernelsynth"
+  ],
+  "sources_used_count": 82
+ },
+ "result": {
+  "reward": 0.20709647991297808,
+  "skill_score": 0.20709647991297808,
+  "rel_mase_gmean": 0.9368059849277725,
+  "rel_wql_gmean": 0.6711058664029166,
+  "n_configs": 97,
+  "n_failed": 0,
+  "n_partial": 0,
+  "n_instances_scored": 326490
+ },
+ "normalised_score": 0.40899908833510334,
+ "groups": {
+  "term": {
+   "long": {
+    "n_configs": 21,
+    "rel_mase_gmean": 1.1340402177793059,
+    "rel_wql_gmean": 0.7295762474067967
+   },
+   "medium": {
+    "n_configs": 21,
+    "rel_mase_gmean": 1.0975465509128308,
+    "rel_wql_gmean": 0.7439819193644482
+   },
+   "short": {
+    "n_configs": 55,
+    "rel_mase_gmean": 0.8198000651324764,
+    "rel_wql_gmean": 0.6249485874492348
+   }
+  },
+  "domain": {
+   "Econ/Fin": {
+    "n_configs": 6,
+    "rel_mase_gmean": 0.9412184239828256,
+    "rel_wql_gmean": 0.843877756142499
+   },
+   "Energy": {
+    "n_configs": 32,
+    "rel_mase_gmean": 1.050551575881221,
+    "rel_wql_gmean": 0.8076999203423322
+   },
+   "Healthcare": {
+    "n_configs": 5,
+    "rel_mase_gmean": 0.706198187250701,
+    "rel_wql_gmean": 0.5649456632591523
+   },
+   "Nature": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.8304996514602216,
+    "rel_wql_gmean": 0.4049805498745341
+   },
+   "Sales": {
+    "n_configs": 4,
+    "rel_mase_gmean": 0.6917807444482236,
+    "rel_wql_gmean": 0.41787418777046526
+   },
+   "Transport": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.7803663930697784,
+    "rel_wql_gmean": 0.6289275685695045
+   },
+   "Web/CloudOps": {
+    "n_configs": 20,
+    "rel_mase_gmean": 1.1147360601551541,
+    "rel_wql_gmean": 0.8198147303627108
+   }
+  },
+  "frequency": {
+   "A": {
+    "n_configs": 1,
+    "rel_mase_gmean": 0.881991015334902,
+    "rel_wql_gmean": 0.8793559815220011
+   },
+   "D": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.7301585252622905,
+    "rel_wql_gmean": 0.4692543191918779
+   },
+   "H": {
+    "n_configs": 31,
+    "rel_mase_gmean": 0.9175330971888467,
+    "rel_wql_gmean": 0.6165768633245572
+   },
+   "M": {
+    "n_configs": 5,
+    "rel_mase_gmean": 0.8364454741476133,
+    "rel_wql_gmean": 0.7701032556855947
+   },
+   "Q": {
+    "n_configs": 1,
+    "rel_mase_gmean": 0.827455660692947,
+    "rel_wql_gmean": 0.8214621722740026
+   },
+   "S": {
+    "n_configs": 6,
+    "rel_mase_gmean": 2.722832908583795,
+    "rel_wql_gmean": 1.890219791418717
+   },
+   "T": {
+    "n_configs": 30,
+    "rel_mase_gmean": 0.9223522922236822,
+    "rel_wql_gmean": 0.6808884032386017
+   },
+   "W": {
+    "n_configs": 8,
+    "rel_mase_gmean": 0.8474853067659995,
+    "rel_wql_gmean": 0.6869010095917832
+   }
+  },
+  "variates": {
+   "multivariate": {
+    "n_configs": 43,
+    "rel_mase_gmean": 1.0400197544246954,
+    "rel_wql_gmean": 0.6864411096933726
+   },
+   "univariate": {
+    "n_configs": 54,
+    "rel_mase_gmean": 0.8619939732582179,
+    "rel_wql_gmean": 0.65913986271445
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 819.1,
+  "invocations": 82,
+  "n_cohorts": 82,
+  "cohort_seconds_max": 65.1,
+  "configs_with_gaps": {}
+ },
+ "isolation": [
+  "bwrap"
+ ],
+ "determinism": {
+  "checked_cohort": "063",
+  "configs": [
+   "electricity__T__short"
+  ],
+  "rerun_exit_code": 0,
+  "seconds": 5.9,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "comparison": {
+  "task_starter_6.4M_16min": 0.153,
+  "this_41.8M_28gpu_hours": 0.2071,
+  "timesfm3_replay": 0.4465,
+  "interpretation": "6.5x the parameters and about 70x the training steps of the starter buy 0.054 reward (0.153 to 0.207), a fifth of the gap to TimesFM-3; the released models were trained on corpora of 10^11 observations. The validation probe stopped improving at 28% of the run, so within this recipe more compute does not help; the headroom is in the recipe (objective, sampling, context handling, data), which is what the task asks an agent to find"
+ },
+ "per_config": [
+  {
+   "leaderboard_key": "m4_yearly/A/short",
+   "mase": 3.497936617056,
+   "wql": 0.12059985418310554,
+   "rel_mase": 0.881991015334902,
+   "rel_wql": 0.8793559815220011
+  },
+  {
+   "leaderboard_key": "m4_quarterly/Q/short",
+   "mase": 1.3257884944652916,
+   "wql": 0.08054763170173396,
+   "rel_mase": 0.827455660692947,
+   "rel_wql": 0.8214621722740026
+  },
+  {
+   "leaderboard_key": "m4_monthly/M/short",
+   "mase": 1.0106760672160287,
+   "wql": 0.0982914638995212,
+   "rel_mase": 0.8023040380868773,
+   "rel_wql": 0.8061921804350823
+  },
+  {
+   "leaderboard_key": "m4_weekly/W/short",
+   "mase": 2.8585959390498332,
+   "wql": 0.050143318824702306,
+   "rel_mase": 1.0292734082267903,
+   "rel_wql": 0.8237718716552613
+  },
+  {
+   "leaderboard_key": "m4_daily/D/short",
+   "mase": 3.613471240601227,
+   "wql": 0.024681545873927895,
+   "rel_mase": 1.1021975539704079,
+   "rel_wql": 1.0133600038186743
+  },
+  {
+   "leaderboard_key": "m4_hourly/H/short",
+   "mase": 1.248881996622928,
+   "wql": 0.02791170292424065,
+   "rel_mase": 1.0466571685926473,
+   "rel_wql": 0.7428748336388747
+  },
+  {
+   "leaderboard_key": "electricity/15T/short",
+   "mase": 1.3480718825946718,
+   "wql": 0.12259008857379208,
+   "rel_mase": 0.7851046391556943,
+   "rel_wql": 0.7434540872146271
+  },
+  {
+   "leaderboard_key": "electricity/15T/medium",
+   "mase": 1.1858444413701166,
+   "wql": 0.10788732873139023,
+   "rel_mase": 1.0304628055281335,
+   "rel_wql": 0.9568309128295353
+  },
+  {
+   "leaderboard_key": "electricity/15T/long",
+   "mase": 1.2540758856218495,
+   "wql": 0.11163821365622811,
+   "rel_mase": 1.0778184019428019,
+   "rel_wql": 0.9918695373029947
+  },
+  {
+   "leaderboard_key": "electricity/H/short",
+   "mase": 1.1519712105876756,
+   "wql": 0.08472165339317349,
+   "rel_mase": 0.848427200711819,
+   "rel_wql": 0.8017948919133473
+  },
+  {
+   "leaderboard_key": "electricity/H/medium",
+   "mase": 1.4428652833833904,
+   "wql": 0.12055244939091977,
+   "rel_mase": 1.0362033546463387,
+   "rel_wql": 0.9463480435604329
+  },
+  {
+   "leaderboard_key": "electricity/H/long",
+   "mase": 1.7113645133902975,
+   "wql": 0.1662111824133316,
+   "rel_mase": 1.1228846694858696,
+   "rel_wql": 1.0833849463579432
+  },
+  {
+   "leaderboard_key": "electricity/D/short",
+   "mase": 1.5948738675979008,
+   "wql": 0.06424147847186466,
+   "rel_mase": 0.8026374627745742,
+   "rel_wql": 0.6173511254967641
+  },
+  {
+   "leaderboard_key": "electricity/W/short",
+   "mase": 1.8481870207580058,
+   "wql": 0.07174162936018592,
+   "rel_mase": 0.8844271700533548,
+   "rel_wql": 0.7224503096999743
+  },
+  {
+   "leaderboard_key": "solar/10T/short",
+   "mase": 1.28521366432813,
+   "wql": 0.6770017697192167,
+   "rel_mase": 1.1623500066618846,
+   "rel_wql": 0.7876338434514637
+  },
+  {
+   "leaderboard_key": "solar/10T/medium",
+   "mase": 1.634641074723694,
+   "wql": 0.6686529527788565,
+   "rel_mase": 1.7633658270404369,
+   "rel_wql": 1.0207451613859688
+  },
+  {
+   "leaderboard_key": "solar/10T/long",
+   "mase": 1.7382561310883082,
+   "wql": 0.6913857720423198,
+   "rel_mase": 1.9958579285460225,
+   "rel_wql": 1.0260240434982402
+  },
+  {
+   "leaderboard_key": "solar/H/short",
+   "mase": 1.0899145873730425,
+   "wql": 0.43132998385167604,
+   "rel_mase": 1.1449449394805438,
+   "rel_wql": 0.7290216116857062
+  },
+  {
+   "leaderboard_key": "solar/H/medium",
+   "mase": 1.2248539856610736,
+   "wql": 0.4789862337961158,
+   "rel_mase": 1.3100482707283445,
+   "rel_wql": 0.506334650719001
+  },
+  {
+   "leaderboard_key": "solar/H/long",
+   "mase": 1.4612176244150872,
+   "wql": 0.561262493081364,
+   "rel_mase": 1.364098391668752,
+   "rel_wql": 0.52066305310698
+  },
+  {
+   "leaderboard_key": "solar/D/short",
+   "mase": 1.1411834994620262,
+   "wql": 0.32162900220776586,
+   "rel_mase": 0.9873015105382271,
+   "rel_wql": 0.575297926341873
+  },
+  {
+   "leaderboard_key": "solar/W/short",
+   "mase": 1.174217848492063,
+   "wql": 0.15671231709735708,
+   "rel_mase": 0.7985971412742786,
+   "rel_wql": 0.747147028517684
+  },
+  {
+   "leaderboard_key": "hospital/M/short",
+   "mase": 0.768091845672035,
+   "wql": 0.05212399662941494,
+   "rel_mase": 0.834403723001581,
+   "rel_wql": 0.834141745456405
+  },
+  {
+   "leaderboard_key": "covid_deaths/D/short",
+   "mase": 38.780694121874504,
+   "wql": 0.043783815969796164,
+   "rel_mase": 0.8266619393631809,
+   "rel_wql": 0.34550728605612685
+  },
+  {
+   "leaderboard_key": "us_births/D/short",
+   "mase": 0.559542581713883,
+   "wql": 0.03055033500594028,
+   "rel_mase": 0.30004870357700353,
+   "rel_wql": 0.25559387713993587
+  },
+  {
+   "leaderboard_key": "us_births/M/short",
+   "mase": 0.8612583958794957,
+   "wql": 0.017771136452564378,
+   "rel_mase": 1.1324433929604216,
+   "rel_wql": 1.0561964991898896
+  },
+  {
+   "leaderboard_key": "us_births/W/short",
+   "mase": 1.1716458087617068,
+   "wql": 0.014273364886731718,
+   "rel_mase": 0.749411855849426,
+   "rel_wql": 0.7396753734877117
+  },
+  {
+   "leaderboard_key": "saugeen/D/short",
+   "mase": 3.1036758239528295,
+   "wql": 0.37591419821324634,
+   "rel_mase": 0.9093556951277947,
+   "rel_wql": 0.642572804481672
+  },
+  {
+   "leaderboard_key": "saugeen/M/short",
+   "mase": 0.7490711798545218,
+   "wql": 0.3010806612860023,
+   "rel_mase": 0.767196839608575,
+   "rel_wql": 0.6764571092833342
+  },
+  {
+   "leaderboard_key": "saugeen/W/short",
+   "mase": 1.4148717346782886,
+   "wql": 0.4430917829924041,
+   "rel_mase": 0.7107558059929483,
+   "rel_wql": 0.6036383136527766
+  },
+  {
+   "leaderboard_key": "temperature_rain/D/short",
+   "mase": 1.4140283844622337,
+   "wql": 0.5790273269716851,
+   "rel_mase": 0.7029596037213529,
+   "rel_wql": 0.4566657776939322
+  },
+  {
+   "leaderboard_key": "kdd_cup_2018/H/short",
+   "mase": 0.9733498547539637,
+   "wql": 0.38930340840808125,
+   "rel_mase": 0.7261500288929239,
+   "rel_wql": 0.7110089486766569
+  },
+  {
+   "leaderboard_key": "kdd_cup_2018/H/medium",
+   "mase": 1.080043393574006,
+   "wql": 0.4709432654828461,
+   "rel_mase": 0.7558037892712726,
+   "rel_wql": 0.6206509842478183
+  },
+  {
+   "leaderboard_key": "kdd_cup_2018/H/long",
+   "mase": 1.0550924530513077,
+   "wql": 0.49984005593339653,
+   "rel_mase": 0.790015617024683,
+   "rel_wql": 0.5338555513911183
+  },
+  {
+   "leaderboard_key": "kdd_cup_2018/D/short",
+   "mase": 1.1922960769656479,
+   "wql": 0.3766817616193754,
+   "rel_mase": 0.7964386775686408,
+   "rel_wql": 0.5584556542084628
+  },
+  {
+   "leaderboard_key": "car_parts/M/short",
+   "mase": 0.8457857496775019,
+   "wql": 0.9706215326494968,
+   "rel_mase": 0.7039627179401308,
+   "rel_wql": 0.5637432698031595
+  },
+  {
+   "leaderboard_key": "restaurant/D/short",
+   "mase": 0.6773621031962395,
+   "wql": 0.2545050660338386,
+   "rel_mase": 0.6732714773807973,
+   "rel_wql": 0.375921525662994
+  },
+  {
+   "leaderboard_key": "hierarchical_sales/D/short",
+   "mase": 0.7496009396799488,
+   "wql": 0.579220051580736,
+   "rel_mase": 0.6605557754649781,
+   "rel_wql": 0.33356425334992246
+  },
+  {
+   "leaderboard_key": "hierarchical_sales/W/short",
+   "mase": 0.7498148566419383,
+   "wql": 0.358976307961954,
+   "rel_mase": 0.7315171420526582,
+   "rel_wql": 0.43134435034981655
+  },
+  {
+   "leaderboard_key": "loop_seattle/5T/short",
+   "mase": 0.6818185677884443,
+   "wql": 0.060057462310500825,
+   "rel_mase": 0.8943762960326467,
+   "rel_wql": 0.7429909346181373
+  },
+  {
+   "leaderboard_key": "loop_seattle/5T/medium",
+   "mase": 1.0868204779015833,
+   "wql": 0.10144513817326761,
+   "rel_mase": 0.942369266548284,
+   "rel_wql": 0.8649869924747373
+  },
+  {
+   "leaderboard_key": "loop_seattle/5T/long",
+   "mase": 1.1882914021998494,
+   "wql": 0.11241948358100665,
+   "rel_mase": 0.950111887124843,
+   "rel_wql": 0.8840333716905626
+  },
+  {
+   "leaderboard_key": "loop_seattle/H/short",
+   "mase": 1.2206261360114554,
+   "wql": 0.09266986819726726,
+   "rel_mase": 0.9441423107874638,
+   "rel_wql": 0.8890467997604602
+  },
+  {
+   "leaderboard_key": "loop_seattle/H/medium",
+   "mase": 1.326725066678484,
+   "wql": 0.10108976836880171,
+   "rel_mase": 0.8961254699225168,
+   "rel_wql": 0.6236994225281572
+  },
+  {
+   "leaderboard_key": "loop_seattle/H/long",
+   "mase": 1.3959777294499145,
+   "wql": 0.10794079886517295,
+   "rel_mase": 0.9029453185397225,
+   "rel_wql": 0.5769319660820078
+  },
+  {
+   "leaderboard_key": "loop_seattle/D/short",
+   "mase": 0.8936714047307643,
+   "wql": 0.04351030684123421,
+   "rel_mase": 0.5158587046906383,
+   "rel_wql": 0.42138790475857896
+  },
+  {
+   "leaderboard_key": "sz_taxi/15T/short",
+   "mase": 0.5995159816582851,
+   "wql": 0.23182827903752756,
+   "rel_mase": 0.7842789462490032,
+   "rel_wql": 0.7509657743358866
+  },
+  {
+   "leaderboard_key": "sz_taxi/15T/medium",
+   "mase": 0.5795892996321939,
+   "wql": 0.2372935772594554,
+   "rel_mase": 0.8123367247667946,
+   "rel_wql": 0.6258201502130035
+  },
+  {
+   "leaderboard_key": "sz_taxi/15T/long",
+   "mase": 0.5492714872718858,
+   "wql": 0.23315929921712797,
+   "rel_mase": 0.7949590347605607,
+   "rel_wql": 0.5448023876943153
+  },
+  {
+   "leaderboard_key": "sz_taxi/H/short",
+   "mase": 0.5781395482852641,
+   "wql": 0.1392961727745347,
+   "rel_mase": 0.7832093736488982,
+   "rel_wql": 0.6514496019258654
+  },
+  {
+   "leaderboard_key": "m_dense/H/short",
+   "mase": 1.1795364313468784,
+   "wql": 0.21352211060704968,
+   "rel_mase": 0.7929419906317867,
+   "rel_wql": 0.7770151607074666
+  },
+  {
+   "leaderboard_key": "m_dense/H/medium",
+   "mase": 1.134156506064192,
+   "wql": 0.21057837532193846,
+   "rel_mase": 0.7224172909511363,
+   "rel_wql": 0.5579955663194467
+  },
+  {
+   "leaderboard_key": "m_dense/H/long",
+   "mase": 1.1829409583500896,
+   "wql": 0.2194497854485834,
+   "rel_mase": 0.8004104820717852,
+   "rel_wql": 0.5238080233891653
+  },
+  {
+   "leaderboard_key": "m_dense/D/short",
+   "mase": 0.7049139897181876,
+   "wql": 0.07450543523015261,
+   "rel_mase": 0.422271859952078,
+   "rel_wql": 0.3284121364418956
+  },
+  {
+   "leaderboard_key": "ett1/15T/short",
+   "mase": 0.7962612304718788,
+   "wql": 0.19406626157782908,
+   "rel_mase": 0.8523866656036867,
+   "rel_wql": 0.8040399656691571
+  },
+  {
+   "leaderboard_key": "ett1/15T/medium",
+   "mase": 1.2010327787844122,
+   "wql": 0.3176710272292668,
+   "rel_mase": 1.010710036495273,
+   "rel_wql": 0.9879330488063335
+  },
+  {
+   "leaderboard_key": "ett1/15T/long",
+   "mase": 1.2259162643347756,
+   "wql": 0.30318787116060014,
+   "rel_mase": 1.0294155503713316,
+   "rel_wql": 0.8912589019916971
+  },
+  {
+   "leaderboard_key": "ett1/H/short",
+   "mase": 1.0308148012797635,
+   "wql": 0.25980242829167266,
+   "rel_mase": 1.0547387825654415,
+   "rel_wql": 1.0808508268645851
+  },
+  {
+   "leaderboard_key": "ett1/H/medium",
+   "mase": 1.5908079013598886,
+   "wql": 0.356960754028658,
+   "rel_mase": 1.0146747954344084,
+   "rel_wql": 0.8207657955645511
+  },
+  {
+   "leaderboard_key": "ett1/H/long",
+   "mase": 1.6976659469654718,
+   "wql": 0.37285516448724604,
+   "rel_mase": 1.1480790351914147,
+   "rel_wql": 0.7915195382464355
+  },
+  {
+   "leaderboard_key": "ett1/D/short",
+   "mase": 1.664165458783057,
+   "wql": 0.26959634546703126,
+   "rel_mase": 0.9357814500709126,
+   "rel_wql": 0.6600739019628632
+  },
+  {
+   "leaderboard_key": "ett1/W/short",
+   "mase": 1.5713684487599988,
+   "wql": 0.2761456293383721,
+   "rel_mase": 0.8883204152642591,
+   "rel_wql": 0.8855784471092609
+  },
+  {
+   "leaderboard_key": "ett2/15T/short",
+   "mase": 0.9229313593845215,
+   "wql": 0.08969051978092978,
+   "rel_mase": 0.8647227222695641,
+   "rel_wql": 0.9305502879535248
+  },
+  {
+   "leaderboard_key": "ett2/15T/medium",
+   "mase": 1.061071188976245,
+   "wql": 0.11824104984957858,
+   "rel_mase": 1.0093528088288641,
+   "rel_wql": 0.9525675816053464
+  },
+  {
+   "leaderboard_key": "ett2/15T/long",
+   "mase": 1.1201801886486527,
+   "wql": 0.1255853907183686,
+   "rel_mase": 1.1061784308372475,
+   "rel_wql": 0.9454990623617662
+  },
+  {
+   "leaderboard_key": "ett2/H/short",
+   "mase": 0.8825428021636783,
+   "wql": 0.08286901186450743,
+   "rel_mase": 0.9559938893520481,
+   "rel_wql": 0.9316055964021804
+  },
+  {
+   "leaderboard_key": "ett2/H/medium",
+   "mase": 1.2753724976137144,
+   "wql": 0.1411296428122797,
+   "rel_mase": 1.0298342857778133,
+   "rel_wql": 0.7579258403958915
+  },
+  {
+   "leaderboard_key": "ett2/H/long",
+   "mase": 1.4584029554505087,
+   "wql": 0.1666983744790156,
+   "rel_mase": 1.2924501926795493,
+   "rel_wql": 0.8017955618225433
+  },
+  {
+   "leaderboard_key": "ett2/D/short",
+   "mase": 1.4193718229659715,
+   "wql": 0.10389699343453879,
+   "rel_mase": 1.0210468354322633,
+   "rel_wql": 0.6776877848994658
+  },
+  {
+   "leaderboard_key": "ett2/W/short",
+   "mase": 0.8233263573288939,
+   "wql": 0.08736182897650323,
+   "rel_mase": 1.0575519564606335,
+   "rel_wql": 0.6535263675913701
+  },
+  {
+   "leaderboard_key": "jena_weather/10T/short",
+   "mase": 0.3578040754500716,
+   "wql": 0.033853685784328846,
+   "rel_mase": 0.4816396709660768,
+   "rel_wql": 0.21812812040587676
+  },
+  {
+   "leaderboard_key": "jena_weather/10T/medium",
+   "mase": 0.7396138588394919,
+   "wql": 0.060642155104664544,
+   "rel_mase": 1.0329657663660679,
+   "rel_wql": 0.2862692333506294
+  },
+  {
+   "leaderboard_key": "jena_weather/10T/long",
+   "mase": 0.799604665743732,
+   "wql": 0.06619107687925486,
+   "rel_mase": 1.0500494777204588,
+   "rel_wql": 0.2790577420422348
+  },
+  {
+   "leaderboard_key": "jena_weather/H/short",
+   "mase": 0.6714548284670191,
+   "wql": 0.05054452366478877,
+   "rel_mase": 0.9288218802723338,
+   "rel_wql": 0.32776873064811834
+  },
+  {
+   "leaderboard_key": "jena_weather/H/medium",
+   "mase": 1.0231019551192595,
+   "wql": 0.07150002329989136,
+   "rel_mase": 1.1513466069612044,
+   "rel_wql": 0.2085731377385562
+  },
+  {
+   "leaderboard_key": "jena_weather/H/long",
+   "mase": 1.3279854229648966,
+   "wql": 0.09903254609831419,
+   "rel_mase": 1.0475402122774207,
+   "rel_wql": 0.23627366144676973
+  },
+  {
+   "leaderboard_key": "jena_weather/D/short",
+   "mase": 1.3775039189163871,
+   "wql": 0.0613560711437475,
+   "rel_mase": 0.8754872480309657,
+   "rel_wql": 0.29135201847463293
+  },
+  {
+   "leaderboard_key": "bitbrains_fast_storage/5T/short",
+   "mase": 0.7310176886875244,
+   "wql": 0.41301034206579373,
+   "rel_mase": 0.6434877932854376,
+   "rel_wql": 0.34122188867220615
+  },
+  {
+   "leaderboard_key": "bitbrains_fast_storage/5T/medium",
+   "mase": 1.0672260770724444,
+   "wql": 0.7822250434051914,
+   "rel_mase": 0.8745809435636839,
+   "rel_wql": 0.6529899167426858
+  },
+  {
+   "leaderboard_key": "bitbrains_fast_storage/5T/long",
+   "mase": 1.0025067759122843,
+   "wql": 0.9797713072236692,
+   "rel_mase": 0.8819897306281492,
+   "rel_wql": 0.8322134515077604
+  },
+  {
+   "leaderboard_key": "bitbrains_fast_storage/H/short",
+   "mase": 1.1523681005720514,
+   "wql": 0.7504621421619861,
+   "rel_mase": 0.8874524802530817,
+   "rel_wql": 0.7341353019312234
+  },
+  {
+   "leaderboard_key": "bitbrains_rnd/5T/short",
+   "mase": 1.7225301337310044,
+   "wql": 0.4426520263384601,
+   "rel_mase": 0.8740202395728441,
+   "rel_wql": 0.40182994389277255
+  },
+  {
+   "leaderboard_key": "bitbrains_rnd/5T/medium",
+   "mase": 4.526369539707403,
+   "wql": 0.6150171328368333,
+   "rel_mase": 0.9964726130995474,
+   "rel_wql": 0.5259742655998791
+  },
+  {
+   "leaderboard_key": "bitbrains_rnd/5T/long",
+   "mase": 3.4957646865920657,
+   "wql": 0.6174971771043467,
+   "rel_mase": 0.9984310730697156,
+   "rel_wql": 0.5254309072613385
+  },
+  {
+   "leaderboard_key": "bitbrains_rnd/H/short",
+   "mase": 5.675867687896691,
+   "wql": 0.6423861689587561,
+   "rel_mase": 0.9401238175356642,
+   "rel_wql": 0.5167127860187309
+  },
+  {
+   "leaderboard_key": "bizitobs_application/10S/short",
+   "mase": 3.4064167868082778,
+   "wql": 0.055000863707324196,
+   "rel_mase": 1.5191414395857756,
+   "rel_wql": 1.5787297282151802
+  },
+  {
+   "leaderboard_key": "bizitobs_application/10S/medium",
+   "mase": 8.898695867787508,
+   "wql": 0.10335718761636022,
+   "rel_mase": 3.306322075690386,
+   "rel_wql": 2.4211597256341486
+  },
+  {
+   "leaderboard_key": "bizitobs_application/10S/long",
+   "mase": 8.882141193851167,
+   "wql": 0.09081379041135659,
+   "rel_mase": 2.7701763341972705,
+   "rel_wql": 1.9858298411049335
+  },
+  {
+   "leaderboard_key": "bizitobs_service/10S/short",
+   "mase": 2.5492796172061367,
+   "wql": 0.053074665926435435,
+   "rel_mase": 2.0805265044485406,
+   "rel_wql": 1.3274527207434081
+  },
+  {
+   "leaderboard_key": "bizitobs_service/10S/medium",
+   "mase": 5.125039856511372,
+   "wql": 0.11520515653658979,
+   "rel_mase": 3.8809034325981697,
+   "rel_wql": 2.4223978827065062
+  },
+  {
+   "leaderboard_key": "bizitobs_service/10S/long",
+   "mase": 4.959056419880627,
+   "wql": 0.09988679688236335,
+   "rel_mase": 3.627179714964072,
+   "rel_wql": 1.8686847256891004
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/5T/short",
+   "mase": 0.34477574929073396,
+   "wql": 0.09991137730804944,
+   "rel_mase": 0.3496636695484744,
+   "rel_wql": 0.3812416245336346
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/5T/medium",
+   "mase": 1.1764695149635422,
+   "wql": 0.6083389807541492,
+   "rel_mase": 0.9460193833839293,
+   "rel_wql": 1.1690019133393792
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/5T/long",
+   "mase": 1.3928220371880682,
+   "wql": 0.7929887625672747,
+   "rel_mase": 0.9577379332602931,
+   "rel_wql": 1.22281941427967
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/H/short",
+   "mase": 0.6415679590051977,
+   "wql": 0.2652779726697457,
+   "rel_mase": 0.5284465168387459,
+   "rel_wql": 0.5090070531637906
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/H/medium",
+   "mase": 0.8606205288650176,
+   "wql": 0.40314921210269594,
+   "rel_mase": 0.5698393939877134,
+   "rel_wql": 0.4458603432850877
+  },
+  {
+   "leaderboard_key": "bizitobs_l2c/H/long",
+   "mase": 0.8942549889987998,
+   "wql": 0.4016371456394563,
+   "rel_mase": 0.6270834718251057,
+   "rel_wql": 0.4267899588402825
+  }
+ ],
+ "replays": {
+  "2026-09-23_absolute_time_cohorts": {
+   "date": "2026-09-23",
+   "what": "the same package replayed after cohorts became absolute cutoff timestamps per dataset directory (M4 per-series); instances and labels are unchanged, only the call composition, so a batch-independent model's forecasts agree to float rounding",
+   "reward": 0.20709647988906166,
+   "recorded_reward": 0.20709647991297808,
+   "inference": {
+    "exit_code": 0,
+    "timed_out": false,
+    "seconds": 809.4,
+    "invocations": 82,
+    "n_cohorts": 82,
+    "cohort_seconds_max": 62.1,
+    "configs_with_gaps": {}
+   },
+   "isolation": [
+    "bwrap"
+   ],
+   "determinism": {
+    "checked_cohort": "063",
+    "configs": [
+     "electricity__T__short"
+    ],
+    "rerun_exit_code": 0,
+    "seconds": 5.7,
+    "unavailable": 0,
+    "max_abs_difference": 0.0,
+    "deterministic": true
+   }
+  },
+  "2026-09-24_hardened_verifier": {
+   "what": "replayed through the hardened verifier (plain-dataset reads, uid-mode cleanup) with the cohorts of make_cases at this head: timelines shared by related directories, M4 content conflicts in different calls; the instances and labels are unchanged, only the composition of the 82 calls",
+   "reward": 0.20709648008721604,
+   "recorded_reward": 0.20709647991297808,
+   "per_config_metrics_max_abs_difference": 6.95317190491096e-08,
+   "per_config_compared": 97,
+   "note": "per-config metrics agree to float rounding, not bit for bit: a batch-independent model's forecasts can still differ in the last bits when a call batches different instances together on the GPU",
+   "inference": {
+    "exit_code": 0,
+    "timed_out": false,
+    "seconds": 819.5,
+    "invocations": 82,
+    "n_cohorts": 82,
+    "cohort_seconds_max": 65.0,
+    "configs_with_gaps": {}
+   },
+   "isolation": [
+    "bwrap"
+   ],
+   "determinism": {
+    "checked_cohort": "063",
+    "configs": [
+     "electricity__T__short"
+    ],
+    "rerun_exit_code": 0,
+    "seconds": 5.8,
+    "unavailable": 0,
+    "max_abs_difference": 0.0,
+    "deterministic": true
+   }
+  }
+ }
+}

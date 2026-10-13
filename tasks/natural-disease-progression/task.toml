@@ -1,0 +1,41 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/natural-disease-progression"
+version = "2.1.0"
+description = "Develop a joint neural architecture for future first-recorded disease and death risk from multimodal longitudinal history."
+authors = [{ name = "Zifeng Wang" }]
+keywords = ["neural-architecture-development", "longitudinal-health", "disease-progression", "offline"]
+
+[metadata]
+input_schema = "natural-disease-progression-input/v2"
+reference_model = "gerstung-lab/Delphi"
+source_commit = "fb72166be6b29d8db819227a59487e51c1df1454"
+data_status = "local MIMIC-IV v3.1 materialization; credentialed data are not redistributed"
+evaluation_status = "v2 frozen disease-first macro time-averaged AUROC primary; calibration and mortality are auxiliary"
+protocol = "natural-disease-progression-protocol/v2"
+report_schema = "natural-disease-progression-report/v3"
+
+[agent]
+timeout_sec = 86400.0
+
+[environment]
+network_mode = "no-network"
+gpus = 1
+cpus = 10
+memory_mb = 22528
+storage_mb = 131072
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 43200.0
+
+[verifier.environment]
+network_mode = "no-network"
+gpus = 1
+cpus = 10
+memory_mb = 22528
+storage_mb = 131072
+build_timeout_sec = 7200.0

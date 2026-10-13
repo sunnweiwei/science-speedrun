@@ -1,0 +1,171 @@
+{
+ "what": "a canary package run through tests/main_verifier.py on the smoke split (7 configs, 20 calls) reports which verifier-side paths it could reach (search permission on a directory, read permission on a file); the paths are baked into the package before sealing (tests/check_local_isolation.py)",
+ "date": "2026-09-24",
+ "host": "contributor A100 host, no Docker: bwrap and uid runs; the uid run uses a copy of the smoke data under a root-only directory, as /private is in the verifier image",
+ "asserted": {
+  "every_mode": [
+   "data",
+   "truth",
+   "staged_input",
+   "previous_call_output",
+   "package_writable"
+  ],
+  "bwrap_only": [
+   "work",
+   "host_tmp_marker",
+   "workspace",
+   "task_repo",
+   "network"
+  ]
+ },
+ "not_asserted_in_uid_mode": "the runner must traverse work/ to reach its own call; host /tmp is shared and swept after every call (isolation.after_uid_call); /tests is 0700 and the network is off in the verifier image (tests/Dockerfile, tests/docker-compose.yaml), which this host does not reproduce, so the repository and the network are reachable here",
+ "runs": {
+  "bwrap_as_user": {
+   "isolation_modes": [
+    "bwrap"
+   ],
+   "verifier_exit": 0,
+   "reward": 0.0,
+   "n_probe_calls": 20,
+   "asserted_targets": [
+    "data",
+    "truth",
+    "staged_input",
+    "previous_call_output",
+    "work",
+    "host_tmp_marker",
+    "workspace",
+    "task_repo"
+   ],
+   "reached": [],
+   "reachable_by_target": {
+    "data": false,
+    "truth": false,
+    "staged_input": false,
+    "previous_call_output": false,
+    "work": false,
+    "host_tmp_marker": false,
+    "workspace": false,
+    "task_repo": false
+   },
+   "network": [
+    "blocked: OSError"
+   ],
+   "package_writable": false,
+   "runner_uid": [
+    283486471
+   ],
+   "passed": true
+  },
+  "bwrap_as_root": {
+   "isolation_modes": [
+    "bwrap"
+   ],
+   "verifier_exit": 0,
+   "reward": 0.0,
+   "n_probe_calls": 20,
+   "asserted_targets": [
+    "data",
+    "truth",
+    "staged_input",
+    "previous_call_output",
+    "work",
+    "host_tmp_marker",
+    "workspace",
+    "task_repo"
+   ],
+   "reached": [],
+   "reachable_by_target": {
+    "data": false,
+    "truth": false,
+    "staged_input": false,
+    "previous_call_output": false,
+    "work": false,
+    "host_tmp_marker": false,
+    "workspace": false,
+    "task_repo": false
+   },
+   "network": [
+    "blocked: OSError"
+   ],
+   "package_writable": false,
+   "runner_uid": [
+    0
+   ],
+   "passed": true
+  },
+  "uid_as_root": {
+   "isolation_modes": [
+    "uid"
+   ],
+   "verifier_exit": 0,
+   "reward": 0.0,
+   "n_probe_calls": 20,
+   "asserted_targets": [
+    "data",
+    "truth",
+    "staged_input",
+    "previous_call_output"
+   ],
+   "reached": [],
+   "reachable_by_target": {
+    "data": false,
+    "truth": false,
+    "staged_input": false,
+    "previous_call_output": false,
+    "work": true,
+    "host_tmp_marker": true,
+    "workspace": false,
+    "task_repo": true
+   },
+   "network": [
+    "reachable"
+   ],
+   "package_writable": false,
+   "runner_uid": [
+    10001
+   ],
+   "passed": true
+  },
+  "control_no_isolation": {
+   "isolation_modes": [
+    "subprocess"
+   ],
+   "verifier_exit": 0,
+   "reward": 0.0,
+   "n_probe_calls": 20,
+   "asserted_targets": [
+    "data",
+    "truth",
+    "staged_input",
+    "previous_call_output"
+   ],
+   "reached": [
+    "data",
+    "previous_call_output",
+    "staged_input",
+    "truth"
+   ],
+   "reachable_by_target": {
+    "data": true,
+    "truth": true,
+    "staged_input": true,
+    "previous_call_output": true,
+    "work": true,
+    "host_tmp_marker": true,
+    "workspace": false,
+    "task_repo": true
+   },
+   "network": [
+    "reachable"
+   ],
+   "package_writable": true,
+   "runner_uid": [
+    283486471
+   ],
+   "passed": true,
+   "control": "a run without isolation must reach the data or the labels"
+  }
+ },
+ "passed": true
+}

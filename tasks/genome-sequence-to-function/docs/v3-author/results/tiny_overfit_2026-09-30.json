@@ -1,0 +1,46 @@
+{
+  "checkpoint_sha256": "dbfd1f7c2c8fc69e3e1ef3555f1f0d6cd433edb2d13fdc63ebbd18021cfae8a6",
+  "dataset_release_sha256": "44d06e9702eba73166ab525a45939b76d6509ea8c70f8af91438abd7b60c97c1",
+  "diagnostic_scope": "same training example; teacher-forced splice coordinates",
+  "epochs": 120,
+  "final_supervised_loss": {
+    "atac": 0.8954107761383057,
+    "cage": 0.5473324060440063,
+    "chip_histone": 2.778186082839966,
+    "chip_tf": 1.7929269075393677,
+    "contact_maps": 0.12282271683216095,
+    "dnase": 0.9747920632362366,
+    "junctions": 0.1577504575252533,
+    "procap": 0.5724285244941711,
+    "rna_seq": 1.0474867820739746,
+    "splice_sites": 0.004918840713799,
+    "splice_usage": 0.07043248414993286,
+    "total": 0.8149535059928894
+  },
+  "global_steps": 120,
+  "initial_supervised_loss": {
+    "atac": 3.4787232875823975,
+    "cage": 0.6631023287773132,
+    "chip_histone": 23.06483268737793,
+    "chip_tf": 24.653247833251953,
+    "contact_maps": 0.23995167016983032,
+    "dnase": 2.804483652114868,
+    "junctions": 0.30614998936653137,
+    "procap": 0.8211785554885864,
+    "rna_seq": 2.262348175048828,
+    "splice_sites": 0.7025542259216309,
+    "splice_usage": 0.2298251837491989,
+    "total": 5.384218215942383
+  },
+  "input_length": 1048576,
+  "output_families": 11,
+  "parameters": 226248,
+  "schema": "alphagenome-tiny-overfit/v1",
+  "seed": 17,
+  "split": "train",
+  "subsample": {
+    "example_id": "agv2-8a07dd966346b00556bac327",
+    "first_n": 1
+  },
+  "total_loss_reduction_fraction": 0.8486403274704105
+}

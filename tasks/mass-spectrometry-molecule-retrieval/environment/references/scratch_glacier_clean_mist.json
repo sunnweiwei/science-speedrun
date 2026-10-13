@@ -1,0 +1,181 @@
+{
+  "schema": "massspecgym-scratch-glacier-clean-mist/v1",
+  "experiment": {
+    "schema": "massspecgym-cached-hybrid-experiment/v1",
+    "date_utc": "2026-09-19T03:35:31.469097+00:00",
+    "method": "scratch GLACIER no-CF + independently trained clean MIST fallback",
+    "evaluation_mode": "cached_prediction_merge_and_trusted_rescore",
+    "routing": "Existing released-domain predicate; GLACIER for 9954 queries, MIST for 7602",
+    "selection": "One user-requested configuration; no sweep or parameter changes",
+    "limitations": [
+      "Post hoc combination after previous test results were observed; not an untouched confirmation set",
+      "MIST-CF formula model and fast filter use released weights; not all components trained from scratch",
+      "No new GPU inference, training, packaged end-to-end replay, or single-H100 timing test"
+    ],
+    "host": "compsci-cluster-fitz-35",
+    "slurm_job": "12473780",
+    "gpu_count": 0,
+    "mces_workers": 16,
+    "python": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/mces_env/bin/python",
+    "source_revision": "2a11b42355b85e0e5462c8a172bc30aedad1f0f0"
+  },
+  "report": {
+    "schema": "massspecgym-cached-hybrid-report/v1",
+    "evaluation_mode": "cached_prediction_merge_and_trusted_rescore",
+    "status": "complete",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "invalid_or_missing_rankings": 0,
+    "global_error": null,
+    "rankings_sha256": "3c6160e1393f5434c62a76617a735ad322893151449e4e8eb44273a7ff6b94d1",
+    "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+    "metrics": {
+      "hit_rate_at_1": 0.4828548644338118,
+      "hit_rate_at_5": 0.6405787195260879,
+      "hit_rate_at_20": 0.7456140350877193,
+      "mces_at_1": 12.327665755297334
+    },
+    "branches": {
+      "glacier": {
+        "queries": 9954,
+        "hits": {
+          "1": 6524,
+          "5": 8384,
+          "20": 9148
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.6554149085794655,
+          "hit_rate_at_5": 0.842274462527627,
+          "hit_rate_at_20": 0.9190275266224633
+        }
+      },
+      "mist_fallback": {
+        "queries": 7602,
+        "hits": {
+          "1": 1953,
+          "5": 2862,
+          "20": 3942
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.2569060773480663,
+          "hit_rate_at_5": 0.3764798737174428,
+          "hit_rate_at_20": 0.5185477505919495
+        }
+      }
+    },
+    "reference_comparison": {
+      "name": "GLACIER no-CF with strict-clean MIST fallback",
+      "hit_rate_at_1": 0.4939052175894281,
+      "comparable": true,
+      "reference_delta_hit_at_1": -0.01105035315561631,
+      "beats_reference": false
+    },
+    "timing": {
+      "merge_seconds": 3.9756141952238977,
+      "through_hit_rates_seconds": 13.6356605947949,
+      "full_scoring_seconds": 174.83201008103788,
+      "total_seconds": 188.47186692617834
+    },
+    "limitations": [
+      "Post hoc combination after previous test results were observed; not an untouched confirmation set",
+      "MIST-CF formula model and fast filter use released weights; not all components trained from scratch",
+      "No new GPU inference, training, packaged end-to-end replay, or single-H100 timing test"
+    ]
+  },
+  "comparison": {
+    "scratch_glacier_deepsets_hit_rate_at_1": 0.4032239690134427,
+    "official_glacier_clean_mist_hit_rate_at_1": 0.4939052175894281,
+    "gain_over_deepsets_percentage_points": 7.9630895420369106,
+    "gap_to_official_reference_percentage_points": 1.105035315561631,
+    "interpretation": "Same frozen GLACIER rankings and routing; the gain comes from substituting existing clean MIST rankings for DeepSets on 7602 queries. This does not separate effects of fallback architecture, training data, or compute."
+  },
+  "integrity": {
+    "identical_ranking_rows": {
+      "native": 9954,
+      "old_native": 9954,
+      "mist_fallback": 7602,
+      "official_fallback": 7602
+    },
+    "disagreements": 0
+  },
+  "source_artifacts": {
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/data/task_materialized/public/verifier/manifest.json": {
+      "sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+      "bytes": 553
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_clean_replay/top5/rankings.jsonl": {
+      "sha256": "78a781884f442039c66963eeab7187f27645440e644d3088f85dbb81e8fd7f3d",
+      "bytes": 299465574
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/grading/sealed/rankings.jsonl": {
+      "sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26",
+      "bytes": 299465574
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/glacier_full_test/hybrid_clean_mist/rankings.jsonl": {
+      "sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
+      "bytes": 299465574
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/model_manifest.json": {
+      "sha256": "7fd7b4c11cfbe9f4b2e19316806374688d818431526deaece36f5fa5855d5f69",
+      "bytes": 434
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_train_full_cls/msg_mist/spectra_encoder.pt": {
+      "sha256": "30715dbd198bb1d0d776a5dcb9d37488b8d5480c243a1572d62ed27b73e92c6b",
+      "bytes": 114206138
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/.versions/generation-_ntrd0ob/glacier.ckpt": {
+      "sha256": "2619bfbf041bc9a115b286fa2a9b02856081528942de6ef90f2ec2c46d46b0fd",
+      "bytes": 60532834
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl": {
+      "sha256": "1f293459ce15a99c652025ae29817afc7741356217dbd4e11177dc4b75b86f73",
+      "bytes": 170585298
+    },
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919/run.py": {
+      "sha256": "8dde16926b39ead51f962984d039e9acca815eca06a1c5498533bb496c0f563c",
+      "bytes": 8316
+    },
+    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/tests/grader.py": {
+      "sha256": "bce006b09ec8f90136099efdcc90cb1d27eb87fb714fc290f2e0ed71ab3cd6d6",
+      "bytes": 8689
+    },
+    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/tests/common.py": {
+      "sha256": "c2b5ff3fcd00367b27bdd5b7a69d20e48cfa6e61df9da95221c1beb81fff7eda",
+      "bytes": 5908
+    },
+    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/environment/references/scripts/merge_glacier_fallback.py": {
+      "sha256": "5ef9d0acff2106bc57850a4725550723505f83ac325258163ce26b0b16227296",
+      "bytes": 5630
+    }
+  },
+  "merge_command": [
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/mces_env/bin/python",
+    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/environment/references/scripts/merge_glacier_fallback.py",
+    "--input-root",
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/data/task_materialized/public/verifier",
+    "--glacier",
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl",
+    "--fallback",
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_clean_replay/top5/rankings.jsonl",
+    "--output-root",
+    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919/merged"
+  ],
+  "scoring": {
+    "implementation": "tests/grader.py:score",
+    "compute_mces": true,
+    "workers": 16,
+    "python_version": "3.11.14",
+    "packages": {
+      "rdkit": "2023.9.4",
+      "pulp": "2.9.0",
+      "myopic-mces": "1.0.0"
+    },
+    "input_and_labels_manifest_hashes_verified": true,
+    "rankings_sealed_before_loading_labels": true
+  },
+  "raw_evidence_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919",
+  "raw_report_sha256": "bb1f8ae8030983cc472a736e796a100eb052cc4fd55b55f1946cc48d78613d2f",
+  "official_reference_changed": false,
+  "fully_from_scratch_pipeline": false,
+  "fresh_gpu_inference": false
+}

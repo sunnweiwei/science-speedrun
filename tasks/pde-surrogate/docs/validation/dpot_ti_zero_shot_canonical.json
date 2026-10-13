@@ -1,0 +1,201 @@
+{
+ "contract": "pde-surrogate-rollout/v1",
+ "n_cases": 850,
+ "n_failed": 0,
+ "failures": [],
+ "datasets": {
+  "ape2d/burgers": {
+   "n_cases": 100,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 0.9923029389003513,
+   "nrmse_joint": 0.9744127778260263,
+   "vrmse_steps_1_5": 0.8353675699687961,
+   "vrmse_steps_6_12": 1.0206454119102732,
+   "reward": 0.3344519074646946
+  },
+  "ape2d/decay_turb": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.242722208022157,
+   "nrmse_joint": 2.2427363835142504,
+   "vrmse_steps_1_5": 1.0540364471688206,
+   "vrmse_steps_6_12": 1.8907334156552429,
+   "reward": 0.21640817214264652
+  },
+  "ape2d/diff": {
+   "n_cases": 100,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.3136810124231006,
+   "nrmse_joint": 2.313697489855974,
+   "vrmse_steps_1_5": 0.8736814113422348,
+   "vrmse_steps_6_12": 1.794121291340872,
+   "reward": 0.21189883916927302
+  },
+  "ape2d/fisher": {
+   "n_cases": 100,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 3.4275197092073966,
+   "nrmse_joint": 0.29984056099604794,
+   "vrmse_steps_1_5": 1.0444806988271005,
+   "vrmse_steps_6_12": 3.1529296431814693,
+   "reward": 0.15500667973840324
+  },
+  "ape2d/gs_alpha": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 1.2846905209361936,
+   "nrmse_joint": 0.4342618374293322,
+   "vrmse_steps_1_5": 0.9304810306560563,
+   "vrmse_steps_6_12": 1.1891468175095603,
+   "reward": 0.2970671600998225
+  },
+  "ape2d/gs_beta": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 1.5684625062403619,
+   "nrmse_joint": 0.32985281628118324,
+   "vrmse_steps_1_5": 1.3104044981503702,
+   "vrmse_steps_6_12": 1.498936655969732,
+   "reward": 0.2681752861861824
+  },
+  "ape2d/gs_delta": {
+   "n_cases": 20,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.145883864828023,
+   "nrmse_joint": 0.8468904268443993,
+   "vrmse_steps_1_5": 1.0066170492453403,
+   "vrmse_steps_6_12": 1.4305859238583696,
+   "reward": 0.22279792857957534
+  },
+  "ape2d/gs_epsilon": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.1314210057425145,
+   "nrmse_joint": 0.5837810403925069,
+   "vrmse_steps_1_5": 1.5436002543642,
+   "vrmse_steps_6_12": 2.1022773226437423,
+   "reward": 0.22377691948178416
+  },
+  "ape2d/gs_gamma": {
+   "n_cases": 30,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 1.883117282663615,
+   "nrmse_joint": 0.5457089839867632,
+   "vrmse_steps_1_5": 1.497044196907102,
+   "vrmse_steps_6_12": 1.8837603340905535,
+   "reward": 0.24170754359730454
+  },
+  "ape2d/gs_iota": {
+   "n_cases": 20,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.1598792056663916,
+   "nrmse_joint": 0.8399735001981004,
+   "vrmse_steps_1_5": 0.9500049436573544,
+   "vrmse_steps_6_12": 1.5103516587336183,
+   "reward": 0.2218568455699772
+  },
+  "ape2d/gs_kappa": {
+   "n_cases": 20,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 1.3364534567537276,
+   "nrmse_joint": 0.44294360720930703,
+   "vrmse_steps_1_5": 0.8362491357435978,
+   "vrmse_steps_6_12": 1.1513541102702276,
+   "reward": 0.291348720452375
+  },
+  "ape2d/gs_theta": {
+   "n_cases": 20,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 2.127926261123658,
+   "nrmse_joint": 0.8227024253135248,
+   "vrmse_steps_1_5": 0.9770702998557601,
+   "vrmse_steps_6_12": 1.4795096916211476,
+   "reward": 0.2240144752306068
+  },
+  "ape2d/kdv": {
+   "n_cases": 100,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 0.9896938852590697,
+   "nrmse_joint": 0.9919379724921178,
+   "vrmse_steps_1_5": 0.8167963490617238,
+   "vrmse_steps_6_12": 1.0301542142160367,
+   "reward": 0.3348330376596178
+  },
+  "ape2d/kolm_flow": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 0.9617984851537261,
+   "nrmse_joint": 0.9618058231777676,
+   "vrmse_steps_1_5": 0.8379819064014596,
+   "vrmse_steps_6_12": 0.9752694004819387,
+   "reward": 0.33897197042721666
+  },
+  "ape2d/ks": {
+   "n_cases": 50,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 0.9179140354928669,
+   "nrmse_joint": 0.9179210387012878,
+   "vrmse_steps_1_5": 0.7142949338513344,
+   "vrmse_steps_6_12": 0.9261559490117496,
+   "reward": 0.3457326631505049
+  },
+  "ape2d/sh": {
+   "n_cases": 100,
+   "n_failed": 0,
+   "n_steps": 26,
+   "vrmse": 1.0630866085619468,
+   "nrmse_joint": 1.0172059673226928,
+   "vrmse_steps_1_5": 1.0490795104640862,
+   "vrmse_steps_6_12": 1.1249213356667354,
+   "reward": 0.3244771175049888
+  }
+ },
+ "groups": {
+  "ape2d": {
+   "n_datasets": 16,
+   "vrmse": 1.7216595616859436,
+   "reward": 0.25468424037196163
+  }
+ },
+ "mean_vrmse": 1.7216595616859436,
+ "reward": 0.25468424037196163,
+ "note": " per-case records omitted from the committed copy; regenerate with score.py",
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json)",
+  "before": {
+   "reward": 0.25178523821065313,
+   "mean_vrmse": 1.7564843529057765,
+   "n_cases": 950,
+   "groups": {
+    "ape2d": 1.7564843529057765
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 2.3136810124231006,
+     "nrmse_joint": 2.313697489855974,
+     "vrmse_steps_1_5": 0.8736814113422348,
+     "vrmse_steps_6_12": 1.794121291340872,
+     "reward": 0.21189883916927302
+    }
+   }
+  }
+ }
+}

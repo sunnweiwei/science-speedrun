@@ -1,0 +1,154 @@
+{
+ "date": "2026-09-16",
+ "protocol": "pde-surrogate-rollout/v1: 4 context frames, rollout from frame 0, K=26/30/10, per-channel VRMSE clamped at 10",
+ "held_out_set": "split.json test cases (1,085 canonical; the 100 hyp cases of the original 1,185 were the duplicate family)",
+ "results": [
+  {
+   "predictor": "persist",
+   "reward": 0.28268106229661527,
+   "n_cases": 1085,
+   "n_failed": 0,
+   "groups": {
+    "ape2d": 1.1877812500000002,
+    "pdearena/navier_stokes_2d": 1.649,
+    "well/active_matter": 1.5235,
+    "well/turbulent_radiative_layer_2D": 1.3584
+   },
+   "datasets": {
+    "ape2d/burgers": 0.5139,
+    "ape2d/decay_turb": 1.0876,
+    "ape2d/diff": 0.6843,
+    "ape2d/fisher": 2.7043,
+    "ape2d/gs_alpha": 1.3477,
+    "ape2d/gs_beta": 1.6089,
+    "ape2d/gs_delta": 1.7359,
+    "ape2d/gs_epsilon": 0.7017,
+    "ape2d/gs_gamma": 0.8034,
+    "ape2d/gs_iota": 1.695,
+    "ape2d/gs_kappa": 0.958,
+    "ape2d/gs_theta": 1.6873,
+    "ape2d/kdv": 0.3349,
+    "ape2d/kolm_flow": 1.2171,
+    "ape2d/ks": 1.0986,
+    "ape2d/sh": 0.8259,
+    "pdearena/navier_stokes_2d": 1.649,
+    "well/active_matter": 1.5235,
+    "well/turbulent_radiative_layer_2D": 1.3584
+   },
+   "derivation": {
+    "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json)",
+    "before": {
+     "reward": 0.2836,
+     "n_cases": 1185,
+     "groups": {
+      "ape2d": 1.1582,
+      "pdearena/navier_stokes_2d": 1.649,
+      "well/active_matter": 1.5235,
+      "well/turbulent_radiative_layer_2D": 1.3584
+     },
+     "dropped": {
+      "ape2d/hyp": 0.6843
+     }
+    }
+   }
+  },
+  {
+   "predictor": "mean",
+   "reward": 0.3105381477377755,
+   "n_cases": 1085,
+   "n_failed": 0,
+   "groups": {
+    "ape2d": 1.2470687500000002,
+    "pdearena/navier_stokes_2d": 1.0004,
+    "well/active_matter": 0.9955,
+    "well/turbulent_radiative_layer_2D": 1.5116
+   },
+   "datasets": {
+    "ape2d/burgers": 1.002,
+    "ape2d/decay_turb": 1.0,
+    "ape2d/diff": 1.0,
+    "ape2d/fisher": 2.9951,
+    "ape2d/gs_alpha": 1.0071,
+    "ape2d/gs_beta": 1.0391,
+    "ape2d/gs_delta": 1.5807,
+    "ape2d/gs_epsilon": 1.0028,
+    "ape2d/gs_gamma": 1.0011,
+    "ape2d/gs_iota": 1.6094,
+    "ape2d/gs_kappa": 1.0915,
+    "ape2d/gs_theta": 1.5981,
+    "ape2d/kdv": 1.0005,
+    "ape2d/kolm_flow": 1.0,
+    "ape2d/ks": 1.0,
+    "ape2d/sh": 1.0257,
+    "pdearena/navier_stokes_2d": 1.0004,
+    "well/active_matter": 0.9955,
+    "well/turbulent_radiative_layer_2D": 1.5116
+   },
+   "derivation": {
+    "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json)",
+    "before": {
+     "reward": 0.311,
+     "n_cases": 1185,
+     "groups": {
+      "ape2d": 1.2325,
+      "pdearena/navier_stokes_2d": 1.0004,
+      "well/active_matter": 0.9955,
+      "well/turbulent_radiative_layer_2D": 1.5116
+     },
+     "dropped": {
+      "ape2d/hyp": 1.0
+     }
+    }
+   }
+  },
+  {
+   "predictor": "zero",
+   "reward": 0.22019548392440497,
+   "n_cases": 1085,
+   "n_failed": 0,
+   "groups": {
+    "ape2d": 2.3215500000000002,
+    "pdearena/navier_stokes_2d": 1.3761,
+    "well/active_matter": 2.0893,
+    "well/turbulent_radiative_layer_2D": 3.4137
+   },
+   "datasets": {
+    "ape2d/burgers": 1.0032,
+    "ape2d/decay_turb": 1.0,
+    "ape2d/diff": 1.0,
+    "ape2d/fisher": 7.3815,
+    "ape2d/gs_alpha": 2.3242,
+    "ape2d/gs_beta": 5.2267,
+    "ape2d/gs_delta": 2.4185,
+    "ape2d/gs_epsilon": 2.544,
+    "ape2d/gs_gamma": 2.6948,
+    "ape2d/gs_iota": 2.4421,
+    "ape2d/gs_kappa": 2.5995,
+    "ape2d/gs_theta": 2.4611,
+    "ape2d/kdv": 1.0007,
+    "ape2d/kolm_flow": 1.0,
+    "ape2d/ks": 1.0,
+    "ape2d/sh": 1.0485,
+    "pdearena/navier_stokes_2d": 1.3761,
+    "well/active_matter": 2.0893,
+    "well/turbulent_radiative_layer_2D": 3.4137
+   },
+   "derivation": {
+    "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json)",
+    "before": {
+     "reward": 0.2214,
+     "n_cases": 1185,
+     "groups": {
+      "ape2d": 2.2438,
+      "pdearena/navier_stokes_2d": 1.3761,
+      "well/active_matter": 2.0893,
+      "well/turbulent_radiative_layer_2D": 3.4137
+     },
+     "dropped": {
+      "ape2d/hyp": 1.0
+     }
+    }
+   }
+  }
+ ]
+}

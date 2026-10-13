@@ -1,0 +1,11 @@
+submission/
+research/
+data-cache/
+*.hdf5
+*.h5
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz

@@ -1,0 +1,12 @@
+# Native Docker replay of a frozen submission; no development mounts.
+services:
+  main:
+    command: ["/opt/task/tests/test.sh"]
+    # Inherit exactly one GPU from the verifier base configuration.
+    volumes:
+      - type: bind
+        source: ${SURFACE_CODE_SUBMISSION:?Set SURFACE_CODE_SUBMISSION}
+        target: /workspace/submission
+        read_only: true
+        bind:
+          create_host_path: false

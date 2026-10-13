@@ -1,0 +1,119 @@
+{
+ "what": "reference lower and upper bound for the pde-surrogate track, and the 0-1 normalisation they define",
+ "generated_by": "docs/validation/make_score_bounds.py from the records it names; do not edit by hand",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,085 held-out cases. Every input number is a group VRMSE already measured and recorded in docs/validation/; nothing here required a new run.",
+ "why": "the raw contract reward has almost no dynamic range. A package that predicts nothing scores 0.2202 and the best legal package measured scores 0.3446, so the whole meaningful band is 0.12 wide on a 0-1 scale. Normalising against a real floor and a real ceiling makes the number readable and comparable with other tracks.",
+ "reward_definition": "mean over the four groups of (1 - log10(clamp(group VRMSE, 0.01, 10))) / 3; see environment/evaluation/score.py",
+ "lower_bound": {
+  "reward": 0.28268106229661527,
+  "what": "persistence: repeat the last context frame for every step",
+  "rationale": "a real predictor rather than a degenerate one. Zero prediction scores lower (0.2202) but is not a baseline any submission would fall below by accident.",
+  "per_group_vrmse": {
+   "ape2d": 1.1878,
+   "well/turbulent_radiative_layer_2D": 1.3584,
+   "well/active_matter": 1.5235,
+   "pdearena/navier_stokes_2d": 1.649
+  },
+  "source": "docs/validation/trivial_predictors_canonical.json"
+ },
+ "upper_bound": {
+  "reward": 0.4203195852524683,
+  "what": "per-group oracle: the best VRMSE any measured model reached on each group",
+  "achievable_by_a_submission": false,
+  "caveat": "this routes each group to a different model, which environment/contract.md forbids for a submission (checkpoints selected at inference time by dataset name). It is a ceiling on what the measured population can do, not a target a legal package has reached. The best legal single package measured is CNextU-net from scratch, PDEArena at 0.3446, which normalises to 0.450 - the track has no strong legal solution yet, and that gap is the headroom an agent is being offered.",
+  "per_group": {
+   "ape2d": {
+    "vrmse": 0.3415,
+    "reward": 0.4888598508322361,
+    "model": "PDE-Transformer mc-l, zero-shot",
+    "source": "docs/validation/pdet_zero_shot_mc-l_canonical.json"
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "vrmse": 0.6743,
+    "reward": 0.3903822801077867,
+    "model": "CNextU-net from scratch, turbulent layer",
+    "source": "docs/validation/well_cnext_trl2d_from_scratch.json"
+   },
+   "well/active_matter": {
+    "vrmse": 1.3182,
+    "reward": 0.29334444120856973,
+    "model": "PDE-Transformer mc-s, zero-shot",
+    "source": "docs/validation/pdet_zero_shot_mc-s_transfer.json"
+   },
+   "pdearena/navier_stokes_2d": {
+    "vrmse": 0.2978,
+    "reward": 0.5086917688612809,
+    "model": "CNextU-net from scratch, PDEArena",
+    "source": "docs/validation/well_cnext_pdearena_from_scratch.json"
+   }
+  },
+  "attempt_to_replace_with_a_legal_package": "one sc-s fine-tuned on all three transfer pools at once was trained and replayed for exactly this purpose (docs/validation/pdet_finetune_joint.json). It scored 0.2711, below the persistence floor, and is worse than the per-dataset fine-tunes on every group (negative transfer). The 128x128 crop upstream's loader forces was checked as an explanation and ruled out: the one group that was never cropped, and that had more training passes than its dedicated run, degraded just as much. The oracle bound therefore stands, and closing the gap to it looks like a research problem rather than a matter of running the obvious baseline longer."
+ },
+ "normalisation": "score = clip((reward - lower) / (upper - lower), 0, 1)",
+ "normalised_measurements": {
+  "DPOT-M, zero-shot": {
+   "reward": 0.2172,
+   "normalised": -0.4759
+  },
+  "zero prediction": {
+   "reward": 0.2202,
+   "normalised": -0.454
+  },
+  "DPOT-Ti, zero-shot": {
+   "reward": 0.2216,
+   "normalised": -0.4435
+  },
+  "PDE-Transformer sc-s fine-tuned on all three transfer pools": {
+   "reward": 0.2711,
+   "normalised": -0.0838
+  },
+  "CNextU-net from scratch, active matter": {
+   "reward": 0.275,
+   "normalised": -0.0561
+  },
+  "PDE-Transformer sc-s fine-tuned, active matter": {
+   "reward": 0.2794,
+   "normalised": -0.024
+  },
+  "persistence": {
+   "reward": 0.2827,
+   "normalised": 0.0
+  },
+  "PDE-Transformer sc-s fine-tuned, turbulent layer": {
+   "reward": 0.2881,
+   "normalised": 0.0397
+  },
+  "CNextU-net from scratch, turbulent layer": {
+   "reward": 0.308,
+   "normalised": 0.1842
+  },
+  "spatial mean of last frame": {
+   "reward": 0.3105,
+   "normalised": 0.2024
+  },
+  "PDE-Transformer sc-s fine-tuned, PDEArena": {
+   "reward": 0.3109,
+   "normalised": 0.2052
+  },
+  "task starter (from scratch, 40 min)": {
+   "reward": 0.3139,
+   "normalised": 0.2269
+  },
+  "PDE-Transformer mc-l, zero-shot": {
+   "reward": 0.3317,
+   "normalised": 0.3564
+  },
+  "PDE-Transformer mc-s, zero-shot": {
+   "reward": 0.3349,
+   "normalised": 0.3792
+  },
+  "PDE-Transformer mc-b, zero-shot": {
+   "reward": 0.3363,
+   "normalised": 0.3894
+  },
+  "CNextU-net from scratch, PDEArena": {
+   "reward": 0.3446,
+   "normalised": 0.4501
+  }
+ }
+}

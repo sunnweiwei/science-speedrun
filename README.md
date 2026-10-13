@@ -1,0 +1,60 @@
+# science-speedrun
+
+Long-running model-development tasks for AI research agents, in the native
+[Harbor](https://www.harborframework.com/docs/tasks) task format, with a runner that starts an agent
+session on one of them and scores what the agent publishes. Each task gives the agent a dataset, a
+reproduced baseline with its logs, development evaluation and a submission contract. The agent
+keeps improving a model package at `/workspace/submission` with no end point; an independent
+verifier replays that package on held-out data.
+
+The tasks here passed a full agent session: a Codex agent trained, evaluated and published a valid
+package, and the verifier scored it. The agent behaved as the instruction intends (no exploits,
+no stalled pipeline).
+
+## Verified tasks
+
+The agent column is a behavior test: one GPU and 4–6 h per session, not the task budget.
+
+| task | what the agent develops | budget (`task.toml`) | agent test | baseline | reference | data |
+| --- | --- | --- | ---: | ---: | ---: | --- |
+| [genome-sequence-to-function](tasks/genome-sequence-to-function) | DNA sequence → 5,930 genomic tracks and variant effects (AlphaGenome-style) | 8 GPU, 48 h | 0.408 | 0.311 | — | HF release, ~390 GB |
+| [single-cell-perturbation-prediction](tasks/single-cell-perturbation-prediction) | zero-shot perturbation response in unseen cell lines | 8 GPU, 48 h | 0.151 | 0.103 | — | HF release, ~35 GB |
+| [mass-spectrometry-molecule-retrieval](tasks/mass-spectrometry-molecule-retrieval) | MS/MS spectrum → molecule retrieval (Hit@1) | 8 GPU, 48 h | 0.465 | 0.405 | 0.494 | HF release + private labels |
+| [pde-surrogate](tasks/pde-surrogate) | autoregressive surrogate for 2-D time-dependent PDEs | 1 GPU, 48 h | 0.503 | 0.345 | — | HF release, ~200 GB |
+| [timeseries-forecasting](tasks/timeseries-forecasting) | zero-shot forecasting foundation model on GIFT-Eval | 8 GPU, 48 h | 0.334 | 0.275 | 0.447 | GiftEval from HF, 275 GB |
+| [surface-code-decoding](tasks/surface-code-decoding) | neural decoder for Sycamore surface-code experiments | 8 GPU, 48 h | 0.7626 | 0.7557 | 0.7615 | HF release, ~8 GB |
+| [natural-disease-progression](tasks/natural-disease-progression) | next-year disease risk from MIMIC-IV histories | 1 GPU, 24 h | 0.243 | 0.236 | 0.268 | credentialed HF release (MIMIC-IV) |
+
+Notes on the table:
+- Rewards are raw task metrics; larger is better.
+- Baselines were reproduced in this setup. Their numbers, logs and validation outputs are in each task's `environment/baseline/<name>/` (`RESULTS.md`, `reproduction/`). Agents are told not to retrain them.
+- Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry: about 3.5 h on one GPU.
+
+## Quick start
+
+```bash
+docker build -f runner/Dockerfile.runner -t harbor-runner:0.23.0-bx runner
+export EVAL_ROOT=/persistent/speedrun CODEX_PKG=/opt/codex-0.160.1 MOUNT_ROOTS="/data /opt/codex-0.160.1"
+runner/selftest.sh                                              # install check, ~2 min, no GPU
+runner/prepare.sh surface-code-decoding /data/surface-code      # data + $EVAL_ROOT/envs/<task>.env
+AGENT_KIND=codex HOURS=24 runner/run.sh surface-code-decoding   # session, then independent score
+AGENT_KIND=claude-code HOURS=48 runner/run.sh pde-surrogate
+```
+
+Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code authentication, resources, two-phase scoring and pitfalls.
+
+## Layout
+
+```text
+tasks/<task>/        Harbor tasks (instruction, environment, tests, docs); see TASK_STANDARD.md
+runner/              one-command sessions and scoring (Harbor 0.23, Codex or Claude Code)
+agent-runner/        T0-RSI/agent-runner (e75f5f2): detached long-running sessions with live
+                     snapshots and independent evaluation of any snapshot
+TASK_STANDARD.md     the task format: workspace, instruction, verifier, data
+```
+
+## Data and licenses
+
+- **Data.** Each task's `environment/data/` records its sources, licenses and pinned revisions. The tasks redistribute no data. `runner/prepare.sh` downloads the prepared releases or runs the task's materializer.
+- **MIMIC-IV.** natural-disease-progression needs PhysioNet-credentialed access to MIMIC-IV, and its derived data must not be redistributed.
+- **Vendored code** keeps its upstream license next to it.

@@ -1,0 +1,22 @@
+{
+  "schema": "surface-code-decoding-score/v1",
+  "version": "1.1.0",
+  "metric": "one_minus_balanced_logical_failure",
+  "direction": "maximize",
+  "lower_bound": 0.7160463461538461,
+  "upper_bound": 0.7615159615384615,
+  "lower_reference": "PyMatching MWPM; validation-selected even-calibrated DEM; full identical odd test split",
+  "upper_reference": "Released tensor-network decoder predictions rescored on full identical odd test split; not a newly implemented TN decoder",
+  "reference_counts_sha256": "118c2669f8bcd32ac1fbbb9093a361b77a80bd16e5ef8bfa13200e173954a256",
+  "aggregation": "Mean over 13 durations in each geometry/basis group; mean groups within each distance; equal mean of d3 and d5",
+  "threshold": 0.5,
+  "normalization": "max((performance-lower_bound)/(upper_bound-lower_bound),0)",
+  "above_reference": "No upper clip: the released tensor-network predictions define score 1 as a scale point, not a ceiling; a better decoder scores above 1",
+  "scientific_metrics": [
+    "logical_error_per_round",
+    "error_suppression_d3_over_d5",
+    "brier_score",
+    "negative_log_likelihood",
+    "expected_calibration_error_10_bins"
+  ]
+}

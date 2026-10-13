@@ -1,0 +1,9 @@
+{
+ "disease_alpha": 0.02,
+ "death_alpha": 1.0,
+ "calibration_samples": 6839,
+ "disease_brier_before": 0.04401160776615143,
+ "disease_brier_after": 0.003445127746090293,
+ "death_brier_before": 0.05117226019501686,
+ "death_brier_after": 0.05117226019501686
+}

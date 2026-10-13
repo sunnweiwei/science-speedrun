@@ -1,0 +1,47 @@
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+      target: main
+    network_mode: none
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the private test materialization}/public/test
+        target: /input
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+      target: grader
+    network_mode: none
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the private test materialization}/public/test
+        target: /input
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the private test materialization}/trusted/test
+        target: /trusted/test
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the private test materialization}/trusted/risk_normalization.parquet
+        target: /trusted/risk_normalization.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+    command: ["python", "/tests/grader.py"]

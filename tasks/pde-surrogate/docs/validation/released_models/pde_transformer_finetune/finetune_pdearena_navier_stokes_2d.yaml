@@ -1,0 +1,71 @@
+# Fine-tune the released PDE-S separate-channel checkpoint on the task's PDEArena Navier-Stokes split,
+# following the paper's transfer setup (separate channels, one-step supervised MSE, EMA 0.999) on
+# upstream's pipeline. Data: the PBDL files written by convert_pools.py (2D_WELL data type).
+project: pde-surrogate-reference
+name: pdet-sc-s-finetune-pdearena_navier_stokes_2d
+batch_size: 8
+max_epochs: 50
+trainer:
+    base_learning_rate: 4.0e-5
+    batch_size: ${batch_size}
+    scale_lr: False
+    params:
+        _file: config/default_trainer_args.yaml
+        max_epochs: ${max_epochs}
+        accumulate_grad_batches: 2
+        precision: bf16-mixed
+num_train_timesteps: 20
+pipelines:
+    default:
+      target: pdetransformer.sampler.pipeline.VideoPipelineDirect
+patch_size: 4
+sample_size: 256
+sigma_min: 1e-4
+timesteps: 2
+model:
+    target: pdetransformer.core.separate_channels.Supervised
+    params:
+        model:
+          target: pdetransformer.core.separate_channels.PDETransformer
+          params:
+            sample_size: ${sample_size}
+            num_timesteps: ${timesteps}
+            type: PDE-S
+            patch_size: ${patch_size}
+            periodic: False
+            carrier_token_active: False
+        monitor: val/loss_epoch
+        ckpt_path: ${init_ckpt}
+        timesteps: ${timesteps}
+        optimizer: adamw
+init_ckpt: /large-disk/sc-s_init.ckpt   # make_lightning_ckpt.py --out
+unrolling_steps: 1
+# the other two configs use 29 here, but PDEArena trajectories are only 14 frames long, so upstream's test
+# dataset cannot cut a 30-frame window. Nothing downstream uses upstream's test loop (the reference is replayed
+# through tests/main_verifier.py), and training and validation both use unrolling_steps, not this value.
+test_unrolling_steps: 12
+data:
+  target: pdetransformer.data.MultiDataModule
+  params:
+    path_index: ${paths.PBDL_index}
+    dataset_names: ['navier_stokes_2d']
+    dataset_type: '2D_WELL'
+    unrolling_steps: ${unrolling_steps}
+    test_unrolling_steps: ${test_unrolling_steps}
+    batch_size: ${batch_size}
+    num_workers: 6
+    cache_strategy: 'none'
+    different_resolution_strategy: 'none'
+    normalize_data: 'mean-std'
+    normalize_const: 'mean-std'
+    downsample_factor: 1
+    max_channels: 3
+frequency_log_images: 1000
+frequency_log_metrics: 5
+frequency_store_pipelines: 1000
+callbacks:
+  _file: config/default_callbacks.yaml
+  ema:
+    target: pdetransformer.callback.EMA
+    params:
+      decay: 0.999

@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title description">
+<title id="title">Surface-code decoding: from noisy stabilizer measurements to a logical-flip decision</title>
+<desc id="description">A real Sycamore distance-three validation shot is displayed on its hardware geometry and as an eight-check, ten-time-slice detection-event matrix. The decoder output is symbolic; no numerical prediction is claimed. Better decoding supports reliable logical memory.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#566675"/></marker></defs>
+<g font-family="DejaVu Sans, sans-serif">
+<rect x="0" y="0" width="1600" height="860" fill="#ffffff" stroke="none"/>
+<text x="60" y="62" font-size="33" fill="#182534" font-weight="600" text-anchor="start">Recover a logical bit from noisy quantum measurements</text>
+<text x="60" y="101" font-size="21" fill="#566675" font-weight="400" text-anchor="start">Repeated stabilizer checks reveal error patterns; a decoder infers whether the stored logical observable flipped.</text>
+<line x1="60" y1="129" x2="1540" y2="129" stroke="#d9e0e5" stroke-width="1.5"/>
+<text x="60" y="182" font-size="24" fill="#182534" font-weight="600" text-anchor="start">A   Quantum memory</text>
+<text x="60" y="216" font-size="18" fill="#566675" font-weight="400" text-anchor="start">Sycamore · distance 3 · Z basis</text>
+<text x="490" y="182" font-size="24" fill="#182534" font-weight="600" text-anchor="start">B   Detection-event input</text>
+<text x="490" y="216" font-size="18" fill="#566675" font-weight="400" text-anchor="start">One real shot, measured over 9 rounds</text>
+<text x="1050" y="182" font-size="24" fill="#182534" font-weight="600" text-anchor="start">C   Logical decoding</text>
+<text x="1050" y="216" font-size="18" fill="#566675" font-weight="400" text-anchor="start">Model input: events + known geometry</text>
+<line x1="110.0" y1="394.0" x2="110.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="110.0" y1="394.0" x2="162.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="342.0" x2="110.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="342.0" x2="162.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="342.0" x2="214.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="446.0" x2="162.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="446.0" x2="162.0" y2="498.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="162.0" y1="446.0" x2="214.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="290.0" x2="214.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="290.0" x2="266.0" y2="290.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="394.0" x2="162.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="394.0" x2="214.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="394.0" x2="214.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="394.0" x2="266.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="498.0" x2="162.0" y2="498.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="214.0" y1="498.0" x2="214.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="342.0" x2="214.0" y2="342.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="342.0" x2="266.0" y2="290.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="342.0" x2="266.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="446.0" x2="214.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="446.0" x2="266.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="266.0" y1="446.0" x2="318.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="318.0" y1="394.0" x2="266.0" y2="394.0" stroke="#d9e0e5" stroke-width="2"/>
+<line x1="318.0" y1="394.0" x2="318.0" y2="446.0" stroke="#d9e0e5" stroke-width="2"/>
+<circle cx="110.0" cy="394.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="162.0" cy="342.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="162.0" cy="446.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="214.0" cy="290.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="214.0" cy="394.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="214.0" cy="498.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="266.0" cy="342.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="266.0" cy="446.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<circle cx="318.0" cy="394.0" r="11" fill="white" stroke="#276382" stroke-width="2.5"/>
+<rect x="102.0" y="334.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="154.0" y="386.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="154.0" y="490.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="206.0" y="334.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="206.0" y="438.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="258.0" y="282.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="258.0" y="386.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<rect x="310.0" y="438.0" width="16" height="16" fill="#8797a4" stroke="none"/>
+<circle cx="84" cy="552" r="7" fill="white" stroke="#276382" stroke-width="2"/>
+<text x="102" y="558" font-size="17" fill="#566675" font-weight="400" text-anchor="start">9 data qubits</text>
+<rect x="241" y="545" width="14" height="14" fill="#8797a4" stroke="none"/>
+<text x="266" y="558" font-size="17" fill="#566675" font-weight="400" text-anchor="start">8 checks</text>
+<text x="60" y="598" font-size="17" fill="#566675" font-weight="400" text-anchor="start">Checks probe parity without revealing</text>
+<text x="60" y="623" font-size="17" fill="#566675" font-weight="400" text-anchor="start">the stored quantum information.</text>
+<line x1="404" y1="384" x2="453" y2="384" stroke="#566675" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="558" y="293" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(1,4)</text>
+<rect x="574" y="273" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<rect x="608" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="273" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="273" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<text x="558" y="325" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(2,5)</text>
+<rect x="574" y="305" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="608" y="305" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="642" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="305" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<text x="558" y="357" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(2,7)</text>
+<rect x="574" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="608" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="337" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<text x="558" y="389" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(3,4)</text>
+<rect x="574" y="369" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<rect x="608" y="369" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="642" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="369" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="369" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<text x="558" y="421" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(3,6)</text>
+<rect x="574" y="401" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<rect x="608" y="401" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="401" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="401" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="710" y="401" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="401" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="401" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="812" y="401" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="846" y="401" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="401" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<text x="558" y="453" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(4,3)</text>
+<rect x="574" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="608" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="433" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<text x="558" y="485" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(4,5)</text>
+<rect x="574" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="608" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="812" y="465" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="846" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="465" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<text x="558" y="517" font-size="16" fill="#566675" font-weight="400" text-anchor="end">(5,6)</text>
+<rect x="574" y="497" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<rect x="608" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="642" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="676" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="710" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="744" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="778" y="497" width="32" height="30" fill="#276382" stroke="#d9e0e5"/>
+<rect x="812" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="846" y="497" width="32" height="30" fill="white" stroke="#d9e0e5"/>
+<rect x="880" y="497" width="32" height="30" fill="#e6e9ec" stroke="#d9e0e5"/>
+<text x="590" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">1</text>
+<text x="624" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">2</text>
+<text x="658" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">3</text>
+<text x="692" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">4</text>
+<text x="726" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">5</text>
+<text x="760" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">6</text>
+<text x="794" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">7</text>
+<text x="828" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">8</text>
+<text x="862" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">9</text>
+<text x="896" y="556" font-size="15" fill="#566675" font-weight="400" text-anchor="middle">final</text>
+<text x="742" y="583" font-size="17" fill="#566675" font-weight="400" text-anchor="middle">Measurement round / final readout</text>
+<rect x="496" y="605" width="15" height="15" fill="#276382" stroke="none"/>
+<text x="518" y="618" font-size="16" fill="#566675" font-weight="400" text-anchor="start">event</text>
+<rect x="596" y="605" width="15" height="15" fill="white" stroke="#d9e0e5"/>
+<text x="618" y="618" font-size="16" fill="#566675" font-weight="400" text-anchor="start">no event</text>
+<rect x="735" y="605" width="15" height="15" fill="#e6e9ec" stroke="#d9e0e5"/>
+<text x="757" y="618" font-size="16" fill="#566675" font-weight="400" text-anchor="start">not defined</text>
+<line x1="959" y1="384" x2="1018" y2="384" stroke="#566675" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1050" y="264" width="490" height="80" fill="#eef4f7" stroke="#d9e0e5"/>
+<text x="1295" y="296" font-size="23" fill="#276382" font-weight="600" text-anchor="middle">Decoder</text>
+<text x="1295" y="324" font-size="17" fill="#566675" font-weight="400" text-anchor="middle">e.g., an AlphaQubit recurrent Transformer</text>
+<line x1="1295" y1="350" x2="1295" y2="372" stroke="#566675" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="1295" y="406" font-size="20" fill="#276382" font-weight="400" text-anchor="middle">p = P(logical flip | events, geometry)</text>
+<rect x="1050" y="430" width="490" height="73" fill="#f8fafb" stroke="#d9e0e5"/>
+<text x="1295" y="462" font-size="22" fill="#182534" font-weight="600" text-anchor="middle">Decision: flip if p ≥ 0.5</text>
+<text x="1295" y="489" font-size="17" fill="#566675" font-weight="400" text-anchor="middle">Apply to the logical readout / Pauli frame</text>
+<text x="1050" y="548" font-size="19" fill="#182534" font-weight="400" text-anchor="start">Validation target for this shot: flip = 0</text>
+<text x="1050" y="578" font-size="16" fill="#566675" font-weight="400" text-anchor="start">Target shown for explanation; never a model input.</text>
+<text x="1050" y="615" font-size="16" fill="#566675" font-weight="400" text-anchor="start">Output above is symbolic, not a measured prediction.</text>
+<line x1="60" y1="655" x2="1540" y2="655" stroke="#d9e0e5" stroke-width="1.5"/>
+<text x="60" y="696" font-size="22" fill="#182534" font-weight="600" text-anchor="start">Scientific value</text>
+<text x="60" y="733" font-size="20" fill="#182534" font-weight="400" text-anchor="start">Better decoding reduces logical readout errors, a bottleneck for reliable quantum memory and fault-tolerant computation.</text>
+<text x="60" y="768" font-size="18" fill="#566675" font-weight="400" text-anchor="start">Benchmark scope: real hard-readout Sycamore data, distances 3 and 5; score held-out logical-flip decisions.</text>
+<text x="60" y="818" font-size="15" fill="#566675" font-weight="400" text-anchor="start">Example: d3 / Z / center (3,5) / 9 rounds / source shot 39760 (validation). Source: Google Quantum AI, Zenodo 6804040, CC BY 4.0.</text>
+</g></svg>

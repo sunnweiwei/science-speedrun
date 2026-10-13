@@ -1,0 +1,112 @@
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/reference
+        target: /benchmark/reference
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/test.parquet
+        target: /benchmark/public/test.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/junction_tracks.parquet
+        target: /benchmark/public/junction_tracks.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/variant_evals/public/perturbations.parquet
+        target: /benchmark/public/perturbations.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -s /benchmark/reference/GRCh38.p13.genome.fa &&
+          test -s /benchmark/reference/GRCh38.p13.genome.fa.fai &&
+          test -s /benchmark/public/test.parquet &&
+          test -s /benchmark/public/junction_tracks.parquet &&
+          test ! -e /benchmark/labels &&
+          test ! -e /benchmark/scoring &&
+          test ! -e /benchmark/targets
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    command:
+      - python
+      - /tests/grader.py
+      - --sealed
+      - /sealed/run
+      - --labels
+      - /labels
+      - --output
+      - /sealed/results
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/test.parquet
+        target: /labels/public/test.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/junction_tracks.parquet
+        target: /labels/public/junction_tracks.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only entries)}/labels/test.parquet
+        target: /labels/labels/test.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only entries)}/scoring/test
+        target: /labels/scoring/test
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only entries)}/targets/test
+        target: /labels/targets/test
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only entries)}/variant_evals
+        target: /labels/variant_evals
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

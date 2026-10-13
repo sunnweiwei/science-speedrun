@@ -1,0 +1,40 @@
+{
+  "schema": "natural-disease-progression-experiment/v2-auroc",
+  "protocol": "longitudinal-v2",
+  "primary_metric": "disease-first macro time-averaged AUROC",
+  "hardware": "NVIDIA RTX 3070 8GB",
+  "prespecified_seeds": [20260929, 20260930, 20260931],
+  "validation": {
+    "zero": {"primary_auroc": 0.5},
+    "prevalence": {"primary_auroc": 0.5},
+    "age_sex": {"primary_auroc": 0.6297733797},
+    "statistical": {"primary_auroc": 0.7078662779},
+    "lightgbm": {"primary_auroc": 0.8240604050, "macro_auprc": 0.0355433132, "macro_auroc_365": 0.8187928761, "raw_brier": 0.0037480698, "normalized_brier": 0.8548389068},
+    "diagnosis_only_seed_20260929": {"primary_auroc": 0.8215488931, "macro_auprc": 0.0300849485, "macro_auroc_365": 0.8125686616, "raw_brier": 0.0038366522, "normalized_brier": 0.8613563558},
+    "unordered_seeds": [0.8232055338, 0.8245702626, 0.8195459751],
+    "unordered_seed_mean": 0.8224405905,
+    "unordered_seed_sample_sd": 0.0025980223,
+    "unordered_calibrated_ensemble": {"primary_auroc": 0.8251348783, "macro_auprc": 0.0247823203, "macro_auroc_365": 0.8200450542, "raw_brier": 0.0038412203, "normalized_brier": 0.8625885557},
+    "temporal_seeds": [0.8311160000, 0.8241333639, 0.8299764422],
+    "temporal_seed_mean": 0.8284086020,
+    "temporal_seed_sample_sd": 0.0037460505,
+    "temporal_calibrated_ensemble": {"primary_auroc": 0.8371802357, "macro_auprc": 0.0314946525, "macro_auroc_365": 0.8309382582, "raw_brier": 0.0038353824, "normalized_brier": 0.8611303291}
+  },
+  "paired_patient_bootstrap_validation": {
+    "replicates": 1000,
+    "unordered_minus_statistical": {"difference": 0.1172686212, "ci95": [0.1079928838, 0.1257184688]},
+    "unordered_minus_lightgbm": {"difference": 0.0010744733, "ci95": [-0.0047087112, 0.0072847851]},
+    "temporal_minus_unordered": {"difference": 0.0120453411, "ci95": [0.0077001712, 0.0164419154]},
+    "temporal_minus_lightgbm": {"difference": 0.0131198307, "ci95": [0.0077184677, 0.0192329094]}
+  },
+  "development_stage_test": {
+    "independent_confirmation": false,
+    "reason": "Earlier test evidence influenced the choice of AUROC as primary metric.",
+    "age_sex": {"primary_auroc": 0.6291439454},
+    "statistical": {"primary_auroc": 0.7058612362},
+    "lightgbm": {"primary_auroc": 0.8242798909},
+    "unordered_calibrated_ensemble": {"primary_auroc": 0.8233547501},
+    "temporal_calibrated_ensemble": {"primary_auroc": 0.8399989321}
+  },
+  "conclusion": "Rich nonlinear features explain most of the gain over simple statistics; multimodal values and temporal order provide additional validation-supported signal, but an unused confirmation cohort is still required."
+}

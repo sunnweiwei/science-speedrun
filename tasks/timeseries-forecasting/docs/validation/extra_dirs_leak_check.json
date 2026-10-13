@@ -1,0 +1,126 @@
+{
+ "what": "content check of the 14 directories added to the allow-list in v2 against every GIFT-Eval test region",
+ "method": "every 32-point window (stride 1) of the last 20% of each GIFT-Eval series, z-normalized and rounded to 0.1, hashed; a corpus series counts as a copy when 32 consecutive window starts match (>= 63 aligned points, affine-invariant); windows with fewer than 10 distinct levels are ignored (flat, step and near-constant shapes)",
+ "script": "docs/validation/check_extra_dirs_leak.py",
+ "controls": {
+  "positive": {
+   "dir": "pedestrian_counts",
+   "known_copy_of": "m4_hourly",
+   "sampled_series": 66,
+   "series_with_copied_window": 46,
+   "examples": [
+    [
+     [
+      "m4_hourly",
+      123
+     ]
+    ],
+    [
+     [
+      "m4_hourly",
+      124
+     ]
+    ],
+    [
+     [
+      "m4_hourly",
+      125
+     ]
+    ],
+    [
+     [
+      "m4_hourly",
+      126
+     ]
+    ],
+    [
+     [
+      "m4_hourly",
+      127
+     ]
+    ]
+   ]
+  },
+  "negative": {
+   "dir": "solar_power",
+   "sampled_series": 1,
+   "series_with_copied_window": 0,
+   "examples": []
+  }
+ },
+ "gift_series": 147909,
+ "sample_fraction": 0.02,
+ "dirs": {
+  "borg_cluster_data_2011": {
+   "sampled_series": 5684,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "buildings_900k": {
+   "sampled_series": 35984,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "cmip6_2000": {
+   "sampled_series": 8673,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "cmip6_2005": {
+   "sampled_series": 8554,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "cmip6_2010": {
+   "sampled_series": 8650,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2010": {
+   "sampled_series": 7414,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2011": {
+   "sampled_series": 7296,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2012": {
+   "sampled_series": 7373,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2013": {
+   "sampled_series": 7498,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2014": {
+   "sampled_series": 7212,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2015": {
+   "sampled_series": 7494,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2016": {
+   "sampled_series": 7488,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2017": {
+   "sampled_series": 7365,
+   "series_with_copied_window": 0,
+   "examples": []
+  },
+  "era5_2018": {
+   "sampled_series": 7258,
+   "series_with_copied_window": 0,
+   "examples": []
+  }
+ },
+ "result": "no copied series in any of the 14 directories (133943 series sampled)"
+}

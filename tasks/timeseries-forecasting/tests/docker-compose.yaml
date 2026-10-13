@@ -1,0 +1,32 @@
+# Separate verifier overlay (task.toml: [verifier] environment_mode = "separate"). `main` is built
+# from tests/Dockerfile with the task directory as context, because that file copies
+# environment/evaluation and the split manifests as well as tests/.
+#
+# Only the evaluation series are mounted (gifteval/ of the same materialization), under /private, a
+# root-only directory of the image: the labels are derived from them, and when Bubblewrap cannot
+# start (Docker usually refuses the network namespace) the package runs as an unprivileged uid that
+# can traverse neither /private nor /tests. reward.json records the mode ("bwrap" or "uid").
+# security_opt lets Bubblewrap create what namespaces the host allows. No network. Harbor uploads
+# the submission to /workspace/submission and reads /logs/verifier/reward.json.
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    shm_size: "16gb"
+    network_mode: none
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data directory (the same directory as TASK_DATA_DIR)}/gifteval
+        target: /private/data/gifteval
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -d /private/data/gifteval && test -x /tests/test.sh && test -s /tests/evaluation/score_bounds.json && test -s /tests/split.json && find /private -maxdepth 0 -perm 700 | grep -q ."]
+      interval: 10s
+      timeout: 30s
+      retries: 3

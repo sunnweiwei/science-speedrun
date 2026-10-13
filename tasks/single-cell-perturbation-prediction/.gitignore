@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.h5ad
+*.npz
+*.npy
+*.ckpt
+environment/baselines/*/st_data/
+environment/baselines/*/runs/
+environment/baselines/meandelta/delta_table.*

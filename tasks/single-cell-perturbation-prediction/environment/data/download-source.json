@@ -1,0 +1,157 @@
+{
+  "schema": "virtual-cell-zeroshot/download-source/v1",
+  "note": "Pinned public sources (used by materialize.sh to rebuild the release) and the prepared release on Hugging Face (used by fetch_release.sh). `path` is relative to the operator cache directory. sha256 values are recorded after a verified download.",
+  "files": {
+    "prepared_release": {
+      "hf_repo": "sunweiwei/ai4sci-virtual-cell-zeroshot-data",
+      "hf_repo_type": "dataset",
+      "hf_revision": "9c2b57a9c6912eca0010624785038a0fab0eee1a",
+      "directory": true,
+      "path": "release",
+      "layout": "dev/ (agent tree, without dev/se600m) + private/ (grader tree) + manifest.json",
+      "note": "prepared release v1.1 (v1 data files; dev/ manifest and gene_panel.csv anonymise the test contexts); fetch with fetch_release.sh; SE-600M is downloaded separately from arcinstitute/SE-600M@5a9a80f",
+      "license": "derived: CC BY 4.0 (Replogle, DepMap, GO), GEO (Nadig), CC BY-NC-SA 4.0 (X-Atlas/Orion trees), Arc VCC data terms (H1)"
+    },
+    "replogle2022_k562_gwps": {
+      "path": "replogle2022/K562_gwps_raw_singlecell_01.h5ad",
+      "url": "https://ndownloader.figshare.com/files/35775507",
+      "figshare_article": 20029387,
+      "figshare_file_id": 35775507,
+      "size": 65830941948,
+      "sha256": "b697ef7fedcec2972ec334608f86f2a29cb25e70c81b6725195f4cda60a9de2c",
+      "citation": "Replogle et al. 2022, Cell 185:2559 (doi:10.1016/j.cell.2022.05.013)",
+      "license": "CC BY 4.0"
+    },
+    "replogle2022_k562_essential": {
+      "path": "replogle2022/K562_essential_raw_singlecell_01.h5ad",
+      "url": "https://ndownloader.figshare.com/files/35773219",
+      "figshare_article": 20029387,
+      "figshare_file_id": 35773219,
+      "size": 10661879995,
+      "sha256": "3e5a63a9e892b21029bb55fca4e12517a49aad7af6c14133ca63d12cf68c6cee",
+      "citation": "Replogle et al. 2022",
+      "license": "CC BY 4.0"
+    },
+    "replogle2022_rpe1": {
+      "path": "replogle2022/rpe1_raw_singlecell_01.h5ad",
+      "url": "https://ndownloader.figshare.com/files/35775606",
+      "figshare_article": 20029387,
+      "figshare_file_id": 35775606,
+      "size": 8700873216,
+      "sha256": "9b05ef1f81526216fa008d677e9e0d03dce9a2f7a95499a4fb81e505e9d88ef1",
+      "citation": "Replogle et al. 2022",
+      "license": "CC BY 4.0"
+    },
+    "nadig2025_hepg2": {
+      "path": "nadig2025/hepg2_raw_singlecell_01.h5ad",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE264nnn/GSE264667/suppl/GSE264667_hepg2_raw_singlecell_01.h5ad",
+      "geo": "GSE264667",
+      "size": 5614460941,
+      "sha256": "e1ad7c3c5a201c861a207a858aa7e59f5e6ac1955674c415f7de0d1dadadb52e",
+      "citation": "Nadig et al. 2025, Nature Genetics (transcriptome-wide characterization of genetic perturbations)",
+      "license": "GEO public"
+    },
+    "nadig2025_jurkat": {
+      "path": "nadig2025/jurkat_raw_singlecell_01.h5ad",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE264nnn/GSE264667/suppl/GSE264667_jurkat_raw_singlecell_01.h5ad",
+      "geo": "GSE264667",
+      "size": 9366490264,
+      "sha256": "ffbe15f2c8f7ffcfd7b0ba9e6937d4ebc2d03b0179fa8234648a59bcb82c04a3",
+      "citation": "Nadig et al. 2025",
+      "license": "GEO public"
+    },
+    "xatlas_orion": {
+      "path": "orion/X-Atlas-Orion",
+      "hf_repo": "Xaira-Therapeutics/X-Atlas-Orion",
+      "hf_repo_type": "dataset",
+      "hf_revision": "53a5bc98d49247bcf967500292575c3d3602de31",
+      "size": null,
+      "sha256": null,
+      "directory": true,
+      "citation": "Huang et al. 2025, bioRxiv 10.1101/2025.06.11.659105 (X-Atlas/Orion)",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    "vcc2025_train": {
+      "path": "vcc2025/adata_Training.h5ad.generation-1765904883947296.h5ad",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/arc-institute-virtual-cell-atlas/o/virtual-cell-challenge%2F2025%2Ftrain%2Fadata_Training.h5ad?alt=media&generation=1765904883947296",
+      "gcs_generation": 1765904883947296,
+      "size": 15482497461,
+      "sha256": "a09977104fefb622368ca74b50c9d3c1e891733e6c83db07acfca49b0219c02b",
+      "citation": "Arc Institute Virtual Cell Challenge 2025 (H1 hESC CRISPRi, 10x Flex)",
+      "license": "Arc VCC data terms"
+    },
+    "vcc2025_validation": {
+      "path": "vcc2025/adata_Validation.h5ad.generation-1765905029341737.h5ad",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/arc-institute-virtual-cell-atlas/o/virtual-cell-challenge%2F2025%2Fvalidation%2Fadata_Validation.h5ad?alt=media&generation=1765905029341737",
+      "gcs_generation": 1765905029341737,
+      "size": 6928967541,
+      "sha256": "376f0bab27d9f22e00dfd888668d3602006d035edc182721c378f4802c77bfe1",
+      "citation": "Arc VCC 2025",
+      "license": "Arc VCC data terms"
+    },
+    "vcc2025_test": {
+      "path": "vcc2025/adata_Test.h5ad.generation-1765905295402700.h5ad",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/arc-institute-virtual-cell-atlas/o/virtual-cell-challenge%2F2025%2Ftest%2Fadata_Test.h5ad?alt=media&generation=1765905295402700",
+      "gcs_generation": 1765905295402700,
+      "size": 11950739168,
+      "sha256": "ba5ce66729e4c8e50b6f147c7d73d3f9f28f76c91fa43ff33e3f6bc2ed831f03",
+      "citation": "Arc VCC 2025",
+      "license": "Arc VCC data terms"
+    },
+    "se600m_checkpoint": {
+      "path": "se600m/se600m_epoch16.ckpt",
+      "hf_repo": "arcinstitute/SE-600M",
+      "hf_revision": "5a9a80f",
+      "size": 11548282659,
+      "sha256": "b49bab144471f3b9318e1a661fb7b78bfa5110b500aee5c89d660f5f5927b7a5",
+      "citation": "Adduri et al. 2025, STATE (Arc Institute)",
+      "license": "Arc Research Institute Model License (see se600m/MODEL_LICENSE.md)"
+    },
+    "se600m_protein_embeddings": {
+      "path": "se600m/protein_embeddings.pt",
+      "hf_repo": "arcinstitute/SE-600M",
+      "hf_revision": "5a9a80f",
+      "size": 410886729,
+      "sha256": "a210e1cc7901513999b2bca3836ba9e2f203cd008be4e9a9d6412a2267de9748",
+      "citation": "ESM-2 per-gene embeddings shipped with SE-600M",
+      "license": "as SE-600M"
+    },
+    "se600m_config": {
+      "path": "se600m/config.yaml",
+      "hf_repo": "arcinstitute/SE-600M",
+      "hf_revision": "5a9a80f",
+      "size": 4597,
+      "sha256": "807d9f741a7b3c1243f361fa5672c92b3d7f775fccf890136cd8bff41618881a"
+    },
+    "depmap_24q4_gene_effect": {
+      "path": "depmap/CRISPRGeneEffect.csv",
+      "url": "https://ndownloader.figshare.com/files/51064667",
+      "figshare_article": 27993248,
+      "size": 428678699,
+      "md5": "6edf7ade09b9b34199210b559d4745d3",
+      "sha256": "3d8f3ec6dbf2db7ff834b79b508622ec0b226f3518003fe96ecf5a4fcf167e3b",
+      "citation": "DepMap 24Q4 Public",
+      "license": "CC BY 4.0"
+    },
+    "depmap_24q4_model": {
+      "path": "depmap/Model.csv",
+      "url": "https://ndownloader.figshare.com/files/51065297",
+      "figshare_article": 27993248,
+      "size": 645696,
+      "md5": "675210d17675f3517b0ce39a3c274f16",
+      "sha256": "b7a0c1385e6cef30132b56aff61f1261d11e3f490490b355c430d32ee0dbdcfa",
+      "citation": "DepMap 24Q4 Public",
+      "license": "CC BY 4.0"
+    },
+    "go_annotations": {
+      "path": "go/goa_human.gaf.gz",
+      "url": "https://current.geneontology.org/annotations/goa_human.gaf.gz",
+      "size": 15041996,
+      "sha256": "db472faff1785878521693af62646546cea6af4a386609dd01c72c0554a46a30",
+      "retrieved": "2026-09-21",
+      "go_release": "2026-05-21",
+      "citation": "Gene Ontology Consortium, goa_human GAF",
+      "license": "CC BY 4.0"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+ "contract": "pde-surrogate-rollout/v1",
+ "n_cases": 235,
+ "n_failed": 0,
+ "failures": [],
+ "datasets": {
+  "pdearena/navier_stokes_2d": {
+   "n_cases": 200,
+   "n_failed": 0,
+   "n_steps": 10,
+   "vrmse": 1.2246605576751353,
+   "nrmse_joint": 0.7106979226784671,
+   "vrmse_steps_1_5": 1.124340997312573,
+   "reward": 0.3039947563805862
+  },
+  "well/active_matter": {
+   "n_cases": 26,
+   "n_failed": 0,
+   "n_steps": 30,
+   "vrmse": 1.318155591959645,
+   "nrmse_joint": 0.6595432055580598,
+   "vrmse_steps_1_5": 0.8449184586146035,
+   "vrmse_steps_6_12": 1.3352515414486203,
+   "vrmse_steps_13_30": 1.4429619264208884,
+   "reward": 0.29334444120856973
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "n_cases": 9,
+   "n_failed": 0,
+   "n_steps": 30,
+   "vrmse": 1.3994866405798045,
+   "nrmse_joint": 0.42873972254752607,
+   "vrmse_steps_1_5": 0.7873398686103251,
+   "vrmse_steps_6_12": 1.181107346880041,
+   "vrmse_steps_13_30": 1.6544526914545676,
+   "reward": 0.2846770809761849
+  }
+ },
+ "groups": {
+  "pdearena/navier_stokes_2d": {
+   "n_datasets": 1,
+   "vrmse": 1.2246605576751353,
+   "reward": 0.3039947563805862
+  },
+  "well/active_matter": {
+   "n_datasets": 1,
+   "vrmse": 1.318155591959645,
+   "reward": 0.29334444120856973
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "n_datasets": 1,
+   "vrmse": 1.3994866405798045,
+   "reward": 0.2846770809761849
+  }
+ },
+ "mean_vrmse": 1.3141009300715283,
+ "reward": 0.294005426188447,
+ "note": " per-case records omitted from the committed copy; regenerate with score.py"
+}

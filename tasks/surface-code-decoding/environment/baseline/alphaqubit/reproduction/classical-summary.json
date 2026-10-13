@@ -1,0 +1,1952 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-09-19T05:16:44.283163+00:00",
+  "sources": {
+    "artifact_directory": "/home/users/xy200/yinxunjian/mycode/ai4sci-artifacts/surface-code-decoding/20260919/classical-v1",
+    "scores_sha256": "08d92616118cc37f7c34d78b3e56b83aee5c2ab8157563a990dd4708e3ec06f2",
+    "condition_counts_sha256": "118c2669f8bcd32ac1fbbb9093a361b77a80bd16e5ef8bfa13200e173954a256",
+    "validation_sha256": "7921e688736268b891d942e396a8aef98517dca37138fb7b9965e5e3333313d6",
+    "paired_errors_aggregate_sha256": "0a44d358f3ceccfb28efbeb291e742fd6b9a8efb6c6e599fd9ef5908e01f69c4",
+    "paired_digest_definition": "SHA256 of sorted condition_name + NUL + individual NPZ SHA256 + newline records",
+    "metrics_source_sha256": "de489e0b5b47c92688aec1c6af0e4d1ec24a4fc77303987f2cd3ee3cc2eb7e40",
+    "scorer_source_sha256": "8078cae20f6768ee894919c462240731be7dbb64157034f22f2726d42f1cd62c"
+  },
+  "verification": {
+    "all_130_conditions_verified": true,
+    "odd_shots_per_condition": 25000,
+    "total_held_out_shots": 3250000,
+    "methods_recounted": [
+      "pymatching_mwpm_circuit",
+      "pymatching_correlated_circuit",
+      "pymatching_mwpm_even_calibrated",
+      "pymatching_correlated_even_calibrated",
+      "released_mwpm",
+      "released_correlated_matching",
+      "released_belief_matching",
+      "released_tensor_network",
+      "pymatching_mwpm_selected",
+      "pymatching_correlated_selected"
+    ],
+    "binary_error_arrays_recounted": 1300,
+    "raw_counts_exactly_match_count_files_and_report": true,
+    "paired_actual_labels_match_original_release": true,
+    "selected_aliases_equal_locked_candidate_errors": true,
+    "validation_selection_independently_rechecked": true,
+    "independent_weighted_lstsq_group_fits_verified": 40,
+    "maximum_independent_ler_difference": 3.469446951953614e-17,
+    "trusted_scorer_full_suite_replay": "Selected correlated hard predictions reconstructed from actual XOR error, temporary probabilities used only to verify decision-metric aggregation; no calibrated-confidence claim",
+    "macro_values_and_ci_replayed_with_absolute_tolerance": 1e-12
+  },
+  "resources": {
+    "slurm_job_id": "12642029",
+    "host": "linux34",
+    "allocated_cpu_cores": 2,
+    "application_wall_seconds": 393.26703738002107,
+    "application_wall_seconds_rounded": 393.3,
+    "slurm_elapsed_seconds": 398,
+    "slurm_total_cpu_seconds": 389.142,
+    "resource_note": "Two cores were allocated; this is measured offline evaluation time, not streaming decoding latency."
+  },
+  "methodology": {
+    "dataset": "Zenodo 6804040 Sycamore surface-code memory experiments",
+    "split": {
+      "index_base": 0,
+      "train": "first 19,880 even-indexed shots per condition",
+      "validation": "last 5,120 even-indexed shots per condition",
+      "test": "all 25,000 odd-indexed shots per condition",
+      "calibration_caveat": "Released even-calibrated DEM uses ALL even syndromes, including validation. It uses neither validation labels nor odd test syndromes/labels. Validation is label-held-out, not fully held out from unsupervised DEM estimation."
+    },
+    "conditions": "Four d3 patches and one d5 patch, X/Z bases, 13 odd round counts 1..25",
+    "selection": "separately for MWPM and correlated, choose one global calibration minimizing the equal-distance mean of macro LER on validation; ties favor circuit DEM",
+    "selected": {
+      "pymatching_mwpm_selected": "pymatching_mwpm_even_calibrated",
+      "pymatching_correlated_selected": "pymatching_correlated_even_calibrated"
+    },
+    "metric": "Weighted least squares: log(1-2 P_fail(r)) = intercept + slope*r; epsilon = (1-exp(slope))/2",
+    "fit_rounds": [
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25
+    ],
+    "distance_macro": "Equal mean of separately fitted basis/patch logical error rates: 8 groups at d3, 2 at d5",
+    "uncertainty": {
+      "method": "per-condition parametric binomial bootstrap with complete refitting",
+      "confidence": 0.95,
+      "bootstrap_samples": 2000,
+      "seed": 20260919,
+      "assumptions": "independent shots and conditions; conditional on circuits; no drift or model-seed uncertainty"
+    },
+    "suppression_note": "d3 macro / d5 macro is descriptive across different measured patches; it is not a threshold demonstration.",
+    "historical_reference_note": "BP and tensor-network values rescore released predictions, rather than newly reproducing those decoder implementations.",
+    "fit_diagnostic_note": "F0=exp(intercept)>1 is an unphysical extrapolation to r=0 of an unconstrained fit trained on r=3..25. It does not imply probabilities above one on observed rounds. Retain the diagnostics and reduced chi-square; no condition was filtered and high R-squared does not establish exact exponential decay."
+  },
+  "methods": {
+    "pymatching_mwpm_selected": {
+      "role": "reproduced selectable baseline",
+      "macro": {
+        "d3": {
+          "logical_error_per_round": 0.03877986465854796,
+          "groups": [
+            "d3_bX_center_3_5",
+            "d3_bX_center_5_3",
+            "d3_bX_center_5_7",
+            "d3_bX_center_7_5",
+            "d3_bZ_center_3_5",
+            "d3_bZ_center_5_3",
+            "d3_bZ_center_5_7",
+            "d3_bZ_center_7_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d3_bX_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.03854478656968406,
+            0.038966752949047716
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.04316659375142139,
+          "groups": [
+            "d5_bX_center_5_5",
+            "d5_bZ_center_5_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d5_bX_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d5_bZ_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.04268614800771732,
+            0.043591294034434444
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 0.8983767605538953,
+          "interpretation": "descriptive ratio across the measured d3 patches and d5 patch",
+          "diagnostic_flags": [],
+          "ci95": [
+            0.888244840509241,
+            0.9088126227706199
+          ]
+        }
+      },
+      "group_fits": {
+        "d3_bX_center_3_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03991225299908294,
+          "slope": -0.083190872780529,
+          "intercept": 0.043971833868733434,
+          "reduced_chi_square": 0.3831899436800067,
+          "weighted_log_fidelity_rmse": 0.005925565048592721,
+          "zero_round_fidelity": 1.0449529221927691,
+          "weighted_log_fidelity_r_squared": 0.9997239988556997,
+          "unweighted_log_fidelity_r_squared": 0.9997279586998307,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03925066852931428,
+            0.04050783258585043
+          ]
+        },
+        "d3_bX_center_5_3": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.04132599560308645,
+          "slope": -0.08626837076659134,
+          "intercept": 0.06025136826002059,
+          "reduced_chi_square": 2.398087905673083,
+          "weighted_log_fidelity_rmse": 0.014759058599287915,
+          "zero_round_fidelity": 1.062103492099905,
+          "weighted_log_fidelity_r_squared": 0.9983019931970473,
+          "unweighted_log_fidelity_r_squared": 0.9958412852092683,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.0406343162472106,
+            0.04194246922865083
+          ]
+        },
+        "d3_bX_center_5_7": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03803350751569777,
+          "slope": -0.0791157370609244,
+          "intercept": 0.07022786975421652,
+          "reduced_chi_square": 4.429630718088292,
+          "weighted_log_fidelity_rmse": 0.018247775431150057,
+          "zero_round_fidelity": 1.0727526012767816,
+          "weighted_log_fidelity_r_squared": 0.9970402833107119,
+          "unweighted_log_fidelity_r_squared": 0.995518950029448,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.037416606502761074,
+            0.03859048736942651
+          ]
+        },
+        "d3_bX_center_7_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.0360827356710505,
+          "slope": -0.0749018717308743,
+          "intercept": 0.024518297465742134,
+          "reduced_chi_square": 2.3309752341993466,
+          "weighted_log_fidelity_rmse": 0.013928602875087348,
+          "zero_round_fidelity": 1.0248213425690536,
+          "weighted_log_fidelity_r_squared": 0.9983492059943135,
+          "unweighted_log_fidelity_r_squared": 0.9984643591956736,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03551546111068307,
+            0.03662194127879574
+          ]
+        },
+        "d5_bX_center_5_5": {
+          "distance": 5,
+          "basis": "X",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.044719042299903325,
+          "slope": -0.09369338058864513,
+          "intercept": 0.11493206936445077,
+          "reduced_chi_square": 2.312131471014155,
+          "weighted_log_fidelity_rmse": 0.013846141188480918,
+          "zero_round_fidelity": 1.1217972305847421,
+          "weighted_log_fidelity_r_squared": 0.9984708510706417,
+          "unweighted_log_fidelity_r_squared": 0.9952290320820404,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.04404107555249125,
+            0.04532723179191791
+          ]
+        },
+        "d3_bZ_center_3_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.04031402621782731,
+          "slope": -0.08406450775230521,
+          "intercept": 0.056832669163623506,
+          "reduced_chi_square": 2.97247504864322,
+          "weighted_log_fidelity_rmse": 0.016212571172214647,
+          "zero_round_fidelity": 1.0584786794534593,
+          "weighted_log_fidelity_r_squared": 0.9979278702881778,
+          "unweighted_log_fidelity_r_squared": 0.9958043189770629,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.039677454793042966,
+            0.04098387511125656
+          ]
+        },
+        "d3_bZ_center_5_3": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.038463340763934435,
+          "slope": -0.08004661266968552,
+          "intercept": 0.047805391284346854,
+          "reduced_chi_square": 2.486589855694303,
+          "weighted_log_fidelity_rmse": 0.014444006597768053,
+          "zero_round_fidelity": 1.0489664974368333,
+          "weighted_log_fidelity_r_squared": 0.9983088368201829,
+          "unweighted_log_fidelity_r_squared": 0.996480147440655,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.037827170470388964,
+            0.03902124043190511
+          ]
+        },
+        "d3_bZ_center_5_7": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.038773359589158965,
+          "slope": -0.08071854844564791,
+          "intercept": 0.04064201240140508,
+          "reduced_chi_square": 9.03301235882421,
+          "weighted_log_fidelity_rmse": 0.028303792859532762,
+          "zero_round_fidelity": 1.0414792021635,
+          "weighted_log_fidelity_r_squared": 0.993560086167964,
+          "unweighted_log_fidelity_r_squared": 0.9776015225906485,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03811499867318705,
+            0.039408622353157764
+          ]
+        },
+        "d3_bZ_center_7_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03733369890854538,
+          "slope": -0.07760203617201664,
+          "intercept": 0.05707366186340651,
+          "reduced_chi_square": 13.584842883467141,
+          "weighted_log_fidelity_rmse": 0.03228147833995706,
+          "zero_round_fidelity": 1.0587337958274408,
+          "weighted_log_fidelity_r_squared": 0.9908353858228337,
+          "unweighted_log_fidelity_r_squared": 0.9915008704961246,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.0367463185268238,
+            0.0378888732227482
+          ]
+        },
+        "d5_bZ_center_5_5": {
+          "distance": 5,
+          "basis": "Z",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.041614145202939455,
+          "slope": -0.08689679127032832,
+          "intercept": 0.10363973965012718,
+          "reduced_chi_square": 1.4349541815887745,
+          "weighted_log_fidelity_rmse": 0.010361767840651613,
+          "zero_round_fidelity": 1.109200781864975,
+          "weighted_log_fidelity_r_squared": 0.9991081500589576,
+          "unweighted_log_fidelity_r_squared": 0.9984682304778283,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.040964143275184904,
+            0.0422148504147616
+          ]
+        }
+      }
+    },
+    "pymatching_correlated_selected": {
+      "role": "reproduced selectable baseline",
+      "macro": {
+        "d3": {
+          "logical_error_per_round": 0.03416151301205684,
+          "groups": [
+            "d3_bX_center_3_5",
+            "d3_bX_center_5_3",
+            "d3_bX_center_5_7",
+            "d3_bX_center_7_5",
+            "d3_bZ_center_3_5",
+            "d3_bZ_center_5_3",
+            "d3_bZ_center_5_7",
+            "d3_bZ_center_7_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d3_bX_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.03396168948492443,
+            0.03432705946570196
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.034503326350917296,
+          "groups": [
+            "d5_bX_center_5_5",
+            "d5_bZ_center_5_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d5_bX_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d5_bZ_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.034127018258565706,
+            0.03483757313016387
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 0.9900933221514925,
+          "interpretation": "descriptive ratio across the measured d3 patches and d5 patch",
+          "diagnostic_flags": [],
+          "ci95": [
+            0.9786577492371616,
+            1.0016960825313148
+          ]
+        }
+      },
+      "group_fits": {
+        "d3_bX_center_3_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.036377367539971596,
+          "slope": -0.07553716920939915,
+          "intercept": 0.0451556349054007,
+          "reduced_chi_square": 1.1767384282846352,
+          "weighted_log_fidelity_rmse": 0.009532323323184813,
+          "zero_round_fidelity": 1.046190671024958,
+          "weighted_log_fidelity_r_squared": 0.9992020804007924,
+          "unweighted_log_fidelity_r_squared": 0.998759627434183,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03579918388072232,
+            0.036916639816674035
+          ]
+        },
+        "d3_bX_center_5_3": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.0354846567027235,
+          "slope": -0.07361350885748415,
+          "intercept": 0.03720631971700483,
+          "reduced_chi_square": 3.288318982552081,
+          "weighted_log_fidelity_rmse": 0.015840162455594265,
+          "zero_round_fidelity": 1.0379071394562411,
+          "weighted_log_fidelity_r_squared": 0.9977534299041465,
+          "unweighted_log_fidelity_r_squared": 0.9929763103062993,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03489960891843215,
+            0.03602070293511246
+          ]
+        },
+        "d3_bX_center_5_7": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03356557405997728,
+          "slope": -0.069490654060093,
+          "intercept": 0.05028666306915952,
+          "reduced_chi_square": 4.513039128481417,
+          "weighted_log_fidelity_rmse": 0.017250561828026218,
+          "zero_round_fidelity": 1.0515725001736347,
+          "weighted_log_fidelity_r_squared": 0.997039511705838,
+          "unweighted_log_fidelity_r_squared": 0.9963642511219301,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03303429834098641,
+            0.03406573383411387
+          ]
+        },
+        "d3_bX_center_7_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03263547689215005,
+          "slope": -0.067498581834364,
+          "intercept": 0.015022228848616592,
+          "reduced_chi_square": 3.209525134805097,
+          "weighted_log_fidelity_rmse": 0.015314844173243225,
+          "zero_round_fidelity": 1.0151356296611576,
+          "weighted_log_fidelity_r_squared": 0.9977818859117957,
+          "unweighted_log_fidelity_r_squared": 0.9959601008797996,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03208761842265684,
+            0.033115417966992626
+          ]
+        },
+        "d5_bX_center_5_5": {
+          "distance": 5,
+          "basis": "X",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03575130140106951,
+          "slope": -0.07418770142662715,
+          "intercept": 0.07796844388078805,
+          "reduced_chi_square": 2.032256935682029,
+          "weighted_log_fidelity_rmse": 0.01135828925370878,
+          "zero_round_fidelity": 1.0810885431728625,
+          "weighted_log_fidelity_r_squared": 0.998762315664851,
+          "unweighted_log_fidelity_r_squared": 0.9958552270926256,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03520694799045335,
+            0.03626307702514113
+          ]
+        },
+        "d3_bZ_center_3_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.036679673781032394,
+          "slope": -0.07618943426831848,
+          "intercept": 0.05115671510796288,
+          "reduced_chi_square": 0.8264000562215623,
+          "weighted_log_fidelity_rmse": 0.007939318914673647,
+          "zero_round_fidelity": 1.0524878211020394,
+          "weighted_log_fidelity_r_squared": 0.9994464971465655,
+          "unweighted_log_fidelity_r_squared": 0.9995242888870745,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.036107587390246304,
+            0.03723315596967649
+          ]
+        },
+        "d3_bZ_center_5_3": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.033899232789246475,
+          "slope": -0.07020624902306717,
+          "intercept": 0.03485485600789162,
+          "reduced_chi_square": 1.9264626408701506,
+          "weighted_log_fidelity_rmse": 0.01170738934871204,
+          "zero_round_fidelity": 1.0354694057288396,
+          "weighted_log_fidelity_r_squared": 0.9987276297482983,
+          "unweighted_log_fidelity_r_squared": 0.9976378576719509,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03335731071653066,
+            0.03443626482303695
+          ]
+        },
+        "d3_bZ_center_5_7": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03264171754969629,
+          "slope": -0.06751193479314327,
+          "intercept": 0.028001975057073414,
+          "reduced_chi_square": 8.267763872682197,
+          "weighted_log_fidelity_rmse": 0.02399730910134679,
+          "zero_round_fidelity": 1.0283977155636017,
+          "weighted_log_fidelity_r_squared": 0.994394907678624,
+          "unweighted_log_fidelity_r_squared": 0.9842764468531581,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03210111479050626,
+            0.033157139125774615
+          ]
+        },
+        "d3_bZ_center_7_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.032008404781657125,
+          "slope": -0.0661577616009734,
+          "intercept": 0.04056563605647284,
+          "reduced_chi_square": 10.597038324848217,
+          "weighted_log_fidelity_rmse": 0.02588903267453389,
+          "zero_round_fidelity": 1.0413996608262928,
+          "weighted_log_fidelity_r_squared": 0.9930407764553276,
+          "unweighted_log_fidelity_r_squared": 0.9904481558530046,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03150629876980357,
+            0.03246864063193049
+          ]
+        },
+        "d5_bZ_center_5_5": {
+          "distance": 5,
+          "basis": "Z",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03325535130076509,
+          "slope": -0.06882578109182567,
+          "intercept": 0.07382805597841063,
+          "reduced_chi_square": 2.0349145948945555,
+          "weighted_log_fidelity_rmse": 0.010739558128184409,
+          "zero_round_fidelity": 1.076621670920456,
+          "weighted_log_fidelity_r_squared": 0.998793703805341,
+          "unweighted_log_fidelity_r_squared": 0.9979254344034134,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.032745155654626046,
+            0.03371662730181332
+          ]
+        }
+      }
+    },
+    "released_belief_matching": {
+      "role": "released-prediction reference",
+      "macro": {
+        "d3": {
+          "logical_error_per_round": 0.031176287230296463,
+          "groups": [
+            "d3_bX_center_3_5",
+            "d3_bX_center_5_3",
+            "d3_bX_center_5_7",
+            "d3_bX_center_7_5",
+            "d3_bZ_center_3_5",
+            "d3_bZ_center_5_3",
+            "d3_bZ_center_5_7",
+            "d3_bZ_center_7_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d3_bX_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.030991622079891184,
+            0.03133423629816913
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.030364283021076688,
+          "groups": [
+            "d5_bX_center_5_5",
+            "d5_bZ_center_5_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d5_bX_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d5_bZ_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.030043818596872288,
+            0.030668551175956568
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 1.0267420840681842,
+          "interpretation": "descriptive ratio across the measured d3 patches and d5 patch",
+          "diagnostic_flags": [],
+          "ci95": [
+            1.0147519997773868,
+            1.0388388137218914
+          ]
+        }
+      },
+      "group_fits": {
+        "d3_bX_center_3_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03220842418010584,
+          "slope": -0.066585252514863,
+          "intercept": 0.024152776287163058,
+          "reduced_chi_square": 1.393058600731591,
+          "weighted_log_fidelity_rmse": 0.00981046043453534,
+          "zero_round_fidelity": 1.024446817116747,
+          "weighted_log_fidelity_r_squared": 0.9990489461712894,
+          "unweighted_log_fidelity_r_squared": 0.9985288690538473,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03169905288807488,
+            0.032692109028900865
+          ]
+        },
+        "d3_bX_center_5_3": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03359857558792632,
+          "slope": -0.06956140933381098,
+          "intercept": 0.031780937883838845,
+          "reduced_chi_square": 2.9497095105466933,
+          "weighted_log_fidelity_rmse": 0.014490936703194256,
+          "zero_round_fidelity": 1.0322913446079578,
+          "weighted_log_fidelity_r_squared": 0.9980076601746615,
+          "unweighted_log_fidelity_r_squared": 0.9950194284462955,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.033031583688482254,
+            0.034098093896563514
+          ]
+        },
+        "d3_bX_center_5_7": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03017549701996858,
+          "slope": -0.06224887136327429,
+          "intercept": 0.03902411732314082,
+          "reduced_chi_square": 2.969178898477749,
+          "weighted_log_fidelity_rmse": 0.013123687858755425,
+          "zero_round_fidelity": 1.0397955604332956,
+          "weighted_log_fidelity_r_squared": 0.9980618812427327,
+          "unweighted_log_fidelity_r_squared": 0.9980605186342368,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.029717649388945312,
+            0.03062079002340898
+          ]
+        },
+        "d3_bX_center_7_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.029740127373774003,
+          "slope": -0.061322636040961775,
+          "intercept": 0.004316474403429749,
+          "reduced_chi_square": 3.244537146659224,
+          "weighted_log_fidelity_rmse": 0.014626129119219103,
+          "zero_round_fidelity": 1.0043258037976013,
+          "weighted_log_fidelity_r_squared": 0.9977598186861011,
+          "unweighted_log_fidelity_r_squared": 0.9980717337432916,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.02925562367685803,
+            0.030193653740954753
+          ]
+        },
+        "d5_bX_center_5_5": {
+          "distance": 5,
+          "basis": "X",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03145478435410463,
+          "slope": -0.06497548988326565,
+          "intercept": 0.06509098514691114,
+          "reduced_chi_square": 2.123319649102123,
+          "weighted_log_fidelity_rmse": 0.010667326175319505,
+          "zero_round_fidelity": 1.0672561244220673,
+          "weighted_log_fidelity_r_squared": 0.9987425854313061,
+          "unweighted_log_fidelity_r_squared": 0.9965142222553371,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03098851559720008,
+            0.03189260959339236
+          ]
+        },
+        "d3_bZ_center_3_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03279616859124853,
+          "slope": -0.06784246615252104,
+          "intercept": 0.03328985582747379,
+          "reduced_chi_square": 3.907563957981149,
+          "weighted_log_fidelity_rmse": 0.01629241857659933,
+          "zero_round_fidelity": 1.0338501633098867,
+          "weighted_log_fidelity_r_squared": 0.9974357920132765,
+          "unweighted_log_fidelity_r_squared": 0.9952219677897752,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.03227476380595279,
+            0.03330597123895912
+          ]
+        },
+        "d3_bZ_center_5_3": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.031409425433512154,
+          "slope": -0.06487868657876779,
+          "intercept": 0.022174052951434597,
+          "reduced_chi_square": 1.701428591187959,
+          "weighted_log_fidelity_rmse": 0.010646938008059091,
+          "zero_round_fidelity": 1.0224217245032556,
+          "weighted_log_fidelity_r_squared": 0.99885504509766,
+          "unweighted_log_fidelity_r_squared": 0.9978914764324616,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.030864131791992388,
+            0.03189955171204878
+          ]
+        },
+        "d3_bZ_center_5_7": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.029816842864983928,
+          "slope": -0.061485783597916,
+          "intercept": 0.013904977896213144,
+          "reduced_chi_square": 9.290887220262585,
+          "weighted_log_fidelity_rmse": 0.02440351118902373,
+          "zero_round_fidelity": 1.014002101747581,
+          "weighted_log_fidelity_r_squared": 0.9936194287878434,
+          "unweighted_log_fidelity_r_squared": 0.9811515865668831,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.029327213874226137,
+            0.030286161937627325
+          ]
+        },
+        "d3_bZ_center_7_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.029665236790852353,
+          "slope": -0.061163395109264586,
+          "intercept": 0.0333533358757655,
+          "reduced_chi_square": 11.619690032278639,
+          "weighted_log_fidelity_rmse": 0.02591765336141964,
+          "zero_round_fidelity": 1.0339157942512855,
+          "weighted_log_fidelity_r_squared": 0.9923627792158968,
+          "unweighted_log_fidelity_r_squared": 0.9905998848265201,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.029188405915093377,
+            0.030075311563441193
+          ]
+        },
+        "d5_bZ_center_5_5": {
+          "distance": 5,
+          "basis": "Z",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.02927378168804875,
+          "slope": -0.06033145088233667,
+          "intercept": 0.06104209483829931,
+          "reduced_chi_square": 1.5450756227535662,
+          "weighted_log_fidelity_rmse": 0.00861649280009368,
+          "zero_round_fidelity": 1.062943657686845,
+          "weighted_log_fidelity_r_squared": 0.9991027572322894,
+          "unweighted_log_fidelity_r_squared": 0.9992947366783032,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.028832728110896984,
+            0.02967604398681348
+          ]
+        }
+      }
+    },
+    "released_tensor_network": {
+      "role": "released-prediction reference",
+      "macro": {
+        "d3": {
+          "logical_error_per_round": 0.030263918116720218,
+          "groups": [
+            "d3_bX_center_3_5",
+            "d3_bX_center_5_3",
+            "d3_bX_center_5_7",
+            "d3_bX_center_7_5",
+            "d3_bZ_center_3_5",
+            "d3_bZ_center_5_3",
+            "d3_bZ_center_5_7",
+            "d3_bZ_center_7_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d3_bX_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bX_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_3_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_3": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_5_7": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d3_bZ_center_7_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.030082978006888066,
+            0.030414262906413185
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.029085394108046593,
+          "groups": [
+            "d5_bX_center_5_5",
+            "d5_bZ_center_5_5"
+          ],
+          "aggregation": "equal weight over basis/center fits, without pooling shot probabilities",
+          "diagnostic_flags_by_group": {
+            "d5_bX_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ],
+            "d5_bZ_center_5_5": [
+              "extrapolated_zero_round_fidelity_above_one"
+            ]
+          },
+          "ci95": [
+            0.02878758729569013,
+            0.02936303124959102
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 1.0405194443745764,
+          "interpretation": "descriptive ratio across the measured d3 patches and d5 patch",
+          "diagnostic_flags": [],
+          "ci95": [
+            1.0282159655870071,
+            1.052809439721992
+          ]
+        }
+      },
+      "group_fits": {
+        "d3_bX_center_3_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03165512578149737,
+          "slope": -0.0654031631666395,
+          "intercept": 0.029021403633845144,
+          "reduced_chi_square": 1.1175443992413023,
+          "weighted_log_fidelity_rmse": 0.00856114561340127,
+          "zero_round_fidelity": 1.0294466281380215,
+          "weighted_log_fidelity_r_squared": 0.9992526398911167,
+          "unweighted_log_fidelity_r_squared": 0.9986484365366977,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.031153235362445412,
+            0.032122380810707334
+          ]
+        },
+        "d3_bX_center_5_3": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.032819403431583245,
+          "slope": -0.06789219908822462,
+          "intercept": 0.03965944413198835,
+          "reduced_chi_square": 3.0899495668748322,
+          "weighted_log_fidelity_rmse": 0.01429984256259393,
+          "zero_round_fidelity": 1.040456380324628,
+          "weighted_log_fidelity_r_squared": 0.9979497273352735,
+          "unweighted_log_fidelity_r_squared": 0.9951362865890871,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.032286307172500854,
+            0.033303007277005074
+          ]
+        },
+        "d3_bX_center_5_7": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.0286348475588704,
+          "slope": -0.05897503419712624,
+          "intercept": 0.039047825541304204,
+          "reduced_chi_square": 4.969774470954169,
+          "weighted_log_fidelity_rmse": 0.01627781300943785,
+          "zero_round_fidelity": 1.0398202124255138,
+          "weighted_log_fidelity_r_squared": 0.9967654804390336,
+          "unweighted_log_fidelity_r_squared": 0.996290436681603,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.02820605170190149,
+            0.0290631160750924
+          ]
+        },
+        "d3_bX_center_7_5": {
+          "distance": 3,
+          "basis": "X",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.029396255566206123,
+          "slope": -0.06059166543769027,
+          "intercept": 0.012247076089548115,
+          "reduced_chi_square": 3.2469723322504422,
+          "weighted_log_fidelity_rmse": 0.014227844724881183,
+          "zero_round_fidelity": 1.0123223786238782,
+          "weighted_log_fidelity_r_squared": 0.9978198598162284,
+          "unweighted_log_fidelity_r_squared": 0.9982744949879121,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.028905447059844755,
+            0.029850509437928247
+          ]
+        },
+        "d5_bX_center_5_5": {
+          "distance": 5,
+          "basis": "X",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.030106134005838506,
+          "slope": -0.06210124625229181,
+          "intercept": 0.06856144696593802,
+          "reduced_chi_square": 3.188174903925493,
+          "weighted_log_fidelity_rmse": 0.012402366467707182,
+          "zero_round_fidelity": 1.0709664305669606,
+          "weighted_log_fidelity_r_squared": 0.9981775038127163,
+          "unweighted_log_fidelity_r_squared": 0.9947869275701127,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.029673176264092684,
+            0.030522304879203797
+          ]
+        },
+        "d3_bZ_center_3_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            3,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.03296074831845948,
+          "slope": -0.06819479357542056,
+          "intercept": 0.04351619883549912,
+          "reduced_chi_square": 1.9676103068140876,
+          "weighted_log_fidelity_rmse": 0.011361942182726837,
+          "zero_round_fidelity": 1.0444769134846945,
+          "weighted_log_fidelity_r_squared": 0.9987177867974685,
+          "unweighted_log_fidelity_r_squared": 0.9987410688087763,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.032447203389273795,
+            0.033439237857020285
+          ]
+        },
+        "d3_bZ_center_5_3": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            3
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.029429249197274406,
+          "slope": -0.060661777050890126,
+          "intercept": 0.014809701193561453,
+          "reduced_chi_square": 2.8078374802391997,
+          "weighted_log_fidelity_rmse": 0.013176490256389103,
+          "zero_round_fidelity": 1.0149199081904239,
+          "weighted_log_fidelity_r_squared": 0.998113795165553,
+          "unweighted_log_fidelity_r_squared": 0.9973361862125936,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.02894682346642787,
+            0.029890644387047225
+          ]
+        },
+        "d3_bZ_center_5_7": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            5,
+            7
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.028710968596628764,
+          "slope": -0.059136537830650406,
+          "intercept": 0.01292861562677089,
+          "reduced_chi_square": 10.811783882402475,
+          "weighted_log_fidelity_rmse": 0.02562189156723658,
+          "zero_round_fidelity": 1.0130125515126662,
+          "weighted_log_fidelity_r_squared": 0.9925945407186221,
+          "unweighted_log_fidelity_r_squared": 0.9791675037286297,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.028243855150621597,
+            0.029152620729146556
+          ]
+        },
+        "d3_bZ_center_7_5": {
+          "distance": 3,
+          "basis": "Z",
+          "center": [
+            7,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.028504746483241937,
+          "slope": -0.05869906317186722,
+          "intercept": 0.03299350061269268,
+          "reduced_chi_square": 14.12211697027116,
+          "weighted_log_fidelity_rmse": 0.02776207031677967,
+          "zero_round_fidelity": 1.033543821817879,
+          "weighted_log_fidelity_r_squared": 0.9906581225441504,
+          "unweighted_log_fidelity_r_squared": 0.9870147726655549,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.0280492924458587,
+            0.028895143055857993
+          ]
+        },
+        "d5_bZ_center_5_5": {
+          "distance": 5,
+          "basis": "Z",
+          "center": [
+            5,
+            5
+          ],
+          "fit_rounds": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25
+          ],
+          "degrees_of_freedom": 10,
+          "logical_error_per_round": 0.028064654210254676,
+          "slope": -0.05776610147816602,
+          "intercept": 0.06122768731109651,
+          "reduced_chi_square": 1.4332798795498936,
+          "weighted_log_fidelity_rmse": 0.008000499838273441,
+          "zero_round_fidelity": 1.0631409503361682,
+          "weighted_log_fidelity_r_squared": 0.9991712636238411,
+          "unweighted_log_fidelity_r_squared": 0.9987898596390864,
+          "diagnostic_flags": [
+            "extrapolated_zero_round_fidelity_above_one"
+          ],
+          "logical_error_per_round_ci95": [
+            0.02765268357386428,
+            0.02844153353347687
+          ]
+        }
+      }
+    }
+  },
+  "benchmark_assessment": {
+    "suitability": "Suitable as a fixed-device decoding-learning benchmark with strong executable classical baselines and paired held-out evaluation. Neural baseline convergence remains a separate completion requirement.",
+    "observed_headroom": {
+      "d3": {
+        "correlated_relative_improvement_over_mwpm": 0.11909148438642458,
+        "released_tn_relative_improvement_over_correlated": 0.11409315781654694,
+        "interpretation": "Observed comparison on the same held-out shots; TN is an achieved reference, not a Bayes-optimal ceiling."
+      },
+      "d5": {
+        "correlated_relative_improvement_over_mwpm": 0.20069379229670692,
+        "released_tn_relative_improvement_over_correlated": 0.15702637443611767,
+        "interpretation": "Observed comparison on the same held-out shots; TN is an achieved reference, not a Bayes-optimal ceiling."
+      }
+    },
+    "calibration": "Neural official-path probabilities support secondary NLL and Brier proper scores. Current classical/reference artifacts provide hard decisions only, so no classical confidence calibration is claimed. NLL/Brier combine accuracy and calibration and do not replace reliability diagnostics.",
+    "public_test": "The released odd-shot labels and historical predictions are public. The current split is a documented development protocol, not a blind contamination-resistant benchmark; independent hidden data would be required for that claim.",
+    "generalization_limit": "d3/d5 on this processor does not establish distance-11 behavior, another processor, soft-readout performance, or real-time fault-tolerant decoding."
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "schema": "massspecgym-retrieval-reference/v4",
+  "name": "GLACIER no-CF with strict-clean MIST fallback",
+  "challenge": "standard mass-based retrieval",
+  "status": "official_glacier_weight_and_independently_trained_clean_fallback_replayed_on_frozen_task",
+  "primary_metric": "hit_rate_at_1",
+  "primary_target": 0.4939052175894281,
+  "glacier_hybrid_replay": {
+    "status": "complete_formal_target",
+    "method": "official GLACIER MassSpecGym no-CF checkpoint with strict-clean MIST fallback",
+    "official_weight_replay": true,
+    "independent_glacier_training": false,
+    "checkpoint": {
+      "epoch": 23,
+      "global_step": 74352,
+      "learning_rate": 0.0004,
+      "parameters": 15108154,
+      "state_tensors_strictly_loaded": 264
+    },
+    "released_domain": {
+      "selection_rule": "GLACIER iff adduct=[M+H]+, collision_energy is finite, and instrument_type is Orbitrap or QTOF",
+      "train_queries": 99341,
+      "validation_queries": 9734,
+      "test_queries": 9954,
+      "fallback_test_queries": 7602,
+      "public_predicate_exactly_matches_upstream_simulation_challenge": true,
+      "eligible_validation_targets_supported": 9734,
+      "eligible_test_targets_supported": 9954
+    },
+    "validation_replay": {
+      "queries": 9734,
+      "valid_rankings": 9734,
+      "metrics": {
+        "hit_rate_at_1": 0.7009451407437847,
+        "hit_rate_at_5": 0.8689130881446476,
+        "hit_rate_at_20": 0.9324018902814876
+      },
+      "rankings_sha256": "cb65ceead229f76d7a09ab5cd7f3d6e4d55b85e4da59c6c0b1e36d1fab8cbe97",
+      "protocol_audit_sha256": "9843e994f601bd93dcf89bb1230f2f9c8ee14cfa02dbe2e1751c4478e9f65a11"
+    },
+    "glacier_test_domain_replay": {
+      "queries": 9954,
+      "valid_rankings": 9954,
+      "metrics": {
+        "hit_rate_at_1": 0.6749045609805103,
+        "hit_rate_at_5": 0.8445850914205345,
+        "hit_rate_at_20": 0.9168173598553345
+      },
+      "rankings_sha256": "09ddb70f64b1a3da65e6e99a66eefd1bef3b8ebcebf301332fd003fd8954f195",
+      "protocol_audit_sha256": "6589fee9538361aa69f07ded45bcd83f4bf2858f6a6e36524edb18c3afd67df4",
+      "identity_metrics_equal": [
+        "exact_candidate_id",
+        "exact_inchikey",
+        "two_dimensional_inchikey"
+      ],
+      "paper_no_cf_metrics": {
+        "hit_rate_at_1": 0.6969,
+        "hit_rate_at_5": 0.8658,
+        "hit_rate_at_20": 0.9334
+      },
+      "paper_difference_note": "Validation is within 0.405/0.311/0.100 percentage points of the paper, but test is lower by 2.200/2.121/1.658 points; the paper-run ranking and a digest of its materialized mass table are unavailable, so no post-test tuning was performed."
+    },
+    "formal_full_test_replay": {
+      "queries": 17556,
+      "valid_rankings": 17556,
+      "metrics": {
+        "hit_rate_at_1": 0.4939052175894281,
+        "hit_rate_at_5": 0.6418888129414445,
+        "hit_rate_at_20": 0.7443609022556391,
+        "mces_at_1": 12.178913192071088
+      },
+      "rankings_sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
+      "report_sha256": "52555768ed4ce8d73b0dc78b269afcc3e92775d334b0b5b7e175cb9f73f6ef1a"
+    },
+    "constant_spectrum_control": {
+      "queries": 17556,
+      "valid_rankings": 17556,
+      "metrics": {
+        "hit_rate_at_1": 0.031385281385281384,
+        "hit_rate_at_5": 0.06106174527227159,
+        "hit_rate_at_20": 0.14496468443836866,
+        "mces_at_1": 26.45098541809068
+      },
+      "rankings_sha256": "e1c8a06eca7ee9ad7221cb9dcda50f8ada1dd811f1a493e5d711158d2d2e4772",
+      "report_sha256": "79836370db67495ab2e92f734df2f5bf6cae607246d9ea01c7f6cd67d2804803"
+    },
+    "paired_vs_strict_clean_mist": {
+      "delta": 0.09518113465481887,
+      "challenger_only": 2918,
+      "baseline_only": 1247,
+      "ties": 13391,
+      "confidence": 0.999,
+      "resamples": 100000,
+      "seed": 0,
+      "interval": [0.08344722601959444, 0.1068581111870596],
+      "report_sha256": "3c66a4bc37a5e74f73d441febd7e91cbc453123481b130fed77279e9bd00a500"
+    },
+    "candidate_support_audit": {
+      "candidate_rows": 2538918,
+      "model_unsupported_candidate_rows": 18727,
+      "rdkit_invalid_candidate_rows": 29,
+      "unsupported_atom_candidate_rows": 18698,
+      "missing_supported_candidate_predictions": 0,
+      "report_sha256": "c3b19c4ce7d24d2832a4a93500a2d8b7e4d4a9073d8038c56372c2d276ece81e"
+    },
+    "determinism": {
+      "independent_four_shard_rescore": true,
+      "rerun_rankings_sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
+      "byte_identical": true
+    },
+    "construction_runtime": {
+      "gpu": "NVIDIA Tesla P100-PCIE-16GB",
+      "approximate_aggregate_gpu_hours": 33.1,
+      "includes_partial_and_cancelled_recovery_work": true,
+      "single_h100_verifier_timing_measured": false
+    },
+    "provenance_limit": "The pinned official training code uses the train split and validation-loss selection, but this audit cannot independently attest the history of a third-party released checkpoint."
+  },
+  "strict_clean_training": {
+    "status": "complete",
+    "slurm_job": 12475256,
+    "seed": 1,
+    "epochs": 150,
+    "steps_per_epoch": 9479,
+    "selected_epoch": 128,
+    "selected_global_step": 1222791,
+    "selected_validation_loss": 0.24933567643165588,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "slurm_elapsed_seconds": 68048,
+    "training_program_seconds": 67460.87698364258,
+    "experimental_train_spectra": 194119,
+    "synthetic_train_spectra": 2333485,
+    "removed_heldout_overlap_rows": 15,
+    "removed_rdkit_invalid_rows": 10,
+    "selected_checkpoint_bytes": 114278572,
+    "selected_checkpoint_sha256": "ca6dc2a4c3e6bab47869bc40cc7a232cb776ec1d29c4bba11b6cd01369f8dd8d",
+    "exported_encoder_bytes": 114206138,
+    "exported_encoder_sha256": "30715dbd198bb1d0d776a5dcb9d37488b8d5480c243a1572d62ed27b73e92c6b",
+    "exported_tensor_count": 59,
+    "export_exactly_matches_selected_checkpoint": true
+  },
+  "mist_cf_formula_replay": {
+    "queries": 17556,
+    "formula_candidate_coverage": 0.8091250854408749,
+    "formula_hit_rate_at_1": 0.5019366598313967,
+    "formula_hit_rate_at_5": 0.705058099795033,
+    "formula_predictions_sha256": "0d3f7d90594e2f0bede41908445771940be6c7f03bb946867e530fd8e6fe12bd"
+  },
+  "strict_clean_top1_replay": {
+    "status": "complete",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "fingerprint_threshold": 0.22049389779567719,
+    "formula_top_k": 1,
+    "formula_aggregation": "single_formula",
+    "metrics": {
+      "hit_rate_at_1": 0.33999772157666897,
+      "hit_rate_at_5": 0.44315333789018,
+      "hit_rate_at_20": 0.5790612895876054,
+      "mces_at_1": 17.46431419457735
+    },
+    "runtime_seconds": 343.4038722515106,
+    "rankings_sha256": "ad04ea5ea8b976a6eb1b35f8f49542f94e524618dfb4b374e44e389d214b8ff2",
+    "report_sha256": "107f9b993df21dc4e970ba144a9162ee2fde8e0e5a7f8c62755b0aa490963c1c",
+    "paired_vs_released_top1": {
+      "delta": 0.0374231032125769,
+      "challenger_only": 1369,
+      "baseline_only": 712,
+      "ties": 15475,
+      "confidence": 0.999,
+      "resamples": 100000,
+      "seed": 0,
+      "interval": [0.029049897470950103, 0.04579633743449585],
+      "report_sha256": "91d65ba1e16db829167fa71f6dd84c673f75833a27bd8d4cb6dc94d02e4f53e0"
+    }
+  },
+  "strict_clean_top5_max_replay": {
+    "status": "complete_former_formal_target",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "fingerprint_threshold": 0.22049389779567719,
+    "threshold_report_sha256": "8a3eba162b2289e6ee90f85e3c515028a6875f5fc21cfa864654fb03eeb037f7",
+    "formula_top_k": 5,
+    "formula_aggregation": "elementwise_max",
+    "metrics": {
+      "hit_rate_at_1": 0.39872408293460926,
+      "hit_rate_at_5": 0.5148667122351333,
+      "hit_rate_at_20": 0.631408065618592,
+      "mces_at_1": 15.166837548416495
+    },
+    "runtime_seconds": 1100.6092975139618,
+    "rankings_sha256": "78a781884f442039c66963eeab7187f27645440e644d3088f85dbb81e8fd7f3d",
+    "report_sha256": "5e28e33370bc4645dcb0c1eb58ec8cbb5d9de784e6e573c40df6695788e012cf",
+    "paired_vs_clean_top1": {
+      "delta": 0.05872636135794031,
+      "challenger_only": 2058,
+      "baseline_only": 1027,
+      "ties": 14471,
+      "confidence": 0.999,
+      "resamples": 100000,
+      "seed": 0,
+      "interval": [0.04858737753474596, 0.06892230576441102],
+      "report_sha256": "cf3b30f0077eaa2aa4b007adbc636861a0aa0399aa37c80d9aada9a23a9b75d1"
+    },
+    "paired_vs_released_top5": {
+      "delta": 0.041979949874686714,
+      "challenger_only": 1670,
+      "baseline_only": 933,
+      "ties": 14953,
+      "confidence": 0.999,
+      "resamples": 100000,
+      "seed": 0,
+      "interval": [0.03258145363408521, 0.05137844611528822],
+      "report_sha256": "b0db577549c2bdd5eb0b3e48881610d99310ce51b375a6cd853306bb69fcaa47"
+    },
+    "paired_vs_released_top1": {
+      "delta": 0.0961494645705172,
+      "challenger_only": 2863,
+      "baseline_only": 1175,
+      "ties": 13518,
+      "confidence": 0.999,
+      "resamples": 100000,
+      "seed": 0,
+      "interval": [0.08470038733196628, 0.10759854180906812],
+      "report_sha256": "116192761a7b5fba664d042db6a96bb4e392adaada305b118f1bcd6d4d7ff161"
+    }
+  },
+  "strict_clean_constant_spectrum_controls": {
+    "top1": {
+      "metrics": {
+        "hit_rate_at_1": 0.031784005468216,
+        "hit_rate_at_5": 0.059295967190704034,
+        "hit_rate_at_20": 0.15618591934381407,
+        "mces_at_1": 28.485190248348143
+      },
+      "rankings_sha256": "3d3ff20171207399f0dd78aa3ce51039c459d4fef3be0f289aeef0cb841792cc",
+      "report_sha256": "76d03c9ba8feaa8a233d22774cb499c52e3de8a2ac19c4496604c21660448308"
+    },
+    "top5_max": {
+      "metrics": {
+        "hit_rate_at_1": 0.043859649122807015,
+        "hit_rate_at_5": 0.07592845750740487,
+        "hit_rate_at_20": 0.1661540214171793,
+        "mces_at_1": 25.429454317612212
+      },
+      "rankings_sha256": "ee0769a83db0124f5817d75cb1a470e2f96b7816667a3c3bde5289d50fdd4775",
+      "report_sha256": "b098514feb4ba2866ac43f52b15526b2da6ec93e194b33a52b8c703d48674ba0"
+    }
+  },
+  "released_top1_replay": {
+    "status": "complete_released_work_comparison",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "fingerprint_threshold": 0.20346222817897797,
+    "metrics": {
+      "hit_rate_at_1": 0.30257461836409205,
+      "hit_rate_at_5": 0.40288220551378445,
+      "hit_rate_at_20": 0.5412964228753703,
+      "mces_at_1": 17.7194976076555
+    },
+    "rankings_sha256": "dbc135bcba3852f43839e1b16afdecd97db9a6e1669850a5b1f98c16828cc572",
+    "query_fingerprints_sha256": "e96263dbcdad9709be51644c64574d23386a65997380210c34fb21749436a544"
+  },
+  "released_top5_max_replay": {
+    "status": "complete_released_work_comparison",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "fingerprint_threshold": 0.20346222817897797,
+    "formula_top_k": 5,
+    "formula_aggregation": "elementwise_max",
+    "metrics": {
+      "hit_rate_at_1": 0.35674413305992253,
+      "hit_rate_at_5": 0.4690704032809296,
+      "hit_rate_at_20": 0.5941558441558441,
+      "mces_at_1": 15.763300296195034
+    },
+    "rankings_sha256": "63f25cf84ddb0bdf2e19fe6a23c2121643d470a0020c82d4d296f25f6dd52468"
+  },
+  "released_constant_spectrum_controls": {
+    "top1": {
+      "metrics": {
+        "hit_rate_at_1": 0.023069036226930965,
+        "hit_rate_at_5": 0.06892230576441102,
+        "hit_rate_at_20": 0.19241285030758715,
+        "mces_at_1": 26.91515721120984
+      },
+      "rankings_sha256": "35c8d904cadc4d58c3c9cf702d67e3e32966ec094d1f561db4e936befb38b131"
+    },
+    "top5_max": {
+      "metrics": {
+        "hit_rate_at_1": 0.0240373661426293,
+        "hit_rate_at_5": 0.06151742993848257,
+        "hit_rate_at_20": 0.16643882433356116,
+        "mces_at_1": 26.22975051264525
+      },
+      "rankings_sha256": "c5494f6946005448a398dd4f39ce9424beab8f35b7464de2558bf4574071b1d0"
+    }
+  },
+  "candidate_order_control": {
+    "description": "ignore spectra and preserve the published answer-independent candidate order",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "metrics": {
+      "hit_rate_at_1": 0.002563226247436774,
+      "hit_rate_at_5": 0.02819548872180451,
+      "hit_rate_at_20": 0.10338345864661654,
+      "mces_at_1": 31.347089314194577
+    },
+    "rankings_sha256": "c2b58193ac4d5cef3dbc24748ce9e2c8b8176c6aefed4e1158ed75b92c71eb72"
+  },
+  "publication_metrics": {
+    "top1": {
+      "hit_rate_at_1": 0.2664,
+      "hit_rate_at_5": 0.3847,
+      "hit_rate_at_20": 0.549,
+      "mces_at_1": 16.41
+    },
+    "top5_max": {
+      "hit_rate_at_1": 0.2823,
+      "hit_rate_at_5": 0.4077,
+      "hit_rate_at_20": 0.5622,
+      "mces_at_1": 15.51
+    }
+  },
+  "pins": {
+    "massspecgym_data_revision": "d2e86d0c3bd905a6d578c0dd6053ed2bd41f9c2a",
+    "massspecgym_v1_5_integration_commit": "dcdc3fd7f4760d2097ea00a4f272defead043139",
+    "glacier_source_commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+    "mist_cf_commit": "71c820b43825e0b0a58680a3690f29a7352290f4",
+    "mist_frigid_commit": "5e537525a9ae26208efcf882a07e3b8df2413c48",
+    "audit_reproduction_commit": "2140dda2907e21fffe82e8b2a7f8d1b716cd741f"
+  },
+  "assets": {
+    "glacier_no_cf_checkpoint": {
+      "source": "official GLACIER checkpoint archive",
+      "file": "best.ckpt",
+      "bytes": 181602423,
+      "sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+      "archive_bytes": 181602669,
+      "archive_sha256": "7e0fa24a19163513fe7cbeea3bf51a48cdd33bf2dbe8ac7a0457cbbf28d1258b",
+      "redistributed_by_task": false
+    },
+    "mist_original_data": {
+      "zenodo_record": "15008938",
+      "file": "msg_preprocessed.tar.gz",
+      "bytes": 780186984,
+      "md5": "44d3121313406e7f55a4c37ae714f4d3"
+    },
+    "mist_synthetic_augmentation": {
+      "zenodo_record": "20671842",
+      "file": "msg_aug_filt.tar.gz",
+      "bytes": 6533892821,
+      "md5": "32d8813d84d06364fc318e81f9cb4416"
+    },
+    "frigid_checkpoints": {
+      "zenodo_record": "19685145",
+      "file": "frigid_pretrained_checkpoints.tar.gz",
+      "bytes": 2804076946,
+      "md5": "1059c193b5f3dd7034079076e943389b"
+    }
+  }
+}

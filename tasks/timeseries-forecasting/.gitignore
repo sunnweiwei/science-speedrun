@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+/environment/baseline/starter/weights/
+/environment/baseline/starter/runs/
+/submission/
+.pytest_cache/

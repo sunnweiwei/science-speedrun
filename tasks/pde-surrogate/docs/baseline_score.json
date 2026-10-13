@@ -1,0 +1,128 @@
+{
+ "schema": "pde-surrogate-baseline-score/v1",
+ "date": "2026-09-22",
+ "protocol": "pde-surrogate-rollout/v1: 4 context frames, rollout from frame 0, K=26/30/10, per-channel VRMSE clamped at 10; canonical split of 1,085 held-out cases (hyp excluded)",
+ "note": "every number here is copied from the docs/validation/ record it names; the canonical records were replayed on the original 1,185-case split and recomputed exactly for the 1,085-case one (docs/validation/drop_duplicate_family.py)",
+ "task_starter": {
+  "what": "plumbing, not a baseline to beat: it ties the spatial-mean predictor",
+  "reward": 0.3139,
+  "n_cases": 1085,
+  "groups": {
+   "ape2d": {
+    "vrmse": 1.1455,
+    "reward": 0.3137
+   },
+   "pdearena/navier_stokes_2d": {
+    "vrmse": 0.8743,
+    "reward": 0.3528
+   },
+   "well/active_matter": {
+    "vrmse": 1.5392,
+    "reward": 0.2709
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "vrmse": 1.1094,
+    "reward": 0.3183
+   }
+  },
+  "train_seconds": 2419.1,
+  "weights_sha256": "f057f7428f302b2e8249ac48b3aad4462e85dc1e0a19d6d5141021c0e3f2b755",
+  "training_provenance": "19 of 20 datasets and 2 of 52 PDEArena shards were present when it ran; see docs/validation/task_trained_baseline.json",
+  "source": "docs/validation/task_trained_baseline.json"
+ },
+ "external_target_released_checkpoints": {
+  "mc-s": {
+   "corpus_vrmse": 0.4242,
+   "corpus_group_reward": 0.4575,
+   "source": "docs/validation/pdet_zero_shot_mc-s_canonical.json"
+  },
+  "mc-b": {
+   "corpus_vrmse": 0.3832,
+   "corpus_group_reward": 0.4722,
+   "source": "docs/validation/pdet_zero_shot_mc-b_canonical.json"
+  },
+  "mc-l": {
+   "corpus_vrmse": 0.3415,
+   "corpus_group_reward": 0.4889,
+   "source": "docs/validation/pdet_zero_shot_mc-l_canonical.json"
+  }
+ },
+ "trivial_predictors": {
+  "persist": 0.2827,
+  "mean": 0.3105,
+  "zero": 0.2202
+ },
+ "score_bounds": {
+  "lower_persistence": 0.2827,
+  "upper_per_group_oracle": 0.4203,
+  "source": "docs/validation/score_bounds.json"
+ },
+ "well_cnext_from_scratch": {
+  "turbulent_radiative_layer_2D": {
+   "group_vrmse": 0.6743,
+   "group_reward": 0.3904,
+   "whole_package_reward": 0.308,
+   "epochs_completed": 200,
+   "epochs_requested": 200,
+   "source": "docs/validation/well_cnext_trl2d_from_scratch.json"
+  },
+  "active_matter": {
+   "group_vrmse": 1.8857,
+   "group_reward": 0.2415,
+   "whole_package_reward": 0.275,
+   "epochs_completed": 29,
+   "epochs_requested": 200,
+   "source": "docs/validation/well_cnext_active_matter_from_scratch.json"
+  },
+  "pdearena_navier_stokes_2d": {
+   "group_vrmse": 0.2978,
+   "group_reward": 0.5087,
+   "whole_package_reward": 0.3446,
+   "epochs_completed": 123,
+   "epochs_requested": 200,
+   "source": "docs/validation/well_cnext_pdearena_from_scratch.json"
+  }
+ },
+ "pde_transformer_sc_s_finetuned": {
+  "turbulent_radiative_layer_2D": {
+   "group_vrmse": 1.168,
+   "group_reward": 0.3109,
+   "whole_package_reward": 0.2881,
+   "epochs_completed": 43,
+   "epochs_requested": 50,
+   "source": "docs/validation/pdet_finetune_trl2d.json"
+  },
+  "active_matter": {
+   "group_vrmse": 1.6693,
+   "group_reward": 0.2592,
+   "whole_package_reward": 0.2794,
+   "epochs_completed": 7,
+   "epochs_requested": 50,
+   "source": "docs/validation/pdet_finetune_active_matter.json"
+  },
+  "pdearena_navier_stokes_2d": {
+   "group_vrmse": 0.7555,
+   "group_reward": 0.3739,
+   "whole_package_reward": 0.3109,
+   "epochs_completed": 8,
+   "epochs_requested": 50,
+   "source": "docs/validation/pdet_finetune_pdearena.json"
+  }
+ },
+ "pde_transformer_sc_s_finetuned_joint": {
+  "what": "one model fine-tuned on all three transfer pools at once; negative transfer",
+  "reward": 0.2711,
+  "turbulent_radiative_layer_2D": {
+   "vrmse": 2.006
+  },
+  "active_matter": {
+   "vrmse": 1.8088
+  },
+  "pdearena_navier_stokes_2d": {
+   "vrmse": 1.2934
+  },
+  "epochs_completed": 10,
+  "epochs_requested": 50,
+  "source": "docs/validation/pdet_finetune_joint.json"
+ }
+}

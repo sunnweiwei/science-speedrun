@@ -1,0 +1,1039 @@
+{
+  "schema": "massspecgym-retrieval-release-validation/v1",
+  "date": "2026-09-08",
+  "task_version": "1.2.0",
+  "scope": "Engineering commissioning including two cold CPU agent attempts and complete input-only CPU replay/scoring; default Docker/H100 deployment remains unverified",
+  "artifact_root": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release",
+  "runner_network_compatibility": {
+    "date": "2026-09-12",
+    "source": "Changes based on 1a75e5861b596e78b1a8e0130bed26de9044b6a1; included in the 2026-09-13 PR 9 publication pass",
+    "runner_revision": "e75f5f212ec0e678bee1a6331c859d0b45b204a4",
+    "harbor_revision": "6af8d6e31eced13b93849cdf80feeadf24603d15",
+    "implementation": "Development Compose delegates networking to runner/Harbor; task TOML defaults to no-network; final model and grader Compose services remain network_mode none",
+    "command": "python mass-spectrometry-molecule-retrieval/tests/check_runner_network.py --runner-source /absolute/agent-runner",
+    "python": "/usr/project/xtmp/xy200/mycode/_harbor_check/.venv/bin/python",
+    "scope": "Actual runner task staging, Harbor TaskConfig validation and Docker egress service selection; no container execution or API calls",
+    "status": "passed",
+    "network_modes": [
+      "allowlist",
+      "no-network"
+    ],
+    "gpu_counts_per_mode": [
+      0,
+      1,
+      8
+    ],
+    "profiles_passed": 6,
+    "legacy_compose_conflict_reproduced": true,
+    "verifier_offline_in_all_profiles": true,
+    "documented_launch_arguments": "start/evaluate accepted by actual agent-runner CLI parser; all protocol Bash blocks pass bash -n",
+    "regression_tests": {
+      "passed": 33,
+      "elapsed_seconds": 3.411
+    },
+    "actual_docker_api_acceptance": false,
+    "remaining_check": "On a Docker deployment host, verify permitted agent API access, denied non-allowlisted access, offline agent dependency preparation, and offline final replay",
+    "rechecked_date": "2026-09-13"
+  },
+  "native_runtime": {
+    "fresh_directory_install": "passed",
+    "python": "3.11.14",
+    "torch": "2.6.0+cu124",
+    "dgl": "2.5.0+cu124",
+    "lightning": "2.6.5",
+    "native_source_commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+    "native_source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6",
+    "requirements_sha256": "8d9332f7bf1e0bb447b894769f2ad612aad839f6aba833a25fee618022f31cb6",
+    "released_weights_installed": false,
+    "source_weight_file_check": "no .ckpt, .pt, .pth or .safetensors in the exported source tree"
+  },
+  "native_training_probe": {
+    "global_step": 128,
+    "elapsed_seconds": 241.0784919881262,
+    "selected_checkpoint": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/native-profile/checkpoints/best.ckpt",
+    "validation_loss": 0.8939759135246277,
+    "source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6",
+    "data_manifest_sha256": "6c2917793da61575eb11c4891e24157a1b5ac465f7d54290876b38d0fefe1306",
+    "hardware": "NVIDIA Tesla P100, one GPU",
+    "task_full_fold_reference": false,
+    "parameters": 15108154,
+    "training_rows": 4086,
+    "validation_rows": 511,
+    "job_id": 12547067,
+    "selected_global_step": 96,
+    "selected_magma_step": 384,
+    "selected_validation_loss": 0.8939759135246277
+  },
+  "native_recovery": {
+    "global_steps": [
+      4,
+      4
+    ],
+    "magma_steps": [
+      4,
+      4
+    ],
+    "differing_parameter_tensors": [],
+    "identical_batch_order_and_rng": true,
+    "scope": "CPU, one worker process, same pinned runtime; not cross-hardware determinism"
+  },
+  "cpu_input_only_replay": {
+    "checkpoint_sha256": "75070f5503486389eef3e2a44fd17fc439915dc5d54d1cdb1412a1b6fea40486",
+    "elapsed_seconds": 58.24165344191715,
+    "gpu_enabled": false,
+    "h100_budget_acceptance": false,
+    "host_uid": 1577836,
+    "isolation": "rootless user/PID/network/mount namespaces; all capabilities dropped",
+    "namespace_uid": 0,
+    "production_docker_acceptance": false
+  },
+  "gpu_input_only_replay": {
+    "checkpoint_sha256": "e2e781f3ce2879abce2f45be6c856a3492d5e0b98aef65e69ba045de4dfa0f36",
+    "elapsed_seconds": 46.61967373592779,
+    "gpu_enabled": true,
+    "h100_budget_acceptance": false,
+    "host_uid": 1577836,
+    "isolation": "rootless user/PID/network/mount namespaces; all capabilities dropped",
+    "namespace_uid": 0,
+    "production_docker_acceptance": false
+  },
+  "isolation_canaries": {
+    "result": "passed",
+    "checks": [
+      "private canary not mounted",
+      "training data not mounted",
+      "input and submission read-only",
+      "external socket has no route",
+      "effective capabilities empty"
+    ],
+    "report": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/isolation-acceptance/replay/replay.json"
+  },
+  "full_fragment_preparation": {
+    "state": "complete; installed in development view; all declared resource hashes verified",
+    "manifest_sha256": "d0679cf32d694776c237e00f964abe37ab12ae7ff06ba083d9b4823732506d73",
+    "counts": {
+      "train": {
+        "available": 194119,
+        "eligible": 99341,
+        "selected": 99341,
+        "annotated": 99119
+      },
+      "validation": {
+        "available": 19429,
+        "eligible": 9734,
+        "selected": 9734,
+        "annotated": 9720
+      }
+    },
+    "excluded_reasons": {
+      "no_magma_fragment": 236
+    },
+    "files": {
+      "targets.sqlite": "8e39e4100dc3913e84691e74cbfb3402c630bd357c02e7793c147f207bc7a9b2",
+      "train.jsonl": "55b1ad03b7c6c7da153358c372ca47310b01767c5cb837cfad8ecb1eb2b43159",
+      "validation.jsonl": "6aa281281b2ef3db520be3907ffb83523f7af87e5fed081c50d43538e4b4ecb2"
+    },
+    "development_directory": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/data/task_materialized/public/development",
+    "preparation_jobs": [
+      12546858,
+      12546963
+    ],
+    "installation_and_hash_job": 12547092,
+    "source_hash_migration": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/preparation-migration.json",
+    "preparation_wall_seconds": 4363.076928189024,
+    "budget_note": "Shared CPU preparation before the agent clock; first job resumed without recomputing completed rows",
+    "resource_check": {
+      "ready": true,
+      "verified_hashes": true,
+      "glacier_counts": {
+        "train": {
+          "available": 194119,
+          "eligible": 99341,
+          "selected": 99341,
+          "annotated": 99119
+        },
+        "validation": {
+          "available": 19429,
+          "eligible": 9734,
+          "selected": 9734,
+          "annotated": 9720
+        }
+      }
+    }
+  },
+  "deployment_gates": {
+    "production_docker_build": "not run; no Docker daemon on this host",
+    "full_single_h100_replay": "not run; H100 unavailable on this host",
+    "matched_budget_full_scratch_reference": "full scratch training and full test score measured on heterogeneous hardware; matched-H100 reference remains pending",
+    "cold_start_agent_pilot": "completed CPU usability pilot and full independent replay; see deployment_acceptance; production Docker/API transport not certified",
+    "gpu_backend_and_offline_agent_transport": "generic runner GPU and API allowlist staging passed; see runner_network_compatibility; live Docker/API transport not commissioned",
+    "resource_enforcement": "Compose CPU/RAM limits and GPU counts declared; H100 model checks and writable-storage quotas require backend acceptance"
+  },
+  "frozen_reference_unchanged": {
+    "hit_rate_at_1": 0.4939052175894281,
+    "test_queries": 17556,
+    "comparison_type": "official-weight GLACIER and separately trained clean MIST fallback"
+  },
+  "native_recovery_multiple_workers": {
+    "global_steps": [
+      4,
+      4
+    ],
+    "magma_steps": [
+      4,
+      4
+    ],
+    "differing_parameter_tensors": [],
+    "identical_batch_order_and_rng": true,
+    "scope": "CPU, loader workers=2, same pinned runtime; not cross-hardware determinism"
+  },
+  "gpu_random_validation_replay": {
+    "checkpoint_sha256": "e2e781f3ce2879abce2f45be6c856a3492d5e0b98aef65e69ba045de4dfa0f36",
+    "elapsed_seconds": 131.40187278576195,
+    "gpu_enabled": true,
+    "h100_budget_acceptance": false,
+    "host_uid": 1577836,
+    "isolation": "rootless user/PID/network/mount namespaces; all capabilities dropped",
+    "namespace_uid": 0,
+    "production_docker_acceptance": false,
+    "queries": 32,
+    "native_queries": 18,
+    "fallback_queries": 14,
+    "validation_input_manifest_sha256": "6e44b9c9a7c7375942b0a5fb0825e7db6ef7cbc9bd923b6dc2cd6d110ad16bdf",
+    "ranking_sha256": "ac52f7023a4589d256543588c55080bc8e8c1415584adaa5552aa21ef1f473b4",
+    "metrics": {
+      "hit_rate_at_1": 0.125,
+      "hit_rate_at_20": 0.375,
+      "hit_rate_at_5": 0.34375
+    },
+    "scope": "Uniform validation spectrum sample, seed 7; pipeline probe, not a full-fold result"
+  },
+  "final_package_replay": {
+    "checkpoint_sha256": "e2e781f3ce2879abce2f45be6c856a3492d5e0b98aef65e69ba045de4dfa0f36",
+    "elapsed_seconds": 48.88909611105919,
+    "gpu_enabled": false,
+    "h100_budget_acceptance": false,
+    "host_uid": 1577836,
+    "isolation": "rootless user/PID/network/mount namespaces; all capabilities dropped",
+    "namespace_uid": 0,
+    "production_docker_acceptance": false,
+    "queries": 8,
+    "package": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/release-submission",
+    "manifest_sha256": "756900fbb3dda41994f0c0fad8e346c9ba7aad2bf9b8233e12f9c8277e7f5db7",
+    "ranking_sha256": "94b9781d940d315148edb044881e7cb639095a67b3ba20730d6a2b296de33640",
+    "fallback_training": "Both epochs trained in the new pinned runtime; 128 training and 64 validation spectra",
+    "cross_uid_mode_check": "All active package files readable and all directories traversable by other UIDs",
+    "valid_rankings": 8,
+    "global_error": null
+  },
+  "paired_validation_bootstrap_check": {
+    "schema": "massspecgym-retrieval-paired-bootstrap/v2",
+    "queries": 32,
+    "metric": "hit_rate_at_1",
+    "baseline_hit_rate": 0.0,
+    "challenger_hit_rate": 0.125,
+    "delta": 0.125,
+    "paired_outcomes": {
+      "challenger_only": 4,
+      "baseline_only": 0,
+      "tie": 28
+    },
+    "confidence": 0.999,
+    "resamples": 2000,
+    "seed": 0,
+    "interval": [
+      0.0,
+      0.32263810483872135
+    ],
+    "beats_reference": false,
+    "method": "paired molecule-cluster percentile bootstrap; spectrum-weighted Hit@1 delta",
+    "molecule_groups": 31,
+    "grouping": "RDKit InChIKey connectivity block from private true_smiles",
+    "rdkit_version": "2023.09.6"
+  },
+  "unit_tests": {
+    "passed": 29,
+    "command": "python -m unittest discover -v -s massspecgym-retrieval/tests -p test_*.py",
+    "elapsed_seconds": 2.716,
+    "python": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/venv_rtx/bin/python"
+  },
+  "shell_syntax": "passed for all task shell scripts",
+  "git_diff_check": "passed",
+  "compatibility_review": {
+    "date": "2026-09-08",
+    "main_revision": "e0606c4",
+    "harbor_revision": "6af8d6e31eced13b93849cdf80feeadf24603d15",
+    "sibling_revisions": {
+      "peer": "2460f7c",
+      "crystalgen": "039145e",
+      "weather": "b59bf2d",
+      "virtual_cell": "daa4b9a",
+      "hydrogym": "b525043"
+    },
+    "native_task_config": "passed for all five local task configurations",
+    "compose_resource_alignment": "development 32 CPUs/256 GiB/8 GPUs; inference 16 CPUs/64 GiB/1 GPU; trusted grader 16 CPUs/16 GiB/no GPU",
+    "actual_docker_compose_build_or_execution": false,
+    "synthetic_grader_cli": {
+      "scope": "Synthetic local trusted sealing/scoring CLI check; no model execution or Docker/UID isolation",
+      "python": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/mces_env/bin/python",
+      "metrics": {
+        "hit_rate_at_1": 0.0,
+        "hit_rate_at_20": 1.0,
+        "hit_rate_at_5": 1.0,
+        "mces_at_1": 2.0
+      },
+      "valid_rankings": 1,
+      "nonreference_input_comparison": {
+        "beats_reference": null,
+        "comparable": false,
+        "hit_rate_at_1": 0.4939052175894281,
+        "name": "GLACIER no-CF with strict-clean MIST fallback",
+        "reference_delta_hit_at_1": null
+      },
+      "bad_label_hash": "infrastructure_error; no reward",
+      "cross_uid_reward_read_mode": "0o644",
+      "initial_probe": "unit-test venv lacked pulp; reran in existing dedicated MCES environment"
+    },
+    "budget_status": "48 h / 8 H100 permitted by repository; matched-budget native scratch reference remains unmeasured",
+    "data_distribution_difference": "core on pinned HF; auxiliary corpus on pinned/checksummed upstream Zenodo, not HF",
+    "document": "BENCHMARK_READINESS.md#cross-task-requirements-check-2026-09-08"
+  },
+  "deployment_acceptance": {
+    "base_task_commit": "40edda8a4f817c09fee15164b5014f7fc443e01d",
+    "followup_source_patch": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/release-code.patch",
+    "artifact_root": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8",
+    "runner_staging": {
+      "runner_revision": "e75f5f212ec0e678bee1a6331c859d0b45b204a4",
+      "runtime_execution": false,
+      "conditions": [
+        {
+          "phase": "development",
+          "gpu_override": 0,
+          "devices": [],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        },
+        {
+          "phase": "evaluation",
+          "gpu_override": 0,
+          "devices": [],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        },
+        {
+          "phase": "development",
+          "gpu_override": 1,
+          "devices": [
+            {
+              "driver": "nvidia",
+              "count": 1,
+              "capabilities": [
+                "gpu"
+              ]
+            }
+          ],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        },
+        {
+          "phase": "evaluation",
+          "gpu_override": 1,
+          "devices": [
+            {
+              "driver": "nvidia",
+              "count": 1,
+              "capabilities": [
+                "gpu"
+              ]
+            }
+          ],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        },
+        {
+          "phase": "development",
+          "gpu_override": 8,
+          "devices": [
+            {
+              "driver": "nvidia",
+              "count": 8,
+              "capabilities": [
+                "gpu"
+              ]
+            }
+          ],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        },
+        {
+          "phase": "evaluation",
+          "gpu_override": 8,
+          "devices": [
+            {
+              "driver": "nvidia",
+              "count": 8,
+              "capabilities": [
+                "gpu"
+              ]
+            }
+          ],
+          "network_mode": "none",
+          "main_limits_owned_by_runner": true
+        }
+      ],
+      "installed_harness_transport": {
+        "status": "blocked_by_explicit_compose_network_none",
+        "allowlist_flag_alone_works": false,
+        "superseded_by": "runner_network_compatibility; configuration repaired and checked, live API acceptance still unverified"
+      }
+    },
+    "full_data_deepsets": {
+      "training": {
+        "gpu": "NVIDIA H200",
+        "gpus": 1,
+        "cpus": 16,
+        "memory_gib": 64,
+        "epochs": 50,
+        "training_rows": 194119,
+        "validation_rows": 19429,
+        "seed": 0,
+        "elapsed_seconds": 504.7920264028944
+      },
+      "checkpoint_sha256": "46576b464979b0c076e2cd2dd5baa05fa42c05941f61d0d7c630c8502fd28a04",
+      "original_replay": {
+        "status": "failed",
+        "exit_code": 1,
+        "elapsed_seconds": 8.384441911242902,
+        "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+        "production_docker_acceptance": false,
+        "h100_acceptance": false,
+        "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+        "namespace_uid": 0,
+        "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+        "model_manifest_sha256": "5b0b314ad5e07c67befc2d1ecbcba5cbfdb7e2c3e21931b12d03dd2d018ec982"
+      },
+      "repair": "Same trained weights; precursor-only encoding and zero features for unparseable inference candidates. Original failed artifact retained separately.",
+      "full_validation_replay": {
+        "status": "completed",
+        "exit_code": 0,
+        "elapsed_seconds": 322.71047122590244,
+        "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+        "production_docker_acceptance": false,
+        "h100_acceptance": false,
+        "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+        "namespace_uid": 0,
+        "input_manifest_sha256": "ea805493bec35bb9afea5b0ea98489477b72cc0c3c46350576e039df347670e3",
+        "model_manifest_sha256": "5b0b314ad5e07c67befc2d1ecbcba5cbfdb7e2c3e21931b12d03dd2d018ec982",
+        "ranking_sha256": "27b74d8a98c831fdaa330a6ac3ebaddc1faf590adf830fa24b726b0e1428e675"
+      },
+      "full_validation": {
+        "external_reference_context": {
+          "comparable_to_this_validation_report": false,
+          "fold": "test",
+          "hit_rate_at_1": 0.4939052175894281,
+          "name": "GLACIER no-CF with strict-clean MIST fallback"
+        },
+        "global_error": null,
+        "metrics": {
+          "hit_rate_at_1": 0.026455298780173966,
+          "hit_rate_at_20": 0.24628133202944053,
+          "hit_rate_at_5": 0.10175510834319831
+        },
+        "queries": 19429,
+        "schema": "massspecgym-retrieval-development-report/v1",
+        "strata": {
+          "adduct": {
+            "[M+H]+": {
+              "hit_rate_at_1": 0.02368635992376804,
+              "queries": 14692
+            },
+            "[M+Na]+": {
+              "hit_rate_at_1": 0.03504327633523327,
+              "queries": 4737
+            }
+          },
+          "candidate_pool_size": {
+            "129-256": {
+              "hit_rate_at_1": 0.026507142488783456,
+              "queries": 19391
+            },
+            "33-128": {
+              "hit_rate_at_1": 0.0,
+              "queries": 38
+            }
+          },
+          "collision_energy": {
+            "20-39.999": {
+              "hit_rate_at_1": 0.014921722113502935,
+              "queries": 4088
+            },
+            "40-59.999": {
+              "hit_rate_at_1": 0.019783024888321635,
+              "queries": 1567
+            },
+            "<20": {
+              "hit_rate_at_1": 0.025833333333333333,
+              "queries": 1200
+            },
+            ">=60": {
+              "hit_rate_at_1": 0.021153846153846155,
+              "queries": 3120
+            },
+            "missing": {
+              "hit_rate_at_1": 0.03437698328749735,
+              "queries": 9454
+            }
+          },
+          "instrument_type": {
+            "": {
+              "hit_rate_at_1": 0.05555555555555555,
+              "queries": 486
+            },
+            "Orbitrap": {
+              "hit_rate_at_1": 0.025305675527708498,
+              "queries": 16439
+            },
+            "QTOF": {
+              "hit_rate_at_1": 0.028354632587859425,
+              "queries": 2504
+            }
+          },
+          "routing_domain": {
+            "fallback": {
+              "hit_rate_at_1": 0.03445074780814853,
+              "queries": 9695
+            },
+            "glacier_released": {
+              "hit_rate_at_1": 0.018491884117526197,
+              "queries": 9734
+            }
+          }
+        },
+        "uncertainty": {
+          "confidence": 0.95,
+          "estimate": 0.026455298780173966,
+          "grouping": "supplied target_inchikey connectivity block",
+          "lower": 0.018803335387987122,
+          "molecule_groups": 3185,
+          "queries": 19429,
+          "resamples": 2000,
+          "seed": 0,
+          "statistic": "spectrum-weighted mean; molecules sampled with replacement",
+          "upper": 0.03604979568360672
+        },
+        "valid_rankings": 19429
+      },
+      "full_test_replay": {
+        "status": "completed",
+        "exit_code": 0,
+        "elapsed_seconds": 283.28416233090684,
+        "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+        "production_docker_acceptance": false,
+        "h100_acceptance": false,
+        "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+        "namespace_uid": 0,
+        "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+        "model_manifest_sha256": "5b0b314ad5e07c67befc2d1ecbcba5cbfdb7e2c3e21931b12d03dd2d018ec982",
+        "ranking_sha256": "d72a08ee074dd095cd151003a3218317742bcc4aacdff55159da0cd6b8fb0ccc"
+      },
+      "trusted_test_report": {
+        "evaluation_mode": "isolated_model_replay",
+        "global_error": null,
+        "invalid_or_missing_rankings": 0,
+        "metric_directions": {
+          "hit_rate_at_1": "maximize",
+          "hit_rate_at_20": "maximize",
+          "hit_rate_at_5": "maximize",
+          "mces_at_1": "minimize"
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.04004329004329004,
+          "hit_rate_at_20": 0.2740373661426293,
+          "hit_rate_at_5": 0.12354750512645249,
+          "mces_at_1": 22.559580770107086
+        },
+        "model_quality_measured": true,
+        "queries": 17556,
+        "reference_comparison": {
+          "beats_reference": false,
+          "comparable": true,
+          "hit_rate_at_1": 0.4939052175894281,
+          "name": "GLACIER no-CF with strict-clean MIST fallback",
+          "reference_delta_hit_at_1": -0.4538619275461381
+        },
+        "schema": "massspecgym-retrieval-report/v1",
+        "status": "complete",
+        "valid_rankings": 17556
+      }
+    },
+    "cold_agent_protocol": {
+      "kind": "cold CPU workflow pilot, not default H100 score",
+      "wall_clock_seconds": 1800,
+      "cpus": 8,
+      "gpus": 0,
+      "model": "gpt-6-astra",
+      "reasoning_effort": "xhigh",
+      "agent_cli": "0.153.4",
+      "initialization": "scratch; no organizer checkpoints",
+      "network": "model transport on host; shell sandbox network disabled",
+      "operator_intervention": "none after startup; infrastructure failures recorded separately",
+      "api_cost_cap": "ChatGPT authentication; wall-clock cap, actual token use reported; no priced comparison claim",
+      "substrate": "DCC Slurm CPU allocation; nested namespace support probed",
+      "previous_attempt": "First cold agent completed subset pilot but failed full test replay due to starter RDKit candidate parsing. Original artifact and failure retained. This is a fresh attempt with repaired starter, same prompt/model/30-minute cap; no prior trajectory or output supplied.",
+      "source_revision": "40edda8 + archived starter correctness patch"
+    },
+    "cold_agent_attempts": [
+      {
+        "slurm_job": "54733191",
+        "source": "40edda8",
+        "exit": {
+          "exit_code": 0,
+          "stop_reason": "agent_exited",
+          "elapsed_seconds": 760.5130900670774
+        },
+        "usage": {
+          "input_tokens": 1077811,
+          "cached_input_tokens": 1006208,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 22003,
+          "reasoning_output_tokens": 7730
+        },
+        "training_rows": 2048,
+        "validation_queries": 128,
+        "selected_epoch": 3,
+        "validation_hit_at_1": 0.03125,
+        "full_test_replay": {
+          "status": "failed",
+          "exit_code": 1,
+          "elapsed_seconds": 7.927848164923489,
+          "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+          "production_docker_acceptance": false,
+          "h100_acceptance": false,
+          "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+          "namespace_uid": 0,
+          "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+          "model_manifest_sha256": "89720bb316078892c66b4f75be100cd1362bb639d508990e55d79189e08bcb7f"
+        },
+        "trusted_failure": {
+          "global_error": "Independent full input-only CPU replay exited 1: native RDKit rejected a candidate SMILES; raw stderr and original package archived.",
+          "invalid_or_missing_rankings": 17556,
+          "metric_directions": {
+            "hit_rate_at_1": "maximize",
+            "hit_rate_at_20": "maximize",
+            "hit_rate_at_5": "maximize",
+            "mces_at_1": "minimize"
+          },
+          "metrics": {
+            "hit_rate_at_1": 0.0,
+            "hit_rate_at_20": 0.0,
+            "hit_rate_at_5": 0.0,
+            "mces_at_1": 100.0
+          },
+          "model_quality_measured": false,
+          "queries": 17556,
+          "schema": "massspecgym-retrieval-report/v1",
+          "status": "inference_failed",
+          "valid_rankings": 0
+        },
+        "cause": "Released starter raises on a legacy SMILES rejected by native RDKit. Original agent package was not repaired or relabeled as successful."
+      },
+      {
+        "slurm_job": "54734283",
+        "source": "40edda8 + starter-repair.patch; fresh context and no previous outputs",
+        "exit": {
+          "exit_code": 0,
+          "stop_reason": "agent_exited",
+          "elapsed_seconds": 709.1262207929976
+        },
+        "usage": {
+          "input_tokens": 1090401,
+          "cached_input_tokens": 1020672,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 20378,
+          "reasoning_output_tokens": 6046
+        },
+        "training_rows": 4096,
+        "validation_queries": 256,
+        "selected_epoch": 3,
+        "validation_hit_at_1": 0.01171875,
+        "full_test_replay": {
+          "status": "completed",
+          "exit_code": 0,
+          "elapsed_seconds": 264.32606077892706,
+          "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+          "production_docker_acceptance": false,
+          "h100_acceptance": false,
+          "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+          "namespace_uid": 0,
+          "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+          "model_manifest_sha256": "d1b4a03c7966196c08d3322a3f0577ab424ee367ab8cba1f30ec0b2269490217",
+          "ranking_sha256": "b9400c828b19d0e64bc0a489ba006408e8520e859bb361d47bb1f9564d9be3a0"
+        },
+        "trusted_test_report": {
+          "evaluation_mode": "isolated_model_replay",
+          "global_error": null,
+          "invalid_or_missing_rankings": 0,
+          "metric_directions": {
+            "hit_rate_at_1": "maximize",
+            "hit_rate_at_20": "maximize",
+            "hit_rate_at_5": "maximize",
+            "mces_at_1": "minimize"
+          },
+          "metrics": {
+            "hit_rate_at_1": 0.01572112098427888,
+            "hit_rate_at_20": 0.16256550467076783,
+            "hit_rate_at_5": 0.05770107085896559,
+            "mces_at_1": 25.821257689678742
+          },
+          "model_quality_measured": true,
+          "queries": 17556,
+          "reference_comparison": {
+            "beats_reference": false,
+            "comparable": true,
+            "hit_rate_at_1": 0.4939052175894281,
+            "name": "GLACIER no-CF with strict-clean MIST fallback",
+            "reference_delta_hit_at_1": -0.47818409660514927
+          },
+          "schema": "massspecgym-retrieval-report/v1",
+          "status": "complete",
+          "valid_rankings": 17556
+        },
+        "independent_weight_audit": {
+          "checkpoint_sha256": "08f70feab24c84731bb392b748c06ebf4c171956971eaba7985fbd742b2abf24",
+          "parameters": 1867510,
+          "learned_tensors": 20,
+          "changed_from_seed0_initialization": 20,
+          "all_finite": true,
+          "model_source_matches_released_starter": true,
+          "torch": "2.6.0+cu124"
+        }
+      }
+    ],
+    "native_boundary_replay": {
+      "status": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 26.77126726973802,
+      "hardware": "CPU only; four model threads on CS compute allocation 12473780",
+      "production_docker_acceptance": false,
+      "h100_acceptance": false,
+      "isolation": "rootless mount/PID/network namespaces; caps dropped; model/input read-only; no development or private mounts; arbitrary /tmp cwd",
+      "namespace_uid": 0,
+      "input_manifest_sha256": "f47ad0f7b208dece4aab9a3f216d8aeabaf9676556e3042fa820fe851729982b",
+      "model_manifest_sha256": "660381b5209f033b703fd4f4d728830260f815dfafa65e57f8c129495cf46c48",
+      "ranking_sha256": "758e5b668c181a037848b0c78398af8200866df3902cacbd6252b112b494539e",
+      "queries": 4,
+      "valid_rankings": 4,
+      "glacier_queries": 1,
+      "fallback_queries": 3,
+      "only_rankings_output": true
+    },
+    "native_full_reference": {
+      "status": "full_test_scoring_complete",
+      "current_job": null,
+      "previous_job": "54735107",
+      "initial_job": "54732494",
+      "root": "/work/xy200/massspecgym-acceptance-40edda8",
+      "hardware": "Training: 1 H200 (historical); test prediction: 4 A5000 on CS; final ranking/grading: 16 CS CPUs",
+      "training_budget_seconds": 21600,
+      "resumed_checkpoint_step": 500,
+      "conservative_prior_charge_seconds": 1626.557888054289,
+      "remaining_plan": "No additional test or training run. Production Docker/API and single-H100 timing acceptance remain separate deployment gates.",
+      "default_h100_reference": false,
+      "automatic_result_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-full-status.json",
+      "collector": "Completed; see cs_test_recovery and trusted_test_report.",
+      "recovery_queue_reason": null,
+      "status_checked_date": "2026-09-13",
+      "training_result": {
+        "global_step": 24186,
+        "elapsed_seconds": 20988.441496657208,
+        "selected_checkpoint": "/workspace/native-fit/checkpoints/best.ckpt",
+        "validation_loss": 0.4375574588775635,
+        "last_validation_loss": 0.4463026821613312,
+        "source_sha256": "5cc5255f6671ddba726b5d29553967093a187bfa4290fa80d9d81fb573fe0fe6",
+        "data_manifest_sha256": "d0679cf32d694776c237e00f964abe37ab12ae7ff06ba083d9b4823732506d73",
+        "hardware": "NVIDIA H200",
+        "peak_cuda_allocated_bytes": 2950235136,
+        "selected_on": "validation spectrum loss; retrieval must be measured separately"
+      },
+      "checkpoint_sha256": "2619bfbf041bc9a115b286fa2a9b02856081528942de6ef90f2ec2c46d46b0fd",
+      "full_validation_replay": {
+        "mode": "replay",
+        "status": "completed",
+        "exit_code": 0,
+        "elapsed_seconds": 16871.537511121947,
+        "isolation": "rootless user/PID/mount/network namespaces; all capabilities dropped",
+        "namespace_uid": 1577836,
+        "hardware_profile": "1 H200, 16 CPUs, 64 GiB RAM Slurm allocation",
+        "production_docker_acceptance": false,
+        "h100_acceptance": false,
+        "command": [
+          "/bin/bash",
+          "/submission/infer.sh",
+          "/input",
+          "/output"
+        ],
+        "input_manifest_sha256": "ea805493bec35bb9afea5b0ea98489477b72cc0c3c46350576e039df347670e3",
+        "model_manifest_sha256": "7fd7b4c11cfbe9f4b2e19316806374688d818431526deaece36f5fa5855d5f69",
+        "ranking_sha256": "f8b59a7e2748141fe34fc8dbaa83493a178453e674ca5976f18a6b9379d479a4"
+      },
+      "full_validation_scoring": {
+        "queries": 19429,
+        "valid_rankings": 19429,
+        "global_error": null,
+        "metrics": {
+          "hit_rate_at_1": 0.3598744145349735,
+          "hit_rate_at_20": 0.6346698234597766,
+          "hit_rate_at_5": 0.49966544855628187
+        }
+      },
+      "validation_report_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912/validation-report.json",
+      "validation_report_sha256": "6baa95940927d6cac7f163e42376d215325e404737554e927d199c51361242c6",
+      "artifact_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912",
+      "combined_attempt": {
+        "job": "54735107",
+        "state": "TIMEOUT",
+        "end_time": "2026-09-09T07:01:55-04:00",
+        "allocated_seconds": 39614,
+        "training_completed": true,
+        "validation_replay_completed": true,
+        "test_rankings_produced": false,
+        "cause": "Combined 11-hour allocation expired during test replay; no standalone test deadline violation has been established."
+      },
+      "recovery": {
+        "job": "55271690",
+        "gpu": "H200",
+        "gpus": 1,
+        "cpus": 16,
+        "memory_gib": 64,
+        "allocation_limit_seconds": 19800,
+        "model_inference_limit_seconds": 18000,
+        "queue_monitor_limit_seconds": 86400,
+        "prior_actual_gpu_seconds": 42586,
+        "unchanged_frozen_submission": true,
+        "status": "canceled_after_user_cs_only_instruction"
+      },
+      "previous_queued_status": {
+        "status": "test_recovery_queued",
+        "current_job": "55271690",
+        "hardware": "1 H200, 16 CPUs, 64 GiB",
+        "remaining_plan": "Replay only the unchanged frozen package on all 17556 test queries in a separate allocation, then collect/seal/grade on CPU. No training rerun or model selection.",
+        "collector": "Separate bounded recovery collector preserves completed validation, records queue/run/failure status, validates immutable hashes, then seals and grades full test output. It never trains or tunes; only its own recovery job is canceled if the monitor deadline expires.",
+        "recovery_queue_reason": "AssocGrpGRES",
+        "status_checked_date": "2026-09-12"
+      },
+      "trusted_test_report": {
+        "evaluation_mode": "isolated_model_replay",
+        "global_error": null,
+        "invalid_or_missing_rankings": 0,
+        "metric_directions": {
+          "hit_rate_at_1": "maximize",
+          "hit_rate_at_20": "maximize",
+          "hit_rate_at_5": "maximize",
+          "mces_at_1": "minimize"
+        },
+        "metrics": {
+          "hit_rate_at_1": 0.4032239690134427,
+          "hit_rate_at_20": 0.7077352472089314,
+          "hit_rate_at_5": 0.5684666210982,
+          "mces_at_1": 13.1696001367054
+        },
+        "model_quality_measured": true,
+        "queries": 17556,
+        "reference_comparison": {
+          "beats_reference": false,
+          "comparable": true,
+          "hit_rate_at_1": 0.4939052175894281,
+          "name": "GLACIER no-CF with strict-clean MIST fallback",
+          "reference_delta_hit_at_1": -0.09068124857598542
+        },
+        "schema": "massspecgym-retrieval-report/v1",
+        "status": "complete",
+        "valid_rankings": 17556
+      },
+      "test_report_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/grading/report/report.json",
+      "test_report_sha256": "eea990e4bce6e56888856d40fd7f7a86682e813af2f5b4ce72c15462c7179ac4",
+      "cs_test_recovery": {
+        "state": "complete",
+        "updated_unix": 1789276142.7812998,
+        "artifacts": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913",
+        "cluster": "compsci_cluster",
+        "host": "compsci-cluster-fitz-35",
+        "cpu_allocation": "12473780",
+        "previous_gpu_job": "12582664",
+        "gpus": 0,
+        "training_complete": true,
+        "gpu_prediction_complete": true,
+        "validation_metrics": {
+          "hit_rate_at_1": 0.3598744145349735,
+          "hit_rate_at_20": 0.6346698234597766,
+          "hit_rate_at_5": 0.49966544855628187
+        },
+        "production_docker_acceptance": false,
+        "h100_acceptance": false,
+        "pr_updates": false,
+        "test_report": {
+          "evaluation_mode": "isolated_model_replay",
+          "global_error": null,
+          "invalid_or_missing_rankings": 0,
+          "metric_directions": {
+            "hit_rate_at_1": "maximize",
+            "hit_rate_at_20": "maximize",
+            "hit_rate_at_5": "maximize",
+            "mces_at_1": "minimize"
+          },
+          "metrics": {
+            "hit_rate_at_1": 0.4032239690134427,
+            "hit_rate_at_20": 0.7077352472089314,
+            "hit_rate_at_5": 0.5684666210982,
+            "mces_at_1": 13.1696001367054
+          },
+          "model_quality_measured": true,
+          "queries": 17556,
+          "reference_comparison": {
+            "beats_reference": false,
+            "comparable": true,
+            "hit_rate_at_1": 0.4939052175894281,
+            "name": "GLACIER no-CF with strict-clean MIST fallback",
+            "reference_delta_hit_at_1": -0.09068124857598542
+          },
+          "schema": "massspecgym-retrieval-report/v1",
+          "status": "complete",
+          "valid_rankings": 17556
+        },
+        "checkpoint_sha256": "2619bfbf041bc9a115b286fa2a9b02856081528942de6ef90f2ec2c46d46b0fd",
+        "model_manifest_sha256": "7fd7b4c11cfbe9f4b2e19316806374688d818431526deaece36f5fa5855d5f69",
+        "ranking_sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26",
+        "cpu_recovery_elapsed_seconds": 488.08950800681487,
+        "original_partial_rows_matched": 2537,
+        "prediction_files": {
+          "preds_shard0.hdf5": {
+            "sha256": "b39728e31686c43243b2ee4e57f97f1b3e2a5f7846736f266aef480500ce2d09",
+            "bytes": 3207123228
+          },
+          "preds_shard1.hdf5": {
+            "sha256": "744c7a5b609feda7bd8759000e4cc79d2789fe0bb9f195cc58cb19292e3fd06f",
+            "bytes": 3207290744
+          },
+          "preds_shard2.hdf5": {
+            "sha256": "214f4b7b0ef951d23b7a6343e0a1030fadc2b6391cbbe8b0eb4570a309e0068c",
+            "bytes": 3207206060
+          },
+          "preds_shard3.hdf5": {
+            "sha256": "f9a73d900e15941aa713f47197e6c7d844e0adc7bd09c2681b4c445499a9d758",
+            "bytes": 3207024940
+          }
+        },
+        "scope": "Frozen model multi-GPU predictions plus independent CPU ranking/grading; not single-H100 timing acceptance"
+      }
+    },
+    "canonical_identity_audit": {
+      "rdkit": "2023.09.6",
+      "identity": "RDKit MolFromSmiles then standard InChIKey connectivity block",
+      "files": {
+        "train": "de7f46e91f7b67eb5ca67468381abbdb20a8f739a0ae4b27070276798ecad0fc",
+        "validation": "26788b56a3cb9d19c265c925504a4ce4e77e4c6b65b2a11068be6f24d15bf70f",
+        "test": "45e3ddc9927d0fed7f2786750706b09da335b5e5755b768d432e239517d383f0",
+        "synthetic_labels": "8d6506976f9105bd49fc12c14e7fab2ddfb6d1130d871a10b651ece59c833705"
+      },
+      "train": {
+        "spectra": 194119,
+        "unique_smiles": 25046,
+        "unique_connectivity_keys": 22742
+      },
+      "validation": {
+        "spectra": 19429,
+        "unique_smiles": 3386,
+        "unique_connectivity_keys": 3184
+      },
+      "test": {
+        "spectra": 17556,
+        "unique_smiles": 3170,
+        "unique_connectivity_keys": 2997
+      },
+      "synthetic": {
+        "spectra": 2333485,
+        "unique_smiles": 435076,
+        "unique_connectivity_keys": 435064,
+        "invalid_smiles_rows": 0,
+        "rows_with_recomputed_key_not_in_provided_keys": 0,
+        "overlap": {
+          "train": {
+            "molecules": 1045,
+            "spectra": 5760
+          },
+          "validation": {
+            "molecules": 0,
+            "spectra": 0
+          },
+          "test": {
+            "molecules": 0,
+            "spectra": 0
+          }
+        }
+      },
+      "experimental_pairwise_overlap": {
+        "train_validation": 0,
+        "train_test": 0,
+        "validation_test": 0
+      },
+      "elapsed_seconds": 38.45052531640977
+    },
+    "infrastructure_attempts": [
+      {
+        "kind": "CS cold pilot",
+        "outcome": "AppArmor prevented nested Codex sandbox before any command or data access"
+      },
+      {
+        "kind": "DCC model transport startup",
+        "outcome": "Missing mount of system CA symlink target caused TLS UnknownIssuer before model response; fixed by mounting /etc/pki, without disabling certificate checks"
+      }
+    ],
+    "remaining_deployment_gates": [
+      "Fresh production Docker/Harbor execution with genuine UID-10001 separation",
+      "Full single-H100 native replay within declared limits",
+      "Enforced writable-storage quotas and live generic runner model-API allowlist transport",
+      "Full scratch score now measured; matched-H100 timing/reference and agent comparison remain unverified."
+    ],
+    "checks": {
+      "unit_tests": 33,
+      "unit_test_seconds": 2.819,
+      "shell_syntax_checks": 14,
+      "harbor_distribution": "0.22.0",
+      "native_task_schema": "passed",
+      "log": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/unit-tests.log"
+    },
+    "followup_source_patch_sha256": "918738e0b9e1615009845d2af60c9a0eb50655f936cc3641668d7715c5c4dff3"
+  },
+  "publication_verification": {
+    "date": "2026-09-13",
+    "existing_pr": "https://github.com/T0-RSI/ai4sci-tasks/pull/9",
+    "task_trained_baseline": "environment/reference/task_trained_baseline.json",
+    "task_trained_baseline_sha256": "25082cf2c9dff9f925820585308a5344311a19b989ff686945f5024b898e6681",
+    "sota_audit": "environment/reference/SOTA_AUDIT.md",
+    "sota_scope": "GLACIER + CF 69.95% on the restricted simulation-domain mass task; no complete current leaderboard established on the exact full v1.5 task contract",
+    "excluded_withdrawn_claim": {
+      "method": "SpecBridge",
+      "old_hit_at_1_percent": 84.695,
+      "withdrawn_date": "2026-03-03",
+      "notice": "https://arxiv.org/abs/2601.17204v3",
+      "reason": "preprocessing/evaluation pipeline problem"
+    },
+    "frozen_reference_unchanged": true,
+    "checks": {
+      "unit_tests_passed": 33,
+      "unit_tests_elapsed_seconds": 3.411,
+      "actual_runner_network_profiles_passed": 6,
+      "legacy_compose_negative_control_passed": true,
+      "markdown_local_links": 30,
+      "bash_blocks": 15,
+      "shell_files": 14,
+      "json_files": 2,
+      "frozen_reference_and_contract_unchanged": true,
+      "raw_full_report_and_branch_metrics_match": true,
+      "errors": []
+    },
+    "new_training_or_test_inference": false,
+    "production_docker_api_acceptance": false,
+    "single_h100_timing_acceptance": false
+  }
+}

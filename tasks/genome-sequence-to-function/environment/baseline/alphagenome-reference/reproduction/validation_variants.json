@@ -1,0 +1,125 @@
+{
+  "eqtl_sign": {
+    "rows": 17052,
+    "perturbations": 165,
+    "metric": "auroc",
+    "model": 0.5434104100455295,
+    "anchors": {
+      "AlphaGenome": 0.8263569969634328
+    }
+  },
+  "eqtl_causality": {
+    "rows": 17934,
+    "perturbations": 174,
+    "metric": "auroc",
+    "model": 0.5464929214929216,
+    "anchors": {
+      "AlphaGenome": 0.8325427468284611
+    }
+  },
+  "eqtl_coefficient": {
+    "rows": 8575,
+    "perturbations": 165,
+    "metric": "spearman",
+    "model": 0.0848226323862345,
+    "anchors": {
+      "AlphaGenome": 0.4133539365891599
+    }
+  },
+  "sqtl_causality": {
+    "rows": 21340,
+    "perturbations": 194,
+    "metric": "auprc",
+    "model": 0.7314630754625756,
+    "anchors": {
+      "AlphaGenome": 0.8447114201904594
+    }
+  },
+  "clinvar_noncoding": {
+    "rows": 199,
+    "perturbations": 199,
+    "metric": "auprc",
+    "model": 0.16761757136476763,
+    "anchors": {
+      "AlphaGenome": 0.9409857958177288
+    }
+  },
+  "clinvar_splice_region": {
+    "rows": 194,
+    "perturbations": 194,
+    "metric": "auprc",
+    "model": 0.20106957924277824,
+    "anchors": {
+      "AlphaGenome": 0.7224791623996103
+    }
+  },
+  "clinvar_missense": {
+    "rows": 199,
+    "perturbations": 199,
+    "metric": "auprc",
+    "model": 0.18961188000741985,
+    "anchors": {
+      "AlphaGenome": 0.373826292978903
+    }
+  },
+  "mfass": {
+    "rows": 195,
+    "perturbations": 195,
+    "metric": "auprc",
+    "model": 0.20645826339207096,
+    "anchors": {
+      "AlphaGenome": 0.7342557141920668
+    }
+  },
+  "caqtl": {
+    "rows": 198,
+    "perturbations": 198,
+    "metric": "auprc",
+    "model": 0.14653378151493912,
+    "anchors": {
+      "AlphaGenome": 0.8075760167741196
+    }
+  },
+  "bqtl_spi1": {
+    "rows": 160,
+    "perturbations": 160,
+    "metric": "auprc",
+    "model": 0.1855520749224413,
+    "anchors": {
+      "AlphaGenome": 0.8167450781363793
+    }
+  },
+  "enhancer_gene": {
+    "rows": 200,
+    "perturbations": 200,
+    "metric": "auprc",
+    "model": 0.4067295877922027,
+    "anchors": {
+      "AlphaGenome": 0.9594307235541584
+    }
+  },
+  "traitgym_mendelian": {
+    "rows": 292,
+    "perturbations": 292,
+    "metric": "auprc",
+    "model": 0.18386707291724344,
+    "anchors": {
+      "Borzoi_L2_L2.plus.all": 0.5026323772738239,
+      "Enformer_L2_L2.plus.all": 0.5452938267693526,
+      "CADD.plus.RawScore": 0.7189111372856957,
+      "GPN-MSA_absLLR.plus.score": 0.6729149139043132
+    }
+  },
+  "traitgym_complex": {
+    "rows": 299,
+    "perturbations": 299,
+    "metric": "auprc",
+    "model": 0.18676845302203035,
+    "anchors": {
+      "Borzoi_L2_L2.plus.all": 0.294501577162467,
+      "Enformer_L2_L2.plus.all": 0.269227301087889,
+      "CADD.plus.RawScore": 0.41341570280137435,
+      "GPN-MSA_absLLR.plus.score": 0.4213971415058371
+    }
+  }
+}

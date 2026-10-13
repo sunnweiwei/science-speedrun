@@ -1,0 +1,412 @@
+{
+ "schema": "natural-disease-progression-report/v3",
+ "split": "validation (3,915 patients)",
+ "reward_metric": "panel_recall_at_5pct",
+ "panel": {
+  "panel_recall_at_5pct": 0.21120162323512798,
+  "panel_recall_at_1pct": 0.07044469190123505,
+  "panel_ppv_at_5pct": 0.0678570129640652,
+  "panel_auroc": 0.7641576873078506,
+  "panel_auprc": 0.07171213144345592,
+  "panel_calibration_slope_median": 2.7008076731696553,
+  "panel_prediction_to_observed_median": 1.0675856766985297,
+  "panel_ece_decile": 0.01110947057088124,
+  "endpoints_in_reward": [
+   "I50",
+   "I48",
+   "I21",
+   "I26",
+   "I82",
+   "E11",
+   "N18",
+   "N17",
+   "A41",
+   "J18",
+   "J96",
+   "K72",
+   "J44",
+   "C78"
+  ],
+  "min_positives": 20,
+  "endpoints": {
+   "I50": {
+    "name": "heart failure",
+    "eligible": 2408,
+    "positives": 52,
+    "family_history_excluded": 7,
+    "in_reward": true,
+    "recall_at_5pct": 0.21153846153846154,
+    "ppv_at_5pct": 0.09090909090909091,
+    "recall_at_1pct": 0.019230769230769232,
+    "ppv_at_1pct": 0.04,
+    "auroc": 0.7822172521875408,
+    "auprc": 0.07425686720474664,
+    "prevalence": 0.02159468438538206,
+    "calibration": {
+     "observed_rate": 0.02159468438538206,
+     "mean_prediction": 0.018109676285810842,
+     "prediction_to_observed": 0.8386173172352406,
+     "slope": 3.681787740032685,
+     "ece_decile": 0.012511134443130111
+    }
+   },
+   "I48": {
+    "name": "atrial fibrillation/flutter",
+    "eligible": 2385,
+    "positives": 32,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.21875,
+    "ppv_at_5pct": 0.058333333333333334,
+    "recall_at_1pct": 0.09375,
+    "ppv_at_1pct": 0.125,
+    "auroc": 0.7150180620484488,
+    "auprc": 0.092021135257071,
+    "prevalence": 0.013417190775681341,
+    "calibration": {
+     "observed_rate": 0.013417190775681341,
+     "mean_prediction": 0.014300083556843129,
+     "prediction_to_observed": 1.0658031025959644,
+     "slope": 2.022104403759926,
+     "ece_decile": 0.005196037462500531
+    }
+   },
+   "I21": {
+    "name": "acute myocardial infarction",
+    "eligible": 2671,
+    "positives": 23,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.2608695652173913,
+    "ppv_at_5pct": 0.04477611940298507,
+    "recall_at_1pct": 0.0,
+    "ppv_at_1pct": 0.0,
+    "auroc": 0.7880270589780638,
+    "auprc": 0.02934491537949087,
+    "prevalence": 0.008611007113440658,
+    "calibration": {
+     "observed_rate": 0.008611007113440658,
+     "mean_prediction": 0.011297164048486292,
+     "prediction_to_observed": 1.311944572761169,
+     "slope": 2.520324329836109,
+     "ece_decile": 0.005370597308867716
+    }
+   },
+   "I63": {
+    "name": "ischaemic stroke",
+    "eligible": 2662,
+    "positives": 14,
+    "family_history_excluded": 73,
+    "in_reward": false,
+    "recall_at_5pct": 0.21428571428571427,
+    "ppv_at_5pct": 0.022388059701492536,
+    "recall_at_1pct": 0.0,
+    "ppv_at_1pct": 0.0,
+    "auroc": 0.6822669400086319,
+    "auprc": 0.013019849650082582,
+    "prevalence": 0.005259203606311044,
+    "calibration": {
+     "observed_rate": 0.005259203606311044,
+     "mean_prediction": 0.008327873517676228,
+     "prediction_to_observed": 1.5834856645752942,
+     "slope": 1.0559987696452582,
+     "ece_decile": 0.0037967625325024375
+    }
+   },
+   "I26": {
+    "name": "pulmonary embolism",
+    "eligible": 2760,
+    "positives": 20,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.2,
+    "ppv_at_5pct": 0.028985507246376812,
+    "recall_at_1pct": 0.05,
+    "ppv_at_1pct": 0.03571428571428571,
+    "auroc": 0.7256204379562043,
+    "auprc": 0.027735551564567328,
+    "prevalence": 0.007246376811594203,
+    "calibration": {
+     "observed_rate": 0.007246376811594203,
+     "mean_prediction": 0.009681103247103105,
+     "prediction_to_observed": 1.3359922481002284,
+     "slope": 1.8281307372398239,
+     "ece_decile": 0.004225626300541225
+    }
+   },
+   "I82": {
+    "name": "venous thrombosis",
+    "eligible": 2739,
+    "positives": 35,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.14285714285714285,
+    "ppv_at_5pct": 0.0364963503649635,
+    "recall_at_1pct": 0.0,
+    "ppv_at_1pct": 0.0,
+    "auroc": 0.7239010989010989,
+    "auprc": 0.027404442215254902,
+    "prevalence": 0.012778386272362175,
+    "calibration": {
+     "observed_rate": 0.012778386272362175,
+     "mean_prediction": 0.011419359044596558,
+     "prediction_to_observed": 0.8936464120899993,
+     "slope": 1.9526180525199408,
+     "ece_decile": 0.006008509050935028
+    }
+   },
+   "E11": {
+    "name": "type 2 diabetes",
+    "eligible": 2161,
+    "positives": 21,
+    "family_history_excluded": 33,
+    "in_reward": true,
+    "recall_at_5pct": 0.047619047619047616,
+    "ppv_at_5pct": 0.009174311926605505,
+    "recall_at_1pct": 0.047619047619047616,
+    "ppv_at_1pct": 0.045454545454545456,
+    "auroc": 0.7087338673787271,
+    "auprc": 0.022020401264903774,
+    "prevalence": 0.00971772327626099,
+    "calibration": {
+     "observed_rate": 0.00971772327626099,
+     "mean_prediction": 0.010391824741704301,
+     "prediction_to_observed": 1.0693682508010949,
+     "slope": 1.7191901529159903,
+     "ece_decile": 0.00368862152608152
+    }
+   },
+   "N18": {
+    "name": "chronic kidney disease",
+    "eligible": 2439,
+    "positives": 49,
+    "family_history_excluded": 1,
+    "in_reward": true,
+    "recall_at_5pct": 0.24489795918367346,
+    "ppv_at_5pct": 0.09836065573770492,
+    "recall_at_1pct": 0.061224489795918366,
+    "ppv_at_1pct": 0.12,
+    "auroc": 0.7981470412432756,
+    "auprc": 0.07719083040960448,
+    "prevalence": 0.02009020090200902,
+    "calibration": {
+     "observed_rate": 0.02009020090200902,
+     "mean_prediction": 0.02760244478662882,
+     "prediction_to_observed": 1.373925772134443,
+     "slope": 5.95059329698519,
+     "ece_decile": 0.018403894146167388
+    }
+   },
+   "N17": {
+    "name": "acute kidney injury",
+    "eligible": 2292,
+    "positives": 104,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.18269230769230768,
+    "ppv_at_5pct": 0.16521739130434782,
+    "recall_at_1pct": 0.09615384615384616,
+    "ppv_at_1pct": 0.43478260869565216,
+    "auroc": 0.7582266910420474,
+    "auprc": 0.16533618281896761,
+    "prevalence": 0.04537521815008726,
+    "calibration": {
+     "observed_rate": 0.04537521815008726,
+     "mean_prediction": 0.0633997298487792,
+     "prediction_to_observed": 1.3972325078211725,
+     "slope": 10.494460823933311,
+     "ece_decile": 0.036619396127734405
+    }
+   },
+   "A41": {
+    "name": "sepsis",
+    "eligible": 2661,
+    "positives": 76,
+    "family_history_excluded": 3,
+    "in_reward": true,
+    "recall_at_5pct": 0.11842105263157894,
+    "ppv_at_5pct": 0.06716417910447761,
+    "recall_at_1pct": 0.039473684210526314,
+    "ppv_at_1pct": 0.1111111111111111,
+    "auroc": 0.7245851572839255,
+    "auprc": 0.061728611144018765,
+    "prevalence": 0.028560691469372415,
+    "calibration": {
+     "observed_rate": 0.028560691469372415,
+     "mean_prediction": 0.019609801952119206,
+     "prediction_to_observed": 0.6866010920340685,
+     "slope": 2.8510572284856996,
+     "ece_decile": 0.014372533211069466
+    }
+   },
+   "J18": {
+    "name": "pneumonia",
+    "eligible": 2671,
+    "positives": 64,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.140625,
+    "ppv_at_5pct": 0.06716417910447761,
+    "recall_at_1pct": 0.0625,
+    "ppv_at_1pct": 0.14814814814814814,
+    "auroc": 0.7375515439202147,
+    "auprc": 0.06008461503592727,
+    "prevalence": 0.023961063272182705,
+    "calibration": {
+     "observed_rate": 0.023961063272182705,
+     "mean_prediction": 0.016143216184040205,
+     "prediction_to_observed": 0.6737270379308029,
+     "slope": 2.550558117853611,
+     "ece_decile": 0.012124434177485165
+    }
+   },
+   "J96": {
+    "name": "respiratory failure",
+    "eligible": 2602,
+    "positives": 81,
+    "family_history_excluded": 3,
+    "in_reward": true,
+    "recall_at_5pct": 0.18518518518518517,
+    "ppv_at_5pct": 0.11450381679389313,
+    "recall_at_1pct": 0.06172839506172839,
+    "ppv_at_1pct": 0.18518518518518517,
+    "auroc": 0.7943986562259734,
+    "auprc": 0.10665974295023321,
+    "prevalence": 0.03112990007686395,
+    "calibration": {
+     "observed_rate": 0.03112990007686395,
+     "mean_prediction": 0.019079299587799345,
+     "prediction_to_observed": 0.6128930558944925,
+     "slope": 4.203643107120627,
+     "ece_decile": 0.018498893606717727
+    }
+   },
+   "K72": {
+    "name": "hepatic failure",
+    "eligible": 2787,
+    "positives": 22,
+    "family_history_excluded": 0,
+    "in_reward": true,
+    "recall_at_5pct": 0.6363636363636364,
+    "ppv_at_5pct": 0.1,
+    "recall_at_1pct": 0.3181818181818182,
+    "ppv_at_1pct": 0.25,
+    "auroc": 0.8929311195133981,
+    "auprc": 0.1687887379682081,
+    "prevalence": 0.007893792608539648,
+    "calibration": {
+     "observed_rate": 0.007893792608539648,
+     "mean_prediction": 0.006105115788142993,
+     "prediction_to_observed": 0.7734071682524783,
+     "slope": 2.9750480729192006,
+     "ece_decile": 0.007121407781695198
+    }
+   },
+   "F03": {
+    "name": "dementia",
+    "eligible": 2665,
+    "positives": 13,
+    "family_history_excluded": 74,
+    "in_reward": false,
+    "recall_at_5pct": 0.38461538461538464,
+    "ppv_at_5pct": 0.03731343283582089,
+    "recall_at_1pct": 0.07692307692307693,
+    "ppv_at_1pct": 0.037037037037037035,
+    "auroc": 0.8471110337626174,
+    "auprc": 0.03432703708049148,
+    "prevalence": 0.004878048780487805,
+    "calibration": {
+     "observed_rate": 0.004878048780487805,
+     "mean_prediction": 0.010427417359044023,
+     "prediction_to_observed": 2.137620558604025,
+     "slope": 3.027706267301923,
+     "ece_decile": 0.007116034140855801
+    }
+   },
+   "J44": {
+    "name": "COPD",
+    "eligible": 2543,
+    "positives": 27,
+    "family_history_excluded": 27,
+    "in_reward": true,
+    "recall_at_5pct": 0.18518518518518517,
+    "ppv_at_5pct": 0.0390625,
+    "recall_at_1pct": 0.0,
+    "ppv_at_1pct": 0.0,
+    "auroc": 0.8061738208797032,
+    "auprc": 0.035002329780671214,
+    "prevalence": 0.01061738104600865,
+    "calibration": {
+     "observed_rate": 0.01061738104600865,
+     "mean_prediction": 0.011870667746259802,
+     "prediction_to_observed": 1.1180410399532843,
+     "slope": 3.4025180187491255,
+     "ece_decile": 0.006756956375109173
+    }
+   },
+   "C78": {
+    "name": "metastasis, respiratory/digestive",
+    "eligible": 2672,
+    "positives": 22,
+    "family_history_excluded": 90,
+    "in_reward": true,
+    "recall_at_5pct": 0.18181818181818182,
+    "ppv_at_5pct": 0.029850746268656716,
+    "recall_at_1pct": 0.13636363636363635,
+    "ppv_at_1pct": 0.1111111111111111,
+    "auroc": 0.7426758147512864,
+    "auprc": 0.05639547721471795,
+    "prevalence": 0.008233532934131737,
+    "calibration": {
+     "observed_rate": 0.008233532934131737,
+     "mean_prediction": 0.010589448058236011,
+     "prediction_to_observed": 1.2861366005275736,
+     "slope": 2.1180112968274543,
+     "ece_decile": 0.00463454647430269
+    }
+   },
+   "C79": {
+    "name": "metastasis, other sites",
+    "eligible": 2672,
+    "positives": 19,
+    "family_history_excluded": 79,
+    "in_reward": false,
+    "recall_at_5pct": 0.21052631578947367,
+    "ppv_at_5pct": 0.029850746268656716,
+    "recall_at_1pct": 0.05263157894736842,
+    "ppv_at_1pct": 0.037037037037037035,
+    "auroc": 0.7837205150078362,
+    "auprc": 0.03252922167711194,
+    "prevalence": 0.007110778443113772,
+    "calibration": {
+     "observed_rate": 0.007110778443113772,
+     "mean_prediction": 0.008964583730293036,
+     "prediction_to_observed": 1.2607035645969997,
+     "slope": 1.9871090198522527,
+     "ece_decile": 0.00350606719552662
+    }
+   }
+  },
+  "endpoints_omitted_fewer_than_10_positives": [
+   "C18",
+   "C22",
+   "C25",
+   "C61",
+   "C67",
+   "I61",
+   "I71",
+   "J84",
+   "K74"
+  ]
+ },
+ "primary": {
+  "macro_time_averaged_auroc": 0.74744594782084,
+  "macro_time_averaged_auprc": 0.035274029184741144,
+  "valid_diseases": 258,
+  "frozen_diseases": 262,
+  "valid_disease_time_cells": 3257,
+  "frozen_disease_time_cells": 3406,
+  "positive_support": 50984,
+  "negative_support": 8834988
+ }
+}

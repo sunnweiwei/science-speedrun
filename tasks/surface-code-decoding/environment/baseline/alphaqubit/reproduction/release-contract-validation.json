@@ -1,0 +1,52 @@
+{
+  "schema": "surface-code-decoding-release-contract-validation/v1",
+  "checked_at_utc": "2026-09-22T06:46:26.107201+00:00",
+  "checks": {
+    "pytest_tests_test_release_contract": {
+      "passed": 25,
+      "seconds": 2.34
+    },
+    "shell_syntax": true,
+    "python_compileall": true,
+    "development_all130_conditions_resources": true,
+    "warm_start_real_d5_train_validation_batches": {
+      "batch_size": 3,
+      "feature_shape": [
+        3,
+        24,
+        24
+      ],
+      "labels_dtype": "float32"
+    },
+    "offline_materializer_all_three_roles": {
+      "fresh_restore": "passed",
+      "idempotent_second_restore": "passed",
+      "exact_inventories": "passed"
+    }
+  },
+  "coverage": [
+    "fullsuite metric weighting and anchors",
+    "sample ID reordering",
+    "missing/NaN/wrong dtype/unknown or duplicate IDs",
+    "malformed ZIP/encrypted and unsupported compression",
+    "forged NPY shape and decompression bounds",
+    "split label isolation and staged arbitrary-N validation",
+    "label corruption remains infrastructure even when early predictions invalid",
+    "archive path traversal",
+    "role root symlink/nested inventory/specialfiles",
+    "separate label-only grader mount",
+    "invalid submission zero reward and infrastructure no reward"
+  ],
+  "scope": "CPU contract tests and offline materialization only; GPU accuracy replay, warm-start optimizer smoke, native Docker/Harbor execution and HF network roundtrip are separately recorded by release orchestration",
+  "source_sha256": {
+    "qecbench/data.py": "6953b2f7c3d9a8b0c325bcc32a40c5f72ccc2fc36eede7bcfd7f3fea9400b557",
+    "qecbench/inference.py": "399503ef6653881e2c849f4abbe0b580a8e05b9657b9e0e57a99da18c92fade0",
+    "qecbench/train.py": "d71c4aa47f7a769ff23d1ea3e67464c27406eea44ca2aa2444db6a4c6e9a6353",
+    "qecbench/scoring.py": "3ae34daec50e392af535d0d71fd455985bb964c8b85509b9d8973e250f2f7a8e",
+    "tests/main_verifier.py": "d78fe981a4ea0f97f3924a8d363b5ead0c26d6f46e7d0387e3ea8c2190d1e572",
+    "tests/grader.py": "18cb364306d004215c2bfdb74f9f422605eb05c038e56fec30451627f63d017b",
+    "tests/test_release_contract.py": "d28b2decbd378f17f28a9a9de51459c03a8310ffec3b92d9713fb1a1932acc2c",
+    "environment/data/materialize.py": "b13f7f06d019b4ecf8cea651714c2a2bb5b67571d7898c7c3447199a68d1e5ea",
+    "score_config.json": "5aaf37e3298b410114e7b938b88d8ac850ed419c01af38ecfae570050dd3ef33"
+  }
+}

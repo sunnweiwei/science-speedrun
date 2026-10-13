@@ -1,0 +1,5 @@
+schema_version = "agent-runner-compute-profiles/v1"
+default = "default"
+
+[profiles.default]
+gpus = "task"

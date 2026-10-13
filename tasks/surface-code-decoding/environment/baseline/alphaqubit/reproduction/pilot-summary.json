@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-19",
+  "purpose": "Native GPU execution and throughput pilot; no convergence or benchmark-accuracy claim",
+  "native_commit": "c2ed73e3ec6ee843293c8839bf059c63b2960e61",
+  "label_mode": "qrennd_global_data_parity",
+  "pilots": [
+    {
+      "group": "d3_bX_center_3_5",
+      "distance": 3,
+      "hidden_width": 64,
+      "parameters": 60418,
+      "batch_size": 64,
+      "optimizer_steps": 1000,
+      "samples_seen": 64000,
+      "epoch": 0,
+      "next_batch": 1000,
+      "training_population": 20000000,
+      "fraction_of_epoch_seen": 0.0032,
+      "gpu": "Tesla V100-PCIE-32GB",
+      "tensorflow": "2.15.1",
+      "cuda": "12.2",
+      "gpu_count": 1,
+      "slurm_job_id": "12642090",
+      "slurm_array_id": "12642089",
+      "slurm_array_index": 0,
+      "slurm_state": "COMPLETED",
+      "slurm_allocated_seconds": 50,
+      "trainer_seconds": 30.558974801097065,
+      "steady_steps_per_second": 79.42042863686429,
+      "steady_samples_per_second": 5082.907432759314,
+      "steady_seconds": 12.46530668484047,
+      "warmup_steps_excluded": 10,
+      "estimated_epoch_gpu_hours_batch_only": 1.0929877494423814,
+      "validation": {
+        "complete": true,
+        "shots": 66560,
+        "main_loss": 0.6605796625980964,
+        "aux_loss": 0.6691245565047631,
+        "loss": 0.9951419408504779,
+        "main_error": 0.47085336538461536,
+        "aux_error": 0.46536959134615385,
+        "stage": "pretrain",
+        "trigger": "partial_epoch",
+        "time": "2026-09-19T05:12:01.685748+00:00",
+        "epoch": 0,
+        "next_batch": 1000,
+        "global_steps": 1000,
+        "seen_samples": 64000,
+        "elapsed_seconds": 30.324598162900656,
+        "validation_seconds": 1.03525424702093,
+        "selected_best": true
+      },
+      "independent_cpu_replay": {
+        "seconds": 3.44392983103171,
+        "validation": {
+          "shots": 66560,
+          "main_loss": 0.6605796710642554,
+          "aux_loss": 0.6691245534332141,
+          "loss": 0.9951419477808625,
+          "main_errors": 31340,
+          "aux_errors": 30975,
+          "main_error": 0.47085336538461536,
+          "aux_error": 0.46536959134615385
+        },
+        "differences_from_gpu": {
+          "main_loss": 8.466158996078832e-09,
+          "aux_loss": -3.071549015132291e-09,
+          "loss": 6.930384599534989e-09,
+          "main_error": 0.0,
+          "aux_error": 0.0
+        },
+        "all_model_and_optimizer_tensors_finite": true,
+        "optimizer_iterations": 1000
+      },
+      "checks": {
+        "all_current_source_hashes_match": true,
+        "unchanged_vendor_hashes_match": true,
+        "model_config_matches_native_wrapper": true,
+        "checkpoint_progress_and_identity_match": true,
+        "validation_cache_and_transform_certificates_match": true,
+        "throughput_arithmetic_matches": true,
+        "single_visible_v100": true
+      },
+      "checkpoints": {
+        "best.keras": {
+          "sha256": "80b51a03516ba6c59933fb665e077b8a5605c8fb6b1f36f16f94ddc70d88b385",
+          "size_bytes": 796691
+        },
+        "last.keras": {
+          "sha256": "da5498f05925163f7acc04c0fbc3a5095c32384c33c426d6ccbe070f469074ea",
+          "size_bytes": 796687
+        }
+      },
+      "source_sha256": {
+        "train.py": "5f904c323f33f8407291948d792b0c9b882c0430322b76fe0dbe1fd73b9460cb",
+        "data.py": "669a7a777af800973b5571e70f4f791d96a7ddd3cd6e6e727a9fcbbaeefa6252",
+        "neural.py": "7300623ede40a6485351341740896dd9eebccd618d8277e2c94c913c29a9c142",
+        "observables.py": "3b3921a86679823743f5fd80e5bde45013a8dde035d669420183c2bf1a8ef8ec",
+        "cache.py": "aa206f0afd5c079a77a00b9ce6fba507cee8c98c01884d77775dc347584fd751"
+      },
+      "manifest_sha256": "efa3ec17b6fe9119add982a6f0432e53aa78bdb43116500aa838f232ddb9e917",
+      "convergence_established": false
+    },
+    {
+      "group": "d5_bX_center_5_5",
+      "distance": 5,
+      "hidden_width": 253,
+      "parameters": 926488,
+      "batch_size": 256,
+      "optimizer_steps": 1000,
+      "samples_seen": 256000,
+      "epoch": 0,
+      "next_batch": 1000,
+      "training_population": 60000000,
+      "fraction_of_epoch_seen": 0.004266666666666667,
+      "gpu": "Tesla V100-PCIE-32GB",
+      "tensorflow": "2.15.1",
+      "cuda": "12.2",
+      "gpu_count": 1,
+      "slurm_job_id": "12642089",
+      "slurm_array_id": "12642089",
+      "slurm_array_index": 8,
+      "slurm_state": "COMPLETED",
+      "slurm_allocated_seconds": 61,
+      "trainer_seconds": 42.1294913822785,
+      "steady_steps_per_second": 68.01367959827937,
+      "steady_samples_per_second": 17411.501977159518,
+      "steady_seconds": 14.555895311757922,
+      "warmup_steps_excluded": 10,
+      "estimated_epoch_gpu_hours_batch_only": 0.9572216508679189,
+      "validation": {
+        "complete": true,
+        "shots": 66560,
+        "main_loss": 0.6839889232928936,
+        "aux_loss": 0.6912503022413987,
+        "loss": 1.029614074413593,
+        "main_error": 0.48766526442307695,
+        "aux_error": 0.4928185096153846,
+        "stage": "pretrain",
+        "trigger": "partial_epoch",
+        "time": "2026-09-19T05:12:12.827421+00:00",
+        "epoch": 0,
+        "next_batch": 1000,
+        "global_steps": 1000,
+        "seen_samples": 256000,
+        "elapsed_seconds": 41.46625454723835,
+        "validation_seconds": 1.093593664932996,
+        "selected_best": true
+      },
+      "independent_cpu_replay": {
+        "seconds": 14.357879714109004,
+        "validation": {
+          "shots": 66560,
+          "main_loss": 0.6839889231929059,
+          "aux_loss": 0.6912502994673911,
+          "loss": 1.0296140729266015,
+          "main_errors": 32459,
+          "aux_errors": 32802,
+          "main_error": 0.48766526442307695,
+          "aux_error": 0.4928185096153846
+        },
+        "differences_from_gpu": {
+          "main_loss": -9.998768479846376e-11,
+          "aux_loss": -2.774007579198212e-09,
+          "loss": -1.4869916409310235e-09,
+          "main_error": 0.0,
+          "aux_error": 0.0
+        },
+        "all_model_and_optimizer_tensors_finite": true,
+        "optimizer_iterations": 1000
+      },
+      "checks": {
+        "all_current_source_hashes_match": true,
+        "unchanged_vendor_hashes_match": true,
+        "model_config_matches_native_wrapper": true,
+        "checkpoint_progress_and_identity_match": true,
+        "validation_cache_and_transform_certificates_match": true,
+        "throughput_arithmetic_matches": true,
+        "single_visible_v100": true
+      },
+      "checkpoints": {
+        "best.keras": {
+          "sha256": "1e1183d1e4577d515d6f7c44f563852bdae645284ac09c59f246391d3643aa01",
+          "size_bytes": 11189552
+        },
+        "last.keras": {
+          "sha256": "3cb1eec84351d702bc3b196bf7295d0a0e0c176a34c5bda07752afa527aa15e5",
+          "size_bytes": 11189550
+        }
+      },
+      "source_sha256": {
+        "train.py": "5f904c323f33f8407291948d792b0c9b882c0430322b76fe0dbe1fd73b9460cb",
+        "data.py": "669a7a777af800973b5571e70f4f791d96a7ddd3cd6e6e727a9fcbbaeefa6252",
+        "neural.py": "7300623ede40a6485351341740896dd9eebccd618d8277e2c94c913c29a9c142",
+        "observables.py": "3b3921a86679823743f5fd80e5bde45013a8dde035d669420183c2bf1a8ef8ec",
+        "cache.py": "aa206f0afd5c079a77a00b9ce6fba507cee8c98c01884d77775dc347584fd751"
+      },
+      "manifest_sha256": "629d7772a63507854632db4c3f566b2b70060790abaace8f38d78900a28d7da6",
+      "convergence_established": false
+    }
+  ],
+  "allocated_gpu_hours": 0.030833333333333334,
+  "estimated_ten_group_epoch_gpu_hours_batch_only": 10.65834529727489,
+  "limitations": [
+    "Only one X-basis patch at each distance measured; extrapolation to other groups or GPU types is an estimate.",
+    "Steady throughput excludes first 10 batches, data loading, graph compilation, validation, checkpoint writes, and Slurm startup.",
+    "Pilot consumes less than 0.5% of one training epoch; logical accuracy and convergence are not established.",
+    "Pretraining simulator is the released approximate circuit-level Pauli model, not AlphaQubit Pauli+ leakage simulation."
+  ],
+  "paper_protocol_review": {
+    "source": "https://arxiv.org/html/2307.03280v2",
+    "published_patience": "20 epochs without validation-loss improvement; not 20 timed validation callbacks",
+    "total_training_epochs_reported": false,
+    "training_gpu_hours_reported": false,
+    "published_hardware": "Tesla V100S; reported CPU inference and hypothetical hardware acquisition times are not training timings"
+  },
+  "allocation_recommendation": {
+    "actual_allocated_gpu_hour_ceiling": 384,
+    "retain_primary_training_gpu_hours": 240,
+    "retain_diagnostic_gpu_hours": 16,
+    "retain_adaptation_and_replication_gpu_hours": 48,
+    "retain_evaluation_gpu_hours": 16,
+    "retain_reserve_gpu_hours": 64,
+    "estimated_20_epochs_all_ten_groups_gpu_hours_batch_only": 213.1669059454978,
+    "estimated_24_epochs_all_ten_groups_gpu_hours_batch_only": 255.80028713459734,
+    "decision": "Inspect representative d3/d5 full-epoch validation trends, then continue all groups within cumulative Slurm-accounted limits; use reserve based on learning evidence.",
+    "convergence_guaranteed": false
+  },
+  "simulator_audit": {
+    "same_documented_family": "operation-calibrated approximate circuit-level Pauli noise from the released Google experiment",
+    "sampled_source": "released circuit_noisy.stim with Stim1.15.0",
+    "pilot_noise_instruction_types": [
+      "DEPOLARIZE1",
+      "DEPOLARIZE2",
+      "X_ERROR"
+    ],
+    "shared_physics_omissions": [
+      "leakage",
+      "crosstalk",
+      "stray interactions"
+    ],
+    "original_population_exactly_regenerated": false,
+    "reason": "Original author-generated raw training population/seeds and full scripts not available; released circuit files sampled directly instead of rebuilding with their wrapper.",
+    "zero_sweep_check": {
+      "conditions": [
+        "surface_code_bX_d3_r25_center_3_5",
+        "surface_code_bX_d5_r25_center_5_5"
+      ],
+      "shots_each": 1024,
+      "seed": 144,
+      "initial_states": [
+        "zero",
+        "all_one",
+        "alternating"
+      ],
+      "bitwise_identical_detector_observable_flips": true,
+      "scope": "State-independent Pauli circuit only, not hardware amplitude damping or leakage"
+    },
+    "primary_sources": [
+      "https://arxiv.org/html/2307.03280v2",
+      "https://zenodo.org/records/6804040"
+    ]
+  }
+}

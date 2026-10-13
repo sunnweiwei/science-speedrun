@@ -1,0 +1,20 @@
+{
+ "schema": "benchmark-score-bounds/v1",
+ "track": "pde-surrogate",
+ "metric": "reward, the unweighted mean over the four groups of a log-band map of each group's mean VRMSE (score.py)",
+ "normalisation": "score = clip((reward - lower.reward) / (upper.reward - lower.reward), 0, 1)",
+ "lower": {
+  "reward": 0.28268106229661527,
+  "what": "persistence: repeat the last context frame for every step",
+  "rationale": "a real predictor rather than a degenerate one. Zero prediction scores lower (0.2202) but is not a baseline any submission would fall below by accident.",
+  "source": "docs/validation/trivial_predictors_canonical.json"
+ },
+ "upper": {
+  "reward": 0.4203195852524683,
+  "what": "per-group oracle: the best VRMSE any measured model reached on each group",
+  "achievable_by_a_submission": false,
+  "caveat": "this routes each group to a different model, which environment/contract.md forbids for a submission. The best legal single package measured is 0.3446, which normalises to 0.450. A joint-pool fine-tune was trained specifically to replace this bound with a legal package and came out below the floor (docs/validation/pdet_finetune_joint.json), so the gap is a research gap rather than an unrun baseline.",
+  "source": "docs/validation/score_bounds.json"
+ },
+ "note": "the raw reward has almost no dynamic range: a package that predicts nothing scores 0.2202 and the best legal package 0.3446, so the whole meaningful band is 0.12 wide. The normalised score is what should be compared across tracks; reward.txt keeps the raw value."
+}

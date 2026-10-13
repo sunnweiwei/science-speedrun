@@ -1,0 +1,20 @@
+{
+ "schema": "benchmark-score-bounds/v1",
+ "track": "timeseries-forecasting",
+ "metric": "reward = clip(1 - sqrt(gmean(relative MASE) * gmean(relative WQL)), 0, 1), relative to the leaderboard's own Seasonal Naive row (score.py)",
+ "normalisation": "score = clip((reward - lower.reward) / (upper.reward - lower.reward), 0, 1)",
+ "lower": {
+  "reward": 0.008,
+  "what": "Seasonal Naive, replayed here rather than quoted",
+  "rationale": "the metric is already defined against Seasonal Naive, so its own replay lands just above zero; the residual 0.008 comes from interval widths computed on the 16,384-observation context cap.",
+  "source": "docs/validation/seasonal_naive_replay.json"
+ },
+ "upper": {
+  "reward": 0.4947895445034667,
+  "what": "the best of 130 complete systems on the pinned GIFT-Eval leaderboard snapshot (EXAONE-Forecast-Agent)",
+  "achievable_by_a_submission": true,
+  "note": "unlike the pde-surrogate ceiling this is a real system anyone can submit against. The best non-agentic entry is 0.4723 and the best released zero-shot foundation model is 0.4488.",
+  "source": "docs/validation/leaderboard_snapshot.json"
+ },
+ "note": "the normalised score is what should be compared across tracks; reward.txt keeps the raw value. This track's floor and ceiling are both real systems, so the scale discriminates across its whole range."
+}

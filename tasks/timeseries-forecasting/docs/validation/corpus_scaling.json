@@ -1,0 +1,149 @@
+{
+ "what": "does a TimesFM-3-architecture model gain from more pretraining data? Two runs with the same model and recipe, differing only in the corpus",
+ "model": "TimesFM3Torch (timesfm 3.0.2 code), d_model 768, 14 layers, 12 heads, no variate attention, 50,918,592 parameters, random init",
+ "recipe": "global batch 1024 windows, context 2048, pinball loss on 9 quantiles per 64-step output patch, AdamW 5e-4, 2,000 warm-up steps, cosine over 150,000 steps, 10% KernelSynth, uniform-over-series sampling; 4 H100s per run, run concurrently; stopped at about 75,000 steps once the answer was clear",
+ "runs": {
+  "A_41GB": {
+   "corpus": "81 directories, 41.14 GB, 7.9 G points",
+   "best_valid_step": 25000,
+   "valid_curve": [
+    {
+     "step": 5000,
+     "valid_skill": -0.1687
+    },
+    {
+     "step": 10000,
+     "valid_skill": -0.1609
+    },
+    {
+     "step": 15000,
+     "valid_skill": -0.1481
+    },
+    {
+     "step": 20000,
+     "valid_skill": -0.1298
+    },
+    {
+     "step": 25000,
+     "valid_skill": -0.075
+    },
+    {
+     "step": 30000,
+     "valid_skill": -0.1041
+    },
+    {
+     "step": 35000,
+     "valid_skill": -0.1106
+    },
+    {
+     "step": 40000,
+     "valid_skill": -0.1146
+    },
+    {
+     "step": 45000,
+     "valid_skill": -0.085
+    },
+    {
+     "step": 50000,
+     "valid_skill": -0.0965
+    },
+    {
+     "step": 55000,
+     "valid_skill": -0.0784
+    },
+    {
+     "step": 60000,
+     "valid_skill": -0.1871
+    },
+    {
+     "step": 65000,
+     "valid_skill": -0.115
+    },
+    {
+     "step": 70000,
+     "valid_skill": -0.1273
+    }
+   ],
+   "test": {
+    "reward": 0.206169060173522,
+    "normalised_score": 0.40709391237163417
+   }
+  },
+  "B_273GB": {
+   "corpus": "95 directories, 273.21 GB, 63.2 G points",
+   "best_valid_step": 45000,
+   "valid_curve": [
+    {
+     "step": 5000,
+     "valid_skill": -0.1696
+    },
+    {
+     "step": 10000,
+     "valid_skill": -0.1321
+    },
+    {
+     "step": 15000,
+     "valid_skill": -0.0939
+    },
+    {
+     "step": 20000,
+     "valid_skill": -0.0813
+    },
+    {
+     "step": 25000,
+     "valid_skill": -0.0868
+    },
+    {
+     "step": 30000,
+     "valid_skill": -0.0732
+    },
+    {
+     "step": 35000,
+     "valid_skill": -0.0532
+    },
+    {
+     "step": 40000,
+     "valid_skill": -0.0495
+    },
+    {
+     "step": 45000,
+     "valid_skill": -0.0467
+    },
+    {
+     "step": 50000,
+     "valid_skill": -0.0641
+    },
+    {
+     "step": 55000,
+     "valid_skill": -0.0672
+    },
+    {
+     "step": 60000,
+     "valid_skill": -0.0718
+    },
+    {
+     "step": 65000,
+     "valid_skill": -0.1259
+    },
+    {
+     "step": 70000,
+     "valid_skill": -0.0955
+    },
+    {
+     "step": 75000,
+     "valid_skill": -0.1027
+    }
+   ],
+   "test": {
+    "reward": 0.21675600856297295,
+    "normalised_score": 0.4288424246578827
+   }
+  }
+ },
+ "reference": {
+  "starter_41.8M_28_gpu_hours": 0.2071,
+  "timesfm3_released": 0.4465
+ },
+ "verifier": "tests/test.sh path (sealed, cohort-wise, uid isolation), all 97 configs, 326,490 instances, about 15 min of inference each",
+ "reading": "With 41 GB the validation skill peaked at 25,000 steps and fell while the training loss kept falling (overfitting); with 273 GB it kept improving to 45,000 steps. On test, A at its best checkpoint matches the 41.8M starter (0.206 vs 0.207) at about a tenth of the compute, and B exceeds it (0.217). Both runs drifted after their peaks with the learning rate still high, which motivated source-balanced sampling for the shipped baseline (baseline/timesfm3-50m)."
+}

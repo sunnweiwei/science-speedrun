@@ -1,0 +1,40 @@
+{
+ "name": "chronos_bolt_base_zero_shot",
+ "contract": "timeseries-forecast/v1",
+ "parameters": 205292928,
+ "pretrained_assets": [
+  {
+   "repo": "amazon/chronos-bolt-base",
+   "revision": "5d9f166d69f47aef3401367a7b842e78fe97b121",
+   "license": "Apache-2.0"
+  }
+ ],
+ "sources_used": [],
+ "settings": {
+  "library": "chronos-forecasting==2.3.2",
+  "pipeline": "chronos.ChronosBoltPipeline via BaseChronosPipeline.from_pretrained",
+  "device_map": "cuda:0",
+  "torch_dtype": "float32 (checkpoint default)",
+  "call": "predict_quantiles(context, prediction_length=H, quantile_levels=[0.1..0.9])",
+  "quantile_levels": [
+   0.1,
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6,
+   0.7,
+   0.8,
+   0.9
+  ],
+  "point_forecast": "0.5 quantile (what gluonts uses as the mean of a QuantileForecast)",
+  "model_context_length": 2048,
+  "model_prediction_length": 64,
+  "limit_prediction_length": false,
+  "long_horizon": "pipeline autoregressive quantile-path heuristic for H > 64",
+  "multivariate": "to_univariate: each variate forecast independently",
+  "nan_handling": "passed through to the model as missing observations",
+  "batch_size": 256,
+  "num_samples": null
+ }
+}

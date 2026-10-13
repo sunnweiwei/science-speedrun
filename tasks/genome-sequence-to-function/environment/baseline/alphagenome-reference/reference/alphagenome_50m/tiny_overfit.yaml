@@ -1,0 +1,24 @@
+# Keep the frozen 1-Mb input and every output track; shrink only learned widths.
+input_length: 1048576
+target_length: 196608
+dense_bin_size: 128
+trunk_bin_size: 1024
+contact_bin_size: 2048
+stem_stride: 8
+encoder_width: 8
+channel_growth: 4
+num_downsampling_blocks: 7
+conv_kernel_size: 5
+dna_kernel_size: 15
+hidden_dim: 32
+num_sequence_blocks: 1
+num_attention_heads: 2
+attention_head_dim: 16
+mlp_expansion: 2.0
+dropout: 0.0
+head_hidden_size: 32
+junction_rank: 8
+splice_usage_tracks: 734
+junction_tracks: 734
+contact_tracks: 28
+gradient_checkpointing: false

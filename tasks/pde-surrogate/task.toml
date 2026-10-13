@@ -1,0 +1,49 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/pde-surrogate"
+version = "0.2.0"
+description = "Develop one autoregressive surrogate for 2D time-dependent PDEs on regular grids that generalizes across equations and transfers to unseen physics."
+authors = [{ name = "Deqing Fu" }, { name = "T0-RSI contributors" }]
+keywords = ["model-development", "pde", "scientific-ml", "neural-operator", "surrogate-modeling"]
+
+[metadata]
+data_status = "four public sources pinned to HF commit SHAs (MIT / CC-BY-4.0), every file the split references verified on real downloads (receipt in docs/validation/); the split's derived files published as release pde-surrogate-split-v2 (deqing/ai4sci-pde-surrogate-data, pinned in environment/data/download-source.json, 39 GB), the rest fetched from the pinned upstreams"
+research_starter = "channel-shared residual U-Net trained from scratch on the manifest's training pools; plumbing, not a baseline to beat"
+research_starter_reference_status = "30,000 steps on the canonical pools (19 of 20 datasets present at the time, recorded) and replayed through the sealed verifier (docs/validation/task_trained_baseline.json)"
+initialization = "random; no pretrained assets supplied or permitted"
+contract = "pde-surrogate-rollout/v1"
+primary_metric = "reward (log-band map of the per-group mean VRMSE over the held-out rollouts; see environment/contract.md)"
+primary_metric_direction = "maximize"
+trivial_predictor_spatial_mean_reward = 0.3105
+trivial_predictor_persistence_reward = 0.2827
+external_target = "released PDE-Transformer checkpoints replayed zero-shot under the task protocol: corpus VRMSE 0.4242 (mc-s), 0.3832 (mc-b), 0.3415 (mc-l) on the 850 canonical corpus cases; transfer datasets are zero-shot for them"
+from_scratch_reference = "The Well's CNextU-net recipe, 18.6M parameters, one model per transfer dataset (environment/baseline/cnext_unet): VRMSE 0.6743 / 1.8857 / 0.2978 on the turbulent layer / active matter / PDEArena; best legal single package 0.3446 (docs/validation/well_cnext_pdearena_from_scratch.json)"
+task_starter_reward = 0.3139
+score_bounds = "persistence 0.2827 (floor) to per-group oracle 0.4203 (ceiling, not achievable by one package); the verifier emits the normalised score (environment/evaluation/score_bounds.json)"
+
+[agent]
+timeout_sec = 172800.0
+
+[environment]
+network_mode = "no-network"
+cpus = 16
+memory_mb = 131072
+storage_mb = 409600
+gpus = 1
+gpu_types = ["H100", "A100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 21600.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100", "A100"]
+build_timeout_sec = 7200.0

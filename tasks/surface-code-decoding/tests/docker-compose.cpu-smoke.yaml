@@ -1,0 +1,8 @@
+# Synthetic CI plumbing only; production inference keeps its one-GPU request.
+# !reset is a Docker Compose merge tag, not ordinary YAML.
+services:
+  main:
+    deploy:
+      resources:
+        reservations:
+          devices: !reset []

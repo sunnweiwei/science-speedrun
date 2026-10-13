@@ -1,0 +1,27 @@
+{
+ "schema": "ai4sci-baseline-score/v1",
+ "task": "ai4sci/timeseries-forecasting",
+ "package": "starter-patch-transformer-v3",
+ "protocol": "task test split, all 97 configs, 326,490 instances, sealed cohort-wise verifier (tests/main_verifier.py --manifest environment/data/split.json), Bubblewrap namespace",
+ "reward": 0.15301884549063893,
+ "skill_score": 0.15301884549063893,
+ "rel_mase_gmean": 1.0005501042814509,
+ "rel_wql_gmean": 0.7169826608625436,
+ "n_configs": 97,
+ "n_failed": 0,
+ "source": "docs/validation/task_trained_baseline.json",
+ "scaled_starter": {
+  "package": "starter-patch-transformer-41m",
+  "parameters": 41815296,
+  "reward": 0.20709647991297808,
+  "skill_score": 0.20709647991297808,
+  "rel_mase_gmean": 0.9368059849277725,
+  "rel_wql_gmean": 0.6711058664029166,
+  "n_configs": 97,
+  "n_failed": 0,
+  "gpu_hours_run": 27.6,
+  "checkpoint_step": 560000,
+  "source": "docs/validation/task_starter_scaled_41m.json",
+  "note": "calibration of the headroom claim, not the baseline: the 6.4M starter remains the reference"
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "schema": "pde-surrogate-release-validation/v1",
+ "date": "2026-09-22",
+ "task_version": "0.2.0",
+ "scope": "contributor-machine validation: one A100-40GB shared with another job, Python 3.11 (images: 3.12, same pins), no Docker; native runs of the materializer, grader, verifier driver, starter and reference replays; full quality audit on 2026-09-22",
+ "unit_and_verifier_tests": {
+  "command": "bash pde-surrogate/tests/run_unit_tests.sh",
+  "result": "64 passed, 1 skipped (the uid-drop test needs root)",
+  "note": "pytest only; python -m unittest discover finds no tests"
+ },
+ "materialization": {
+  "receipt": "docs/validation/materialize-receipt-2026-09-16.json",
+  "files": 282,
+  "bytes": 182438635181,
+  "hdf5_trajectories": 13212,
+  "sources": {
+   "ape2d": "53/53 ok",
+   "ape2d-full": "49/49 ok",
+   "well-turbulent_radiative_layer_2D": "28/28 ok",
+   "well-active_matter": "83/83 ok",
+   "pdearena-ns": "69/69 ok"
+  },
+  "note": "verify-only over every locally present file; every SHA-256 matched the upstream LFS digest and every trajectory count read from the file matched the lock"
+ },
+ "grader_reference_check": {
+  "statement": "NumPy VRMSE vs The Well's torch formula (std unbiased, eps in variance, spatial-only reduction)",
+  "max_abs_difference": 8.3e-17
+ },
+ "trivial_predictors_canonical": {
+  "persist": 0.2827,
+  "mean": 0.3105,
+  "zero": 0.2202,
+  "n_cases": 1085
+ },
+ "task_owned_baseline": {
+  "what": "task starter; plumbing, not a baseline to beat",
+  "reward": 0.3139,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "inference_seconds": 245.0,
+  "inference_seconds_note": "measured on the original 1,185-case split",
+  "train_seconds": 2419.1,
+  "weights_sha256": "f057f7428f302b2e8249ac48b3aad4462e85dc1e0a19d6d5141021c0e3f2b755",
+  "training_provenance": "19 of 20 datasets and 2 of 52 PDEArena shards present when it ran (docs/validation/task_trained_baseline.json)",
+  "replayed_on_1085_case_split": {
+   "reward": 0.3139121,
+   "inference_seconds": 156.9,
+   "isolation": "bwrap",
+   "deterministic": true
+  }
+ },
+ "external_targets_canonical_corpus": {
+  "mc-s": {
+   "vrmse": 0.4242
+  },
+  "mc-b": {
+   "vrmse": 0.3832
+  },
+  "mc-l": {
+   "vrmse": 0.3415
+  },
+  "n_cases": 850
+ },
+ "broken_on_purpose": {
+  "wrong_shape": "failed with reason 'wrong shape'",
+  "nan": "failed with reason 'non-finite values'",
+  "missing": "failed with reason 'missing'",
+  "runtime_missing_python_deps": "all cases failed, reward 0, verifier exit 0",
+  "crashing_infer_sh": "scored, exit code recorded",
+  "hanging_infer_sh": "timed out, scored"
+ },
+ "reference_pipelines": {
+  "pde_transformer_zero_shot": "replayed on 950 corpus and 235 transfer cases; corpus numbers recomputed for the 850-case split",
+  "dpot_zero_shot": "replayed on all groups (channel blocks of four)",
+  "well_cnext_recipe": "trainer runs from the pinned the_well clone (ad50de0e) with gradient checkpointing at the published batch size; turbulent_radiative_layer_2D trained from scratch for 200 epochs (best validation loss 2.9513 at epoch 184), packaged and replayed through the sealed verifier on the canonical split: turbulent-layer group VRMSE 0.6743 (docs/validation/well_cnext_trl2d_from_scratch.json); active_matter stopped at the 12-hour cap after 29 of 200 epochs and replayed at VRMSE 1.8857 on its group; the PDEArena conversion needed a dataset-name registration shim (register_local_dataset.py) before The Well's trainer would accept it and replays at VRMSE 0.2978 on its group after 123 of 200 epochs",
+  "pde_transformer_finetune": "upstream's trainer ran the paper recipe on each of the three transfer pools and export_package.py turned the best-validation checkpoint into a contract package around upstream's Supervised.predict. Turbulent layer: epoch 43 of 50 (best validation loss 0.10769 at epoch 42) before the host killed its dataloader, replays at VRMSE 1.1680 on its group (docs/validation/pdet_finetune_trl2d.json). Active matter: 7 of 50 epochs inside a six-hour cap (best 0.01396 at epoch 6), VRMSE 1.6693 (docs/validation/pdet_finetune_active_matter.json), with two deviations the 40 GB card forced - batch 2 with 8 accumulation steps, and upstream's EMA callback removed because it raises at the first optimizer step with a reduced batch. PDEArena Navier-Stokes: 8 of 50 epochs inside the same cap (best 0.01659 at epoch 7), VRMSE 0.7555 (docs/validation/pdet_finetune_pdearena.json), with \"buoyancy\" appended to upstream's constant vocabulary (patch_constant_vocabulary.py; convert_constants raises without it) and test_unrolling_steps cut from 29 to 12 because 14-frame trajectories cannot cut a 30-frame window. Two harness bugs were found and fixed along the way: the package must apply the training pipeline's MeanStdNorm statistics (a first replay without them scored 6.7539), and it must encode Fields and Constants with upstream's fixed vocabularies rather than positionally (positional indices cost 0.66 VRMSE on the turbulent layer and 0.53 on active matter). Both corrections are recorded in the validation JSONs.",
+  "pde_transformer_finetune_joint": "an attempt to find a single package the contract permits that covers more than one group: the same sc-s fine-tuned on all three transfer pools at once, 10 of 50 epochs inside a 12-hour cap (best validation loss 0.02255 at epoch 9), packaged in export_package.py's multi-dataset mode so all three groups get real forecasts. It is worse than the three per-dataset fine-tunes on every group - 2.0060 against 1.1680 on the turbulent layer, 1.8088 against 1.6693 on active matter, 1.2934 against 0.7555 on PDEArena - and its overall reward of 0.2711 (recomputed for the 1,085-case split) is below the persistence floor of 0.2827. The obvious suspect was the 128x128 crop upstream's multi-pool loader forces, and the run's own numbers refute it: PDEArena is natively 128x128 so it was never cropped, and the joint run gave it more passes over its pool than the dedicated run (10 against 8), yet it degraded 1.71x - indistinguishable from the most heavily cropped group. What is left is negative transfer. Recorded in docs/validation/pdet_finetune_joint.json. The track therefore still has no legal package above 0.3446, and the upper bound in docs/validation/score_bounds.json remains an oracle no submission can reproduce."
+ },
+ "not_validated": [
+  "Docker image builds (Dockerfiles, compose overlays and pins written to Harbor's conventions; pins resolve with uv; no Docker here)",
+  "Harbor session / agent pilot",
+  "H100 timing"
+ ],
+ "verifier_modes": {
+  "single_container": "tests/test.sh (Harbor); inference isolated in a Bubblewrap namespace or under uid 10001, mode recorded in reward.json",
+  "phases": "main_verifier.py --phase stage|infer|score for operators; phases exercised natively",
+  "determinism": "three-case rerun under the same isolation, recorded in status.json",
+  "malformed_package": "wrong contract, missing infer.sh, declared pretrained assets, escaping symlinks: reward 0 with the violation named, exit 0",
+  "grader_fault": "non-finite staged truth aborts with exit 2; never a measured 0"
+ },
+ "corrections": [
+  "reduced corpus release is not a prefix of the full release (docs/validation/reduced_vs_full.json); earlier statement withdrawn",
+  "per-simulation domain extents (ks, kdv) now populate case metadata",
+  "2026-09-22: upstream ape2d-full/hyp.hdf5 is a content copy of diff.hdf5; excluded from the split, every corpus number recomputed exactly (docs/validation/drop_duplicate_family.py)",
+  "2026-09-22: release v1 members were written without the sims group attributes; rebuilt as v2 with a reader-level check on every member",
+  "2026-09-22: the task starter run had 19 of 20 datasets and 2 of 52 PDEArena shards; recorded, loader now refuses missing pools; the row is labelled plumbing, not a baseline",
+  "2026-09-22: runtime pins were unsatisfiable (diffusers 0.40.0 vs transformers 4.57.6); diffusers pinned to 0.39.0, the one pin that differs from the contributor's replays",
+  "2026-09-22: compose overlays rewritten to Harbor's main-service convention; verifier image now carries isolation.py, bubblewrap, the runner uid and score_bounds.json"
+ ],
+ "data_release": {
+  "repo": "deqing/ai4sci-pde-surrogate-data",
+  "release_id": "pde-surrogate-split-v2",
+  "revision": "f99c579ead823535878e5022cdddce968956c1a2",
+  "members": 18,
+  "bytes": 39320000000,
+  "verified_from_hub": "anonymous fetch: manifest sha256 matches download-source.json, smallest member's sha256 matches the inventory and opens with pde_io.read_window; leakage check 580 held-out trajectories, 0 collisions (docs/validation/release_leakage.json)",
+  "supersedes": "pde-surrogate-split-v1 @ 5bcba793: members lacked the sims group attributes (unreadable by the task's readers) and carried the duplicated hyp family"
+ }
+}

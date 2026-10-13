@@ -1,0 +1,236 @@
+{
+ "what": "released PDE-Transformer sc-s fine-tuned with the paper's recipe (upstream main.py, separate channels, one-step supervised MSE, EMA 0.999) on the task's PDEArena Navier-Stokes training pool; best-validation checkpoint exported by environment/reference/pde_transformer_finetune/export_package.py and replayed through tests/main_verifier.py",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,185 held-out cases, sealed contract; the model conditions on one frame (upstream sc-s recipe, timesteps=2), so it is given the last of the four context frames; per-dataset model, only the pdearena/navier_stokes_2d group is a real forecast",
+ "training": {
+  "epochs_completed": 8,
+  "epochs_requested": 50,
+  "best_validation_epoch": 7,
+  "best_validation_loss": 0.01659,
+  "stopped_by": "the run's six-hour wall-clock cap (timeout sent SIGTERM during epoch 9); validation loss improved at every one of the eight completed epochs, so this checkpoint is not converged",
+  "initialization": "released sc-s checkpoint (thuerey-group/pde-transformer @ d5889aab), i.e. an external-target reference, not a from-scratch row",
+  "deviations_from_the_recipe": [
+   "\"buoyancy\" appended to upstream's constant vocabulary (environment/reference/pde_transformer_finetune/patch_constant_vocabulary.py): convert_constants raises ValueError without it. Appending is what upstream's own note sanctions - every existing index keeps its meaning, and the class embedding table is sized by num_classes (1000 rows), not by the vocabulary, so the released weights load unchanged and index 36 is an untrained row.",
+   "test_unrolling_steps reduced from 29 to 12: PDEArena trajectories are 14 frames long, so upstream's test dataset cannot cut a 30-frame window. Training and validation use unrolling_steps; upstream's test loop is unused here."
+  ]
+ },
+ "package": {
+  "name": "pde-transformer-sc-s-finetuned-pdearena-navier_stokes_2d",
+  "parameters": 46666780,
+  "context_frames": 1,
+  "pretrained_assets": [
+   "thuerey-group/pde-transformer@d5889aab16b1fe82e82940b612d54a8f0773e542 (sc-s)"
+  ],
+  "sources_used": [
+   "pdearena/navier_stokes_2d (task training pool)"
+  ],
+  "field_classes": [
+   5,
+   1,
+   2
+  ],
+  "constant_names": [
+   "Buoyancy"
+  ],
+  "constant_classes": [
+   36
+  ]
+ },
+ "result": {
+  "reward": 0.3109275199475751,
+  "mean_vrmse": 1.2063,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": {
+    "n_datasets": 16,
+    "vrmse": 1.1878,
+    "reward": 0.30842061808588433
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_datasets": 1,
+    "vrmse": 0.7555,
+    "reward": 0.37391399856604995
+   },
+   "well/active_matter": {
+    "n_datasets": 1,
+    "vrmse": 1.5235,
+    "reward": 0.27238781994648203
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_datasets": 1,
+    "vrmse": 1.3584,
+    "reward": 0.28898764319188414
+   }
+  },
+  "own_group_steps_1_5": 0.7470543102865534,
+  "datasets": {
+   "ape2d/burgers": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.5139153215593075
+   },
+   "ape2d/decay_turb": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0876377342041943
+   },
+   "ape2d/diff": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.6842929294243985
+   },
+   "ape2d/fisher": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 2.7042629562937877
+   },
+   "ape2d/gs_alpha": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.347657487713888
+   },
+   "ape2d/gs_beta": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.6088926575276987
+   },
+   "ape2d/gs_delta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.7358952935210277
+   },
+   "ape2d/gs_epsilon": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.701737377843992
+   },
+   "ape2d/gs_gamma": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.8033791798972509
+   },
+   "ape2d/gs_iota": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.6950130224331375
+   },
+   "ape2d/gs_kappa": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 0.9580198426663117
+   },
+   "ape2d/gs_theta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.687338657537656
+   },
+   "ape2d/kdv": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.33485731611214825
+   },
+   "ape2d/kolm_flow": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.2171370855213588
+   },
+   "ape2d/ks": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0986021185877142
+   },
+   "ape2d/sh": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.8259345529367659
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_cases": 200,
+    "n_failed": 0,
+    "vrmse": 0.7555409437573055
+   },
+   "well/active_matter": {
+    "n_cases": 26,
+    "n_failed": 0,
+    "vrmse": 1.5234792384695126
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_cases": 9,
+    "n_failed": 0,
+    "vrmse": 1.358429394191932
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 188.9
+ },
+ "determinism": {
+  "checked": 3,
+  "rerun_exit_code": 0,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "normalization": {
+  "what": "the fine-tune's data pipeline normalizes with MeanStdNorm (normalize_data: mean-std, normalize_const: mean-std), so the package applies the same statistics, taken from the converted training file, and inverts them on the output",
+  "statistics": {
+   "fields_mean": [
+    0.7171191873802588,
+    -5.866042343738267e-11,
+    -3.2124387072784044e-08
+   ],
+   "fields_std": [
+    0.4311427314235614,
+    0.43644642125528593,
+    0.5074384112254932
+   ],
+   "const_mean": [
+    0.5
+   ],
+   "const_std": [
+    0.0
+   ]
+  },
+  "source": "pbdl/navier_stokes_2d_train.hdf5"
+ },
+ "metadata_classes": {
+  "what": "Fields and Constants are indices into upstream's fixed vocabularies (pdetransformer/data/metadata_remapping.py), encoded with convert_fields / convert_constants, not positionally",
+  "fields": {
+   "Density": 5,
+   "Velocity X": 1,
+   "Velocity Y": 2
+  },
+  "constants": {
+   "Buoyancy": 36
+  }
+ },
+ "interpretation": "0.7555 on its own dataset is far behind the from-scratch CNextU-net (0.2978) and behind DPOT-Ti zero-shot (0.7455), but it is the only one of the three fine-tunes to beat persistence (1.6490) by a wide margin and the only one to beat the spatial-mean control (1.0004). Two effects hold it back: the sc-s recipe conditions on a single frame (timesteps=2) and is trained on a one-step objective, so a 10-step free-running rollout compounds error, while the task supplies four frames; and only 8 of the 50 requested epochs fit in the six-hour cap, with validation loss still falling at the end.",
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json); the per-dataset means come from the run's verifier report.json and are now embedded",
+  "before": {
+   "reward": 0.31184138275353174,
+   "mean_vrmse": 1.1989045479753497,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1581686154826494,
+    "pdearena/navier_stokes_2d": 0.7555409437573055,
+    "well/active_matter": 1.5234792384695126,
+    "well/turbulent_radiative_layer_2D": 1.358429394191932
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 0.6842929294243985,
+     "nrmse_joint": 0.6842981499653845,
+     "vrmse_steps_1_5": 0.18855248722062562,
+     "vrmse_steps_6_12": 0.5018782643086028,
+     "reward": 0.3882526491345688
+    }
+   }
+  }
+ }
+}

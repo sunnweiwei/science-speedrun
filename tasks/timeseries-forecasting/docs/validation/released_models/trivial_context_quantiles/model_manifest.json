@@ -1,0 +1,2 @@
+{"name": "trivial_context_quantiles", "contract": "timeseries-forecast/v1", "parameters": 0, "pretrained_assets": [], "sources_used": [],
+ "note": "trivial control, not a submission: the context's mean and empirical deciles repeated over the horizon"}

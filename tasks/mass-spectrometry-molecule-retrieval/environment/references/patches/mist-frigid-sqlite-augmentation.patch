@@ -1,0 +1,85 @@
+diff --git a/src/mist/data/featurizers.py b/src/mist/data/featurizers.py
+index 19ba0a3..8fc55b3 100644
+--- a/src/mist/data/featurizers.py
++++ b/src/mist/data/featurizers.py
+@@ -14,6 +14,7 @@ import pickle
+ import h5py
+ 
+ import json
++import sqlite3
+ import pandas as pd
+ import numpy as np
+ import torch
+@@ -582,6 +583,10 @@ class PeakFormula(SpecFeaturizer):
+         self.remove_weights = remove_weights
+         self.inten_prob = inten_prob
+         self.forward_aug_folder = forward_aug_folder
++        self.forward_subform_sqlite = None
++        self.forward_subform_names = set()
++        self._forward_sqlite_connection = None
++        self._forward_sqlite_pid = None
+         self.max_peaks = max_peaks
+         self.inten_transform = inten_transform
+ 
+@@ -593,8 +598,25 @@ class PeakFormula(SpecFeaturizer):
+ 
+         if self.forward_labels is not None and self.forward_aug_folder is not None:
+             forward_names = set(pd.read_csv(forward_labels, sep="\t")["spec"].values)
+-            forward_subform_files = list(Path(self.forward_aug_folder).rglob("*.json"))
+-            self.spec_name_to_subform_file.update({i.stem: i for i in tqdm(forward_subform_files, desc="Adding forward spec...", leave=False) if i.stem in forward_names})
++            forward_path = Path(self.forward_aug_folder)
++            if forward_path.is_file() and forward_path.suffix in {".db", ".sqlite"}:
++                self.forward_subform_sqlite = str(forward_path.resolve())
++                self.forward_subform_names = forward_names
++            else:
++                forward_subform_files = list(forward_path.rglob("*.json"))
++                self.spec_name_to_subform_file.update({i.stem: i for i in tqdm(forward_subform_files, desc="Adding forward spec...", leave=False) if i.stem in forward_names})
++
++    def _get_forward_sqlite_connection(self):
++        pid = os.getpid()
++        if self._forward_sqlite_connection is None or self._forward_sqlite_pid != pid:
++            if self._forward_sqlite_connection is not None:
++                self._forward_sqlite_connection.close()
++            uri = f"file:{self.forward_subform_sqlite}?mode=ro&immutable=1"
++            self._forward_sqlite_connection = sqlite3.connect(
++                uri, uri=True, check_same_thread=False
++            )
++            self._forward_sqlite_pid = pid
++        return self._forward_sqlite_connection
+ 
+     def _get_peak_dict(self, spec: data.Spectra) -> dict:
+         """_get_peak_dict.
+@@ -607,13 +629,19 @@ class PeakFormula(SpecFeaturizer):
+         """
+         spec_name = spec.get_spec_name()
+ 
+-        subform_file = Path(self.spec_name_to_subform_file[spec_name])
+-
+-        if not subform_file.exists():
+-            return {}
+-
+-        with open(subform_file, "r") as fp:
+-            tree = json.load(fp)
++        if self.forward_subform_sqlite is not None and spec_name in self.forward_subform_names:
++            result = self._get_forward_sqlite_connection().execute(
++                "SELECT payload FROM subformulae WHERE spec = ?", (spec_name,)
++            ).fetchone()
++            if result is None:
++                return {}
++            tree = json.loads(result[0])
++        else:
++            subform_file = Path(self.spec_name_to_subform_file[spec_name])
++            if not subform_file.exists():
++                return {}
++            with open(subform_file, "r") as fp:
++                tree = json.load(fp)
+ 
+         root_form = tree["cand_form"]
+         root_ion = tree["cand_ion"]
+@@ -1003,4 +1031,4 @@ class PeakFormula(SpecFeaturizer):
+             "instruments": instrument_tensors,
+         }
+ 
+-        return return_dict
+\ No newline at end of file
++        return return_dict

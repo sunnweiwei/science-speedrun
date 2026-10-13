@@ -1,0 +1,9 @@
+submission/
+research/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+data-cache/

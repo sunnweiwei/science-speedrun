@@ -1,0 +1,307 @@
+{
+ "what": "released PDE-Transformer sc-s fine-tuned on ALL THREE transfer pools at once, to test whether a single package that the contract permits can cover more than one group. Packaged by export_package.py in its multi-dataset mode and replayed through tests/main_verifier.py.",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,185 held-out cases, sealed contract. Unlike the per-dataset fine-tunes this package forecasts three of the four groups for real, each with its own MeanStdNorm statistics and its own Fields/Constants vocabulary classes; only the corpus group, which the model never trained on, falls back to persistence.",
+ "result": {
+  "reward": 0.27114986071261293,
+  "mean_vrmse": 1.574,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": {
+    "n_datasets": 16,
+    "vrmse": 1.1878,
+    "reward": 0.30842061808588433
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_datasets": 1,
+    "vrmse": 1.2934,
+    "reward": 0.2960861478097186
+   },
+   "well/active_matter": {
+    "n_datasets": 1,
+    "vrmse": 1.8088,
+    "reward": 0.2475340716037159
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_datasets": 1,
+    "vrmse": 2.006,
+    "reward": 0.23255860535113282
+   }
+  },
+  "datasets": {
+   "ape2d/burgers": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.5139153215593075
+   },
+   "ape2d/decay_turb": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0876377342041943
+   },
+   "ape2d/diff": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.6842929294243985
+   },
+   "ape2d/fisher": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 2.7042629562937877
+   },
+   "ape2d/gs_alpha": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.347657487713888
+   },
+   "ape2d/gs_beta": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.6088926575276987
+   },
+   "ape2d/gs_delta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.7358952935210277
+   },
+   "ape2d/gs_epsilon": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.701737377843992
+   },
+   "ape2d/gs_gamma": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.8033791798972509
+   },
+   "ape2d/gs_iota": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.6950130224331375
+   },
+   "ape2d/gs_kappa": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 0.9580198426663117
+   },
+   "ape2d/gs_theta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.687338657537656
+   },
+   "ape2d/kdv": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.33485731611214825
+   },
+   "ape2d/kolm_flow": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.2171370855213588
+   },
+   "ape2d/ks": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0986021185877142
+   },
+   "ape2d/sh": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.8259345529367659
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_cases": 200,
+    "n_failed": 0,
+    "vrmse": 1.2934259101626038
+   },
+   "well/active_matter": {
+    "n_cases": 26,
+    "n_failed": 0,
+    "vrmse": 1.8088301369643411
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_cases": 9,
+    "n_failed": 0,
+    "vrmse": 2.0059688463944987
+   }
+  }
+ },
+ "training": {
+  "epochs_completed": 10,
+  "epochs_requested": 50,
+  "best_validation_epoch": 9,
+  "best_validation_loss": 0.02255,
+  "stopped_by": "a 12-hour wall-clock cap, twice the per-dataset fine-tunes' budget because this run covers three training pools; validation loss improved at every one of the ten completed epochs",
+  "initialization": "released sc-s checkpoint (thuerey-group/pde-transformer @ d5889aab)",
+  "deviations_from_the_recipe": [
+   "upstream's MultiDataModule with different_resolution_strategy 'crop', which cuts every pool to the smallest common resolution, 128x128. The turbulent layer is natively 128x384 and active matter 256x256, so two of the three pools were trained on crops and then evaluated at full resolution.",
+   "max_channels raised to 11 so batches can mix a 4-channel, an 11-channel and a 3-channel pool.",
+   "\"buoyancy\" appended to upstream's constant vocabulary (patch_constant_vocabulary.py), as for the PDEArena run.",
+   "test_unrolling_steps 12, capped by PDEArena's 14-frame trajectories."
+  ]
+ },
+ "package": {
+  "name": "pde-transformer-sc-s-finetuned-joint",
+  "parameters": 46666780,
+  "context_frames": 1,
+  "pretrained_assets": [
+   "thuerey-group/pde-transformer@d5889aab16b1fe82e82940b612d54a8f0773e542 (sc-s)"
+  ],
+  "sources_used": [
+   "well/turbulent_radiative_layer_2D (task training pool)",
+   "well/active_matter (task training pool)",
+   "pdearena/navier_stokes_2d (task training pool)"
+  ],
+  "per_dataset_metadata": {
+   "well/turbulent_radiative_layer_2D": {
+    "field_classes": [
+     5,
+     6,
+     1,
+     2
+    ],
+    "constant_names": [
+     "Cooling Time"
+    ],
+    "constant_classes": [
+     21
+    ]
+   },
+   "well/active_matter": {
+    "field_classes": [
+     7,
+     1,
+     2,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23
+    ],
+    "constant_names": [
+     "Domain Extent",
+     "Particle Alignment Strength",
+     "Active Dipol Strength"
+    ],
+    "constant_classes": [
+     15,
+     22,
+     23
+    ]
+   },
+   "pdearena/navier_stokes_2d": {
+    "field_classes": [
+     5,
+     1,
+     2
+    ],
+    "constant_names": [
+     "Buoyancy"
+    ],
+    "constant_classes": [
+     36
+    ]
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 296.0
+ },
+ "determinism": {
+  "checked": 3,
+  "rerun_exit_code": 0,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "comparison_with_the_per_dataset_fine_tunes": {
+  "well/turbulent_radiative_layer_2D": {
+   "joint": 2.0059688463944987,
+   "per_dataset": 1.1679947625812475,
+   "joint_is_worse_by": 1.717
+  },
+  "well/active_matter": {
+   "joint": 1.8088301369643411,
+   "per_dataset": 1.6693202934030549,
+   "joint_is_worse_by": 1.084
+  },
+  "pdearena/navier_stokes_2d": {
+   "joint": 1.2934259101626038,
+   "per_dataset": 0.7555409437573055,
+   "joint_is_worse_by": 1.712
+  }
+ },
+ "interpretation": "A negative result, and after checking, an unconfounded one: training one sc-s on all three transfer pools is worse than training three separate ones on every single group - 1.72x worse on the turbulent layer, 1.71x on PDEArena, 1.08x on active matter. Overall reward 0.2721 is below the persistence floor of 0.2836, so as a whole package it does not beat repeating the last frame. The attempt to find a strong legal single model failed, and the task still has no legal package above 0.3455.\n\nThe obvious suspect was the 128x128 crop that upstream's multi-pool loader forces, and it does not survive the run's own numbers (see crop_is_not_the_explanation). PDEArena is natively 128x128, so it was never cropped, and the joint run gave it more passes over its pool than the dedicated run - 10 against 8 - yet it still degraded as much as the most heavily cropped group. What is left is negative transfer: with this recipe, a separate-channel model fine-tuned on several unrelated physics at once is worse at each of them than one fine-tuned on each alone. That is a real finding about the task's difficulty, and it is the strongest argument in the repository that cross-equation generalisation is an open problem rather than a solved one.",
+ "why_this_was_run": "docs/validation/score_bounds.json sets the track's upper bound with a per-group oracle that the contract forbids a submission from reproducing. This run was the attempt to replace it with a legal single package. It did not succeed, so the bound stands as an oracle and the gap between 0.3455 and 0.4216 remains unclaimed - now with evidence that closing it is a research problem, not a matter of running the obvious baseline for longer.",
+ "crop_is_not_the_explanation": {
+  "what": "the first write-up of this run attributed the degradation to the 128x128 crop upstream's multi-pool loader forces. The run's own numbers refute that, and this block records the check.",
+  "crop_target": [
+   128,
+   128
+  ],
+  "per_group": {
+   "well/turbulent_radiative_layer_2D": {
+    "native": [
+     128,
+     384
+    ],
+    "cropped": true,
+    "joint_worse_by": 1.717,
+    "per_dataset_epochs": 43,
+    "joint_epochs": 10
+   },
+   "well/active_matter": {
+    "native": [
+     256,
+     256
+    ],
+    "cropped": true,
+    "joint_worse_by": 1.084,
+    "per_dataset_epochs": 7,
+    "joint_epochs": 10
+   },
+   "pdearena/navier_stokes_2d": {
+    "native": [
+     128,
+     128
+    ],
+    "cropped": false,
+    "joint_worse_by": 1.712,
+    "per_dataset_epochs": 8,
+    "joint_epochs": 10
+   }
+  },
+  "conclusion": "PDEArena is natively 128x128, so the crop target leaves it untouched, and the joint run gave it more passes over its pool than the dedicated run did (10 against 8). It still came out 1.71x worse - indistinguishable from the turbulent layer, which was cropped hardest, at 1.72x. Meanwhile active matter, which was cropped from 256x256, degraded least at 1.08x. There is no monotonic relation between crop severity and damage, and the one group that was neither cropped nor short of epochs degraded as much as any. The crop is therefore not the explanation."
+ },
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json); the per-dataset means come from the run's verifier report.json and are now embedded",
+  "before": {
+   "reward": 0.27206372351856956,
+   "mean_vrmse": 1.5665983772510232,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1581686154826494,
+    "pdearena/navier_stokes_2d": 1.2934259101626038,
+    "well/active_matter": 1.8088301369643411,
+    "well/turbulent_radiative_layer_2D": 2.0059688463944987
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 0.6842929294243985,
+     "nrmse_joint": 0.6842981499653845,
+     "vrmse_steps_1_5": 0.18855248722062562,
+     "vrmse_steps_6_12": 0.5018782643086028,
+     "reward": 0.3882526491345688
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+  "source_repository": "https://github.com/Hossein-D/qrennd",
+  "original_repository": "https://github.com/BorisVarbanov/qrennd",
+  "commit": "c2ed73e3ec6ee843293c8839bf059c63b2960e61",
+  "license": "Apache-2.0",
+  "vendored_at": "2026-09-19",
+  "modifications": [],
+  "files_sha256": {
+    "qrennd/__init__.py": "dac250e5cb662c8a35742a2685b536e2c052fa653abc55b557458b66c7dd5d63",
+    "qrennd/callbacks/__init__.py": "61a390cbf0c14c8777c5611d8326158b427257acd87e2d093b8543d2b3e8744b",
+    "qrennd/callbacks/util.py": "d70c1ed2e479c7cb7539fbe25090b1ae898688ae251c5ca53313adba1d788a02",
+    "qrennd/configs/__init__.py": "5ed117e33c752a1b2107333ea4eb3d1bb7d496b93a165d797a39af39eb5d7f8d",
+    "qrennd/configs/config.py": "ddb4e1cdf64704f0c22e64cb23d32aa4c77100a4579b9ade85e6005afd9b0ce6",
+    "qrennd/datasets/__init__.py": "2aeded419b2e9d2f35288db9a83ccfb3d0e0454a4115b104a5edcfc6e90e8692",
+    "qrennd/datasets/generators.py": "afba9e5348ffb464d617f9d8cf82d1c510bdca4229499c0241757b53c8f78e43",
+    "qrennd/datasets/preprocessing.py": "d9b0247d40cbd2ec4c726b1ca5ea48b4f0e57d2cb99cd30750f7f6ed7d73fc5c",
+    "qrennd/datasets/sequences.py": "3f446c20797ae12e44c1fb0a40d259de8dd9e2dd4a02f5d16774c35a1cd77d0a",
+    "qrennd/datasets/util.py": "9d16c0b42f3da6ead505126f5d63a186185e49c49bd204a82dbff817c3ab8be2",
+    "qrennd/layouts/__init__.py": "d3413c9afe36be8f115f62b16d5baedbcd3982faaa14b0f2a014b8b6bf65f4c7",
+    "qrennd/layouts/layout.py": "9ebe1c33398723616b0e8ed40e773dcf3da8ab0f8734897f2668d71afb115a63",
+    "qrennd/layouts/library.py": "622773cfa33bff1db470a3fa871a117f3a631cf3f40473a88156587878ffc6d1",
+    "qrennd/layouts/plotter.py": "d4521f49baba3321bf577434fc245339aeeb0219367a15b1552705a5c6200498",
+    "qrennd/layouts/util.py": "921b3c2dc44b28be8b40bde5e0413c83b3c0fdc326acedb2ff47cd5056046a80",
+    "qrennd/models/__init__.py": "909cbe60ece1afcc49e47179bc1b6e7a43461c6dd15cb54cfbd165f88db32a06",
+    "qrennd/models/models.py": "e5f74622deef6cf2bdf91d79b809dbd3d90f7869c494f1d1fa80bc807d754bf2",
+    "qrennd/models/networks.py": "42d86a06dd509bb1d5479af311e65cf689c0febda4696c269ce69e98d56b156c",
+    "qrennd/utils/analysis.py": "4637c315aa3db5002f72d37feb9c0f4b30ce45efea95f869dd516696f3b46792",
+    "LICENSE": "ec13fe8b5c657b720ffa7c61247d9e54d0ffe8ac7370064d3f00e16b9d5ae180",
+    "scripts/configs/base_config_google_d3.yaml": "c1acb34b36b3942140136c3a4a2373995ee745907cbfa6b4d34b4d27106e0aca",
+    "scripts/configs/base_config_google_d5.yaml": "1cdd2ee2af29f8b5c0e8fc436fdf276e7534a464b27ba676fd917093a528a438"
+  }
+}

@@ -1,0 +1,56 @@
+# Isolated replay: `main` runs the submission's infer.sh on the public test inputs and seals the
+# predictions into a shared volume; `grader` scores them against the private responses. The
+# private directory is never mounted into `main`, and no container has network access.
+# TASK_DATA_DIR = the release's dev/ tree, TASK_PRIVATE_DIR = its private/ tree (TASK_STANDARD.md).
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build: .
+    network_mode: none
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the release's dev/ tree}/test"
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the release's dev/ tree}/se600m"
+        target: /opt/se600m
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    environment:
+      SE600M_DIR: /opt/se600m
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  grader:
+    build: .
+    network_mode: none
+    command: ["python", "/tests/grader.py", "--sealed", "/sealed/run", "--benchmark", "/benchmark", "--private", "/private", "--output", "/sealed/results"]
+    volumes:
+      - type: bind
+        source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the release's dev/ tree}/test"
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the release's private/ tree}"
+        target: /private
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

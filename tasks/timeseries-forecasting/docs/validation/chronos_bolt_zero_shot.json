@@ -1,0 +1,1352 @@
+{
+ "what": "released checkpoint replayed under the task contract by environment/reference/chronos_bolt_zero_shot with the official GIFT-Eval notebook's settings; scored by evaluation/score.py against the leaderboard's Seasonal Naive normalizer and compared per config with the published CSV (Space @ a5019972)",
+ "protocol": "task test split, all 97 configs, 326,490 instances, 16,384-observation context cap; run directly on the staged split by the maintainers (trusted code), not through the cohort-wise sealed verifier used for submissions",
+ "package": "chronos_bolt_base zero-shot replay (environment/reference/chronos_bolt_zero_shot)",
+ "leaderboard_model": "chronos_bolt_base",
+ "leaderboard_config": {
+  "model": "chronos_bolt_base",
+  "model_type": "pretrained",
+  "model_dtype": "float32",
+  "model_link": "https://huggingface.co/amazon/chronos-bolt-base",
+  "code_link": "https://github.com/SalesforceAIResearch/gift-eval/blob/main/notebooks/chronos.ipynb",
+  "org": "AWS AI Labs",
+  "testdata_leakage": "Yes",
+  "replication_code_available": "Yes"
+ },
+ "n_configs": 97,
+ "task": {
+  "reward": 0.32538353910061146,
+  "skill_score": 0.32538353910061146,
+  "rel_mase_gmean": 0.8095777949262054,
+  "rel_wql_gmean": 0.562153967374933,
+  "n_failed": 0,
+  "quantile_crossing_fraction_mean": 0.015744138600232802
+ },
+ "published": {
+  "rel_mase_gmean": 0.8075916133007893,
+  "rel_wql_gmean": 0.5743040492296164,
+  "reward_from_published": 0.3189690655759301
+ },
+ "deviation": {
+  "mase_max": 0.08516119000173784,
+  "mase_median": 0.00024560000348083287,
+  "wql_max": 0.09956818648157846,
+  "wql_median": 0.00024161183574816913,
+  "n_within_1e-6": 26,
+  "n_over_5pct": 22,
+  "worst_configs": [
+   {
+    "config_id": "solar__T__medium",
+    "leaderboard_key": "solar/10T/medium",
+    "task_mase": 1.0111279449607806,
+    "task_wql": 0.3926730862987808,
+    "published_mase": 1.0267698263919258,
+    "published_wql": 0.43609419436705327,
+    "status": "ok",
+    "rel_dev_mase": 0.015234068073572873,
+    "rel_dev_wql": 0.09956818648157846
+   },
+   {
+    "config_id": "LOOP_SEATTLE__T__long",
+    "leaderboard_key": "loop_seattle/5T/long",
+    "task_mase": 1.2072922390738547,
+    "task_wql": 0.1172437653588711,
+    "published_mase": 1.23862441602075,
+    "published_wql": 0.12901944356768974,
+    "status": "ok",
+    "rel_dev_mase": 0.02529594648840701,
+    "rel_dev_wql": 0.09127057041321496
+   },
+   {
+    "config_id": "SZ_TAXI__T__medium",
+    "leaderboard_key": "sz_taxi/15T/medium",
+    "task_mase": 0.5618130773790927,
+    "task_wql": 0.2222115434885195,
+    "published_mase": 0.5593709400332562,
+    "published_wql": 0.24436162555854513,
+    "status": "ok",
+    "rel_dev_mase": 0.004365863814254178,
+    "rel_dev_wql": 0.09064468293414113
+   },
+   {
+    "config_id": "bitbrains_rnd__T__long",
+    "leaderboard_key": "bitbrains_rnd/5T/long",
+    "task_mase": 3.408327732908986,
+    "task_wql": 0.6877112798712405,
+    "published_mase": 3.397353175638085,
+    "published_wql": 0.7561433967402097,
+    "status": "ok",
+    "rel_dev_mase": 0.003230325698722741,
+    "rel_dev_wql": 0.09050150694165307
+   },
+   {
+    "config_id": "solar__H__long",
+    "leaderboard_key": "solar/H/long",
+    "task_mase": 1.1210127598433859,
+    "task_wql": 0.4190233851378227,
+    "published_mase": 1.0330380133126496,
+    "published_wql": 0.40516637308507697,
+    "status": "ok",
+    "rel_dev_mase": 0.08516119000173784,
+    "rel_dev_wql": 0.03420079496537106
+   },
+   {
+    "config_id": "bitbrains_fast_storage__T__medium",
+    "leaderboard_key": "bitbrains_fast_storage/5T/medium",
+    "task_mase": 1.0479964454738127,
+    "task_wql": 0.6930889595876009,
+    "published_mase": 1.0624395209705737,
+    "published_wql": 0.7554407215441805,
+    "status": "ok",
+    "rel_dev_mase": 0.01359425662513648,
+    "rel_dev_wql": 0.0825369352993412
+   },
+   {
+    "config_id": "jena_weather__T__long",
+    "leaderboard_key": "jena_weather/10T/long",
+    "task_mase": 0.6535617475182541,
+    "task_wql": 0.05865703000996535,
+    "published_mase": 0.6566827497290605,
+    "published_wql": 0.0638386290209679,
+    "status": "ok",
+    "rel_dev_mase": 0.004752678842399994,
+    "rel_dev_wql": 0.08116714112548767
+   },
+   {
+    "config_id": "LOOP_SEATTLE__T__medium",
+    "leaderboard_key": "loop_seattle/5T/medium",
+    "task_mase": 1.1164852487173282,
+    "task_wql": 0.10662197282375602,
+    "published_mase": 1.135585946635922,
+    "published_wql": 0.11596733754582497,
+    "status": "ok",
+    "rel_dev_mase": 0.01682012530639175,
+    "rel_dev_wql": 0.0805861798661722
+   }
+  ]
+ },
+ "groups": {
+  "term": {
+   "long": {
+    "n_configs": 21,
+    "rel_mase_gmean": 0.9396911900596173,
+    "rel_wql_gmean": 0.578999226632978
+   },
+   "medium": {
+    "n_configs": 21,
+    "rel_mase_gmean": 0.9000374157488971,
+    "rel_wql_gmean": 0.5804613753309396
+   },
+   "short": {
+    "n_configs": 55,
+    "rel_mase_gmean": 0.7344807480077369,
+    "rel_wql_gmean": 0.5490920747735067
+   }
+  },
+  "domain": {
+   "Econ/Fin": {
+    "n_configs": 6,
+    "rel_mase_gmean": 0.7990491440938766,
+    "rel_wql_gmean": 0.7620226661621627
+   },
+   "Energy": {
+    "n_configs": 32,
+    "rel_mase_gmean": 0.8505271545639568,
+    "rel_wql_gmean": 0.6233974486558821
+   },
+   "Healthcare": {
+    "n_configs": 5,
+    "rel_mase_gmean": 0.6899436639132246,
+    "rel_wql_gmean": 0.5633360966334526
+   },
+   "Nature": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.6662641347491759,
+    "rel_wql_gmean": 0.3198668341410249
+   },
+   "Sales": {
+    "n_configs": 4,
+    "rel_mase_gmean": 0.6938317959922218,
+    "rel_wql_gmean": 0.42178865080975436
+   },
+   "Transport": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.6909501548641653,
+    "rel_wql_gmean": 0.534143116207166
+   },
+   "Web/CloudOps": {
+    "n_configs": 20,
+    "rel_mase_gmean": 1.050768141586091,
+    "rel_wql_gmean": 0.7301342134530155
+   }
+  },
+  "frequency": {
+   "A": {
+    "n_configs": 1,
+    "rel_mase_gmean": 0.8841657739983793,
+    "rel_wql_gmean": 0.8858100042872611
+   },
+   "D": {
+    "n_configs": 15,
+    "rel_mase_gmean": 0.6847420290458974,
+    "rel_wql_gmean": 0.4361160794233589
+   },
+   "H": {
+    "n_configs": 31,
+    "rel_mase_gmean": 0.6944891782811302,
+    "rel_wql_gmean": 0.44619311316991334
+   },
+   "M": {
+    "n_configs": 5,
+    "rel_mase_gmean": 0.8421235507341125,
+    "rel_wql_gmean": 0.7922600585047032
+   },
+   "Q": {
+    "n_configs": 1,
+    "rel_mase_gmean": 0.7638723595806274,
+    "rel_wql_gmean": 0.7862237841308106
+   },
+   "S": {
+    "n_configs": 6,
+    "rel_mase_gmean": 3.1979448608718317,
+    "rel_wql_gmean": 1.8627527100207737
+   },
+   "T": {
+    "n_configs": 30,
+    "rel_mase_gmean": 0.7944636720100987,
+    "rel_wql_gmean": 0.5767581687658047
+   },
+   "W": {
+    "n_configs": 8,
+    "rel_mase_gmean": 0.7474522409335879,
+    "rel_wql_gmean": 0.5988858658852025
+   }
+  },
+  "variates": {
+   "multivariate": {
+    "n_configs": 43,
+    "rel_mase_gmean": 0.9242378307015751,
+    "rel_wql_gmean": 0.5857605133044024
+   },
+   "univariate": {
+    "n_configs": 54,
+    "rel_mase_gmean": 0.728536846324869,
+    "rel_wql_gmean": 0.5440384521451669
+   }
+  }
+ },
+ "configs": [
+  {
+   "config_id": "m4_yearly__A__short",
+   "leaderboard_key": "m4_yearly/A/short",
+   "task_mase": 3.506561611902856,
+   "task_wql": 0.12148499537818516,
+   "published_mase": 3.5065536413628347,
+   "published_wql": 0.12148547393095581,
+   "status": "ok",
+   "rel_dev_mase": 2.2730409503250783e-06,
+   "rel_dev_wql": 3.939176883969502e-06
+  },
+  {
+   "config_id": "m4_quarterly__Q__short",
+   "leaderboard_key": "m4_quarterly/Q/short",
+   "task_mase": 1.223912329905319,
+   "task_wql": 0.07709236765462232,
+   "published_mase": 1.2239122933946907,
+   "published_wql": 0.07709249547454494,
+   "status": "ok",
+   "rel_dev_mase": 2.983108225605866e-08,
+   "rel_dev_wql": 1.658007330436719e-06
+  },
+  {
+   "config_id": "m4_monthly__M__short",
+   "leaderboard_key": "m4_monthly/M/short",
+   "task_mase": 0.9488311662274556,
+   "task_wql": 0.09380524418870688,
+   "published_mase": 0.9488310602612807,
+   "published_wql": 0.09380530663177639,
+   "status": "ok",
+   "rel_dev_mase": 1.1168076096249015e-07,
+   "rel_dev_wql": 6.656667063823054e-07
+  },
+  {
+   "config_id": "m4_weekly__W__short",
+   "leaderboard_key": "m4_weekly/W/short",
+   "task_mase": 2.0775681894516693,
+   "task_wql": 0.03816797195559372,
+   "published_mase": 2.077568679616644,
+   "published_wql": 0.038167982341959686,
+   "status": "ok",
+   "rel_dev_mase": 2.3593201978847546e-07,
+   "rel_dev_wql": 2.7212247887819256e-07
+  },
+  {
+   "config_id": "m4_daily__D__short",
+   "leaderboard_key": "m4_daily/D/short",
+   "task_mase": 3.198454215269608,
+   "task_wql": 0.021064423220620798,
+   "published_mase": 3.198472027009148,
+   "published_wql": 0.021064453825511368,
+   "status": "ok",
+   "rel_dev_mase": 5.568827674519666e-06,
+   "rel_dev_wql": 1.4529164071028787e-06
+  },
+  {
+   "config_id": "m4_hourly__H__short",
+   "leaderboard_key": "m4_hourly/H/short",
+   "task_mase": 0.8365255648735875,
+   "task_wql": 0.02531671942366565,
+   "published_mase": 0.8365145126402084,
+   "published_wql": 0.0253167358885586,
+   "status": "ok",
+   "rel_dev_mase": 1.3212243436491795e-05,
+   "rel_dev_wql": 6.503560737445731e-07
+  },
+  {
+   "config_id": "electricity__T__short",
+   "leaderboard_key": "electricity/15T/short",
+   "task_mase": 0.9354545782728645,
+   "task_wql": 0.08170517542202298,
+   "published_mase": 0.9354659393109583,
+   "published_wql": 0.08170543871710868,
+   "status": "ok",
+   "rel_dev_mase": 1.2144790757659425e-05,
+   "rel_dev_wql": 3.222491548179938e-06
+  },
+  {
+   "config_id": "electricity__T__medium",
+   "leaderboard_key": "electricity/15T/medium",
+   "task_mase": 0.8661241221503703,
+   "task_wql": 0.07995345278762706,
+   "published_mase": 0.8616317535149881,
+   "published_wql": 0.08272175294927747,
+   "status": "ok",
+   "rel_dev_mase": 0.005213791874609708,
+   "rel_dev_wql": 0.03346520187196536
+  },
+  {
+   "config_id": "electricity__T__long",
+   "leaderboard_key": "electricity/15T/long",
+   "task_mase": 0.9460762929885754,
+   "task_wql": 0.08116656001536374,
+   "published_mase": 0.9325404633386237,
+   "published_wql": 0.0841752118446624,
+   "status": "ok",
+   "rel_dev_mase": 0.014515005173600255,
+   "rel_dev_wql": 0.035742729520548744
+  },
+  {
+   "config_id": "electricity__H__short",
+   "leaderboard_key": "electricity/H/short",
+   "task_mase": 0.8733197420660026,
+   "task_wql": 0.06364121172758021,
+   "published_mase": 0.8733264036372806,
+   "published_wql": 0.06364138000128299,
+   "status": "ok",
+   "rel_dev_mase": 7.62781389672783e-06,
+   "rel_dev_wql": 2.6440926135496604e-06
+  },
+  {
+   "config_id": "electricity__H__medium",
+   "leaderboard_key": "electricity/H/medium",
+   "task_mase": 1.0819114991377174,
+   "task_wql": 0.07763329599083225,
+   "published_mase": 1.0781065063092021,
+   "published_wql": 0.08104565793637458,
+   "status": "ok",
+   "rel_dev_mase": 0.0035293292510972405,
+   "rel_dev_wql": 0.042104192037298586
+  },
+  {
+   "config_id": "electricity__H__long",
+   "leaderboard_key": "electricity/H/long",
+   "task_mase": 1.2424087755291622,
+   "task_wql": 0.09199417540456069,
+   "published_mase": 1.2375023517676198,
+   "published_wql": 0.09777151298548634,
+   "status": "ok",
+   "rel_dev_mase": 0.003964779343274908,
+   "rel_dev_wql": 0.05909019308909808
+  },
+  {
+   "config_id": "electricity__D__short",
+   "leaderboard_key": "electricity/D/short",
+   "task_mase": 1.4478177011015343,
+   "task_wql": 0.05529138064036814,
+   "published_mase": 1.4477947352519283,
+   "published_wql": 0.05529138917604606,
+   "status": "ok",
+   "rel_dev_mase": 1.5862642021585914e-05,
+   "rel_dev_wql": 1.543762609081872e-07
+  },
+  {
+   "config_id": "electricity__W__short",
+   "leaderboard_key": "electricity/W/short",
+   "task_mase": 1.4764759961712177,
+   "task_wql": 0.04732854071675926,
+   "published_mase": 1.4765609337319943,
+   "published_wql": 0.047328617677214094,
+   "status": "ok",
+   "rel_dev_mase": 5.752391170330137e-05,
+   "rel_dev_wql": 1.626087103583478e-06
+  },
+  {
+   "config_id": "solar__T__short",
+   "leaderboard_key": "solar/10T/short",
+   "task_mase": 0.9900459784002376,
+   "task_wql": 0.5111558671512976,
+   "published_mase": 0.9906698531781523,
+   "published_wql": 0.5112793983053023,
+   "status": "ok",
+   "rel_dev_mase": 0.0006297504419996819,
+   "rel_dev_wql": 0.00024161183574816913
+  },
+  {
+   "config_id": "solar__T__medium",
+   "leaderboard_key": "solar/10T/medium",
+   "task_mase": 1.0111279449607806,
+   "task_wql": 0.3926730862987808,
+   "published_mase": 1.0267698263919258,
+   "published_wql": 0.43609419436705327,
+   "status": "ok",
+   "rel_dev_mase": 0.015234068073572873,
+   "rel_dev_wql": 0.09956818648157846
+  },
+  {
+   "config_id": "solar__T__long",
+   "leaderboard_key": "solar/10T/long",
+   "task_mase": 1.0918080588487977,
+   "task_wql": 0.40928789420574474,
+   "published_mase": 1.070707661285413,
+   "published_wql": 0.44302118332719465,
+   "status": "ok",
+   "rel_dev_mase": 0.019706964212858242,
+   "rel_dev_wql": 0.0761437384734176
+  },
+  {
+   "config_id": "solar__H__short",
+   "leaderboard_key": "solar/H/short",
+   "task_mase": 0.8129376085383064,
+   "task_wql": 0.297715099471875,
+   "published_mase": 0.8127238219965786,
+   "published_wql": 0.29793090412510526,
+   "status": "ok",
+   "rel_dev_mase": 0.0002630494344347868,
+   "rel_dev_wql": 0.0007243446391167747
+  },
+  {
+   "config_id": "solar__H__medium",
+   "leaderboard_key": "solar/H/medium",
+   "task_mase": 0.9685811159371084,
+   "task_wql": 0.3684755466449744,
+   "published_mase": 0.9311501639034304,
+   "published_wql": 0.36847200844008293,
+   "status": "ok",
+   "rel_dev_mase": 0.04019862046392759,
+   "rel_dev_wql": 9.602370900414347e-06
+  },
+  {
+   "config_id": "solar__H__long",
+   "leaderboard_key": "solar/H/long",
+   "task_mase": 1.1210127598433859,
+   "task_wql": 0.4190233851378227,
+   "published_mase": 1.0330380133126496,
+   "published_wql": 0.40516637308507697,
+   "status": "ok",
+   "rel_dev_mase": 0.08516119000173784,
+   "rel_dev_wql": 0.03420079496537106
+  },
+  {
+   "config_id": "solar__D__short",
+   "leaderboard_key": "solar/D/short",
+   "task_mase": 0.9817721350221822,
+   "task_wql": 0.2873627103006434,
+   "published_mase": 0.9817721336259709,
+   "published_wql": 0.2873626901713163,
+   "status": "ok",
+   "rel_dev_mase": 1.4221337211556062e-09,
+   "rel_dev_wql": 7.004850588659737e-08
+  },
+  {
+   "config_id": "solar__W__short",
+   "leaderboard_key": "solar/W/short",
+   "task_mase": 0.97969149551251,
+   "task_wql": 0.13257860287778678,
+   "published_mase": 0.97969148428518,
+   "published_wql": 0.1325786066309884,
+   "status": "ok",
+   "rel_dev_mase": 1.1460066903422772e-08,
+   "rel_dev_wql": 2.8309255210825727e-08
+  },
+  {
+   "config_id": "hospital__M__short",
+   "leaderboard_key": "hospital/M/short",
+   "task_mase": 0.7912515539233885,
+   "task_wql": 0.05705877408798213,
+   "published_mase": 0.7912515472623598,
+   "published_wql": 0.05705877540658718,
+   "status": "ok",
+   "rel_dev_mase": 8.41834528051209e-09,
+   "rel_dev_wql": 2.3109592558563323e-08
+  },
+  {
+   "config_id": "covid_deaths__D__short",
+   "leaderboard_key": "covid_deaths/D/short",
+   "task_mase": 38.841943471957826,
+   "task_wql": 0.04704697741252831,
+   "published_mase": 38.85475067368658,
+   "published_wql": 0.047047327147045126,
+   "status": "ok",
+   "rel_dev_mase": 0.0003296173957288679,
+   "rel_dev_wql": 7.433674515153483e-06
+  },
+  {
+   "config_id": "us_births__D__short",
+   "leaderboard_key": "us_births/D/short",
+   "task_mase": 0.48474667358372037,
+   "task_wql": 0.025892523274333515,
+   "published_mase": 0.48474672443743816,
+   "published_wql": 0.025892524542398664,
+   "status": "ok",
+   "rel_dev_mase": 1.0490781108703739e-07,
+   "rel_dev_wql": 4.897417968402102e-08
+  },
+  {
+   "config_id": "us_births__M__short",
+   "leaderboard_key": "us_births/M/short",
+   "task_mase": 0.9239897182780835,
+   "task_wql": 0.019450310421730174,
+   "published_mase": 0.9239889802447854,
+   "published_wql": 0.019450303321803628,
+   "status": "ok",
+   "rel_dev_mase": 7.987468616201757e-07,
+   "rel_dev_wql": 3.6502909124457067e-07
+  },
+  {
+   "config_id": "us_births__W__short",
+   "leaderboard_key": "us_births/W/short",
+   "task_mase": 1.0875001963189639,
+   "task_wql": 0.012896097087752585,
+   "published_mase": 1.0874998159877778,
+   "published_wql": 0.012896095320187225,
+   "status": "ok",
+   "rel_dev_mase": 3.4972988547601314e-07,
+   "rel_dev_wql": 1.370620576087349e-07
+  },
+  {
+   "config_id": "saugeenday__D__short",
+   "leaderboard_key": "saugeen/D/short",
+   "task_mase": 2.839917633998132,
+   "task_wql": 0.3379907217460267,
+   "published_mase": 2.8399177714952515,
+   "published_wql": 0.3379907529141502,
+   "status": "ok",
+   "rel_dev_mase": 4.8415880504692415e-08,
+   "rel_dev_wql": 9.221590607972905e-08
+  },
+  {
+   "config_id": "saugeenday__M__short",
+   "leaderboard_key": "saugeen/M/short",
+   "task_mase": 0.7388575242003677,
+   "task_wql": 0.29617086758235267,
+   "published_mase": 0.738857520702777,
+   "published_wql": 0.2961708904466834,
+   "status": "ok",
+   "rel_dev_mase": 4.733782310575737e-09,
+   "rel_dev_wql": 7.719979053999933e-08
+  },
+  {
+   "config_id": "saugeenday__W__short",
+   "leaderboard_key": "saugeen/W/short",
+   "task_mase": 1.2161415115225485,
+   "task_wql": 0.36272520106287864,
+   "published_mase": 1.216141423836244,
+   "published_wql": 0.36272517609118204,
+   "status": "ok",
+   "rel_dev_mase": 7.210206208014056e-08,
+   "rel_dev_wql": 6.884467427524841e-08
+  },
+  {
+   "config_id": "temperature_rain_with_missing__D__short",
+   "leaderboard_key": "temperature_rain/D/short",
+   "task_mase": 1.3041199722787051,
+   "task_wql": 0.5376838689149532,
+   "published_mase": 1.3042159951025352,
+   "published_wql": 0.5377152361648299,
+   "status": "ok",
+   "rel_dev_mase": 7.362493957335954e-05,
+   "rel_dev_wql": 5.8334314832411634e-05
+  },
+  {
+   "config_id": "kdd_cup_2018_with_missing__H__short",
+   "leaderboard_key": "kdd_cup_2018/H/short",
+   "task_mase": 0.6006880409595878,
+   "task_wql": 0.24642580116228066,
+   "published_mase": 0.6006888731041619,
+   "published_wql": 0.2464258780339759,
+   "status": "ok",
+   "rel_dev_mase": 1.3853171105456564e-06,
+   "rel_dev_wql": 3.119465205716695e-07
+  },
+  {
+   "config_id": "kdd_cup_2018_with_missing__H__medium",
+   "leaderboard_key": "kdd_cup_2018/H/medium",
+   "task_mase": 0.7007764457463236,
+   "task_wql": 0.29317670195335516,
+   "published_mase": 0.6998676270323146,
+   "published_wql": 0.301134325458312,
+   "status": "ok",
+   "rel_dev_mase": 0.0012985580114094613,
+   "rel_dev_wql": 0.026425494645440046
+  },
+  {
+   "config_id": "kdd_cup_2018_with_missing__H__long",
+   "leaderboard_key": "kdd_cup_2018/H/long",
+   "task_mase": 0.6892237258478432,
+   "task_wql": 0.2930382834010496,
+   "published_mase": 0.6843417636819901,
+   "published_wql": 0.2999840609021186,
+   "status": "ok",
+   "rel_dev_mase": 0.007133807148619016,
+   "rel_dev_wql": 0.023153821840338824
+  },
+  {
+   "config_id": "kdd_cup_2018_with_missing__D__short",
+   "leaderboard_key": "kdd_cup_2018/D/short",
+   "task_mase": 1.1967440043278141,
+   "task_wql": 0.3724987537351738,
+   "published_mase": 1.196744014676586,
+   "published_wql": 0.3724987443837408,
+   "status": "ok",
+   "rel_dev_mase": 8.647439813827925e-09,
+   "rel_dev_wql": 2.510460278814182e-08
+  },
+  {
+   "config_id": "car_parts_with_missing__M__short",
+   "leaderboard_key": "car_parts/M/short",
+   "task_mase": 0.854872972806264,
+   "task_wql": 0.9944365488193606,
+   "published_mase": 0.8550865270441237,
+   "published_wql": 0.9945303246497433,
+   "status": "ok",
+   "rel_dev_mase": 0.00024974576385614934,
+   "rel_dev_wql": 9.429157468451396e-05
+  },
+  {
+   "config_id": "restaurant__D__short",
+   "leaderboard_key": "restaurant/D/short",
+   "task_mase": 0.7003667442715084,
+   "task_wql": 0.2639517346789421,
+   "published_mase": 0.7003668206803989,
+   "published_wql": 0.26395200093744947,
+   "status": "ok",
+   "rel_dev_mase": 1.090983871477829e-07,
+   "rel_dev_wql": 1.0087383554871243e-06
+  },
+  {
+   "config_id": "hierarchical_sales__D__short",
+   "leaderboard_key": "hierarchical_sales/D/short",
+   "task_mase": 0.7428192327117367,
+   "task_wql": 0.576116305415282,
+   "published_mase": 0.7428404024355978,
+   "published_wql": 0.576118902500872,
+   "status": "ok",
+   "rel_dev_mase": 2.8498347413138466e-05,
+   "rel_dev_wql": 4.5078985930759415e-06
+  },
+  {
+   "config_id": "hierarchical_sales__W__short",
+   "leaderboard_key": "hierarchical_sales/W/short",
+   "task_mase": 0.7326525997087462,
+   "task_wql": 0.35256674027215956,
+   "published_mase": 0.7327021603941902,
+   "published_wql": 0.35259572439427067,
+   "status": "ok",
+   "rel_dev_mase": 6.764097081053439e-05,
+   "rel_dev_wql": 8.220213719522812e-05
+  },
+  {
+   "config_id": "LOOP_SEATTLE__T__short",
+   "leaderboard_key": "loop_seattle/5T/short",
+   "task_mase": 0.6275878479367392,
+   "task_wql": 0.0545992755982255,
+   "published_mase": 0.6275878697418952,
+   "published_wql": 0.05459927977006243,
+   "status": "ok",
+   "rel_dev_mase": 3.474438730484004e-08,
+   "rel_dev_wql": 7.640827771052965e-08
+  },
+  {
+   "config_id": "LOOP_SEATTLE__T__medium",
+   "leaderboard_key": "loop_seattle/5T/medium",
+   "task_mase": 1.1164852487173282,
+   "task_wql": 0.10662197282375602,
+   "published_mase": 1.135585946635922,
+   "published_wql": 0.11596733754582497,
+   "status": "ok",
+   "rel_dev_mase": 0.01682012530639175,
+   "rel_dev_wql": 0.0805861798661722
+  },
+  {
+   "config_id": "LOOP_SEATTLE__T__long",
+   "leaderboard_key": "loop_seattle/5T/long",
+   "task_mase": 1.2072922390738547,
+   "task_wql": 0.1172437653588711,
+   "published_mase": 1.23862441602075,
+   "published_wql": 0.12901944356768974,
+   "status": "ok",
+   "rel_dev_mase": 0.02529594648840701,
+   "rel_dev_wql": 0.09127057041321496
+  },
+  {
+   "config_id": "LOOP_SEATTLE__H__short",
+   "leaderboard_key": "loop_seattle/H/short",
+   "task_mase": 0.8995834120639922,
+   "task_wql": 0.06500783242265007,
+   "published_mase": 0.8995769713002476,
+   "published_wql": 0.06501008349885687,
+   "status": "ok",
+   "rel_dev_mase": 7.159769480597713e-06,
+   "rel_dev_wql": 3.4626569997239326e-05
+  },
+  {
+   "config_id": "LOOP_SEATTLE__H__medium",
+   "leaderboard_key": "loop_seattle/H/medium",
+   "task_mase": 1.0541717577073,
+   "task_wql": 0.07502345003408215,
+   "published_mase": 1.0186663947682364,
+   "published_wql": 0.07619103546074145,
+   "status": "ok",
+   "rel_dev_mase": 0.03485475040839219,
+   "rel_dev_wql": 0.015324446236997519
+  },
+  {
+   "config_id": "LOOP_SEATTLE__H__long",
+   "leaderboard_key": "loop_seattle/H/long",
+   "task_mase": 1.0269363989042806,
+   "task_wql": 0.07346696182748373,
+   "published_mase": 0.995631330117142,
+   "published_wql": 0.07587557812236922,
+   "status": "ok",
+   "rel_dev_mase": 0.03144243038580891,
+   "rel_dev_wql": 0.03174428919672901
+  },
+  {
+   "config_id": "LOOP_SEATTLE__D__short",
+   "leaderboard_key": "loop_seattle/D/short",
+   "task_mase": 0.9029968543716478,
+   "task_wql": 0.04373420401406384,
+   "published_mase": 0.902996881730335,
+   "published_wql": 0.04373420875712694,
+   "status": "ok",
+   "rel_dev_mase": 3.029765413162756e-08,
+   "rel_dev_wql": 1.0845201586559893e-07
+  },
+  {
+   "config_id": "SZ_TAXI__T__short",
+   "leaderboard_key": "sz_taxi/15T/short",
+   "task_mase": 0.5480561325180717,
+   "task_wql": 0.2019092825912209,
+   "published_mase": 0.5480560313979771,
+   "published_wql": 0.2019092854571707,
+   "status": "ok",
+   "rel_dev_mase": 1.8450685484310605e-07,
+   "rel_dev_wql": 1.419424472883915e-08
+  },
+  {
+   "config_id": "SZ_TAXI__T__medium",
+   "leaderboard_key": "sz_taxi/15T/medium",
+   "task_mase": 0.5618130773790927,
+   "task_wql": 0.2222115434885195,
+   "published_mase": 0.5593709400332562,
+   "published_wql": 0.24436162555854513,
+   "status": "ok",
+   "rel_dev_mase": 0.004365863814254178,
+   "rel_dev_wql": 0.09064468293414113
+  },
+  {
+   "config_id": "SZ_TAXI__T__long",
+   "leaderboard_key": "sz_taxi/15T/long",
+   "task_mase": 0.5477808883187604,
+   "task_wql": 0.22879479966781174,
+   "published_mase": 0.5454542094286499,
+   "published_wql": 0.24847311180086307,
+   "status": "ok",
+   "rel_dev_mase": 0.0042655805930027595,
+   "rel_dev_wql": 0.07919694807389203
+  },
+  {
+   "config_id": "SZ_TAXI__H__short",
+   "leaderboard_key": "sz_taxi/H/short",
+   "task_mase": 0.5624312689901887,
+   "task_wql": 0.13589458121535336,
+   "published_mase": 0.5624312720355508,
+   "published_wql": 0.13589458238301488,
+   "status": "ok",
+   "rel_dev_mase": 5.414638596830477e-09,
+   "rel_dev_wql": 8.592406721087261e-09
+  },
+  {
+   "config_id": "M_DENSE__H__short",
+   "leaderboard_key": "m_dense/H/short",
+   "task_mase": 0.7753655315045297,
+   "task_wql": 0.12502468856205706,
+   "published_mase": 0.7753901744575882,
+   "published_wql": 0.12502506245177236,
+   "status": "ok",
+   "rel_dev_mase": 3.178135843122234e-05,
+   "rel_dev_wql": 2.990518124664941e-06
+  },
+  {
+   "config_id": "M_DENSE__H__medium",
+   "leaderboard_key": "m_dense/H/medium",
+   "task_mase": 0.9061616357405337,
+   "task_wql": 0.1554329009416494,
+   "published_mase": 0.880549541091933,
+   "published_wql": 0.1572970574487073,
+   "status": "ok",
+   "rel_dev_mase": 0.029086489122281758,
+   "rel_dev_wql": 0.011851184868259729
+  },
+  {
+   "config_id": "M_DENSE__H__long",
+   "leaderboard_key": "m_dense/H/long",
+   "task_mase": 0.9935392531192082,
+   "task_wql": 0.17068626317705382,
+   "published_mase": 0.9382430465794104,
+   "published_wql": 0.1698264565139523,
+   "status": "ok",
+   "rel_dev_mase": 0.058935908708722534,
+   "rel_dev_wql": 0.0050628546384989806
+  },
+  {
+   "config_id": "M_DENSE__D__short",
+   "leaderboard_key": "m_dense/D/short",
+   "task_mase": 0.7163139664595245,
+   "task_wql": 0.06899769250944471,
+   "published_mase": 0.7163139371946142,
+   "published_wql": 0.06899769121814445,
+   "status": "ok",
+   "rel_dev_mase": 4.085486649540783e-08,
+   "rel_dev_wql": 1.8715122757963616e-08
+  },
+  {
+   "config_id": "ett1__T__short",
+   "leaderboard_key": "ett1/15T/short",
+   "task_mase": 0.679655254613476,
+   "task_wql": 0.15788064795123224,
+   "published_mase": 0.6796552542631137,
+   "published_wql": 0.1578806550030958,
+   "status": "ok",
+   "rel_dev_mase": 5.155000164192506e-10,
+   "rel_dev_wql": 4.466578609755727e-08
+  },
+  {
+   "config_id": "ett1__T__medium",
+   "leaderboard_key": "ett1/15T/medium",
+   "task_mase": 1.0543847165798668,
+   "task_wql": 0.2616599849691101,
+   "published_mase": 1.0612801257404525,
+   "published_wql": 0.2809206587976533,
+   "status": "ok",
+   "rel_dev_mase": 0.006497256467301525,
+   "rel_dev_wql": 0.06856268211451359
+  },
+  {
+   "config_id": "ett1__T__long",
+   "leaderboard_key": "ett1/15T/long",
+   "task_mase": 1.1258696302867588,
+   "task_wql": 0.28031962428858687,
+   "published_mase": 1.135765942659644,
+   "published_wql": 0.29778529275379945,
+   "status": "ok",
+   "rel_dev_mase": 0.008713337846450004,
+   "rel_dev_wql": 0.05865188405947471
+  },
+  {
+   "config_id": "ett1__H__short",
+   "leaderboard_key": "ett1/H/short",
+   "task_mase": 0.8278840464413812,
+   "task_wql": 0.18108740769472656,
+   "published_mase": 0.8278840489960693,
+   "published_wql": 0.18108741060279723,
+   "status": "ok",
+   "rel_dev_mase": 3.0858041289538757e-09,
+   "rel_dev_wql": 1.605893343704789e-08
+  },
+  {
+   "config_id": "ett1__H__medium",
+   "leaderboard_key": "ett1/H/medium",
+   "task_mase": 1.36154684294851,
+   "task_wql": 0.2786252722134457,
+   "published_mase": 1.3747702140570217,
+   "published_wql": 0.3027433819894267,
+   "status": "ok",
+   "rel_dev_mase": 0.009618604602647591,
+   "rel_dev_wql": 0.07966519240649603
+  },
+  {
+   "config_id": "ett1__H__long",
+   "leaderboard_key": "ett1/H/long",
+   "task_mase": 1.3456151923772675,
+   "task_wql": 0.28682765446271163,
+   "published_mase": 1.354382701582919,
+   "published_wql": 0.3109441363499663,
+   "status": "ok",
+   "rel_dev_mase": 0.006473435606793182,
+   "rel_dev_wql": 0.07755888942093342
+  },
+  {
+   "config_id": "ett1__D__short",
+   "leaderboard_key": "ett1/D/short",
+   "task_mase": 1.6723194592579758,
+   "task_wql": 0.2873093922082634,
+   "published_mase": 1.6723194113856175,
+   "published_wql": 0.28730938365699826,
+   "status": "ok",
+   "rel_dev_mase": 2.8626324596724284e-08,
+   "rel_dev_wql": 2.9763264365363607e-08
+  },
+  {
+   "config_id": "ett1__W__short",
+   "leaderboard_key": "ett1/W/short",
+   "task_mase": 1.697032624129633,
+   "task_wql": 0.29578920049566165,
+   "published_mase": 1.697032566940297,
+   "published_wql": 0.2957891883410253,
+   "status": "ok",
+   "rel_dev_mase": 3.369961015932805e-08,
+   "rel_dev_wql": 4.1092226599382266e-08
+  },
+  {
+   "config_id": "ett2__T__short",
+   "leaderboard_key": "ett2/15T/short",
+   "task_mase": 0.7660486672230322,
+   "task_wql": 0.06655958524304978,
+   "published_mase": 0.7660546833993936,
+   "published_wql": 0.06655960283039539,
+   "status": "ok",
+   "rel_dev_mase": 7.853455493184971e-06,
+   "rel_dev_wql": 2.6423453355715764e-07
+  },
+  {
+   "config_id": "ett2__T__medium",
+   "leaderboard_key": "ett2/15T/medium",
+   "task_mase": 0.9243725071593537,
+   "task_wql": 0.10217266379901266,
+   "published_mase": 0.9223355700407027,
+   "published_wql": 0.11037062915529153,
+   "status": "ok",
+   "rel_dev_mase": 0.0022084555608770026,
+   "rel_dev_wql": 0.07427669316575453
+  },
+  {
+   "config_id": "ett2__T__long",
+   "leaderboard_key": "ett2/15T/long",
+   "task_mase": 0.945599366406114,
+   "task_wql": 0.10505995221552593,
+   "published_mase": 0.9399972036761723,
+   "published_wql": 0.11144151661356012,
+   "status": "ok",
+   "rel_dev_mase": 0.005959765314229132,
+   "rel_dev_wql": 0.057263797119373475
+  },
+  {
+   "config_id": "ett2__H__short",
+   "leaderboard_key": "ett2/H/short",
+   "task_mase": 0.7329298534133337,
+   "task_wql": 0.06338550289444884,
+   "published_mase": 0.7329295674936381,
+   "published_wql": 0.06338550778288533,
+   "status": "ok",
+   "rel_dev_mase": 3.901052819631334e-07,
+   "rel_dev_wql": 7.712230539638744e-08
+  },
+  {
+   "config_id": "ett2__H__medium",
+   "leaderboard_key": "ett2/H/medium",
+   "task_mase": 1.0500628713756501,
+   "task_wql": 0.10980847150192023,
+   "published_mase": 1.0272940455036863,
+   "published_wql": 0.11465361726312787,
+   "status": "ok",
+   "rel_dev_mase": 0.022163883818483717,
+   "rel_dev_wql": 0.04225898734697674
+  },
+  {
+   "config_id": "ett2__H__long",
+   "leaderboard_key": "ett2/H/long",
+   "task_mase": 1.0718659928169325,
+   "task_wql": 0.11364275448822823,
+   "published_mase": 1.0364106818165182,
+   "published_wql": 0.11690447869172055,
+   "status": "ok",
+   "rel_dev_mase": 0.03420971205957831,
+   "rel_dev_wql": 0.027900763426639504
+  },
+  {
+   "config_id": "ett2__D__short",
+   "leaderboard_key": "ett2/D/short",
+   "task_mase": 1.3215602021968642,
+   "task_wql": 0.09350919434035868,
+   "published_mase": 1.321560085664585,
+   "published_wql": 0.09350919339670898,
+   "status": "ok",
+   "rel_dev_mase": 8.817781380030156e-08,
+   "rel_dev_wql": 1.0091517911438027e-08
+  },
+  {
+   "config_id": "ett2__W__short",
+   "leaderboard_key": "ett2/W/short",
+   "task_mase": 0.7390984249016597,
+   "task_wql": 0.08824236559626292,
+   "published_mase": 0.7390983764105259,
+   "published_wql": 0.08824237370253157,
+   "status": "ok",
+   "rel_dev_mase": 6.560849722134481e-08,
+   "rel_dev_wql": 9.186367406268641e-08
+  },
+  {
+   "config_id": "jena_weather__T__short",
+   "leaderboard_key": "jena_weather/10T/short",
+   "task_mase": 0.30543942817950376,
+   "task_wql": 0.0326298767733929,
+   "published_mase": 0.3055144625325652,
+   "published_wql": 0.03264516028143257,
+   "status": "ok",
+   "rel_dev_mase": 0.00024560000348083287,
+   "rel_dev_wql": 0.0004681707152886438
+  },
+  {
+   "config_id": "jena_weather__T__medium",
+   "leaderboard_key": "jena_weather/10T/medium",
+   "task_mase": 0.6078290482196913,
+   "task_wql": 0.05285832928224421,
+   "published_mase": 0.610204522298673,
+   "published_wql": 0.05711892334964378,
+   "status": "ok",
+   "rel_dev_mase": 0.003892914575646057,
+   "rel_dev_wql": 0.07459163824428323
+  },
+  {
+   "config_id": "jena_weather__T__long",
+   "leaderboard_key": "jena_weather/10T/long",
+   "task_mase": 0.6535617475182541,
+   "task_wql": 0.05865703000996535,
+   "published_mase": 0.6566827497290605,
+   "published_wql": 0.0638386290209679,
+   "status": "ok",
+   "rel_dev_mase": 0.004752678842399994,
+   "rel_dev_wql": 0.08116714112548767
+  },
+  {
+   "config_id": "jena_weather__H__short",
+   "leaderboard_key": "jena_weather/H/short",
+   "task_mase": 0.5358275119264784,
+   "task_wql": 0.04219864031090359,
+   "published_mase": 0.5358097176773622,
+   "published_wql": 0.04220263311292096,
+   "status": "ok",
+   "rel_dev_mase": 3.321001566250493e-05,
+   "rel_dev_wql": 9.461025824353127e-05
+  },
+  {
+   "config_id": "jena_weather__H__medium",
+   "leaderboard_key": "jena_weather/H/medium",
+   "task_mase": 0.7466469211097021,
+   "task_wql": 0.05024632746435734,
+   "published_mase": 0.7472851689085295,
+   "published_wql": 0.053997056476218566,
+   "status": "ok",
+   "rel_dev_mase": 0.0008540886737516635,
+   "rel_dev_wql": 0.06946173100219136
+  },
+  {
+   "config_id": "jena_weather__H__long",
+   "leaderboard_key": "jena_weather/H/long",
+   "task_mase": 1.0180240982047193,
+   "task_wql": 0.05844369272785879,
+   "published_mase": 1.0280940303380979,
+   "published_wql": 0.061638348439654544,
+   "status": "ok",
+   "rel_dev_mase": 0.009794757907569021,
+   "rel_dev_wql": 0.051829028399802086
+  },
+  {
+   "config_id": "jena_weather__D__short",
+   "leaderboard_key": "jena_weather/D/short",
+   "task_mase": 1.0511436852282359,
+   "task_wql": 0.045003082373182596,
+   "published_mase": 1.0511436824682205,
+   "published_wql": 0.045003083566037855,
+   "status": "ok",
+   "rel_dev_mase": 2.6257260291149615e-09,
+   "rel_dev_wql": 2.650607835045493e-08
+  },
+  {
+   "config_id": "bitbrains_fast_storage__T__short",
+   "leaderboard_key": "bitbrains_fast_storage/5T/short",
+   "task_mase": 0.7448354190087103,
+   "task_wql": 0.4532044557273043,
+   "published_mase": 0.7523961952951175,
+   "published_wql": 0.45354344025308674,
+   "status": "ok",
+   "rel_dev_mase": 0.010048929451911373,
+   "rel_dev_wql": 0.0007474135787154132
+  },
+  {
+   "config_id": "bitbrains_fast_storage__T__medium",
+   "leaderboard_key": "bitbrains_fast_storage/5T/medium",
+   "task_mase": 1.0479964454738127,
+   "task_wql": 0.6930889595876009,
+   "published_mase": 1.0624395209705737,
+   "published_wql": 0.7554407215441805,
+   "status": "ok",
+   "rel_dev_mase": 0.01359425662513648,
+   "rel_dev_wql": 0.0825369352993412
+  },
+  {
+   "config_id": "bitbrains_fast_storage__T__long",
+   "leaderboard_key": "bitbrains_fast_storage/5T/long",
+   "task_mase": 0.9535432776050762,
+   "task_wql": 0.7530536728136843,
+   "published_mase": 0.9483206362737594,
+   "published_wql": 0.7475094647143732,
+   "status": "ok",
+   "rel_dev_mase": 0.005507252643829547,
+   "rel_dev_wql": 0.007416906890175066
+  },
+  {
+   "config_id": "bitbrains_fast_storage__H__short",
+   "leaderboard_key": "bitbrains_fast_storage/H/short",
+   "task_mase": 1.0696791491221236,
+   "task_wql": 0.773596179216572,
+   "published_mase": 1.0698664907888997,
+   "published_wql": 0.7740167427927402,
+   "status": "ok",
+   "rel_dev_mase": 0.00017510751891855177,
+   "rel_dev_wql": 0.0005433520399711556
+  },
+  {
+   "config_id": "bitbrains_rnd__T__short",
+   "leaderboard_key": "bitbrains_rnd/5T/short",
+   "task_mase": 1.705299895373354,
+   "task_wql": 0.4380582023293664,
+   "published_mase": 1.7053983818241878,
+   "published_wql": 0.4382582062335134,
+   "status": "ok",
+   "rel_dev_mase": 5.774982073597456e-05,
+   "rel_dev_wql": 0.00045636088794757853
+  },
+  {
+   "config_id": "bitbrains_rnd__T__medium",
+   "leaderboard_key": "bitbrains_rnd/5T/medium",
+   "task_mase": 4.459901749591869,
+   "task_wql": 0.6030076453170004,
+   "published_mase": 4.449086047115958,
+   "published_wql": 0.6048791893642634,
+   "status": "ok",
+   "rel_dev_mase": 0.0024309942224925787,
+   "rel_dev_wql": 0.003094079082519113
+  },
+  {
+   "config_id": "bitbrains_rnd__T__long",
+   "leaderboard_key": "bitbrains_rnd/5T/long",
+   "task_mase": 3.408327732908986,
+   "task_wql": 0.6877112798712405,
+   "published_mase": 3.397353175638085,
+   "published_wql": 0.7561433967402097,
+   "status": "ok",
+   "rel_dev_mase": 0.003230325698722741,
+   "rel_dev_wql": 0.09050150694165307
+  },
+  {
+   "config_id": "bitbrains_rnd__H__short",
+   "leaderboard_key": "bitbrains_rnd/H/short",
+   "task_mase": 5.896871910312029,
+   "task_wql": 0.6236336984922298,
+   "published_mase": 5.896930701328324,
+   "published_wql": 0.6242384340368896,
+   "status": "ok",
+   "rel_dev_mase": 9.969765505488162e-06,
+   "rel_dev_wql": 0.000968757307602831
+  },
+  {
+   "config_id": "bizitobs_application__S__short",
+   "leaderboard_key": "bizitobs_application/10S/short",
+   "task_mase": 5.5332553783536405,
+   "task_wql": 0.0539585120294505,
+   "published_mase": 5.533289563949242,
+   "published_wql": 0.05395850630797557,
+   "status": "ok",
+   "rel_dev_mase": 6.17816855711819e-06,
+   "rel_dev_wql": 1.0603471662323924e-07
+  },
+  {
+   "config_id": "bizitobs_application__S__medium",
+   "leaderboard_key": "bizitobs_application/10S/medium",
+   "task_mase": 9.576336941346273,
+   "task_wql": 0.09952776139521845,
+   "published_mase": 9.720343035454437,
+   "published_wql": 0.10350154393226361,
+   "status": "ok",
+   "rel_dev_mase": 0.014814918936801858,
+   "rel_dev_wql": 0.03839346145064079
+  },
+  {
+   "config_id": "bizitobs_application__S__long",
+   "leaderboard_key": "bizitobs_application/10S/long",
+   "task_mase": 10.247386898096556,
+   "task_wql": 0.10502676964473519,
+   "published_mase": 10.483797272184969,
+   "published_wql": 0.10897609302301696,
+   "status": "ok",
+   "rel_dev_mase": 0.022550071119330384,
+   "rel_dev_wql": 0.03624027315282473
+  },
+  {
+   "config_id": "bizitobs_service__S__short",
+   "leaderboard_key": "bizitobs_service/10S/short",
+   "task_mase": 3.298587355260817,
+   "task_wql": 0.05002100657898203,
+   "published_mase": 3.316185566818455,
+   "published_wql": 0.0506699603662428,
+   "status": "ok",
+   "rel_dev_mase": 0.005306763208224738,
+   "rel_dev_wql": 0.012807465854919346
+  },
+  {
+   "config_id": "bizitobs_service__S__medium",
+   "leaderboard_key": "bizitobs_service/10S/medium",
+   "task_mase": 4.925395396427555,
+   "task_wql": 0.09384532369402915,
+   "published_mase": 4.976573692925505,
+   "published_wql": 0.09617062672222003,
+   "status": "ok",
+   "rel_dev_mase": 0.010283841786710183,
+   "rel_dev_wql": 0.024178931836508707
+  },
+  {
+   "config_id": "bizitobs_service__S__long",
+   "leaderboard_key": "bizitobs_service/10S/long",
+   "task_mase": 5.190307841816609,
+   "task_wql": 0.1090730316818488,
+   "published_mase": 5.297548535439662,
+   "published_wql": 0.11281462576051575,
+   "status": "ok",
+   "rel_dev_mase": 0.02024345655459916,
+   "rel_dev_wql": 0.03316585995338627
+  },
+  {
+   "config_id": "bizitobs_l2c__T__short",
+   "leaderboard_key": "bizitobs_l2c/5T/short",
+   "task_mase": 0.2781849811085851,
+   "task_wql": 0.07435317586509439,
+   "published_mase": 0.2781850094209992,
+   "published_wql": 0.07435318434506082,
+   "status": "ok",
+   "rel_dev_mase": 1.0177548457515929e-07,
+   "rel_dev_wql": 1.1404980833300078e-07
+  },
+  {
+   "config_id": "bizitobs_l2c__T__medium",
+   "leaderboard_key": "bizitobs_l2c/5T/medium",
+   "task_mase": 0.8759061027588375,
+   "task_wql": 0.4157015338679664,
+   "published_mase": 0.877710000252815,
+   "published_wql": 0.4454411146948493,
+   "status": "ok",
+   "rel_dev_mase": 0.0020552317889255853,
+   "rel_dev_wql": 0.0667643372957526
+  },
+  {
+   "config_id": "bizitobs_l2c__T__long",
+   "leaderboard_key": "bizitobs_l2c/5T/long",
+   "task_mase": 1.243349861658373,
+   "task_wql": 0.7141020772625833,
+   "published_mase": 1.240735149523561,
+   "published_wql": 0.7380396010126371,
+   "status": "ok",
+   "rel_dev_mase": 0.0021073894261929675,
+   "rel_dev_wql": 0.03243392863636309
+  },
+  {
+   "config_id": "bizitobs_l2c__H__short",
+   "leaderboard_key": "bizitobs_l2c/H/short",
+   "task_mase": 0.4322725847404206,
+   "task_wql": 0.18900297809228925,
+   "published_mase": 0.43226974962129694,
+   "published_wql": 0.18900315239264084,
+   "status": "ok",
+   "rel_dev_mase": 6.5586803752009095e-06,
+   "rel_dev_wql": 9.222087007008351e-07
+  },
+  {
+   "config_id": "bizitobs_l2c__H__medium",
+   "leaderboard_key": "bizitobs_l2c/H/medium",
+   "task_mase": 0.5044228128583362,
+   "task_wql": 0.24626974033664942,
+   "published_mase": 0.4952064150955139,
+   "published_wql": 0.25443033413420424,
+   "status": "ok",
+   "rel_dev_mase": 0.018611224495233402,
+   "rel_dev_wql": 0.03207398137224612
+  },
+  {
+   "config_id": "bizitobs_l2c__H__long",
+   "leaderboard_key": "bizitobs_l2c/H/long",
+   "task_mase": 0.5652489895607402,
+   "task_wql": 0.268350762129468,
+   "published_mase": 0.5557104860687487,
+   "published_wql": 0.27763608084978597,
+   "status": "ok",
+   "rel_dev_mase": 0.017164519531509145,
+   "rel_dev_wql": 0.033444207582449446
+  }
+ ],
+ "extra": {
+  "checkpoint": {
+   "repo": "amazon/chronos-bolt-base",
+   "revision": "5d9f166d69f47aef3401367a7b842e78fe97b121",
+   "license": "Apache-2.0"
+  },
+  "pins": {
+   "chronos-forecasting": "2.3.2",
+   "torch": "2.14.0+cu130",
+   "transformers": "5.17.0",
+   "python": "3.11"
+  },
+  "settings": {
+   "device_map": "cuda:0",
+   "torch_dtype": "float32 (checkpoint default)",
+   "batch_size": 256,
+   "batch_size_long_horizon": 28,
+   "limit_prediction_length": false,
+   "multivariate": "to_univariate (independent variates)",
+   "quantile_levels": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+   ],
+   "point_forecast": "0.5 quantile",
+   "model_context_length": 2048,
+   "model_prediction_length": 64,
+   "nan_handling": "passed through"
+  },
+  "runtime_seconds": 44292.5,
+  "runtime_hms": "12:18:12",
+  "peak_gpu_gib": 3.444,
+  "hardware": "1x NVIDIA A100-SXM4-40GB shared with a ~29 GB training job and another inference job",
+  "batch_halvings_due_to_oom": 0,
+  "deviations_from_notebook": [
+   "batch size 256 instead of the notebook's 1024 (28 for H>64): numerically inert for Chronos-Bolt because series do not interact inside a batch; chosen because the GPU is shared",
+   "chronos-forecasting 2.3.2 instead of the (unpinned) version current when the leaderboard row was produced. From 2.1.0 onwards Chronos-Bolt's long-horizon (H>64) heuristic feeds all nine quantile paths back into the context and takes empirical quantiles of the resulting 81 paths; version <=2.0.0 fed only the median path back (see `central_idx` in chronos/chronos_bolt.py). This is the sole cause of the 22 flagged configs: all are medium/long term, MASE (a median statistic) matches to <3% while WQL improves by 5-10%. Pinning chronos-forecasting<=2.0.0 would reproduce the leaderboard's long-horizon WQL."
+  ]
+ }
+}

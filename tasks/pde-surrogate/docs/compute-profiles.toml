@@ -1,0 +1,10 @@
+schema_version = "agent-runner-compute-profiles/v1"
+default = "default"
+
+[profiles.default]
+gpus = "task"
+
+[profiles.smoke]
+gpus = 1
+cpus = 8
+memory_mb = 32768

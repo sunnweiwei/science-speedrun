@@ -1,0 +1,302 @@
+{
+ "what": "released PDE-Transformer sc-s fine-tuned with the paper's recipe (upstream main.py, separate channels, one-step supervised MSE) on the task's active-matter training pool; best-validation checkpoint exported by environment/reference/pde_transformer_finetune/export_package.py and replayed through tests/main_verifier.py",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,185 held-out cases, sealed contract; the model conditions on one frame (upstream sc-s recipe, timesteps=2), so it is given the last of the four context frames; per-dataset model, only the well/active_matter group is a real forecast",
+ "training": {
+  "epochs_completed": 7,
+  "epochs_requested": 50,
+  "best_validation_epoch": 6,
+  "best_validation_loss": 0.01396,
+  "stopped_by": "the run's six-hour wall-clock cap (timeout sent SIGTERM at epoch 7); the best-validation checkpoint (epoch 6) is the one packaged",
+  "initialization": "released sc-s checkpoint (thuerey-group/pde-transformer @ d5889aab), i.e. an external-target reference, not a from-scratch row",
+  "deviations_from_the_recipe": [
+   "batch 2 with accumulate_grad_batches 8 instead of batch 8 with 2: 11 channels at 256^2 do not fit a 40 GB card at the recipe's batch. The effective batch (16) is unchanged.",
+   "the EMA callback (decay 0.999) was removed: upstream's implementation raises \"Tensor list must have at least one tensor\" at the first optimizer step once the batch is reduced."
+  ]
+ },
+ "package": {
+  "name": "pde-transformer-sc-s-finetuned-well-active_matter",
+  "parameters": 46666780,
+  "context_frames": 1,
+  "pretrained_assets": [
+   "thuerey-group/pde-transformer@d5889aab16b1fe82e82940b612d54a8f0773e542 (sc-s)"
+  ],
+  "sources_used": [
+   "well/active_matter (task training pool)"
+  ],
+  "field_classes": [
+   7,
+   1,
+   2,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23
+  ],
+  "constant_names": [
+   "Domain Extent",
+   "Particle Alignment Strength",
+   "Active Dipol Strength"
+  ],
+  "constant_classes": [
+   15,
+   22,
+   23
+  ]
+ },
+ "result": {
+  "reward": 0.27937202926426763,
+  "mean_vrmse": 1.4661,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": {
+    "n_datasets": 16,
+    "vrmse": 1.1878,
+    "reward": 0.30842061808588433
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_datasets": 1,
+    "vrmse": 1.649,
+    "reward": 0.26092641344448886
+   },
+   "well/active_matter": {
+    "n_datasets": 1,
+    "vrmse": 1.6693,
+    "reward": 0.25915344233481324
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_datasets": 1,
+    "vrmse": 1.3584,
+    "reward": 0.28898764319188414
+   }
+  },
+  "datasets": {
+   "ape2d/burgers": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.5139153215593075
+   },
+   "ape2d/decay_turb": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0876377342041943
+   },
+   "ape2d/diff": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.6842929294243985
+   },
+   "ape2d/fisher": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 2.7042629562937877
+   },
+   "ape2d/gs_alpha": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.347657487713888
+   },
+   "ape2d/gs_beta": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.6088926575276987
+   },
+   "ape2d/gs_delta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.7358952935210277
+   },
+   "ape2d/gs_epsilon": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.701737377843992
+   },
+   "ape2d/gs_gamma": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.8033791798972509
+   },
+   "ape2d/gs_iota": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.6950130224331375
+   },
+   "ape2d/gs_kappa": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 0.9580198426663117
+   },
+   "ape2d/gs_theta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.687338657537656
+   },
+   "ape2d/kdv": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.33485731611214825
+   },
+   "ape2d/kolm_flow": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.2171370855213588
+   },
+   "ape2d/ks": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0986021185877142
+   },
+   "ape2d/sh": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.8259345529367659
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_cases": 200,
+    "n_failed": 0,
+    "vrmse": 1.6490003949677694
+   },
+   "well/active_matter": {
+    "n_cases": 26,
+    "n_failed": 0,
+    "vrmse": 1.6693202934030549
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_cases": 9,
+    "n_failed": 0,
+    "vrmse": 1.358429394191932
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 114.2
+ },
+ "determinism": {
+  "checked": 3,
+  "rerun_exit_code": 0,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "normalization": {
+  "what": "the fine-tune's data pipeline normalizes with MeanStdNorm (normalize_data: mean-std, normalize_const: mean-std), so the package applies the same statistics, taken from the converted training file, and inverts them on the output",
+  "statistics": {
+   "fields_mean": [
+    1.0,
+    -4.2364257530771106e-12,
+    1.9941808474753732e-11,
+    0.5018405389785766,
+    -0.00622198878632584,
+    -0.00622198878632584,
+    0.498159465108599,
+    1.0094132341897784e-12,
+    1.588028972953784e-11,
+    1.588028972953784e-11,
+    -1.0094132341897784e-12
+   ],
+   "fields_std": [
+    0.002850686543887215,
+    0.5183494563613619,
+    0.506454615848405,
+    0.31831439529146466,
+    0.3296762305498123,
+    0.3296762305498123,
+    0.3183582706110818,
+    0.3674804772436619,
+    0.3945258559499468,
+    0.3945258559499468,
+    0.3674804772436619
+   ],
+   "const_mean": [
+    10.0,
+    9.022857142857143,
+    -3.0228571428571427
+   ],
+   "const_std": [
+    0.0,
+    5.210927294187298,
+    1.4538786969022282
+   ]
+  },
+  "source": "pbdl/active_matter_train.hdf5"
+ },
+ "metadata_class_correction": {
+  "what": "upstream encodes the Fields and Constants entries of physical_metadata as indices into two fixed vocabularies (pdetransformer/data/metadata_remapping.py), not positionally. A first export numbered them 1..N, which loads the right weights and runs without error while conditioning the model on embeddings the fine-tune never saw.",
+  "positional_classes": {
+   "fields": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "constants": [
+    1,
+    2,
+    3
+   ]
+  },
+  "correct_classes": {
+   "fields": [
+    7,
+    1,
+    2,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "constants": [
+    15,
+    22,
+    23
+   ]
+  },
+  "group_vrmse_positional": 2.198343663831334,
+  "group_vrmse_correct": 1.6693202934030549,
+  "note": "the number reported above is the corrected one; export_package.py now calls upstream's converters"
+ },
+ "interpretation": "1.6693 on its own dataset beats the from-scratch CNextU-net (1.8857, also cut short at its cap) but stays behind persistence (1.52) and behind the released mc-s zero-shot row (1.32). Two effects hold it back: the sc-s recipe conditions on a single frame (timesteps=2) and is trained on a one-step objective, so a 30-step free-running rollout compounds error quickly, while The Well's recipe consumes four frames; and only 7 of the 50 requested epochs fit in the six-hour cap. The row is reported as a protocol-handicapped external reference, not as a ceiling.",
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json); the per-dataset means come from the run's verifier report.json and are now embedded",
+  "before": {
+   "reward": 0.28028589207022425,
+   "mean_vrmse": 1.4587296745113516,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1581686154826494,
+    "pdearena/navier_stokes_2d": 1.6490003949677694,
+    "well/active_matter": 1.6693202934030549,
+    "well/turbulent_radiative_layer_2D": 1.358429394191932
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 0.6842929294243985,
+     "nrmse_joint": 0.6842981499653845,
+     "vrmse_steps_1_5": 0.18855248722062562,
+     "vrmse_steps_6_12": 0.5018782643086028,
+     "reward": 0.3882526491345688
+    }
+   }
+  }
+ }
+}

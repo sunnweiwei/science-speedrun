@@ -1,0 +1,38 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/genome-sequence-to-function"
+version = "4.0.0"
+description = "Develop a human 1-Mb sequence-to-function model at AlphaGenome scale (5,930 tracks, eleven output families) and its variant-effect predictions."
+authors = [{ name = "Zifeng Wang" }]
+keywords = ["model-development", "genomics", "sequence-to-function", "alphagenome", "variant-effect"]
+
+[metadata]
+data_status = "AlphaGenome public training data (FOLD_0), all 41,020 eligible train intervals; train targets 8-bit; ~360 GB materialized"
+evaluation_status = "reward: track Pearson on 1,000 test intervals; 13 variant/perturbation evaluations reported with AlphaGenome / Borzoi / Enformer / CADD anchors"
+
+[agent]
+timeout_sec = 172800.0         # external development budget (48 h, as in the other tasks); the 215M baseline trains in 4 h 9 min
+
+[environment]
+network_mode = "no-network"
+cpus = 128
+memory_mb = 786432
+storage_mb = 1048576
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 21600.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 32
+memory_mb = 262144
+storage_mb = 204800
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

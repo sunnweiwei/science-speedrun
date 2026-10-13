@@ -1,0 +1,4 @@
+{"contract": "pde-surrogate-rollout/v1", "name": "pde-transformer-zero-shot",
+ "description": "Released PDE-Transformer mixed-channel checkpoint (thuerey-group/pde-transformer @ d5889aab), replayed without training under the task protocol",
+ "parameters": null, "context_frames": 1, "sources_used": ["ape2d-full (upstream pretraining)"],
+ "pretrained_assets": ["thuerey-group/pde-transformer@d5889aab16b1fe82e82940b612d54a8f0773e542"]}

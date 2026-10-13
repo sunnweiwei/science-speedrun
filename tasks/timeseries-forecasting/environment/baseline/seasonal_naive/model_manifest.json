@@ -1,0 +1,2 @@
+{"name": "seasonal_naive_reference", "contract": "timeseries-forecast/v1", "parameters": 0, "pretrained_assets": [], "sources_used": [],
+ "note": "statistical reference, not a submission; defines the per-config normalizer of the reward"}

@@ -1,0 +1,6 @@
+.git
+docs/validation/
+**/__pycache__
+environment/baseline/starter/weights
+environment/baseline/starter/runs
+.pytest_cache

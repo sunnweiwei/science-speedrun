@@ -1,0 +1,164 @@
+{
+ "what": "main baseline: the TimesFM-3 architecture at 50.9M parameters trained from scratch on the v2 corpus, eight H100s, source-balanced sampling; packaged by baseline/timesfm3-50m/publish.py and replayed through the sealed verifier",
+ "protocol": "task test split, all 97 configs, 326,490 instances, tests/test.sh path (cohort-wise, uid isolation)",
+ "date": "2026-10-03",
+ "training": {
+  "model": "TimesFM3Torch, d_model 768, 14 layers, 12 heads, patch 32 in / 64 out, 9 quantiles, no variate attention",
+  "parameters": 50918592,
+  "corpus": "95 directories, 273.21 GB, 63.2 G points + 10% KernelSynth",
+  "sampling": "mixture: diverse 0.50, climate 0.25, buildings 0.15, cloud 0.10; sqrt(points) within group",
+  "steps": 150000,
+  "global_batch": 1024,
+  "context": 2048,
+  "lr": 0.0005,
+  "warmup": 2000,
+  "schedule": "cosine over 150,000 steps",
+  "gpus": "8 x H100 80GB",
+  "wall_clock": "3 h 14 min (12:01-15:15 UTC) including 30 validation passes",
+  "best_step": 100000,
+  "best_valid_skill": 0.1198,
+  "validation_curve": [
+   {
+    "step": 5000,
+    "valid_skill": -0.1207
+   },
+   {
+    "step": 10000,
+    "valid_skill": 0.0437
+   },
+   {
+    "step": 15000,
+    "valid_skill": 0.0326
+   },
+   {
+    "step": 20000,
+    "valid_skill": 0.0378
+   },
+   {
+    "step": 25000,
+    "valid_skill": 0.0612
+   },
+   {
+    "step": 30000,
+    "valid_skill": 0.1018
+   },
+   {
+    "step": 35000,
+    "valid_skill": 0.043
+   },
+   {
+    "step": 40000,
+    "valid_skill": 0.0732
+   },
+   {
+    "step": 45000,
+    "valid_skill": 0.0717
+   },
+   {
+    "step": 50000,
+    "valid_skill": 0.0757
+   },
+   {
+    "step": 55000,
+    "valid_skill": 0.1096
+   },
+   {
+    "step": 60000,
+    "valid_skill": 0.1005
+   },
+   {
+    "step": 65000,
+    "valid_skill": 0.1022
+   },
+   {
+    "step": 70000,
+    "valid_skill": 0.0772
+   },
+   {
+    "step": 75000,
+    "valid_skill": 0.109
+   },
+   {
+    "step": 80000,
+    "valid_skill": 0.1166
+   },
+   {
+    "step": 85000,
+    "valid_skill": 0.102
+   },
+   {
+    "step": 90000,
+    "valid_skill": 0.0496
+   },
+   {
+    "step": 95000,
+    "valid_skill": 0.0845
+   },
+   {
+    "step": 100000,
+    "valid_skill": 0.1198
+   },
+   {
+    "step": 105000,
+    "valid_skill": 0.1092
+   },
+   {
+    "step": 110000,
+    "valid_skill": 0.1133
+   },
+   {
+    "step": 115000,
+    "valid_skill": 0.1108
+   },
+   {
+    "step": 120000,
+    "valid_skill": 0.103
+   },
+   {
+    "step": 125000,
+    "valid_skill": 0.0939
+   },
+   {
+    "step": 130000,
+    "valid_skill": 0.1195
+   },
+   {
+    "step": 135000,
+    "valid_skill": 0.1071
+   },
+   {
+    "step": 140000,
+    "valid_skill": 0.104
+   },
+   {
+    "step": 145000,
+    "valid_skill": 0.1059
+   },
+   {
+    "step": 150000,
+    "valid_skill": 0.1052
+   }
+  ]
+ },
+ "result": {
+  "reward": 0.2745007730085822,
+  "normalised_score": 0.5474660990930226,
+  "rel_mase_gmean": 0.8725542067432863,
+  "rel_wql_gmean": 0.6032279992433772,
+  "n_failed": 0,
+  "inference_seconds": 679.2
+ },
+ "checkpoint_at_step_30000": {
+  "reward": 0.2742981883389295,
+  "note": "same run, 40 min of training; the score was already at its plateau"
+ },
+ "comparison": {
+  "starter_6.4M": 0.161,
+  "starter_41.8M_this_host_8gpu": 0.1996,
+  "starter_41.8M_author": 0.2071,
+  "tfm3_50M_uniform_sampling_273GB": 0.2168,
+  "tfm3_50M_uniform_sampling_41GB": 0.2062,
+  "this": 0.2745,
+  "timesfm3_released_331M": 0.4465
+ }
+}

@@ -1,0 +1,2 @@
+# The verifier image installs environment/runtime/requirements.txt; nothing else is needed for tests/.
+-r ../environment/runtime/requirements.txt

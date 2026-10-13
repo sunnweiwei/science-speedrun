@@ -1,0 +1,10 @@
+**/.git
+**/__pycache__
+**/*.pyc
+**/*.h5ad
+**/*.npz
+**/*.npy
+**/*.ckpt
+**/st_data/
+**/runs/
+**/delta_table.*

@@ -1,0 +1,119 @@
+# Agent workspace. Network and GPUs come from task.toml; only development entries are mounted.
+services:
+  main:
+    build: .
+    shm_size: "64gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/reference
+        target: /workspace/data/reference
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/train.parquet
+        target: /workspace/data/public/train.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/valid.parquet
+        target: /workspace/data/public/valid.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/test.parquet
+        target: /workspace/data/public/test.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/junction_tracks.parquet
+        target: /workspace/data/public/junction_tracks.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/metadata/tracks.parquet
+        target: /workspace/data/metadata/tracks.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/labels/train.parquet
+        target: /workspace/data/labels/train.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/labels/valid.parquet
+        target: /workspace/data/labels/valid.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/scoring/train
+        target: /workspace/data/scoring/train
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/scoring/valid
+        target: /workspace/data/scoring/valid
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/targets/train
+        target: /workspace/data/targets/train
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/targets/valid
+        target: /workspace/data/targets/valid
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/variant_evals/public
+        target: /workspace/data/variant_evals/public
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/variant_evals/valid
+        target: /workspace/data/variant_evals/valid
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty per-run directory}
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -s /workspace/data/reference/GRCh38.p13.genome.fa &&
+          test -s /workspace/data/reference/GRCh38.p13.genome.fa.fai &&
+          test -s /workspace/data/public/train.parquet &&
+          test -s /workspace/data/public/valid.parquet &&
+          test -s /workspace/data/public/test.parquet &&
+          test -s /workspace/data/labels/train.parquet &&
+          test -s /workspace/data/labels/valid.parquet &&
+          test ! -e /workspace/data/labels/test.parquet &&
+          test -d /workspace/data/scoring/train &&
+          test -d /workspace/data/scoring/valid &&
+          test ! -e /workspace/data/scoring/test &&
+          test -d /workspace/data/targets/train &&
+          test -d /workspace/data/targets/valid &&
+          test ! -e /workspace/data/targets/test &&
+          test -s /workspace/data/variant_evals/public/perturbations.parquet &&
+          test -s /workspace/data/variant_evals/valid/labels/tracks.parquet &&
+          test ! -e /workspace/data/variant_evals/labels
+      interval: 10s
+      timeout: 10s
+      retries: 3

@@ -1,0 +1,56 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/mass-spectrometry-molecule-retrieval"
+version = "1.3.0"
+description = "Develop a model that retrieves molecular structures from experimental MS/MS spectra."
+authors = [{ name = "T0-RSI contributors" }]
+keywords = ["model-development", "mass-spectrometry", "chemistry", "retrieval"]
+
+[metadata]
+data_status = "MassSpecGym v1.5 and held-out-clean ICEBERG augmentation are pinned; GLACIER/MIST hybrid reference complete"
+research_starter = "native GLACIER from scratch with trainable DeepSets fallback"
+research_starter_reference_status = "full-test Hit@1 0.4032239690134427 on heterogeneous hardware; reviewer reports 3.4-3.9 h full-test replay on one H100 at inference batch 64; current native Docker/HF acceptance pending"
+research_starter_timing_source = "https://github.com/T0-RSI/ai4sci-tasks/pull/27#issuecomment-5750791449"
+initialization = "random; no pretrained assets supplied"
+input_schema = "massspecgym-retrieval-input/v1"
+upstream_code_commit = "f259fe3780d5bd227fc6ece36ce6f397c2eef716"
+upstream_data_revision = "d2e86d0c3bd905a6d578c0dd6053ed2bd41f9c2a"
+glacier_source_commit = "ed8311f22958cb37f055b663b5f56c5c77a2ee33"
+primary_metric = "hit_rate_at_1"
+benchmark_score = "score"
+score_version = "massspecgym-retrieval-score/v1"
+score_lower_reference = 0.04004329004329004
+score_upper_reference = 0.4939052175894281
+score_bounds = "environment/evaluation/score_bounds.json"
+primary_metric_direction = "maximize"
+reference_baseline = "GLACIER no-CF with strict-clean MIST fallback"
+reference_hit_rate_at_1 = 0.4939052175894281
+reference_status = "official_glacier_weight_and_independently_trained_clean_fallback_replayed_on_frozen_task"
+
+[agent]
+timeout_sec = 172800.0
+
+[environment]
+# Fail closed by default; agent-runner may stage a model API allowlist.
+network_mode = "no-network"
+cpus = 32
+memory_mb = 262144
+storage_mb = 204800
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 21600.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 16
+memory_mb = 65536
+storage_mb = 51200
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

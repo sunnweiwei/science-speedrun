@@ -1,0 +1,36 @@
+# Development environment overlay (TASK_STANDARD.md). The build context is the task directory.
+# Networking and resources come from task.toml (no-network; Harbor lets the agent's model API
+# through); an explicit network_mode here would prevent Harbor from attaching its egress sidecar.
+#
+# TASK_DATA_DIR is the public materialization (environment/data/README.md). The entries of its
+# development/ view are mounted read-only under /workspace/data, next to the data README and
+# check_resources.py from the image; verifier/ and the private labels never reach this container.
+# TASK_RESEARCH_DIR is an empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "32gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the public MassSpecGym materialization}/development/manifest.json", target: /workspace/data/manifest.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/train.jsonl", target: /workspace/data/train.jsonl}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/validation.jsonl", target: /workspace/data/validation.jsonl}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/validation_candidate_pools.jsonl", target: /workspace/data/validation_candidate_pools.jsonl}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/glacier", target: /workspace/data/glacier}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/synthetic_augmentation", target: /workspace/data/synthetic_augmentation}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "python", "/workspace/data/check_resources.py", "--data-root", "/workspace/data"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

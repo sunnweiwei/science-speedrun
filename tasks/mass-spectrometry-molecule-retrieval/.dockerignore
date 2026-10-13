@@ -1,0 +1,10 @@
+.git
+.artifacts
+.cache
+local
+submission
+research
+data-cache
+*.sif
+**/__pycache__
+**/*.pyc

@@ -1,0 +1,39 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main`
+# is the agent container; the build context is the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# TASK_DATA_DIR is the release's dev/ tree (environment/data/MATERIALIZE.md); each entry is mounted
+# read-only under /workspace/data next to the data README from the image. se600m/ is also reachable
+# at /opt/se600m through a link in the image. Never mount the release's private/ tree here: the
+# entrypoint refuses to start if it is visible. TASK_RESEARCH_DIR is an empty directory per run on
+# a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "64gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the release's dev/ tree}/train", target: /workspace/data/train}
+      - {<<: *data, source: "${TASK_DATA_DIR}/test", target: /workspace/data/test}
+      - {<<: *data, source: "${TASK_DATA_DIR}/priors", target: /workspace/data/priors}
+      - {<<: *data, source: "${TASK_DATA_DIR}/se600m", target: /workspace/data/se600m}
+      - {<<: *data, source: "${TASK_DATA_DIR}/manifest.json", target: /workspace/data/manifest.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/splits.json", target: /workspace/data/splits.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/gene_panel.csv", target: /workspace/data/gene_panel.csv}
+      - {<<: *data, source: "${TASK_DATA_DIR}/gene_panel_intersection.json", target: /workspace/data/gene_panel_intersection.json}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/manifest.json && test -s /workspace/data/train/k562/cells.h5ad && test -s /workspace/data/test/ctx_far/public/basal.h5ad && test -s /opt/se600m/se600m_epoch16.ckpt && test ! -e /workspace/data/private"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

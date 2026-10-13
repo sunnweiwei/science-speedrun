@@ -1,0 +1,60 @@
+{
+ "protocol": "pde-surrogate-rollout/v1: 4 context frames, rollout from frame 0, K=26/30/10, per-channel VRMSE clamped at 10 (DPOT context padded from 4 to 10 frames by repeating the first)",
+ "contract": "pde-surrogate-rollout/v1",
+ "n_cases": 235,
+ "n_failed": 0,
+ "failures": [],
+ "datasets": {
+  "pdearena/navier_stokes_2d": {
+   "n_cases": 200,
+   "n_failed": 0,
+   "n_steps": 10,
+   "vrmse": 0.7454644270846882,
+   "nrmse_joint": 0.42388972649065876,
+   "vrmse_steps_1_5": 0.6311263112670066,
+   "reward": 0.3758576919573973
+  },
+  "well/active_matter": {
+   "n_cases": 26,
+   "n_failed": 0,
+   "n_steps": 30,
+   "vrmse": 2.1944983620090737,
+   "nrmse_joint": 0.8219075632292567,
+   "vrmse_steps_1_5": 2.2023135838177508,
+   "vrmse_steps_6_12": 2.26263193700887,
+   "vrmse_steps_13_30": 2.16583107678452,
+   "reward": 0.2195549129932405
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "n_cases": 9,
+   "n_failed": 0,
+   "n_steps": 30,
+   "vrmse": 7.774004124174981,
+   "nrmse_joint": 1.2129333047809874,
+   "vrmse_steps_1_5": 7.723890787665592,
+   "vrmse_steps_6_12": 7.773252941319699,
+   "vrmse_steps_13_30": 7.7882166220935325,
+   "reward": 0.03645174443593102
+  }
+ },
+ "groups": {
+  "pdearena/navier_stokes_2d": {
+   "n_datasets": 1,
+   "vrmse": 0.7454644270846882,
+   "reward": 0.3758576919573973
+  },
+  "well/active_matter": {
+   "n_datasets": 1,
+   "vrmse": 2.1944983620090737,
+   "reward": 0.2195549129932405
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "n_datasets": 1,
+   "vrmse": 7.774004124174981,
+   "reward": 0.03645174443593102
+  }
+ },
+ "mean_vrmse": 3.5713223044229143,
+ "reward": 0.21062144979552297,
+ "note": " per-case records omitted from the committed copy; regenerate with score.py"
+}

@@ -1,0 +1,1389 @@
+{
+  "selection": "train-only, at least 50 positive 365-day records",
+  "targets": [
+    {
+      "disease_code": "A04",
+      "train_365d_positives": 340
+    },
+    {
+      "disease_code": "A08",
+      "train_365d_positives": 136
+    },
+    {
+      "disease_code": "A41",
+      "train_365d_positives": 1054
+    },
+    {
+      "disease_code": "B00",
+      "train_365d_positives": 113
+    },
+    {
+      "disease_code": "B02",
+      "train_365d_positives": 144
+    },
+    {
+      "disease_code": "B18",
+      "train_365d_positives": 164
+    },
+    {
+      "disease_code": "B19",
+      "train_365d_positives": 642
+    },
+    {
+      "disease_code": "B20",
+      "train_365d_positives": 135
+    },
+    {
+      "disease_code": "B34",
+      "train_365d_positives": 70
+    },
+    {
+      "disease_code": "B35",
+      "train_365d_positives": 152
+    },
+    {
+      "disease_code": "B37",
+      "train_365d_positives": 724
+    },
+    {
+      "disease_code": "B95",
+      "train_365d_positives": 1462
+    },
+    {
+      "disease_code": "B96",
+      "train_365d_positives": 1969
+    },
+    {
+      "disease_code": "B97",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "C16",
+      "train_365d_positives": 63
+    },
+    {
+      "disease_code": "C18",
+      "train_365d_positives": 136
+    },
+    {
+      "disease_code": "C22",
+      "train_365d_positives": 118
+    },
+    {
+      "disease_code": "C24",
+      "train_365d_positives": 120
+    },
+    {
+      "disease_code": "C25",
+      "train_365d_positives": 229
+    },
+    {
+      "disease_code": "C34",
+      "train_365d_positives": 113
+    },
+    {
+      "disease_code": "C50",
+      "train_365d_positives": 53
+    },
+    {
+      "disease_code": "C61",
+      "train_365d_positives": 182
+    },
+    {
+      "disease_code": "C64",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "C67",
+      "train_365d_positives": 81
+    },
+    {
+      "disease_code": "C71",
+      "train_365d_positives": 95
+    },
+    {
+      "disease_code": "C73",
+      "train_365d_positives": 62
+    },
+    {
+      "disease_code": "C77",
+      "train_365d_positives": 716
+    },
+    {
+      "disease_code": "C78",
+      "train_365d_positives": 665
+    },
+    {
+      "disease_code": "C79",
+      "train_365d_positives": 415
+    },
+    {
+      "disease_code": "C80",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "C83",
+      "train_365d_positives": 79
+    },
+    {
+      "disease_code": "C85",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "D12",
+      "train_365d_positives": 66
+    },
+    {
+      "disease_code": "D13",
+      "train_365d_positives": 54
+    },
+    {
+      "disease_code": "D18",
+      "train_365d_positives": 77
+    },
+    {
+      "disease_code": "D25",
+      "train_365d_positives": 202
+    },
+    {
+      "disease_code": "D35",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "D47",
+      "train_365d_positives": 216
+    },
+    {
+      "disease_code": "D49",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "D50",
+      "train_365d_positives": 1717
+    },
+    {
+      "disease_code": "D53",
+      "train_365d_positives": 254
+    },
+    {
+      "disease_code": "D56",
+      "train_365d_positives": 84
+    },
+    {
+      "disease_code": "D57",
+      "train_365d_positives": 55
+    },
+    {
+      "disease_code": "D59",
+      "train_365d_positives": 93
+    },
+    {
+      "disease_code": "D61",
+      "train_365d_positives": 823
+    },
+    {
+      "disease_code": "D62",
+      "train_365d_positives": 2492
+    },
+    {
+      "disease_code": "D63",
+      "train_365d_positives": 1409
+    },
+    {
+      "disease_code": "D64",
+      "train_365d_positives": 5076
+    },
+    {
+      "disease_code": "D65",
+      "train_365d_positives": 106
+    },
+    {
+      "disease_code": "D68",
+      "train_365d_positives": 829
+    },
+    {
+      "disease_code": "D69",
+      "train_365d_positives": 2317
+    },
+    {
+      "disease_code": "D70",
+      "train_365d_positives": 838
+    },
+    {
+      "disease_code": "D72",
+      "train_365d_positives": 2190
+    },
+    {
+      "disease_code": "D73",
+      "train_365d_positives": 113
+    },
+    {
+      "disease_code": "D75",
+      "train_365d_positives": 190
+    },
+    {
+      "disease_code": "D80",
+      "train_365d_positives": 97
+    },
+    {
+      "disease_code": "D84",
+      "train_365d_positives": 62
+    },
+    {
+      "disease_code": "D89",
+      "train_365d_positives": 112
+    },
+    {
+      "disease_code": "E03",
+      "train_365d_positives": 1196
+    },
+    {
+      "disease_code": "E04",
+      "train_365d_positives": 155
+    },
+    {
+      "disease_code": "E05",
+      "train_365d_positives": 161
+    },
+    {
+      "disease_code": "E06",
+      "train_365d_positives": 81
+    },
+    {
+      "disease_code": "E07",
+      "train_365d_positives": 62
+    },
+    {
+      "disease_code": "E11",
+      "train_365d_positives": 439
+    },
+    {
+      "disease_code": "E16",
+      "train_365d_positives": 198
+    },
+    {
+      "disease_code": "E21",
+      "train_365d_positives": 194
+    },
+    {
+      "disease_code": "E22",
+      "train_365d_positives": 475
+    },
+    {
+      "disease_code": "E27",
+      "train_365d_positives": 137
+    },
+    {
+      "disease_code": "E28",
+      "train_365d_positives": 79
+    },
+    {
+      "disease_code": "E29",
+      "train_365d_positives": 57
+    },
+    {
+      "disease_code": "E43",
+      "train_365d_positives": 758
+    },
+    {
+      "disease_code": "E44",
+      "train_365d_positives": 605
+    },
+    {
+      "disease_code": "E46",
+      "train_365d_positives": 524
+    },
+    {
+      "disease_code": "E53",
+      "train_365d_positives": 146
+    },
+    {
+      "disease_code": "E55",
+      "train_365d_positives": 599
+    },
+    {
+      "disease_code": "E66",
+      "train_365d_positives": 869
+    },
+    {
+      "disease_code": "E78",
+      "train_365d_positives": 1362
+    },
+    {
+      "disease_code": "E79",
+      "train_365d_positives": 58
+    },
+    {
+      "disease_code": "E80",
+      "train_365d_positives": 108
+    },
+    {
+      "disease_code": "E83",
+      "train_365d_positives": 1508
+    },
+    {
+      "disease_code": "E86",
+      "train_365d_positives": 3864
+    },
+    {
+      "disease_code": "E87",
+      "train_365d_positives": 5859
+    },
+    {
+      "disease_code": "E88",
+      "train_365d_positives": 242
+    },
+    {
+      "disease_code": "E89",
+      "train_365d_positives": 121
+    },
+    {
+      "disease_code": "F01",
+      "train_365d_positives": 65
+    },
+    {
+      "disease_code": "F02",
+      "train_365d_positives": 306
+    },
+    {
+      "disease_code": "F03",
+      "train_365d_positives": 433
+    },
+    {
+      "disease_code": "F05",
+      "train_365d_positives": 451
+    },
+    {
+      "disease_code": "F06",
+      "train_365d_positives": 98
+    },
+    {
+      "disease_code": "F10",
+      "train_365d_positives": 825
+    },
+    {
+      "disease_code": "F11",
+      "train_365d_positives": 293
+    },
+    {
+      "disease_code": "F12",
+      "train_365d_positives": 392
+    },
+    {
+      "disease_code": "F13",
+      "train_365d_positives": 67
+    },
+    {
+      "disease_code": "F14",
+      "train_365d_positives": 261
+    },
+    {
+      "disease_code": "F15",
+      "train_365d_positives": 117
+    },
+    {
+      "disease_code": "F17",
+      "train_365d_positives": 739
+    },
+    {
+      "disease_code": "F19",
+      "train_365d_positives": 198
+    },
+    {
+      "disease_code": "F20",
+      "train_365d_positives": 114
+    },
+    {
+      "disease_code": "F22",
+      "train_365d_positives": 77
+    },
+    {
+      "disease_code": "F25",
+      "train_365d_positives": 103
+    },
+    {
+      "disease_code": "F29",
+      "train_365d_positives": 118
+    },
+    {
+      "disease_code": "F31",
+      "train_365d_positives": 371
+    },
+    {
+      "disease_code": "F32",
+      "train_365d_positives": 1333
+    },
+    {
+      "disease_code": "F33",
+      "train_365d_positives": 530
+    },
+    {
+      "disease_code": "F39",
+      "train_365d_positives": 224
+    },
+    {
+      "disease_code": "F40",
+      "train_365d_positives": 61
+    },
+    {
+      "disease_code": "F41",
+      "train_365d_positives": 3598
+    },
+    {
+      "disease_code": "F43",
+      "train_365d_positives": 658
+    },
+    {
+      "disease_code": "F50",
+      "train_365d_positives": 108
+    },
+    {
+      "disease_code": "F51",
+      "train_365d_positives": 57
+    },
+    {
+      "disease_code": "F60",
+      "train_365d_positives": 274
+    },
+    {
+      "disease_code": "F90",
+      "train_365d_positives": 151
+    },
+    {
+      "disease_code": "F91",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "G03",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "G24",
+      "train_365d_positives": 71
+    },
+    {
+      "disease_code": "G25",
+      "train_365d_positives": 371
+    },
+    {
+      "disease_code": "G30",
+      "train_365d_positives": 63
+    },
+    {
+      "disease_code": "G31",
+      "train_365d_positives": 245
+    },
+    {
+      "disease_code": "G40",
+      "train_365d_positives": 312
+    },
+    {
+      "disease_code": "G43",
+      "train_365d_positives": 790
+    },
+    {
+      "disease_code": "G44",
+      "train_365d_positives": 85
+    },
+    {
+      "disease_code": "G47",
+      "train_365d_positives": 2763
+    },
+    {
+      "disease_code": "G51",
+      "train_365d_positives": 79
+    },
+    {
+      "disease_code": "G62",
+      "train_365d_positives": 487
+    },
+    {
+      "disease_code": "G72",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "G81",
+      "train_365d_positives": 204
+    },
+    {
+      "disease_code": "G83",
+      "train_365d_positives": 75
+    },
+    {
+      "disease_code": "G89",
+      "train_365d_positives": 2909
+    },
+    {
+      "disease_code": "G90",
+      "train_365d_positives": 61
+    },
+    {
+      "disease_code": "G91",
+      "train_365d_positives": 96
+    },
+    {
+      "disease_code": "G92",
+      "train_365d_positives": 595
+    },
+    {
+      "disease_code": "G93",
+      "train_365d_positives": 1345
+    },
+    {
+      "disease_code": "G95",
+      "train_365d_positives": 53
+    },
+    {
+      "disease_code": "G96",
+      "train_365d_positives": 55
+    },
+    {
+      "disease_code": "G97",
+      "train_365d_positives": 116
+    },
+    {
+      "disease_code": "G99",
+      "train_365d_positives": 84
+    },
+    {
+      "disease_code": "H10",
+      "train_365d_positives": 96
+    },
+    {
+      "disease_code": "H26",
+      "train_365d_positives": 218
+    },
+    {
+      "disease_code": "H35",
+      "train_365d_positives": 202
+    },
+    {
+      "disease_code": "H40",
+      "train_365d_positives": 521
+    },
+    {
+      "disease_code": "H53",
+      "train_365d_positives": 317
+    },
+    {
+      "disease_code": "H54",
+      "train_365d_positives": 161
+    },
+    {
+      "disease_code": "H57",
+      "train_365d_positives": 74
+    },
+    {
+      "disease_code": "H81",
+      "train_365d_positives": 63
+    },
+    {
+      "disease_code": "H91",
+      "train_365d_positives": 171
+    },
+    {
+      "disease_code": "I07",
+      "train_365d_positives": 81
+    },
+    {
+      "disease_code": "I08",
+      "train_365d_positives": 228
+    },
+    {
+      "disease_code": "I09",
+      "train_365d_positives": 54
+    },
+    {
+      "disease_code": "I10",
+      "train_365d_positives": 1385
+    },
+    {
+      "disease_code": "I11",
+      "train_365d_positives": 573
+    },
+    {
+      "disease_code": "I12",
+      "train_365d_positives": 521
+    },
+    {
+      "disease_code": "I13",
+      "train_365d_positives": 370
+    },
+    {
+      "disease_code": "I16",
+      "train_365d_positives": 111
+    },
+    {
+      "disease_code": "I21",
+      "train_365d_positives": 394
+    },
+    {
+      "disease_code": "I24",
+      "train_365d_positives": 146
+    },
+    {
+      "disease_code": "I25",
+      "train_365d_positives": 1002
+    },
+    {
+      "disease_code": "I26",
+      "train_365d_positives": 355
+    },
+    {
+      "disease_code": "I27",
+      "train_365d_positives": 597
+    },
+    {
+      "disease_code": "I30",
+      "train_365d_positives": 53
+    },
+    {
+      "disease_code": "I31",
+      "train_365d_positives": 299
+    },
+    {
+      "disease_code": "I33",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "I34",
+      "train_365d_positives": 259
+    },
+    {
+      "disease_code": "I35",
+      "train_365d_positives": 198
+    },
+    {
+      "disease_code": "I42",
+      "train_365d_positives": 270
+    },
+    {
+      "disease_code": "I44",
+      "train_365d_positives": 484
+    },
+    {
+      "disease_code": "I45",
+      "train_365d_positives": 323
+    },
+    {
+      "disease_code": "I46",
+      "train_365d_positives": 90
+    },
+    {
+      "disease_code": "I47",
+      "train_365d_positives": 428
+    },
+    {
+      "disease_code": "I48",
+      "train_365d_positives": 678
+    },
+    {
+      "disease_code": "I49",
+      "train_365d_positives": 346
+    },
+    {
+      "disease_code": "I50",
+      "train_365d_positives": 835
+    },
+    {
+      "disease_code": "I51",
+      "train_365d_positives": 201
+    },
+    {
+      "disease_code": "I61",
+      "train_365d_positives": 106
+    },
+    {
+      "disease_code": "I62",
+      "train_365d_positives": 97
+    },
+    {
+      "disease_code": "I63",
+      "train_365d_positives": 252
+    },
+    {
+      "disease_code": "I65",
+      "train_365d_positives": 169
+    },
+    {
+      "disease_code": "I67",
+      "train_365d_positives": 298
+    },
+    {
+      "disease_code": "I69",
+      "train_365d_positives": 345
+    },
+    {
+      "disease_code": "I70",
+      "train_365d_positives": 355
+    },
+    {
+      "disease_code": "I71",
+      "train_365d_positives": 292
+    },
+    {
+      "disease_code": "I72",
+      "train_365d_positives": 183
+    },
+    {
+      "disease_code": "I73",
+      "train_365d_positives": 842
+    },
+    {
+      "disease_code": "I74",
+      "train_365d_positives": 174
+    },
+    {
+      "disease_code": "I77",
+      "train_365d_positives": 313
+    },
+    {
+      "disease_code": "I80",
+      "train_365d_positives": 70
+    },
+    {
+      "disease_code": "I81",
+      "train_365d_positives": 227
+    },
+    {
+      "disease_code": "I82",
+      "train_365d_positives": 606
+    },
+    {
+      "disease_code": "I85",
+      "train_365d_positives": 340
+    },
+    {
+      "disease_code": "I86",
+      "train_365d_positives": 70
+    },
+    {
+      "disease_code": "I87",
+      "train_365d_positives": 306
+    },
+    {
+      "disease_code": "I89",
+      "train_365d_positives": 165
+    },
+    {
+      "disease_code": "I95",
+      "train_365d_positives": 2874
+    },
+    {
+      "disease_code": "I96",
+      "train_365d_positives": 118
+    },
+    {
+      "disease_code": "I97",
+      "train_365d_positives": 338
+    },
+    {
+      "disease_code": "J02",
+      "train_365d_positives": 82
+    },
+    {
+      "disease_code": "J06",
+      "train_365d_positives": 121
+    },
+    {
+      "disease_code": "J12",
+      "train_365d_positives": 99
+    },
+    {
+      "disease_code": "J15",
+      "train_365d_positives": 521
+    },
+    {
+      "disease_code": "J18",
+      "train_365d_positives": 810
+    },
+    {
+      "disease_code": "J30",
+      "train_365d_positives": 144
+    },
+    {
+      "disease_code": "J32",
+      "train_365d_positives": 166
+    },
+    {
+      "disease_code": "J38",
+      "train_365d_positives": 149
+    },
+    {
+      "disease_code": "J39",
+      "train_365d_positives": 72
+    },
+    {
+      "disease_code": "J40",
+      "train_365d_positives": 80
+    },
+    {
+      "disease_code": "J43",
+      "train_365d_positives": 142
+    },
+    {
+      "disease_code": "J44",
+      "train_365d_positives": 401
+    },
+    {
+      "disease_code": "J45",
+      "train_365d_positives": 585
+    },
+    {
+      "disease_code": "J47",
+      "train_365d_positives": 101
+    },
+    {
+      "disease_code": "J69",
+      "train_365d_positives": 964
+    },
+    {
+      "disease_code": "J81",
+      "train_365d_positives": 349
+    },
+    {
+      "disease_code": "J84",
+      "train_365d_positives": 87
+    },
+    {
+      "disease_code": "J86",
+      "train_365d_positives": 52
+    },
+    {
+      "disease_code": "J90",
+      "train_365d_positives": 542
+    },
+    {
+      "disease_code": "J91",
+      "train_365d_positives": 327
+    },
+    {
+      "disease_code": "J93",
+      "train_365d_positives": 78
+    },
+    {
+      "disease_code": "J94",
+      "train_365d_positives": 105
+    },
+    {
+      "disease_code": "J95",
+      "train_365d_positives": 362
+    },
+    {
+      "disease_code": "J96",
+      "train_365d_positives": 1088
+    },
+    {
+      "disease_code": "J98",
+      "train_365d_positives": 884
+    },
+    {
+      "disease_code": "K04",
+      "train_365d_positives": 79
+    },
+    {
+      "disease_code": "K08",
+      "train_365d_positives": 67
+    },
+    {
+      "disease_code": "K12",
+      "train_365d_positives": 186
+    },
+    {
+      "disease_code": "K13",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "K20",
+      "train_365d_positives": 315
+    },
+    {
+      "disease_code": "K21",
+      "train_365d_positives": 4320
+    },
+    {
+      "disease_code": "K22",
+      "train_365d_positives": 485
+    },
+    {
+      "disease_code": "K25",
+      "train_365d_positives": 127
+    },
+    {
+      "disease_code": "K26",
+      "train_365d_positives": 120
+    },
+    {
+      "disease_code": "K29",
+      "train_365d_positives": 399
+    },
+    {
+      "disease_code": "K30",
+      "train_365d_positives": 145
+    },
+    {
+      "disease_code": "K31",
+      "train_365d_positives": 484
+    },
+    {
+      "disease_code": "K40",
+      "train_365d_positives": 135
+    },
+    {
+      "disease_code": "K42",
+      "train_365d_positives": 196
+    },
+    {
+      "disease_code": "K43",
+      "train_365d_positives": 302
+    },
+    {
+      "disease_code": "K44",
+      "train_365d_positives": 496
+    },
+    {
+      "disease_code": "K52",
+      "train_365d_positives": 474
+    },
+    {
+      "disease_code": "K55",
+      "train_365d_positives": 252
+    },
+    {
+      "disease_code": "K56",
+      "train_365d_positives": 506
+    },
+    {
+      "disease_code": "K57",
+      "train_365d_positives": 290
+    },
+    {
+      "disease_code": "K58",
+      "train_365d_positives": 129
+    },
+    {
+      "disease_code": "K59",
+      "train_365d_positives": 2611
+    },
+    {
+      "disease_code": "K62",
+      "train_365d_positives": 338
+    },
+    {
+      "disease_code": "K63",
+      "train_365d_positives": 324
+    },
+    {
+      "disease_code": "K64",
+      "train_365d_positives": 250
+    },
+    {
+      "disease_code": "K65",
+      "train_365d_positives": 721
+    },
+    {
+      "disease_code": "K66",
+      "train_365d_positives": 296
+    },
+    {
+      "disease_code": "K68",
+      "train_365d_positives": 67
+    },
+    {
+      "disease_code": "K70",
+      "train_365d_positives": 127
+    },
+    {
+      "disease_code": "K71",
+      "train_365d_positives": 59
+    },
+    {
+      "disease_code": "K72",
+      "train_365d_positives": 340
+    },
+    {
+      "disease_code": "K74",
+      "train_365d_positives": 203
+    },
+    {
+      "disease_code": "K75",
+      "train_365d_positives": 297
+    },
+    {
+      "disease_code": "K76",
+      "train_365d_positives": 793
+    },
+    {
+      "disease_code": "K80",
+      "train_365d_positives": 309
+    },
+    {
+      "disease_code": "K81",
+      "train_365d_positives": 307
+    },
+    {
+      "disease_code": "K82",
+      "train_365d_positives": 183
+    },
+    {
+      "disease_code": "K83",
+      "train_365d_positives": 447
+    },
+    {
+      "disease_code": "K85",
+      "train_365d_positives": 138
+    },
+    {
+      "disease_code": "K86",
+      "train_365d_positives": 277
+    },
+    {
+      "disease_code": "K90",
+      "train_365d_positives": 93
+    },
+    {
+      "disease_code": "K91",
+      "train_365d_positives": 470
+    },
+    {
+      "disease_code": "K92",
+      "train_365d_positives": 1261
+    },
+    {
+      "disease_code": "K94",
+      "train_365d_positives": 242
+    },
+    {
+      "disease_code": "L02",
+      "train_365d_positives": 261
+    },
+    {
+      "disease_code": "L03",
+      "train_365d_positives": 573
+    },
+    {
+      "disease_code": "L08",
+      "train_365d_positives": 108
+    },
+    {
+      "disease_code": "L27",
+      "train_365d_positives": 173
+    },
+    {
+      "disease_code": "L29",
+      "train_365d_positives": 338
+    },
+    {
+      "disease_code": "L30",
+      "train_365d_positives": 116
+    },
+    {
+      "disease_code": "L40",
+      "train_365d_positives": 93
+    },
+    {
+      "disease_code": "L50",
+      "train_365d_positives": 114
+    },
+    {
+      "disease_code": "L53",
+      "train_365d_positives": 133
+    },
+    {
+      "disease_code": "L73",
+      "train_365d_positives": 54
+    },
+    {
+      "disease_code": "L76",
+      "train_365d_positives": 218
+    },
+    {
+      "disease_code": "L89",
+      "train_365d_positives": 319
+    },
+    {
+      "disease_code": "L97",
+      "train_365d_positives": 194
+    },
+    {
+      "disease_code": "L98",
+      "train_365d_positives": 118
+    },
+    {
+      "disease_code": "M00",
+      "train_365d_positives": 75
+    },
+    {
+      "disease_code": "M06",
+      "train_365d_positives": 64
+    },
+    {
+      "disease_code": "M10",
+      "train_365d_positives": 279
+    },
+    {
+      "disease_code": "M16",
+      "train_365d_positives": 69
+    },
+    {
+      "disease_code": "M17",
+      "train_365d_positives": 154
+    },
+    {
+      "disease_code": "M19",
+      "train_365d_positives": 538
+    },
+    {
+      "disease_code": "M1A",
+      "train_365d_positives": 67
+    },
+    {
+      "disease_code": "M21",
+      "train_365d_positives": 79
+    },
+    {
+      "disease_code": "M24",
+      "train_365d_positives": 58
+    },
+    {
+      "disease_code": "M25",
+      "train_365d_positives": 504
+    },
+    {
+      "disease_code": "M35",
+      "train_365d_positives": 97
+    },
+    {
+      "disease_code": "M43",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "M46",
+      "train_365d_positives": 76
+    },
+    {
+      "disease_code": "M47",
+      "train_365d_positives": 170
+    },
+    {
+      "disease_code": "M48",
+      "train_365d_positives": 571
+    },
+    {
+      "disease_code": "M50",
+      "train_365d_positives": 53
+    },
+    {
+      "disease_code": "M51",
+      "train_365d_positives": 112
+    },
+    {
+      "disease_code": "M54",
+      "train_365d_positives": 1481
+    },
+    {
+      "disease_code": "M62",
+      "train_365d_positives": 357
+    },
+    {
+      "disease_code": "M72",
+      "train_365d_positives": 55
+    },
+    {
+      "disease_code": "M79",
+      "train_365d_positives": 661
+    },
+    {
+      "disease_code": "M81",
+      "train_365d_positives": 265
+    },
+    {
+      "disease_code": "M84",
+      "train_365d_positives": 94
+    },
+    {
+      "disease_code": "M85",
+      "train_365d_positives": 158
+    },
+    {
+      "disease_code": "M86",
+      "train_365d_positives": 200
+    },
+    {
+      "disease_code": "M94",
+      "train_365d_positives": 85
+    },
+    {
+      "disease_code": "M96",
+      "train_365d_positives": 102
+    },
+    {
+      "disease_code": "N10",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "N12",
+      "train_365d_positives": 73
+    },
+    {
+      "disease_code": "N13",
+      "train_365d_positives": 246
+    },
+    {
+      "disease_code": "N14",
+      "train_365d_positives": 104
+    },
+    {
+      "disease_code": "N17",
+      "train_365d_positives": 4816
+    },
+    {
+      "disease_code": "N18",
+      "train_365d_positives": 1896
+    },
+    {
+      "disease_code": "N20",
+      "train_365d_positives": 104
+    },
+    {
+      "disease_code": "N25",
+      "train_365d_positives": 191
+    },
+    {
+      "disease_code": "N28",
+      "train_365d_positives": 253
+    },
+    {
+      "disease_code": "N30",
+      "train_365d_positives": 124
+    },
+    {
+      "disease_code": "N32",
+      "train_365d_positives": 218
+    },
+    {
+      "disease_code": "N35",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "N39",
+      "train_365d_positives": 3601
+    },
+    {
+      "disease_code": "N40",
+      "train_365d_positives": 445
+    },
+    {
+      "disease_code": "N41",
+      "train_365d_positives": 72
+    },
+    {
+      "disease_code": "N64",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "N71",
+      "train_365d_positives": 60
+    },
+    {
+      "disease_code": "N73",
+      "train_365d_positives": 128
+    },
+    {
+      "disease_code": "N80",
+      "train_365d_positives": 95
+    },
+    {
+      "disease_code": "N83",
+      "train_365d_positives": 72
+    },
+    {
+      "disease_code": "N92",
+      "train_365d_positives": 84
+    },
+    {
+      "disease_code": "N93",
+      "train_365d_positives": 52
+    },
+    {
+      "disease_code": "N99",
+      "train_365d_positives": 125
+    },
+    {
+      "disease_code": "O13",
+      "train_365d_positives": 51
+    },
+    {
+      "disease_code": "O14",
+      "train_365d_positives": 74
+    },
+    {
+      "disease_code": "O26",
+      "train_365d_positives": 67
+    },
+    {
+      "disease_code": "O32",
+      "train_365d_positives": 52
+    },
+    {
+      "disease_code": "O36",
+      "train_365d_positives": 57
+    },
+    {
+      "disease_code": "O41",
+      "train_365d_positives": 55
+    },
+    {
+      "disease_code": "O42",
+      "train_365d_positives": 60
+    },
+    {
+      "disease_code": "O69",
+      "train_365d_positives": 106
+    },
+    {
+      "disease_code": "O70",
+      "train_365d_positives": 166
+    },
+    {
+      "disease_code": "O72",
+      "train_365d_positives": 75
+    },
+    {
+      "disease_code": "O75",
+      "train_365d_positives": 50
+    },
+    {
+      "disease_code": "O76",
+      "train_365d_positives": 133
+    },
+    {
+      "disease_code": "O77",
+      "train_365d_positives": 55
+    },
+    {
+      "disease_code": "O86",
+      "train_365d_positives": 60
+    },
+    {
+      "disease_code": "O90",
+      "train_365d_positives": 90
+    },
+    {
+      "disease_code": "O99",
+      "train_365d_positives": 119
+    },
+    {
+      "disease_code": "Q21",
+      "train_365d_positives": 171
+    },
+    {
+      "disease_code": "Q23",
+      "train_365d_positives": 57
+    },
+    {
+      "disease_code": "U07",
+      "train_365d_positives": 152
+    }
+  ]
+}

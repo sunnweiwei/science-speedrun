@@ -1,0 +1,35 @@
+# Development environment overlay (TASK_STANDARD.md). The build context is the task directory.
+# Networking and resources come from task.toml (no-network; Harbor lets the agent's model API
+# through); an explicit network_mode here would prevent Harbor from attaching its egress sidecar.
+#
+# TASK_DATA_DIR is the public materialization (environment/data/MATERIALIZE.md). The entries of its
+# development/ role are mounted read-only under /workspace/data, next to the data README from the
+# image; verifier/ inputs and grader labels never reach this container. TASK_RESEARCH_DIR is an
+# empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "16gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the public surface-code materialization}/development/release.json", target: /workspace/data/release.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/inventory.json", target: /workspace/data/inventory.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/train", target: /workspace/data/train}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/validation", target: /workspace/data/validation}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/reference", target: /workspace/data/reference}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "python", "/opt/qec/check_resources.py", "--data-root", "/workspace/data"]
+      interval: 30s
+      timeout: 20s
+      retries: 3

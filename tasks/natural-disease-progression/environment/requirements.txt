@@ -1,0 +1,17 @@
+# Direct dependencies from Delphi's upstream requirements, pinned for this image.
+# Torch and torchvision are already present in the pinned base image.
+torch==2.3.0
+torchvision==0.18.0
+numpy==1.26.4
+matplotlib==3.10.9
+seaborn==0.13.2
+shap==0.49.1
+pandas==2.3.3
+umap-learn==0.5.12
+tqdm==4.65.0
+statsmodels==0.15.0
+pytest==8.3.5
+duckdb==1.4.4
+pyarrow==23.0.1
+lightgbm==4.6.0
+joblib==1.5.3

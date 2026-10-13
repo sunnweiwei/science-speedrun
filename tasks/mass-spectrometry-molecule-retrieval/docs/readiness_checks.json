@@ -1,0 +1,91 @@
+{
+  "audit_date": "2026-09-08",
+  "source_revision": "539eb43",
+  "checks": {
+    "frozen_input_manifest_and_candidate_ids": "passed",
+    "complete_candidate_permutations": "passed",
+    "hybrid_ranking_hash": "passed",
+    "mist_ranking_hash": "passed",
+    "independent_rescore_hash": "passed",
+    "stored_full_report_hash": "passed"
+  },
+  "recomputed_hit_rates": {
+    "hit_rate_at_1": 0.4939052175894281,
+    "hit_rate_at_5": 0.6418888129414445,
+    "hit_rate_at_20": 0.7443609022556391
+  },
+  "mces_at_1": {
+    "value": 12.178913192071088,
+    "validation": "stored report hash verified; MCES not recomputed in this audit"
+  },
+  "queries": 17556,
+  "unique_2d_molecules": 2997,
+  "strata": {
+    "fallback_domain": {
+      "queries": 7602,
+      "hybrid_hits": 1953,
+      "mist_hits": 1953,
+      "hybrid_hit_rate_at_1": 0.2569060773480663,
+      "mist_hit_rate_at_1": 0.2569060773480663
+    },
+    "glacier_domain": {
+      "queries": 9954,
+      "hybrid_hits": 6718,
+      "mist_hits": 5047,
+      "hybrid_hit_rate_at_1": 0.6749045609805103,
+      "mist_hit_rate_at_1": 0.5070323488045007
+    }
+  },
+  "molecule_cluster_bootstrap": {
+    "method": "Sample 2D-InChIKey molecule groups uniformly with replacement; retain every spectrum in each sampled group; ratio of paired total Hit@1 gains to sampled spectrum count. Fixed checkpoints, no training-seed uncertainty.",
+    "resamples": 100000,
+    "seed": 0,
+    "confidence": 0.999,
+    "delta": 0.09518113465481887,
+    "interval": [
+      0.05750733661536903,
+      0.13438072943404383
+    ]
+  },
+  "unit_tests": {
+    "passed": 15,
+    "runtime_seconds": 2.797,
+    "runtime": "local venv_rtx, not the shipped Docker image",
+    "initial_attempt": "MCES-only environment lacked torch; rerun in the existing PyTorch environment passed"
+  },
+  "not_run": [
+    "Fresh GPU forward replay",
+    "Docker/Harbor isolated replay",
+    "Single-H100 timing",
+    "GLACIER training",
+    "Autonomous agent pilot"
+  ],
+  "experimental_identity_audit": {
+    "provided_key_counts": {
+      "train": 22746,
+      "val": 3185,
+      "test": 2998
+    },
+    "rdkit_2023_9_6_recomputed_counts": {
+      "train": 22742,
+      "val": 3184,
+      "test": 2997
+    },
+    "recomputed_cross_fold_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "rows_with_key_mismatch": {
+      "train": 260,
+      "test": 5,
+      "val": 7
+    },
+    "test_collapsed_source_key_groups": 2
+  },
+  "audit_runtime": {
+    "rdkit": "2023.09.6",
+    "torch": "2.7.1+cu128",
+    "numpy": "1.26.4"
+  }
+}

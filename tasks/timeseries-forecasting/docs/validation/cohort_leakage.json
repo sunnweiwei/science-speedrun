@@ -1,0 +1,207 @@
+{
+ "what": "share of held-out label points readable from another instance's context, measured in absolute time",
+ "input": "/home/deqing_google_com/data/tsfm/work/verify_starter_c3_work/input",
+ "n_configs": 97,
+ "n_cohorts": 82,
+ "n_series_groups": 139742,
+ "label_points_considered": 40670379,
+ "exposed_single_call": 0.9248270590249479,
+ "exposed_cohort_wise": 0.0,
+ "exposed_single_call_any_item": 0.9560769276332537,
+ "exposed_cohort_wise_any_item": 0.03111697090405772,
+ "exposed_cohort_wise_any_item_real_timestamps": 0.0,
+ "label_points_with_real_timestamps": 39392818,
+ "note": "same-item figures compare an instance with other windows of its own series; any-item figures with every instance on its timeline (its dataset directory, or directories recording one system: make_cases.RELATED_DIRECTORIES). Placeholder-time directories (M4) are excluded from the real-timestamps figure, since their timestamps order nothing; they are checked by content instead (m4_content).",
+ "m4_content": {
+  "m4_conflict_pairs": 722,
+  "sharing_a_call": 0,
+  "examples": []
+ },
+ "cross_timeline_pairs_in_one_call": {
+  "n_pairs": 209,
+  "closest": [
+   {
+    "timelines": "ett1 | kdd_cup_2018_with_missing",
+    "closest_cutoffs_apart": "30 days 08:00:00"
+   },
+   {
+    "timelines": "ett2 | kdd_cup_2018_with_missing",
+    "closest_cutoffs_apart": "30 days 08:00:00"
+   },
+   {
+    "timelines": "bitbrains_fast_storage | bitbrains_rnd",
+    "closest_cutoffs_apart": "42 days 11:40:00"
+   },
+   {
+    "timelines": "restaurant | temperature_rain_with_missing",
+    "closest_cutoffs_apart": "48 days 00:00:00"
+   },
+   {
+    "timelines": "bizitobs_l2c | jena_weather",
+    "closest_cutoffs_apart": "56 days 03:50:00"
+   },
+   {
+    "timelines": "ett1 | hierarchical_sales",
+    "closest_cutoffs_apart": "69 days 00:00:00"
+   },
+   {
+    "timelines": "ett2 | hierarchical_sales",
+    "closest_cutoffs_apart": "69 days 00:00:00"
+   },
+   {
+    "timelines": "covid_deaths | jena_weather",
+    "closest_cutoffs_apart": "103 days 00:00:00"
+   },
+   {
+    "timelines": "hierarchical_sales | kdd_cup_2018_with_missing",
+    "closest_cutoffs_apart": "106 days 08:00:00"
+   },
+   {
+    "timelines": "SZ_TAXI | electricity",
+    "closest_cutoffs_apart": "150 days 00:00:00"
+   },
+   {
+    "timelines": "bizitobs_l2c | covid_deaths",
+    "closest_cutoffs_apart": "183 days 00:00:00"
+   },
+   {
+    "timelines": "LOOP_SEATTLE | SZ_TAXI",
+    "closest_cutoffs_apart": "281 days 12:00:00"
+   }
+  ]
+ },
+ "exposed_cohort_wise_across_timelines_real_timestamps": 0.34665014318092197,
+ "across_timelines_by_directory": {
+  "LOOP_SEATTLE": 0.183649,
+  "SZ_TAXI": 1.0,
+  "bitbrains_fast_storage": 0.457143,
+  "bitbrains_rnd": 0.442857,
+  "car_parts_with_missing": 1.0,
+  "covid_deaths": 1.0,
+  "electricity": 0.195503,
+  "ett1": 0.674632,
+  "ett2": 0.674632,
+  "hierarchical_sales": 1.0,
+  "hospital": 0.833333,
+  "jena_weather": 0.233932,
+  "kdd_cup_2018_with_missing": 1.0,
+  "restaurant": 1.0,
+  "saugeenday": 0.677725,
+  "temperature_rain_with_missing": 1.0
+ },
+ "per_directory": {
+  "LOOP_SEATTLE": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "M_DENSE": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "SZ_TAXI": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "bitbrains_fast_storage": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "bitbrains_rnd": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "bizitobs_application": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "bizitobs_l2c": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "bizitobs_service": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "car_parts_with_missing": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "covid_deaths": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "electricity": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "ett1": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "ett2": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "hierarchical_sales": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "hospital": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "jena_weather": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "kdd_cup_2018_with_missing": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "m4_daily": {
+   "exposed_cohort_wise_any_item": 0.9992902767920511,
+   "synthetic_time": true
+  },
+  "m4_hourly": {
+   "exposed_cohort_wise_any_item": 0.4082125603864734,
+   "synthetic_time": true
+  },
+  "m4_monthly": {
+   "exposed_cohort_wise_any_item": 0.9999375,
+   "synthetic_time": true
+  },
+  "m4_quarterly": {
+   "exposed_cohort_wise_any_item": 0.999875,
+   "synthetic_time": true
+  },
+  "m4_weekly": {
+   "exposed_cohort_wise_any_item": 0.9862866938075852,
+   "synthetic_time": true
+  },
+  "m4_yearly": {
+   "exposed_cohort_wise_any_item": 0.9994341429441977,
+   "synthetic_time": true
+  },
+  "restaurant": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "saugeenday": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "solar": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "temperature_rain_with_missing": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  },
+  "us_births": {
+   "exposed_cohort_wise_any_item": 0.0,
+   "synthetic_time": false
+  }
+ },
+ "cohorts_mixing_cutoffs_for_one_series": 0
+}

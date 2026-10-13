@@ -1,0 +1,13 @@
+# Harbor runner used by the agent-eval scripts: Harbor 0.23.0 plus the Docker CLI, Compose and
+# Buildx plugins (it drives the host's Docker daemon through the mounted socket).
+#   docker build -f harness/agent-eval/Dockerfile.runner -t harbor-runner:0.23.0-bx harness/agent-eval
+FROM python:3.12-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg git \
+ && install -m 0755 -d /etc/apt/keyrings \
+ && curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc \
+ && echo "deb [signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" \
+    > /etc/apt/sources.list.d/docker.list \
+ && apt-get update && apt-get install -y --no-install-recommends docker-ce-cli docker-compose-plugin docker-buildx-plugin \
+ && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir harbor==0.23.0 && pip freeze > /pip-freeze.txt
+CMD ["python3"]

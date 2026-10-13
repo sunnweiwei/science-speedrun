@@ -1,0 +1,44 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main` is the agent
+# container, and the build context must be the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# Only the agent-side parts of the materialization are mounted: the pretraining corpus and the
+# validation series. The evaluation series (gifteval/, which includes the test region) stay on the
+# host; entrypoint.sh refuses to start if they are mounted anyway. Each entry is mounted read-only
+# under /workspace/data, next to the data documents from the image. TASK_RESEARCH_DIR is an empty
+# directory per run on a large disk (the packed corpus and checkpoints go there).
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized data directory}/gifteval_pretrain
+        target: /workspace/data/gifteval_pretrain
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized data directory}/valid
+        target: /workspace/data/valid
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized data directory}/materialize-receipt.json
+        target: /workspace/data/materialize-receipt.json
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /workspace/data/materialize-receipt.json && test -d /workspace/data/gifteval_pretrain && test -d /workspace/data/valid && test ! -e /workspace/data/gifteval && test -d /workspace/baseline/starter && python3 -c 'import torch, pyarrow'"]
+      interval: 10s
+      timeout: 30s
+      retries: 3

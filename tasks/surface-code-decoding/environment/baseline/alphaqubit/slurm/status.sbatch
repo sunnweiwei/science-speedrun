@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=qec-final-status
+#SBATCH --account=users
+#SBATCH --partition=compsci
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=2G
+#SBATCH --time=00:10:00
+set -euo pipefail
+source "${QEC_TASK_ROOT}/slurm/runtime.sh"
+: "${QEC_CAMPAIGN:=native-v1}"
+"${QEC_TASK_ROOT}/.venv/bin/python" -m baselines.accounting --asset-root "${QEC_ASSET_ROOT}"
+"${QEC_TASK_ROOT}/.venv/bin/python" -m baselines.report \
+  --asset-root "${QEC_ASSET_ROOT}" --campaign "${QEC_CAMPAIGN}" \
+  --output "${QEC_ASSET_ROOT}/${QEC_CAMPAIGN}/report.html"

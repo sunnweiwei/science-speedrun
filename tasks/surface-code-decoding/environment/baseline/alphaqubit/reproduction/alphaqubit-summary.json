@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "reference": "alphaqubit-v1",
+  "reference_status": "Fixed, independently audited single-seed/single-fold baseline; supplementary follow-up excluded.",
+  "dataset": {
+    "url": "https://zenodo.org/records/6804040",
+    "bytes": 315490804,
+    "md5": "a7fd8b481c3087090093106382dc217d",
+    "license": "CC-BY-4.0",
+    "surface_conditions": 130,
+    "surface_shots": 6500000
+  },
+  "splits": {
+    "train": {
+      "per_condition": 19880,
+      "conditions": 130,
+      "total": 2584400
+    },
+    "validation": {
+      "per_condition": 5120,
+      "conditions": 130,
+      "total": 665600
+    },
+    "test": {
+      "per_condition": 25000,
+      "conditions": 130,
+      "total": 3250000
+    }
+  },
+  "architecture": {
+    "family": "Independent AlphaQubit recurrent Transformer",
+    "framework": "JAX/Haiku",
+    "blocks": 3,
+    "width": 320,
+    "heads": 4,
+    "key_size": 32,
+    "value_size": 32,
+    "conv_width": 160,
+    "dtype": "BF16 computation, FP32 parameters",
+    "specialists": [
+      {
+        "group": "d3_bX_center_3_5",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bX_center_5_3",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bX_center_5_7",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bX_center_7_5",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bZ_center_3_5",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bZ_center_5_3",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bZ_center_5_7",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d3_bZ_center_7_5",
+        "parameters": 8449990,
+        "fp32_bytes": 33799960
+      },
+      {
+        "group": "d5_bX_center_5_5",
+        "parameters": 8456070,
+        "fp32_bytes": 33824280
+      },
+      {
+        "group": "d5_bZ_center_5_5",
+        "parameters": 8456070,
+        "fp32_bytes": 33824280
+      }
+    ],
+    "total_parameters": 84512060,
+    "total_fp32_bytes": 338048240
+  },
+  "evaluation": {
+    "split": "test",
+    "conditions": 130,
+    "shots": 3250000,
+    "decision_rule": "predict observable flip iff converted official-path probability >= 0.5",
+    "fitted_ler": {
+      "d3": {
+        "ci95": [
+          0.02995034272597892,
+          0.030279445747592684
+        ],
+        "logical_error_per_round": 0.030126531836426357
+      },
+      "d5": {
+        "ci95": [
+          0.031956282516500144,
+          0.032591131217354706
+        ],
+        "logical_error_per_round": 0.032288885908884055
+      },
+      "error_suppression_d3_over_d5": {
+        "ci95": [
+          0.922742791268683,
+          0.9441043262185865
+        ],
+        "value": 0.9330310101575
+      }
+    },
+    "classical_same_protocol": {
+      "pymatching_mwpm_selected": {
+        "d3": {
+          "logical_error_per_round": 0.03877986465854796,
+          "ci95": [
+            0.03854478656968406,
+            0.038966752949047716
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.04316659375142139,
+          "ci95": [
+            0.04268614800771732,
+            0.043591294034434444
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 0.8983767605538953,
+          "ci95": [
+            0.888244840509241,
+            0.9088126227706199
+          ]
+        }
+      },
+      "pymatching_correlated_selected": {
+        "d3": {
+          "logical_error_per_round": 0.03416151301205684,
+          "ci95": [
+            0.03396168948492443,
+            0.03432705946570196
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.034503326350917296,
+          "ci95": [
+            0.034127018258565706,
+            0.03483757313016387
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 0.9900933221514925,
+          "ci95": [
+            0.9786577492371616,
+            1.0016960825313148
+          ]
+        }
+      },
+      "released_belief_matching": {
+        "d3": {
+          "logical_error_per_round": 0.031176287230296463,
+          "ci95": [
+            0.030991622079891184,
+            0.03133423629816913
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.030364283021076688,
+          "ci95": [
+            0.030043818596872288,
+            0.030668551175956568
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 1.0267420840681842,
+          "ci95": [
+            1.0147519997773868,
+            1.0388388137218914
+          ]
+        }
+      },
+      "released_tensor_network": {
+        "d3": {
+          "logical_error_per_round": 0.030263918116720218,
+          "ci95": [
+            0.030082978006888066,
+            0.030414262906413185
+          ]
+        },
+        "d5": {
+          "logical_error_per_round": 0.029085394108046593,
+          "ci95": [
+            0.02878758729569013,
+            0.02936303124959102
+          ]
+        },
+        "error_suppression_d3_over_d5": {
+          "value": 1.0405194443745764,
+          "ci95": [
+            1.0282159655870071,
+            1.052809439721992
+          ]
+        }
+      }
+    },
+    "proposed_ranking_not_yet_a_harbor_reward": {
+      "metric": "balanced per-shot logical failure over all13 durations, equal groups within distance and equal d3/d5",
+      "d3": 0.24509230769230766,
+      "d5": 0.24478615384615382,
+      "balanced": 0.24493923076923074,
+      "reward": 0.7550607692307693,
+      "implemented_as_harbor_reward": false
+    }
+  },
+  "measured_resources": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q 96GB",
+    "maximum_simultaneous_gpus": 8,
+    "pretraining": 179.9625,
+    "finetuning": 19.946666666666665,
+    "both_stage_test_inference": 0.3911111111111111,
+    "alphaqubit_with_probes": 200.4352777777778,
+    "earlier_qrennd": 145.90194444444444,
+    "main_training_and_both_stage_replay_gpu_hours": 200.30027777777778,
+    "first_campaign_wall_hours_including_queue": 47.87638888888889,
+    "finetuned_inference_timer_seconds": 397.24178027687594,
+    "timing_caveat": "Physical card-hours; no H200 equivalence. Inference timer excludes full setup and queue and is not guaranteed cold-start or streaming latency."
+  },
+  "evidence_sha256": {
+    "data/source.json": "607aca9672a7c7baf5ff421d7790fa9c35aae3ca895dc46f4e7e589acd5c8b15",
+    "alphaqubit-v1/scores-finetune.json": "11585ae9a8d554f4aa7579ea45d48666a800ccc2fd0ca41204992625e3df5cd9",
+    "alphaqubit-v1/verification/final-score-independent-audit-20260922.json": "d1c334a10582401fedf91988d8b5e38cc73119ac42f78bd1004314903955e1b9",
+    "alphaqubit-v1/packages/both/manifest.json": "330ffb73962b44c5d0090098fedc3cc75d3d7d35a607d703397772b4ca51f2ad"
+  },
+  "limitations": [
+    "Single seed and one even-train/odd-test fold; not the official ensemble/two-fold protocol.",
+    "Pre-fitted DEM includes validation syndromes, but not validation logical labels.",
+    "Public historical test is held out by protocol, not previously secret.",
+    "Confidence intervals describe independent-shot sampling, not seed or hardware-drift variance.",
+    "d5 remains worse than released tensor network and belief matching; official error suppression is not reproduced.",
+    "Harbor packaging, physical data separation, generic input loaders and verifier budget validation remain pending."
+  ],
+  "artifact_root": "/home/users/xy200/yinxunjian/mycode/ai4sci-artifacts/surface-code-decoding/20260919",
+  "large_artifact_availability": "Stored in the documented CS artifact root; a distributable pinned model/data release is not yet published."
+}

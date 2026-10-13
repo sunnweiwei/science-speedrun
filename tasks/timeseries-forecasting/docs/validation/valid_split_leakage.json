@@ -1,0 +1,11 @@
+{
+ "what": "overlap between agent-visible validation windows (context and labels) and any held-out test region, in time (alias copies included) and by content (M4 series holding another series' test label)",
+ "manifest": "environment/data/split.json",
+ "valid_input": "/home/deqing_google_com/data/tsfm/mat/valid.new/input",
+ "n_configs": 97,
+ "instances_checked": 151170,
+ "instances_overlapping_a_test_region": 0,
+ "m4_series_holding_another_test_label": 632,
+ "of_which_staged_for_validation": 0,
+ "examples": []
+}

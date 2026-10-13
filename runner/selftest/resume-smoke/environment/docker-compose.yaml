@@ -1,0 +1,8 @@
+services:
+  main:
+    build:
+      context: .
+    volumes:
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR}"
+        target: /workspace/research

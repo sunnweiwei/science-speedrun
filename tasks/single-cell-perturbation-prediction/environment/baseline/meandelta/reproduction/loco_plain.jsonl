@@ -1,0 +1,4 @@
+{"holdout": "k562", "score": 0.0894, "metrics": {"des": 0.042104591363769615, "pds": 0.07439927090048246, "mae": 0.0, "pearson_delta": 0.054631776767086214, "spearman_lfc": 0.43418615984601006, "auprc_de": 0.0, "spearman_effect": 0.020436284223394365}}
+{"holdout": "jurkat", "score": 0.1532, "metrics": {"des": 0.052946839922941226, "pds": 0.11100178890876558, "mae": 0.0, "pearson_delta": 0.16556272296417163, "spearman_lfc": 0.361460637224717, "auprc_de": 0.0, "spearman_effect": 0.3811396136022386}}
+{"holdout": "hct116", "score": 0.0387, "metrics": {"des": 0.0, "pds": 0.0915006282534551, "mae": 0.0, "pearson_delta": 0.026513948630285698, "spearman_lfc": 0.15264153153262972, "auprc_de": 0.0, "spearman_effect": 0.0}}
+{"holdout": "hek293t", "score": 0.0418, "metrics": {"des": 0.006850226896051554, "pds": 0.059821040346018935, "mae": 0.0, "pearson_delta": 0.01807051657393711, "spearman_lfc": 0.07075036895197877, "auprc_de": 0.0, "spearman_effect": 0.1371926442229463}}

@@ -1,0 +1,135 @@
+{
+  "checkpoint_selection": {
+    "best_checkpoint_sha256": "2fb135e66c57d258637e9c989b84f7bd75db0942528cac089161ad0f2277d360",
+    "best_epoch": 3,
+    "criterion": "highest validation overall_mean_family_pearson",
+    "note": "Epoch 1 validation used the previous BF16 diagnostic evaluator; epochs 2 and 3 were compared with FP32 inference, FP16 output rounding, and float64 metric accumulation.",
+    "valid_epoch_1_legacy_autocast": 0.0002721119533838353,
+    "valid_epoch_2": 0.09461931336464181,
+    "valid_epoch_3": 0.12863488137295248
+  },
+  "dataset_release_sha256": "44d06e9702eba73166ab525a45939b76d6509ea8c70f8af91438abd7b60c97c1",
+  "heldout_test": {
+    "examples": 1000,
+    "families": {
+      "atac": {
+        "mean_pearson": 0.2584468312871596,
+        "valid_tracks": 167
+      },
+      "cage": {
+        "mean_pearson": 0.0604927333882941,
+        "valid_tracks": 546
+      },
+      "chip_histone": {
+        "mean_pearson": 0.1768271652192998,
+        "valid_tracks": 1116
+      },
+      "chip_tf": {
+        "mean_pearson": 0.20311836350201887,
+        "valid_tracks": 1617
+      },
+      "contact_maps": {
+        "mean_pearson": 0.1487778775615419,
+        "valid_tracks": 28
+      },
+      "dnase": {
+        "mean_pearson": 0.41478659988521727,
+        "valid_tracks": 305
+      },
+      "junctions": {
+        "mean_pearson": 0.0,
+        "valid_tracks": 626
+      },
+      "procap": {
+        "mean_pearson": 0.1725150557121844,
+        "valid_tracks": 12
+      },
+      "rna_seq": {
+        "mean_pearson": 0.11173739338197394,
+        "valid_tracks": 613
+      },
+      "splice_sites": {
+        "mean_pearson": -0.004761256860042721,
+        "valid_tracks": 4
+      },
+      "splice_usage": {
+        "mean_pearson": 0.023997995021073595,
+        "valid_tracks": 626
+      }
+    },
+    "overall_mean_family_pearson": 0.1423580689180655,
+    "scope": "local trusted held-out evaluation with predicted splice positions; not a sealed verifier submission"
+  },
+  "input_length": 1048576,
+  "model_parameters": 226248,
+  "raw_reports": {
+    "heldout_test": "tiny_full_3epoch_test_2026-09-30.json",
+    "valid_epoch_2": "tiny_full_3epoch_valid_epoch2_2026-09-30.json",
+    "valid_epoch_3": "tiny_full_3epoch_valid_epoch3_2026-09-30.json"
+  },
+  "run_date": "2026-09-30",
+  "schema": "alphagenome-tiny-full-training/v1",
+  "training": {
+    "batch_size": 1,
+    "epochs": 3,
+    "examples_per_epoch": 3200,
+    "global_steps": 9600,
+    "learning_rate_initial": 0.001,
+    "learning_rate_min": 0.0001,
+    "optimizer": "AdamW",
+    "seed": 17,
+    "split": "train",
+    "training_precision": "CUDA autocast",
+    "weight_decay": 0.0001
+  },
+  "validation": {
+    "examples": 200,
+    "families": {
+      "atac": {
+        "mean_pearson": 0.20389376495378966,
+        "valid_tracks": 167
+      },
+      "cage": {
+        "mean_pearson": 0.06595834292049184,
+        "valid_tracks": 546
+      },
+      "chip_histone": {
+        "mean_pearson": 0.15859829749597165,
+        "valid_tracks": 1116
+      },
+      "chip_tf": {
+        "mean_pearson": 0.17215647351439595,
+        "valid_tracks": 1617
+      },
+      "contact_maps": {
+        "mean_pearson": 0.10455023060111278,
+        "valid_tracks": 28
+      },
+      "dnase": {
+        "mean_pearson": 0.3774395768203445,
+        "valid_tracks": 305
+      },
+      "junctions": {
+        "mean_pearson": 0.0,
+        "valid_tracks": 626
+      },
+      "procap": {
+        "mean_pearson": 0.1859045563627433,
+        "valid_tracks": 12
+      },
+      "rna_seq": {
+        "mean_pearson": 0.12398045096811419,
+        "valid_tracks": 613
+      },
+      "splice_sites": {
+        "mean_pearson": -0.005591088574309248,
+        "valid_tracks": 4
+      },
+      "splice_usage": {
+        "mean_pearson": 0.028093090039822684,
+        "valid_tracks": 626
+      }
+    },
+    "overall_mean_family_pearson": 0.12863488137295248
+  }
+}

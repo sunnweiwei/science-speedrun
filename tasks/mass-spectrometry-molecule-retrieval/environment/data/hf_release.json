@@ -1,0 +1,13 @@
+{
+  "schema": "massspecgym-hf-release-pins/v1",
+  "public": {
+    "repo_id": "Corning/ai4sci-massspecgym-retrieval",
+    "revision": "4a0c890f9a27685b1cffb5b131a501828abb4d1f",
+    "manifest_sha256": "e638ec58b51286bf1cec1ee65e52e75d47485779ceaf354d6728dedb284baadd"
+  },
+  "private": {
+    "repo_id": "Corning/ai4sci-massspecgym-retrieval-evaluation",
+    "revision": "061195f660391d40fa18a422edf175699fe0d771",
+    "manifest_sha256": "13b479504b841c4860d2034719b4066b6bf2bc6cf9747beeb4f099f60b743c76"
+  }
+}

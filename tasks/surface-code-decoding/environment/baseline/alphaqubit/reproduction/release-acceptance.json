@@ -1,0 +1,408 @@
+{
+  "schema": "surface-code-decoding-release-acceptance/v1",
+  "date": "2026-09-22",
+  "scope": "Frozen AlphaQubit replay, data migration, real optimizer/variable-N smoke, and native container role-isolation acceptance; no new accuracy campaign or checkpoint selection.",
+  "hf_release": {
+    "schema": "surface-code-decoding-hf-release/v1",
+    "release": "sycamore-hard-v1",
+    "artifacts": {
+      "development": {
+        "repo_id": "Corning/ai4sci-surface-code-decoding",
+        "revision": "18a4b988ad6cd262a6c92b0a7df356af7d0fb434",
+        "filename": "development.tar.gz",
+        "bytes": 384107582,
+        "sha256": "085c6b8e2c61960a28203436d03eb23206ec36c959d36ac8c5adfe78596dbd5f",
+        "expanded_bytes": 455712954
+      },
+      "verifier": {
+        "repo_id": "Corning/ai4sci-surface-code-decoding",
+        "revision": "18a4b988ad6cd262a6c92b0a7df356af7d0fb434",
+        "filename": "verifier-inputs.tar.gz",
+        "bytes": 64789453,
+        "sha256": "e3be733f50de3dfb798d95661c5a9d7128787c2eee57f85b60c7abc004fab636",
+        "expanded_bytes": 87166817
+      },
+      "grader": {
+        "repo_id": "Corning/ai4sci-surface-code-decoding-evaluation",
+        "revision": "b07dd3e6a484c3df76f2ed90bbf97c72e446dc36",
+        "filename": "grader-labels.tar.gz",
+        "bytes": 26738048,
+        "sha256": "32d02dd2083b2dd89d48a0ace680ec8b92a45e00388d1cb9c1df9287b0486876",
+        "expanded_bytes": 29372924
+      }
+    }
+  },
+  "data_audit": {
+    "status": "passed",
+    "public_source": {
+      "url": "https://zenodo.org/records/6804040",
+      "license": "CC-BY-4.0",
+      "publisher": "Google Quantum AI",
+      "archive_bytes": 315490804,
+      "archive_md5_verified": "a7fd8b481c3087090093106382dc217d",
+      "archive_sha256": "ef569742126b305e163cc7fccbf6275e03bdd54d090dffb1aef12a78af0a74c4",
+      "confidentiality": "Public scientific dataset; all official observable labels are already in the public source archive.",
+      "grader_label_derivation": "Exact odd-index rows of public obs_flips_actual.01; no private or newly collected labels. Runtime labels are separated to prevent model access.",
+      "development_derivation": "Train first 19,880 even-index rows per condition; validation final 5,120 even-index rows; public even-fit DEM calibration exception retained."
+    },
+    "split_audit": {
+      "totals": {
+        "train": 2584400,
+        "validation": 665600,
+        "test": 3250000
+      },
+      "condition_payloads_verified": 390,
+      "forbidden_development_files": [],
+      "calibration_files_verified": 260,
+      "development_test_role_directories_absent": true
+    },
+    "model_summary": {
+      "checkpoints": 10,
+      "parameters": 84512060
+    },
+    "normalization_anchors": [
+      {
+        "method": "pymatching_mwpm_selected",
+        "bound": "lower_bound",
+        "exact_performance": "3723441/5200000",
+        "performance": 0.7160463461538461,
+        "configured": 0.7160463461538461,
+        "normalized_score": 0.0
+      },
+      {
+        "method": "released_tensor_network",
+        "bound": "upper_bound",
+        "exact_performance": "3959883/5200000",
+        "performance": 0.7615159615384616,
+        "configured": 0.7615159615384615,
+        "normalized_score": 1.0
+      }
+    ]
+  },
+  "full_frozen_replay": {
+    "status": "valid",
+    "shots": 3250000,
+    "conditions": 130,
+    "performance": 0.7550636538461539,
+    "score": 0.858096277311141,
+    "balanced_logical_failure": 0.24493634615384613,
+    "ler_per_round": {
+      "d3": 0.030126219866651923,
+      "d5": 0.03228722634021808
+    },
+    "slurm_job": "12682867",
+    "array_tasks": 10,
+    "maximum_concurrent_gpus": 4,
+    "hardware": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition 96 GB",
+    "allocated_gpu_seconds": 1737,
+    "allocated_gpu_hours": 0.4825,
+    "runtime": "Apptainer 1.5.3, python:3.11-slim-bookworm image, pinned Python 3.11.14 / JAX 0.7.2 runtime",
+    "isolation": "Read-only relocated starter and input-only verifier; no labels, development data or credentials mounted; network none and loopback-only runtime assertion.",
+    "grading": "Current trusted Git scorer on actual HF-restored verifier inputs and private grader labels, after inference.",
+    "score_report_sha256": "348a856f8aa72a7b91e42774dda82664d67b8fd833303bfb296416a1cba67934",
+    "input_manifest_sha256": "5bcf681e1a0520dbbaa32086c3935b360063388f771f310b5c8ef9aad1eb50ab",
+    "score_config_sha256": "2e93b9e601da5447e2beb5928f3141abfd542b15f563da2bc4aa2e1bef683338"
+  },
+  "historical_comparison": {
+    "reference_unchanged": true,
+    "historical_performance": 0.7550607692307693,
+    "historical_normalized_score": 0.8580328368056459,
+    "fresh_performance": 0.7550636538461539,
+    "fresh_normalized_score": 0.858096277311141,
+    "probability_changes": 5545,
+    "decision_changes": 25,
+    "historical_errors": 796351,
+    "fresh_errors": 796342,
+    "bit_identical": false,
+    "interpretation": "Small independent-GPU-run numerical variation is retained, not hidden or used to select a new reference. Same-process controls below rule out the adapter change on their 75,000 sampled test shots; they do not identify the underlying numerical cause."
+  },
+  "same_process_adapter_control": {
+    "status": "passed",
+    "slurm_job": "12683095",
+    "allocated_gpu_seconds": 89,
+    "conditions": {
+      "surface_code_bX_d3_r21_center_5_3": {
+        "all_input_bytes_features_geometry_identical": true,
+        "checkpoint_sha256": "93103b020223891a66cb2d3aaf632467648091accc22a1aae57e85cfc22295d7",
+        "elapsed_seconds": 20.42267338000238,
+        "feature_checks": 490,
+        "group": "d3_bX_center_5_3",
+        "new_predict_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 1,
+          "max_abs_probability_delta": 0.02931511402130127,
+          "n": 25000,
+          "probability_changes": 235
+        },
+        "new_predict_vs_new_recorded": {
+          "bit_identical": false,
+          "decision_changes": 1,
+          "max_abs_probability_delta": 0.02931511402130127,
+          "n": 25000,
+          "probability_changes": 235
+        },
+        "old_predict_condition_vs_actual_new_predict": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        },
+        "old_predict_condition_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 1,
+          "max_abs_probability_delta": 0.02931511402130127,
+          "n": 25000,
+          "probability_changes": 235
+        },
+        "old_predict_condition_vs_new_recorded": {
+          "bit_identical": false,
+          "decision_changes": 1,
+          "max_abs_probability_delta": 0.02931511402130127,
+          "n": 25000,
+          "probability_changes": 235
+        },
+        "same_compiled_apply_old_vs_new_features": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        }
+      },
+      "surface_code_bX_d5_r25_center_5_5": {
+        "all_input_bytes_features_geometry_identical": true,
+        "checkpoint_sha256": "c9aaa4ef3c61ff753add95a75d3253f148aed0226b3f583f85902b6cb70f0896",
+        "elapsed_seconds": 37.88805787591264,
+        "feature_checks": 490,
+        "group": "d5_bX_center_5_5",
+        "new_predict_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.01165759563446045,
+          "n": 25000,
+          "probability_changes": 139
+        },
+        "new_predict_vs_new_recorded": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.004304558038711548,
+          "n": 25000,
+          "probability_changes": 58
+        },
+        "old_predict_condition_vs_actual_new_predict": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        },
+        "old_predict_condition_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.01165759563446045,
+          "n": 25000,
+          "probability_changes": 139
+        },
+        "old_predict_condition_vs_new_recorded": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.004304558038711548,
+          "n": 25000,
+          "probability_changes": 58
+        },
+        "same_compiled_apply_old_vs_new_features": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        }
+      },
+      "surface_code_bZ_d3_r21_center_3_5": {
+        "all_input_bytes_features_geometry_identical": true,
+        "checkpoint_sha256": "dad8962b5917f091d49e0bfebcca9eb920e6a40074177f2655b0f6702f2ecae6",
+        "elapsed_seconds": 26.759846124332398,
+        "feature_checks": 490,
+        "group": "d3_bZ_center_3_5",
+        "new_predict_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.028768926858901978,
+          "n": 25000,
+          "probability_changes": 211
+        },
+        "new_predict_vs_new_recorded": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        },
+        "old_predict_condition_vs_actual_new_predict": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        },
+        "old_predict_condition_vs_historical": {
+          "bit_identical": false,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.028768926858901978,
+          "n": 25000,
+          "probability_changes": 211
+        },
+        "old_predict_condition_vs_new_recorded": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        },
+        "same_compiled_apply_old_vs_new_features": {
+          "bit_identical": true,
+          "decision_changes": 0,
+          "max_abs_probability_delta": 0.0,
+          "n": 25000,
+          "probability_changes": 0
+        }
+      }
+    },
+    "runtime": {
+      "python": "3.11.14",
+      "jax": "0.7.2",
+      "haiku": "0.0.15",
+      "numpy": "2.3.3",
+      "stim": "1.15.0",
+      "devices": [
+        {
+          "id": 0,
+          "kind": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+          "platform": "gpu"
+        }
+      ],
+      "host": "compsci-cluster-fitz-46"
+    },
+    "labels_read": false,
+    "checkpoint_selection": false,
+    "all_input_bytes_features_geometry_identical": true,
+    "all_old_new_adapter_predictions_bit_identical": true,
+    "shots": 75000
+  },
+  "optimizer_and_arbitrary_n_smoke": {
+    "status": "passed",
+    "slurm_job": "12683009",
+    "allocated_gpu_seconds": 316,
+    "training": {
+      "group": "d3_bX_center_3_5",
+      "steps": 1,
+      "last_training_loss": 0.6307697296142578,
+      "validation_mean_condition_failure": 0.07692307692307693,
+      "validation_shots_per_condition": 1,
+      "data_manifest_sha256": "ce46c21e3595cfc5885bbe2b6481105317d2e6267498ec4572601469825914b8",
+      "validation_manifest_sha256": "482bb7268c6c827ebbf1f756ee6994750acfcd011adab08eaa2ada703e5faea1",
+      "starting_checkpoint_sha256": "273d291286b13cec6d3151e025fa595aafbe7d77a332f35a9e1d98bddd1548bb",
+      "recipe": "AdamW BCE example; no test data or test selection",
+      "elapsed_seconds": 141.24689568625763,
+      "scope": "optimizer and separated-data contract smoke only; not an accuracy experiment"
+    },
+    "submission_validation": {
+      "passed": true,
+      "checkpoints": 10,
+      "verifier_source_sha256": "d78fe981a4ea0f97f3924a8d363b5ead0c26d6f46e7d0387e3ea8c2190d1e572"
+    },
+    "all_ten_model_reloads_passed": true,
+    "selected_group_parameter_values_changed": 8385607,
+    "other_nine_weights_and_metadata_unchanged": true,
+    "shuffled_inference": {
+      "conditions": 13,
+      "shots": 39,
+      "reversed_duration_order": true,
+      "input_only_npzs": true,
+      "exact_prediction_file_coverage": true,
+      "model": "original frozen d5/X starter, independently of the one-step d3/X optimizer smoke"
+    },
+    "limitation": "One-step optimizer/schema smoke and 39-shot arbitrary-N inference contract test; not evidence of accuracy improvement or convergence."
+  },
+  "limitations": [
+    "Full scientific GPU replay ran in isolated Apptainer; native Docker uses a synthetic 520-shot fixture to validate the actual image, supervisor, grader and security boundary. These are distinct checks, not a full native Docker GPU scientific replay.",
+    "H100 throughput or the full agent optimization budget was not measured by this release acceptance.",
+    "Public historical test isolation does not imply new secret or leakage-proof data.",
+    "TN upper anchor rescored released same-test predictions; no independent TN implementation claim. AlphaQubit is an independent, budget-limited reproduction, not official Google code/weights or headline protocol accuracy.",
+    "GPU replay is not bitwise deterministic across independent runs; fixed historical reference and fresh acceptance values are both retained."
+  ],
+  "durable_operator_artifacts": "/usr/project/xtmp/xy200/mycode/ai4sci-artifacts/benchmark-release-20260922",
+  "hf_roundtrip": {
+    "status": "passed",
+    "roles": [
+      "development",
+      "verifier",
+      "grader"
+    ],
+    "fresh_materialization_verified": true,
+    "existing_materialization_reuse_verified": true,
+    "final_public_revision": "18a4b988ad6cd262a6c92b0a7df356af7d0fb434",
+    "note": "Final revision changes only the dataset card; archive byte hashes are unchanged. Reuse avoids unnecessary re-extraction and NFS cleanup."
+  },
+  "native_docker": {
+    "status": "passed",
+    "workflow_url": "https://github.com/T0-RSI/ai4sci-tasks/actions/runs/35697461569",
+    "tested_commit": "8482b38caade587e6065dee6cc933348af593925",
+    "actual_verifier_image_built": true,
+    "summary": {
+      "cases": [
+        {
+          "case": "valid",
+          "scientific_accuracy_evidence": false,
+          "score": 0.7467328139670633,
+          "status": "passed",
+          "supervisor_exit_code": 0,
+          "verifier_status": "valid"
+        },
+        {
+          "case": "invalid-submission",
+          "scientific_accuracy_evidence": false,
+          "score": 0.0,
+          "status": "passed",
+          "supervisor_exit_code": 0,
+          "verifier_status": "invalid_submission"
+        },
+        {
+          "case": "missing-labels",
+          "scientific_accuracy_evidence": false,
+          "score": null,
+          "status": "passed",
+          "supervisor_exit_code": 1,
+          "verifier_status": "infrastructure_error"
+        }
+      ],
+      "schema": "surface-code-container-smoke/v1",
+      "scientific_accuracy_evidence": false,
+      "scope": "Actual native Docker CPU supervisor/grader role separation and error classification on synthetic data",
+      "status": "passed",
+      "wall_seconds": 19.478921310000032
+    },
+    "security_probes": {
+      "uid": 10001,
+      "network_interfaces": [
+        "lo"
+      ],
+      "private_labels_absent": true,
+      "sealed_volume_inaccessible": true,
+      "protected_paths_not_writable": true,
+      "artifact_relocated": true,
+      "extensionless_executable_ran": true
+    },
+    "scope": "Synthetic 520-shot fixture runs the actual Docker Compose supervisor and grader; distinct from full scientific GPU replay in Apptainer."
+  },
+  "status": "passed_with_documented_cross_run_numerical_variation",
+  "unit_tests": {
+    "passed": 117,
+    "skipped": 4,
+    "elapsed_seconds": 105.85,
+    "command": "JAX_PLATFORMS=cpu python -m pytest -q tests/test_release_contract.py tests/test_alphaqubit_artifact.py tests/test_alphaqubit_data.py tests/test_alphaqubit_model.py tests/test_alphaqubit_training.py tests/test_metrics.py tests/test_prediction_contract.py",
+    "skips": "Three optional QEC_DATA_ROOT integration checks and one optional legacy TensorFlow prediction check; full released-data integrity and real AlphaQubit GPU inference were validated separately.",
+    "log_sha256": "107964663b61b155587bdd9c2f8845abe9a764b8aa240c4b537f4c77139fd090"
+  }
+}

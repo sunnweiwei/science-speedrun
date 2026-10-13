@@ -1,0 +1,2 @@
+{"contract": "pde-surrogate-rollout/v1", "name": "dpot-zero-shot", "description": "Released DPOT checkpoint (hzk17/DPOT @ 2adec1cf, Apache-2.0 weights) replayed without training; PDEArena training split was in its pretraining data",
+ "parameters": null, "context_frames": 4, "sources_used": [], "pretrained_assets": ["hzk17/DPOT@2adec1cf9a55942f1456aa7463cd7ade908398d0"]}

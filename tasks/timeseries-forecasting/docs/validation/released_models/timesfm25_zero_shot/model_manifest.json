@@ -1,0 +1,70 @@
+{
+ "name": "timesfm25_zero_shot",
+ "contract": "timeseries-forecast/v1",
+ "parameters": 231289280,
+ "pretrained_assets": [
+  {
+   "repo": "google/timesfm-2.5-200m-pytorch",
+   "revision": "1d952420fba87f3c6dee4f240de0f1a0fbc790e3",
+   "license": "apache-2.0"
+  }
+ ],
+ "sources_used": [
+  "https://github.com/google-research/timesfm @ e31dadd84cb26bd5153fde6687502b8312e918fb (pypi name `timesfm`, version 3.0.2)",
+  "gift-eval/notebooks/timesfm2p5.ipynb (official GIFT-Eval notebook for the TimesFM-2.5 leaderboard row)",
+  "https://huggingface.co/google/timesfm-2.5-200m-pytorch (model card)"
+ ],
+ "settings": {
+  "class": "timesfm.timesfm_2p5.timesfm_2p5_torch.TimesFM_2p5_200M_torch",
+  "forecast_config": {
+   "max_context": "min(15360, patch-rounded max context length of the 1024-series chunk)",
+   "max_horizon": "ceil(H/128)*128 (notebook: 1024; bit-identical, see README deviation 3)",
+   "infer_is_positive": true,
+   "use_continuous_quantile_head": true,
+   "fix_quantile_crossing": true,
+   "force_flip_invariance": true,
+   "return_backcast": false,
+   "normalize_inputs": true,
+   "per_core_batch_size": "notebook 128; here capped by a token budget (chunking only, does not change the numbers)"
+  },
+  "predictor_chunk": 1024,
+  "torch_compile": false,
+  "multivariate": "flattened to independent univariate series (the notebook's to_univariate=True)",
+  "nan_handling": "passed through as NaN; TimesFM_2p5.forecast strips leading NaNs and linearly interpolates the rest",
+  "mean_forecast": "the model's mean channel (quantile output index 0)",
+  "dtype": "float32",
+  "torch": "2.14.0+cu130",
+  "per_core_batch_size_budget": "TIMESFM25_TOKEN_BUDGET=122880 series*steps (batch 8 at a 15360-step context)",
+  "all_nan_context": "replaced with zeros (TimesFM_2p5.forecast raises on an all-NaN series); 649 of 371,330 univariate series"
+ },
+ "results": {
+  "split": "test (97 configs, 326,490 instances, 371,330 univariate series)",
+  "aggregate_geomean_vs_leaderboard_seasonal_naive": {
+   "mase": 0.7050307704464063,
+   "wql": 0.4902880967873242
+  },
+  "published": {
+   "mase": 0.705,
+   "wql": 0.4903
+  },
+  "task_grader": {
+   "reward": 0.4120644638919422,
+   "rel_mase_gmean": 0.7050307704464063,
+   "rel_wql_gmean": 0.4902880967873242,
+   "n_failed": 0
+  },
+  "max_rel_deviation_vs_leaderboard": {
+   "mase": 1.624e-06,
+   "wql": 4.252e-06
+  },
+  "n_configs_off_by_more_than_5pct": 0
+ },
+ "runtime": {
+  "model_time_s_sum_over_configs": 55025,
+  "externally_imposed_pause_s": 20500,
+  "net_hours": 9.6,
+  "hardware": "1x A100 40GB (shared with other jobs)",
+  "peak_gpu_memory_gb": 3.0,
+  "peak_host_rss_gb": 2.5
+ }
+}

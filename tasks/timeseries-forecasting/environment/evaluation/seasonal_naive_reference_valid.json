@@ -1,0 +1,493 @@
+{
+ "schema": "timeseries-forecasting-seasonal-naive-reference/v1",
+ "source": "reference/seasonal_naive run on the task validation split (one window per series, ending before the earliest held-out region of every config that shares it, alias copies included; M4 series holding another series' test label verbatim have no window) through evaluation/score.py",
+ "note": "the validation scale; the test-split normalizer in seasonal_naive_reference.json comes from the leaderboard and is a different scale",
+ "n_configs": 97,
+ "configs": {
+  "m4_yearly__A__short": {
+   "leaderboard_key": "m4_yearly/A/short",
+   "mase": 4.730803330645802,
+   "wql": 0.15602350647819704
+  },
+  "m4_quarterly__Q__short": {
+   "leaderboard_key": "m4_quarterly/Q/short",
+   "mase": 1.5909093331240343,
+   "wql": 0.0995990835037221
+  },
+  "m4_monthly__M__short": {
+   "leaderboard_key": "m4_monthly/M/short",
+   "mase": 1.2366691185612824,
+   "wql": 0.11781121192744513
+  },
+  "m4_weekly__W__short": {
+   "leaderboard_key": "m4_weekly/W/short",
+   "mase": 2.895128591740639,
+   "wql": 0.06508715280630521
+  },
+  "m4_daily__D__short": {
+   "leaderboard_key": "m4_daily/D/short",
+   "mase": 3.2161164077095057,
+   "wql": 0.02310161661155265
+  },
+  "m4_hourly__H__short": {
+   "leaderboard_key": "m4_hourly/H/short",
+   "mase": 1.22836124915778,
+   "wql": 0.034474947608819397
+  },
+  "electricity__T__short": {
+   "leaderboard_key": "electricity/15T/short",
+   "mase": 1.0916823579221513,
+   "wql": 0.06198863606457304
+  },
+  "electricity__T__medium": {
+   "leaderboard_key": "electricity/15T/medium",
+   "mase": 1.5099936923797364,
+   "wql": 0.12054261982000446
+  },
+  "electricity__T__long": {
+   "leaderboard_key": "electricity/15T/long",
+   "mase": 1.0941077605435365,
+   "wql": 0.107564338522276
+  },
+  "electricity__H__short": {
+   "leaderboard_key": "electricity/H/short",
+   "mase": 0.9861593153062442,
+   "wql": 0.06763119078713985
+  },
+  "electricity__H__medium": {
+   "leaderboard_key": "electricity/H/medium",
+   "mase": 1.2478422873379948,
+   "wql": 0.12311153060577013
+  },
+  "electricity__H__long": {
+   "leaderboard_key": "electricity/H/long",
+   "mase": 1.356699671272273,
+   "wql": 0.14674885232557194
+  },
+  "electricity__D__short": {
+   "leaderboard_key": "electricity/D/short",
+   "mase": 1.6456666278884469,
+   "wql": 0.09261378216375024
+  },
+  "electricity__W__short": {
+   "leaderboard_key": "electricity/W/short",
+   "mase": 1.316880865245498,
+   "wql": 0.06523927951573125
+  },
+  "solar__T__short": {
+   "leaderboard_key": "solar/10T/short",
+   "mase": 0.016018364778558773,
+   "wql": 12.118563297136966
+  },
+  "solar__T__medium": {
+   "leaderboard_key": "solar/10T/medium",
+   "mase": 0.8331425981399365,
+   "wql": 0.5650432034501303
+  },
+  "solar__T__long": {
+   "leaderboard_key": "solar/10T/long",
+   "mase": 2.1421153816960863,
+   "wql": 0.9032285592107642
+  },
+  "solar__H__short": {
+   "leaderboard_key": "solar/H/short",
+   "mase": 1.0569321595099215,
+   "wql": 0.602297355940449
+  },
+  "solar__H__medium": {
+   "leaderboard_key": "solar/H/medium",
+   "mase": 1.3782698364748944,
+   "wql": 0.9679824737641872
+  },
+  "solar__H__long": {
+   "leaderboard_key": "solar/H/long",
+   "mase": 1.0723400769109404,
+   "wql": 0.9027882643891623
+  },
+  "solar__D__short": {
+   "leaderboard_key": "solar/D/short",
+   "mase": 1.1670584568457976,
+   "wql": 0.4714212933677157
+  },
+  "solar__W__short": {
+   "leaderboard_key": "solar/W/short",
+   "mase": 1.0078578333938706,
+   "wql": 0.13890951079671932
+  },
+  "hospital__M__short": {
+   "leaderboard_key": "hospital/M/short",
+   "mase": 0.9326829101839614,
+   "wql": 0.0633931064425068
+  },
+  "covid_deaths__D__short": {
+   "leaderboard_key": "covid_deaths/D/short",
+   "mase": 50.55549046119792,
+   "wql": 0.12549070850235644
+  },
+  "us_births__D__short": {
+   "leaderboard_key": "us_births/D/short",
+   "mase": 2.328105874599355,
+   "wql": 0.13056664093780335
+  },
+  "us_births__M__short": {
+   "leaderboard_key": "us_births/M/short",
+   "mase": 0.3023112362005141,
+   "wql": 0.011101802850788281
+  },
+  "us_births__W__short": {
+   "leaderboard_key": "us_births/W/short",
+   "mase": 3.858436986096576,
+   "wql": 0.04221704717157443
+  },
+  "saugeenday__D__short": {
+   "leaderboard_key": "saugeen/D/short",
+   "mase": 3.898466092444523,
+   "wql": 0.5418638069109889
+  },
+  "saugeenday__M__short": {
+   "leaderboard_key": "saugeen/M/short",
+   "mase": 0.33228103391864,
+   "wql": 0.2615013833629034
+  },
+  "saugeenday__W__short": {
+   "leaderboard_key": "saugeen/W/short",
+   "mase": 0.5685710422753978,
+   "wql": 0.5994091721735982
+  },
+  "temperature_rain_with_missing__D__short": {
+   "leaderboard_key": "temperature_rain/D/short",
+   "mase": 3.2912255413171745,
+   "wql": 1.099183165150044
+  },
+  "kdd_cup_2018_with_missing__H__short": {
+   "leaderboard_key": "kdd_cup_2018/H/short",
+   "mase": 0.6811227593500775,
+   "wql": 0.6266148384878599
+  },
+  "kdd_cup_2018_with_missing__H__medium": {
+   "leaderboard_key": "kdd_cup_2018/H/medium",
+   "mase": 1.2781450805103305,
+   "wql": 1.049898934007083
+  },
+  "kdd_cup_2018_with_missing__H__long": {
+   "leaderboard_key": "kdd_cup_2018/H/long",
+   "mase": 0.981050679806651,
+   "wql": 1.2362237298155803
+  },
+  "kdd_cup_2018_with_missing__D__short": {
+   "leaderboard_key": "kdd_cup_2018/D/short",
+   "mase": 1.2132840958596942,
+   "wql": 0.8994855622016019
+  },
+  "car_parts_with_missing__M__short": {
+   "leaderboard_key": "car_parts/M/short",
+   "mase": 1.556811831303017,
+   "wql": 1.6139130745452677
+  },
+  "restaurant__D__short": {
+   "leaderboard_key": "restaurant/D/short",
+   "mase": 1.0028179898604987,
+   "wql": 0.6760963195065456
+  },
+  "hierarchical_sales__D__short": {
+   "leaderboard_key": "hierarchical_sales/D/short",
+   "mase": 1.0956340453936162,
+   "wql": 1.4587792906606432
+  },
+  "hierarchical_sales__W__short": {
+   "leaderboard_key": "hierarchical_sales/W/short",
+   "mase": 0.9952062817493519,
+   "wql": 0.7382990422957836
+  },
+  "LOOP_SEATTLE__T__short": {
+   "leaderboard_key": "loop_seattle/5T/short",
+   "mase": 0.6088421384511257,
+   "wql": 0.05736115508602545
+  },
+  "LOOP_SEATTLE__T__medium": {
+   "leaderboard_key": "loop_seattle/5T/medium",
+   "mase": 1.5924843577520822,
+   "wql": 0.14109820582939464
+  },
+  "LOOP_SEATTLE__T__long": {
+   "leaderboard_key": "loop_seattle/5T/long",
+   "mase": 1.5910237866124803,
+   "wql": 0.14753926773607257
+  },
+  "LOOP_SEATTLE__H__short": {
+   "leaderboard_key": "loop_seattle/H/short",
+   "mase": 2.0101473993616685,
+   "wql": 0.13665681786039896
+  },
+  "LOOP_SEATTLE__H__medium": {
+   "leaderboard_key": "loop_seattle/H/medium",
+   "mase": 1.1535310881157237,
+   "wql": 0.14911283164622935
+  },
+  "LOOP_SEATTLE__H__long": {
+   "leaderboard_key": "loop_seattle/H/long",
+   "mase": 1.2448539713840052,
+   "wql": 0.17526380961630228
+  },
+  "LOOP_SEATTLE__D__short": {
+   "leaderboard_key": "loop_seattle/D/short",
+   "mase": 1.1854124643746355,
+   "wql": 0.09281728785965133
+  },
+  "SZ_TAXI__T__short": {
+   "leaderboard_key": "sz_taxi/15T/short",
+   "mase": 0.7251090475210906,
+   "wql": 0.3023498132057821
+  },
+  "SZ_TAXI__T__medium": {
+   "leaderboard_key": "sz_taxi/15T/medium",
+   "mase": 0.6350051480164337,
+   "wql": 0.3916041859838231
+  },
+  "SZ_TAXI__T__long": {
+   "leaderboard_key": "sz_taxi/15T/long",
+   "mase": 0.6084219160390921,
+   "wql": 0.45522272202116565
+  },
+  "SZ_TAXI__H__short": {
+   "leaderboard_key": "sz_taxi/H/short",
+   "mase": 0.6087142479652129,
+   "wql": 0.20653078520030457
+  },
+  "M_DENSE__H__short": {
+   "leaderboard_key": "m_dense/H/short",
+   "mase": 0.8744657675879529,
+   "wql": 0.18983266370122717
+  },
+  "M_DENSE__H__medium": {
+   "leaderboard_key": "m_dense/H/medium",
+   "mase": 1.171624112893389,
+   "wql": 0.3497462745339787
+  },
+  "M_DENSE__H__long": {
+   "leaderboard_key": "m_dense/H/long",
+   "mase": 1.0805183298420056,
+   "wql": 0.3841191250034235
+  },
+  "M_DENSE__D__short": {
+   "leaderboard_key": "m_dense/D/short",
+   "mase": 1.007688577826318,
+   "wql": 0.1992117768924222
+  },
+  "ett1__T__short": {
+   "leaderboard_key": "ett1/15T/short",
+   "mase": 1.2054822899524387,
+   "wql": 0.48104386522982623
+  },
+  "ett1__T__medium": {
+   "leaderboard_key": "ett1/15T/medium",
+   "mase": 0.7745679584044315,
+   "wql": 0.4386794376669185
+  },
+  "ett1__T__long": {
+   "leaderboard_key": "ett1/15T/long",
+   "mase": 1.327073089604087,
+   "wql": 0.5796800252115644
+  },
+  "ett1__H__short": {
+   "leaderboard_key": "ett1/H/short",
+   "mase": 1.0441605493380515,
+   "wql": 0.5044116168241106
+  },
+  "ett1__H__medium": {
+   "leaderboard_key": "ett1/H/medium",
+   "mase": 1.2235872159229322,
+   "wql": 0.5499353323396741
+  },
+  "ett1__H__long": {
+   "leaderboard_key": "ett1/H/long",
+   "mase": 1.4320631719624162,
+   "wql": 0.5783242328839591
+  },
+  "ett1__D__short": {
+   "leaderboard_key": "ett1/D/short",
+   "mase": 1.8181967261759215,
+   "wql": 0.48528320354978605
+  },
+  "ett1__W__short": {
+   "leaderboard_key": "ett1/W/short",
+   "mase": 1.2444126904903803,
+   "wql": 0.25814356436755426
+  },
+  "ett2__T__short": {
+   "leaderboard_key": "ett2/15T/short",
+   "mase": 0.7618250880337474,
+   "wql": 0.093929612604377
+  },
+  "ett2__T__medium": {
+   "leaderboard_key": "ett2/15T/medium",
+   "mase": 0.9027189688220486,
+   "wql": 0.13649095157039726
+  },
+  "ett2__T__long": {
+   "leaderboard_key": "ett2/15T/long",
+   "mase": 1.0565955316162643,
+   "wql": 0.16755935574924186
+  },
+  "ett2__H__short": {
+   "leaderboard_key": "ett2/H/short",
+   "mase": 0.9915624508458626,
+   "wql": 0.11931409133707109
+  },
+  "ett2__H__medium": {
+   "leaderboard_key": "ett2/H/medium",
+   "mase": 2.649073318865916,
+   "wql": 0.345818716053239
+  },
+  "ett2__H__long": {
+   "leaderboard_key": "ett2/H/long",
+   "mase": 3.171779953228176,
+   "wql": 0.3702966971424018
+  },
+  "ett2__D__short": {
+   "leaderboard_key": "ett2/D/short",
+   "mase": 4.704440132303346,
+   "wql": 0.31867490583739955
+  },
+  "ett2__W__short": {
+   "leaderboard_key": "ett2/W/short",
+   "mase": 1.7680609986327813,
+   "wql": 0.21133928538207686
+  },
+  "jena_weather__T__short": {
+   "leaderboard_key": "jena_weather/10T/short",
+   "mase": 0.7621672521709891,
+   "wql": 0.1366740261223883
+  },
+  "jena_weather__T__medium": {
+   "leaderboard_key": "jena_weather/10T/medium",
+   "mase": 0.9778443284819783,
+   "wql": 0.22790411536869984
+  },
+  "jena_weather__T__long": {
+   "leaderboard_key": "jena_weather/10T/long",
+   "mase": 0.9055523182794231,
+   "wql": 0.2428907683297211
+  },
+  "jena_weather__H__short": {
+   "leaderboard_key": "jena_weather/H/short",
+   "mase": 0.7591774901189448,
+   "wql": 0.1835169108215369
+  },
+  "jena_weather__H__medium": {
+   "leaderboard_key": "jena_weather/H/medium",
+   "mase": 1.0707310989927863,
+   "wql": 0.3640989806826866
+  },
+  "jena_weather__H__long": {
+   "leaderboard_key": "jena_weather/H/long",
+   "mase": 1.4925574952113163,
+   "wql": 0.44387827099252614
+  },
+  "jena_weather__D__short": {
+   "leaderboard_key": "jena_weather/D/short",
+   "mase": 1.8578467510262653,
+   "wql": 0.23138296558762514
+  },
+  "bitbrains_fast_storage__T__short": {
+   "leaderboard_key": "bitbrains_fast_storage/5T/short",
+   "mase": 1.9726733005020567,
+   "wql": 1.8982594024982165
+  },
+  "bitbrains_fast_storage__T__medium": {
+   "leaderboard_key": "bitbrains_fast_storage/5T/medium",
+   "mase": 1.332305698225943,
+   "wql": 0.7965658755181099
+  },
+  "bitbrains_fast_storage__T__long": {
+   "leaderboard_key": "bitbrains_fast_storage/5T/long",
+   "mase": 1.5068539886984111,
+   "wql": 0.6979053733746295
+  },
+  "bitbrains_fast_storage__H__short": {
+   "leaderboard_key": "bitbrains_fast_storage/H/short",
+   "mase": 1.5571822067903167,
+   "wql": 0.6231221387021137
+  },
+  "bitbrains_rnd__T__short": {
+   "leaderboard_key": "bitbrains_rnd/5T/short",
+   "mase": 0.8369702659182979,
+   "wql": 0.895586111036325
+  },
+  "bitbrains_rnd__T__medium": {
+   "leaderboard_key": "bitbrains_rnd/5T/medium",
+   "mase": 0.9740075110165132,
+   "wql": 1.1044931903333195
+  },
+  "bitbrains_rnd__T__long": {
+   "leaderboard_key": "bitbrains_rnd/5T/long",
+   "mase": 1.1660081104198932,
+   "wql": 0.9977535818816068
+  },
+  "bitbrains_rnd__H__short": {
+   "leaderboard_key": "bitbrains_rnd/H/short",
+   "mase": 1.1175347302132743,
+   "wql": 0.9314629241561541
+  },
+  "bizitobs_application__S__short": {
+   "leaderboard_key": "bizitobs_application/10S/short",
+   "mase": 1.3935671590031806,
+   "wql": 0.01840457246049758
+  },
+  "bizitobs_application__S__medium": {
+   "leaderboard_key": "bizitobs_application/10S/medium",
+   "mase": 0.9183336447716528,
+   "wql": 0.013742470259025481
+  },
+  "bizitobs_application__S__long": {
+   "leaderboard_key": "bizitobs_application/10S/long",
+   "mase": 0.7487259254586917,
+   "wql": 0.012942679940654697
+  },
+  "bizitobs_service__S__short": {
+   "leaderboard_key": "bizitobs_service/10S/short",
+   "mase": 1.0559084960397855,
+   "wql": 0.025515037101462117
+  },
+  "bizitobs_service__S__medium": {
+   "leaderboard_key": "bizitobs_service/10S/medium",
+   "mase": 0.9546641394188339,
+   "wql": 0.023513421962609537
+  },
+  "bizitobs_service__S__long": {
+   "leaderboard_key": "bizitobs_service/10S/long",
+   "mase": 0.8316933390369606,
+   "wql": 0.023678985220657325
+  },
+  "bizitobs_l2c__T__short": {
+   "leaderboard_key": "bizitobs_l2c/5T/short",
+   "mase": 0.7721410982041648,
+   "wql": 0.22094461659341424
+  },
+  "bizitobs_l2c__T__medium": {
+   "leaderboard_key": "bizitobs_l2c/5T/medium",
+   "mase": 1.4416925389331963,
+   "wql": 0.47091183801289255
+  },
+  "bizitobs_l2c__T__long": {
+   "leaderboard_key": "bizitobs_l2c/5T/long",
+   "mase": 1.6820288964143004,
+   "wql": 0.6755692567838184
+  },
+  "bizitobs_l2c__H__short": {
+   "leaderboard_key": "bizitobs_l2c/H/short",
+   "mase": 1.5845833438972332,
+   "wql": 0.5573763030242874
+  },
+  "bizitobs_l2c__H__medium": {
+   "leaderboard_key": "bizitobs_l2c/H/medium",
+   "mase": 1.6159633796006725,
+   "wql": 1.1167911109559348
+  },
+  "bizitobs_l2c__H__long": {
+   "leaderboard_key": "bizitobs_l2c/H/long",
+   "mase": 1.280223980485366,
+   "wql": 1.0134048622912797
+  }
+ }
+}

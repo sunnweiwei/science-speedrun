@@ -1,0 +1,25 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "selftest/resume-smoke"
+version = "0.1.0"
+description = "Runner self-test: the agent publishes a one-file package and the separate verifier scores it."
+authors = [{ name = "science-speedrun" }]
+
+[agent]
+timeout_sec = 900.0
+
+[environment]
+network_mode = "no-network"
+cpus = 2
+memory_mb = 4096
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 300.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 1
+memory_mb = 2048

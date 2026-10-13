@@ -1,0 +1,1 @@
+Vendored from github.com/google-research/timesfm @ e31dadd84cb26bd5153fde6687502b8312e918fb (timesfm 3.0.2), src/timesfm3: __init__.py and torch/ without tests. Apache-2.0 (LICENSE). Code only; no weights.

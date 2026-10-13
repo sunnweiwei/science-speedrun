@@ -1,0 +1,44 @@
+k562: 400000 cells x 8190 genes, 9787 targets
+hct116: 400000 cells x 8190 genes, 18202 targets
+hek293t: 400000 cells x 8190 genes, 18229 targets
+common output panel: 8190 genes; pert features: 19791
+    (0): Linear(in_features=2058, out_features=257, bias=True)
+    (1): GELU(approximate='none')
+    (2): Linear(in_features=257, out_features=2058, bias=True)
+  )
+  (relu): ReLU()
+)
+Model created. Estimated params size: 0.22 GB
+Building trainer with kwargs: {'accelerator': 'gpu', 'devices': 1, 'strategy': 'auto', 'max_steps': 20000, 'check_val_every_n_epoch': None, 'val_check_interval': 1000000, 'logger': [<state.tx.utils.RobustCSVLogger object at 0x7ebf9d093590>], 'plugins': [], 'callbacks': [<lightning.pytorch.callbacks.model_checkpoint.ModelCheckpoint object at 0x7ebf9dce4d50>, <state.tx.callbacks.batch_speed_monitor.BatchSpeedMonitorCallback object at 0x7ebf9d73d410>, <state.tx.callbacks.GradNormCallback object at 0x7ec00beea9d0>, <state.tx.callbacks.cumulative_flops.CumulativeFLOPSCallback object at 0x7ebf9d552a50>], 'gradient_clip_val': 10, 'accumulate_grad_batches': 1, 'use_distributed_sampler': False}
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+Trainer built successfully
+Model device: cpu
+CUDA memory allocated: 0.00 GB
+CUDA memory reserved: 0.00 GB
+About to call trainer.fit() with checkpoint_path=None
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+┏━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name                 ┃ Type                    ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ loss_fn              │ SamplesLoss             │      0 │ train │     0 │
+│ 1 │ pert_encoder         │ Sequential              │  4.8 M │ train │     0 │
+│ 2 │ basal_encoder        │ Linear                  │  1.4 M │ train │     0 │
+│ 3 │ transformer_backbone │ LlamaBidirectionalModel │ 50.4 M │ train │     0 │
+│ 4 │ project_out          │ Sequential              │  2.7 M │ train │     0 │
+│ 5 │ final_down_then_up   │ Sequential              │  1.1 M │ train │     0 │
+│ 6 │ relu                 │ ReLU                    │      0 │ train │     0 │
+└───┴──────────────────────┴─────────────────────────┴────────┴───────┴───────┘
+Trainable params: 38.9 M                                                        
+Non-trainable params: 21.5 M                                                    
+Total params: 60.4 M                                                            
+Total estimated model params size (MB): 241.580                                 
+Modules in train mode: 86                                                       
+Modules in eval mode: 0                                                         
+Total FLOPs: 0                                                                  
+`Trainer.fit` stopped: `max_steps=20000` reached.
+Epoch 6/-2 ━━━━━━━━━━━━━━━━━━━ 2540/2540 0:09:52 • 0:00:00 4.49it/s v_num: 0.000
+trainer.fit() completed
+Training completed, saving final checkpoint...
+`weights_only` was not set, defaulting to `False`.

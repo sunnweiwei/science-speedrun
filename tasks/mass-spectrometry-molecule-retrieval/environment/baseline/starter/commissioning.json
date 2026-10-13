@@ -1,0 +1,43 @@
+{
+  "schema": "massspecgym-retrieval-starter-commissioning/v1",
+  "date": "2026-09-02",
+  "training": {
+    "data": "complete pinned MassSpecGym v1.5 train and validation folds",
+    "train_records": 194119,
+    "validation_records": 19429,
+    "seed": 0,
+    "epochs": 50,
+    "selected_epoch": 2,
+    "best_validation_cosine_loss": 0.5675949496428704,
+    "batch_size": 256,
+    "workers": 12,
+    "gpu": "NVIDIA RTX A5000",
+    "gpu_count": 1,
+    "wall_time_seconds": 669,
+    "checkpoint_bytes": 7500528,
+    "checkpoint_sha256": "176930cc9ddff4e7b1c8b226e00ac145930462e7bd9e935a398e6d0ff9975fc3"
+  },
+  "validation_replay": {
+    "queries": 19429,
+    "valid_rankings": 19429,
+    "wall_time_seconds": 276,
+    "hit_rate_at_1": 0.027999382366565444,
+    "hit_rate_at_5": 0.10479180606310155,
+    "hit_rate_at_20": 0.2717587112048999,
+    "rankings_sha256": "ad2ad7c484ebff4f966a670b0b7afa38c4850285ef2481bad9577102f40e88f8"
+  },
+  "test_replay": {
+    "mode": "operator-side direct grader call",
+    "queries": 17556,
+    "valid_rankings": 17556,
+    "wall_time_seconds": 257,
+    "hit_rate_at_1": 0.05126452494873548,
+    "hit_rate_at_5": 0.12406015037593984,
+    "hit_rate_at_20": 0.2710754158122579,
+    "mces_at_1": 22.184666210982,
+    "mces_unique_structure_pairs": 6609,
+    "mces_cpus": 32,
+    "mces_wall_time_seconds": 149,
+    "rankings_sha256": "b2db61988686f93a8faac14f15d94b44a11cebdc6f8fb34706d010673605e213"
+  }
+}

@@ -1,0 +1,61 @@
+{
+ "date": "2026-09-16",
+ "finding": "the reduced release is NOT a prefix of the full release: simulations carry identical per-simulation constants but their arrays are different draws",
+ "bytewise_prefix_check": "docs/validation/reduced_is_prefix_of_full.json (0 of 24 comparable files)",
+ "examples": {
+  "decay_turb_test": {
+   "constants_reduced": {
+    "Viscosity": 6.834743142495453e-05
+   },
+   "constants_full": {
+    "Viscosity": 6.834743142495453e-05
+   },
+   "corr_sim0": -0.3196,
+   "max_abs_diff": 1.2858917713165283
+  },
+  "burgers": {
+   "constants_reduced": {
+    "Viscosity": 0.00024840730921632
+   },
+   "constants_full": {
+    "Viscosity": 0.00024840730921632
+   },
+   "corr_sim0": -0.1701,
+   "max_abs_diff": 1.7830522060394287
+  },
+  "gs_alpha_test": {
+   "constants_reduced": {
+    "Feed Rate": 0.008,
+    "Kill Rate": 0.046
+   },
+   "constants_full": {
+    "Feed Rate": 0.008,
+    "Kill Rate": 0.046
+   },
+   "corr_sim0": 0.8244,
+   "max_abs_diff": 0.9137850999832153
+  },
+  "kdv": {
+   "constants_reduced": {
+    "Domain Extent": 78.47792260107708,
+    "Viscosity": 0.0002475354258754664
+   },
+   "constants_full": {
+    "Domain Extent": 78.47792260107708,
+    "Viscosity": 0.0002475354258754664
+   },
+   "corr_sim0": 0.4191,
+   "max_abs_diff": 1.4288489818572998
+  },
+  "ks_test": {
+   "constants_reduced": {
+    "Domain Extent": 46.44061243493793
+   },
+   "constants_full": {
+    "Domain Extent": 46.44061243493793
+   },
+   "corr_sim0": -0.0337,
+   "max_abs_diff": 22.753883361816406
+  }
+ }
+}

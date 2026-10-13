@@ -1,0 +1,30 @@
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+Trainer built successfully
+Model device: cpu
+CUDA memory allocated: 0.00 GB
+CUDA memory reserved: 0.00 GB
+About to call trainer.fit() with checkpoint_path=None
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+┏━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name                 ┃ Type                    ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ loss_fn              │ SamplesLoss             │      0 │ train │     0 │
+│ 1 │ pert_encoder         │ Sequential              │  4.8 M │ train │     0 │
+│ 2 │ basal_encoder        │ Linear                  │  4.9 M │ train │     0 │
+│ 3 │ transformer_backbone │ LlamaBidirectionalModel │ 50.4 M │ train │     0 │
+│ 4 │ project_out          │ Sequential              │  6.3 M │ train │     0 │
+│ 5 │ final_down_then_up   │ Sequential              │ 13.4 M │ train │     0 │
+│ 6 │ relu                 │ ReLU                    │      0 │ train │     0 │
+└───┴──────────────────────┴─────────────────────────┴────────┴───────┴───────┘
+Trainable params: 58.4 M                                                        
+Non-trainable params: 21.5 M                                                    
+Total params: 79.9 M                                                            
+Total estimated model params size (MB): 319.450                                 
+Modules in train mode: 86                                                       
+Modules in eval mode: 0                                                         
+Total FLOPs: 0                                                                  
+`Trainer.fit` stopped: `max_steps=20000` reached.
+Epoch 6/-2 ━━━━━━━━━━━━━━━━━━━ 1436/1436 0:19:30 • 0:00:00 1.30it/s v_num: 0.000
+trainer.fit() completed
+Training completed, saving final checkpoint...
+`weights_only` was not set, defaulting to `False`.

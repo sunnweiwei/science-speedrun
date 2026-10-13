@@ -1,0 +1,61 @@
+{
+  "schema": "massspecgym-retrieval-baseline-score/v1",
+  "status": "completed",
+  "generated_on": "2026-09-08",
+  "model": "GLACIER no-CF with strict-clean MIST fallback",
+  "evaluation_split": "frozen MassSpecGym v1.5 test",
+  "queries": 17556,
+  "valid_rankings": 17556,
+  "primary_metric": "hit_rate_at_1",
+  "reward": 1.0,
+  "metrics": {
+    "hit_rate_at_1": 0.4939052175894281,
+    "hit_rate_at_5": 0.6418888129414445,
+    "hit_rate_at_20": 0.7443609022556391,
+    "mces_at_1": 12.178913192071088
+  },
+  "routing": {
+    "glacier_queries": 9954,
+    "fallback_queries": 7602,
+    "rule": "GLACIER iff adduct=[M+H]+, collision_energy is finite, and instrument_type is Orbitrap or QTOF"
+  },
+  "glacier_domain_metrics": {
+    "hit_rate_at_1": 0.6749045609805103,
+    "hit_rate_at_5": 0.8445850914205345,
+    "hit_rate_at_20": 0.9168173598553345
+  },
+  "eligible_validation_metrics": {
+    "queries": 9734,
+    "hit_rate_at_1": 0.7009451407437847,
+    "hit_rate_at_5": 0.8689130881446476,
+    "hit_rate_at_20": 0.9324018902814876
+  },
+  "constant_spectrum_control": {
+    "hit_rate_at_1": 0.031385281385281384,
+    "hit_rate_at_5": 0.06106174527227159,
+    "hit_rate_at_20": 0.14496468443836866,
+    "mces_at_1": 26.45098541809068
+  },
+  "paired_vs_previous_clean_mist": {
+    "previous_hit_rate_at_1": 0.39872408293460926,
+    "delta": 0.09518113465481887,
+    "confidence": 0.999,
+    "resamples": 100000,
+    "interval": [
+      0.08344722601959444,
+      0.1068581111870596
+    ]
+  },
+  "replay": {
+    "glacier_source_commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+    "glacier_checkpoint_sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+    "rankings_sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
+    "independent_rerun_sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
+    "byte_identical": true,
+    "approximate_p100_gpu_hours": 33.1,
+    "glacier_training_performed": false
+  },
+  "note": "GLACIER is an official no-contrastive-finetuning checkpoint replay, not an independent training run. The fallback MIST encoder was independently trained from scratch on held-out-clean task data. See environment/references/README.md for the paper-score discrepancy and complete provenance.",
+  "raw_reward_before_normalization": 0.4939052175894281,
+  "score_version": "massspecgym-retrieval-score/v1"
+}

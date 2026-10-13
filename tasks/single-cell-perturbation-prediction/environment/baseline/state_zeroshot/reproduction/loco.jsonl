@@ -1,0 +1,2 @@
+{"holdout": "k562", "score": 0.0105, "metrics": {"des": 0.016166827651547904, "pds": 0.013759530531042487, "mae": 0.0, "pearson_delta": 0.01872534449902048, "spearman_lfc": 0.024409400267407035, "auprc_de": 0.000749514281230062, "spearman_effect": 0.0}}
+{"holdout": "jurkat", "score": 0.0629, "metrics": {"des": 0.049064418848079036, "pds": 0.007379248658318284, "mae": 0.0, "pearson_delta": 0.04926596170646645, "spearman_lfc": 0.04964694750927057, "auprc_de": 0.011078969820421877, "spearman_effect": 0.2741423974870347}}

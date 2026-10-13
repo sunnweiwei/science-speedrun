@@ -1,0 +1,233 @@
+{
+ "date": "2026-09-16",
+ "run": "baseline_canon",
+ "protocol": "pde-surrogate-rollout/v1: 4 context frames, rollout from frame 0, K=26/30/10, per-channel VRMSE clamped at 10",
+ "description": "channel-shared U-Net starter trained from scratch to completion on the canonical training pools; sealed replay on all canonical held-out cases",
+ "config": {
+  "context": 4,
+  "width": 32,
+  "steps": 30000,
+  "batch": 8,
+  "crop": 128,
+  "lr": 0.001,
+  "seed": 0
+ },
+ "train_seconds": 2419.1,
+ "final_train_loss_window": [
+  0.0006110446993261576,
+  0.0051579903811216354,
+  0.010431060567498207,
+  0.025660980492830276
+ ],
+ "hardware": "one A100-40GB shared with other jobs",
+ "weights_sha256": "f057f7428f302b2e8249ac48b3aad4462e85dc1e0a19d6d5141021c0e3f2b755",
+ "normalization_sha256": "e01fadcdd846d5eb598d496f0b0b6813e4e019d4aa3428c0d59b1c444bd92bef",
+ "held_out_set": "split.json test cases (1,185 canonical), sealed replay via tests/main_verifier.py",
+ "inference_seconds": 245.0,
+ "reward": 0.31391244701413634,
+ "mean_vrmse": 1.1671078124999998,
+ "n_cases": 1085,
+ "n_failed": 0,
+ "groups": {
+  "ape2d": {
+   "vrmse": 1.14553125,
+   "reward": 0.3136643529315278,
+   "n_datasets": 16
+  },
+  "pdearena/navier_stokes_2d": {
+   "vrmse": 0.8743,
+   "reward": 0.3527798405372025,
+   "n_datasets": 1
+  },
+  "well/active_matter": {
+   "vrmse": 1.5392,
+   "reward": 0.27090164843542075,
+   "n_datasets": 1
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "vrmse": 1.1094,
+   "reward": 0.31830394615239443,
+   "n_datasets": 1
+  }
+ },
+ "datasets": {
+  "ape2d/burgers": {
+   "vrmse": 1.172,
+   "nrmse_joint": 1.0727,
+   "vrmse_steps_1_5": 0.1183,
+   "vrmse_steps_6_12": 0.6053
+  },
+  "ape2d/decay_turb": {
+   "vrmse": 1.8381,
+   "nrmse_joint": 1.8381,
+   "vrmse_steps_1_5": 0.403,
+   "vrmse_steps_6_12": 1.0445
+  },
+  "ape2d/diff": {
+   "vrmse": 1.4453,
+   "nrmse_joint": 1.4453,
+   "vrmse_steps_1_5": 0.1022,
+   "vrmse_steps_6_12": 0.5759
+  },
+  "ape2d/fisher": {
+   "vrmse": 2.493,
+   "nrmse_joint": 0.187,
+   "vrmse_steps_1_5": 0.1481,
+   "vrmse_steps_6_12": 1.1278
+  },
+  "ape2d/gs_alpha": {
+   "vrmse": 0.9875,
+   "nrmse_joint": 0.3082,
+   "vrmse_steps_1_5": 0.1794,
+   "vrmse_steps_6_12": 0.7678
+  },
+  "ape2d/gs_beta": {
+   "vrmse": 0.8722,
+   "nrmse_joint": 0.1774,
+   "vrmse_steps_1_5": 0.2858,
+   "vrmse_steps_6_12": 0.8447
+  },
+  "ape2d/gs_delta": {
+   "vrmse": 1.0242,
+   "nrmse_joint": 0.331,
+   "vrmse_steps_1_5": 0.2866,
+   "vrmse_steps_6_12": 0.9418
+  },
+  "ape2d/gs_epsilon": {
+   "vrmse": 0.8404,
+   "nrmse_joint": 0.2406,
+   "vrmse_steps_1_5": 0.1235,
+   "vrmse_steps_6_12": 0.5954
+  },
+  "ape2d/gs_gamma": {
+   "vrmse": 0.6944,
+   "nrmse_joint": 0.2153,
+   "vrmse_steps_1_5": 0.2507,
+   "vrmse_steps_6_12": 0.5973
+  },
+  "ape2d/gs_iota": {
+   "vrmse": 0.8515,
+   "nrmse_joint": 0.2867,
+   "vrmse_steps_1_5": 0.2212,
+   "vrmse_steps_6_12": 0.7138
+  },
+  "ape2d/gs_kappa": {
+   "vrmse": 0.8929,
+   "nrmse_joint": 0.2727,
+   "vrmse_steps_1_5": 0.2206,
+   "vrmse_steps_6_12": 0.6927
+  },
+  "ape2d/gs_theta": {
+   "vrmse": 0.947,
+   "nrmse_joint": 0.3081,
+   "vrmse_steps_1_5": 0.2614,
+   "vrmse_steps_6_12": 0.8178
+  },
+  "ape2d/kdv": {
+   "vrmse": 0.9979,
+   "nrmse_joint": 0.9438,
+   "vrmse_steps_1_5": 0.116,
+   "vrmse_steps_6_12": 0.52
+  },
+  "ape2d/kolm_flow": {
+   "vrmse": 1.2197,
+   "nrmse_joint": 1.2197,
+   "vrmse_steps_1_5": 0.681,
+   "vrmse_steps_6_12": 1.1707
+  },
+  "ape2d/ks": {
+   "vrmse": 1.2015,
+   "nrmse_joint": 1.2015,
+   "vrmse_steps_1_5": 0.2697,
+   "vrmse_steps_6_12": 1.1105
+  },
+  "ape2d/sh": {
+   "vrmse": 0.8509,
+   "nrmse_joint": 0.8114,
+   "vrmse_steps_1_5": 0.1903,
+   "vrmse_steps_6_12": 0.7681
+  },
+  "pdearena/navier_stokes_2d": {
+   "vrmse": 0.8743,
+   "nrmse_joint": 0.5037,
+   "vrmse_steps_1_5": 0.7588
+  },
+  "well/active_matter": {
+   "vrmse": 1.5392,
+   "nrmse_joint": 0.7123,
+   "vrmse_steps_1_5": 0.7612,
+   "vrmse_steps_6_12": 1.3493,
+   "vrmse_steps_13_30": 1.8292
+  },
+  "well/turbulent_radiative_layer_2D": {
+   "vrmse": 1.1094,
+   "nrmse_joint": 0.7289,
+   "vrmse_steps_1_5": 0.4846,
+   "vrmse_steps_6_12": 0.806,
+   "vrmse_steps_13_30": 1.4009
+  }
+ },
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json)",
+  "before": {
+   "reward": 0.3133,
+   "mean_vrmse": 1.172,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1649,
+    "pdearena/navier_stokes_2d": 0.8743,
+    "well/active_matter": 1.5392,
+    "well/turbulent_radiative_layer_2D": 1.1094
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "vrmse": 1.4755,
+     "nrmse_joint": 1.4755,
+     "vrmse_steps_1_5": 0.1034,
+     "vrmse_steps_6_12": 0.5839
+    }
+   }
+  }
+ },
+ "training_provenance": {
+  "datasets_indexed": 19,
+  "datasets_in_manifest_at_the_time": 20,
+  "absent_when_it_ran": [
+   "well/active_matter (its training pool was materialized 29 minutes after normalization.json was written)",
+   "50 of the 52 PDEArena training shards (only 2 were present)"
+  ],
+  "windows_indexed": 43360,
+  "max_windows_per_traj": 8,
+  "how_known": "normalization.json of the run lists 19 datasets; its log reports 'datasets: 19; windows: 43360', which the current loader reproduces only with 19 datasets, --max-windows-per-traj 8 and 2 PDEArena shards; the loader at the time skipped missing pools silently (starter/data.py), which it no longer does",
+  "consequence": "the active-matter group score comes from a model that never saw active matter and normalized it from its context frames at inference; re-running the recorded config on the complete pools would land elsewhere. The row is kept as the plumbing floor it is, not as a baseline to beat"
+ },
+ "replay_on_current_split": {
+  "date": "2026-09-22",
+  "what": "the same package (weights f057f742...) replayed through tests/main_verifier.py on the 1,085-case split after the hyp exclusion",
+  "reward": 0.3139121418912329,
+  "mean_vrmse": 1.1671096273840016,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": 1.145516,
+   "pdearena/navier_stokes_2d": 0.874323,
+   "well/active_matter": 1.539216,
+   "well/turbulent_radiative_layer_2D": 1.109384
+  },
+  "inference": {
+   "exit_code": 0,
+   "timed_out": false,
+   "isolation": "bwrap",
+   "seconds": 156.9
+  },
+  "determinism": {
+   "checked": 3,
+   "rerun_exit_code": 0,
+   "isolation": "bwrap",
+   "unavailable": 0,
+   "max_abs_difference": 0.0,
+   "deterministic": true
+  },
+  "agreement": "matches the exact recomputation above (reward 0.3139121 both ways; every group mean identical), which is the check that the recomputation of the other canonical records is sound"
+ }
+}

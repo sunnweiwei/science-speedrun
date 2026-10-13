@@ -1,0 +1,8 @@
+paths:
+  PBDL_index:
+    2D_APE_xxl: /large-disk/pde-surrogate/ape2d-full/      # <TASK_PRIVATE_DIR>/ape2d-full/
+    2D_WELL: /large-disk/pbdl/                             # convert_pools.py --out
+machine:
+  devices: 1
+  accelerator: gpu
+  strategy: auto

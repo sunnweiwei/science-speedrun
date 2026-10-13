@@ -1,0 +1,268 @@
+{
+ "what": "The Well CNextU-net recipe (experiment=unet_convnext, the_well @ ad50de0e) trained from scratch on turbulent_radiative_layer_2D for 200 epochs, best-validation checkpoint packaged by environment/reference/well_cnext/package.py and replayed through tests/main_verifier.py",
+ "protocol": "task protocol: canonical split (environment/data/split.json), all 1,185 held-out cases, 4 context frames, sealed contract; the model is per-dataset, so only the well/turbulent_radiative_layer_2D group is a real forecast (other groups: the package falls back as documented in its README)",
+ "training": {
+  "epochs": 200,
+  "wall_clock": "00:57:37 to 12:57:20 UTC 2026-09-17 on a shared A100 40GB (batch 64, gradient checkpointing)",
+  "best_validation_epoch": 184,
+  "best_validation_loss": 2.9512715339660645,
+  "final_validation_loss": 3.02484393119812,
+  "final_rollout_validation_loss": 102.31817626953125,
+  "test_loss_trainer": 3.2117269039154053,
+  "validation_curve": [
+   {
+    "epoch": 1,
+    "val_loss": 35.64228820800781
+   },
+   {
+    "epoch": 11,
+    "val_loss": 8.042095184326172
+   },
+   {
+    "epoch": 21,
+    "val_loss": 5.431189060211182
+   },
+   {
+    "epoch": 31,
+    "val_loss": 5.275171279907227
+   },
+   {
+    "epoch": 41,
+    "val_loss": 4.279852390289307
+   },
+   {
+    "epoch": 51,
+    "val_loss": 4.400736331939697
+   },
+   {
+    "epoch": 61,
+    "val_loss": 3.836008310317993
+   },
+   {
+    "epoch": 71,
+    "val_loss": 3.5614874362945557
+   },
+   {
+    "epoch": 81,
+    "val_loss": 3.45261812210083
+   },
+   {
+    "epoch": 91,
+    "val_loss": 3.459193468093872
+   },
+   {
+    "epoch": 101,
+    "val_loss": 3.3757576942443848
+   },
+   {
+    "epoch": 111,
+    "val_loss": 3.333932876586914
+   },
+   {
+    "epoch": 121,
+    "val_loss": 3.1243255138397217
+   },
+   {
+    "epoch": 131,
+    "val_loss": 3.0660884380340576
+   },
+   {
+    "epoch": 141,
+    "val_loss": 3.08209228515625
+   },
+   {
+    "epoch": 151,
+    "val_loss": 3.006608247756958
+   },
+   {
+    "epoch": 161,
+    "val_loss": 2.9792227745056152
+   },
+   {
+    "epoch": 171,
+    "val_loss": 3.0105724334716797
+   },
+   {
+    "epoch": 181,
+    "val_loss": 3.032785415649414
+   },
+   {
+    "epoch": 191,
+    "val_loss": 3.0435678958892822
+   }
+  ]
+ },
+ "package": {
+  "name": "cnextunet-well-recipe-turbulent_radiative_layer_2D",
+  "parameters": 18575344,
+  "context_frames": 4,
+  "pretrained_assets": [],
+  "sources_used": [
+   "well/turbulent_radiative_layer_2D"
+  ]
+ },
+ "result": {
+  "reward": 0.3080277725127439,
+  "mean_vrmse": 1.2586,
+  "n_cases": 1085,
+  "n_failed": 0,
+  "groups": {
+   "ape2d": {
+    "n_datasets": 16,
+    "vrmse": 1.1878,
+    "reward": 0.30842061808588433
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_datasets": 1,
+    "vrmse": 1.649,
+    "reward": 0.26092641344448886
+   },
+   "well/active_matter": {
+    "n_datasets": 1,
+    "vrmse": 1.5235,
+    "reward": 0.27238781994648203
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_datasets": 1,
+    "vrmse": 0.6743,
+    "reward": 0.39037623857412024
+   }
+  },
+  "datasets": {
+   "ape2d/burgers": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.5139153215593075
+   },
+   "ape2d/decay_turb": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0876377342041943
+   },
+   "ape2d/diff": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.6842929294243985
+   },
+   "ape2d/fisher": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 2.7042629562937877
+   },
+   "ape2d/gs_alpha": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.347657487713888
+   },
+   "ape2d/gs_beta": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 1.6088926575276987
+   },
+   "ape2d/gs_delta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.7358952935210277
+   },
+   "ape2d/gs_epsilon": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.701737377843992
+   },
+   "ape2d/gs_gamma": {
+    "n_cases": 30,
+    "n_failed": 0,
+    "vrmse": 0.8033791798972509
+   },
+   "ape2d/gs_iota": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.6950130224331375
+   },
+   "ape2d/gs_kappa": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 0.9580198426663117
+   },
+   "ape2d/gs_theta": {
+    "n_cases": 20,
+    "n_failed": 0,
+    "vrmse": 1.687338657537656
+   },
+   "ape2d/kdv": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.33485731611214825
+   },
+   "ape2d/kolm_flow": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.2171370855213588
+   },
+   "ape2d/ks": {
+    "n_cases": 50,
+    "n_failed": 0,
+    "vrmse": 1.0986021185877142
+   },
+   "ape2d/sh": {
+    "n_cases": 100,
+    "n_failed": 0,
+    "vrmse": 0.8259345529367659
+   },
+   "pdearena/navier_stokes_2d": {
+    "n_cases": 200,
+    "n_failed": 0,
+    "vrmse": 1.6490003949677694
+   },
+   "well/active_matter": {
+    "n_cases": 26,
+    "n_failed": 0,
+    "vrmse": 1.5234792384695126
+   },
+   "well/turbulent_radiative_layer_2D": {
+    "n_cases": 9,
+    "n_failed": 0,
+    "vrmse": 0.6743281414431624
+   }
+  }
+ },
+ "inference": {
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 65.5
+ },
+ "determinism": {
+  "checked": 3,
+  "rerun_exit_code": 0,
+  "unavailable": 0,
+  "max_abs_difference": 0.0,
+  "deterministic": true
+ },
+ "published_reference": "The Well paper reports CNextU-net VRMSE on turbulent_radiative_layer_2D of 0.54 (short window) / 1.01 (long window) under its own protocol (Table 2 of the task README)",
+ "derivation": {
+  "what": "recomputed on 2026-09-22 from this report's own per-dataset means after removing the corpus family 'ape2d/hyp' (upstream ships hyp.hdf5 as a content copy of diff.hdf5); per-dataset numbers are the measured ones, group means and the reward follow score.py's aggregation exactly; case counts are the canonical split's (environment/data/split.json); the per-dataset means come from the run's verifier report.json and are now embedded",
+  "before": {
+   "reward": 0.3089416353187005,
+   "mean_vrmse": 1.2512440975907735,
+   "n_cases": 1185,
+   "groups": {
+    "ape2d": 1.1581686154826494,
+    "pdearena/navier_stokes_2d": 1.6490003949677694,
+    "well/active_matter": 1.5234792384695126,
+    "well/turbulent_radiative_layer_2D": 0.6743281414431624
+   },
+   "dropped": {
+    "ape2d/hyp": {
+     "n_cases": 100,
+     "n_failed": 0,
+     "n_steps": 26,
+     "vrmse": 0.6842929294243985,
+     "nrmse_joint": 0.6842981499653845,
+     "vrmse_steps_1_5": 0.18855248722062562,
+     "vrmse_steps_6_12": 0.5018782643086028,
+     "reward": 0.3882526491345688
+    }
+   }
+  }
+ }
+}

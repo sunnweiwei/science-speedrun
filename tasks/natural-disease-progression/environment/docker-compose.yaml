@@ -1,0 +1,40 @@
+services:
+  main:
+    build: .
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the development-only materialization}/train
+        target: /workspace/data/train
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the development-only materialization}/public/validation
+        target: /workspace/data/public/validation
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the development-only materialization}/trusted/validation
+        target: /workspace/data/trusted/validation
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the development-only materialization}/trusted/risk_normalization.parquet
+        target: /workspace/data/trusted/risk_normalization.parquet
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the development-only materialization}/manifest.json
+        target: /workspace/data/manifest.json
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty per-run directory}
+        target: /workspace/research
+        bind:
+          create_host_path: false

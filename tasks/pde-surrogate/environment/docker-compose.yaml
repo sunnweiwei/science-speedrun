@@ -1,0 +1,38 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main`
+# is the agent container; the build context is the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# TASK_DATA_DIR is the AGENT-SIDE data directory, prepared on the host with
+#   python3 environment/data/materialize.py "$TASK_DATA_DIR" --from-release --subtree train
+#   python3 environment/data/materialize.py "$TASK_DATA_DIR" --pools environment/data/split.json --sources -
+# Each entry is mounted read-only under /workspace/data, next to the data documents from the image.
+# Never use a verifier materialization here: it holds the held-out tails, and entrypoint.sh
+# refuses to start on one. TASK_RESEARCH_DIR is an empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "16gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the agent-side data directory}/ape2d-full", target: /workspace/data/ape2d-full}
+      - {<<: *data, source: "${TASK_DATA_DIR}/pdearena-ns", target: /workspace/data/pdearena-ns}
+      - {<<: *data, source: "${TASK_DATA_DIR}/well-active_matter", target: /workspace/data/well-active_matter}
+      - {<<: *data, source: "${TASK_DATA_DIR}/well-turbulent_radiative_layer_2D", target: /workspace/data/well-turbulent_radiative_layer_2D}
+      - {<<: *data, source: "${TASK_DATA_DIR}/release-receipt.json", target: /workspace/data/release-receipt.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/materialize-receipt.json", target: /workspace/data/materialize-receipt.json}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /workspace/data/release-receipt.json && test -f /workspace/data/materialize-receipt.json && test -d /workspace/baseline/starter && python3 -c 'import torch, h5py'"]
+      interval: 10s
+      timeout: 30s
+      retries: 3

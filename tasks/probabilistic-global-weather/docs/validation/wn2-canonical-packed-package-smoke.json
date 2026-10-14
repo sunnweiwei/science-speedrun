@@ -1,0 +1,40 @@
+{
+  "job": "12540683",
+  "status": "passed",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:04:34"
+  },
+  "producer": "12540682 training passed, packaging recovered on CPU",
+  "metrics": {
+    "weather": {
+      "reward": 0.7345080729217085,
+      "normalized_crps": 0.3614554242027921,
+      "normalized_crps_by_variable": {
+        "geopotential": 0.09099432722077117,
+        "temperature": 0.14332057995413175,
+        "specific_humidity": 0.30553729449485806,
+        "u_component_of_wind": 0.2782795346550605,
+        "v_component_of_wind": 0.47560734047516223,
+        "vertical_velocity": 1.0825859386089745,
+        "2m_temperature": 0.25636607272740664,
+        "mean_sea_level_pressure": 0.18600073645938836,
+        "10m_u_component_of_wind": 0.3209102291321724,
+        "10m_v_component_of_wind": 0.47495218829999547
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    },
+    "precipitation": {
+      "reward": 0.6221838731345507,
+      "normalized_crps": 0.6072419154196632,
+      "normalized_crps_by_variable": {
+        "total_precipitation_6hr": 0.6072419154196632
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    }
+  },
+  "image_sha256_record": "de656ff9f0689d6f88c55f64a79a369587ee7da7333ad873d4070e7fda16a237  /usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v4/tests.sif\n",
+  "verifier_script_sha256": "ca11e5ef84617f2353d013239fdcb8f1f6ea05159599f61bd9314536aeee629f",
+  "scope": "Canonical packed-mask portable package; independent development smoke only, not full 32-case ten-day test or completed curriculum"
+}

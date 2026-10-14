@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "devices": 4,
+  "backend": "CPU virtual devices in pinned JAX0.6.2 image",
+  "checks": [
+    "identical parameter/optimizer replicas save successfully",
+    "signed-zero bit difference in parameter replica rejected before file write",
+    "signed-zero bit difference in optimizer replica rejected before file write"
+  ],
+  "source_sha256": "1984fc6ea29efe7187593006d9aa51e2a4bc6907fb0a8c4fbfab391522cabbc8",
+  "scope": "Checkpoint guard behavior; does not prove GPU replicas diverge or solve the observed continuation difference"
+}

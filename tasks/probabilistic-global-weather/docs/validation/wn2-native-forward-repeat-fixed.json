@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "job": "12533327",
+  "scope": "Full native model, all 31 outputs, repeated identical inputs/parameters/random key after deterministic graph-sum replacement",
+  "runs": {
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/forward-repeat-runs/12533327": {
+      "status": "passed",
+      "scope": "Same process, identical native inputs/parameters/key, three forward calls, executable cache disabled",
+      "repeats": [
+        {
+          "repeat": 0,
+          "seconds": 241.79693532711826,
+          "differences": {},
+          "first_wind": 2.4464335441589355
+        },
+        {
+          "repeat": 1,
+          "seconds": 245.22049190104008,
+          "differences": {},
+          "first_wind": 2.4464335441589355
+        },
+        {
+          "repeat": 2,
+          "seconds": 248.66219235910103,
+          "differences": {},
+          "first_wind": 2.4464335441589355
+        }
+      ]
+    }
+  }
+}

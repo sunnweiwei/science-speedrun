@@ -1,0 +1,261 @@
+{
+  "checked_utc": "2026-09-10T12:38:58.020046+00:00",
+  "status": "partial_results_not_final_acceptance",
+  "original_protocol": {
+    "requested_cases": 32,
+    "members": 8,
+    "horizon_days": 10
+  },
+  "paper_protocol": {
+    "requested_cases": 8,
+    "members": 56,
+    "horizon_days": 15
+  },
+  "aggregation": "Equal weight per completed date; CRPS is mean of area-weighted case CRPS; RMSE is sqrt(mean of area-weighted case MSE).",
+  "original_results": [
+    {
+      "seed": 0,
+      "variable": "2m_temperature",
+      "completed_dates": 11,
+      "sources": [
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-021/weather-scores.json",
+          "sha256": "e7fba6398c0c96afa78b7b2f5c33f01971806417c284659923d441dd52761273",
+          "initialization": "2022-08-29T06:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-022/weather-scores.json",
+          "sha256": "1a39b78c32a1eff55f141de0bd9f3d13f132d0716f17de6207773e78dafafd0e",
+          "initialization": "2022-09-09T12:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-023/weather-scores.json",
+          "sha256": "7569d3846ac130295ada77d380ea5e6cabd1c35e67c728edf9de9781b32142c4",
+          "initialization": "2022-09-20T18:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-024/weather-scores.json",
+          "sha256": "86786d7b84d90e672c23f807bd2ca9ad765e010c17f5a77db1b625c8e17011e9",
+          "initialization": "2022-10-05T00:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-025/weather-scores.json",
+          "sha256": "82f69d269ce46d11219c4ec9c573833db9fe3cc0f4c999cf6e9504edd6e3c557",
+          "initialization": "2022-10-16T06:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-026/weather-scores.json",
+          "sha256": "e217befd30e3ad89304b2e34e4eb80a74e9ea739c3c082221235b7e65e8dfb49",
+          "initialization": "2022-10-27T12:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-027/weather-scores.json",
+          "sha256": "b31cc0bb22afbd238868402e8ba74e419cef86135a2fe2b8651b12502d39505e",
+          "initialization": "2022-11-07T18:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-028/weather-scores.json",
+          "sha256": "68e1ab4987f048d617c9d7eec517f4df61c3b5b55d1ba9b7b83f0b817469c537",
+          "initialization": "2022-11-18T00:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-029/weather-scores.json",
+          "sha256": "d0b09b2c6b8252c367c8a432d3a4e0708384e06b9876dee769e4994c4aad8020",
+          "initialization": "2022-11-29T06:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-030/weather-scores.json",
+          "sha256": "f8defb7e102439ef354244187b0c46ce50626ea51d694917c7861132fae44900",
+          "initialization": "2022-12-10T12:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-0/curriculum/evaluation/case-031/weather-scores.json",
+          "sha256": "722f332038f845b4975aaace6ff81a6709c789e92bfe01910ad233b6c9675f8e",
+          "initialization": "2022-12-21T18:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        }
+      ],
+      "rows": [
+        {
+          "lead_hours": 24,
+          "cases": 11,
+          "crps_kelvin": 1.0467173944339156,
+          "rmse_kelvin": 2.1277140418501284
+        },
+        {
+          "lead_hours": 72,
+          "cases": 11,
+          "crps_kelvin": 1.6044311603761763,
+          "rmse_kelvin": 3.171123123064203
+        },
+        {
+          "lead_hours": 120,
+          "cases": 11,
+          "crps_kelvin": 1.9927917879616601,
+          "rmse_kelvin": 3.783855634674515
+        },
+        {
+          "lead_hours": 240,
+          "cases": 11,
+          "crps_kelvin": 3.033580123917721,
+          "rmse_kelvin": 5.458115710340447
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "variable": "2m_temperature",
+      "completed_dates": 4,
+      "sources": [
+        {
+          "report": "pipeline-1/curriculum/evaluation/case-028/weather-scores.json",
+          "sha256": "93e37d55db7c18d1fa9386dd74ac0cdd9ff8914e3aad0948a77b9a8c0a3f58c8",
+          "initialization": "2022-11-18T00:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-1/curriculum/evaluation/case-029/weather-scores.json",
+          "sha256": "48785c70accaf66a6bfa2ff4de5022956d000b50978f317ac6da1fabcb6ebe0c",
+          "initialization": "2022-11-29T06:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-1/curriculum/evaluation/case-030/weather-scores.json",
+          "sha256": "fccb47c18bc1c4b79f39a228b32f4f7f9850c8662181d35c5e3730001d7ae8f9",
+          "initialization": "2022-12-10T12:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        },
+        {
+          "report": "pipeline-1/curriculum/evaluation/case-031/weather-scores.json",
+          "sha256": "690c4e40bcfbbfaa130637ad012b1b1283a1aba47248df2339c220425e15f4ca",
+          "initialization": "2022-12-21T18:00:00",
+          "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+          "training_provenance_verified": false
+        }
+      ],
+      "rows": [
+        {
+          "lead_hours": 24,
+          "cases": 4,
+          "crps_kelvin": 1.1406870359572645,
+          "rmse_kelvin": 2.3922885851291684
+        },
+        {
+          "lead_hours": 72,
+          "cases": 4,
+          "crps_kelvin": 1.7206924463519138,
+          "rmse_kelvin": 3.3802034736420272
+        },
+        {
+          "lead_hours": 120,
+          "cases": 4,
+          "crps_kelvin": 2.072977279393212,
+          "rmse_kelvin": 4.182832385461965
+        },
+        {
+          "lead_hours": 240,
+          "cases": 4,
+          "crps_kelvin": 2.910609394568941,
+          "rmse_kelvin": 5.695150572037378
+        }
+      ]
+    }
+  ],
+  "paper_progress": {
+    "wn2-seed-0": {
+      "completed_trajectories": 166,
+      "requested_trajectories": 448,
+      "members_by_date": {
+        "2022-01-05T00:00:00.000000000": 56,
+        "2022-03-01T06:00:00.000000000": 56,
+        "2022-04-27T12:00:00.000000000": 54
+      },
+      "endpoints": {
+        "scores": [],
+        "pooling-scores": [],
+        "spectra": [],
+        "cyclone-scores": [
+          {
+            "report": "cyclone-scores/wn2-seed-0/case-000.json",
+            "sha256": "69b486661d7698ac53c38d9d031f07f84ca9b5f01428909a85c4de85c8f1f9ca",
+            "position_rows": 0
+          }
+        ]
+      }
+    },
+    "wn2-seed-1": {
+      "completed_trajectories": 129,
+      "requested_trajectories": 448,
+      "members_by_date": {
+        "2022-01-05T00:00:00.000000000": 56,
+        "2022-03-01T06:00:00.000000000": 56,
+        "2022-04-27T12:00:00.000000000": 17
+      },
+      "endpoints": {
+        "scores": [],
+        "pooling-scores": [],
+        "spectra": [],
+        "cyclone-scores": [
+          {
+            "report": "cyclone-scores/wn2-seed-1/case-000.json",
+            "sha256": "25a5cd11af040dc9793cc0c28b280fd4db181a99053965f9179604d51f73bd06",
+            "position_rows": 0
+          }
+        ]
+      }
+    },
+    "gencast": {
+      "completed_trajectories": 54,
+      "requested_trajectories": 448,
+      "members_by_date": {
+        "2022-01-05T00:00:00.000000000": 54
+      },
+      "endpoints": {
+        "scores": [],
+        "pooling-scores": [],
+        "spectra": [],
+        "cyclone-scores": []
+      }
+    }
+  },
+  "final_replay": [
+    {
+      "seed": 0,
+      "status": "passed",
+      "report": "seed-0/exact-replay.json",
+      "sha256": "1282dbc57c5474efd01ccbe93d3b1e38ce825f9bf5867b92975f4fb7bce3403f",
+      "scope": "One development case, 8 members, 40 six-hour leads; exact decoded cold/warm comparison"
+    },
+    {
+      "seed": 1,
+      "status": "passed",
+      "report": "seed-1/exact-replay.json",
+      "sha256": "f30ae1caf456d0cb12ae8c4fcb12a54dbd716aea98f6becacf446ef291531059",
+      "scope": "One development case, 8 members, 40 six-hour leads; exact decoded cold/warm comparison"
+    }
+  ]
+}

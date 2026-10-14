@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "runner_sha256": "83565be548759ff55dc210a3313d0406f716482d0b40d8d4c3ebb10a3d4fac3b",
+  "source_sha256": {
+    "audit_data.py": "7c712694a8d26653348bfebf61f9d5fa9aced440220ee3a7c8f5bfe9d3217ccb",
+    "baseline.py": "35eaf8c2c27677d8cfe9f0004ca8c6dabebbc8215f60428b9c103667ceb15836",
+    "check_forecast_replay.py": "fc78966a2f4ca332972b64c5756598b1aa9217d2908d22671c826afa916aa695",
+    "collect_profiles.py": "9e8e1277919b7137ecfa151df6ec7187db64f46b69015ee11a10c54003744fb3",
+    "collect_reference.py": "2cfd9ff007f33d335a8e135a0f0aedc8f36701bd1331add516b39f2cab3932e9",
+    "compare.py": "6bc021f0450a228a084ddbfe9c5fc97e0ee05482bffc78df8895d2c0b5993a48",
+    "evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+    "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+    "materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+    "materialize_training.py": "e275a001fcc12b3a1c01ff453fb3aed49adeabb824a662776874b3e24c847a58",
+    "materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+    "merge_scores.py": "b7ab765ff81b803ac2b7238ee2fdac4fb09b77444814abab9be5f6dee0154217",
+    "namespace_inference.py": "c0b3ae9dc6b6bf9138fda7fd560550c8abf3e38a8f5674f5f51eb1cb29888dfd",
+    "native_model.py": "37ede590f3fc8a77ff28653a2936a9b06dea3bc53bec1f9ed991b877d3c361c6",
+    "package_model.py": "670a446f97408797eed81ede9164c4f608bac2cb20a29b78a84cf30410b4e742",
+    "plan_schedule.py": "7fa5b467fa94b03af1a055fc3d75278b85f717b050aa063803fc3e91080bdea9",
+    "predict.py": "d019e4d7ada59ad5dadb83ada6a52f52ab4d6c9221f8827173c0c77918f82225",
+    "prepare_climatology.py": "05725c7cc2a363a650b6448daf8abe874416e6b706e2f0fde7f9fbfec916f47c",
+    "score_case.py": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+    "smoke.py": "da9d18a93e6d7b5383b40e5ec2b56d4d03ad40305e3deb8a8ef26566968e5dcc",
+    "test_compare.py": "fb70c357f7343bd0202456d647a6c97544575861880ff3a3f0cd5bc04cdb23fa",
+    "test_evaluate.py": "114be90cd216e34e7d580c94ef0b8737c6c063a3ccf78f29339638f5fc7b296d",
+    "test_materialize_inputs.py": "f80970178102dac16f0a0f87649ddd4600973477d47446abb775f2dc5d689152",
+    "test_materialize_truth.py": "6874ad88ab7077dac25dbfdeadc25efe97533d72d303af3ab50a2f6eb3e12a04",
+    "test_merge_scores.py": "0b0b17e77cceaf5286c1f24795aec6c11d3da03a7047ff8f8cd6062009985526",
+    "test_plan_schedule.py": "2eb472afd755163407e77535d68e707325f278e641c42e27d1064270c4eaa28a",
+    "test_score_case.py": "a263fbe76b57df8700cb76de2002ce731ab9a4e741a9afba90df1df63219e5e0",
+    "test_training_data.py": "1de281e4fe590f9916525b85e5deb311c13adb50019ece9f32606e304b9b0441",
+    "train.py": "9bec4fb7c0565bc4505316d7ccc4ee4fc9d61c58b315d149830b21297d2b57d2",
+    "train_stage.py": "83565be548759ff55dc210a3313d0406f716482d0b40d8d4c3ebb10a3d4fac3b",
+    "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+    "training_statistics.py": "1da90f7fc49b682203d2c2a1da777016f4df964eab42dc058acd458e4547dae4",
+    "verify_case.py": "e3fb4006046fe9e418c6529e9698a20d6b1bedf1d9b696bb9c44c45bee98277c",
+    "verify_track.py": "7563040d1c35db65fc506cfdea455fa55f8197ff52b13523b780531d3428c27e",
+    "zarr_safety.py": "33bd72cf87d5213e1d1d161d60bc0027aab3210b7acf4b7bda028fbac5ff690c",
+    "wn2_validation.py": "9a1bcf2ed736aa9f8aa3bbd18a6df98e884aa907daab9325821fa6c0defd32b1",
+    "wn2_distributed.py": "ac19f324373cbe0b7570f7adac0fe5e559cb50d79f33e61aace9520ecd496057"
+  },
+  "phase": "complete",
+  "stage": {
+    "name": "hres_025deg_ar8",
+    "updates": 1000,
+    "warmup": 100,
+    "peak_lr": 8e-07,
+    "resolution": 0.25,
+    "cadence_hours": 6,
+    "ar_steps": 8,
+    "mesh_splits": 6,
+    "encoder_aggregate_normalization": 4.0
+  },
+  "devices": 1,
+  "effective_batch": 1,
+  "runtime": {
+    "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+    "versions": {
+      "jax": "0.6.2",
+      "jaxlib": "0.6.2",
+      "dm-haiku": "0.0.14",
+      "optax": "0.2.5",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0"
+    },
+    "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true",
+    "compilation_cache": "false",
+    "cublas_workspace_config": ":4096:8",
+    "device_kinds": [
+      "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+    ]
+  },
+  "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_dump_autotune_results_to=/run/autotune.pb",
+  "debug_single_device": true,
+  "unique_weather_windows": 32,
+  "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+  "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+  "pretrained_parameters_loaded": false,
+  "profile": true,
+  "setup_and_initialization_seconds": 365.8396567259915,
+  "parameter_count": 183785575,
+  "stage_update": 0,
+  "microbatch": 0,
+  "updates": [
+    {
+      "stage_update": 1,
+      "global_updates": 1,
+      "seconds": 848.3151368841063,
+      "loss": 23.434059143066406,
+      "gradient_norm": 162.89378356933594,
+      "learning_rate": 8e-07,
+      "weather_indices": [
+        [
+          27
+        ]
+      ],
+      "includes_checkpoint_io": true
+    }
+  ],
+  "update_seconds": 848.3151368841063,
+  "overhead_seconds": 371.1659578469116,
+  "includes_io_and_communication": false,
+  "cache_policy": "Frozen training corpus retained in host memory after first pass; first-load and compilation charged as overhead",
+  "includes_final_model_export": true,
+  "wall_seconds": 1219.4944018370006,
+  "weights_sha256": "eb5998b3ff8c57345f03e2afcaab86080d970d24337ceab2445266b622f9ecf4",
+  "job_id": 12533424,
+  "peak_sampled_gpu_memory_mib": 96934,
+  "scope": "Passed full-native eight-step real gradient, parameter update, optimizer checkpoint and weights export. Single-device batch-one diagnostic, not production timing."
+}

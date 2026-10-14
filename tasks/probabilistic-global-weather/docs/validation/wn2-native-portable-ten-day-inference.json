@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "job_id": "12533027",
+  "scope": "native-portable-ten-day-inference",
+  "scientific_training": false,
+  "evidence_directory": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/rollout-runs/12533027/verification",
+  "files_sha256": {
+    "replay.json": "43b8a9ebef74e9869c1b3128a2c1fb377295a202093c7c0d0ee983758ad1c1ae",
+    "status.json": "0d1f67011c5de8e6dfb803d040872d26b121e3ebde0067831720ab957db1ff0e"
+  },
+  "inference_seconds": 776.4242618989665
+}

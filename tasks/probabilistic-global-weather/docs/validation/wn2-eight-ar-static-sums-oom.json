@@ -1,0 +1,29 @@
+{
+  "status": "failed",
+  "job_id": "12533328",
+  "failure": "GPU memory exhausted",
+  "allocation": "140.81 GiB",
+  "gpu_capacity": "96 GiB",
+  "scope": "eight-step full-native random-initialized batch-one diagnostic; no completed update",
+  "training_log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12533328/training.log",
+  "tail": [
+    "E0907 02:44:32.638889      17 pjrt_stream_executor_client.cc:2916] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Failed to allocate request for 140.81GiB (151193360736B) on device ordinal 0",
+    "{\"status\": \"failed\", \"error\": \"XlaRuntimeError('RESOURCE_EXHAUSTED: Failed to allocate request for 140.81GiB (151193360736B) on device ordinal 0')\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/run/code/train_stage.py\\\", line 204, in main\\n    try:run(args,report,save)\\n        ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/run/code/train_stage.py\\\", line 153, in run\\n    total,value,finite=accumulate(params,total,keys,i,t,f)\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/opt/xarray-jax/xarray_jax/jax_transforms.py\\\", line 159, in result_fn\\n    flat_result = pmapped_fn(*flat_args)\\n                  ^^^^^^^^^^^^^^^^^^^^^^\\njaxlib._jax.XlaRuntimeError: RESOURCE_EXHAUSTED: Failed to allocate request for 140.81GiB (151193360736B) on device ordinal 0\\n--------------------\\nFor simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.\\n\"}",
+    "Traceback (most recent call last):",
+    "  File \"/run/code/train_stage.py\", line 209, in <module>",
+    "    if __name__=='__main__':main()",
+    "                            ^^^^^^",
+    "  File \"/run/code/train_stage.py\", line 204, in main",
+    "    try:run(args,report,save)",
+    "        ^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/run/code/train_stage.py\", line 153, in run",
+    "    total,value,finite=accumulate(params,total,keys,i,t,f)",
+    "                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "  File \"/opt/xarray-jax/xarray_jax/jax_transforms.py\", line 159, in result_fn",
+    "    flat_result = pmapped_fn(*flat_args)",
+    "                  ^^^^^^^^^^^^^^^^^^^^^^",
+    "jaxlib._jax.XlaRuntimeError: RESOURCE_EXHAUSTED: Failed to allocate request for 140.81GiB (151193360736B) on device ordinal 0",
+    "--------------------",
+    "For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these."
+  ]
+}

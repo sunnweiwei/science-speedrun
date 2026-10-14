@@ -1,0 +1,181 @@
+{
+  "status": "measured_not_accepted",
+  "scope": "Small PRO6000 pmap+shared-module two-member scan+nested remat. Does not reproduce native-size raw_hash_map failure.",
+  "cases": [
+    {
+      "batch": 1,
+      "blocks": 3,
+      "width": 8,
+      "dim": 24,
+      "heads": 3,
+      "pmap_remat": true,
+      "scan_ensemble": true,
+      "forward": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.003815259207243632
+      },
+      "input_gradient": {
+        "max_abs": 0.001953125,
+        "relative_l2": 0.00167277427996015
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.00439453125,
+          "relative_l2": 0.0007404474171569524
+        },
+        {
+          "max_abs": 0.00048828125,
+          "relative_l2": 0.003175893320280169
+        },
+        {
+          "max_abs": 0.000244140625,
+          "relative_l2": 0.003587548400402099
+        },
+        {
+          "max_abs": 0.015625,
+          "relative_l2": 0.0008032006575756014
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0011771779973059893,
+      "cudnn_seconds": 0.001266409596428275,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 10464,
+        "output_size_in_bytes": 12836,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 58480
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 10464,
+        "output_size_in_bytes": 12836,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 113264
+      }
+    },
+    {
+      "batch": 2,
+      "blocks": 3,
+      "width": 9,
+      "dim": 24,
+      "heads": 3,
+      "pmap_remat": true,
+      "scan_ensemble": true,
+      "forward": {
+        "max_abs": 0.000244140625,
+        "relative_l2": 0.004249290549771787
+      },
+      "input_gradient": {
+        "max_abs": 0.0009765625,
+        "relative_l2": 0.001864576666079783
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0050048828125,
+          "relative_l2": 0.0007929318383098257
+        },
+        {
+          "max_abs": 0.0009765625,
+          "relative_l2": 0.0030571823335007534
+        },
+        {
+          "max_abs": 0.0009765625,
+          "relative_l2": 0.003637177694968365
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.0014693290551303414
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0012170275673270225,
+      "cudnn_seconds": 0.0010972681920975447,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 11904,
+        "output_size_in_bytes": 17156,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 113808
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 11904,
+        "output_size_in_bytes": 17156,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 228496
+      }
+    },
+    {
+      "batch": 1,
+      "blocks": 3,
+      "width": 128,
+      "dim": 768,
+      "heads": 6,
+      "pmap_remat": true,
+      "scan_ensemble": true,
+      "forward": {
+        "max_abs": 0.0001220703125,
+        "relative_l2": 0.004265820952108251
+      },
+      "input_gradient": {
+        "max_abs": 0.00390625,
+        "relative_l2": 0.001453769519689801
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.005434989929199219,
+          "relative_l2": 0.00016551980346369804
+        },
+        {
+          "max_abs": 0.001953125,
+          "relative_l2": 0.003426061254884585
+        },
+        {
+          "max_abs": 0.0029296875,
+          "relative_l2": 0.003351506316997026
+        },
+        {
+          "max_abs": 0.375,
+          "relative_l2": 0.0010427232787602572
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0031707449816167355,
+      "cudnn_seconds": 0.003137967828661203,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 10030080,
+        "output_size_in_bytes": 11209796,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 21853808
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 10030080,
+        "output_size_in_bytes": 11209796,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 19480176
+      }
+    }
+  ],
+  "job": "12540685",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:01:18"
+  },
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "53ca67aa8928100179f7e92479b152d2e36e98bd0f9b089e1855a60c96150c1c",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "d6cd3bb9d9722f356badfee4bcee808f122ffdc3b0e339b21b6dd8a92226417e"
+  }
+}

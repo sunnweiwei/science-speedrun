@@ -43,6 +43,9 @@ case "$task" in
     $DOCKER run --rm --network none -v "$root/release:/source:ro" -v "$t:/task:ro" -v "$root:/out" ndp-grader \
       python /task/environment/data/build_heldout_split.py --source /source --output /out/runtime
     data=$root/runtime/development; private=$root/runtime/private ;;
+  probabilistic-global-weather)           # frozen prepared resources (~206 GB, public HF, pinned commit)
+    inbox "huggingface_hub>=1.0,<2" "bash environment/data/materialize.sh $root"
+    data=$root; private=$root ;;
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;

@@ -1,0 +1,55 @@
+{
+  "status": "downloaded_verified",
+  "model": "GenCast 0p25deg Operational <2022",
+  "training_end": "2021-12-31",
+  "causal_evaluation_years": "2022 onward",
+  "exact_2023_paper_checkpoint": false,
+  "files": [
+    {
+      "file": "GenCast 0p25deg Operational <2022.npz",
+      "object": "gencast/params/GenCast 0p25deg Operational <2022.npz",
+      "generation": "1733326321499473",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/dm_graphcast/o/gencast%2Fparams%2FGenCast%200p25deg%20Operational%20%3C2022.npz?alt=media&generation=1733326321499473",
+      "bytes": 230106083,
+      "sha256": "6e7acba288cb04f0685386952a0d08fae07a80567bcd9452029a8ab09ae8eb6d",
+      "md5_base64": "Fr9IJnncNdBKaNS8fzzknw=="
+    },
+    {
+      "file": "diffs_stddev_by_level.nc",
+      "object": "gencast/stats/diffs_stddev_by_level.nc",
+      "generation": "1733326300129443",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/dm_graphcast/o/gencast%2Fstats%2Fdiffs_stddev_by_level.nc?alt=media&generation=1733326300129443",
+      "bytes": 2332,
+      "sha256": "b18d07ff24fbac92bdab4c1d7b351a4c03e3fe55b9abfb15eb0bed34fb94dfb4",
+      "md5_base64": "bc2wImcS2yMR0zjn8N+yVw=="
+    },
+    {
+      "file": "mean_by_level.nc",
+      "object": "gencast/stats/mean_by_level.nc",
+      "generation": "1733326300552444",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/dm_graphcast/o/gencast%2Fstats%2Fmean_by_level.nc?alt=media&generation=1733326300552444",
+      "bytes": 2516,
+      "sha256": "b3fbe5b4e644f28d4fffe8d6c39f452163b7c0a33a2dffc316bacf788c47f7b7",
+      "md5_base64": "czd0r3g5sPaIMQ6syTZKLQ=="
+    },
+    {
+      "file": "min_by_level.nc",
+      "object": "gencast/stats/min_by_level.nc",
+      "generation": "1733326300980856",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/dm_graphcast/o/gencast%2Fstats%2Fmin_by_level.nc?alt=media&generation=1733326300980856",
+      "bytes": 2180,
+      "sha256": "14045e6b396070a915f5f871cdad5d5e552b0afa549443a63aef4117bdcc2349",
+      "md5_base64": "PLexy9nk0ZZTeOPMYCBZhg=="
+    },
+    {
+      "file": "stddev_by_level.nc",
+      "object": "gencast/stats/stddev_by_level.nc",
+      "generation": "1733326301436445",
+      "url": "https://storage.googleapis.com/download/storage/v1/b/dm_graphcast/o/gencast%2Fstats%2Fstddev_by_level.nc?alt=media&generation=1733326301436445",
+      "bytes": 2516,
+      "sha256": "ed50bb72fcf87c09c29a394c1c3d052d3913cf1d9510393d856bd39916bfe3ed",
+      "md5_base64": "YiaCz6RFJUrQmPyIhEI0CA=="
+    }
+  ],
+  "checked_unix": 1789012314.8071785
+}

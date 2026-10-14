@@ -1,0 +1,33 @@
+{
+  "status": "passed_apptainer_docker_unexecuted",
+  "updated_utc": "2026-09-07T09:07:44.996330+00:00",
+  "images": {
+    "environment": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v4/environment.sif",
+      "sha256": "1ee8d096d8dc2b77dd5332a035b11c817c714e198b3b08c0b95433b593ac32c4"
+    },
+    "tests": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v4/tests.sif",
+      "sha256": "de656ff9f0689d6f88c55f64a79a369587ee7da7333ad873d4070e7fda16a237"
+    }
+  },
+  "evaluation_tests": {
+    "passed": 38,
+    "seconds": 7.38
+  },
+  "source_inventory": "/usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v4/source-sha256.json",
+  "dependencies": {
+    "environment_model": "Exact complete pip freeze matches lock",
+    "tests_model": "Exact complete pip freeze matches lock",
+    "environment_eval": "Exact complete pip freeze matches lock",
+    "tests_eval": "Exact complete pip freeze matches lock"
+  },
+  "current_source_changes_after_snapshot": [
+    "wn2/README.md",
+    "wn2/train.py"
+  ],
+  "notes": [
+    "HPC train.py warmup extended to two leads after this snapshot; no changes to native model, driver namespace, packager, verifier or scoring code",
+    "Docker and Harbor CLI execution not performed; real trained GPU smoke submitted separately"
+  ]
+}

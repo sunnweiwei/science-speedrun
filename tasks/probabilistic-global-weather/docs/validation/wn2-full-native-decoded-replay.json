@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "members": 8,
+  "lead_hours": [
+    6,
+    12,
+    18,
+    24,
+    30,
+    36,
+    42,
+    48,
+    54,
+    60,
+    66,
+    72,
+    78,
+    84,
+    90,
+    96,
+    102,
+    108,
+    114,
+    120,
+    126,
+    132,
+    138,
+    144,
+    150,
+    156,
+    162,
+    168,
+    174,
+    180,
+    186,
+    192,
+    198,
+    204,
+    210,
+    216,
+    222,
+    228,
+    234,
+    240
+  ],
+  "decoded_exact_arrays": 18,
+  "compressed_store_bytes_equal": false,
+  "cold_seconds": 1803.115824026987,
+  "warm_seconds": 1781.8184172629844,
+  "scope": "Complete requested native forecasts, fresh IDs and processes, immutable packaged compiler cache; execution fixture weights/statistics, not research-trained starter",
+  "job_id": "12533584",
+  "slurm_state": "COMPLETED",
+  "slurm_exit_code": "0:0",
+  "slurm_elapsed_seconds": 6584,
+  "recorded_at_utc": "2026-09-07T10:45:03.338114+00:00",
+  "decoded": {
+    "status": "passed",
+    "comparison": "Exact decoded array bits and schema; compression bytes may differ",
+    "arrays": 18,
+    "array_sha256": {
+      "10m_u_component_of_wind": "03129c4299d5f2dd82354ccb5791e2aeaf83ec791c26073fe343c682271177cc",
+      "10m_v_component_of_wind": "8c49a16f9f6b6ac271f6a38e70d26074fa94a07d1fab9591fa8662aa3e5cd409",
+      "2m_temperature": "4fff7f1a42c448d42e50b4042968aa4aeaac0cfbd246ff20c8ea2c7e3490d4b1",
+      "case": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+      "geopotential": "5a3eedd501e9545a0ba18586e743c7d190f54d44d9318e72f7f4e7d72566cd89",
+      "lat": "0a851f024b7fe69fd2ad7f7e7848b49ead74a6aa201623068b19f1fa2b5458ed",
+      "lead": "9edaa72618bde008b91cde6eb5c39e340c74fb9f8553f3618719222b47646e9e",
+      "level": "a490574161d652a1108f17fdf7b78a4a642649ea3544169ac304318f5dd9b500",
+      "lon": "2e5e32511469e7e93c2eef868e77cdf828a1108d72a74f119a2395b9247cf2bf",
+      "mean_sea_level_pressure": "c2c2b6329a9589ec07404b5a33fe7c5c6796f4365042d6717f5dab3b083afcb2",
+      "member": "fece8d601cd4c9020e24f9e4a47feedefb2bceff5e9798d8056aea8700052eaa",
+      "specific_humidity": "f5f0da02e2f63324628f3ee5d8b993e33326520ddc77137623ba097ea550201e",
+      "temperature": "4129951fe650a288b9e22d7a234c7dfeeb350256782ce9db17a6b27aaaef1fc8",
+      "total_precipitation_6hr": "b3255dbccf9a6e914d236b6004c2b8c3102aee0795dcec9180f02c0df320cbcd",
+      "u_component_of_wind": "5156c7280c38c6d8ec2e502f1945d019ddbf76504d438f0b7055150661426f8a",
+      "v_component_of_wind": "e8a9aef6a381e8a9d550d35051007681032c35eae677775ad0cf12bbe391b5f5",
+      "valid_time": "7c454a927a22135f6a8e7eb56ef5d44d3ea063c545971eb9ee9226590c41a6ed",
+      "vertical_velocity": "0ebe298ba2ba520ca651890220d1850138fe56168ef10a37560a0ad489509ce5"
+    }
+  },
+  "frozen_inference_autotuning": "Cold dumps results; warm loads saved results with complete AOT coverage required",
+  "not_claimed": [
+    "Complete shortened training curriculum",
+    "Final trained model ten-day replay",
+    "Independent full trained-model scores",
+    "Overall task acceptance"
+  ],
+  "artifacts": {
+    "exact-replay.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/exact-replay.json",
+      "sha256": "baf705b7e0b70a26c17c2514f588669ba3ec080f9c3bfbfa116ea36854ebcd68"
+    },
+    "decoded-exact-replay.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/decoded-exact-replay.json",
+      "sha256": "c4129ce36421c220567038f6d5919d65d0aa0b8c0acbd8576ba63600531f1b3b"
+    },
+    "cold/replay.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/cold/replay.json",
+      "sha256": "b20aee7eb08a12d830bfd8f2bfaa66283dc79fa2f22cf53e24f48918ad6efffe"
+    },
+    "warm/replay.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/warm/replay.json",
+      "sha256": "d3f9876f73832b356bac5c9d4af2fa334d32a3c6d201fe2c797ec418f91cc20c"
+    },
+    "cold/public/request.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/cold/public/request.json",
+      "sha256": "d8ecc68eba45789f4a2278133565fbf7e69f10ed55417cbeafbfd34126db36e8"
+    },
+    "warm/public/request.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/warm/public/request.json",
+      "sha256": "c4bc4a9a05c89328ac90e51cf1f1e6128b7afaf8b2c33959b4f76df0e49d832a"
+    },
+    "warm-package/inference-autotune.pb": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/warm-package/inference-autotune.pb",
+      "sha256": "da210f5fd6b9ea4b1948c16171ccd965ff1b4b23b29da3c88b981060ad671f32"
+    },
+    "warm-package/package.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/warm-package/package.json",
+      "sha256": "3c76a06536087356192e0973e98efb43c3044c1a26ae59a4cf8e21bafc0ae77e"
+    },
+    "code/compare_forecasts.py": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/code/compare_forecasts.py",
+      "sha256": "e6a07ade2023a3fba9b73b84820b1154724aca894e9fb7d1d060a5dcca9fbfa6"
+    },
+    "code/package_model.py": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/code/package_model.py",
+      "sha256": "1d88e193794c9c23291b64c8b0277d967249b1e216957cb7f5d09f516c0c5bff"
+    },
+    "code/predict.py": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/code/predict.py",
+      "sha256": "71803f7531976a6179f4b052e8026da8d437baa0ed90ce6085cd3d175a6af120"
+    },
+    "code/namespace_inference.py": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cached-rollout-runs/12533584/code/namespace_inference.py",
+      "sha256": "b25fdf47fe5e8d702b7c7b96ab8890da61f3027ca853eee5fcfa6b58b47024d1"
+    }
+  }
+}

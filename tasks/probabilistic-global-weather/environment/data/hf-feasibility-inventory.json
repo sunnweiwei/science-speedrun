@@ -1,0 +1,73 @@
+{
+  "schema": "wn2-hf-feasibility/v1",
+  "assessed_on": "2026-09-19",
+  "measurement": "File stat sizes; not a fresh content-hash verification or archive-size measurement.",
+  "components": {
+    "IBTrACS.since1980.v04r01.nc": {
+      "files": 1,
+      "bytes": 10798766,
+      "GiB": 0.01,
+      "symlink_files": 0,
+      "largest_file": [
+        10798766,
+        "IBTrACS.since1980.v04r01.nc"
+      ]
+    },
+    "training-2017-2020": {
+      "files": 1761,
+      "bytes": 135635400779,
+      "GiB": 126.32,
+      "symlink_files": 0,
+      "largest_file": [
+        244232987,
+        "training-2017-2020/climatology/group-11-std.nc"
+      ]
+    },
+    "development-inputs-2021": {
+      "files": 8,
+      "bytes": 1225062317,
+      "GiB": 1.141,
+      "symlink_files": 0,
+      "largest_file": [
+        307243252,
+        "development-inputs-2021/inputs-002.nc"
+      ]
+    },
+    "development-weather-2021": {
+      "files": 13167,
+      "bytes": 30842971381,
+      "GiB": 28.725,
+      "symlink_files": 0,
+      "largest_file": [
+        3367205,
+        "development-weather-2021/truth.zarr/vertical_velocity/1.20.1.0.0"
+      ]
+    },
+    "development-precipitation-2021": {
+      "files": 189,
+      "bytes": 388321843,
+      "GiB": 0.362,
+      "symlink_files": 0,
+      "largest_file": [
+        2601037,
+        "development-precipitation-2021/truth.zarr/total_precipitation_6hr/2.17.0.0"
+      ]
+    },
+    "evaluation-resources": {
+      "files": 20195,
+      "bytes": 58841109933,
+      "GiB": 54.8,
+      "symlink_files": 0,
+      "largest_file": [
+        639565848,
+        "evaluation-resources/tracker/truth/case-001.nc"
+      ]
+    }
+  },
+  "excluded_optional_training_climatology": {
+    "files": 48,
+    "bytes": 6564801384
+  },
+  "proposed_release_bytes": 220378863635,
+  "proposed_release_files": 35273
+}

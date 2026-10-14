@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "scope": "Independent development plumbing check only: one 2021 initialization, eight members, six-hour lead, all 83 scored field/levels; native weights from one real eight-AR batch-one update, not completed curriculum or benchmark skill",
+  "models": {
+    "native_eight_ar_one_update": {
+      "job_id": 12533468,
+      "reward": 0.7225913369299968,
+      "precipitation_reward": 0.5706322912656792,
+      "panels": {
+        "weather": {
+          "reward": 0.7225913369299968,
+          "normalized_crps": 0.3839080942329067,
+          "normalized_crps_by_variable": {
+            "geopotential": 0.09638579188387492,
+            "temperature": 0.15756049864210597,
+            "specific_humidity": 0.3270343636614013,
+            "u_component_of_wind": 0.28679051093061925,
+            "v_component_of_wind": 0.5290539063893499,
+            "vertical_velocity": 1.2260765830593927,
+            "2m_temperature": 0.20179488438656182,
+            "mean_sea_level_pressure": 0.19508290772968864,
+            "10m_u_component_of_wind": 0.3404166692069938,
+            "10m_v_component_of_wind": 0.4788848264390795
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        },
+        "precipitation": {
+          "reward": 0.5706322912656792,
+          "normalized_crps": 0.7524420109173467,
+          "normalized_crps_by_variable": {
+            "total_precipitation_6hr": 0.7524420109173467
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        }
+      },
+      "score_sha256": {
+        "weather": "14758462968b1519993a4291f4700ca9a060a92a9abeae49683d4d62bfd18b44",
+        "precipitation": "73adcf70a82f20dcd2dd4880af53328e81de71a458a2cbdf3e07960627ac4d10"
+      },
+      "replay": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/development-smokes/12533468/verification/replay.json"
+    },
+    "persistence": {
+      "job_id": 12533442,
+      "reward": 0.802829363713897,
+      "precipitation_reward": 0.7899453555040015,
+      "panels": {
+        "weather": {
+          "reward": 0.802829363713897,
+          "normalized_crps": 0.2455946994439635,
+          "normalized_crps_by_variable": {
+            "geopotential": 0.06983487890560974,
+            "temperature": 0.09719617250289127,
+            "specific_humidity": 0.20418288924582917,
+            "u_component_of_wind": 0.20388904711225606,
+            "v_component_of_wind": 0.34787420430372856,
+            "vertical_velocity": 0.6959522498136349,
+            "2m_temperature": 0.0787521104712502,
+            "mean_sea_level_pressure": 0.16129309157446173,
+            "10m_u_component_of_wind": 0.2512247657779744,
+            "10m_v_component_of_wind": 0.34574758473199924
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        },
+        "precipitation": {
+          "reward": 0.7899453555040015,
+          "normalized_crps": 0.26591034814297915,
+          "normalized_crps_by_variable": {
+            "total_precipitation_6hr": 0.26591034814297915
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        }
+      },
+      "score_sha256": {
+        "weather": "e3d6789f7baca8e606a112b8b38b52bfba47d3ff21091329de49d3be1793916c",
+        "precipitation": "fe8456def2f695638d2dd605df749640718bb4974bf043fc17544d5b248eba9b"
+      },
+      "replay": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/development-smokes/12533442/verification/replay.json"
+    },
+    "seasonal_gaussian": {
+      "job_id": 12533443,
+      "reward": 0.7501402121965686,
+      "precipitation_reward": 0.7939718192496104,
+      "panels": {
+        "weather": {
+          "reward": 0.7501402121965686,
+          "normalized_crps": 0.3330841137975916,
+          "normalized_crps_by_variable": {
+            "geopotential": 0.1808383073094843,
+            "temperature": 0.19152809498653067,
+            "specific_humidity": 0.32359672237084136,
+            "u_component_of_wind": 0.4050326855250622,
+            "v_component_of_wind": 0.49516166111747284,
+            "vertical_velocity": 0.4433634502564209,
+            "2m_temperature": 0.09727047523555812,
+            "mean_sea_level_pressure": 0.3661530212811888,
+            "10m_u_component_of_wind": 0.40122222276635555,
+            "10m_v_component_of_wind": 0.4266744971270019
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        },
+        "precipitation": {
+          "reward": 0.7939718192496104,
+          "normalized_crps": 0.2594905458295847,
+          "normalized_crps_by_variable": {
+            "total_precipitation_6hr": 0.2594905458295847
+          },
+          "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+        }
+      },
+      "score_sha256": {
+        "weather": "8b53ca868ac8b692cc50901e1e845bf0f3887952bd80589d40bf527983e024c0",
+        "precipitation": "555ec584c3b68df4aebfc87763b13deab73df20b1291a244b4b5d1cf7e0612eb"
+      },
+      "replay": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/development-smokes/12533443/verification/replay.json"
+    }
+  }
+}

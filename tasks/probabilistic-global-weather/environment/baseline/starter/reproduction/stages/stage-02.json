@@ -1,0 +1,3629 @@
+{
+  "status": "passed",
+  "runner_sha256": "bbb4682d475a5cc7c85b46a9a99a9dab48e697d9e4fa16067c92cd612eea88e3",
+  "source_sha256": {
+    "predict.py": "67340433d682562f88d40122c328287bb065aa21a85cf547d4dd635ff55dea26",
+    "plan_schedule.py": "aa014ddccd3785bfe296eaa77b65948d9234793205db684f682b0b85d7634b47",
+    "package_model.py": "5a132e73760740a7c3521be6c40ff3f9ec46f4037bd82730cc4f3ab5fe959892",
+    "native_model.py": "79232d5614d6760bd89be4d11ba0d2c40b750f86bf7f439b62ea30126084fe94",
+    "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+    "inference_state.py": "ce5df9534c421122c6c1a2520384e3ce4f5bcc363aa45b8c3e8124ad5ab9bf22",
+    "train.py": "f2b94d2dea7f7d5a8eef6d4252a41bcf04bc8a16c029f121864a24fa3a07731f",
+    "train_stage.py": "bbb4682d475a5cc7c85b46a9a99a9dab48e697d9e4fa16067c92cd612eea88e3",
+    "ar_extension.py": "a077eeabab912575ca6a0ca98a5212b66f1472521a4cc1a18aa9f01b404e0b55",
+    "wn2_distributed.py": "c911eb0993306ac6ced236e31c65b4d7a439db0c4326ad00323c7cf4587c9391",
+    "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+    "wn2_validation.py": "2fda9a31fd570a13c79d8458897f5d5170179aa681df1492706d2cda8e92f49a"
+  },
+  "phase": "complete",
+  "stage": {
+    "name": "era5_025deg_6h",
+    "updates": 32000,
+    "warmup": 1000,
+    "peak_lr": 8e-05,
+    "resolution": 0.25,
+    "cadence_hours": 6,
+    "ar_steps": 1,
+    "mesh_splits": 6,
+    "encoder_aggregate_normalization": 4.0,
+    "short_updates": 32,
+    "warmup_equivalent_updates": 1.0,
+    "estimated_update_seconds": 239.12991244620645
+  },
+  "devices": 4,
+  "effective_batch": 64,
+  "runtime": {
+    "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+    "versions": {
+      "jax": "0.6.2",
+      "jaxlib": "0.6.2",
+      "dm-haiku": "0.0.14",
+      "optax": "0.2.5",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0"
+    },
+    "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true",
+    "compilation_cache": "true",
+    "python_hash_seed": "0",
+    "cublas_workspace_config": ":4096:8",
+    "device_kinds": [
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3"
+    ],
+    "device_memory_mib": [
+      81559,
+      81559,
+      81559,
+      81559
+    ]
+  },
+  "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_dump_autotune_results_to=/workspace/training-output/run/stage-02/autotune.pb",
+  "debug_single_device": false,
+  "unique_weather_windows": 32,
+  "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+  "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+  "pretrained_parameters_loaded": false,
+  "profile": false,
+  "setup_and_initialization_seconds": 261.18248362699524,
+  "parameter_count": 183785575,
+  "stage_update": 31,
+  "microbatch": 0,
+  "updates": [
+    {
+      "stage_update": 1,
+      "global_updates": 513,
+      "seconds": 645.4537817270029,
+      "loss": 2.4468227699398994,
+      "gradient_norm": 1.2498661279678345,
+      "learning_rate": 4e-05,
+      "weather_indices": [
+        [
+          17,
+          0,
+          12,
+          24
+        ],
+        [
+          16,
+          2,
+          21,
+          18
+        ],
+        [
+          29,
+          31,
+          19,
+          10
+        ],
+        [
+          22,
+          8,
+          15,
+          13
+        ],
+        [
+          25,
+          1,
+          7,
+          30
+        ],
+        [
+          5,
+          27,
+          26,
+          14
+        ],
+        [
+          23,
+          6,
+          4,
+          20
+        ],
+        [
+          3,
+          9,
+          28,
+          11
+        ],
+        [
+          2,
+          30,
+          10,
+          23
+        ],
+        [
+          27,
+          22,
+          14,
+          17
+        ],
+        [
+          16,
+          8,
+          18,
+          5
+        ],
+        [
+          4,
+          11,
+          20,
+          3
+        ],
+        [
+          13,
+          9,
+          7,
+          25
+        ],
+        [
+          29,
+          26,
+          24,
+          21
+        ],
+        [
+          15,
+          12,
+          1,
+          0
+        ],
+        [
+          31,
+          28,
+          19,
+          6
+        ]
+      ],
+      "input_preparation_seconds": 282.5571111913305,
+      "gradient_dispatch_and_execution_seconds": 311.20331355463713,
+      "optimizer_dispatch_and_execution_seconds": 43.09157693898305,
+      "checkpoint_seconds": 7.888044183142483,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 2,
+      "global_updates": 514,
+      "seconds": 120.65889804507606,
+      "loss": 2.4631705284118652,
+      "gradient_norm": 0.794783890247345,
+      "learning_rate": 7.994866028684212e-05,
+      "weather_indices": [
+        [
+          3,
+          26,
+          25,
+          30
+        ],
+        [
+          24,
+          29,
+          27,
+          6
+        ],
+        [
+          2,
+          15,
+          28,
+          5
+        ],
+        [
+          4,
+          11,
+          22,
+          8
+        ],
+        [
+          18,
+          0,
+          12,
+          31
+        ],
+        [
+          21,
+          20,
+          9,
+          17
+        ],
+        [
+          23,
+          10,
+          7,
+          14
+        ],
+        [
+          1,
+          16,
+          19,
+          13
+        ],
+        [
+          23,
+          3,
+          12,
+          21
+        ],
+        [
+          0,
+          5,
+          28,
+          18
+        ],
+        [
+          4,
+          7,
+          2,
+          26
+        ],
+        [
+          24,
+          9,
+          14,
+          13
+        ],
+        [
+          30,
+          22,
+          19,
+          31
+        ],
+        [
+          27,
+          1,
+          17,
+          8
+        ],
+        [
+          10,
+          6,
+          11,
+          29
+        ],
+        [
+          25,
+          16,
+          15,
+          20
+        ]
+      ],
+      "input_preparation_seconds": 14.63708710973151,
+      "gradient_dispatch_and_execution_seconds": 99.35455802478828,
+      "optimizer_dispatch_and_execution_seconds": 0.19883146788924932,
+      "checkpoint_seconds": 6.40535987704061,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 3,
+      "global_updates": 515,
+      "seconds": 113.19999821204692,
+      "loss": 2.397897429764271,
+      "gradient_norm": 1.0534838438034058,
+      "learning_rate": 7.953873297312447e-05,
+      "weather_indices": [
+        [
+          8,
+          21,
+          24,
+          16
+        ],
+        [
+          13,
+          12,
+          27,
+          17
+        ],
+        [
+          22,
+          7,
+          23,
+          10
+        ],
+        [
+          14,
+          6,
+          26,
+          30
+        ],
+        [
+          31,
+          2,
+          5,
+          25
+        ],
+        [
+          4,
+          15,
+          0,
+          1
+        ],
+        [
+          28,
+          20,
+          3,
+          29
+        ],
+        [
+          9,
+          18,
+          11,
+          19
+        ],
+        [
+          4,
+          6,
+          7,
+          17
+        ],
+        [
+          25,
+          18,
+          11,
+          21
+        ],
+        [
+          20,
+          9,
+          22,
+          19
+        ],
+        [
+          27,
+          30,
+          24,
+          0
+        ],
+        [
+          2,
+          12,
+          31,
+          13
+        ],
+        [
+          14,
+          23,
+          10,
+          29
+        ],
+        [
+          1,
+          26,
+          5,
+          8
+        ],
+        [
+          28,
+          15,
+          3,
+          16
+        ]
+      ],
+      "input_preparation_seconds": 12.725266580935568,
+      "gradient_dispatch_and_execution_seconds": 93.69730237242766,
+      "optimizer_dispatch_and_execution_seconds": 0.2028629439882934,
+      "checkpoint_seconds": 6.519518525106832,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 4,
+      "global_updates": 516,
+      "seconds": 113.9046859210357,
+      "loss": 2.5441730618476868,
+      "gradient_norm": 1.0938806533813477,
+      "learning_rate": 7.872308475464818e-05,
+      "weather_indices": [
+        [
+          29,
+          27,
+          4,
+          9
+        ],
+        [
+          25,
+          28,
+          6,
+          17
+        ],
+        [
+          0,
+          26,
+          30,
+          31
+        ],
+        [
+          10,
+          18,
+          19,
+          14
+        ],
+        [
+          21,
+          2,
+          22,
+          20
+        ],
+        [
+          15,
+          5,
+          13,
+          7
+        ],
+        [
+          3,
+          16,
+          8,
+          23
+        ],
+        [
+          11,
+          24,
+          1,
+          12
+        ],
+        [
+          31,
+          6,
+          12,
+          14
+        ],
+        [
+          17,
+          20,
+          5,
+          1
+        ],
+        [
+          27,
+          23,
+          7,
+          21
+        ],
+        [
+          28,
+          19,
+          2,
+          22
+        ],
+        [
+          24,
+          11,
+          26,
+          30
+        ],
+        [
+          29,
+          8,
+          0,
+          4
+        ],
+        [
+          13,
+          3,
+          10,
+          18
+        ],
+        [
+          25,
+          15,
+          16,
+          9
+        ]
+      ],
+      "input_preparation_seconds": 13.391338015673682,
+      "gradient_dispatch_and_execution_seconds": 93.67830603872426,
+      "optimizer_dispatch_and_execution_seconds": 0.19761254382319748,
+      "checkpoint_seconds": 6.586862599942833,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 5,
+      "global_updates": 517,
+      "seconds": 111.12770136306062,
+      "loss": 2.3615896105766296,
+      "gradient_norm": 1.3038113117218018,
+      "learning_rate": 7.751008528588322e-05,
+      "weather_indices": [
+        [
+          24,
+          28,
+          4,
+          29
+        ],
+        [
+          21,
+          30,
+          9,
+          10
+        ],
+        [
+          20,
+          3,
+          22,
+          19
+        ],
+        [
+          31,
+          13,
+          25,
+          14
+        ],
+        [
+          16,
+          18,
+          0,
+          15
+        ],
+        [
+          27,
+          7,
+          5,
+          17
+        ],
+        [
+          8,
+          2,
+          11,
+          26
+        ],
+        [
+          12,
+          6,
+          23,
+          1
+        ],
+        [
+          16,
+          25,
+          31,
+          29
+        ],
+        [
+          1,
+          18,
+          9,
+          22
+        ],
+        [
+          17,
+          15,
+          24,
+          8
+        ],
+        [
+          11,
+          19,
+          27,
+          13
+        ],
+        [
+          10,
+          20,
+          28,
+          30
+        ],
+        [
+          6,
+          2,
+          14,
+          23
+        ],
+        [
+          7,
+          26,
+          4,
+          21
+        ],
+        [
+          3,
+          12,
+          5,
+          0
+        ]
+      ],
+      "input_preparation_seconds": 11.29652210464701,
+      "gradient_dispatch_and_execution_seconds": 93.71289566438645,
+      "optimizer_dispatch_and_execution_seconds": 0.13268105196766555,
+      "checkpoint_seconds": 5.937980704009533,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 6,
+      "global_updates": 518,
+      "seconds": 112.8204533380922,
+      "loss": 2.421939142048359,
+      "gradient_norm": 1.8543790578842163,
+      "learning_rate": 7.591218158282968e-05,
+      "weather_indices": [
+        [
+          31,
+          23,
+          24,
+          1
+        ],
+        [
+          27,
+          22,
+          20,
+          18
+        ],
+        [
+          4,
+          30,
+          17,
+          9
+        ],
+        [
+          7,
+          25,
+          3,
+          0
+        ],
+        [
+          8,
+          10,
+          26,
+          19
+        ],
+        [
+          11,
+          28,
+          14,
+          12
+        ],
+        [
+          16,
+          2,
+          5,
+          13
+        ],
+        [
+          29,
+          15,
+          21,
+          6
+        ],
+        [
+          25,
+          28,
+          24,
+          19
+        ],
+        [
+          11,
+          6,
+          17,
+          14
+        ],
+        [
+          31,
+          23,
+          20,
+          8
+        ],
+        [
+          22,
+          29,
+          21,
+          10
+        ],
+        [
+          27,
+          15,
+          1,
+          16
+        ],
+        [
+          0,
+          5,
+          4,
+          7
+        ],
+        [
+          12,
+          3,
+          2,
+          26
+        ],
+        [
+          18,
+          9,
+          13,
+          30
+        ]
+      ],
+      "input_preparation_seconds": 12.306364280637354,
+      "gradient_dispatch_and_execution_seconds": 93.75067145982757,
+      "optimizer_dispatch_and_execution_seconds": 0.19717549392953515,
+      "checkpoint_seconds": 6.5192763230297714,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 7,
+      "global_updates": 519,
+      "seconds": 113.8004623868037,
+      "loss": 2.5048491954803467,
+      "gradient_norm": 1.1646809577941895,
+      "learning_rate": 7.394577029979004e-05,
+      "weather_indices": [
+        [
+          13,
+          28,
+          0,
+          21
+        ],
+        [
+          5,
+          8,
+          15,
+          7
+        ],
+        [
+          10,
+          9,
+          19,
+          31
+        ],
+        [
+          2,
+          25,
+          23,
+          16
+        ],
+        [
+          3,
+          1,
+          22,
+          30
+        ],
+        [
+          11,
+          6,
+          12,
+          18
+        ],
+        [
+          14,
+          17,
+          24,
+          20
+        ],
+        [
+          29,
+          26,
+          4,
+          27
+        ],
+        [
+          31,
+          6,
+          28,
+          5
+        ],
+        [
+          4,
+          30,
+          3,
+          8
+        ],
+        [
+          23,
+          18,
+          0,
+          7
+        ],
+        [
+          2,
+          25,
+          15,
+          17
+        ],
+        [
+          27,
+          13,
+          26,
+          24
+        ],
+        [
+          21,
+          10,
+          11,
+          1
+        ],
+        [
+          29,
+          14,
+          22,
+          12
+        ],
+        [
+          19,
+          9,
+          16,
+          20
+        ]
+      ],
+      "input_preparation_seconds": 13.059206327423453,
+      "gradient_dispatch_and_execution_seconds": 93.83175552729517,
+      "optimizer_dispatch_and_execution_seconds": 0.18969751498661935,
+      "checkpoint_seconds": 6.667299028020352,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 8,
+      "global_updates": 520,
+      "seconds": 113.46347405994311,
+      "loss": 2.4061242267489433,
+      "gradient_norm": 1.3167130947113037,
+      "learning_rate": 7.163102947750794e-05,
+      "weather_indices": [
+        [
+          7,
+          19,
+          8,
+          20
+        ],
+        [
+          23,
+          12,
+          28,
+          11
+        ],
+        [
+          2,
+          30,
+          27,
+          29
+        ],
+        [
+          6,
+          16,
+          13,
+          25
+        ],
+        [
+          15,
+          18,
+          4,
+          24
+        ],
+        [
+          31,
+          14,
+          0,
+          17
+        ],
+        [
+          21,
+          26,
+          3,
+          22
+        ],
+        [
+          5,
+          1,
+          9,
+          10
+        ],
+        [
+          17,
+          24,
+          5,
+          8
+        ],
+        [
+          10,
+          31,
+          4,
+          9
+        ],
+        [
+          26,
+          1,
+          19,
+          13
+        ],
+        [
+          22,
+          18,
+          2,
+          12
+        ],
+        [
+          11,
+          27,
+          30,
+          20
+        ],
+        [
+          23,
+          14,
+          3,
+          0
+        ],
+        [
+          25,
+          21,
+          28,
+          7
+        ],
+        [
+          29,
+          15,
+          16,
+          6
+        ]
+      ],
+      "input_preparation_seconds": 12.364575815852731,
+      "gradient_dispatch_and_execution_seconds": 93.74258219078183,
+      "optimizer_dispatch_and_execution_seconds": 0.20650309999473393,
+      "checkpoint_seconds": 7.0838396470062435,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 9,
+      "global_updates": 521,
+      "seconds": 113.75039839092642,
+      "loss": 2.4591320008039474,
+      "gradient_norm": 1.3694796562194824,
+      "learning_rate": 6.89917114891648e-05,
+      "weather_indices": [
+        [
+          21,
+          16,
+          26,
+          3
+        ],
+        [
+          29,
+          5,
+          23,
+          24
+        ],
+        [
+          30,
+          9,
+          10,
+          7
+        ],
+        [
+          0,
+          27,
+          1,
+          12
+        ],
+        [
+          17,
+          20,
+          15,
+          14
+        ],
+        [
+          13,
+          11,
+          31,
+          4
+        ],
+        [
+          19,
+          2,
+          28,
+          22
+        ],
+        [
+          25,
+          18,
+          6,
+          8
+        ],
+        [
+          13,
+          2,
+          18,
+          11
+        ],
+        [
+          5,
+          27,
+          23,
+          17
+        ],
+        [
+          8,
+          15,
+          14,
+          26
+        ],
+        [
+          1,
+          22,
+          29,
+          7
+        ],
+        [
+          12,
+          0,
+          28,
+          6
+        ],
+        [
+          10,
+          24,
+          30,
+          16
+        ],
+        [
+          25,
+          21,
+          20,
+          3
+        ],
+        [
+          9,
+          4,
+          31,
+          19
+        ]
+      ],
+      "input_preparation_seconds": 12.49645055946894,
+      "gradient_dispatch_and_execution_seconds": 93.83626791532151,
+      "optimizer_dispatch_and_execution_seconds": 0.2040389769244939,
+      "checkpoint_seconds": 7.151478372979909,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 10,
+      "global_updates": 522,
+      "seconds": 113.487099169055,
+      "loss": 2.491340383887291,
+      "gradient_norm": 1.1805044412612915,
+      "learning_rate": 6.605489930888889e-05,
+      "weather_indices": [
+        [
+          15,
+          19,
+          23,
+          1
+        ],
+        [
+          8,
+          2,
+          16,
+          30
+        ],
+        [
+          6,
+          27,
+          29,
+          3
+        ],
+        [
+          7,
+          10,
+          26,
+          5
+        ],
+        [
+          11,
+          12,
+          22,
+          9
+        ],
+        [
+          0,
+          4,
+          31,
+          17
+        ],
+        [
+          20,
+          24,
+          21,
+          18
+        ],
+        [
+          13,
+          28,
+          14,
+          25
+        ],
+        [
+          30,
+          7,
+          20,
+          9
+        ],
+        [
+          12,
+          16,
+          28,
+          18
+        ],
+        [
+          21,
+          29,
+          26,
+          6
+        ],
+        [
+          1,
+          11,
+          8,
+          15
+        ],
+        [
+          19,
+          31,
+          3,
+          0
+        ],
+        [
+          22,
+          17,
+          2,
+          25
+        ],
+        [
+          24,
+          4,
+          14,
+          13
+        ],
+        [
+          5,
+          10,
+          27,
+          23
+        ]
+      ],
+      "input_preparation_seconds": 12.797198440181091,
+      "gradient_dispatch_and_execution_seconds": 93.73532720818184,
+      "optimizer_dispatch_and_execution_seconds": 0.21689236699603498,
+      "checkpoint_seconds": 6.681860039010644,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 11,
+      "global_updates": 523,
+      "seconds": 110.94704009080306,
+      "loss": 2.529095470905304,
+      "gradient_norm": 1.2446017265319824,
+      "learning_rate": 6.28507286037917e-05,
+      "weather_indices": [
+        [
+          21,
+          14,
+          13,
+          11
+        ],
+        [
+          18,
+          10,
+          30,
+          28
+        ],
+        [
+          15,
+          7,
+          17,
+          9
+        ],
+        [
+          0,
+          29,
+          25,
+          23
+        ],
+        [
+          6,
+          8,
+          1,
+          16
+        ],
+        [
+          20,
+          12,
+          31,
+          2
+        ],
+        [
+          22,
+          4,
+          3,
+          24
+        ],
+        [
+          27,
+          19,
+          26,
+          5
+        ],
+        [
+          10,
+          14,
+          19,
+          23
+        ],
+        [
+          6,
+          16,
+          9,
+          0
+        ],
+        [
+          15,
+          18,
+          8,
+          4
+        ],
+        [
+          7,
+          31,
+          1,
+          28
+        ],
+        [
+          11,
+          25,
+          2,
+          5
+        ],
+        [
+          13,
+          26,
+          29,
+          30
+        ],
+        [
+          22,
+          3,
+          17,
+          21
+        ],
+        [
+          24,
+          12,
+          20,
+          27
+        ]
+      ],
+      "input_preparation_seconds": 11.42649498838,
+      "gradient_dispatch_and_execution_seconds": 93.67052786331624,
+      "optimizer_dispatch_and_execution_seconds": 0.186120345024392,
+      "checkpoint_seconds": 5.60798511095345,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 12,
+      "global_updates": 524,
+      "seconds": 111.45937920804136,
+      "loss": 2.636340618133545,
+      "gradient_norm": 1.3085232973098755,
+      "learning_rate": 5.9412078501243246e-05,
+      "weather_indices": [
+        [
+          3,
+          27,
+          19,
+          25
+        ],
+        [
+          20,
+          8,
+          7,
+          6
+        ],
+        [
+          17,
+          1,
+          13,
+          15
+        ],
+        [
+          11,
+          30,
+          10,
+          14
+        ],
+        [
+          31,
+          24,
+          28,
+          21
+        ],
+        [
+          23,
+          9,
+          18,
+          5
+        ],
+        [
+          22,
+          26,
+          0,
+          12
+        ],
+        [
+          4,
+          2,
+          16,
+          29
+        ],
+        [
+          23,
+          20,
+          7,
+          19
+        ],
+        [
+          5,
+          6,
+          16,
+          9
+        ],
+        [
+          3,
+          11,
+          2,
+          24
+        ],
+        [
+          10,
+          27,
+          0,
+          26
+        ],
+        [
+          21,
+          18,
+          12,
+          8
+        ],
+        [
+          22,
+          17,
+          4,
+          13
+        ],
+        [
+          15,
+          25,
+          28,
+          31
+        ],
+        [
+          1,
+          30,
+          29,
+          14
+        ]
+      ],
+      "input_preparation_seconds": 11.580537513364106,
+      "gradient_dispatch_and_execution_seconds": 93.70851845690049,
+      "optimizer_dispatch_and_execution_seconds": 0.20884412806481123,
+      "checkpoint_seconds": 5.901632146909833,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 13,
+      "global_updates": 525,
+      "seconds": 111.28178203012794,
+      "loss": 2.305606707930565,
+      "gradient_norm": 1.234158992767334,
+      "learning_rate": 5.577423420453276e-05,
+      "weather_indices": [
+        [
+          9,
+          1,
+          3,
+          20
+        ],
+        [
+          2,
+          5,
+          14,
+          23
+        ],
+        [
+          18,
+          11,
+          12,
+          22
+        ],
+        [
+          8,
+          31,
+          16,
+          28
+        ],
+        [
+          21,
+          27,
+          13,
+          30
+        ],
+        [
+          0,
+          19,
+          4,
+          7
+        ],
+        [
+          24,
+          25,
+          26,
+          15
+        ],
+        [
+          29,
+          10,
+          17,
+          6
+        ],
+        [
+          16,
+          14,
+          9,
+          15
+        ],
+        [
+          20,
+          18,
+          23,
+          24
+        ],
+        [
+          12,
+          27,
+          19,
+          13
+        ],
+        [
+          8,
+          31,
+          30,
+          10
+        ],
+        [
+          21,
+          25,
+          0,
+          26
+        ],
+        [
+          2,
+          3,
+          1,
+          29
+        ],
+        [
+          28,
+          17,
+          4,
+          11
+        ],
+        [
+          6,
+          22,
+          5,
+          7
+        ]
+      ],
+      "input_preparation_seconds": 11.55061618075706,
+      "gradient_dispatch_and_execution_seconds": 93.70352496532723,
+      "optimizer_dispatch_and_execution_seconds": 0.18732704198919237,
+      "checkpoint_seconds": 5.7846184221562,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 14,
+      "global_updates": 526,
+      "seconds": 118.5426160779316,
+      "loss": 2.3876574337482452,
+      "gradient_norm": 1.1656246185302734,
+      "learning_rate": 5.197452491893432e-05,
+      "weather_indices": [
+        [
+          25,
+          16,
+          23,
+          30
+        ],
+        [
+          0,
+          20,
+          5,
+          27
+        ],
+        [
+          17,
+          14,
+          12,
+          7
+        ],
+        [
+          24,
+          22,
+          21,
+          9
+        ],
+        [
+          11,
+          18,
+          26,
+          10
+        ],
+        [
+          8,
+          6,
+          29,
+          31
+        ],
+        [
+          13,
+          15,
+          4,
+          3
+        ],
+        [
+          28,
+          19,
+          1,
+          2
+        ],
+        [
+          19,
+          25,
+          21,
+          9
+        ],
+        [
+          0,
+          3,
+          20,
+          31
+        ],
+        [
+          11,
+          14,
+          17,
+          2
+        ],
+        [
+          27,
+          18,
+          7,
+          15
+        ],
+        [
+          6,
+          28,
+          30,
+          1
+        ],
+        [
+          10,
+          23,
+          13,
+          24
+        ],
+        [
+          29,
+          12,
+          8,
+          26
+        ],
+        [
+          4,
+          5,
+          16,
+          22
+        ]
+      ],
+      "input_preparation_seconds": 12.399606275372207,
+      "gradient_dispatch_and_execution_seconds": 93.69700466026552,
+      "optimizer_dispatch_and_execution_seconds": 0.324573869118467,
+      "checkpoint_seconds": 12.06056710309349,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 15,
+      "global_updates": 527,
+      "seconds": 117.36887281690724,
+      "loss": 2.412569046020508,
+      "gradient_norm": 0.8684849739074707,
+      "learning_rate": 4.805194080354641e-05,
+      "weather_indices": [
+        [
+          11,
+          9,
+          1,
+          21
+        ],
+        [
+          13,
+          16,
+          27,
+          30
+        ],
+        [
+          23,
+          14,
+          17,
+          19
+        ],
+        [
+          0,
+          25,
+          8,
+          20
+        ],
+        [
+          10,
+          6,
+          2,
+          3
+        ],
+        [
+          24,
+          28,
+          26,
+          18
+        ],
+        [
+          4,
+          7,
+          15,
+          22
+        ],
+        [
+          31,
+          12,
+          5,
+          29
+        ],
+        [
+          30,
+          25,
+          5,
+          16
+        ],
+        [
+          3,
+          22,
+          4,
+          7
+        ],
+        [
+          24,
+          23,
+          31,
+          21
+        ],
+        [
+          14,
+          15,
+          11,
+          26
+        ],
+        [
+          8,
+          28,
+          2,
+          19
+        ],
+        [
+          17,
+          20,
+          1,
+          6
+        ],
+        [
+          13,
+          27,
+          9,
+          12
+        ],
+        [
+          29,
+          18,
+          10,
+          0
+        ]
+      ],
+      "input_preparation_seconds": 17.593809546437114,
+      "gradient_dispatch_and_execution_seconds": 93.80212061153725,
+      "optimizer_dispatch_and_execution_seconds": 0.18490565102547407,
+      "checkpoint_seconds": 5.684738959884271,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 16,
+      "global_updates": 528,
+      "seconds": 118.00932501698844,
+      "loss": 2.400468662381172,
+      "gradient_norm": 1.7449414730072021,
+      "learning_rate": 4.4046732879497295e-05,
+      "weather_indices": [
+        [
+          3,
+          26,
+          29,
+          17
+        ],
+        [
+          9,
+          19,
+          6,
+          1
+        ],
+        [
+          14,
+          2,
+          20,
+          5
+        ],
+        [
+          4,
+          28,
+          27,
+          13
+        ],
+        [
+          21,
+          10,
+          15,
+          30
+        ],
+        [
+          16,
+          31,
+          8,
+          25
+        ],
+        [
+          18,
+          12,
+          22,
+          0
+        ],
+        [
+          7,
+          11,
+          23,
+          24
+        ],
+        [
+          19,
+          5,
+          31,
+          29
+        ],
+        [
+          24,
+          27,
+          11,
+          3
+        ],
+        [
+          23,
+          4,
+          6,
+          14
+        ],
+        [
+          26,
+          0,
+          18,
+          28
+        ],
+        [
+          30,
+          21,
+          2,
+          1
+        ],
+        [
+          7,
+          17,
+          15,
+          22
+        ],
+        [
+          16,
+          25,
+          9,
+          8
+        ],
+        [
+          20,
+          12,
+          13,
+          10
+        ]
+      ],
+      "input_preparation_seconds": 14.839334226911888,
+      "gradient_dispatch_and_execution_seconds": 93.7157397440169,
+      "optimizer_dispatch_and_execution_seconds": 0.1379671678878367,
+      "checkpoint_seconds": 9.263955011032522,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 17,
+      "global_updates": 529,
+      "seconds": 113.18724532495253,
+      "loss": 2.484260991215706,
+      "gradient_norm": 0.9849501848220825,
+      "learning_rate": 4e-05,
+      "weather_indices": [
+        [
+          22,
+          30,
+          24,
+          31
+        ],
+        [
+          5,
+          11,
+          13,
+          28
+        ],
+        [
+          15,
+          26,
+          1,
+          12
+        ],
+        [
+          27,
+          23,
+          6,
+          25
+        ],
+        [
+          2,
+          7,
+          20,
+          29
+        ],
+        [
+          18,
+          3,
+          0,
+          21
+        ],
+        [
+          17,
+          4,
+          16,
+          8
+        ],
+        [
+          9,
+          19,
+          14,
+          10
+        ],
+        [
+          15,
+          6,
+          10,
+          27
+        ],
+        [
+          17,
+          20,
+          16,
+          30
+        ],
+        [
+          23,
+          5,
+          0,
+          2
+        ],
+        [
+          26,
+          9,
+          14,
+          11
+        ],
+        [
+          24,
+          18,
+          12,
+          1
+        ],
+        [
+          31,
+          19,
+          4,
+          3
+        ],
+        [
+          29,
+          28,
+          7,
+          21
+        ],
+        [
+          8,
+          13,
+          25,
+          22
+        ]
+      ],
+      "input_preparation_seconds": 12.33681789203547,
+      "gradient_dispatch_and_execution_seconds": 93.64798892987892,
+      "optimizer_dispatch_and_execution_seconds": 0.15118989697657526,
+      "checkpoint_seconds": 6.988507183035836,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 18,
+      "global_updates": 530,
+      "seconds": 117.26976467785425,
+      "loss": 2.4811869263648987,
+      "gradient_norm": 0.8116480708122253,
+      "learning_rate": 3.595326712050272e-05,
+      "weather_indices": [
+        [
+          11,
+          24,
+          18,
+          19
+        ],
+        [
+          7,
+          0,
+          29,
+          31
+        ],
+        [
+          6,
+          17,
+          4,
+          28
+        ],
+        [
+          5,
+          16,
+          1,
+          27
+        ],
+        [
+          10,
+          25,
+          12,
+          26
+        ],
+        [
+          30,
+          9,
+          2,
+          20
+        ],
+        [
+          21,
+          13,
+          8,
+          3
+        ],
+        [
+          15,
+          22,
+          23,
+          14
+        ],
+        [
+          15,
+          18,
+          17,
+          7
+        ],
+        [
+          22,
+          11,
+          20,
+          27
+        ],
+        [
+          3,
+          16,
+          0,
+          28
+        ],
+        [
+          24,
+          5,
+          2,
+          26
+        ],
+        [
+          6,
+          29,
+          13,
+          9
+        ],
+        [
+          25,
+          4,
+          1,
+          12
+        ],
+        [
+          30,
+          8,
+          19,
+          10
+        ],
+        [
+          14,
+          21,
+          23,
+          31
+        ]
+      ],
+      "input_preparation_seconds": 17.579953383188695,
+      "gradient_dispatch_and_execution_seconds": 93.72193004144356,
+      "optimizer_dispatch_and_execution_seconds": 0.12636534217745066,
+      "checkpoint_seconds": 5.602814465994015,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 19,
+      "global_updates": 531,
+      "seconds": 121.29681004513986,
+      "loss": 2.425699070096016,
+      "gradient_norm": 0.878825306892395,
+      "learning_rate": 3.19480591964536e-05,
+      "weather_indices": [
+        [
+          2,
+          6,
+          10,
+          26
+        ],
+        [
+          28,
+          23,
+          9,
+          4
+        ],
+        [
+          29,
+          25,
+          1,
+          27
+        ],
+        [
+          12,
+          20,
+          7,
+          21
+        ],
+        [
+          22,
+          15,
+          17,
+          13
+        ],
+        [
+          14,
+          30,
+          16,
+          19
+        ],
+        [
+          11,
+          18,
+          0,
+          5
+        ],
+        [
+          24,
+          31,
+          8,
+          3
+        ],
+        [
+          13,
+          16,
+          2,
+          12
+        ],
+        [
+          8,
+          23,
+          25,
+          26
+        ],
+        [
+          27,
+          22,
+          3,
+          30
+        ],
+        [
+          21,
+          28,
+          19,
+          17
+        ],
+        [
+          0,
+          9,
+          24,
+          18
+        ],
+        [
+          15,
+          5,
+          1,
+          11
+        ],
+        [
+          29,
+          7,
+          6,
+          20
+        ],
+        [
+          31,
+          4,
+          14,
+          10
+        ]
+      ],
+      "input_preparation_seconds": 18.404444699874148,
+      "gradient_dispatch_and_execution_seconds": 93.88424192345701,
+      "optimizer_dispatch_and_execution_seconds": 0.23872557398863137,
+      "checkpoint_seconds": 8.66039551794529,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 20,
+      "global_updates": 532,
+      "seconds": 119.02253310801461,
+      "loss": 2.440779447555542,
+      "gradient_norm": 0.8937740921974182,
+      "learning_rate": 2.802547508106569e-05,
+      "weather_indices": [
+        [
+          29,
+          7,
+          18,
+          1
+        ],
+        [
+          30,
+          27,
+          14,
+          9
+        ],
+        [
+          20,
+          22,
+          10,
+          28
+        ],
+        [
+          3,
+          6,
+          4,
+          8
+        ],
+        [
+          19,
+          17,
+          25,
+          13
+        ],
+        [
+          26,
+          16,
+          23,
+          12
+        ],
+        [
+          5,
+          0,
+          21,
+          2
+        ],
+        [
+          11,
+          31,
+          15,
+          24
+        ],
+        [
+          9,
+          22,
+          12,
+          13
+        ],
+        [
+          10,
+          14,
+          20,
+          11
+        ],
+        [
+          28,
+          17,
+          16,
+          8
+        ],
+        [
+          23,
+          2,
+          30,
+          25
+        ],
+        [
+          18,
+          1,
+          29,
+          15
+        ],
+        [
+          4,
+          27,
+          6,
+          19
+        ],
+        [
+          31,
+          24,
+          3,
+          26
+        ],
+        [
+          7,
+          0,
+          21,
+          5
+        ]
+      ],
+      "input_preparation_seconds": 14.99745975364931,
+      "gradient_dispatch_and_execution_seconds": 93.94691943353973,
+      "optimizer_dispatch_and_execution_seconds": 0.9113905359990895,
+      "checkpoint_seconds": 9.0619302529376,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 21,
+      "global_updates": 533,
+      "seconds": 121.49360314989462,
+      "loss": 2.460538774728775,
+      "gradient_norm": 1.1824842691421509,
+      "learning_rate": 2.4225765795467267e-05,
+      "weather_indices": [
+        [
+          31,
+          22,
+          13,
+          8
+        ],
+        [
+          5,
+          20,
+          3,
+          23
+        ],
+        [
+          21,
+          11,
+          6,
+          19
+        ],
+        [
+          2,
+          15,
+          12,
+          26
+        ],
+        [
+          18,
+          25,
+          28,
+          7
+        ],
+        [
+          9,
+          30,
+          27,
+          0
+        ],
+        [
+          17,
+          14,
+          4,
+          29
+        ],
+        [
+          16,
+          24,
+          1,
+          10
+        ],
+        [
+          6,
+          14,
+          12,
+          10
+        ],
+        [
+          22,
+          19,
+          5,
+          7
+        ],
+        [
+          30,
+          13,
+          3,
+          18
+        ],
+        [
+          24,
+          0,
+          11,
+          27
+        ],
+        [
+          9,
+          28,
+          23,
+          26
+        ],
+        [
+          17,
+          2,
+          31,
+          16
+        ],
+        [
+          29,
+          25,
+          4,
+          15
+        ],
+        [
+          1,
+          20,
+          21,
+          8
+        ]
+      ],
+      "input_preparation_seconds": 19.974210869986564,
+      "gradient_dispatch_and_execution_seconds": 93.79110058723018,
+      "optimizer_dispatch_and_execution_seconds": 0.19660577806644142,
+      "checkpoint_seconds": 7.439284310908988,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 22,
+      "global_updates": 534,
+      "seconds": 117.41301862290129,
+      "loss": 2.368626654148102,
+      "gradient_norm": 0.9344813227653503,
+      "learning_rate": 2.0587921498756768e-05,
+      "weather_indices": [
+        [
+          7,
+          20,
+          21,
+          3
+        ],
+        [
+          31,
+          9,
+          27,
+          25
+        ],
+        [
+          16,
+          4,
+          13,
+          14
+        ],
+        [
+          11,
+          24,
+          0,
+          12
+        ],
+        [
+          8,
+          26,
+          29,
+          15
+        ],
+        [
+          30,
+          6,
+          5,
+          23
+        ],
+        [
+          1,
+          18,
+          2,
+          19
+        ],
+        [
+          28,
+          10,
+          17,
+          22
+        ],
+        [
+          8,
+          15,
+          1,
+          23
+        ],
+        [
+          20,
+          10,
+          0,
+          9
+        ],
+        [
+          13,
+          27,
+          11,
+          22
+        ],
+        [
+          18,
+          31,
+          17,
+          7
+        ],
+        [
+          2,
+          29,
+          26,
+          28
+        ],
+        [
+          30,
+          3,
+          16,
+          4
+        ],
+        [
+          12,
+          25,
+          14,
+          21
+        ],
+        [
+          19,
+          24,
+          6,
+          5
+        ]
+      ],
+      "input_preparation_seconds": 15.589896536432207,
+      "gradient_dispatch_and_execution_seconds": 93.72128306981176,
+      "optimizer_dispatch_and_execution_seconds": 0.2606428910512477,
+      "checkpoint_seconds": 7.780166875105351,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 23,
+      "global_updates": 535,
+      "seconds": 119.67018214496784,
+      "loss": 2.298637367784977,
+      "gradient_norm": 1.5459944009780884,
+      "learning_rate": 1.7149271396208317e-05,
+      "weather_indices": [
+        [
+          20,
+          6,
+          16,
+          25
+        ],
+        [
+          3,
+          22,
+          24,
+          21
+        ],
+        [
+          30,
+          9,
+          19,
+          7
+        ],
+        [
+          14,
+          31,
+          18,
+          26
+        ],
+        [
+          28,
+          23,
+          2,
+          27
+        ],
+        [
+          10,
+          17,
+          0,
+          4
+        ],
+        [
+          1,
+          8,
+          13,
+          29
+        ],
+        [
+          15,
+          11,
+          12,
+          5
+        ],
+        [
+          27,
+          18,
+          24,
+          16
+        ],
+        [
+          28,
+          19,
+          13,
+          0
+        ],
+        [
+          1,
+          31,
+          2,
+          26
+        ],
+        [
+          8,
+          14,
+          9,
+          29
+        ],
+        [
+          17,
+          25,
+          6,
+          3
+        ],
+        [
+          20,
+          30,
+          15,
+          10
+        ],
+        [
+          4,
+          22,
+          12,
+          11
+        ],
+        [
+          5,
+          21,
+          23,
+          7
+        ]
+      ],
+      "input_preparation_seconds": 17.9804166208487,
+      "gradient_dispatch_and_execution_seconds": 94.01109470217489,
+      "optimizer_dispatch_and_execution_seconds": 0.20067158481106162,
+      "checkpoint_seconds": 7.373861961066723,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 24,
+      "global_updates": 536,
+      "seconds": 119.4069947891403,
+      "loss": 2.352188304066658,
+      "gradient_norm": 0.9104915261268616,
+      "learning_rate": 1.394510069111112e-05,
+      "weather_indices": [
+        [
+          0,
+          9,
+          6,
+          22
+        ],
+        [
+          20,
+          2,
+          26,
+          11
+        ],
+        [
+          19,
+          5,
+          4,
+          10
+        ],
+        [
+          12,
+          14,
+          3,
+          23
+        ],
+        [
+          28,
+          30,
+          13,
+          18
+        ],
+        [
+          27,
+          21,
+          8,
+          7
+        ],
+        [
+          24,
+          31,
+          16,
+          1
+        ],
+        [
+          29,
+          17,
+          15,
+          25
+        ],
+        [
+          21,
+          23,
+          18,
+          10
+        ],
+        [
+          31,
+          28,
+          4,
+          5
+        ],
+        [
+          24,
+          11,
+          6,
+          25
+        ],
+        [
+          8,
+          2,
+          13,
+          3
+        ],
+        [
+          29,
+          14,
+          30,
+          9
+        ],
+        [
+          1,
+          26,
+          15,
+          22
+        ],
+        [
+          20,
+          12,
+          0,
+          7
+        ],
+        [
+          19,
+          27,
+          17,
+          16
+        ]
+      ],
+      "input_preparation_seconds": 16.71640713023953,
+      "gradient_dispatch_and_execution_seconds": 93.93255919963121,
+      "optimizer_dispatch_and_execution_seconds": 0.22995599615387619,
+      "checkpoint_seconds": 8.42245314293541,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 25,
+      "global_updates": 537,
+      "seconds": 120.96429701102898,
+      "loss": 2.415597826242447,
+      "gradient_norm": 1.0456146001815796,
+      "learning_rate": 1.1008288510835198e-05,
+      "weather_indices": [
+        [
+          8,
+          12,
+          24,
+          28
+        ],
+        [
+          25,
+          19,
+          6,
+          10
+        ],
+        [
+          11,
+          20,
+          2,
+          31
+        ],
+        [
+          7,
+          0,
+          27,
+          30
+        ],
+        [
+          4,
+          15,
+          3,
+          13
+        ],
+        [
+          14,
+          22,
+          29,
+          16
+        ],
+        [
+          18,
+          26,
+          23,
+          1
+        ],
+        [
+          21,
+          9,
+          17,
+          5
+        ],
+        [
+          0,
+          29,
+          25,
+          8
+        ],
+        [
+          23,
+          13,
+          5,
+          17
+        ],
+        [
+          4,
+          18,
+          20,
+          14
+        ],
+        [
+          31,
+          1,
+          26,
+          19
+        ],
+        [
+          22,
+          10,
+          9,
+          24
+        ],
+        [
+          30,
+          3,
+          6,
+          27
+        ],
+        [
+          21,
+          11,
+          7,
+          16
+        ],
+        [
+          28,
+          15,
+          2,
+          12
+        ]
+      ],
+      "input_preparation_seconds": 17.696624449221417,
+      "gradient_dispatch_and_execution_seconds": 93.80648436606862,
+      "optimizer_dispatch_and_execution_seconds": 0.21056681382469833,
+      "checkpoint_seconds": 9.134449554840103,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 26,
+      "global_updates": 538,
+      "seconds": 116.53133315383457,
+      "loss": 2.4637211561203003,
+      "gradient_norm": 1.2466888427734375,
+      "learning_rate": 8.368970522492064e-06,
+      "weather_indices": [
+        [
+          25,
+          20,
+          18,
+          5
+        ],
+        [
+          14,
+          6,
+          4,
+          3
+        ],
+        [
+          11,
+          17,
+          26,
+          21
+        ],
+        [
+          31,
+          0,
+          28,
+          9
+        ],
+        [
+          16,
+          12,
+          22,
+          10
+        ],
+        [
+          13,
+          2,
+          30,
+          7
+        ],
+        [
+          23,
+          29,
+          19,
+          24
+        ],
+        [
+          27,
+          8,
+          1,
+          15
+        ],
+        [
+          15,
+          9,
+          22,
+          29
+        ],
+        [
+          26,
+          13,
+          1,
+          5
+        ],
+        [
+          17,
+          27,
+          20,
+          12
+        ],
+        [
+          24,
+          19,
+          31,
+          21
+        ],
+        [
+          25,
+          18,
+          7,
+          10
+        ],
+        [
+          23,
+          8,
+          11,
+          28
+        ],
+        [
+          14,
+          4,
+          2,
+          0
+        ],
+        [
+          16,
+          6,
+          30,
+          3
+        ]
+      ],
+      "input_preparation_seconds": 15.767068028450012,
+      "gradient_dispatch_and_execution_seconds": 94.06083607766777,
+      "optimizer_dispatch_and_execution_seconds": 0.5440800490323454,
+      "checkpoint_seconds": 6.051060343161225,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 27,
+      "global_updates": 539,
+      "seconds": 117.14914250187576,
+      "loss": 2.443837210536003,
+      "gradient_norm": 1.3705205917358398,
+      "learning_rate": 6.054229700209968e-06,
+      "weather_indices": [
+        [
+          3,
+          18,
+          26,
+          24
+        ],
+        [
+          9,
+          1,
+          7,
+          8
+        ],
+        [
+          31,
+          27,
+          20,
+          17
+        ],
+        [
+          5,
+          2,
+          29,
+          28
+        ],
+        [
+          13,
+          0,
+          14,
+          30
+        ],
+        [
+          23,
+          16,
+          19,
+          10
+        ],
+        [
+          4,
+          6,
+          25,
+          11
+        ],
+        [
+          21,
+          22,
+          15,
+          12
+        ],
+        [
+          13,
+          2,
+          12,
+          17
+        ],
+        [
+          16,
+          22,
+          21,
+          26
+        ],
+        [
+          1,
+          14,
+          15,
+          6
+        ],
+        [
+          7,
+          20,
+          5,
+          28
+        ],
+        [
+          10,
+          0,
+          31,
+          27
+        ],
+        [
+          3,
+          9,
+          8,
+          25
+        ],
+        [
+          23,
+          30,
+          11,
+          24
+        ],
+        [
+          29,
+          19,
+          4,
+          18
+        ]
+      ],
+      "input_preparation_seconds": 14.165351657895371,
+      "gradient_dispatch_and_execution_seconds": 93.67955177673139,
+      "optimizer_dispatch_and_execution_seconds": 0.16199840512126684,
+      "checkpoint_seconds": 9.064879748038948,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 28,
+      "global_updates": 540,
+      "seconds": 119.65883897105232,
+      "loss": 2.556556209921837,
+      "gradient_norm": 0.9580122828483582,
+      "learning_rate": 4.087818417170337e-06,
+      "weather_indices": [
+        [
+          7,
+          21,
+          8,
+          30
+        ],
+        [
+          29,
+          19,
+          3,
+          31
+        ],
+        [
+          4,
+          13,
+          6,
+          16
+        ],
+        [
+          14,
+          15,
+          0,
+          2
+        ],
+        [
+          12,
+          26,
+          18,
+          11
+        ],
+        [
+          5,
+          1,
+          10,
+          22
+        ],
+        [
+          28,
+          20,
+          24,
+          27
+        ],
+        [
+          17,
+          23,
+          9,
+          25
+        ],
+        [
+          5,
+          6,
+          27,
+          19
+        ],
+        [
+          1,
+          26,
+          10,
+          11
+        ],
+        [
+          3,
+          9,
+          18,
+          14
+        ],
+        [
+          15,
+          4,
+          2,
+          13
+        ],
+        [
+          17,
+          24,
+          30,
+          29
+        ],
+        [
+          21,
+          16,
+          8,
+          25
+        ],
+        [
+          7,
+          31,
+          28,
+          22
+        ],
+        [
+          0,
+          23,
+          12,
+          20
+        ]
+      ],
+      "input_preparation_seconds": 17.88900015410036,
+      "gradient_dispatch_and_execution_seconds": 93.9258998518344,
+      "optimizer_dispatch_and_execution_seconds": 0.12657761806622148,
+      "checkpoint_seconds": 7.580834634136409,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 29,
+      "global_updates": 541,
+      "seconds": 117.23006844590418,
+      "loss": 2.3660534396767616,
+      "gradient_norm": 1.3993453979492188,
+      "learning_rate": 2.489914714116779e-06,
+      "weather_indices": [
+        [
+          1,
+          8,
+          6,
+          28
+        ],
+        [
+          9,
+          12,
+          14,
+          10
+        ],
+        [
+          17,
+          7,
+          29,
+          2
+        ],
+        [
+          30,
+          27,
+          16,
+          3
+        ],
+        [
+          31,
+          24,
+          0,
+          26
+        ],
+        [
+          11,
+          4,
+          15,
+          19
+        ],
+        [
+          18,
+          20,
+          22,
+          21
+        ],
+        [
+          13,
+          23,
+          25,
+          5
+        ],
+        [
+          24,
+          8,
+          31,
+          28
+        ],
+        [
+          27,
+          13,
+          20,
+          0
+        ],
+        [
+          4,
+          6,
+          25,
+          23
+        ],
+        [
+          5,
+          16,
+          9,
+          12
+        ],
+        [
+          14,
+          30,
+          21,
+          7
+        ],
+        [
+          22,
+          2,
+          15,
+          3
+        ],
+        [
+          29,
+          26,
+          11,
+          1
+        ],
+        [
+          18,
+          10,
+          19,
+          17
+        ]
+      ],
+      "input_preparation_seconds": 17.43340138415806,
+      "gradient_dispatch_and_execution_seconds": 93.88130515650846,
+      "optimizer_dispatch_and_execution_seconds": 0.13173521705903113,
+      "checkpoint_seconds": 5.677846421021968,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 30,
+      "global_updates": 542,
+      "seconds": 119.01893528481014,
+      "loss": 2.4920212626457214,
+      "gradient_norm": 1.5791192054748535,
+      "learning_rate": 1.276915245351833e-06,
+      "weather_indices": [
+        [
+          2,
+          19,
+          30,
+          15
+        ],
+        [
+          25,
+          9,
+          18,
+          7
+        ],
+        [
+          16,
+          6,
+          28,
+          12
+        ],
+        [
+          14,
+          31,
+          22,
+          11
+        ],
+        [
+          4,
+          10,
+          26,
+          23
+        ],
+        [
+          24,
+          17,
+          29,
+          0
+        ],
+        [
+          1,
+          13,
+          27,
+          20
+        ],
+        [
+          3,
+          8,
+          5,
+          21
+        ],
+        [
+          9,
+          28,
+          5,
+          15
+        ],
+        [
+          8,
+          3,
+          22,
+          18
+        ],
+        [
+          16,
+          30,
+          6,
+          0
+        ],
+        [
+          1,
+          12,
+          29,
+          21
+        ],
+        [
+          23,
+          10,
+          4,
+          27
+        ],
+        [
+          25,
+          20,
+          31,
+          24
+        ],
+        [
+          7,
+          26,
+          11,
+          19
+        ],
+        [
+          17,
+          2,
+          13,
+          14
+        ]
+      ],
+      "input_preparation_seconds": 13.721078155795112,
+      "gradient_dispatch_and_execution_seconds": 93.75226692087017,
+      "optimizer_dispatch_and_execution_seconds": 0.2290536540094763,
+      "checkpoint_seconds": 11.245923447888345,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 31,
+      "global_updates": 543,
+      "seconds": 116.1166881849058,
+      "loss": 2.3580379858613014,
+      "gradient_norm": 0.8986373543739319,
+      "learning_rate": 4.6126702687554483e-07,
+      "weather_indices": [
+        [
+          0,
+          14,
+          16,
+          28
+        ],
+        [
+          7,
+          6,
+          24,
+          4
+        ],
+        [
+          12,
+          8,
+          2,
+          11
+        ],
+        [
+          17,
+          18,
+          5,
+          22
+        ],
+        [
+          20,
+          29,
+          3,
+          10
+        ],
+        [
+          26,
+          13,
+          23,
+          1
+        ],
+        [
+          21,
+          9,
+          19,
+          31
+        ],
+        [
+          15,
+          30,
+          27,
+          25
+        ],
+        [
+          11,
+          3,
+          8,
+          19
+        ],
+        [
+          17,
+          7,
+          26,
+          5
+        ],
+        [
+          27,
+          20,
+          28,
+          22
+        ],
+        [
+          12,
+          30,
+          31,
+          24
+        ],
+        [
+          16,
+          2,
+          21,
+          13
+        ],
+        [
+          1,
+          18,
+          6,
+          14
+        ],
+        [
+          9,
+          25,
+          23,
+          0
+        ],
+        [
+          15,
+          10,
+          4,
+          29
+        ]
+      ],
+      "input_preparation_seconds": 14.55317932763137,
+      "gradient_dispatch_and_execution_seconds": 93.83931787242182,
+      "optimizer_dispatch_and_execution_seconds": 0.25862849107943475,
+      "checkpoint_seconds": 7.236311146058142,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 32,
+      "global_updates": 544,
+      "seconds": 119.17156614596024,
+      "loss": 2.560675397515297,
+      "gradient_norm": 0.926886260509491,
+      "learning_rate": 5.133971315788966e-08,
+      "weather_indices": [
+        [
+          3,
+          25,
+          12,
+          4
+        ],
+        [
+          7,
+          16,
+          28,
+          27
+        ],
+        [
+          20,
+          0,
+          2,
+          22
+        ],
+        [
+          23,
+          19,
+          24,
+          30
+        ],
+        [
+          9,
+          1,
+          8,
+          15
+        ],
+        [
+          6,
+          17,
+          21,
+          31
+        ],
+        [
+          18,
+          13,
+          14,
+          11
+        ],
+        [
+          10,
+          26,
+          5,
+          29
+        ],
+        [
+          20,
+          24,
+          3,
+          5
+        ],
+        [
+          23,
+          6,
+          21,
+          13
+        ],
+        [
+          15,
+          4,
+          12,
+          11
+        ],
+        [
+          22,
+          9,
+          14,
+          18
+        ],
+        [
+          1,
+          16,
+          25,
+          31
+        ],
+        [
+          10,
+          26,
+          19,
+          0
+        ],
+        [
+          8,
+          27,
+          30,
+          28
+        ],
+        [
+          17,
+          7,
+          2,
+          29
+        ]
+      ],
+      "input_preparation_seconds": 18.65478340233676,
+      "gradient_dispatch_and_execution_seconds": 93.9185321868863,
+      "optimizer_dispatch_and_execution_seconds": 0.15184195106849074,
+      "checkpoint_seconds": 6.303910335991532,
+      "includes_checkpoint_io": true
+    }
+  ],
+  "wall_seconds": 4524.087456287816,
+  "weights_sha256": "4a49d8416445737524e205b3c9df05bdd2694db3e2cff0041c352aa4e44cbe09"
+}

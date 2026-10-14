@@ -1,0 +1,27 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    shm_size: "64gb"
+    # verify_case.py runs the package in a Bubblewrap namespace. On hosts that restrict unprivileged
+    # user namespaces (Ubuntu 24.04 default) bwrap inside Docker needs all four settings below;
+    # without them it fails with "Failed to make / slave" and every case scores 0.
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+      - systempaths=unconfined
+    cap_add: [SYS_ADMIN]
+    volumes:
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the prepared WN2 resource directory}/evaluation-resources"
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/data/ready.json && test -s /benchmark/training-scales.nc && test -s /benchmark/tracker/named-truth.json"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

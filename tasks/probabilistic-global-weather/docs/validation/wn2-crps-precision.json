@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "backend": "cpu",
+  "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+  "script_sha256": "8801704fa49fe72858b8b5e27ba6848ac18606e87dc4990860fb4bc265c4dcca",
+  "runner_sha256": "cbea9d9cd7f39df1e0e95b031f23b3bd009a83aca5de9c24f4abc157d2fa1cde",
+  "checks": [
+    "BF16 numeric-only dataset reduction reproduces the empty-dataset cause",
+    "Upstream FGN CRPS with two-sample wrapper returns nonempty diagnostics",
+    "BF16 network with FP32 loss has finite nonzero gradients",
+    "FP32/BF16 toy loss and gradients agree within 2%",
+    "Keyword-only noisy network matches released ForwardPass calling convention"
+  ],
+  "full_model_gpu_backward_verified": true,
+  "marker": "WN2_NATIVE_CRPS_FLOAT32_REDUCTION_BF16_NETWORK_GRADIENT_OK",
+  "full_model_evidence": "wn2-rtxpro6000-bf16-random-train.json"
+}

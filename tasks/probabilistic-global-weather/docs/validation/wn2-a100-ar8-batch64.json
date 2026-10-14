@@ -1,0 +1,328 @@
+{
+  "job": "12546950",
+  "slurm_status": "COMPLETED",
+  "elapsed": "02:38:43",
+  "report": {
+    "status": "passed",
+    "runner_sha256": "b0c193e048840bab4ee38c225750f3cac2432e8d736e15b6e1a8519ac57a0eca",
+    "source_sha256": {
+      "audit_data.py": "7c712694a8d26653348bfebf61f9d5fa9aced440220ee3a7c8f5bfe9d3217ccb",
+      "baseline.py": "35eaf8c2c27677d8cfe9f0004ca8c6dabebbc8215f60428b9c103667ceb15836",
+      "check_forecast_replay.py": "fc78966a2f4ca332972b64c5756598b1aa9217d2908d22671c826afa916aa695",
+      "collect_profiles.py": "b4c593366a330a452583913ab511252648645e9a613cdfa30c68755314cdeb59",
+      "collect_reference.py": "2cfd9ff007f33d335a8e135a0f0aedc8f36701bd1331add516b39f2cab3932e9",
+      "compare.py": "6bc021f0450a228a084ddbfe9c5fc97e0ee05482bffc78df8895d2c0b5993a48",
+      "compare_forecasts.py": "e6a07ade2023a3fba9b73b84820b1154724aca894e9fb7d1d060a5dcca9fbfa6",
+      "evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+      "materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+      "materialize_training.py": "e275a001fcc12b3a1c01ff453fb3aed49adeabb824a662776874b3e24c847a58",
+      "materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+      "merge_scores.py": "b7ab765ff81b803ac2b7238ee2fdac4fb09b77444814abab9be5f6dee0154217",
+      "namespace_inference.py": "b25fdf47fe5e8d702b7c7b96ab8890da61f3027ca853eee5fcfa6b58b47024d1",
+      "native_model.py": "79232d5614d6760bd89be4d11ba0d2c40b750f86bf7f439b62ea30126084fe94",
+      "package_model.py": "1d88e193794c9c23291b64c8b0277d967249b1e216957cb7f5d09f516c0c5bff",
+      "plan_schedule.py": "3bb18bef5b25a5172955725dd117fe15766bd27d0dccb7b607a16086c33e5c60",
+      "predict.py": "71803f7531976a6179f4b052e8026da8d437baa0ed90ce6085cd3d175a6af120",
+      "prepare_climatology.py": "05725c7cc2a363a650b6448daf8abe874416e6b706e2f0fde7f9fbfec916f47c",
+      "score_case.py": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "smoke.py": "da9d18a93e6d7b5383b40e5ec2b56d4d03ad40305e3deb8a8ef26566968e5dcc",
+      "test_compare.py": "fb70c357f7343bd0202456d647a6c97544575861880ff3a3f0cd5bc04cdb23fa",
+      "test_compare_forecasts.py": "39ca5cfaab39994d4aee94445f917f71c2a379b83f296e82400620c8336eea3b",
+      "test_evaluate.py": "114be90cd216e34e7d580c94ef0b8737c6c063a3ccf78f29339638f5fc7b296d",
+      "test_materialize_inputs.py": "f80970178102dac16f0a0f87649ddd4600973477d47446abb775f2dc5d689152",
+      "test_materialize_truth.py": "6874ad88ab7077dac25dbfdeadc25efe97533d72d303af3ab50a2f6eb3e12a04",
+      "test_merge_scores.py": "0b0b17e77cceaf5286c1f24795aec6c11d3da03a7047ff8f8cd6062009985526",
+      "test_plan_schedule.py": "2eb472afd755163407e77535d68e707325f278e641c42e27d1064270c4eaa28a",
+      "test_score_case.py": "a263fbe76b57df8700cb76de2002ce731ab9a4e741a9afba90df1df63219e5e0",
+      "test_training_data.py": "1de281e4fe590f9916525b85e5deb311c13adb50019ece9f32606e304b9b0441",
+      "train.py": "55a258c2e9055cd95f1686bc5487e488d378ff00fc735f45dffdd24d6af9c91f",
+      "train_stage.py": "b0c193e048840bab4ee38c225750f3cac2432e8d736e15b6e1a8519ac57a0eca",
+      "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+      "training_statistics.py": "1da90f7fc49b682203d2c2a1da777016f4df964eab42dc058acd458e4547dae4",
+      "verify_case.py": "e3fb4006046fe9e418c6529e9698a20d6b1bedf1d9b696bb9c44c45bee98277c",
+      "verify_track.py": "6d4a8e88b38c9d47d31d41ae13f5d4dae3cfbd847015647105850d70fbdbc2af",
+      "zarr_safety.py": "33bd72cf87d5213e1d1d161d60bc0027aab3210b7acf4b7bda028fbac5ff690c",
+      "wn2_validation.py": "cc224480b790aab78c3044d15a2fc3d0e5ebccdc2a1957cafe5d536f4c32dc15",
+      "wn2_distributed.py": "86a2aa2e9c14de5a24531162bbc84744f6453f6e981906b26eb510f30d253562"
+    },
+    "phase": "complete",
+    "stage": {
+      "name": "hres_025deg_ar8",
+      "updates": 1000,
+      "warmup": 100,
+      "peak_lr": 8e-07,
+      "resolution": 0.25,
+      "cadence_hours": 6,
+      "ar_steps": 8,
+      "mesh_splits": 6,
+      "encoder_aggregate_normalization": 4.0
+    },
+    "devices": 4,
+    "effective_batch": 64,
+    "runtime": {
+      "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+      "versions": {
+        "jax": "0.6.2",
+        "jaxlib": "0.6.2",
+        "dm-haiku": "0.0.14",
+        "optax": "0.2.5",
+        "numpy": "1.26.4",
+        "xarray": "2026.1.0"
+      },
+      "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+      "compilation_cache": "true",
+      "python_hash_seed": "0",
+      "cublas_workspace_config": ":4096:8",
+      "device_kinds": [
+        "NVIDIA A100-SXM4-80GB",
+        "NVIDIA A100-SXM4-80GB",
+        "NVIDIA A100-SXM4-80GB",
+        "NVIDIA A100-SXM4-80GB"
+      ]
+    },
+    "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_dump_autotune_results_to=/run/autotune.pb --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+    "debug_single_device": false,
+    "unique_weather_windows": 32,
+    "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+    "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+    "pretrained_parameters_loaded": false,
+    "profile": true,
+    "setup_and_initialization_seconds": 502.4074922725558,
+    "parameter_count": 183785575,
+    "stage_update": 1,
+    "microbatch": 0,
+    "updates": [
+      {
+        "stage_update": 1,
+        "global_updates": 1,
+        "seconds": 5351.481184065342,
+        "loss": 24.920912504196167,
+        "gradient_norm": 162.904541015625,
+        "learning_rate": 8e-07,
+        "weather_indices": [
+          [
+            27,
+            30,
+            11,
+            20
+          ],
+          [
+            21,
+            14,
+            4,
+            6
+          ],
+          [
+            31,
+            17,
+            9,
+            29
+          ],
+          [
+            22,
+            19,
+            13,
+            26
+          ],
+          [
+            18,
+            28,
+            1,
+            12
+          ],
+          [
+            16,
+            25,
+            2,
+            8
+          ],
+          [
+            23,
+            3,
+            7,
+            5
+          ],
+          [
+            0,
+            24,
+            15,
+            10
+          ],
+          [
+            31,
+            20,
+            27,
+            0
+          ],
+          [
+            8,
+            13,
+            1,
+            15
+          ],
+          [
+            28,
+            7,
+            18,
+            22
+          ],
+          [
+            14,
+            23,
+            19,
+            11
+          ],
+          [
+            10,
+            6,
+            3,
+            24
+          ],
+          [
+            26,
+            25,
+            4,
+            17
+          ],
+          [
+            2,
+            21,
+            5,
+            9
+          ],
+          [
+            16,
+            29,
+            30,
+            12
+          ]
+        ],
+        "input_preparation_seconds": 2670.5946431085467,
+        "gradient_dispatch_and_execution_seconds": 2587.163983181119,
+        "optimizer_dispatch_and_execution_seconds": 72.07044120877981,
+        "checkpoint_seconds": 19.69693011790514,
+        "includes_checkpoint_io": true
+      },
+      {
+        "stage_update": 2,
+        "global_updates": 2,
+        "seconds": 3606.024838678539,
+        "loss": 24.728374361991882,
+        "gradient_norm": 160.99774169921875,
+        "learning_rate": 8e-07,
+        "weather_indices": [
+          [
+            15,
+            29,
+            21,
+            0
+          ],
+          [
+            18,
+            30,
+            7,
+            20
+          ],
+          [
+            28,
+            19,
+            22,
+            12
+          ],
+          [
+            27,
+            2,
+            8,
+            6
+          ],
+          [
+            5,
+            24,
+            14,
+            16
+          ],
+          [
+            10,
+            31,
+            26,
+            25
+          ],
+          [
+            4,
+            13,
+            3,
+            9
+          ],
+          [
+            23,
+            1,
+            11,
+            17
+          ],
+          [
+            3,
+            19,
+            26,
+            21
+          ],
+          [
+            28,
+            22,
+            13,
+            27
+          ],
+          [
+            18,
+            0,
+            10,
+            5
+          ],
+          [
+            6,
+            8,
+            11,
+            29
+          ],
+          [
+            14,
+            23,
+            25,
+            1
+          ],
+          [
+            30,
+            24,
+            12,
+            15
+          ],
+          [
+            20,
+            9,
+            16,
+            4
+          ],
+          [
+            7,
+            17,
+            31,
+            2
+          ]
+        ],
+        "input_preparation_seconds": 152.74473145604134,
+        "gradient_dispatch_and_execution_seconds": 3428.4024871066213,
+        "optimizer_dispatch_and_execution_seconds": 5.34522445499897,
+        "checkpoint_seconds": 18.10108881443739,
+        "includes_checkpoint_io": true
+      }
+    ],
+    "update_seconds": 3606.024838678539,
+    "overhead_seconds": 2258.226813517511,
+    "includes_io_and_communication": true,
+    "cache_policy": "Frozen training corpus retained in host memory after first pass; first-load and compilation charged as overhead",
+    "includes_final_model_export": true,
+    "wall_seconds": 9470.27970661223,
+    "weights_sha256": "e44964e0f43720768ab65e6c62f3e9f33a9b694e7b3361d86a688b66f4cfd410"
+  },
+  "scope": "FourA10080GB full native AR8 batch64 two updates; memory execution passed, full budget not accepted. Predates pmap-local zeroing change."
+}

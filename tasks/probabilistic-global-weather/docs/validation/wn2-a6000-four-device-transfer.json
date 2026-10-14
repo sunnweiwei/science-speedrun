@@ -1,0 +1,157 @@
+{
+  "job": "12546052",
+  "slurm_state": "COMPLETED",
+  "elapsed_seconds": 15,
+  "result": {
+    "status": "passed",
+    "devices": 4,
+    "equal_replicas_saved": true,
+    "host_argument_distribution_exact": true,
+    "pmean_exact": true,
+    "parameter_and_optimizer_bit_differences_rejected": true
+  },
+  "transfer_audit": {
+    "devices": [
+      "cuda:0",
+      "cuda:1",
+      "cuda:2",
+      "cuda:3"
+    ],
+    "full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "shards": [
+      {
+        "device": "cuda:0",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:2",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:3",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      }
+    ],
+    "independent_full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "independent_shards": [
+      {
+        "device": "cuda:0",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:2",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:3",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      }
+    ]
+  }
+}

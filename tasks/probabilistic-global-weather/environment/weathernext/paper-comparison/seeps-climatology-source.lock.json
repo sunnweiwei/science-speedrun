@@ -1,0 +1,12 @@
+{
+  "reference": "GraphCast paper, precipitation evaluation, equations 34-35, p. 58",
+  "url": "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/Learning_skillful_medium-range_global_weather_forecasting.pdf",
+  "sha256": "7c3248def9f28373681fafbca13e70ceede7653c9d3fd33d4e4e8b660f404303",
+  "years": [
+    1980,
+    2015
+  ],
+  "grouping": "calendar month",
+  "resolution_degrees": 0.25,
+  "notes": "GenCast precipitation evaluation cites this method. WeatherBench2 default years/window and WeatherBench-X annual p1 selection are not substituted for the monthly paper definition."
+}

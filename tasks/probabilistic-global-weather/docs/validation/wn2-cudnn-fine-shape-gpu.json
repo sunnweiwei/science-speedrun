@@ -1,0 +1,73 @@
+{
+  "status": "measured_not_accepted",
+  "scope": "Native fine attention dimensions with synthetic mask, shared-module ensemble scan/pmap/remat; no full-model acceptance",
+  "cases": [
+    {
+      "batch": 1,
+      "blocks": 4,
+      "width": 10273,
+      "dim": 768,
+      "heads": 6,
+      "pmap_remat": true,
+      "scan_ensemble": true,
+      "forward": {
+        "max_abs": 1.52587890625e-05,
+        "relative_l2": 0.004199480534484991
+      },
+      "input_gradient": {
+        "max_abs": 0.00390625,
+        "relative_l2": 0.0008024596732373447
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0076446533203125,
+          "relative_l2": 2.1738006967640482e-05
+        },
+        {
+          "max_abs": 0.001269698143005371,
+          "relative_l2": 0.0008626804154330139
+        },
+        {
+          "max_abs": 0.005517646670341492,
+          "relative_l2": 0.0020007398970109413
+        },
+        {
+          "max_abs": 0.22324371337890625,
+          "relative_l2": 0.00018793317461453512
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.9922141040209681,
+      "cudnn_seconds": 0.30434470619075,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 72557568,
+        "output_size_in_bytes": 198792260,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 61614931568
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 72557568,
+        "output_size_in_bytes": 198792260,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 19247598736
+      }
+    }
+  ],
+  "job": "12540687",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:06:16"
+  },
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "53ca67aa8928100179f7e92479b152d2e36e98bd0f9b089e1855a60c96150c1c",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "19b24637caa16dbf4e8c9f5d37fd8e485213bd665b4310c86c2960d1fa77e277"
+  }
+}

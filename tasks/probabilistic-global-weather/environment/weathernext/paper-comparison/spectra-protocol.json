@@ -1,0 +1,34 @@
+{
+  "reference": "https://arxiv.org/html/2506.10772v1",
+  "variables": {
+    "geopotential": [
+      500,
+      850
+    ],
+    "specific_humidity": [
+      700,
+      925
+    ],
+    "temperature": [
+      850,
+      300
+    ],
+    "u_component_of_wind": [
+      850
+    ],
+    "2m_temperature": null,
+    "10m_u_component_of_wind": null,
+    "mean_sea_level_pressure": null
+  },
+  "latitude_nodes": 721,
+  "longitude_nodes": 1440,
+  "maximum_total_wavenumber": 719,
+  "normalization": "sum of squared real orthonormal coefficients over zonal orders, divided by 4*pi; constant mode retained",
+  "quadrature": "Dinosaur 1.2.1 equiangular_with_poles on original grid",
+  "numerical_dtype": "float64",
+  "forecast_aggregation": "Mean of individual-member powers; ensemble-mean-field spectrum reported separately",
+  "date_aggregation": "Equal mean over paired dates with complete truth for that variable/level/lead; require and retain all eight case reports, report actual support per panel",
+  "lead_hours": "all 30 common 12-hour leads from weather-protocol.json",
+  "notes": "No planar FFT or downsampling. Finite-grid quadrature is a numerical approximation at high wavenumbers. Paper prose does not fully specify the numerical transform backend/normalization; this convention is explicit and shared by both models and truth.",
+  "missing_truth_policy": "Do not interpolate or zero-fill incomplete truth fields. Retain a missing_truth row with missing-grid-point count; exclude that case/variable/level/lead from both models in paired spectral averages. All forecasts and all other metrics retain their original scope."
+}

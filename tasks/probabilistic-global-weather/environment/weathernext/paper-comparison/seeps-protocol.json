@@ -1,0 +1,32 @@
+{
+  "reference": "GraphCast precipitation methodology, cited by GenCast Appendix F.4 and FGN evaluation",
+  "source_lock": "seeps-climatology-source.lock.json",
+  "years": [
+    1980,
+    2015
+  ],
+  "resolution_degrees": 0.25,
+  "climatology_grouping": "calendar month; pool all four six-hourly verification times and all source years",
+  "accumulation_hours": [
+    12,
+    24
+  ],
+  "accumulation_source": "sum consecutive ERA5 total_precipitation_6hr intervals ending at verification time; retain 18-hour previous-year context",
+  "dry_thresholds_mm": [
+    0.1,
+    0.25
+  ],
+  "dry_category": "precipitation < dry threshold",
+  "light_category": "dry threshold <= precipitation < wet threshold",
+  "heavy_category": "precipitation >= wet threshold",
+  "wet_threshold": "linear 2/3 quantile of non-dry accumulation samples in the calendar month",
+  "dry_fraction": "monthly fraction of all accumulation samples strictly below dry threshold",
+  "dry_fraction_mask_inclusive": [
+    0.1,
+    0.85
+  ],
+  "forecast": "category of ensemble-mean precipitation",
+  "aggregation": "area-weighted mean for each case/lead then equal-date mean; report valid area",
+  "comparison_to_weatherbenchx": "Same scoring matrix; provide paper monthly p1 rather than WBX annual-mean p1; strict dry boundary follows paper prose rather than WBX <= convention",
+  "status": "metric_validated_climatology_preparation_in_progress"
+}

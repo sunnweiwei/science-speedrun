@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "actual_prior_profiles": [
+    {
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12553461/result/report.json",
+      "decision": "reuse",
+      "invalidation_reasons": []
+    },
+    {
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12553469/result/report.json",
+      "decision": "reuse",
+      "invalidation_reasons": []
+    },
+    {
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12553488/result/report.json",
+      "decision": "reuse",
+      "invalidation_reasons": []
+    },
+    {
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12553491/result/report.json",
+      "decision": "reuse",
+      "invalidation_reasons": []
+    },
+    {
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12553498/result/report.json",
+      "decision": "reuse",
+      "invalidation_reasons": []
+    }
+  ],
+  "unit_tests_passed": 2,
+  "future_policy": "Existing valid profiles reused; absent or changed profile requires explicit stage reason in profile-authorization.json before any GPU profiling. No silent remeasurement.",
+  "running_jobs": "12553502 and12553503 use immutable prior source and already exited profiling; not restarted or modified."
+}

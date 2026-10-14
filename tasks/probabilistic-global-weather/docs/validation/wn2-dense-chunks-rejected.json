@@ -1,0 +1,14 @@
+{
+  "status": "rejected",
+  "job_id": 12533426,
+  "reason": "Chunked DenseLayer raised eight-step GPU memory; failed 88.06 GiB allocation, compiler estimate 93.51 GiB",
+  "production_enabled": false,
+  "cpu_value_gradient_oracle": "passed",
+  "gpu_default_float32_oracle": "failed strict tolerance; scalar difference 0.00419354",
+  "gpu_highest_precision_oracle": {
+    "status": "passed",
+    "job_id": 12533440
+  },
+  "source": "slurm/wn2_dense_chunks.py",
+  "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12533426/training.log"
+}

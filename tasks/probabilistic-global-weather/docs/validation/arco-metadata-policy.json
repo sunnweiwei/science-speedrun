@@ -1,0 +1,89 @@
+{
+  "cause": "Rolling ARCO coverage and update attributes change while the archived and current non-rolling metadata remain identical.",
+  "reference_note": "Schema checked against an earlier archived 2026-09-04 metadata snapshot, not reconstructed from the original raw lock digest.",
+  "archived_metadata_sha256": "de0368f6b1846fcbc817f0bb7d412cd6f707a8969db313d88c34daf8aad4606e",
+  "current_metadata_sha256": "2157fb90c19efbb8c7b497c95a7ca90813c546b5457630940893159d51342533",
+  "changed_metadata_entries": [
+    ".zattrs"
+  ],
+  "old_global_attributes": {
+    "valid_time_start": "1940-01-01",
+    "last_updated": "2026-09-04 03:19:20.768652+00:00",
+    "valid_time_stop": "2026-04-30",
+    "valid_time_stop_era5t": "2026-08-29"
+  },
+  "current_global_attributes": {
+    "valid_time_start": "1940-01-01",
+    "last_updated": "2026-09-14 08:02:53.187887+00:00",
+    "valid_time_stop": "2026-05-31",
+    "valid_time_stop_era5t": "2026-09-08"
+  },
+  "policy": "Allow only last_updated, valid_time_stop and valid_time_stop_era5t to vary; retain exact canonical identity of all remaining metadata; require stable ERA5 coverage through 2022-12-31. Original raw metadata digest remains accepted.",
+  "live_preflight": {
+    "status": "passed",
+    "sources": [
+      {
+        "source": "era5",
+        "expected_sha256": "887b39278f6d29b63c7083f563010f8bba915d1c522038779b4a06fab9b6b962",
+        "actual_sha256": "887b39278f6d29b63c7083f563010f8bba915d1c522038779b4a06fab9b6b962",
+        "status": "passed",
+        "validation": "exact_metadata"
+      },
+      {
+        "source": "hres_fc0",
+        "expected_sha256": "73875c40ff4038a0f661433d5da5156eed99505606b3a65a54f77ad622aa0dce",
+        "actual_sha256": "73875c40ff4038a0f661433d5da5156eed99505606b3a65a54f77ad622aa0dce",
+        "status": "passed",
+        "validation": "exact_metadata"
+      },
+      {
+        "source": "arco_era5",
+        "expected_sha256": "922148b352af55426f15a57045a3a383f0068288ff57ee1613e41c1ae118abd5",
+        "actual_sha256": "2157fb90c19efbb8c7b497c95a7ca90813c546b5457630940893159d51342533",
+        "status": "passed",
+        "validation": "stable_schema_and_required_coverage"
+      }
+    ],
+    "scope": "Metadata availability and pins only; no data chunks, dependencies or GPU execution verified."
+  },
+  "actual_materializer_source_gate_passed": true,
+  "existing_training_source_receipts_validated": 32,
+  "historical_value_spot_checks": [
+    {
+      "source": "training case 0 first frame",
+      "time": "2017-01-04T12:00:00.000000000",
+      "variable": "100m_u_component_of_wind",
+      "grid_cells": 1038240,
+      "exact_values_equal": true
+    },
+    {
+      "source": "training case 0 first frame",
+      "time": "2017-01-04T12:00:00.000000000",
+      "variable": "100m_v_component_of_wind",
+      "grid_cells": 1038240,
+      "exact_values_equal": true
+    },
+    {
+      "source": "evaluation case 0 final context frame",
+      "time": "2022-01-05T00:00:00.000000000",
+      "variable": "100m_u_component_of_wind",
+      "grid_cells": 1038240,
+      "exact_values_equal": true
+    },
+    {
+      "source": "evaluation case 0 final context frame",
+      "time": "2022-01-05T00:00:00.000000000",
+      "variable": "100m_v_component_of_wind",
+      "grid_cells": 1038240,
+      "exact_values_equal": true
+    }
+  ],
+  "tests": {
+    "starter_preparation": 13,
+    "evaluator_comparison_in_existing_image": 80
+  },
+  "limits": [
+    "Two timestamps sampled, not every historical chunk.",
+    "No fresh full data preparation, image build, training or evaluation rerun."
+  ]
+}

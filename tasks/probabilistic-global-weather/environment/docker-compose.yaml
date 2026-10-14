@@ -1,0 +1,37 @@
+# Development environment overlay (TASK_STANDARD.md). `main` is the agent container, built from the
+# task directory. TASK_DATA_DIR is the prepared WN2 resource root (environment/data/README.md); its
+# training and 2021 development trees are mounted read-only under /workspace/data. The evaluation
+# resources in the same root are never mounted here. TASK_RESEARCH_DIR is an empty directory per run
+# on a large disk.
+#
+# The development evaluator runs the package in a Bubblewrap namespace, as the verifier does. Hosts
+# that restrict unprivileged user namespaces (Ubuntu 24.04: kernel.apparmor_restrict_unprivileged_userns=1)
+# additionally need the options in tests/docker-compose.yaml; see docs/RUNNING.md.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    security_opt:
+      - seccomp:unconfined
+    shm_size: "64gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the prepared WN2 resource directory}/training-2017-2020", target: /workspace/data/training}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development-inputs-2021", target: /workspace/data/development/inputs}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development-weather-2021", target: /workspace/data/development/weather}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development-precipitation-2021", target: /workspace/data/development/precipitation}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/training/statistics/manifest.json && test -s /workspace/data/development/inputs/inputs-000.json"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

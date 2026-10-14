@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "date": "2026-09-30",
+  "scope": "Full default verifier (tests/docker-compose.yaml + tests/test.sh) on all 8 dates, 56 members, 30 leads and every endpoint, with four concurrent cases; package is the reviewers' independent 580-update retraining (13.1 h on 4 x H100), not the author's checkpoint",
+  "hardware": "4 x H100 80 GB (CUDA_VISIBLE_DEVICES=0,1,2,3), cpus=32, mem 384 GiB, Docker",
+  "settings": {
+    "disk_allowance_gb": 1000,
+    "disk_reserve_gb": 25,
+    "concurrent_cases": 4,
+    "lead_window": 5,
+    "score_chunk_leads": 1,
+    "score_workers": 32
+  },
+  "wall_seconds": 18379.4,
+  "measured_accounted_peak_bytes": 646201626867,
+  "stage_minutes": {
+    "window_inference": 14,
+    "window_scoring": 9,
+    "cyclones_per_case": "8-11",
+    "first_four_cases": [
+      137,
+      152
+    ],
+    "all_eight": 306
+  },
+  "serial_comparison": {
+    "note": "same package, one case at a time (previous default): one window = 27 min inference + 75-80 min for the scores endpoint alone on one core; projected ~40 h for 16 windows; stopped after 111 min"
+  },
+  "reward": {
+    "reward": 0.674376838880528,
+    "normalized_crps": 0.482850451477559,
+    "normalized_crps_by_variable": {
+      "geopotential": 0.26991665850876734,
+      "temperature": 0.27375893500072035,
+      "specific_humidity": 0.37083453677261285,
+      "u_component_of_wind": 0.4935033583139308,
+      "v_component_of_wind": 0.6161216977190018,
+      "vertical_velocity": 0.5135875201188964,
+      "2m_temperature": 0.13514195434358475,
+      "mean_sea_level_pressure": 0.5452342724033772,
+      "10m_u_component_of_wind": 0.7924787367966011,
+      "10m_v_component_of_wind": 0.8179268447980974
+    },
+    "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+  },
+  "author_reference": {
+    "extended_seed0_580": {
+      "reward": 0.680651,
+      "normalized_crps": 0.469183
+    },
+    "original_seed0_562": {
+      "reward": 0.675805,
+      "normalized_crps": 0.479717
+    }
+  },
+  "lead_split_equivalence": {
+    "window": "case 0, leads 12-180 (serial default run)",
+    "lead": 24,
+    "panels": 99,
+    "max_relative_difference": 6.4e-15,
+    "identical": [
+      "rev_per_case",
+      "seeps_per_case",
+      "truth_lead_sha256",
+      "prediction_manifests_sha256"
+    ],
+    "cause": "floating-point reduction order only"
+  },
+  "unit_tests": {
+    "wn2": "89 passed",
+    "paper_comparison": "30 passed"
+  },
+  "score_receipts_sha256": {
+    "scores/case-000.json": "c1fe139791848039c702662765f6b71625c7e8cf5bc14dc209a6ebbe3c8695f8",
+    "scores/case-001.json": "0f830286b37f7ee9901de717dd3c22ee01213dd65bb5357211039ee8c71bc557",
+    "scores/case-002.json": "3488dd717b3cbae4ce9906b65f7eeda66ac2442f2ec60156f436377fc55613b3",
+    "scores/case-003.json": "3fe72082dc9e5d21601295ac29b9f658943738a0b82a8bbab06423dda32ed8e9",
+    "scores/case-004.json": "d08b09cfa666a27b2c5d39dfde0abff7d1372f186d5ff130ccbdf78991db6930",
+    "scores/case-005.json": "527559c43a4d90d8086c40c1b55c458ab5dc19458637abfec7d4b2da1a566075",
+    "scores/case-006.json": "e7a11559f9dfa047522246035226735126f1e109083520160c53861a4c40347c",
+    "scores/case-007.json": "1efb1827eca0041abcaed2162a88b3e698c6e4ee81b057b7b17dce646ad74696",
+    "pooling-scores/case-000.json": "6abaa3d7c59d1dd48cc84624ea2c94a7a93c75ea7e74057e4cf8f200c8b6295b",
+    "pooling-scores/case-001.json": "450504fd25dac7480fb8d0f8b8c4a0657c8f464e6084fac994960d99ab1c567a",
+    "pooling-scores/case-002.json": "5d5fd27fad1c6cb64655528dc9404edacd0f89289a7f9f7856445538c0f73bc8",
+    "pooling-scores/case-003.json": "b8d1edf52725507687a948c22199f189d4d17679461e9a76c43b83d1ca1e0213",
+    "pooling-scores/case-004.json": "9b9ad81d944dad05d969462a15b04ef5cbe401fd0718588786db6d6de1a8f6a4",
+    "pooling-scores/case-005.json": "23963d744bd88f882cdb2c9e58c3bdb0d28c730acd038a95b78d345c10eef054",
+    "pooling-scores/case-006.json": "45788347053d392c494e40c9ac26288e0dec866b58b22e9aa53df074ab5e4c34",
+    "pooling-scores/case-007.json": "b56986918dcccd2478162ae6cf75aefbedb68f9e0db8a13e77c9645c0e84e841",
+    "spectra/case-000.json": "78a31a1daa21d49b0d64846db30437857d5a11a652a9b5500a4fd949fdd79e55",
+    "spectra/case-001.json": "5e256f63d91f394b0226eba13b956e1b6d6d93848af8b28a347557f8f88f40ea",
+    "spectra/case-002.json": "4060ebff4b9d841e2c669b0fe15cdbd5472d1d81cdfc7bb8e4afc9fd84a75d53",
+    "spectra/case-003.json": "3c4d8f941d49236a0392a8dabff454be30ba507d0d3ecaf18b0dfec067d6427b",
+    "spectra/case-004.json": "975441d98be5bbf43acfd04f486acd7a470cba345720ccf27c6c9b891d07212c",
+    "spectra/case-005.json": "ea6b326c81ef0af1d859dabb7aa013965f84a19b6175f9883c52cd5cd6ac35e6",
+    "spectra/case-006.json": "b36e1d82a3538df793c2341117c0da34320f61d67e38c17952c7acc86bcede82",
+    "spectra/case-007.json": "9f01c9ae849390d9ee4221634ecc69bf27e0bed73d0a99fd805d42dd42a3f893",
+    "cyclone-scores/case-000.json": "06065d71fc397408d1a2e198e7b00e7e3facc77d9c291d529816a44feb350bdf",
+    "cyclone-scores/case-001.json": "2af3a95cf8ae2b6cd4d0534673591fe6aec6a459a31e06c849ccf314e8bbdc52",
+    "cyclone-scores/case-002.json": "c8e3f491ff4bd222c923b22b83e8caebfeb6e75530b190ac308bd490b9dea2e3",
+    "cyclone-scores/case-003.json": "63dfbb0da7393cdeef7dd6353dea951e2208117b50f7402b09d6c7d825dfd9c9",
+    "cyclone-scores/case-004.json": "9680b071e1ee0472967ba849fef1ee82373981fe6d1a966fb362d54b25d61aa6",
+    "cyclone-scores/case-005.json": "121617fe84b54e95b23ddd3cada2ab682b51145798d080597c265e35c022b448",
+    "cyclone-scores/case-006.json": "757a8de333d62f617b6717c39b759c1914b2846a46e26b2355e8222a7e5268e2",
+    "cyclone-scores/case-007.json": "5eb27abf2bb3b485a604c1b8ac1daa7e0a2555a09a66f4b6caf422aa293ffa86"
+  }
+}

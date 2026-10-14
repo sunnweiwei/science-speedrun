@@ -1,0 +1,36 @@
+{
+  "status": "cleanup_complete_pending_image_and_track_acceptance",
+  "archive": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/repo-cleanup-20260909",
+  "changes": [
+    "Exclude logs, runs, validation and local caches from Docker context",
+    "Update README/readiness/reference curriculum status",
+    "Label setup/memory documents as historical evidence",
+    "Add validation index and operator-only documentation",
+    "Preserve user-provided validation and ongoing training snapshots"
+  ],
+  "checks": [
+    "Edited Markdown local links valid",
+    "git diff --check passed",
+    "Two starter boundary/orchestration tests passed",
+    "Environment Apptainer recipe renders",
+    "8064 archived files counted before/after; compatibility links verified"
+  ],
+  "remaining": [
+    "New image rebuild and final trained-model acceptance",
+    "Changes remain uncommitted; cleanup does not imply git status is empty"
+  ],
+  "artifact_moves": [
+    {
+      "original": "/home/users/sc829/source/ai4sci-tasks/probabilistic-global-weather/slurm/runs",
+      "archive": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/repo-cleanup-20260909/slurm-runs",
+      "file_count": 7950,
+      "compatibility_symlink": true
+    },
+    {
+      "original": "/home/users/sc829/source/ai4sci-tasks/probabilistic-global-weather/slurm/logs",
+      "archive": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/repo-cleanup-20260909/slurm-logs",
+      "file_count": 114,
+      "compatibility_symlink": true
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "reference": "persistence with dry precipitation",
+  "job_id": "12533255",
+  "recorded_utc": "2026-09-07T09:14:49.834025+00:00",
+  "scope": "All 32 held-out 2022 dates, eight members, 40 six-hour leads; 82 weather fields plus separate precipitation; independent context-only inference",
+  "status_report": {
+    "status": "passed",
+    "cases": 32,
+    "package_files_sha256": {
+      "baseline.py": "6f8def3b119e36c5883cc7e2b041b02bc0a580b1407a91266e7369984c77205a",
+      "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+      "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+      "variables.json": "47e138dc0d4c4414619322da397bdad13c22ad9631c47cf1332fe113454ed88d",
+      "infer.sh": "fccb517ce3a23465e9264a6c8f2f63a3a0fd94f7dcb7249be2e2441b9823edbd"
+    },
+    "scope": "Complete independent reference replay and requested score panels"
+  },
+  "reward": {
+    "reward": 0.649462775995128,
+    "precipitation_reward": 0.7719756761323993
+  },
+  "panels": {
+    "weather": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/reference-scores/12533255/result/weather-scores.json",
+      "sha256": "107aa479252e219cc720dafbebc481eb7ab59ff2408f701981ce053e497d1451",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "reward_metrics": {
+        "reward": 0.649462775995128,
+        "normalized_crps": 0.5397341263596938,
+        "normalized_crps_by_variable": {
+          "geopotential": 0.24468045931859989,
+          "temperature": 0.28069975824726945,
+          "specific_humidity": 0.4467794906176946,
+          "u_component_of_wind": 0.5783068799002558,
+          "v_component_of_wind": 0.8854552324226445,
+          "vertical_velocity": 0.8398566956864296,
+          "2m_temperature": 0.15589614563066584,
+          "mean_sea_level_pressure": 0.4975360703391404,
+          "10m_u_component_of_wind": 0.6421852055475998,
+          "10m_v_component_of_wind": 0.8259453258866376
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "independent_cases": 32,
+      "per_case_metric_rows": 314880
+    },
+    "precipitation": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/reference-scores/12533255/result/precipitation-scores.json",
+      "sha256": "1d4f18722346a10b3a04711db7199c024e7634f727c22823a3f297183c2f1e01",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "reward_metrics": {
+        "reward": 0.7719756761323993,
+        "normalized_crps": 0.2953776018047659,
+        "normalized_crps_by_variable": {
+          "total_precipitation_6hr": 0.2953776018047659
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "independent_cases": 32,
+      "per_case_metric_rows": 3840
+    }
+  }
+}

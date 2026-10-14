@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "backend": "cpu",
+  "exact_values": true,
+  "constant_shapes": [
+    "u8[8257]",
+    "u8[]",
+    "u8[]",
+    "u8[8257]",
+    "u8[8257]",
+    "pred[]",
+    "u8[8257]"
+  ],
+  "logical_mask_block_bytes": 66049,
+  "packed_block_bytes": 8257,
+  "scope": "Small compiled mask only; full native executable serialization not established",
+  "source_sha256": "8e434f300c7c0437739fb1a577b63e84d8b64c3de72e65f55206c9c88186bb7b"
+}

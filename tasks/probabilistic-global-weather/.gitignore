@@ -1,0 +1,10 @@
+data-release/
+smoke-release/
+smoke-submission/
+smoke-output/
+*.zarr/
+*.npz
+__pycache__/
+.pytest_cache/
+slurm/logs
+slurm/runs

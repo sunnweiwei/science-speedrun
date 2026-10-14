@@ -1,0 +1,18 @@
+schema_version = "agent-runner-compute-profiles/v1"
+default = "rtx-pro-6000"
+
+[profiles.rtx-pro-6000]
+gpus = 4
+gpu_types = ["RTX PRO 6000"]
+
+[profiles.a5000-development]
+gpus = 4
+gpu_types = ["A5000"]
+
+[profiles.a100-development]
+gpus = 8
+gpu_types = ["A100"]
+
+[profiles.h100-optional]
+gpus = 8
+gpu_types = ["H100"]

@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "scope": "Same process, identical native inputs/parameters/key, three forward calls, executable cache disabled",
+  "repeats": [
+    {
+      "repeat": 0,
+      "seconds": 257.1325980569236,
+      "differences": {},
+      "first_wind": 2.4464335441589355
+    },
+    {
+      "repeat": 1,
+      "seconds": 260.5270747069735,
+      "differences": {},
+      "first_wind": 2.4464335441589355
+    },
+    {
+      "repeat": 2,
+      "seconds": 263.9127157649491,
+      "differences": {},
+      "first_wind": 2.4464335441589355
+    }
+  ],
+  "job_id": "12533414_1",
+  "package": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/serial-remat-execution-package"
+}

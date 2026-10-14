@@ -1,0 +1,16 @@
+{
+  "status": "source_and_cpu_checks_passed",
+  "tests": [
+    "two starter boundary/orchestration tests passed",
+    "delivered native_model/train_stage/package_model/predict imported in pinned model image on CPU",
+    "both Dockerfile-derived Apptainer recipes rendered",
+    "shipped schedule byte-identical to current paired-run frozen schedule"
+  ],
+  "schedule_sha256": "87fd1d6e7b3dfcf5f8ec80431498d5c55e7ed9344c094d29c905dc02ded829dd",
+  "scope": "Starter directly runs complete11stage curriculum then export. Development evaluation is separate. No profile planner, reuse diagnostics, tests or multi-seed pipeline in agent starter.",
+  "limitations": [
+    "New container image not built in this change",
+    "New starter orchestration not yet validated by a full GPU run",
+    "Existing full training uses unchanged immutable snapshots"
+  ]
+}

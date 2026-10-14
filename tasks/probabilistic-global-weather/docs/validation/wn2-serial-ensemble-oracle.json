@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "recorded_utc": "2026-09-07T07:06:04.972195+00:00",
+  "cpu": "native identical-noise predictions, parameter and input gradients agree within rtol=atol=2e-6",
+  "gpu_job": 12533404,
+  "gpu": "native identical-noise predictions and parameter gradients agree within rtol=atol=2e-6",
+  "scope": "Toy deterministic network inside the actual pinned FGN wrapper; full-native eight-step update is a separate pending gate",
+  "gpu_log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/serial-ensemble-oracle-12533404.out"
+}

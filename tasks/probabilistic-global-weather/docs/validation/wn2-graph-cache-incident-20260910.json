@@ -1,0 +1,135 @@
+{
+  "status": "unresolved_runtime_incident",
+  "checked_utc": "2026-09-10T11:36:28.418255+00:00",
+  "affected_seed": 0,
+  "failed_cases": [
+    17,
+    18,
+    19,
+    20
+  ],
+  "source_package_sha256": "56f3d6ac7cc144afec4972f5606a5906ab43be5304642d4cb67ccdc85b21fe2e",
+  "observed_error": "Strict autotune requires bf16[1618833,4] dot variant; artifact has bf16[1618841,4]. GPU descriptor is identical.",
+  "coordinate_check": "All 33 context files (development plus 32 independent evaluation dates) have identical float32 lat/lon bytes.",
+  "native_graph_probe": {
+    "scope": "Same pinned image, native six-split mesh, .25-degree grid, radius fraction .6; CPU-only graph calculations",
+    "epyc_9554_edges": 1618841,
+    "epyc_7532_edges": 1618832,
+    "epyc_7532_disabled_avx2_fma3_edges": 1618833,
+    "conclusion": "CPU arithmetic can change graph topology. This alone does not explain variation between processes on the same evaluation node."
+  },
+  "failed_context_retrace": {
+    "status": "complete_without_inference",
+    "graphs": [
+      {
+        "type": "ConnectivityType.BALL_QUERY",
+        "edges": 1618841,
+        "args": [
+          {
+            "shape": [
+              1038240
+            ],
+            "dtype": "float32",
+            "sha": "10d81dee270be51179b651c128a8c13c909c5147e84d00da240437028759c1a3"
+          },
+          {
+            "shape": [
+              1038240
+            ],
+            "dtype": "float32",
+            "sha": "3ea92fa3d9d89d5740611154bd3136455905964401eeb2c084d559c4d2015820"
+          },
+          {
+            "shape": [
+              40962
+            ],
+            "dtype": "float32",
+            "sha": "71476be09345d316457bfcd978fb87edd207ee266703e92c80b1c6d16fe126df"
+          },
+          {
+            "shape": [
+              40962
+            ],
+            "dtype": "float32",
+            "sha": "e382ac188e5fba9fd1953204d550a0679d4f72f575780a87fab47cc49b4348fc"
+          },
+          {
+            "shape": [
+              81920,
+              3
+            ],
+            "dtype": "int64",
+            "sha": "ffa312dcf3afc3d88fab13513a006e4979c51e9fc47c968a011fa41e3426eeee"
+          }
+        ],
+        "indices": [
+          "e1c3192620ca4b5f8556bdd0d05a76cdb55e0583ff68ec3288cd5fd4c24e5801",
+          "871ddd1b4343807f30d1ae4239356bc303238fdffd4b1bc365f7dd7a5cbf0adf"
+        ]
+      },
+      {
+        "type": "ConnectivityType.IN_TRIANGLE",
+        "edges": 3114720,
+        "args": [
+          {
+            "shape": [
+              1038240
+            ],
+            "dtype": "float32",
+            "sha": "10d81dee270be51179b651c128a8c13c909c5147e84d00da240437028759c1a3"
+          },
+          {
+            "shape": [
+              1038240
+            ],
+            "dtype": "float32",
+            "sha": "3ea92fa3d9d89d5740611154bd3136455905964401eeb2c084d559c4d2015820"
+          },
+          {
+            "shape": [
+              40962
+            ],
+            "dtype": "float32",
+            "sha": "71476be09345d316457bfcd978fb87edd207ee266703e92c80b1c6d16fe126df"
+          },
+          {
+            "shape": [
+              40962
+            ],
+            "dtype": "float32",
+            "sha": "e382ac188e5fba9fd1953204d550a0679d4f72f575780a87fab47cc49b4348fc"
+          },
+          {
+            "shape": [
+              81920,
+              3
+            ],
+            "dtype": "int64",
+            "sha": "ffa312dcf3afc3d88fab13513a006e4979c51e9fc47c968a011fa41e3426eeee"
+          }
+        ],
+        "indices": [
+          "cab5bf5dff0ef38c72274f68b8b4dc15d25dd4272fdb4127b0e78d7f5f90e4b0",
+          "b606d963853128c37c0a25dc22d5ca2d3daad19015325ff44c2e563c96a27628"
+        ]
+      }
+    ],
+    "scope": "Case 20, exact namespace launcher and GPU initialization on original evaluation node, stopping after full JAXPR trace. No forecasts or scores; edge count 1618841, so original failure not reproduced.",
+    "log_sha256": "c08f2310b7b51438edd5ff1464a7b2d0f81fbd76a38e6bd25eabdf2ab8a0c3d6"
+  },
+  "strict_recovery_attempt": {
+    "status": "failed_same_strict_autotune_shape_miss",
+    "exec_session": 30831,
+    "case_index": 20,
+    "output": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/evaluation-recovery-20260910/case-020",
+    "policy": "Original immutable warm package, same verifier and strict autotune requirements. Preserve original failure; no retries in a loop."
+  },
+  "operator_directory": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/graph-diagnostic-20260910",
+  "scope": "Diagnostic evidence only. Do not claim root cause or final evaluation success.",
+  "instrumented_forward": {
+    "status": "first_forward_completed_under_strict_autotune",
+    "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/graph-diagnostic-20260910/profile-forward.log",
+    "log_sha256": "8921f4be5db048219e7e02b9d13bc1bdae962151e85fabf6e3a3ab2cd9ef777d",
+    "scope": "Native original warm package with profiling hooks, same case20 and namespace. Native graph has1618841 edges and the first forward completes; unchanged entrypoint recovery still fails1618833. Instrumentation affects the observed behavior; root cause unresolved. Not a complete evaluation."
+  }
+}

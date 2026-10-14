@@ -1,0 +1,61 @@
+{
+  "status": "current_implementation_budget_infeasible",
+  "observed_at": "2026-09-07T18:07:57.716953+00:00",
+  "common_factor_minimum": 0.001,
+  "training_cap_seconds": 61200,
+  "measured_stages": [
+    {
+      "job": "12533283",
+      "stage": "era5_1deg_12h",
+      "minimum_updates": 400,
+      "update_seconds": 90.30401711398736,
+      "overhead_seconds": 908.0871099899523,
+      "minimum_seconds_with_margin": 40732.66335114339,
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12533283/result/report.json",
+      "sha256": "9d88f7a4a43f6e06214960da942242c9520fa36559b3b29f110f7bf0726e0790"
+    },
+    {
+      "job": "12533802",
+      "stage": "era5_1deg_6h",
+      "minimum_updates": 100,
+      "update_seconds": 89.74470219388604,
+      "overhead_seconds": 618.1602238202468,
+      "minimum_seconds_with_margin": 10551.893487529736,
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12533802/result/report.json",
+      "sha256": "929ba2464d4a37d98f96fcd8f813c2c79df2338826c89fecf01cb8641cb02f2a"
+    },
+    {
+      "job": "12533837",
+      "stage": "era5_025deg_6h",
+      "minimum_updates": 32,
+      "update_seconds": 599.7758527128026,
+      "overhead_seconds": 1189.6968127675354,
+      "minimum_seconds_with_margin": 22420.776509534942,
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12533837/result/report.json",
+      "sha256": "639d071af768dc8bf332430c0af38dabe593364824b07d59ad4046188d7467f0"
+    },
+    {
+      "job": "12534250",
+      "stage": "hres_025deg_ar1",
+      "minimum_updates": 8,
+      "update_seconds": 600.1616871959995,
+      "overhead_seconds": 1169.5701114700641,
+      "minimum_seconds_with_margin": 6567.9499699418675,
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12534250/result/report.json",
+      "sha256": "62503866d07c3a2fbc853e9bc48dde3df1d742a2c7b19f816b09058f2567486e"
+    },
+    {
+      "job": "12534321",
+      "stage": "hres_025deg_ar2",
+      "minimum_updates": 4,
+      "update_seconds": 1401.804941358976,
+      "overhead_seconds": 1503.482132405974,
+      "minimum_seconds_with_margin": 7821.772087626066,
+      "report": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/stage-runs/12534321/result/report.json",
+      "sha256": "9ee03d0aa8ac1a354ceaa9a115aac4f9dd757a69c7c1ae19747ec28d03bc07aa"
+    }
+  ],
+  "partial_lower_bound_seconds": 88095.055405776,
+  "remaining_stages_not_counted": 6,
+  "scope": "Lower bound from five completed real four-GPU batch-64 profiles; no schedule frozen and no acceptance requirements relaxed."
+}

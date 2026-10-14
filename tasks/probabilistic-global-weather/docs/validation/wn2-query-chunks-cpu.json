@@ -1,0 +1,22 @@
+{
+  "evidence": {
+    "status": "passed",
+    "scope": "CPU FP32 query-chunk attention values, parameter/input gradients, exact parameter initialization; GPU/BF16/native full-model evidence still required",
+    "cases": [
+      {
+        "width": 8,
+        "max_forward_abs": 1.1920928955078125e-07,
+        "max_gradient_abs": 9.5367431640625e-07
+      },
+      {
+        "width": 9,
+        "max_forward_abs": 1.1920928955078125e-07,
+        "max_gradient_abs": 1.9073486328125e-06
+      }
+    ]
+  },
+  "artifact": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/query-chunks-cpu.json",
+  "artifact_sha256": "f5fb972ccf233089bb91721eba1393226114600b0c3c28f9e7ed6565f694443c",
+  "code_sha256": "a68ccc66e723caec3e92b28db97c4f6f2904baf51d830069593f58510907f9dc",
+  "not_production": true
+}

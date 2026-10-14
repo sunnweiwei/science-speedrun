@@ -24,6 +24,7 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [timeseries-forecasting](tasks/timeseries-forecasting) | zero-shot forecasting foundation model on GIFT-Eval | 8 GPU, 48 h | 0.334 | 0.275 | 0.447 | GiftEval from HF, 275 GB |
 | [surface-code-decoding](tasks/surface-code-decoding) | neural decoder for Sycamore surface-code experiments | 8 GPU, 48 h | 0.7626 | 0.7557 | 0.7615 | HF release, ~8 GB |
 | [natural-disease-progression](tasks/natural-disease-progression) | next-year disease risk from MIMIC-IV histories | 1 GPU, 24 h | 0.243 | 0.236 | 0.268 | credentialed HF release (MIMIC-IV) |
+| [probabilistic-global-weather](tasks/probabilistic-global-weather) | 15-day global ensemble weather forecasting model (WeatherNext2-style) from random initialization | 4 GPU, 24.5 h | 0.108 | 0.674 | — | HF release, ~206 GB |
 | [protein-folding-prediction](tasks/protein-folding-prediction) | one from-scratch biomolecular folding model for all nine FoldBench tracks (monomers, interfaces, ligands) | 8 GPU, 48 h | 0.0003 | 0.037 | 0.557 | HF release, 73 GB |
 | [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1 GPU + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
 
@@ -31,6 +32,10 @@ Notes on the table:
 - Rewards are raw task metrics; larger is better.
 - Baselines were reproduced in this setup. Their numbers, logs and validation outputs are in each task's `environment/baseline/<name>/` (`RESULTS.md`, `reproduction/`). Agents are told not to retrain them.
 - Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry: about 3.5 h on one GPU.
+- probabilistic-global-weather was tested on the CMU Babel cluster: a 6 h Codex session on two L40S. The agent checked its
+  pipeline and trained a fresh from-scratch candidate on a longer schedule; its package scored 0.108 against the
+  starter's 0.674 (13.1 h on four H100s), as expected for the budget. The verifier ran all eight cases and passed in
+  7.6 h on three L40S; it now runs the eight cases at once on eight GPUs (about 2.5 h on H100s).
 - protein-folding-prediction was tested on the CMU Babel cluster: a 6 h Codex session on one L40S. The agent trained a
   49.2M from-scratch model (parameter audit shipped) and published four packages; at this budget the scorer's
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in

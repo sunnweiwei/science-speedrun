@@ -1,0 +1,247 @@
+{
+  "status": "boolean_mask_exact_passed",
+  "backend": "gpu",
+  "experiment": "boolean_mask",
+  "devices": [
+    "NVIDIA RTX A5000"
+  ],
+  "cases": [
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 1,
+      "width": 8,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 2,
+      "width": 9,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 1,
+      "width": 33,
+      "query_chunk": 8,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 1,
+      "width": 8,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 2,
+      "width": 9,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 1,
+      "width": 33,
+      "query_chunk": 8,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    }
+  ],
+  "scope": "Synthetic native attention only; BF16 measurements do not establish full-model equivalence, replay or production acceptance",
+  "job": "12536975",
+  "slurm_state": "COMPLETED",
+  "slurm_exit_code": "0:0",
+  "source_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "d92a567f672c7cc374c93afe0f9daf40d22de0fbd3127a5d453c14ac8429b89d"
+  }
+}

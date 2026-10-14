@@ -1,0 +1,18 @@
+{
+  "status": "source_hypothesis_not_confirmed",
+  "failed_job": "12540125",
+  "revision": "3d5ece64321630dade7ff733ae1353fc3c83d9cc",
+  "finding": "CuDnnThunk::Initialize performs dnn_compiled_graphs.at(fingerprint_), which can emit the observed raw_hash_map::at exception. Compiler creates entries using HLO+backend-config fingerprint; emitter computes the fingerprint again. Missing/mutated graph fingerprint is a candidate explanation, not a proven stack trace.",
+  "next": "Use a bounded pmap/rematerialized attention reproducer with the same PRO6000 and autotune flags before repeating the full model. Do not upgrade pinned runtime or disable determinism to bypass the failure.",
+  "sources": {
+    "cudnn_thunk.cc": {
+      "sha256": "4b461a60ffac99cf2ebb9db0e7568b64dda953707c0cd41f97a7227622479ee9"
+    },
+    "cudnn_custom_call_compiler.cc": {
+      "sha256": "e18af7b2a70e1bd803bc60c4baaed8e8ab731043f5e25076e9f881d6ff8ea003"
+    },
+    "ir_emitter_unnested.cc": {
+      "sha256": "b2fb8cd6004ee24140596879f2e8c51e75b43c47124d2d805c9d59cde03b75b7"
+    }
+  }
+}

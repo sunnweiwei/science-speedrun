@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "job_id": "12533578",
+  "scope": "Uninstrumented actual portable inference; two members, one lead, all scored fields and coordinates; not the complete 40-lead replay",
+  "replay": {
+    "status": "passed",
+    "members": 2,
+    "lead_hours": [
+      6
+    ],
+    "decoded_exact_arrays": 18,
+    "compressed_store_bytes_equal": false,
+    "cold_seconds": 274.7501378841698,
+    "warm_seconds": 177.10817517410032,
+    "scope": "Complete requested native forecasts, fresh IDs and processes, immutable packaged compiler cache; execution fixture weights/statistics, not research-trained starter"
+  },
+  "decoded": {
+    "status": "passed",
+    "comparison": "Exact decoded array bits and schema; compression bytes may differ",
+    "arrays": 18,
+    "array_sha256": {
+      "10m_u_component_of_wind": "30c086a93936f7d1af6bf68ad6eb82e07fdebc71c58c5e51383cf594898a72eb",
+      "10m_v_component_of_wind": "7ba8a3179b90d8dd1dec35c4d24732dc7cc8977c16eec3b5bb69d101ede34c97",
+      "2m_temperature": "6d2235c6051ca79238cf43d09cb22dc8e0658042c6f959080de34d8a66f9742c",
+      "case": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+      "geopotential": "21af320ede997c0fac9b1b3a185d8ec1b7083ccb10b0a423705f10dd1fc888d0",
+      "lat": "0a851f024b7fe69fd2ad7f7e7848b49ead74a6aa201623068b19f1fa2b5458ed",
+      "lead": "23d7f42b1cdc1f0d492ebd756ed0fe8003995dda554d99418d47a81813650207",
+      "level": "a490574161d652a1108f17fdf7b78a4a642649ea3544169ac304318f5dd9b500",
+      "lon": "2e5e32511469e7e93c2eef868e77cdf828a1108d72a74f119a2395b9247cf2bf",
+      "mean_sea_level_pressure": "b4f987981cbcca3bf28bd061c25da921d0864a02fe12d227fa9b186b79a8c1f9",
+      "member": "9d34149fbd1fe777eb238799054c8cbfbce372255f219f8740838def9bfd02db",
+      "specific_humidity": "fcd8c0e138ed9727b0e41205048cdea52772d95ba996aab774f2bd0fee930906",
+      "temperature": "91bdcb7e521d31f30c48efe6a2d121ecfdff834a476bf2bcd622af048f7e6275",
+      "total_precipitation_6hr": "02d566daabd1a12d3e561dd01c6144153e85a9ee8fb584ee5325f839780b22a3",
+      "u_component_of_wind": "bbbeea3d498e80eeaeb1419834e721efcef6d7070f096db249069f3e13160174",
+      "v_component_of_wind": "8b97db1bffaf4400b5a41e519a237a014d11e0985981bdb1a7599b5a87be3b0a",
+      "valid_time": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+      "vertical_velocity": "503b0184da90b6a74c9fe399a5bb3337bc68d8a695b18c62a295b94344085c3f"
+    }
+  },
+  "historical_failure": "12533487 genuinely differs numerically; not reclassified as an encoding-only failure",
+  "diagnostic_replays": [
+    "12533560",
+    "12533569"
+  ]
+}

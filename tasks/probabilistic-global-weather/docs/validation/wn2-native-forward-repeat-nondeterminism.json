@@ -1,0 +1,535 @@
+{
+  "status": "failed",
+  "array_job": "12533318",
+  "scope": "Original native aggregations; both deterministic flag policies; repeated identical full native calls without executable caching",
+  "runs": {
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/forward-repeat-runs/12533319": {
+      "status": "failed",
+      "scope": "Same process, identical native inputs/parameters/key, three forward calls, executable cache disabled",
+      "repeats": [
+        {
+          "repeat": 0,
+          "seconds": 240.92169040814042,
+          "differences": {},
+          "first_wind": 1.6466325521469116
+        },
+        {
+          "repeat": 1,
+          "seconds": 250.73743664403446,
+          "differences": {
+            "100m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 1.9776244163513184
+            },
+            "100m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.936469316482544
+            },
+            "10m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.6152316331863403
+            },
+            "10m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.16936779022216797
+            },
+            "2m_temperature": {
+              "count": 1,
+              "max_abs": 0.7481842041015625
+            },
+            "cyclone_all_wind_disc": {
+              "count": 1,
+              "max_abs": 8.467437744140625
+            },
+            "cyclone_exists_gaussian_unit_mode": {
+              "count": 1,
+              "max_abs": 0.003265976905822754
+            },
+            "cyclone_usa_pres_disc": {
+              "count": 1,
+              "max_abs": 4.946044921875
+            },
+            "cyclone_usa_r34_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 23.492496490478516
+            },
+            "cyclone_usa_r34_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 24.864540100097656
+            },
+            "cyclone_usa_r34_se_radius_disc": {
+              "count": 1,
+              "max_abs": 6.506710052490234
+            },
+            "cyclone_usa_r34_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 20.34362030029297
+            },
+            "cyclone_usa_r50_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 1.3218727111816406
+            },
+            "cyclone_usa_r50_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 2.796388626098633
+            },
+            "cyclone_usa_r50_se_radius_disc": {
+              "count": 1,
+              "max_abs": 2.018291473388672
+            },
+            "cyclone_usa_r50_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 0.13201141357421875
+            },
+            "cyclone_usa_r64_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 5.1580352783203125
+            },
+            "cyclone_usa_r64_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 0.8770208358764648
+            },
+            "cyclone_usa_r64_se_radius_disc": {
+              "count": 1,
+              "max_abs": 0.0726461410522461
+            },
+            "cyclone_usa_r64_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 6.352148056030273
+            },
+            "cyclone_usa_rmw_disc": {
+              "count": 1,
+              "max_abs": 7.54937744140625
+            },
+            "cyclone_usa_wind_disc": {
+              "count": 1,
+              "max_abs": 3.2198638916015625
+            },
+            "geopotential": {
+              "count": 13,
+              "max_abs": 181.375
+            },
+            "mean_sea_level_pressure": {
+              "count": 1,
+              "max_abs": 37.5546875
+            },
+            "specific_humidity": {
+              "count": 13,
+              "max_abs": 0.00018416355305816978
+            },
+            "temperature": {
+              "count": 13,
+              "max_abs": 0.9899444580078125
+            },
+            "total_precipitation_6hr": {
+              "count": 1,
+              "max_abs": 0.0009628423140384257
+            },
+            "u_component_of_wind": {
+              "count": 13,
+              "max_abs": 2.9162893295288086
+            },
+            "v_component_of_wind": {
+              "count": 13,
+              "max_abs": 1.5412676334381104
+            },
+            "vertical_velocity": {
+              "count": 13,
+              "max_abs": 0.13805566728115082
+            }
+          },
+          "first_wind": 2.261864185333252
+        },
+        {
+          "repeat": 2,
+          "seconds": 260.5535007191356,
+          "differences": {
+            "100m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 4.061844348907471
+            },
+            "100m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.8437496423721313
+            },
+            "10m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 1.0898388624191284
+            },
+            "10m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.3750286102294922
+            },
+            "2m_temperature": {
+              "count": 1,
+              "max_abs": 1.3345947265625
+            },
+            "cyclone_all_wind_disc": {
+              "count": 1,
+              "max_abs": 14.135528564453125
+            },
+            "cyclone_exists_gaussian_unit_mode": {
+              "count": 1,
+              "max_abs": 0.027053140103816986
+            },
+            "cyclone_usa_pres_disc": {
+              "count": 1,
+              "max_abs": 4.90582275390625
+            },
+            "cyclone_usa_r34_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 39.50149154663086
+            },
+            "cyclone_usa_r34_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 5.5629119873046875
+            },
+            "cyclone_usa_r34_se_radius_disc": {
+              "count": 1,
+              "max_abs": 1.3013420104980469
+            },
+            "cyclone_usa_r34_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 26.20258331298828
+            },
+            "cyclone_usa_r50_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 0.5054225921630859
+            },
+            "cyclone_usa_r50_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 7.969709396362305
+            },
+            "cyclone_usa_r50_se_radius_disc": {
+              "count": 1,
+              "max_abs": 4.968101501464844
+            },
+            "cyclone_usa_r50_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 14.191076278686523
+            },
+            "cyclone_usa_r64_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 6.102463722229004
+            },
+            "cyclone_usa_r64_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 9.950815200805664
+            },
+            "cyclone_usa_r64_se_radius_disc": {
+              "count": 1,
+              "max_abs": 5.412172317504883
+            },
+            "cyclone_usa_r64_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 9.981948852539062
+            },
+            "cyclone_usa_rmw_disc": {
+              "count": 1,
+              "max_abs": 11.57571029663086
+            },
+            "cyclone_usa_wind_disc": {
+              "count": 1,
+              "max_abs": 9.981575012207031
+            },
+            "geopotential": {
+              "count": 13,
+              "max_abs": 340.2269592285156
+            },
+            "mean_sea_level_pressure": {
+              "count": 1,
+              "max_abs": 89.7265625
+            },
+            "specific_humidity": {
+              "count": 13,
+              "max_abs": 0.0007895209710113704
+            },
+            "temperature": {
+              "count": 13,
+              "max_abs": 1.98858642578125
+            },
+            "total_precipitation_6hr": {
+              "count": 1,
+              "max_abs": 0.0019426424987614155
+            },
+            "u_component_of_wind": {
+              "count": 13,
+              "max_abs": 4.0334248542785645
+            },
+            "v_component_of_wind": {
+              "count": 13,
+              "max_abs": 3.517751693725586
+            },
+            "vertical_velocity": {
+              "count": 13,
+              "max_abs": 0.24771691858768463
+            }
+          },
+          "first_wind": 2.73647141456604
+        }
+      ]
+    },
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/forward-repeat-runs/12533318": {
+      "status": "failed",
+      "scope": "Same process, identical native inputs/parameters/key, three forward calls, executable cache disabled",
+      "repeats": [
+        {
+          "repeat": 0,
+          "seconds": 259.0109733911231,
+          "differences": {},
+          "first_wind": 1.6114764213562012
+        },
+        {
+          "repeat": 1,
+          "seconds": 267.87718324316666,
+          "differences": {
+            "100m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 4.297475814819336
+            },
+            "100m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.9581038951873779
+            },
+            "10m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 1.010737657546997
+            },
+            "10m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.42825865745544434
+            },
+            "2m_temperature": {
+              "count": 1,
+              "max_abs": 1.4609832763671875
+            },
+            "cyclone_all_wind_disc": {
+              "count": 1,
+              "max_abs": 16.287094116210938
+            },
+            "cyclone_exists_gaussian_unit_mode": {
+              "count": 1,
+              "max_abs": 0.02945554256439209
+            },
+            "cyclone_usa_pres_disc": {
+              "count": 1,
+              "max_abs": 5.46881103515625
+            },
+            "cyclone_usa_r34_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 40.25932312011719
+            },
+            "cyclone_usa_r34_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 5.900062561035156
+            },
+            "cyclone_usa_r34_se_radius_disc": {
+              "count": 1,
+              "max_abs": 7.5291900634765625
+            },
+            "cyclone_usa_r34_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 29.132061004638672
+            },
+            "cyclone_usa_r50_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 9.228084564208984
+            },
+            "cyclone_usa_r50_se_radius_disc": {
+              "count": 1,
+              "max_abs": 8.383670806884766
+            },
+            "cyclone_usa_r50_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 14.05906867980957
+            },
+            "cyclone_usa_r64_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 7.174027919769287
+            },
+            "cyclone_usa_r64_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 10.810969352722168
+            },
+            "cyclone_usa_r64_se_radius_disc": {
+              "count": 1,
+              "max_abs": 4.358796119689941
+            },
+            "cyclone_usa_r64_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 8.99489688873291
+            },
+            "cyclone_usa_rmw_disc": {
+              "count": 1,
+              "max_abs": 10.736888885498047
+            },
+            "cyclone_usa_wind_disc": {
+              "count": 1,
+              "max_abs": 8.586301803588867
+            },
+            "geopotential": {
+              "count": 13,
+              "max_abs": 358.7187194824219
+            },
+            "mean_sea_level_pressure": {
+              "count": 1,
+              "max_abs": 97.03125
+            },
+            "specific_humidity": {
+              "count": 13,
+              "max_abs": 0.0008363569504581392
+            },
+            "temperature": {
+              "count": 13,
+              "max_abs": 2.22442626953125
+            },
+            "total_precipitation_6hr": {
+              "count": 1,
+              "max_abs": 0.0020377961918711662
+            },
+            "u_component_of_wind": {
+              "count": 13,
+              "max_abs": 4.749786376953125
+            },
+            "v_component_of_wind": {
+              "count": 13,
+              "max_abs": 3.7149648666381836
+            },
+            "vertical_velocity": {
+              "count": 13,
+              "max_abs": 0.2643619477748871
+            }
+          },
+          "first_wind": 2.6222140789031982
+        },
+        {
+          "repeat": 2,
+          "seconds": 276.7650650769938,
+          "differences": {
+            "100m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 1.639604926109314
+            },
+            "100m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.9271973371505737
+            },
+            "10m_u_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.4658184051513672
+            },
+            "10m_v_component_of_wind": {
+              "count": 1,
+              "max_abs": 0.15968966484069824
+            },
+            "2m_temperature": {
+              "count": 1,
+              "max_abs": 0.596527099609375
+            },
+            "cyclone_all_wind_disc": {
+              "count": 1,
+              "max_abs": 8.918571472167969
+            },
+            "cyclone_exists_gaussian_unit_mode": {
+              "count": 1,
+              "max_abs": 0.0016563162207603455
+            },
+            "cyclone_usa_pres_disc": {
+              "count": 1,
+              "max_abs": 5.58941650390625
+            },
+            "cyclone_usa_r34_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 20.650663375854492
+            },
+            "cyclone_usa_r34_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 26.63455581665039
+            },
+            "cyclone_usa_r34_se_radius_disc": {
+              "count": 1,
+              "max_abs": 15.709053039550781
+            },
+            "cyclone_usa_r34_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 19.52987289428711
+            },
+            "cyclone_usa_r50_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 1.516265869140625
+            },
+            "cyclone_usa_r50_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 2.3769302368164062
+            },
+            "cyclone_usa_r50_se_radius_disc": {
+              "count": 1,
+              "max_abs": 4.502342224121094
+            },
+            "cyclone_usa_r50_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 2.376178741455078
+            },
+            "cyclone_usa_r64_ne_radius_disc": {
+              "count": 1,
+              "max_abs": 5.90268087387085
+            },
+            "cyclone_usa_r64_nw_radius_disc": {
+              "count": 1,
+              "max_abs": 0.06746292114257812
+            },
+            "cyclone_usa_r64_se_radius_disc": {
+              "count": 1,
+              "max_abs": 1.7435178756713867
+            },
+            "cyclone_usa_r64_sw_radius_disc": {
+              "count": 1,
+              "max_abs": 4.664609909057617
+            },
+            "cyclone_usa_rmw_disc": {
+              "count": 1,
+              "max_abs": 5.871734619140625
+            },
+            "cyclone_usa_wind_disc": {
+              "count": 1,
+              "max_abs": 6.654386520385742
+            },
+            "geopotential": {
+              "count": 13,
+              "max_abs": 158.9375
+            },
+            "mean_sea_level_pressure": {
+              "count": 1,
+              "max_abs": 27.125
+            },
+            "specific_humidity": {
+              "count": 13,
+              "max_abs": 0.0002454073983244598
+            },
+            "temperature": {
+              "count": 13,
+              "max_abs": 0.914215087890625
+            },
+            "total_precipitation_6hr": {
+              "count": 1,
+              "max_abs": 0.0008168144267983735
+            },
+            "u_component_of_wind": {
+              "count": 13,
+              "max_abs": 2.9536776542663574
+            },
+            "v_component_of_wind": {
+              "count": 13,
+              "max_abs": 1.9883956909179688
+            },
+            "vertical_velocity": {
+              "count": 13,
+              "max_abs": 0.11357772350311279
+            }
+          },
+          "first_wind": 2.0772948265075684
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "status": "first_full_15day_final_model_member_passed",
+  "job_id": 12568136,
+  "training_seed": 0,
+  "gpu": "NVIDIA RTX A6000 48GB",
+  "checked_utc": "2026-09-10T10:56:02.830055+00:00",
+  "source_package_sha256": "717ea63cd3645eb40ddb75ca4622e3d9e06882db1aa5ba981a91b6420ea6e987",
+  "runner_sha256": "0fa8e8eb22b331bfa3b675c5022e94c72d66a4ddb66cf3fde09b5e63e1672629",
+  "completion_receipt_sha256": "492e77b2e6c3fed3cc9a6bfac396975a2f9098573137b0a74776238e4737fc4f",
+  "forecast_inventory_files": 2536,
+  "completed_six_hour_steps": 60,
+  "first_step_seconds_including_compilation": 245.89089493453503,
+  "steady_step_seconds_including_output_io": 2.7507194493222853,
+  "gpu_memory_observed_mib": 34375,
+  "host_rss_observed_kib": 15292880,
+  "memory_scope": "Point-in-time nvidia-smi usage and Slurm MaxRSS observed during startup; not a continuous VRAM peak trace",
+  "new_runtime_replay": {
+    "job_id": 12568137,
+    "state": "RUNNING",
+    "node": "nlplab-01",
+    "resource_change": "Pending PRO request changed in place to one A6000 after actual native-forward capacity evidence"
+  },
+  "future_startup": "Source-v2 keeps first worker capacity gate, then starts remaining workers concurrently; seed-0 source-v1 unchanged",
+  "scope": "Final trained checkpoint inference and capacity evidence; not 56-member scores, exact replay acceptance or full track acceptance"
+}

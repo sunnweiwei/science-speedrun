@@ -1,0 +1,85 @@
+{
+  "protocol": {
+    "dates": 8,
+    "members": 56,
+    "forecast_days": 15
+  },
+  "original": {
+    "reward": 0.6758047513497273,
+    "normalized_crps": 0.4797173266432134,
+    "normalized_crps_by_variable": {
+      "geopotential": 0.26985663526291404,
+      "temperature": 0.2779513335120769,
+      "specific_humidity": 0.3595429326452831,
+      "u_component_of_wind": 0.49765506804967163,
+      "v_component_of_wind": 0.6297834154341937,
+      "vertical_velocity": 0.5161891551432459,
+      "2m_temperature": 0.15145736346754635,
+      "mean_sea_level_pressure": 0.5154504916366577,
+      "10m_u_component_of_wind": 0.7609850540495827,
+      "10m_v_component_of_wind": 0.8183018172309621
+    },
+    "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+  },
+  "extended": {
+    "reward": 0.6806505966541215,
+    "normalized_crps": 0.46918258048359374,
+    "normalized_crps_by_variable": {
+      "geopotential": 0.2607002002958815,
+      "temperature": 0.27234044170415267,
+      "specific_humidity": 0.35735860228675537,
+      "u_component_of_wind": 0.48241588955235465,
+      "v_component_of_wind": 0.6187355042735545,
+      "vertical_velocity": 0.5125746959414662,
+      "2m_temperature": 0.14434519535980958,
+      "mean_sea_level_pressure": 0.5030439772862352,
+      "10m_u_component_of_wind": 0.7358130662769651,
+      "10m_v_component_of_wind": 0.8044982318587626
+    },
+    "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+  },
+  "normalized_crps_reduction_percent": 2.196032032725559,
+  "all_native_variable_aggregates_improve": true,
+  "all_score_families_verified": true,
+  "paired_comparisons_verified": 10,
+  "recipe_decision": "Promote 580-update recipe for the primary CRPS objective; retain 562-update results as lower-compute comparison; broaden training budget to 24 h on four GPUs and disclose mixed cyclone results",
+  "training_recipe": {
+    "updates": [
+      410,
+      102,
+      32,
+      8,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "gpu": "RTX PRO 6000",
+    "gpus": 4,
+    "training_budget_hours": 24,
+    "packaging_budget_hours": 0.5,
+    "composed_training_gpu_hours": 87.50921903702172,
+    "timing_limitation": "Measured shared prefix plus continuation, not a fresh uninterrupted 580-update run."
+  },
+  "evaluation_cost": {
+    "RTX PRO 6000 GPU-hours": 5.043333333333333,
+    "RTX A6000 GPU-hours": 13.809444444444445,
+    "allocated CPU-hours": 347.0455555555555,
+    "scope": "GPU inference includes interrupted allocations; CPU includes output validation, scoring and paired comparisons; excludes training and image builds."
+  },
+  "limitations": [
+    "Eight preselected 2022 dates, not the paper 2023 full year.",
+    "The test comparison informed recipe promotion; independent confirmation requires new held-out cases.",
+    "Docker/Compose execution remains unverified under the accepted best-effort runtime limitation."
+  ],
+  "runtime_validation": {
+    "starter_preparation_tests_passed": 13,
+    "current_source_tests_in_existing_image_passed": 76,
+    "staged_580_schedule_in_existing_image_verified": true,
+    "new_image_build_verified": false,
+    "docker_execution_verified": false
+  }
+}

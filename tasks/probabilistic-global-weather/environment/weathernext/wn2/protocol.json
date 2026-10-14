@@ -1,0 +1,121 @@
+{
+  "schema": "wn2-global-evaluation/v1",
+  "status": "frozen_paper_method_subset_v1",
+  "truth_source": "HRES-fc0",
+  "training_end": "2020-12-31T23:59:59",
+  "development_year": 2021,
+  "evaluation_year": 2022,
+  "evaluation_initializations": [
+    "2022-01-05T00:00:00",
+    "2022-03-01T06:00:00",
+    "2022-04-27T12:00:00",
+    "2022-06-21T18:00:00",
+    "2022-07-05T00:00:00",
+    "2022-08-29T06:00:00",
+    "2022-10-27T12:00:00",
+    "2022-12-21T18:00:00"
+  ],
+  "lead_hours": [
+    12,
+    24,
+    36,
+    48,
+    60,
+    72,
+    84,
+    96,
+    108,
+    120,
+    132,
+    144,
+    156,
+    168,
+    180,
+    192,
+    204,
+    216,
+    228,
+    240,
+    252,
+    264,
+    276,
+    288,
+    300,
+    312,
+    324,
+    336,
+    348,
+    360
+  ],
+  "members": 56,
+  "grid": [
+    721,
+    1440
+  ],
+  "pressure_levels_hpa": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500,
+    600,
+    700,
+    850,
+    925,
+    1000
+  ],
+  "pool_cells": [
+    1
+  ],
+  "variables": {
+    "geopotential": {
+      "units": "m2 s-2",
+      "pressure_levels": true
+    },
+    "temperature": {
+      "units": "K",
+      "pressure_levels": true
+    },
+    "specific_humidity": {
+      "units": "kg kg-1",
+      "pressure_levels": true
+    },
+    "u_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": true
+    },
+    "v_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": true
+    },
+    "vertical_velocity": {
+      "units": "Pa s-1",
+      "pressure_levels": true
+    },
+    "2m_temperature": {
+      "units": "K",
+      "pressure_levels": false
+    },
+    "mean_sea_level_pressure": {
+      "units": "Pa",
+      "pressure_levels": false
+    },
+    "10m_u_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": false
+    },
+    "10m_v_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": false
+    }
+  },
+  "date_selection": "Two dates per quarter, original frozen indices 0,5,10,15,16,21,26,31, selected before candidate or baseline comparison scores",
+  "pooling": "Native marginal panels here; spherical average/max pooling evaluated by separate paper metrics",
+  "split_rationale": "Public WeatherBench HRES-fc0 archive verified through 2022 only; provisional public-data split pending corpus/runtime gates. Supersedes proposed 2023 evaluation only for this draft.",
+  "minimum_valid_area_fraction": 0.9999,
+  "truth_missingness": "Preserve sparse source NaNs as a fixed truth-only mask, require at least 99.99% valid spherical area in every field/level/case/lead, and require all predictions finite. The same mask is applied to every model and before spatial pooling; no dates are selected using model errors.",
+  "comparison_scope": "2022 held-out subset; paper-method comparison, not the paper 2023 score table"
+}

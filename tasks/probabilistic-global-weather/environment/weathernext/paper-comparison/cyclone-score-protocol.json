@@ -1,0 +1,18 @@
+{
+  "status": "implemented_pending_real_forecast_scores",
+  "reference": "https://arxiv.org/html/2506.10772v1",
+  "initial_matching_radius_km": 100,
+  "assignment": "maximum-cardinality one-to-one matching, minimum total initial distance on ties; no future rematching",
+  "ensemble_mean": "normalized Cartesian unit-vector mean on the sphere",
+  "earth_radius_km": 6371.0088,
+  "minimum_member_fraction": 0.5,
+  "maximum_scored_lead_hours": 216,
+  "heatmap": {
+    "latitude_edges": "integers -90 through 90; north pole in last cell",
+    "longitude_edges": "integers 0 through 360; wrap longitude modulo 360",
+    "event": "at least one tracked cyclone center in cell per member and time",
+    "spatial_weighting": "exact spherical cell area"
+  },
+  "aggregation": "position error on common storm/lead pairs; REV from date-averaged confusion matrices before maximizing over decision thresholds",
+  "conventions_note": "Assignment tie handling, sphere radius, mean coordinate convention and heatmap origin are explicit choices where paper prose does not fully specify implementation."
+}

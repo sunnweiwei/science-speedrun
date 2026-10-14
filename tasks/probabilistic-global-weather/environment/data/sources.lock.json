@@ -1,0 +1,26 @@
+{
+  "schema": "wn2-data-sources/v1",
+  "sources": {
+    "era5": {
+      "url": "gs://weatherbench2/datasets/era5/1959-2023_01_10-wb13-6h-1440x721_with_derived_variables.zarr",
+      "metadata_sha256": "887b39278f6d29b63c7083f563010f8bba915d1c522038779b4a06fab9b6b962"
+    },
+    "hres_fc0": {
+      "url": "gs://weatherbench2/datasets/hres_t0/2016-2022-6h-1440x721.zarr",
+      "metadata_sha256": "73875c40ff4038a0f661433d5da5156eed99505606b3a65a54f77ad622aa0dce"
+    },
+    "arco_era5": {
+      "url": "gs://gcp-public-data-arco-era5/ar/full_37-1h-0p25deg-chunk-1.zarr-v3",
+      "metadata_sha256": "922148b352af55426f15a57045a3a383f0068288ff57ee1613e41c1ae118abd5",
+      "metadata_schema_sha256": "00cf0a2dcf58c8583772e0d1295a453dddd584510e1df3e96e54980b1004488f",
+      "required_valid_time_stop": "2022-12-31"
+    }
+  },
+  "ibtracs": {
+    "url": "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/netcdf/IBTrACS.since1980.v04r01.nc",
+    "sha256": "5584637db168ddd65e115114888ae2bea9587d0439954c2bde776703525005b5",
+    "snapshot_release": "weather-ibtracs-20260906",
+    "snapshot_repository": "T0-RSI/ai4sci-tasks",
+    "snapshot_asset": "IBTrACS.since1980.v04r01.nc"
+  }
+}

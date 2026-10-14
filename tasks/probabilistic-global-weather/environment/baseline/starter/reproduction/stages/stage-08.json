@@ -1,0 +1,521 @@
+{
+  "status": "passed",
+  "runner_sha256": "bbb4682d475a5cc7c85b46a9a99a9dab48e697d9e4fa16067c92cd612eea88e3",
+  "source_sha256": {
+    "predict.py": "67340433d682562f88d40122c328287bb065aa21a85cf547d4dd635ff55dea26",
+    "plan_schedule.py": "aa014ddccd3785bfe296eaa77b65948d9234793205db684f682b0b85d7634b47",
+    "package_model.py": "5a132e73760740a7c3521be6c40ff3f9ec46f4037bd82730cc4f3ab5fe959892",
+    "native_model.py": "79232d5614d6760bd89be4d11ba0d2c40b750f86bf7f439b62ea30126084fe94",
+    "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+    "inference_state.py": "ce5df9534c421122c6c1a2520384e3ce4f5bcc363aa45b8c3e8124ad5ab9bf22",
+    "train.py": "f2b94d2dea7f7d5a8eef6d4252a41bcf04bc8a16c029f121864a24fa3a07731f",
+    "train_stage.py": "bbb4682d475a5cc7c85b46a9a99a9dab48e697d9e4fa16067c92cd612eea88e3",
+    "ar_extension.py": "a077eeabab912575ca6a0ca98a5212b66f1472521a4cc1a18aa9f01b404e0b55",
+    "wn2_distributed.py": "c911eb0993306ac6ced236e31c65b4d7a439db0c4326ad00323c7cf4587c9391",
+    "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+    "wn2_validation.py": "2fda9a31fd570a13c79d8458897f5d5170179aa681df1492706d2cda8e92f49a"
+  },
+  "phase": "complete",
+  "stage": {
+    "name": "hres_025deg_ar6",
+    "updates": 1000,
+    "warmup": 100,
+    "peak_lr": 8e-07,
+    "resolution": 0.25,
+    "cadence_hours": 6,
+    "ar_steps": 6,
+    "mesh_splits": 6,
+    "encoder_aggregate_normalization": 4.0,
+    "short_updates": 4,
+    "warmup_equivalent_updates": 0.4,
+    "estimated_update_seconds": 1514.5014908262995
+  },
+  "devices": 4,
+  "effective_batch": 64,
+  "runtime": {
+    "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+    "versions": {
+      "jax": "0.6.2",
+      "jaxlib": "0.6.2",
+      "dm-haiku": "0.0.14",
+      "optax": "0.2.5",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0"
+    },
+    "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true",
+    "compilation_cache": "true",
+    "python_hash_seed": "0",
+    "cublas_workspace_config": ":4096:8",
+    "device_kinds": [
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3",
+      "NVIDIA H100 80GB HBM3"
+    ],
+    "device_memory_mib": [
+      81559,
+      81559,
+      81559,
+      81559
+    ]
+  },
+  "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_dump_autotune_results_to=/workspace/training-output/run/stage-08/autotune.pb",
+  "debug_single_device": false,
+  "unique_weather_windows": 32,
+  "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+  "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+  "pretrained_parameters_loaded": false,
+  "profile": false,
+  "setup_and_initialization_seconds": 384.9410691189114,
+  "parameter_count": 183785575,
+  "stage_update": 3,
+  "microbatch": 0,
+  "updates": [
+    {
+      "stage_update": 1,
+      "global_updates": 569,
+      "seconds": 1902.3362420350313,
+      "loss": 4.105118781328201,
+      "gradient_norm": 5.935344696044922,
+      "learning_rate": 7.984778792366981e-07,
+      "weather_indices": [
+        [
+          14,
+          13,
+          24,
+          20
+        ],
+        [
+          6,
+          31,
+          23,
+          5
+        ],
+        [
+          22,
+          8,
+          26,
+          0
+        ],
+        [
+          12,
+          11,
+          15,
+          18
+        ],
+        [
+          25,
+          28,
+          19,
+          1
+        ],
+        [
+          29,
+          9,
+          4,
+          7
+        ],
+        [
+          21,
+          16,
+          3,
+          30
+        ],
+        [
+          2,
+          10,
+          27,
+          17
+        ],
+        [
+          18,
+          1,
+          14,
+          2
+        ],
+        [
+          23,
+          13,
+          4,
+          26
+        ],
+        [
+          5,
+          28,
+          0,
+          9
+        ],
+        [
+          25,
+          15,
+          17,
+          31
+        ],
+        [
+          20,
+          8,
+          19,
+          10
+        ],
+        [
+          21,
+          11,
+          30,
+          16
+        ],
+        [
+          24,
+          27,
+          3,
+          22
+        ],
+        [
+          12,
+          6,
+          7,
+          29
+        ]
+      ],
+      "input_preparation_seconds": 954.4870037632063,
+      "gradient_dispatch_and_execution_seconds": 895.3795515142847,
+      "optimizer_dispatch_and_execution_seconds": 42.80200048000552,
+      "checkpoint_seconds": 8.928870235104114,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 2,
+      "global_updates": 570,
+      "seconds": 712.6245397368912,
+      "loss": 4.125846236944199,
+      "gradient_norm": 6.6715240478515625,
+      "learning_rate": 6.294305745404184e-07,
+      "weather_indices": [
+        [
+          6,
+          4,
+          25,
+          0
+        ],
+        [
+          19,
+          8,
+          7,
+          24
+        ],
+        [
+          22,
+          23,
+          17,
+          12
+        ],
+        [
+          30,
+          11,
+          31,
+          18
+        ],
+        [
+          29,
+          27,
+          15,
+          26
+        ],
+        [
+          14,
+          13,
+          21,
+          9
+        ],
+        [
+          2,
+          28,
+          1,
+          16
+        ],
+        [
+          20,
+          3,
+          10,
+          5
+        ],
+        [
+          22,
+          0,
+          18,
+          17
+        ],
+        [
+          26,
+          21,
+          13,
+          19
+        ],
+        [
+          20,
+          15,
+          2,
+          5
+        ],
+        [
+          9,
+          10,
+          7,
+          28
+        ],
+        [
+          14,
+          12,
+          23,
+          6
+        ],
+        [
+          11,
+          24,
+          27,
+          3
+        ],
+        [
+          16,
+          31,
+          8,
+          4
+        ],
+        [
+          30,
+          1,
+          29,
+          25
+        ]
+      ],
+      "input_preparation_seconds": 52.60642798896879,
+      "gradient_dispatch_and_execution_seconds": 650.5653333030641,
+      "optimizer_dispatch_and_execution_seconds": 0.5287254529539496,
+      "checkpoint_seconds": 8.85606428515166,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 3,
+      "global_updates": 571,
+      "seconds": 709.1609740620479,
+      "loss": 4.152689769864082,
+      "gradient_norm": 5.683420658111572,
+      "learning_rate": 2.964723819589917e-07,
+      "weather_indices": [
+        [
+          4,
+          7,
+          22,
+          19
+        ],
+        [
+          21,
+          14,
+          18,
+          23
+        ],
+        [
+          15,
+          12,
+          10,
+          31
+        ],
+        [
+          29,
+          28,
+          20,
+          11
+        ],
+        [
+          2,
+          0,
+          25,
+          26
+        ],
+        [
+          17,
+          16,
+          8,
+          1
+        ],
+        [
+          24,
+          3,
+          6,
+          9
+        ],
+        [
+          27,
+          30,
+          5,
+          13
+        ],
+        [
+          13,
+          15,
+          24,
+          6
+        ],
+        [
+          7,
+          16,
+          30,
+          21
+        ],
+        [
+          28,
+          10,
+          19,
+          9
+        ],
+        [
+          3,
+          14,
+          31,
+          1
+        ],
+        [
+          25,
+          5,
+          23,
+          17
+        ],
+        [
+          0,
+          22,
+          4,
+          12
+        ],
+        [
+          8,
+          20,
+          26,
+          27
+        ],
+        [
+          29,
+          18,
+          11,
+          2
+        ]
+      ],
+      "input_preparation_seconds": 51.29463556804694,
+      "gradient_dispatch_and_execution_seconds": 648.6069230060093,
+      "optimizer_dispatch_and_execution_seconds": 0.5569278581533581,
+      "checkpoint_seconds": 8.637906536925584,
+      "includes_checkpoint_io": true
+    },
+    {
+      "stage_update": 4,
+      "global_updates": 572,
+      "seconds": 710.0589727479964,
+      "loss": 3.9923558086156845,
+      "gradient_norm": 5.193819046020508,
+      "learning_rate": 3.7476885185340025e-08,
+      "weather_indices": [
+        [
+          7,
+          18,
+          21,
+          29
+        ],
+        [
+          19,
+          0,
+          4,
+          26
+        ],
+        [
+          6,
+          8,
+          22,
+          27
+        ],
+        [
+          12,
+          1,
+          5,
+          23
+        ],
+        [
+          2,
+          20,
+          24,
+          15
+        ],
+        [
+          11,
+          14,
+          28,
+          30
+        ],
+        [
+          10,
+          9,
+          13,
+          3
+        ],
+        [
+          17,
+          25,
+          16,
+          31
+        ],
+        [
+          7,
+          15,
+          19,
+          11
+        ],
+        [
+          27,
+          12,
+          2,
+          4
+        ],
+        [
+          13,
+          17,
+          1,
+          29
+        ],
+        [
+          24,
+          22,
+          18,
+          28
+        ],
+        [
+          25,
+          21,
+          10,
+          20
+        ],
+        [
+          16,
+          3,
+          30,
+          31
+        ],
+        [
+          5,
+          26,
+          0,
+          14
+        ],
+        [
+          6,
+          8,
+          9,
+          23
+        ]
+      ],
+      "input_preparation_seconds": 51.64214855991304,
+      "gradient_dispatch_and_execution_seconds": 649.0544531643391,
+      "optimizer_dispatch_and_execution_seconds": 0.583286888897419,
+      "checkpoint_seconds": 8.7118250799831,
+      "includes_checkpoint_io": true
+    }
+  ],
+  "wall_seconds": 4428.061983616091,
+  "weights_sha256": "daf6b562b314aaf5811d5a7e0cc3b894d83350c30cf5612d44e3f37e59fe1452"
+}

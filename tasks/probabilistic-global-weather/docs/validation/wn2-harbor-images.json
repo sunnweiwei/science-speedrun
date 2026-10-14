@@ -1,0 +1,64 @@
+{
+  "status": "passed_apptainer_docker_unexecuted",
+  "updated_utc": "2026-09-07T08:25:34.320206+00:00",
+  "images": {
+    "environment": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v3/environment.sif",
+      "sha256": "041e07454e7db42e319bbbadc173a824d3552398b4825a58290f42702dbb4005"
+    },
+    "tests": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-harbor-images-v3/tests.sif",
+      "sha256": "9765a835b59e4894af168b4e12e1efcb447da9c1eefb463e930fb0718193016d"
+    }
+  },
+  "source_inventory_sha256": "54dc0df8bc3244aeec6bf5ab4eb2037b57abb0db1d197c849038f2c96c1ef1b4",
+  "dependencies": "Both model and evaluator pip freeze match their complete pinned lock files in both images",
+  "upstream_revisions": {
+    "weathernext": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+    "xarray_jax": "0291d0c8e91ca04b00f5f01ea29a53c0e575eeee",
+    "weatherbenchx": "88af2fde7a78f13b77496a2abb8ca88905fa5e95"
+  },
+  "evaluation_tests": {
+    "passed": 34,
+    "seconds": 7.29
+  },
+  "namespace": {
+    "status": "passed",
+    "python": "/opt/weather-python",
+    "numpy": "1.26.4",
+    "xarray": "2026.1.0",
+    "host_truth_hidden": true,
+    "pid_namespace": 4026535221,
+    "network_namespace": 4026535223,
+    "scope": "Actual Bubblewrap execution from separate CPU scoring Python; hidden host truth, separate PID/network namespaces, pinned model interpreter and NumPy/xarray"
+  },
+  "namespace_harness": "For nested Apptainer only: bind /dev/full, create fresh unprivileged user/mount namespace, mount --make-private / before Bubblewrap; no host mount propagation changes",
+  "limitations": [
+    "Docker and Harbor CLI execution not performed",
+    "Training/profile jobs still use the original pinned model image; these new images are separate delivery-runtime evidence"
+  ],
+  "build_failures": [
+    "Compute-node fakeroot setgroups permission failure (12533490)",
+    "Local v2 /tmp COPY assets obscured by Apptainer temporary bind; fixed Dockerfile COPY to /opt/wn2-build before successful v3"
+  ],
+  "gpu_boundary": {
+    "failed_job": "12533581",
+    "failure": "New native-container branch lacked Apptainer-injected CUDA driver libraries; CPU fallback rejected",
+    "passed_job": "12533582",
+    "report": {
+      "status": "passed",
+      "python": "/opt/weather-python",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0",
+      "host_truth_hidden": true,
+      "pid_namespace": 4026536105,
+      "network_namespace": 4026536107,
+      "gpu_devices": [
+        "cuda:0"
+      ],
+      "scope": "Actual Bubblewrap execution from separate CPU scoring Python; hidden host truth, separate PID/network namespaces, pinned model interpreter and NumPy/xarray"
+    },
+    "fix": "Current namespace launcher binds only named CUDA/NVIDIA driver files from loader cache and Apptainer injection directory; model CUDA toolkit remains pinned",
+    "source_note": "This launcher fix is checked against the v3 runtime using a task-source snapshot; final image must include updated launcher"
+  }
+}

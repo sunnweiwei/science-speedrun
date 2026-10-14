@@ -1,0 +1,55 @@
+{
+  "scope": "Clean Git clone plus explicitly listed delivery-documentation and source-preflight changes; no preexisting untracked files copied.",
+  "base_commit": "0f7f6d51978337fa9166b978b783a990a6992fcb",
+  "changed_files": [
+    "RUNNING.md",
+    "README.md",
+    "instruction.md",
+    "environment/data/README.md",
+    "environment/data/check_sources.py"
+  ],
+  "checks": {
+    "broken_or_external_symlinks": 0,
+    "symlinks_checked": 3,
+    "dockerfile_copy_contexts_valid": 2,
+    "apptainer_definitions_rendered": 2,
+    "compose_configs_parsed": 2,
+    "standalone_shell_blocks_syntax_checked": 8,
+    "starter_preparation_tests_passed": 13,
+    "clean_evaluator_source_tests_in_existing_image_passed": 76,
+    "source_preflight_match_changed_unreachable_branches_verified": true,
+    "authenticated_ibtracs_release_download_verified": true
+  },
+  "upstream_metadata": [
+    {
+      "source": "era5",
+      "reachable": true,
+      "matches_pin": true,
+      "actual_sha256": "887b39278f6d29b63c7083f563010f8bba915d1c522038779b4a06fab9b6b962",
+      "expected_sha256": "887b39278f6d29b63c7083f563010f8bba915d1c522038779b4a06fab9b6b962"
+    },
+    {
+      "source": "hres_fc0",
+      "reachable": true,
+      "matches_pin": true,
+      "actual_sha256": "73875c40ff4038a0f661433d5da5156eed99505606b3a65a54f77ad622aa0dce",
+      "expected_sha256": "73875c40ff4038a0f661433d5da5156eed99505606b3a65a54f77ad622aa0dce"
+    },
+    {
+      "source": "arco_era5",
+      "reachable": true,
+      "matches_pin": false,
+      "actual_sha256": "2157fb90c19efbb8c7b497c95a7ca90813c546b5457630940893159d51342533",
+      "expected_sha256": "922148b352af55426f15a57045a3a383f0068288ff57ee1613e41c1ae118abd5"
+    }
+  ],
+  "fresh_data_preparation": "Original metadata-only rejection resolved by the declared ARCO schema/coverage policy; live materializer source gate passes. Full preparation not rerun.",
+  "not_executed": [
+    "Fresh Docker or Apptainer image build",
+    "Docker GPU and namespace execution",
+    "Full upstream data materialization",
+    "Uninterrupted 580-update training and full evaluation from a clean clone"
+  ],
+  "runtime_test_note": "Existing validated Apptainer image provided installed dependencies; current clean-checkout evaluator sources were mounted read-only.",
+  "followup_validation": "arco-metadata-policy.json"
+}

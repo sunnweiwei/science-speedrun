@@ -1,0 +1,51 @@
+{
+  "status": "analytical_estimate_not_runtime_validation",
+  "no_forecast_recomputation": true,
+  "grid": [
+    721,
+    1440
+  ],
+  "members": 56,
+  "forecast_leads": 30,
+  "field_planes_per_lead": 83,
+  "observed_input_resources_bytes": 58838549659,
+  "raw_one_lead_all_members_bytes": 19302958080,
+  "raw_two_frame_weather_state_all_members_bytes": 39536179200,
+  "raw_tracker_future_three_fields_all_members_bytes": 20930918400,
+  "reserves_bytes": {
+    "checkpoint_generations": 85899345920,
+    "model_copies": 17179869184,
+    "other_scratch_and_metadata": 21474836480,
+    "tracker_history_and_one_export": 1073741824,
+    "rain_previous_interval": 232565760
+  },
+  "fixed_bytes": 205629827227,
+  "estimated_minimum_one_window_bytes": 224932785307,
+  "examples": [
+    {
+      "disk_allowance_gb": 200,
+      "lead_window": 0
+    },
+    {
+      "disk_allowance_gb": 250,
+      "lead_window": 2
+    },
+    {
+      "disk_allowance_gb": 500,
+      "lead_window": 15
+    },
+    {
+      "disk_allowance_gb": 1000,
+      "lead_window": 30
+    }
+  ],
+  "ram_state_minimum_one_window_bytes": 139033439387,
+  "limitations": [
+    "Continuation API, lead-window scorers and runtime disk enforcement are not implemented.",
+    "Raw float32 shape arithmetic, not measured streaming peak.",
+    "Checkpoint size reserve is based on the starter; arbitrary submissions must obey a declared state bound.",
+    "Container/image/build/download storage is additional unless explicitly reserved in the allowance.",
+    "RAM-backed state uses memory and requires a separate peak RAM validation.",
+    "No GPU restart/checkpoint equivalence experiment was run."
+  ]
+}

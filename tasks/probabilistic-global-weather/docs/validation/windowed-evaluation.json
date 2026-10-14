@@ -1,0 +1,674 @@
+{
+  "status": "passed",
+  "scope": "Component numerical equivalence plus complete control-flow/entry-point tests; not a new full eight-date GPU benchmark",
+  "training_rerun": false,
+  "weights_sha256": "08c51632a6e839761a744460e8a099c3641f24439ba1c4c813d772cbb212c3f4",
+  "gpu_continuation": {
+    "status": "passed",
+    "weights_sha256": "08c51632a6e839761a744460e8a099c3641f24439ba1c4c813d772cbb212c3f4",
+    "training_rerun": false,
+    "members": 2,
+    "lead_hours": [
+      12,
+      24
+    ],
+    "comparisons": [
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "10m_u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "10m_v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "2m_temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "geopotential",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "mean_sea_level_pressure",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "specific_humidity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "total_precipitation_12hr",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 12,
+        "variable": "vertical_velocity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "10m_u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "10m_v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "2m_temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "geopotential",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "mean_sea_level_pressure",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "specific_humidity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "total_precipitation_12hr",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 0,
+        "lead": 24,
+        "variable": "vertical_velocity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "10m_u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "10m_v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "2m_temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "geopotential",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "mean_sea_level_pressure",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "specific_humidity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "total_precipitation_12hr",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 12,
+        "variable": "vertical_velocity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "10m_u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "10m_v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "2m_temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "geopotential",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "mean_sea_level_pressure",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "specific_humidity",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "temperature",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "total_precipitation_12hr",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "u_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "v_component_of_wind",
+        "bitwise_equal": true
+      },
+      {
+        "member": 1,
+        "lead": 24,
+        "variable": "vertical_velocity",
+        "bitwise_equal": true
+      }
+    ],
+    "seconds": 530.0718998704106,
+    "scope": "Original trained v2 package versus v3 initial and resumed namespace executions, same GPU/runtime; not full eight-date evaluation"
+  },
+  "new_path_forward_steps": [
+    {
+      "member": 0,
+      "lead_hours": 6
+    },
+    {
+      "member": 0,
+      "lead_hours": 12
+    },
+    {
+      "member": 1,
+      "lead_hours": 6
+    },
+    {
+      "member": 1,
+      "lead_hours": 12
+    },
+    {
+      "member": 0,
+      "lead_hours": 18
+    },
+    {
+      "member": 0,
+      "lead_hours": 24
+    },
+    {
+      "member": 1,
+      "lead_hours": 18
+    },
+    {
+      "member": 1,
+      "lead_hours": 24
+    }
+  ],
+  "new_path_duplicate_forward_steps": false,
+  "native_metric_checks": {
+    "case": 0,
+    "members": 56,
+    "grid": [
+      721,
+      1440
+    ],
+    "leads": [
+      12,
+      24
+    ],
+    "rtol": 1e-12,
+    "atol": 1e-12,
+    "comparisons": [
+      {
+        "lead_hours": 12,
+        "endpoint": "scores",
+        "matched_rows": {
+          "per_case": 98,
+          "pooled_per_case": 0,
+          "rev_per_case": 12,
+          "seeps_per_case": 2
+        },
+        "receipt_sha256": "2a06bbafd6c0820165850e3bd5e27ed9f1671122050fa895efec57741e371da4",
+        "evaluator_sha256": "92a44f18563febd630aeab2aa6945dde3b64010ab10632006499d58696dc2c44"
+      },
+      {
+        "lead_hours": 12,
+        "endpoint": "pooling-scores",
+        "matched_rows": {
+          "per_case": 0,
+          "pooled_per_case": 568,
+          "rev_per_case": 0,
+          "seeps_per_case": 0
+        },
+        "receipt_sha256": "d0d09bee7e00356c10c3c346cbe7812a3c370b9ef4ba700bfa146d2ba59805ac",
+        "evaluator_sha256": "92a44f18563febd630aeab2aa6945dde3b64010ab10632006499d58696dc2c44"
+      },
+      {
+        "lead_hours": 12,
+        "endpoint": "spectra",
+        "matched_rows": {
+          "rows": 10
+        },
+        "receipt_sha256": "75b20edb131e4b2528346b24697c5a6b8739e0a32c8cd146671d0a28738b1d11",
+        "evaluator_sha256": "d4da382307431c898bdbe58107f7c73c4d9b5cdba9a13dd0d0a0ec2e213f0c67"
+      },
+      {
+        "lead_hours": 24,
+        "endpoint": "scores",
+        "matched_rows": {
+          "per_case": 99,
+          "pooled_per_case": 0,
+          "rev_per_case": 12,
+          "seeps_per_case": 4
+        },
+        "receipt_sha256": "3d848a7fe68291573e2c6159a6cfa9c695f93b98ac3d1d9d7b8047dc6fc516bc",
+        "evaluator_sha256": "aa1cd3304a4c249249d8957462505da36c36e5aef485cb7471f67adb7a25159f"
+      },
+      {
+        "lead_hours": 24,
+        "endpoint": "pooling-scores",
+        "matched_rows": {
+          "per_case": 0,
+          "pooled_per_case": 568,
+          "rev_per_case": 0,
+          "seeps_per_case": 0
+        },
+        "receipt_sha256": "5da50219d1bbf430cb653f468fca3a44933aaf2e47c6562efb71c7e20108d7f3",
+        "evaluator_sha256": "aa1cd3304a4c249249d8957462505da36c36e5aef485cb7471f67adb7a25159f"
+      },
+      {
+        "lead_hours": 24,
+        "endpoint": "spectra",
+        "matched_rows": {
+          "rows": 10
+        },
+        "receipt_sha256": "4e02b22c83ffb2f633882553332ac86263ccb372acdf618d616dd86be3576303",
+        "evaluator_sha256": "d4da382307431c898bdbe58107f7c73c4d9b5cdba9a13dd0d0a0ec2e213f0c67"
+      }
+    ]
+  },
+  "final_source_metric_check": {
+    "status": "passed",
+    "members": 56,
+    "lead_hours": [
+      24
+    ],
+    "native_grid": [
+      721,
+      1440
+    ],
+    "comparisons": [
+      {
+        "endpoint": "scores",
+        "evaluator_sha256": "aa1cd3304a4c249249d8957462505da36c36e5aef485cb7471f67adb7a25159f",
+        "truth_lead_sha256": {
+          "24": "8b84e93d37e277426bc7d86223c92521fe7563072c01ccc08a1d3f34d505766a"
+        },
+        "matched": true
+      },
+      {
+        "endpoint": "pooling-scores",
+        "evaluator_sha256": "aa1cd3304a4c249249d8957462505da36c36e5aef485cb7471f67adb7a25159f",
+        "truth_lead_sha256": {
+          "24": "b6e1a83b15ee3c9c1c82ace979d32c3524cb01fe2bb8414c4f441838ca9a6a66"
+        },
+        "matched": true
+      }
+    ]
+  },
+  "native_tracker_check": {
+    "status": "passed",
+    "members": 2,
+    "lead_hours": [
+      12,
+      24,
+      36,
+      48,
+      60,
+      72,
+      84,
+      96,
+      108,
+      120,
+      132,
+      144,
+      156,
+      168,
+      180,
+      192,
+      204,
+      216,
+      228,
+      240,
+      252,
+      264,
+      276,
+      288,
+      300,
+      312,
+      324,
+      336,
+      348,
+      360
+    ],
+    "native_grid": [
+      721,
+      1440
+    ],
+    "training_rerun": false,
+    "windows": [
+      1,
+      7,
+      22
+    ],
+    "comparisons": [
+      {
+        "member": 0,
+        "input_arrays_bitwise_equal": true,
+        "detected_candidates_equal": true,
+        "tracks_equal": true
+      },
+      {
+        "member": 1,
+        "input_arrays_bitwise_equal": true,
+        "detected_candidates_equal": true,
+        "tracks_equal": true
+      }
+    ]
+  },
+  "actual_entrypoint_check": {
+    "status": "passed",
+    "entrypoint": "tests/test.sh",
+    "runtime": "pinned verifier Apptainer image with current code mounts",
+    "allowance_gb": 100,
+    "expected_failure_before_inference": "ValueError('Disk allowance too small: need at least 223.08 GB with this reserve/package')",
+    "reward": 0
+  },
+  "unit_tests": {
+    "passed": 98,
+    "coverage": [
+      "JAX and NumPy checkpoint round trips",
+      "no repeated lead requests",
+      "one-, seven-, and thirty-lead complete window lifecycles",
+      "all eight cases through the default verifier entry",
+      "budget violation kills a real subprocess",
+      "precipitation coordinate boundary",
+      "canonical truth identity independent of window size",
+      "existing weights upgraded without training",
+      "starter delivery and downstream comparisons"
+    ],
+    "environment": "Temporary Python 3.12 CPU test environment; pinned WeatherBench-X source",
+    "warnings": [
+      "NumPy/NetCDF binary-size import warning",
+      "JAX/fork warnings in existing queue tests",
+      "xarray dims deprecation in pinned metric tests"
+    ]
+  },
+  "storage_plans": {
+    "250": {
+      "disk_allowance_bytes": 250000000000,
+      "resource_bytes": 58841109933,
+      "package_bytes": 780973530,
+      "reserve_bytes": 25000000000,
+      "state_limit_bytes": 48606243841,
+      "bytes_per_lead": 19302958080,
+      "fixed_bytes": 203779028835,
+      "lead_window": 2,
+      "windows": [
+        [
+          12,
+          24
+        ],
+        [
+          36,
+          48
+        ],
+        [
+          60,
+          72
+        ],
+        [
+          84,
+          96
+        ],
+        [
+          108,
+          120
+        ],
+        [
+          132,
+          144
+        ],
+        [
+          156,
+          168
+        ],
+        [
+          180,
+          192
+        ],
+        [
+          204,
+          216
+        ],
+        [
+          228,
+          240
+        ],
+        [
+          252,
+          264
+        ],
+        [
+          276,
+          288
+        ],
+        [
+          300,
+          312
+        ],
+        [
+          324,
+          336
+        ],
+        [
+          348,
+          360
+        ]
+      ],
+      "forecast_recomputation": false
+    },
+    "500": {
+      "disk_allowance_bytes": 500000000000,
+      "resource_bytes": 58841109933,
+      "package_bytes": 780973530,
+      "reserve_bytes": 25000000000,
+      "state_limit_bytes": 48606243841,
+      "bytes_per_lead": 19302958080,
+      "fixed_bytes": 203779028835,
+      "lead_window": 15,
+      "windows": [
+        [
+          12,
+          24,
+          36,
+          48,
+          60,
+          72,
+          84,
+          96,
+          108,
+          120,
+          132,
+          144,
+          156,
+          168,
+          180
+        ],
+        [
+          192,
+          204,
+          216,
+          228,
+          240,
+          252,
+          264,
+          276,
+          288,
+          300,
+          312,
+          324,
+          336,
+          348,
+          360
+        ]
+      ],
+      "forecast_recomputation": false
+    }
+  },
+  "source_sha256": {
+    "wn2/verify_track.py": "737d7d8f805ba276007c553f8d9f34903c56cf9ed4c4b3a184ec42466802c653",
+    "wn2/verify_case.py": "37b99b2eb650eb8449e12d993ad303a7e7da2b7e63ad97b2ab05e512e4065acf",
+    "wn2/disk_budget.py": "265443e1cceb74a800dcef585f9771d4260e59f61ef816a9464ec475746f6c52",
+    "wn2/windowed_evaluation.py": "d28b4baee7ac09022343a66142ec2462caa9f73094ee36510ae2e4ac28d906d1",
+    "wn2/window_artifacts.py": "d7a5c13a0f643ce8f1bca6297ad1072449d68e17802f37412988f509279fe6b6",
+    "wn2/window_scores.py": "a35a7293d4be864e6b2ce5aa81bb43f496d81f5dd75be2b02fe1222cac081ff9",
+    "wn2/predict.py": "67340433d682562f88d40122c328287bb065aa21a85cf547d4dd635ff55dea26",
+    "wn2/inference_state.py": "ce5df9534c421122c6c1a2520384e3ce4f5bcc363aa45b8c3e8124ad5ab9bf22",
+    "wn2/upgrade_inference.py": "24f7eed5081d9943417ae9f582e75d01c492a42c313fe95d84b17037f90955d5",
+    "paper-comparison/score_marginals.py": "aa1cd3304a4c249249d8957462505da36c36e5aef485cb7471f67adb7a25159f",
+    "paper-comparison/score_spectra.py": "d4da382307431c898bdbe58107f7c73c4d9b5cdba9a13dd0d0a0ec2e213f0c67",
+    "paper-comparison/precipitation.py": "0a678a61ea2fcb98e05c0ca3f117996440d395939bfec88646b1684b2641bd40"
+  },
+  "validation_jobs": {
+    "gpu_baseline": 12695668,
+    "gpu_continuation": 12695681,
+    "final_native_metrics": 12695683,
+    "final_tracker": 12695687
+  },
+  "limitations": [
+    "No fresh eight-date/56-member/30-lead GPU evaluation or measured full-run peak.",
+    "The 48-hour default wall time has not been revalidated for windowed execution.",
+    "Disk monitoring samples accounted bytes; use filesystem quotas for an absolute physical cap.",
+    "Runtime images and files outside the measured roots must fit the configured reserve or be provisioned separately.",
+    "An initial A5000 validation attempt exhausted device memory; successful GPU comparison used RTX A6000."
+  ],
+  "resolved_failures": [
+    "Missing library in a stale extracted runtime; re-extracted the pinned verifier image.",
+    "One-lead lazy precipitation shift; covered by boundary tests.",
+    "Rain valid_time coordinate mismatch across windows; covered by native 56-member scoring.",
+    "JAX duck-array serialization; explicitly materialize NumPy arrays preserving dtype/order.",
+    "Integer day encoding after an initial one-lead tracker window; force fixed hour encoding and validate all timestamps."
+  ]
+}

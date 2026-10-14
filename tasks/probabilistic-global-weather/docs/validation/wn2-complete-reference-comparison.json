@@ -1,0 +1,80 @@
+{
+  "status": "references_complete_candidate_pending",
+  "scope": "Identical complete 32-case, eight-member, forty-lead protocol; candidate full-curriculum result not available",
+  "references": {
+    "persistence": {
+      "weather": {
+        "reward": 0.649462775995128,
+        "normalized_crps": 0.5397341263596938,
+        "normalized_crps_by_variable": {
+          "geopotential": 0.24468045931859989,
+          "temperature": 0.28069975824726945,
+          "specific_humidity": 0.4467794906176946,
+          "u_component_of_wind": 0.5783068799002558,
+          "v_component_of_wind": 0.8854552324226445,
+          "vertical_velocity": 0.8398566956864296,
+          "2m_temperature": 0.15589614563066584,
+          "mean_sea_level_pressure": 0.4975360703391404,
+          "10m_u_component_of_wind": 0.6421852055475998,
+          "10m_v_component_of_wind": 0.8259453258866376
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "precipitation": {
+        "reward": 0.7719756761323993,
+        "normalized_crps": 0.2953776018047659,
+        "normalized_crps_by_variable": {
+          "total_precipitation_6hr": 0.2953776018047659
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      }
+    },
+    "seasonal_gaussian": {
+      "weather": {
+        "reward": 0.7363783189946922,
+        "normalized_crps": 0.3579976137336656,
+        "normalized_crps_by_variable": {
+          "geopotential": 0.199964130083378,
+          "temperature": 0.2351141258215416,
+          "specific_humidity": 0.3425454627350337,
+          "u_component_of_wind": 0.4151548229298691,
+          "v_component_of_wind": 0.5339957851912502,
+          "vertical_velocity": 0.47726158466060187,
+          "2m_temperature": 0.14546910947511632,
+          "mean_sea_level_pressure": 0.3292243816676192,
+          "10m_u_component_of_wind": 0.4076388434770962,
+          "10m_v_component_of_wind": 0.49360789129514987
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "precipitation": {
+        "reward": 0.7716216049121727,
+        "normalized_crps": 0.295972007048483,
+        "normalized_crps_by_variable": {
+          "total_precipitation_6hr": 0.295972007048483
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      }
+    }
+  },
+  "shared_panel_identity": {
+    "weather": {
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "truth_values_sha256": "a748c1590b2ef14bdd412646446de7a2e887e7d011a71294cbb0d4b6495004c6",
+      "estimator": "empirical CRPS; fair=False"
+    },
+    "precipitation": {
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "truth_values_sha256": "694117fe59208509d1919676f9e8dca5ad90a5abbbaeb14b4703633a471f7439",
+      "estimator": "empirical CRPS; fair=False"
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "status": "passed_best_effort_runtime",
+  "protocol": {
+    "dates": 8,
+    "members": 56,
+    "lead_hours": [
+      12,
+      24,
+      36,
+      48,
+      60,
+      72,
+      84,
+      96,
+      108,
+      120,
+      132,
+      144,
+      156,
+      168,
+      180,
+      192,
+      204,
+      216,
+      228,
+      240,
+      252,
+      264,
+      276,
+      288,
+      300,
+      312,
+      324,
+      336,
+      348,
+      360
+    ]
+  },
+  "source_tests": {
+    "passed": 89,
+    "warnings": 3
+  },
+  "resource_verification": {
+    "status": "passed",
+    "mode": "Existing completed research resources; byte verification against original input and truth receipts, then resource-only bundle inventory",
+    "files": 20194,
+    "verified_source_files": 19996,
+    "seconds": 224.54752423800528,
+    "inventory_sha256": "14584c9dfc345fb895bd1b9ffd7382e167afb1cb1d3daecff830e4898f3502b0"
+  },
+  "snapshot_distribution": {
+    "status": "download_verified",
+    "release": "https://github.com/T0-RSI/ai4sci-tasks/releases/tag/weather-ibtracs-20260906",
+    "access": "Same access as private repository"
+  },
+  "compose": {
+    "version": "5.5.1",
+    "starter_config": "passed",
+    "verifier_config": "passed",
+    "execution": "not_run_no_docker_daemon_or_rootless_subordinate_ids",
+    "delivery_policy": "Accepted best-effort limitation; Docker runtime verification is follow-up work, not a delivery blocker",
+    "unverified": [
+      "Docker GPU passthrough",
+      "Docker namespace behavior",
+      "End-to-end Docker/Compose execution"
+    ]
+  },
+  "images": {
+    "starter": "built",
+    "verifier": "built",
+    "verifier_image_tests_passed": 76,
+    "application_layer": "Final application sources over Dockerfile-derived bases; dependency definitions unchanged",
+    "starter_entry_import": "passed",
+    "development_entry_import": "passed",
+    "budget_aligned_starter_rebuild": "passed",
+    "rebuild_scientific_and_isolation_sources": "unchanged from ongoing acceptance"
+  },
+  "independent_replay": {
+    "smoke": {
+      "status": "passed",
+      "scope": "One member, one date, all 30 leads through 15 days; independent v2 namespace inference and finite/schema checks; not full acceptance"
+    },
+    "forecast_job": "12581969",
+    "score_job": "12582795",
+    "full_run": "Passed all eight dates, 56 members, 15 days and all four score families",
+    "forecast_allocation_cap_seconds": 43200,
+    "cpu_score_allocation_cap_seconds": 129600,
+    "forecast_receipt_job": "12582786",
+    "previous_forecast_job": "12580132",
+    "retained_cases": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "restarted_cases": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "generated_trajectories": 448,
+    "score_jobs": {
+      "core": "12582789",
+      "pooling": "12582790",
+      "spectra": "12582791",
+      "track": "12582792",
+      "cyclones": "12582793",
+      "core-summary": "12582794",
+      "finalize": "12582795"
+    },
+    "parallel_cpu_limit": 128,
+    "forecast_status": "passed",
+    "complete_replay_dates": 8,
+    "score_coverage": {
+      "scores": 8,
+      "pooling-scores": 8,
+      "spectra": 8,
+      "cyclone-scores": 8
+    },
+    "core_result": {
+      "status": "core_scores_complete",
+      "cases": 8,
+      "members": 56,
+      "metrics": {
+        "reward": 0.6758047513497273,
+        "normalized_crps": 0.4797173266432134,
+        "normalized_crps_by_variable": {
+          "geopotential": 0.26985663526291404,
+          "temperature": 0.2779513335120769,
+          "specific_humidity": 0.3595429326452831,
+          "u_component_of_wind": 0.49765506804967163,
+          "v_component_of_wind": 0.6297834154341937,
+          "vertical_velocity": 0.5161891551432459,
+          "2m_temperature": 0.15145736346754635,
+          "mean_sea_level_pressure": 0.5154504916366577,
+          "10m_u_component_of_wind": 0.7609850540495827,
+          "10m_v_component_of_wind": 0.8183018172309621
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "scope": "All eight native core scores; additional endpoints still required for final acceptance"
+    },
+    "final_result": {
+      "status": "passed",
+      "protocol_sha256": "2dccf3ea033672c526ad29bff36ef5075b8c73ca9e8a4bad159741ff06ccc9b5",
+      "cases": 8,
+      "members": 56,
+      "forecast_days": 15,
+      "independent_model_replay": true,
+      "score_receipts_sha256": {
+        "scores/case-000.json": "abc3e77b2ed3dd16392505ef7d1111382124bcb3f0cc33193f09d4a0bf210d6b",
+        "scores/case-001.json": "df95d94714476e66f6104c8b1e68ea93dea8fc281d8e4c4250b788575dcccbf0",
+        "scores/case-002.json": "4451a1abaa21598571ed6043a9c83d2ecc25ea5ed2f06665b3de4f2079cc542c",
+        "scores/case-003.json": "5fb3ee19741176bd607df2170eb6a06af7b8735f55092bae6dc9425c38efb8fc",
+        "scores/case-004.json": "7a939910bd6b9027bd8642b148a3a8d30f50c4b539407a944cd19e7b6e864d60",
+        "scores/case-005.json": "8ff2e3410306c4bbcf197a7fce717a355d4971f97759a8ee43bc9b0d9c01dc6a",
+        "scores/case-006.json": "8e9d1f2d1276fade067682c9d294335c908ae575bdb54ce9b39f7a7437991d60",
+        "scores/case-007.json": "1fc69be6352ee3ce2949bfc0a879b7f4e1e78d7cc4891f325c1b9a5f56104294",
+        "pooling-scores/case-000.json": "22e9f29231a2c6cdc3f9e5b5074072e642aad27c42538536c9301bc82456efe4",
+        "pooling-scores/case-001.json": "e220990ffcca765b3f2d83f968f08e1ab862227cca8c08bb2799fb31105a394a",
+        "pooling-scores/case-002.json": "769cc6ca51769cc520864ae76e92e9c13cf6ef0c229362ad95a8b5b9b9a92468",
+        "pooling-scores/case-003.json": "9bc402421d9e1d862dadf96adbacf9b8e68871a5c4c9a05e81f86164a8ad0745",
+        "pooling-scores/case-004.json": "4a86c66d666abf05eb9a1a01e4b4d3694dc8a46ac9e92fcc1712d066aa4b6781",
+        "pooling-scores/case-005.json": "7bd4ebda03fff081f9ea3533e4b24aa826ad30a3d7c6cd024719b6fc6f19cb34",
+        "pooling-scores/case-006.json": "0aca230e1aca18b52092c394c964bb053795013ec905b2fdcdfcf4bdbd2edb01",
+        "pooling-scores/case-007.json": "fc7ddf9d7c593d27f2d291196ec90844f77c0ea136e8216b83ce2ebd496add1a",
+        "spectra/case-000.json": "3daccc62dea92e76dd79f8475e80ff0aeface5781864690a47f3fc0780b85c53",
+        "spectra/case-001.json": "ee0134d1985a2e4bade2310a53d3ebed20d9abb809e91678c3e27db8e0ff6869",
+        "spectra/case-002.json": "a5225807af360f9d5482a5f9cb4daf8385fb021395e375029f3240d7d96e5d0c",
+        "spectra/case-003.json": "a6c2f94e585058d61e4c647c8c01ec4642e277649a231baee87f94610b5536bf",
+        "spectra/case-004.json": "4facc5c074def41caa99627ba56e6e0482ca6d2ccbe30589ad9b096215abfa73",
+        "spectra/case-005.json": "c4c55ba6705e10ec823b508e82e3a0bded98be44dfb8bc8fbf7e8f8695ebd32d",
+        "spectra/case-006.json": "5a3e1ed98c9d4943b679105e2afb2bc842e158ec6bc179b62fc1c9073580d8ab",
+        "spectra/case-007.json": "9cab73f8fc3723a7e5f14e8cfd27fb7ddb424a7704f98fc117807d0671c12a3c",
+        "cyclone-scores/case-000.json": "7a29d6e7f8471fba356748e410dee75a3b41a426b0775bdc47a486b753acc1ce",
+        "cyclone-scores/case-001.json": "0eb989696287aa29cdd6936f39a5226dceee06cff0849e748e6da093408a05ba",
+        "cyclone-scores/case-002.json": "65ee4f25b14511aad214e5c7aad1db6ac290cc1e67ca303f89c2f2f695eef6e5",
+        "cyclone-scores/case-003.json": "60a99697c34141afe0f8e504c740d85b6c7e372144199d8455c0fa18e3f57162",
+        "cyclone-scores/case-004.json": "4791a76a5f75c44eee494679352f657880ace450550688932f3aa46797d0a994",
+        "cyclone-scores/case-005.json": "032c937b5ab9d0a6d3dda0962d2bec954f12f9e247a6e383a460849ba1629dfe",
+        "cyclone-scores/case-006.json": "491e77ee15c112030efcf2d91f762f889919c50891d0a59673b85eca04d58205",
+        "cyclone-scores/case-007.json": "328e062e40a37a308daedac666f8e960cb8da6708744ed2df5cb8062f46acd4b"
+      },
+      "training_provenance_verified": false,
+      "scope": "Unified independent inference and all metric endpoints; CPU families scheduled independently"
+    },
+    "reward": {
+      "reward": 0.6758047513497273,
+      "normalized_crps": 0.4797173266432134,
+      "normalized_crps_by_variable": {
+        "geopotential": 0.26985663526291404,
+        "temperature": 0.2779513335120769,
+        "specific_humidity": 0.3595429326452831,
+        "u_component_of_wind": 0.49765506804967163,
+        "v_component_of_wind": 0.6297834154341937,
+        "vertical_velocity": 0.5161891551432459,
+        "2m_temperature": 0.15145736346754635,
+        "mean_sea_level_pressure": 0.5154504916366577,
+        "10m_u_component_of_wind": 0.7609850540495827,
+        "10m_v_component_of_wind": 0.8183018172309621
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    }
+  },
+  "tracker_preflight": {
+    "status": "passed",
+    "track_count": 9,
+    "track_points": 119
+  },
+  "training_budget": {
+    "training_seconds": 61200,
+    "packaging_seconds": 1800,
+    "agent_timeout_seconds": 63000,
+    "expired_packaging_resume_test": "passed"
+  },
+  "negative_entry_preflight": {
+    "status": "passed",
+    "scenario": "Missing submission rejected by final container test entry point",
+    "command_exit_code": 1,
+    "verifier_status": {
+      "status": "failed",
+      "failure_stage": "verifier_setup_or_execution"
+    },
+    "reward": {
+      "reward": 0.0
+    }
+  },
+  "parallel_score_gate_tests": {
+    "passed": 2,
+    "scope": "Changed replay receipt rejected; core scores alone cannot finalize full acceptance"
+  },
+  "measured_replay_gpu_allocation": {
+    "RTX A6000": {
+      "allocated_gpu_hours": 17.866666666666667,
+      "jobs": [
+        "12580132"
+      ]
+    },
+    "RTX PRO 6000": {
+      "allocated_gpu_hours": 16.011944444444445,
+      "jobs": [
+        "12581969_4",
+        "12581969_5",
+        "12581969_6",
+        "12581969_7"
+      ]
+    },
+    "scope": "Actual GPU allocations for the independent eight-date submission replay, including output validation and interrupted allocations; excludes CPU scoring and the separate one-member smoke"
+  },
+  "updated_at": "2026-09-13 07:45 UTC",
+  "measured_cpu_scoring_allocation": {
+    "allocated_cpu_hours_by_job": {
+      "12582794": 0.0038888888888888888,
+      "12582795": 0.005555555555555556,
+      "12582789": 101.88777777777777,
+      "12582790": 106.37555555555555,
+      "12582791": 138.6888888888889,
+      "12582792": 43.48888888888891,
+      "12582793": 0.13166666666666665
+    },
+    "allocated_cpu_hours": 390.5822222222223,
+    "start": "2026-09-12T23:00:49",
+    "end": "2026-09-13T03:40:35",
+    "scope": "All distributed independent replay scoring tasks; excludes forecast receipt recovery, data preparation and research baselines",
+    "timezone": "America/New_York",
+    "elapsed_seconds": 16786
+  },
+  "final_audit": {
+    "protocol": "Eight dates, 56 members, thirty 12-hour leads through 360 hours",
+    "score_reports": 32,
+    "native_primary_panels": 19680,
+    "runtime_sources": "All inference and scoring sources match the evaluated frozen copy; starter train sources match final release image",
+    "training_evidence": "Independent inference package references the audited seed-0 final weights; training provenance audited separately from replay",
+    "data_snapshot": "Repository release asset available and frozen download verified",
+    "resource_policy": "No remaining weather allocations; completed-task dispatchers retired",
+    "runtime_limitation": "Actual Docker/Compose execution unverified; accepted best effort using Dockerfile-derived Apptainer builds and execution"
+  }
+}

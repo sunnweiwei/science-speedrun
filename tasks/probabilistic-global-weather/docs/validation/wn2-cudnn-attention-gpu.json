@@ -1,0 +1,135 @@
+{
+  "status": "measured_not_accepted",
+  "scope": "BF16 synthetic diagnostic only; no equivalence or production acceptance",
+  "cases": [
+    {
+      "batch": 1,
+      "width": 8,
+      "dim": 24,
+      "heads": 3,
+      "forward": {
+        "max_abs": 0.000244140625,
+        "relative_l2": 0.0036912930041264535
+      },
+      "input_gradient": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.001184910539952996
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.015625,
+          "relative_l2": 0.0029347457373853987
+        },
+        {
+          "max_abs": 0.0003662109375,
+          "relative_l2": 0.004827422834216048
+        },
+        {
+          "max_abs": 0.000244140625,
+          "relative_l2": 0.00524787015862935
+        },
+        {
+          "max_abs": 0.015625,
+          "relative_l2": 0.0010372381297510118
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0008144943974912166,
+      "cudnn_seconds": 0.0008904363960027695
+    },
+    {
+      "batch": 2,
+      "width": 9,
+      "dim": 24,
+      "heads": 3,
+      "forward": {
+        "max_abs": 0.000244140625,
+        "relative_l2": 0.0044657408162413524
+      },
+      "input_gradient": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.0019051202276681109
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0078125,
+          "relative_l2": 0.0019095304750281915
+        },
+        {
+          "max_abs": 0.0009765625,
+          "relative_l2": 0.004449525767820083
+        },
+        {
+          "max_abs": 0.00048828125,
+          "relative_l2": 0.005016295878692324
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.002555382203005156
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0006524811498820782,
+      "cudnn_seconds": 0.0005359743721783161
+    },
+    {
+      "batch": 1,
+      "width": 128,
+      "dim": 768,
+      "heads": 6,
+      "forward": {
+        "max_abs": 0.0001220703125,
+        "relative_l2": 0.004289126001201525
+      },
+      "input_gradient": {
+        "max_abs": 0.001953125,
+        "relative_l2": 0.001515147809490705
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.0014479217689317171
+        },
+        {
+          "max_abs": 0.001953125,
+          "relative_l2": 0.004661184110371197
+        },
+        {
+          "max_abs": 0.001953125,
+          "relative_l2": 0.004607834518800475
+        },
+        {
+          "max_abs": 0.25,
+          "relative_l2": 0.0014954802130925748
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.00227750139310956,
+      "cudnn_seconds": 0.0020198386162519457
+    }
+  ],
+  "job": "12539177",
+  "slurm_status": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:00:58",
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "4024ac7c3a0017cfa4f013c57935c32ca6e218b18501d5a472ce48a15866b3fa",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "78709ee515d0f957a2ceec871226ccf30d26b6b40c2ae11fbef8bff2b831acca"
+  },
+  "decision": "Not promoted: numerical differences measured; no native performance, fresh-process replay or end-to-end quality evidence"
+}

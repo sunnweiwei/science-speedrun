@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "protocol_sha256": "c6e1148b4259341837213707b046dae4ebafed21b4b56a99ec88e4db25945e4c",
+  "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+  "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+  "estimator": "empirical CRPS; fair=False",
+  "spread_skill_definition": "sqrt(mean unbiased ensemble variance / mean ensemble-mean squared error)",
+  "scope": "Reduced WN2-style variable panel; see the protocol for truth sources and excluded endpoints",
+  "protocol_status": "public_execution_fixture_only",
+  "scored_input_values_sha256": "90582e2153ab9403e77c709f6806fa35f05d411fadeb2ae12568623d1a85083f",
+  "truth_values_sha256": "e70560cf360f740ce48cba01d13ff4252d283e73d6e899c5f3be09f761fd1830",
+  "training_provenance_verified": false,
+  "per_case": [
+    {
+      "case": "2024-10-07T00:00:00",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 1,
+      "crps": 1.4554568720040408,
+      "mse": 6.876973054921454,
+      "ensemble_variance": 0.0,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "case": "2024-10-07T00:00:00",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 4,
+      "crps": 1.3967114628063833,
+      "mse": 6.4269595955910965,
+      "ensemble_variance": 9.170204073745161e-28,
+      "valid_area_fraction": 1.0
+    },
+    {
+      "case": "2024-10-07T00:00:00",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 16,
+      "crps": 1.3048929687532609,
+      "mse": 5.764587462153445,
+      "ensemble_variance": 9.371470761485814e-28,
+      "valid_area_fraction": 1.0
+    }
+  ],
+  "aggregate": [
+    {
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 1,
+      "cases": 1,
+      "crps": 1.4554568720040408,
+      "rmse": 2.6223983402453284,
+      "spread": 0.0,
+      "spread_skill": 0.0
+    },
+    {
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 4,
+      "cases": 1,
+      "crps": 1.3967114628063833,
+      "rmse": 2.535144886508678,
+      "spread": 3.0282344813017965e-14,
+      "spread_skill": 1.1945015440408166e-14
+    },
+    {
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 6,
+      "pool_cells": 16,
+      "cases": 1,
+      "crps": 1.3048929687532609,
+      "rmse": 2.4009555310653807,
+      "spread": 3.061285801993309e-14,
+      "spread_skill": 1.2750281137589075e-14
+    }
+  ],
+  "scientific_skill_evaluation": false,
+  "source_sample_sha256": "f5ea3aab74be45bb67611843e3c62be97c5065a7af647e94f6b4d253957fb2a0",
+  "smoke": "Native 721x1440 grid, eight identical persistence members, 2m temperature at +6h, real public 2024 sample"
+}

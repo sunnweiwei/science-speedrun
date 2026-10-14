@@ -1,0 +1,110 @@
+{
+  "status": "implementation_in_progress_not_acceptance",
+  "reference": "https://arxiv.org/html/2506.10772v1",
+  "required_endpoints": {
+    "spatial_pooling": {
+      "reference": "https://arxiv.org/html/2312.15796v2",
+      "mesh_refinements": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2
+      ],
+      "diameters_km_rounded": [
+        120,
+        241,
+        481,
+        962,
+        1922,
+        3828
+      ],
+      "aggregation": [
+        "area_weighted_mean",
+        "maximum"
+      ],
+      "center_weighting": "spherical Voronoi area",
+      "pressure_grid_degrees": 1,
+      "pressure_minimum_mesh_refinement": 2,
+      "pressure_maximum_mesh_refinement": 6,
+      "implementation": "spherical_pool.py; real forecast scoring pending"
+    },
+    "rev": {
+      "climatology_years": [
+        1993,
+        2016
+      ],
+      "grouping": [
+        "latitude",
+        "longitude",
+        "month",
+        "hour"
+      ],
+      "events": {
+        "10m_wind_speed": "high",
+        "2m_temperature": [
+          "high",
+          "low"
+        ],
+        "mean_sea_level_pressure": "low"
+      },
+      "implementation": "48 climatology groups generated and independently verified; confusion-matrix scoring and paired potential-REV aggregation implemented; WeatherBench-X oracle max error 2.58e-14; actual model scores pending"
+    },
+    "precipitation": {
+      "accumulation_hours": [
+        12,
+        24
+      ],
+      "truth": "ERA5",
+      "scores": [
+        "empirical_CRPS",
+        "ensemble_mean_RMSE",
+        "ensemble_mean_SEEPS"
+      ],
+      "seeps_dry_thresholds_mm": [
+        0.1,
+        0.25
+      ],
+      "implementation": "12h/24h CRPS, MSE and ensemble-mean SEEPS scoring/paired aggregation implemented. Six SEEPS tests passed. All 36 ERA5 years (1980-2015) cached; all 12 monthly climatology files and 48 accumulation/dry-threshold combinations passed verification job 12567913. Half-hour core scorer now includes SEEPS. Actual model scores pending."
+    },
+    "power_spectra": {
+      "transform": "spherical harmonics",
+      "variables": {
+        "geopotential": [
+          500,
+          850
+        ],
+        "specific_humidity": [
+          700,
+          925
+        ],
+        "temperature": [
+          850,
+          300
+        ],
+        "u_component_of_wind": [
+          850
+        ],
+        "2m_temperature": null,
+        "10m_u_component_of_wind": null,
+        "mean_sea_level_pressure": null
+      },
+      "implementation": "Native-grid Dinosaur transform validated against analytic modes and native implementation. All 8 HRES reference reports verified: 2395 complete spectra and 5 disclosed missing-truth panels out of 2400. Model member-mean and ensemble-mean spectra scoring, paired comparison and 30-minute CPU dispatch implemented; actual model spectra pending."
+    },
+    "tropical_cyclones": {
+      "tracker": "TempestExtremes",
+      "scores": [
+        "ensemble_mean_track_position_error",
+        "track_probability_REV"
+      ],
+      "comparison_cadence_hours": 12,
+      "implementation": "All 8 HRES tracker runs verified; named IBTrACS truth prepared with ISO timestamp validation. Full-member scoring and paired aggregation implemented; 6 metric tests passed. Per-member CPU tracking and per-case scoring dispatcher installed at 30-minute cadence. Actual forecast scores pending."
+    }
+  },
+  "reporting": {
+    "main_marginal_panels_exclude_precipitation": true,
+    "no_published_score_table_numbers_as_subset_baseline": true,
+    "no_full_paper_claim_until_all_endpoints_run": true
+  }
+}

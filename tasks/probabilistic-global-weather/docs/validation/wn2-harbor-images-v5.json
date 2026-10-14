@@ -1,0 +1,25 @@
+{
+  "status": "build_and_cpu_evaluator_passed",
+  "evaluator_tests_passed": 38,
+  "gpu_status": "independent_development_inference_and_scoring_passed",
+  "scope": "Dockerfile-derived Apptainer images; Docker/Compose execution not claimed",
+  "images": {
+    "environment": {
+      "image_sha256": "500641c68ebc931532faf35abb2e1d660a334bc01b66c54927d6e396b3b04bc2",
+      "embedded_native_model_sha256": "79232d5614d6760bd89be4d11ba0d2c40b750f86bf7f439b62ea30126084fe94",
+      "source_matches_snapshot": true
+    },
+    "tests": {
+      "image_sha256": "976a979b90b7d1ea578aa96d3b99765e08aefdbc070e5b765c199945e7ffaeb8",
+      "embedded_native_model_sha256": "79232d5614d6760bd89be4d11ba0d2c40b750f86bf7f439b62ea30126084fe94",
+      "source_matches_snapshot": true
+    }
+  },
+  "requirements_match_v4": {
+    "environment-model-requirements.txt": true,
+    "environment-eval-requirements.txt": true,
+    "tests-model-requirements.txt": true,
+    "tests-eval-requirements.txt": true
+  },
+  "gpu_evidence": "validation/wn2-harbor-v5-cudnn-smoke.json"
+}

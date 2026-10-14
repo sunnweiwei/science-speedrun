@@ -1,0 +1,84 @@
+{
+  "status": "complete_training_verified_evaluation_pending",
+  "seed": 1,
+  "job_id": 12553503,
+  "completed_updates": 562,
+  "stages": [
+    {
+      "stage": "era5_1deg_12h",
+      "updates": 410,
+      "report_sha256": "ce6bebcae0ca7dfa4060d72703e63ed9bec996583cb4a1d749ddc873f9c6f26b",
+      "wall_seconds": 20400.14333465183
+    },
+    {
+      "stage": "era5_1deg_6h",
+      "updates": 102,
+      "report_sha256": "0fca232a3c441372ac4ae2c723974ffa7b64f275799068de6e97f03e90cf305c",
+      "wall_seconds": 4999.968924518675
+    },
+    {
+      "stage": "era5_025deg_6h",
+      "updates": 32,
+      "report_sha256": "38230caf25747f9d9e987941d6a8ca41612973e81c57ae86384b41d2cf47fad2",
+      "wall_seconds": 7694.833222412039
+    },
+    {
+      "stage": "hres_025deg_ar1",
+      "updates": 8,
+      "report_sha256": "83da807cae4933b1070a18d42d122b3ecb7a5bc00bbb9b9b358155a810014605",
+      "wall_seconds": 2614.291838926263
+    },
+    {
+      "stage": "hres_025deg_ar2",
+      "updates": 4,
+      "report_sha256": "15832a1e7e3cbaf0d81005e37c1d1b3755a5ecf04168362cd6b64fcb83e83633",
+      "wall_seconds": 3012.8210855862126
+    },
+    {
+      "stage": "hres_025deg_ar3",
+      "updates": 1,
+      "report_sha256": "4123ea59ff4015ce4dba6f70b000e4b2512aeed60e4ec1d5af35d3f9cdaf740f",
+      "wall_seconds": 1890.9144031787291
+    },
+    {
+      "stage": "hres_025deg_ar4",
+      "updates": 1,
+      "report_sha256": "db97a4305ee4403bf3cb492998be6c49e241eb6e50734a61633842ba626ae1ea",
+      "wall_seconds": 2245.48957976792
+    },
+    {
+      "stage": "hres_025deg_ar5",
+      "updates": 1,
+      "report_sha256": "80a5b80a4edcb579e74a26cffbd9de7e775e09ad41001847c94707d90accfcd8",
+      "wall_seconds": 2583.631633203011
+    },
+    {
+      "stage": "hres_025deg_ar6",
+      "updates": 1,
+      "report_sha256": "13fa52cee0643eeb9ba8940aeb36904e6fcbfa2fddb43f153938689255e5f808",
+      "wall_seconds": 2908.065995912999
+    },
+    {
+      "stage": "hres_025deg_ar7",
+      "updates": 1,
+      "report_sha256": "80d0b3dc6cd23ea7b6a266995aa317a2a85cee98246e5fbe2aea3f897642fd14",
+      "wall_seconds": 3231.26103414502
+    },
+    {
+      "stage": "hres_025deg_ar8",
+      "updates": 1,
+      "report_sha256": "43ea29242288b9ad955963cc9f1d053661c0f41e5eb10af5bb68349bbc44217d",
+      "wall_seconds": 3572.564385077916
+    }
+  ],
+  "training_wall_seconds": 55300.14086233871,
+  "training_wall_hours": 15.361150239538532,
+  "timing_scope": "Training orchestration through final training-stage weight export; excludes earlier operator profiling, submission packaging and later independent evaluation",
+  "cold_package_sha256": "90fb8b35fad7e097135c82af95f29aacf78503fce7a68a696758644bc458878f",
+  "warm_package_sha256": "98064480345b00ad272668e46d03bcc43d9ec2cc86848638b1a67e0315cda24d",
+  "final_weights_sha256": "3b203438fae3e4818f54cbeeecf9d33e6dde935ebbcea4bee2302a22c4e48cfd",
+  "paper_inference_job": 12568148,
+  "new_runtime_replay_job": 12568149,
+  "checked_utc": "2026-09-10T11:25:16.141773+00:00",
+  "scope": "All eleven non-profile stages and sequential updates verified; no final scores or full track acceptance yet"
+}

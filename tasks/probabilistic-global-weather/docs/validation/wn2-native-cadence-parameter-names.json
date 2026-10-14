@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "scope": "Every actual native parameter name in coarse 12h and fine 6h exports; explicit time-coordinate rename, no parameter addition/removal",
+  "source_job": 12533418,
+  "target_job": 12533424,
+  "parameter_leaves": 488,
+  "renamed_leaves": 87,
+  "all_native_leaf_shapes_and_dtypes_match": true,
+  "state_transfer_oracle": "CPU exact parameter values and nonzero Adam moments; implicit or incorrect same-shaped identity changes rejected",
+  "four_device_accumulation_resume_oracle": "passed after adding explicit leaf identities"
+}

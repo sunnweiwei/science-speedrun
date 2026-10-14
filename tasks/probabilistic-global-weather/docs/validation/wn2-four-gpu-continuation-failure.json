@@ -1,0 +1,199 @@
+{
+  "status": "failed_exact_continuation",
+  "job": "12533282",
+  "metadata_equal": true,
+  "total_elements": 551356726,
+  "changed_elements": 435610560,
+  "changed_leaves": 1441,
+  "largest_differences": [
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['b_sea_surface_temperature_time=21600']",
+      "shape": [
+        1
+      ],
+      "changed": 1,
+      "total": 1,
+      "max_abs": 0.0004622371052391827
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/split_output_linear']['b_sea_surface_temperature_time=21600']",
+      "shape": [
+        1
+      ],
+      "changed": 1,
+      "total": 1,
+      "max_abs": 2.314769517397508e-06
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['b_specific_humidity_level=50,100,150,200,250,300,400,500,600,700,850,925,1000_time=21600']",
+      "shape": [
+        13
+      ],
+      "changed": 13,
+      "total": 13,
+      "max_abs": 1.958287612069398e-06
+    },
+    {
+      "path": "[1][1][0].nu['multimodality_forward/grid_decoder/split_output_linear']['b_sea_surface_temperature_time=21600']",
+      "shape": [
+        1
+      ],
+      "changed": 1,
+      "total": 1,
+      "max_abs": 1.2906252777611371e-06
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/shared_dense/mlp/linear_0']['b']",
+      "shape": [
+        768
+      ],
+      "changed": 767,
+      "total": 768,
+      "max_abs": 4.2658575694076717e-07
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/shared_dense/mlp/linear_0']['w']",
+      "shape": [
+        768,
+        768
+      ],
+      "changed": 41426,
+      "total": 589824,
+      "max_abs": 1.6763806343078613e-07
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['b_cyclone_exists_gaussian_unit_mode_time=21600']",
+      "shape": [
+        1
+      ],
+      "changed": 1,
+      "total": 1,
+      "max_abs": 1.3969838619232178e-07
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['w_cyclone_exists_gaussian_unit_mode_time=21600']",
+      "shape": [
+        768,
+        1
+      ],
+      "changed": 765,
+      "total": 768,
+      "max_abs": 9.872019290924072e-08
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['w_2m_temperature_time=21600']",
+      "shape": [
+        768,
+        1
+      ],
+      "changed": 767,
+      "total": 768,
+      "max_abs": 6.798654794692993e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/mesh_to_grid_gnn/deep_gnn/processor_nodes_0_point_nodes/normalization/linear_norm_conditioning/linear']['b']",
+      "shape": [
+        1536
+      ],
+      "changed": 1393,
+      "total": 1536,
+      "max_abs": 6.704884469854733e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/mesh_to_grid_gnn/deep_gnn/processor_nodes_0_point_nodes/mlp/linear_1']['b']",
+      "shape": [
+        768
+      ],
+      "changed": 761,
+      "total": 768,
+      "max_abs": 6.508344085887074e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_to_mesh_gnn/deep_gnn/processor_nodes_0_point_nodes/mlp/linear_1']['b']",
+      "shape": [
+        768
+      ],
+      "changed": 748,
+      "total": 768,
+      "max_abs": 5.474248609971255e-08
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/shared_dense/mlp/linear_0']['b']",
+      "shape": [
+        768
+      ],
+      "changed": 768,
+      "total": 768,
+      "max_abs": 4.816320142708719e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/split_output_linear']['w_cyclone_exists_gaussian_unit_mode_time=21600']",
+      "shape": [
+        768,
+        1
+      ],
+      "changed": 75,
+      "total": 768,
+      "max_abs": 2.9802322387695312e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/split_output_linear']['w_geopotential_level=50,100,150,200,250,300,400,500,600,700,850,925,1000_time=21600']",
+      "shape": [
+        768,
+        13
+      ],
+      "changed": 405,
+      "total": 9984,
+      "max_abs": 2.9802322387695312e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/mesh_encoder/split_input_matmul']['w_input_year_progress_cos_time=-21600']",
+      "shape": [
+        1,
+        768
+      ],
+      "changed": 3,
+      "total": 768,
+      "max_abs": 2.9802322387695312e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/mesh_encoder/split_input_matmul']['w_input_year_progress_cos_time=0']",
+      "shape": [
+        1,
+        768
+      ],
+      "changed": 3,
+      "total": 768,
+      "max_abs": 2.9802322387695312e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/mesh_to_grid_gnn/edge_encoder/shared_dense/mlp/linear_1']['w']",
+      "shape": [
+        32,
+        32
+      ],
+      "changed": 6,
+      "total": 1024,
+      "max_abs": 2.9802322387695312e-08
+    },
+    {
+      "path": "[1][1][0].mu['multimodality_forward/grid_decoder/split_output_linear']['b_2m_temperature_time=21600']",
+      "shape": [
+        1
+      ],
+      "changed": 1,
+      "total": 1,
+      "max_abs": 2.8172507882118225e-08
+    },
+    {
+      "path": "[0]['multimodality_forward/grid_decoder/split_output_linear']['b_specific_humidity_level=50,100,150,200,250,300,400,500,600,700,850,925,1000_time=21600']",
+      "shape": [
+        13
+      ],
+      "changed": 12,
+      "total": 13,
+      "max_abs": 2.755950845312327e-08
+    }
+  ],
+  "scope": "Read-only comparison of completed fresh-process continuation checkpoints. Does not identify the numerical root cause; exactness gate remains failed."
+}

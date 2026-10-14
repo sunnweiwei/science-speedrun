@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "scope": "one real upstream development context plus verified resume; not full clean-room preparation",
+  "root": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/data-entrypoint-smoke-johlz7_h",
+  "first": [
+    "real-input-000",
+    "prepared"
+  ],
+  "resume": [
+    "real-input-000",
+    "verified_existing"
+  ]
+}

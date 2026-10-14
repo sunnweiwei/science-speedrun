@@ -1,0 +1,1332 @@
+{
+  "job": "12543883",
+  "slurm_status": "FAILED",
+  "elapsed": "00:33:48",
+  "exact_replay": {
+    "status": "failed",
+    "changed_leaves": 1446,
+    "largest": [
+      {
+        "leaf": "leaf_0718",
+        "max_abs": 0.0037499743048101664,
+        "changed": 49152
+      },
+      {
+        "leaf": "leaf_0506",
+        "max_abs": 0.0018475936958566308,
+        "changed": 1
+      },
+      {
+        "leaf": "leaf_0056",
+        "max_abs": 0.0013830279931426048,
+        "changed": 9981
+      },
+      {
+        "leaf": "leaf_0146",
+        "max_abs": 0.0013829469680786133,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0062",
+        "max_abs": 0.0013821115717291832,
+        "changed": 9984
+      },
+      {
+        "leaf": "leaf_0042",
+        "max_abs": 0.0013817474246025085,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0049",
+        "max_abs": 0.0013817287981510162,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0051",
+        "max_abs": 0.0013816524296998978,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0147",
+        "max_abs": 0.0013816207647323608,
+        "changed": 2304
+      },
+      {
+        "leaf": "leaf_0134",
+        "max_abs": 0.0013815186684951186,
+        "changed": 2048
+      },
+      {
+        "leaf": "leaf_0118",
+        "max_abs": 0.0013814279809594154,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0048",
+        "max_abs": 0.001380972214974463,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0144",
+        "max_abs": 0.0013807117938995361,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0043",
+        "max_abs": 0.0013804422924295068,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0172",
+        "max_abs": 0.0013803166802972555,
+        "changed": 2048
+      },
+      {
+        "leaf": "leaf_0052",
+        "max_abs": 0.0013802368193864822,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0047",
+        "max_abs": 0.0013801883906126022,
+        "changed": 768
+      },
+      {
+        "leaf": "leaf_0122",
+        "max_abs": 0.0013800763990730047,
+        "changed": 1535
+      },
+      {
+        "leaf": "leaf_0132",
+        "max_abs": 0.0013798326253890991,
+        "changed": 1024
+      },
+      {
+        "leaf": "leaf_0142",
+        "max_abs": 0.0013794302940368652,
+        "changed": 768
+      }
+    ],
+    "stage_index": 0,
+    "devices": 4,
+    "effective_batch": 64,
+    "runtime": {
+      "compilation_cache": "true",
+      "cublas_workspace_config": ":4096:8",
+      "device_kinds": [
+        "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+        "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+      ],
+      "python_hash_seed": "0",
+      "versions": {
+        "dm-haiku": "0.0.14",
+        "jax": "0.6.2",
+        "jaxlib": "0.6.2",
+        "numpy": "1.26.4",
+        "optax": "0.2.5",
+        "xarray": "2026.1.0"
+      },
+      "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+      "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*"
+    },
+    "scope": "Native train_stage fresh-process continuation; verifies only the recorded stage, device count and batch",
+    "third_process_cache_hit_and_state_exact": true
+  },
+  "premean_gradient_changed_leaves": [
+    {
+      "leaf": 0,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 1,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 3,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 4,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 5,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 6,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 7,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 8,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 9,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 10,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 11,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 12,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 13,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 14,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 15,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 16,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 17,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 18,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 19,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 20,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 21,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 22,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 23,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 24,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 25,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 26,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 40,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 41,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 42,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 43,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 44,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 45,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 46,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 47,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 48,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 49,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 50,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 51,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 52,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 53,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 54,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 55,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 56,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 57,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 59,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 60,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 62,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 63,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 64,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 66,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 68,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 69,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 75,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 76,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 77,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 78,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 79,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 80,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 81,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 82,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 83,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 84,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 85,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 86,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 87,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 88,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 89,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 90,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 95,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 96,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 97,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 98,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 99,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 100,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 101,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 102,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 103,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 104,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 105,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 106,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 110,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 111,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 112,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 113,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 115,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 116,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 118,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 120,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 122,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 123,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 124,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 126,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 128,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 129,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 130,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 131,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 132,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 133,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 134,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 135,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 141,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 142,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 143,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 144,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 145,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 146,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 147,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 149,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 150,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 152,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 162,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 164,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 166,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 170,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 172,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 174,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 176,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 178,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 182,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 187,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 189,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 191,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 193,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 195,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 200,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 206,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 216,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 227,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 229,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 240,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 332,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 334,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 336,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 338,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 343,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 345,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 347,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 358,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 360,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 362,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 364,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 369,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 371,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 373,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 375,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 388,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 409,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 421,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "leaf": 425,
+      "devices": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "finding": "149 premean leaves differ only on devices1,2,3; device0 exact. Test pmap-local accumulator zeroing rather than whole-array zeros_like with peer resharding. Hypothesis not yet proven."
+}

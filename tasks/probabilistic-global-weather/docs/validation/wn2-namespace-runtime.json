@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "python": "/opt/weather-python",
+  "numpy": "1.26.4",
+  "xarray": "2026.1.0",
+  "host_truth_hidden": true,
+  "pid_namespace": 4026535168,
+  "network_namespace": 4026535170,
+  "scope": "Actual Bubblewrap execution from separate CPU scoring Python; hidden host truth, separate PID/network namespaces, pinned model interpreter and NumPy/xarray",
+  "nested_apptainer_test": {
+    "status": "passed_with_explicit_apptainer_harness",
+    "reason": "Bubblewrap could not rebind the enclosing Apptainer /usr mount (EINVAL); standalone Docker path is not verified",
+    "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/namespace-runtime-check-native-v1/inference.log",
+    "initial_failure": "Apptainer root overlay is marked unbindable; later /dev/full missing in --containall",
+    "remedy": "Inside a fresh unprivileged user/mount namespace, make only that namespace root mount private; provide /dev/full to the enclosing contained image. The inner Bubblewrap still unshares all namespaces and drops all capabilities.",
+    "report": {
+      "status": "passed",
+      "python": "/opt/weather-python",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0",
+      "host_truth_hidden": true,
+      "pid_namespace": 4026535213,
+      "network_namespace": 4026535215,
+      "scope": "Actual Bubblewrap execution from separate CPU scoring Python; hidden host truth, separate PID/network namespaces, pinned model interpreter and NumPy/xarray"
+    }
+  },
+  "docker_status": "not executed; no Docker service available"
+}

@@ -1,0 +1,11 @@
+{
+  "job": "12543849",
+  "slurm": {
+    "state": "FAILED",
+    "exit_code": "1:0",
+    "elapsed": "00:00:13"
+  },
+  "error": "Checkpoint replicas differ in exact bits for device_put_replicated tiny fixture",
+  "scope": "Small GPU fixture failed before deliberate divergence checks. Must inspect transfer/shard values before interpreting model replicas.",
+  "transfer_audit_job": "12543862"
+}

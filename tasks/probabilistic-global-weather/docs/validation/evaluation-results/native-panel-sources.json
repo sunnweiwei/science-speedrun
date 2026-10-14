@@ -1,0 +1,248 @@
+{
+  "snapshot_sha256": "0280b2ec26caba11f6863fe812c088bd8f89b7911d8d59093fb6d46e8de27354",
+  "csv_sha256": "06b873baba6e23918bfec6fabad5ea6bc397aded5aae9e190d17532b1afa11a7",
+  "scope": "All native-grid panels from exactly the partial dates in snapshot.json; no full-acceptance or paired-seed claim",
+  "rows": 6640,
+  "sources": [
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-08-29T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-021/weather-scores.json",
+      "sha256": "e7fba6398c0c96afa78b7b2f5c33f01971806417c284659923d441dd52761273",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-09-09T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-022/weather-scores.json",
+      "sha256": "1a39b78c32a1eff55f141de0bd9f3d13f132d0716f17de6207773e78dafafd0e",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-09-20T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-023/weather-scores.json",
+      "sha256": "7569d3846ac130295ada77d380ea5e6cabd1c35e67c728edf9de9781b32142c4",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-10-05T00:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-024/weather-scores.json",
+      "sha256": "86786d7b84d90e672c23f807bd2ca9ad765e010c17f5a77db1b625c8e17011e9",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-10-16T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-025/weather-scores.json",
+      "sha256": "82f69d269ce46d11219c4ec9c573833db9fe3cc0f4c999cf6e9504edd6e3c557",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-10-27T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-026/weather-scores.json",
+      "sha256": "e217befd30e3ad89304b2e34e4eb80a74e9ea739c3c082221235b7e65e8dfb49",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-11-07T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-027/weather-scores.json",
+      "sha256": "b31cc0bb22afbd238868402e8ba74e419cef86135a2fe2b8651b12502d39505e",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-11-18T00:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-028/weather-scores.json",
+      "sha256": "68e1ab4987f048d617c9d7eec517f4df61c3b5b55d1ba9b7b83f0b817469c537",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-11-29T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-029/weather-scores.json",
+      "sha256": "d0b09b2c6b8252c367c8a432d3a4e0708384e06b9876dee769e4994c4aad8020",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-12-10T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-030/weather-scores.json",
+      "sha256": "f8defb7e102439ef354244187b0c46ce50626ea51d694917c7861132fae44900",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "weather",
+      "date": "2022-12-21T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-031/weather-scores.json",
+      "sha256": "722f332038f845b4975aaace6ff81a6709c789e92bfe01910ad233b6c9675f8e",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-08-29T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-021/precipitation-scores.json",
+      "sha256": "3ae5ecd07e517f44cf32c46bc8ad4e8aa31a777f9ad6eb10e451ffa016cfe404",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-09-09T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-022/precipitation-scores.json",
+      "sha256": "ec713e8c25ede411ff61ce4841246a4ddeb814168a197539a9a85f3525103c68",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-09-20T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-023/precipitation-scores.json",
+      "sha256": "765314ca9f037f456caf8bd88997e226431e34b8027e56e503eeda8aed045898",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-10-05T00:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-024/precipitation-scores.json",
+      "sha256": "698bf7141aea09cd3254b05b6fd836abebbf9518bc0d6dc443a47645fc7f59e9",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-10-16T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-025/precipitation-scores.json",
+      "sha256": "19b93d72f7719536850a9d5ad16119c379d4e19d766d8453759a3d074fe1b0d8",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-10-27T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-026/precipitation-scores.json",
+      "sha256": "be1589e160ccc1e46f78eeadee6f552ddecb7cd4c1b8f72078c6b420c3f6b176",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-11-07T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-027/precipitation-scores.json",
+      "sha256": "0d453e44a6b72c0f1b7f9470c40cc9b518d230a7fdebcfdefc4a319e295464ea",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-11-18T00:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-028/precipitation-scores.json",
+      "sha256": "8ff3ac132123d2fc6e0516bfc02ee961467d775ee03976a6d4176e749134dc95",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-11-29T06:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-029/precipitation-scores.json",
+      "sha256": "16f25324640d4e3f4f10b9475c5199ada1ab53c3ac93f1e7b02a57000addbb1e",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-12-10T12:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-030/precipitation-scores.json",
+      "sha256": "c87066d6bde873ed49fcc08feb21f6817b0d7f50570106281ed343ed8d60326c",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 0,
+      "endpoint": "precipitation",
+      "date": "2022-12-21T18:00:00",
+      "report": "pipeline-0/curriculum/evaluation/case-031/precipitation-scores.json",
+      "sha256": "d06ea768e28df76979fed87ab37dc06acd17d4c2f46731c49a79d09ecb75153b",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 1,
+      "endpoint": "weather",
+      "date": "2022-11-18T00:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-028/weather-scores.json",
+      "sha256": "93e37d55db7c18d1fa9386dd74ac0cdd9ff8914e3aad0948a77b9a8c0a3f58c8",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 1,
+      "endpoint": "weather",
+      "date": "2022-11-29T06:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-029/weather-scores.json",
+      "sha256": "48785c70accaf66a6bfa2ff4de5022956d000b50978f317ac6da1fabcb6ebe0c",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 1,
+      "endpoint": "weather",
+      "date": "2022-12-10T12:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-030/weather-scores.json",
+      "sha256": "fccb47c18bc1c4b79f39a228b32f4f7f9850c8662181d35c5e3730001d7ae8f9",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 1,
+      "endpoint": "weather",
+      "date": "2022-12-21T18:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-031/weather-scores.json",
+      "sha256": "690c4e40bcfbbfaa130637ad012b1b1283a1aba47248df2339c220425e15f4ca",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92"
+    },
+    {
+      "seed": 1,
+      "endpoint": "precipitation",
+      "date": "2022-11-18T00:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-028/precipitation-scores.json",
+      "sha256": "d77b51bf52f9df16b1e0469f811907b5fb0f69110cef3fc7da69665bf3c2ea88",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 1,
+      "endpoint": "precipitation",
+      "date": "2022-11-29T06:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-029/precipitation-scores.json",
+      "sha256": "7da1d90b19f657e1b706428fa0fab2771a28a0525dc62da931a63ea82abc4365",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 1,
+      "endpoint": "precipitation",
+      "date": "2022-12-10T12:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-030/precipitation-scores.json",
+      "sha256": "27fd00b2740afe929261a00328be043266176d562dde3c9d17f1c39150d6e804",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    },
+    {
+      "seed": 1,
+      "endpoint": "precipitation",
+      "date": "2022-12-21T18:00:00",
+      "report": "pipeline-1/curriculum/evaluation/case-031/precipitation-scores.json",
+      "sha256": "4f8b5d5087a4da6510fa6134d1731bd7f01a2e87bb1517104b432c6622344efa",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d"
+    }
+  ]
+}

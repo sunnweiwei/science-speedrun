@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "job_id": "12533588",
+  "scope": "One 2021 development date, 8 members, one 6-hour lead, all 83 scored fields; real two-update trained model, native v4 verifier image, relocated offline model execution, both independent score panels and numeric reward",
+  "not_claimed": [
+    "Complete eleven-stage curriculum",
+    "Complete 32-case trained-model evaluation",
+    "Docker/Harbor CLI execution"
+  ],
+  "training_job_id": "12533550",
+  "verifier_image_sha256": "de656ff9f0689d6f88c55f64a79a369587ee7da7333ad873d4070e7fda16a237",
+  "metrics": {
+    "weather": {
+      "reward": 0.7228690238060649,
+      "normalized_crps": 0.38337647217856885,
+      "normalized_crps_by_variable": {
+        "geopotential": 0.09634127645239654,
+        "temperature": 0.1574010734295418,
+        "specific_humidity": 0.3268221398938457,
+        "u_component_of_wind": 0.28660565343883465,
+        "v_component_of_wind": 0.5285964744764279,
+        "vertical_velocity": 1.2247091832591992,
+        "2m_temperature": 0.1993531654736911,
+        "mean_sea_level_pressure": 0.1949997496465196,
+        "10m_u_component_of_wind": 0.34022074810295555,
+        "10m_v_component_of_wind": 0.4787152576122764
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    },
+    "precipitation": {
+      "reward": 0.5707341809922236,
+      "normalized_crps": 0.7521291580285171,
+      "normalized_crps_by_variable": {
+        "total_precipitation_6hr": 0.7521291580285171
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    }
+  },
+  "replay": {
+    "status": "passed",
+    "case_index": 0,
+    "protocol_sha256": "da1eca10bdb28561062b64334570c194a6b37a2ddb58382bb3c54e15ccd8a61d",
+    "seconds": 300.4923582270276,
+    "input_sha256": "c99a5cd621ce4fee3da12584e09b70dab138b1e249c2049b98281d27b07e3f8f",
+    "forecast_store": "case_a6f12aeee3d14bce9e0ee2b79e2adc82.zarr",
+    "relocated_files": {
+      "LICENSE.weathernext-code": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "predict.py": "71803f7531976a6179f4b052e8026da8d437baa0ed90ce6085cd3d175a6af120",
+      "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+      "native_model.py": "37ede590f3fc8a77ff28653a2936a9b06dea3bc53bec1f9ed991b877d3c361c6",
+      "plan_schedule.py": "3bb18bef5b25a5172955725dd117fe15766bd27d0dccb7b607a16086c33e5c60",
+      "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+      "wn2_validation.py": "cc224480b790aab78c3044d15a2fc3d0e5ebccdc2a1957cafe5d536f4c32dc15",
+      "weights.npz": "44b5d39a05829a925031d7e4c3e8381ae4831012ab8362c4354ee3c315c11dfc",
+      "training-report.json": "27e4b34a66eb62f81e3add00bcf1d809885e968c7bf24429e4b419471044d0e1",
+      "infer.sh": "2d7e862eef1013cc662b5f64d608bee186a2a296fe3ccf8459a884c772f59d4d",
+      "package.json": "e3f898793a0156dd0eeb1bd117b3213c251f7b0ffe4c6598668a2d1084782b4c",
+      "statistics/manifest.json": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+      "statistics/era5_1deg_12h/mean.nc": "4db0d29ecebaf21d97904ca2745ce7e1d01ffbc8235348c9c31c2e4047f1f082",
+      "statistics/era5_1deg_12h/std.nc": "d469150e18a537eb6801f34bc6ca100f294204de41d671129dc0a128339c6ab6",
+      "statistics/era5_1deg_12h/minimum.nc": "465dcf61b922e322ce3dc7002ce4637f4a40d6ff4c62c34ed1b271d751cdc22e",
+      "statistics/era5_1deg_12h/diff_std.nc": "172484689cc1ee35dc26717efb595eea933f93cb5879b92a3aca7fd5ec8aea7e",
+      "statistics/era5_1deg_6h/mean.nc": "a8e0a883874f81b0ea2a98f3fa115f1a17a847dc1f838529c44f170b5fb90da0",
+      "statistics/era5_1deg_6h/std.nc": "d33cb4acd2ab79e1f0b95bfa8efa707cde81b2cbea5bba5d310563d9d0905bbf",
+      "statistics/era5_1deg_6h/minimum.nc": "4bafc03478941e9b708911898043757bd2b33c1c8799e33962aeddd6bc5a0244",
+      "statistics/era5_1deg_6h/diff_std.nc": "2e6399d669b5d45a29408219b113de511bf8efe373a7768e6f1f841dd8feb740",
+      "statistics/era5_025deg_6h/mean.nc": "30d97315aca27affc06c1f52217750e9acfee5ae614e729c4034c07ee9ff31e2",
+      "statistics/era5_025deg_6h/std.nc": "dfaf67bdc428967229f502a7a5c4e8bc2eb35c807d4afd12d3b31de96948e113",
+      "statistics/era5_025deg_6h/minimum.nc": "10e53695ae53cb1d7def5f341a0fdd69c3cff4441eaf2e2afe11dd52410ca24d",
+      "statistics/era5_025deg_6h/diff_std.nc": "659ec212fc34b88dd1315620d5e54d9254753118d1b49ae7fcb019b28062e5e9",
+      "statistics/hres_025deg_6h/mean.nc": "9caa868dc59d44efb6c9863a86842277210a8c196ba842cf4b0d8754fa64bcb3",
+      "statistics/hres_025deg_6h/std.nc": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "statistics/hres_025deg_6h/minimum.nc": "eab932fbd38938cf91d78f9d87b58c04b9819533cdab7b503620322b8cabed2b",
+      "statistics/hres_025deg_6h/diff_std.nc": "216515ca078e1cb38d3002c69ea798170254080780d613f508b326949944652b"
+    },
+    "boundary": "Fresh offline PID/user/mount namespace with only declared runtime, relocated model, context inputs, GPU devices and output; no truth or training mounts"
+  },
+  "artifacts": {
+    "weather-scores.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/harbor-trained-smokes/12533588/verification/weather-scores.json",
+      "sha256": "976aefb12f85688357f8c49ffbd53403497985bb8b0e1c591b1d51b19d9e65f5"
+    },
+    "precipitation-scores.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/harbor-trained-smokes/12533588/verification/precipitation-scores.json",
+      "sha256": "edf7a9905bf1d661f7e80d4f445600dacf9786cbfea4576308dba2b1809fc27e"
+    },
+    "status.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/harbor-trained-smokes/12533588/verification/status.json",
+      "sha256": "aeaf8b6c655e15ae33651431f7f36a89cf797afb8e0eb1bebfaae4663bf6648e"
+    },
+    "reward.json": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/harbor-trained-smokes/12533588/verification/reward.json",
+      "sha256": "06a1a150bd6f698d679e13bdcdc866993fdfb2c6a0edce4498c87396c9b25c6c"
+    }
+  }
+}

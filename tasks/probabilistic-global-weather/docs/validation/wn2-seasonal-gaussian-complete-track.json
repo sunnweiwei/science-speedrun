@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "reference": "training-only seasonal Gaussian",
+  "job_id": "12533256",
+  "recorded_utc": "2026-09-07T09:34:26.730392+00:00",
+  "scope": "All 32 held-out 2022 dates, 8 members, 40 six-hour leads; 82 weather fields plus separate precipitation; independent context-only inference",
+  "status_report": {
+    "status": "passed",
+    "cases": 32,
+    "package_files_sha256": {
+      "baseline.py": "35eaf8c2c27677d8cfe9f0004ca8c6dabebbc8215f60428b9c103667ceb15836",
+      "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+      "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+      "variables.json": "47e138dc0d4c4414619322da397bdad13c22ad9631c47cf1332fe113454ed88d",
+      "infer.sh": "9fc95429f57331b41dafb89783e933651ca055d5f487574c8b67f78b45b8ae1d",
+      "baseline-manifest.json": "2d624d10b7f9b1aac886a9f45a960de27a09c37167f54523921c75ef7683f845",
+      "climatology/group-01.nc": "8869d445ca5b50332bab60b0990c67dcf005e093d29d1b10bb911e4c5d7dd412",
+      "climatology/group-03.nc": "7180c20038afeb4515599f4e35a7957cd8902baf2047642690f5ce3519718f28",
+      "climatology/group-02.nc": "b50c568ac4ff29e2e981882e432bfd3fa757fcfb1520d996fcde133f9e22a828",
+      "climatology/group-00.nc": "818fa88ebef955e7ee7d9e08eeed3c01cfecf779aba8801bcfca2ff8f9f9779c",
+      "climatology/group-01.json": "34ce10f0f550c20cb0a0ac26405ad77fefc03f3ce9d1e590c6ff2e2af3c1d078",
+      "climatology/group-03.json": "16dec7a102866e7c849c7e205953f777c42e9d0f4ce139750290333aa2e721bd",
+      "climatology/group-02.json": "5c65400e638ee52f49a05edb4595783eb160b972e917c98b2e153c8ab3618e1e",
+      "climatology/group-00.json": "f8794e317ebf3cf9529904a7b5e1f177082be3f3e13d8d0423ad4a3bc190c934",
+      "climatology/group-07.nc": "f5b906c2fe1bc40dcaed107ca9b8d22d65177431aa8b272881b2dd854c02828c",
+      "climatology/group-06.nc": "c666b8f5226ee57521bc353430f71ae4629ac6ed62622ad7da8e92c91699d86a",
+      "climatology/group-05.nc": "07b06f11b65d57c5e83a7984cd1a3f1cab0229745b449cc818c9a14ffeefccf0",
+      "climatology/group-04.nc": "863a77f50e13b46ae81686fe2b8dc01f321e675b639c619cb2900b4c21a6563d",
+      "climatology/group-07.json": "9b08511271f3be2b7f2f99357fc4b57ec574db346eb0db3551c38bb468a67456",
+      "climatology/group-04.json": "44f994bdda5db00d1d4c42ce17da8fa4483ff82de201a8d823e9e042f7606f90",
+      "climatology/group-06.json": "7b9b37ba4b11d36baee2d048c8912728c140e78588c18fc4e177d1b7cd4b5af7",
+      "climatology/group-05.json": "6b1dced4e9326875aaf6b4588674d1b1d16cab3bb3004a706c5cceb9a422e3a6",
+      "climatology/group-11.nc": "c213d3c2d4262af32433706698002b6cceed51a663f7568311926825eb1d65a1",
+      "climatology/group-10.nc": "0f34007625a06cf25b1c15e28dcab194a6948286a6739e8fd530fb79d91fab3d",
+      "climatology/group-09.nc": "e0695d6a6b8817ceb2549ea1d6a6bf9a52ec70e1b9b6f78c5b8b5b00f0737bc4",
+      "climatology/group-08.nc": "66226c7dd8a0c3d9823019291ae70038935ff164c25e6aca01e53d34eef84e99",
+      "climatology/group-10.json": "66a2a59c95161ae01366e914c6bb8ce336ecdcea506a4dfb97b97d4344defa9e",
+      "climatology/group-08.json": "93c6a2500f46b5f2172754aa396e90373ea74f9582e04c132cb18922a3e5bcfa",
+      "climatology/group-09.json": "eba4006f13b9a449860d60efc725cc05c15a6aec4115ff183e24280de8c2098c",
+      "climatology/group-11.json": "f13c57be3ef2d2652f885948c57495b21f899c2738435dab94873ce173dc85af",
+      "climatology/group-14.nc": "d3ecf1abf2f217cde9b6e2a6fd738813c36576b1ea6f4d3dd6c32faa622dd6ad",
+      "climatology/group-12.nc": "90b1fb3757b17f7924470849812338239bccf63c0e8979d76351d4cd0359db81",
+      "climatology/group-13.nc": "93c43c3049cfaa1eaf0e8251d57d0f9fb8d638c7d72842c40725352a359bd6a1",
+      "climatology/group-15.nc": "23bbaca982fae8712910ef9528d4191c17c8b23e0a48192ad1b0231802600d85",
+      "climatology/group-14.json": "474ec179d765217e5e3af8461fc3651f65f9c80ea9e59a66636cef916c67c56f",
+      "climatology/group-12.json": "39ffbfd41f51c3f6b0497602cac3fbbe846dd49c6f8e23d94103c80ec144c9ba",
+      "climatology/group-13.json": "1e505126ea9cd38685d9e38bf8dfb868d5f66f3fe13f571277ed614553071a0f",
+      "climatology/group-15.json": "e8bc5b6b0825a3b9ff79891db67b3014012b959fd139f85b564d7704944f4ea2",
+      "climatology/group-01-std.nc": "ccaca076795d3b12f06ba54ec442bad46a05c2c704a35a1af10b1ee4057b431d",
+      "climatology/group-00-std.nc": "fa12ffb0dc153e0e568cb8b1cdd41c7a188c3f688b8d9207e20c62e739b324f7",
+      "climatology/group-03-std.nc": "b149b25b769e6a5da3b1f5aebbb27ea7ef3b96b43994ad463fc7e848432b1e6c",
+      "climatology/group-02-std.nc": "b68b75edb0489ded0f987a1c0e074d2c82cc5fa1e1db8fe218b75014fbef2376",
+      "climatology/group-06-std.nc": "1daa35ddf06ee846482c04e9b4e5fb6454b9b2c2ac6139ddcf6e7a8d1712cdfc",
+      "climatology/group-05-std.nc": "3e160574b7f5348dff0f5c984f376d163422bb5d57d73b85fea362d62d3e3f7d",
+      "climatology/group-07-std.nc": "3b9f05eeae3d9ad89e7e31960dc010a849e18c2d9a3e2795b27d7954b52d0f0e",
+      "climatology/group-04-std.nc": "a24fef2cb71146b4248c602b0b4c46a035f073525a8a328572b4070a0b7c63fd",
+      "climatology/group-09-std.nc": "c32b3b39dfe7dd273dc67311c3d1b1b4e00cc32a06e5e11dc594d9d26e26f236",
+      "climatology/group-10-std.nc": "9d73bfc93e088add26b46d9da6feaa2dc6e2231f426e7c8bb92ae71814eaab7c",
+      "climatology/group-11-std.nc": "853ac81a982ff59cb726f4d96c00374a22b9630c87555d0f60daacd56194d0ea",
+      "climatology/group-08-std.nc": "c9e7bba64e96f5320fd603ab01ad5666b29edf8c876635414947443d2a9c61fd",
+      "climatology/group-12-std.nc": "5e8e76ccbd9dbf8de1f9e5ac4fe04044c668b2a6ddad16cde091319e49b463ad",
+      "climatology/group-13-std.nc": "9ea5f8e70f08e55a80793be65fd9eb1fc6d9ff82f8e05508c2e5d17bb999afe5",
+      "climatology/group-14-std.nc": "a802c38323d69cbfa5d0a89bf7d2ad9aa7858db005705d280b4be133fcfc5c61",
+      "climatology/group-15-std.nc": "1d7db2bbd8d57c774f3b7fb85a20a44a6434da5b87a55b9076e1dd74b939ecaf"
+    },
+    "scope": "Complete independent reference replay and requested score panels"
+  },
+  "reward": {
+    "reward": 0.7363783189946922,
+    "precipitation_reward": 0.7716216049121727
+  },
+  "panels": {
+    "weather": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/reference-scores/12533256/result/weather-scores.json",
+      "sha256": "7f0be7427ef764f342944d704a5aafc9904d45c705d8d4921c6c369caaea1e0f",
+      "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "reward_metrics": {
+        "reward": 0.7363783189946922,
+        "normalized_crps": 0.3579976137336656,
+        "normalized_crps_by_variable": {
+          "geopotential": 0.199964130083378,
+          "temperature": 0.2351141258215416,
+          "specific_humidity": 0.3425454627350337,
+          "u_component_of_wind": 0.4151548229298691,
+          "v_component_of_wind": 0.5339957851912502,
+          "vertical_velocity": 0.47726158466060187,
+          "2m_temperature": 0.14546910947511632,
+          "mean_sea_level_pressure": 0.3292243816676192,
+          "10m_u_component_of_wind": 0.4076388434770962,
+          "10m_v_component_of_wind": 0.49360789129514987
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "independent_cases": 32,
+      "per_case_metric_rows": 314880
+    },
+    "precipitation": {
+      "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/reference-scores/12533256/result/precipitation-scores.json",
+      "sha256": "7b417bcd8b16ae653106a051b5c96ed87d0985f93da653bece310f8762af42ae",
+      "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d",
+      "weatherbenchx_revision": "88af2fde7a78f13b77496a2abb8ca88905fa5e95",
+      "evaluator_sha256": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+      "shard_scorer_sha256": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+      "reward_scales_sha256": "f2d10c9567c0948a94d33ee88d6c925964c227b5949316ebecc71ad14e853cc9",
+      "reward_metrics": {
+        "reward": 0.7716216049121727,
+        "normalized_crps": 0.295972007048483,
+        "normalized_crps_by_variable": {
+          "total_precipitation_6hr": 0.295972007048483
+        },
+        "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+      },
+      "independent_cases": 32,
+      "per_case_metric_rows": 3840
+    }
+  }
+}

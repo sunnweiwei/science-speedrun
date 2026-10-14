@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "historical_run": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/delivery-acceptance-20260912/full",
+  "primary_reward_before": {
+    "reward": 0.6758047513497273,
+    "normalized_crps": 0.4797173266432134,
+    "normalized_crps_by_variable": {
+      "geopotential": 0.26985663526291404,
+      "temperature": 0.2779513335120769,
+      "specific_humidity": 0.3595429326452831,
+      "u_component_of_wind": 0.49765506804967163,
+      "v_component_of_wind": 0.6297834154341937,
+      "vertical_velocity": 0.5161891551432459,
+      "2m_temperature": 0.15145736346754635,
+      "mean_sea_level_pressure": 0.5154504916366577,
+      "10m_u_component_of_wind": 0.7609850540495827,
+      "10m_v_component_of_wind": 0.8183018172309621
+    },
+    "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+  },
+  "primary_reward_after": {
+    "reward": 0.6758047513497273,
+    "normalized_crps": 0.4797173266432134,
+    "normalized_crps_by_variable": {
+      "geopotential": 0.26985663526291404,
+      "temperature": 0.2779513335120769,
+      "specific_humidity": 0.3595429326452831,
+      "u_component_of_wind": 0.49765506804967163,
+      "v_component_of_wind": 0.6297834154341937,
+      "vertical_velocity": 0.5161891551432459,
+      "2m_temperature": 0.15145736346754635,
+      "mean_sea_level_pressure": 0.5154504916366577,
+      "10m_u_component_of_wind": 0.7609850540495827,
+      "10m_v_component_of_wind": 0.8183018172309621
+    },
+    "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+  },
+  "cleanup_cases": 8,
+  "cleanup_placeholder_stores": 448,
+  "cyclone_case_0_exact_json_match": true,
+  "cyclone_rescore_members": 56,
+  "cyclone_rescore_inputs": "Copied tracker files and prediction receipts; no input.nc or forecast arrays",
+  "forecast_size_samples": [
+    {
+      "case": 0,
+      "member": 0,
+      "bytes": 7636139483,
+      "extrapolated_case_gib": 398.25570867210627
+    },
+    {
+      "case": 3,
+      "member": 0,
+      "bytes": 7642636008,
+      "extrapolated_case_gib": 398.5945288538933
+    },
+    {
+      "case": 7,
+      "member": 0,
+      "bytes": 7575874031,
+      "extrapolated_case_gib": 395.11262042075396
+    }
+  ],
+  "default_storage_tib": 2,
+  "default_max_inflight_cases": 2,
+  "limitations": [
+    "Forecast deletion exercised on empty placeholder stores with real historical score reports and receipts.",
+    "Sizes sampled from three historical members, not a measured new full-run peak.",
+    "No fresh GPU evaluation; 48-hour runtime and peak storage remain to be measured.",
+    "Two case slots bound residency, not arbitrary submission output bytes."
+  ],
+  "unit_tests": {
+    "passed": 37,
+    "files": [
+      "wn2/test_unified_verifier.py",
+      "wn2/test_merge_scores.py",
+      "wn2/test_evaluate.py",
+      "wn2/test_score_case.py"
+    ],
+    "environment": "Temporary Python 3.12 CPU environment with local pinned WeatherBench-X source; not the verifier container",
+    "warnings": [
+      "NetCDF import emitted a NumPy binary-size RuntimeWarning; all tests and historical rescoring completed."
+    ]
+  },
+  "static_checks": [
+    "bash -n wn2/test.sh",
+    "git diff --check"
+  ]
+}

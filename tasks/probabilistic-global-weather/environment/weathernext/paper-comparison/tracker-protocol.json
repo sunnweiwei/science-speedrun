@@ -1,0 +1,45 @@
+{
+  "status": "implementation_in_progress",
+  "tracker_version": "TempestExtremes 2.1",
+  "source_doi": "10.5281/zenodo.4385656",
+  "cadence_hours": 12,
+  "truth_history_hours": 240,
+  "forecast_horizon_hours": 360,
+  "maximum_scored_lead_hours": 216,
+  "detection": {
+    "searchbymin": "msl",
+    "closedcontourcmd": "msl,200.0,5.5,0;thickness,-58.8,6.5,1.0",
+    "mergedist_degrees": 6.0,
+    "outputcmd": "msl,min,0;wind,max,2;zs,min,0"
+  },
+  "stitching": {
+    "in_fmt": "lon,lat,slp,wind,zs",
+    "range_degrees": 12.0,
+    "mintime": "54h",
+    "maxgap": "24h",
+    "threshold": "wind,>=,10.0,5;lat,<=,50.0,5;lat,>=,-50.0,5;zs,<=,150.0,5"
+  },
+  "fields": {
+    "msl": "mean sea level pressure, Pa",
+    "thickness": "geopotential_300 - geopotential_500, m2 s-2",
+    "wind": "sqrt(10u**2 + 10v**2), m s-1",
+    "zs": "geopotential_at_surface / 9.80665, m"
+  },
+  "position_verification": {
+    "truth": "IBTrACS named storms",
+    "initial_matching_radius_km": 100,
+    "minimum_member_fraction": 0.5,
+    "aggregation": "intersection of named-cyclone/lead pairs with tracks from both models"
+  },
+  "probabilistic_verification": {
+    "truth": "TempestExtremes tracks from HRES-fc0",
+    "grid_degrees": 1,
+    "metric": "potential REV from cell membership probabilities"
+  },
+  "references": [
+    "https://arxiv.org/html/2312.15796v2",
+    "https://arxiv.org/html/2506.10772v1",
+    "https://gmd.copernicus.org/articles/14/5023/2021/"
+  ],
+  "source_text_corrections": "The GenCast preprint prose says 200 hPa and Z500-Z300; the cited TE paper executable command specifies 200 Pa and Z300-Z500. This protocol follows that executable command and records the discrepancy explicitly."
+}

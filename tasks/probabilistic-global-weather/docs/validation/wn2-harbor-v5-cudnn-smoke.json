@@ -1,0 +1,46 @@
+{
+  "job": "12542520",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:04:07"
+  },
+  "metrics": {
+    "weather": {
+      "reward": 0.7345089531101255,
+      "normalized_crps": 0.3614537927219373,
+      "normalized_crps_by_variable": {
+        "geopotential": 0.09099500813145699,
+        "temperature": 0.1433206301191033,
+        "specific_humidity": 0.30553509851856614,
+        "u_component_of_wind": 0.27828158643918516,
+        "v_component_of_wind": 0.4756093203282502,
+        "vertical_velocity": 1.0825797332623692,
+        "2m_temperature": 0.2563686906649187,
+        "mean_sea_level_pressure": 0.1859997142603393,
+        "10m_u_component_of_wind": 0.3209018235818156,
+        "10m_v_component_of_wind": 0.47494632191336805
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    },
+    "precipitation": {
+      "reward": 0.622177517119703,
+      "normalized_crps": 0.6072583346138595,
+      "normalized_crps_by_variable": {
+        "total_precipitation_6hr": 0.6072583346138595
+      },
+      "definition": "1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better"
+    }
+  },
+  "verification": {
+    "status": "passed",
+    "case_index": 0,
+    "scope": "Independent inference and scoring for the requested protocol case; no aggregate acceptance claim"
+  },
+  "scope": "v5 verifier independent development case0/one lead, same cuDNN diagnostic package; no exact cross-run or full ten-day claim",
+  "reward_difference_from_v4_independent_run": {
+    "weather": -3.6705635531042446e-08,
+    "precipitation": -6.549788587051353e-07
+  },
+  "replay_followup_job": "12542582"
+}

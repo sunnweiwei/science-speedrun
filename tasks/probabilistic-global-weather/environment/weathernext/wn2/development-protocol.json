@@ -1,0 +1,135 @@
+{
+  "schema": "wn2-global-evaluation/v1",
+  "status": "development_smoke",
+  "truth_source": "HRES-fc0",
+  "training_end": "2020-12-31T23:59:59",
+  "development_year": 2021,
+  "evaluation_year": 2021,
+  "evaluation_initializations": [
+    "2021-01-05T00:00:00",
+    "2021-04-05T00:00:00",
+    "2021-07-05T00:00:00",
+    "2021-10-05T00:00:00"
+  ],
+  "lead_hours": [
+    6,
+    12,
+    18,
+    24,
+    30,
+    36,
+    42,
+    48,
+    54,
+    60,
+    66,
+    72,
+    78,
+    84,
+    90,
+    96,
+    102,
+    108,
+    114,
+    120,
+    126,
+    132,
+    138,
+    144,
+    150,
+    156,
+    162,
+    168,
+    174,
+    180,
+    186,
+    192,
+    198,
+    204,
+    210,
+    216,
+    222,
+    228,
+    234,
+    240
+  ],
+  "members": 8,
+  "grid": [
+    721,
+    1440
+  ],
+  "pressure_levels_hpa": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500,
+    600,
+    700,
+    850,
+    925,
+    1000
+  ],
+  "pool_cells": [
+    1,
+    4,
+    16
+  ],
+  "variables": {
+    "geopotential": {
+      "units": "m2 s-2",
+      "pressure_levels": true
+    },
+    "temperature": {
+      "units": "K",
+      "pressure_levels": true
+    },
+    "specific_humidity": {
+      "units": "kg kg-1",
+      "pressure_levels": true
+    },
+    "u_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": true
+    },
+    "v_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": true
+    },
+    "vertical_velocity": {
+      "units": "Pa s-1",
+      "pressure_levels": true
+    },
+    "2m_temperature": {
+      "units": "K",
+      "pressure_levels": false
+    },
+    "mean_sea_level_pressure": {
+      "units": "Pa",
+      "pressure_levels": false
+    },
+    "10m_u_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": false
+    },
+    "10m_v_component_of_wind": {
+      "units": "m s-1",
+      "pressure_levels": false
+    }
+  },
+  "excluded_outputs": {
+    "precipitation": "Separate accumulation truth must be defined and materialized",
+    "sea_surface_temperature": "Ocean mask and independent truth are not frozen",
+    "100m_winds": "Ancillary ERA5 truth would require a separately declared mixed-source panel",
+    "cyclone_outputs": "Native gridded training targets and independent storm tracking are not implemented"
+  },
+  "date_selection": "First deterministic case of each quarter, in 2021; four-date development smoke, separate from 2022 evaluation",
+  "pooling": "Non-overlapping area-weighted blocks of 1,4,16 native cells; partial polar block retained; task-owned diagnostic, not exact paper pooling",
+  "split_rationale": "Training through 2020; public development smoke in 2021; separate 2022 evaluation",
+  "minimum_valid_area_fraction": 0.9999,
+  "truth_missingness": "Preserve sparse source NaNs as a fixed truth-only mask, require at least 99.99% valid spherical area in every field/level/case/lead, and require all predictions finite. The same mask is applied to every model and before spatial pooling; no dates are selected using model errors.",
+  "split": "development"
+}

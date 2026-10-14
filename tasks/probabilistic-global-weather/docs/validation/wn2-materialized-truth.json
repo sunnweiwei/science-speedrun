@@ -1,0 +1,330 @@
+{
+  "evaluation-2022-masked-draft": {
+    "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/evaluation-2022-masked-draft",
+    "status_sha256": "ad2a9821921ace812c8acf742baf0594126954e35cce0ee56558230b83f8089b",
+    "status": "passed",
+    "scope": "Weather truth materialized; no model inputs, trained model or evaluation scores",
+    "truth_source": "HRES-fc0",
+    "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+    "case_manifests": [
+      {
+        "file": "cases/000.json",
+        "sha256": "ab4efa6fd5a7f8408bbb8b9d38e2e5240a7115e6fd0d8f2372a0fbc4d6ed1fdd"
+      },
+      {
+        "file": "cases/001.json",
+        "sha256": "5ee6f6059b023f924296966ec6d7239d292f29959fb4df4f3ab310ef53dd4735"
+      },
+      {
+        "file": "cases/002.json",
+        "sha256": "4f7b32dd2341a5c008028d148aed3433d96f01f5a22adef97468040cad1fa649"
+      },
+      {
+        "file": "cases/003.json",
+        "sha256": "083583bfbf4ad2b3461f5c41c05bf14e929a87a94eb9cc686ec201dfcb03077a"
+      },
+      {
+        "file": "cases/004.json",
+        "sha256": "48d8deacdc1d21a8c26aeb50774fbe3170a9b76eb6ef5e278fca943bb2b0cc91"
+      },
+      {
+        "file": "cases/005.json",
+        "sha256": "36bba5e621d4c5dc9a47375dbb8725259087a9e7749dabb423c5639fd5ccc428"
+      },
+      {
+        "file": "cases/006.json",
+        "sha256": "05fed0c320ba5bb3f879a8bb1b4da27bbeba3832349887c24266fa2549bddc75"
+      },
+      {
+        "file": "cases/007.json",
+        "sha256": "0235cd3f89e5d224100f95c7fd4050b6441600248909ad18f633a3503164e79d"
+      },
+      {
+        "file": "cases/008.json",
+        "sha256": "3a681bc402015d9afe6c233f937d532060f3af68602bae6f4f4640180e36fba9"
+      },
+      {
+        "file": "cases/009.json",
+        "sha256": "ed64dbfac2fcda6a08adc1ceef754a0a49e5f9ffe456a2544f6558e346af748b"
+      },
+      {
+        "file": "cases/010.json",
+        "sha256": "a728e55f10494bfaf6afa7f102bb86410bb722c1876849ffd26ebbfce53bbe57"
+      },
+      {
+        "file": "cases/011.json",
+        "sha256": "8a1f709ed78f5d35bd622b35183759cbd8c19d662fcc715d3c181fdc00222acc"
+      },
+      {
+        "file": "cases/012.json",
+        "sha256": "44171324b48d12fe28495ea1b550220d8c9887c32c92dc8cf5736149d88ec267"
+      },
+      {
+        "file": "cases/013.json",
+        "sha256": "c6fff0ab314e4d6a5b18c8101ccf5feadff18f68ad2cc41b5bc17242615b815f"
+      },
+      {
+        "file": "cases/014.json",
+        "sha256": "e40230a2234a225980a757e88354da576bf0ed07705054fcff239d2fbb7e1953"
+      },
+      {
+        "file": "cases/015.json",
+        "sha256": "e990fdb8596a56b0a2a38b7581c4507102179f3f908b0564f4200d342dc367e2"
+      },
+      {
+        "file": "cases/016.json",
+        "sha256": "5670f328708fcd0fba4e0529f8a5ed769f8b812d1c984b5f32711025ecff9576"
+      },
+      {
+        "file": "cases/017.json",
+        "sha256": "b41c7e58439a432900e169c3c55faa61aeb97280bc06dfcd3c089e29c88bf1c9"
+      },
+      {
+        "file": "cases/018.json",
+        "sha256": "50433761aba4a0832219401119f86e5c1286e32f4f6652c7b010b9105599f052"
+      },
+      {
+        "file": "cases/019.json",
+        "sha256": "11f2afaf299be5faa65cfa7673b102f13581f216717227b952f145bc2bdaf061"
+      },
+      {
+        "file": "cases/020.json",
+        "sha256": "7af63d46a359e8a1ca3ee70ea79f1606641b5c9059e1f4324d0a107a035f753b"
+      },
+      {
+        "file": "cases/021.json",
+        "sha256": "bdbe707596e5acadcee7675d16de823acc402f2381a5d1bdf448cd3d33842e27"
+      },
+      {
+        "file": "cases/022.json",
+        "sha256": "85f7b47344d3369e08f02fa591cd72188a92e006d7fc6736ccbe3e6461c0b0da"
+      },
+      {
+        "file": "cases/023.json",
+        "sha256": "71dc3a1d1d1339f7a91c75774924080282897304fa2d93fd3a96fcb6f1733fd9"
+      },
+      {
+        "file": "cases/024.json",
+        "sha256": "a72b969e6fba6e48a0fff61b746c21fb854ffa1372f77b732f5f948a7f8e342b"
+      },
+      {
+        "file": "cases/025.json",
+        "sha256": "1449809c52c05c0a88874dc263b18e6c08db196b74f21758f3c14677879f3ea1"
+      },
+      {
+        "file": "cases/026.json",
+        "sha256": "9eecc9762c5444bce55fd02eefa6c5c1b8b01c55221996fc504dab04ec4507d9"
+      },
+      {
+        "file": "cases/027.json",
+        "sha256": "131d0833f24e43f10b260467b3b029c321b2399e2ecf28136759a0bd8e184335"
+      },
+      {
+        "file": "cases/028.json",
+        "sha256": "d996db22100cb9f7b7f58bccf05c5bd47f44047aa30517ae5964ff12079bc5c1"
+      },
+      {
+        "file": "cases/029.json",
+        "sha256": "415f8cc8fc34be99d85cd001d62dff1bb3d8a213167f745daeecefd09471cd66"
+      },
+      {
+        "file": "cases/030.json",
+        "sha256": "407665d1df2d824fb1e5ebf61c0812b4c2ae1eef35ed23f11744e7d07d8ce76d"
+      },
+      {
+        "file": "cases/031.json",
+        "sha256": "63b0382ec895dd43513a6186aa1a6a9811b9f9a4194337aee72211eb352e2add"
+      }
+    ]
+  },
+  "precipitation-2022-draft": {
+    "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/precipitation-2022-draft",
+    "status_sha256": "f77bf6db91926e552a87fefef6824c2886972de7ffa20a126ca00d8ded8de853",
+    "status": "passed",
+    "scope": "Weather truth materialized; no model inputs, trained model or evaluation scores",
+    "truth_source": "ERA5-precipitation-6h",
+    "protocol_sha256": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d",
+    "case_manifests": [
+      {
+        "file": "cases/000.json",
+        "sha256": "59c86a514cb27de986b6cceec46e14aeda1cc035bd155d4ff4279f5085d92771"
+      },
+      {
+        "file": "cases/001.json",
+        "sha256": "4fb0cdd4f3822ea6f7666fd87a7dfabda133261648e698fd7182b5ced5923abc"
+      },
+      {
+        "file": "cases/002.json",
+        "sha256": "c0ee07ac5c250e52d0adad1577aabaf34c947146902d99d11946e32524fdf7de"
+      },
+      {
+        "file": "cases/003.json",
+        "sha256": "9b69a34368fbc5f5a00da8d0b551f4df844cd654908cd8c5c0b956e63c2960e2"
+      },
+      {
+        "file": "cases/004.json",
+        "sha256": "f0441af36ef8f04172178ecf388d8fcca17abc4388e961d21034c3a26e1ea3f8"
+      },
+      {
+        "file": "cases/005.json",
+        "sha256": "6d5a0fc38161d6a9e1017ecb4376c64dc3c5265811103883e736e8948cb66db9"
+      },
+      {
+        "file": "cases/006.json",
+        "sha256": "9e9b9e9654f7930b1e3a74340086c3aefe330546d1e1e03e391a392db566c6ba"
+      },
+      {
+        "file": "cases/007.json",
+        "sha256": "ac89065982ff4b4428bd55a89395eccc2173ec60c8474e921b7a2a19bf3d266f"
+      },
+      {
+        "file": "cases/008.json",
+        "sha256": "d835bf151372ce67672ea812655228225311ec3412aea4c7d3f2f4a8eaffb309"
+      },
+      {
+        "file": "cases/009.json",
+        "sha256": "bab0deef943873250be1d6ebcf0ff003741147c44337e877cda6e67db9a46288"
+      },
+      {
+        "file": "cases/010.json",
+        "sha256": "4d699d17c3183c3bdde77329d5dae645d3d2e1db55f6cb2a28f47d5d3bd480e5"
+      },
+      {
+        "file": "cases/011.json",
+        "sha256": "60baebbda4f04eb184b247ac0bc27eaa587b598a12045812dde67386ea549546"
+      },
+      {
+        "file": "cases/012.json",
+        "sha256": "7da6b13997aa00c8511906163c68d05ff941951a3ec438b1b3e41a482085ef80"
+      },
+      {
+        "file": "cases/013.json",
+        "sha256": "bc1422d2dc505d9c4ac48e5d7fcf32e6876b36d8ae36d3a55248b8360bf78140"
+      },
+      {
+        "file": "cases/014.json",
+        "sha256": "42faa2ad76104ea5d97253a690a7283bfe3d2a20be6de3eb29c995da2847a6f5"
+      },
+      {
+        "file": "cases/015.json",
+        "sha256": "c62db11328bd0903bd9188b00337fb0b28bf2774a6bd42e8cd967f649ab92ad3"
+      },
+      {
+        "file": "cases/016.json",
+        "sha256": "9b8a928795b68bf3eec9e72b901af987646433a01f844e5c8d882c82f44e5c09"
+      },
+      {
+        "file": "cases/017.json",
+        "sha256": "dc896bd6bebd20f7f18fe9579d879a3d9efb0a38ef8b5eb503060d238b3b9d3e"
+      },
+      {
+        "file": "cases/018.json",
+        "sha256": "4af8f63f27c0b458f9215e5ac02e1961667c0c8e0608d881aed554181b3c2e72"
+      },
+      {
+        "file": "cases/019.json",
+        "sha256": "3b6221017da8d730c450dc0285bc1510a79dd622788ec08d06b26a5b53dc8bad"
+      },
+      {
+        "file": "cases/020.json",
+        "sha256": "fff9f70040d1b6f758cbc79646e190a53a7eb2a48c198d3e69674d67defe48cb"
+      },
+      {
+        "file": "cases/021.json",
+        "sha256": "7e6f02b0559c1c34a718e56f97887629709d66d47f101e28f7e8545ecb0cd311"
+      },
+      {
+        "file": "cases/022.json",
+        "sha256": "45dcd92c7dc2fecc55ada89b97f32496bf7402eb48a2c712e98283816b4f30dc"
+      },
+      {
+        "file": "cases/023.json",
+        "sha256": "29c114e2f576d984b48a66e24f6a484efcc365d723333614d4c44b0adf860e94"
+      },
+      {
+        "file": "cases/024.json",
+        "sha256": "8e2b80447f1bf662f1e89ea67afab35504a262d3abaf644de519c3b556277bba"
+      },
+      {
+        "file": "cases/025.json",
+        "sha256": "c2e984049c74dbae418a28d0e6d6b0598e8f56fef223f4c074344ecca9973521"
+      },
+      {
+        "file": "cases/026.json",
+        "sha256": "c977c190a45278ed5488c79e9a7ae53e488391d3e5207b97327379cd55c388c9"
+      },
+      {
+        "file": "cases/027.json",
+        "sha256": "e7aa759228f7e90f9354b0b24914590d18b13c9b3e24855821a5c90d2c73b50c"
+      },
+      {
+        "file": "cases/028.json",
+        "sha256": "2fbc2d4f8ad538f86d20cfd2474781e02c73231f723d81a9e9633a82267d0bd5"
+      },
+      {
+        "file": "cases/029.json",
+        "sha256": "e1102e242dbd1aa7353cd50e439ef35c78a5590a4680253ee34ec8d3419c4c8d"
+      },
+      {
+        "file": "cases/030.json",
+        "sha256": "42b222d338c3e293f1bb02793ce7f5b57952b409fad24a60cd961116ae40e6d4"
+      },
+      {
+        "file": "cases/031.json",
+        "sha256": "3106275db1b4b2ee06ddfb24ec9a40df68410571aed696f6af5f16d4381ccd3c"
+      }
+    ]
+  },
+  "development-weather-2021": {
+    "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/development-weather-2021",
+    "status_sha256": "8defb309acae5cdd39829da6db7f55c808adddb71065cef9a1e864611e05ac44",
+    "status": "passed",
+    "scope": "Weather truth materialized; no model inputs, trained model or evaluation scores",
+    "truth_source": "HRES-fc0",
+    "protocol_sha256": "f0279cd79c09e989dc04e2d7f21ff5b2feee3fec0f5711a5457dfd7cd433074e",
+    "case_manifests": [
+      {
+        "file": "cases/000.json",
+        "sha256": "be744fe94c5e0c24ea8f49c8991ae16a80efaee10faf239adf7d1e322d5771b8"
+      },
+      {
+        "file": "cases/001.json",
+        "sha256": "c3eda427e4d399fdc20df94941d4af03c67fe6a061e29e0b9b862552523a635c"
+      },
+      {
+        "file": "cases/002.json",
+        "sha256": "0ed3f11293869cbbc7f689113f274baf1e6a970a8ca30b53dbe31bf12bc16589"
+      },
+      {
+        "file": "cases/003.json",
+        "sha256": "c4b1c79d925def73a68e96da4bd8382e44729f09378f11a1f806d2d7123ba84d"
+      }
+    ]
+  },
+  "development-precipitation-2021": {
+    "path": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/development-precipitation-2021",
+    "status_sha256": "31f9d447abc33a583bf25b006bcb5c5104da226dbbe2f52fca1f0375b9331b32",
+    "status": "passed",
+    "scope": "Weather truth materialized; no model inputs, trained model or evaluation scores",
+    "truth_source": "ERA5-precipitation-6h",
+    "protocol_sha256": "0a4f52235933cedcec10a24b5a8b315c4abd1bcbd9e84c8d622dc8d80e0b8b90",
+    "case_manifests": [
+      {
+        "file": "cases/000.json",
+        "sha256": "72d256999a80876e3a159d22f05645dde5b0da69046931183c4886ca1e149c93"
+      },
+      {
+        "file": "cases/001.json",
+        "sha256": "af1f1026c8559d3a52cf419e4249ed1c24b7ad6b37e44465b350899c8d383332"
+      },
+      {
+        "file": "cases/002.json",
+        "sha256": "dc82dbd98b5241a2fde5151e91d1d3490699aa64370ce9bd5dfb4453f142fbe1"
+      },
+      {
+        "file": "cases/003.json",
+        "sha256": "daf0754f97f9baccb4fee7a8340c40049641620e4e2df0b736b0508cab488793"
+      }
+    ]
+  }
+}

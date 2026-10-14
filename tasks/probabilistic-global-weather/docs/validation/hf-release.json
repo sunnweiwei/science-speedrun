@@ -1,0 +1,65 @@
+{
+  "repo_id": "sanxing/ai4sci-probabilistic-global-weather",
+  "revision": "04f7b6a45b56a28a917d861290a285472c01694c",
+  "manifest_sha256": "4b45f9d7fb2fa06e8b5543e88cab1c9c0d7cf3f8187eb30dabf686488c46ff69",
+  "shards": 47,
+  "total_bytes": 220378863635,
+  "total_files": 35273,
+  "public": true,
+  "remote_shard_hashes_verified": true,
+  "bootstrap_revision": "aa7d93c77323e04c9bd5bf2c508c9bbc8b9e0b5f",
+  "source_receipts": "full offline rehash passed",
+  "anonymous_download_samples": [
+    {
+      "path": "shards/development/IBTrACS.since1980.v04r01.nc-000.tar",
+      "sha256": "8df6a148916e612cf76f581e59261137fa8086dca4d9191df6a919a70a575017",
+      "archive_bytes": 10803200,
+      "extracted_files": 1
+    },
+    {
+      "path": "shards/development/training-2017-2020--statistics-000.tar",
+      "sha256": "b2ee7364904366814adadef8e357d59dde868fc38c0e940426522acd0676d94a",
+      "archive_bytes": 4956160,
+      "extracted_files": 49
+    },
+    {
+      "path": "shards/development/training-2017-2020--case-000-000.tar",
+      "sha256": "5cde182178ff58d91815981682867911a6aadb2b9d4a89841a03c6bd3e6396b1",
+      "archive_bytes": 4024729600,
+      "extracted_files": 52
+    },
+    {
+      "path": "shards/development/development-inputs-2021-000.tar",
+      "sha256": "368090e5f468aca1192c9c5b9ec234c3b3ced70537692afbabe5792a6b09906b",
+      "archive_bytes": 1225072640,
+      "extracted_files": 8
+    },
+    {
+      "path": "shards/development/development-weather-2021-000.tar",
+      "sha256": "884989992cb7db2dede42cea04be0bf9316d1a869d68c72a9f80818d8d7d777e",
+      "archive_bytes": 8592066560,
+      "extracted_files": 4160
+    },
+    {
+      "path": "shards/development/development-precipitation-2021-000.tar",
+      "sha256": "d80e100b5f5edfbba289a7e958db64e6b1311adc6b56e78097333ebd5bbfd8e5",
+      "archive_bytes": 388474880,
+      "extracted_files": 189
+    },
+    {
+      "path": "shards/evaluation/evaluation-resources-000.tar",
+      "sha256": "5a7111d69dfe4601af7a0bd3c40f9073939e3c88b2a42700a609703a15cb2617",
+      "archive_bytes": 8590950400,
+      "extracted_files": 2310
+    }
+  ],
+  "sample_source_validators": "passed",
+  "download_metadata_hashes": "passed",
+  "fresh_full_release_download": false,
+  "unit_tests": {
+    "download_and_archive": 7,
+    "upstream_preparation": 10,
+    "starter": 3
+  },
+  "huggingface_hub_version": "1.32.0"
+}

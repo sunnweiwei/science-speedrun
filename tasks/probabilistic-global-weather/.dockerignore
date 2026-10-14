@@ -1,0 +1,16 @@
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+.git
+environment/weathernext/slurm/runs
+environment/weathernext/slurm/logs
+docs
+*.out
+*.log
+*.sif
+*.zarr
+*.npz
+data-release
+smoke-release
+smoke-submission
+smoke-output

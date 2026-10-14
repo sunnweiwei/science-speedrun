@@ -1,0 +1,16 @@
+{
+  "status": "failed_gpu_fp32_oracle_not_promoted",
+  "job": "12536891",
+  "slurm_state": "FAILED",
+  "exit_code": "1:0",
+  "absolute_tolerance": 2e-05,
+  "relative_tolerance": 2e-05,
+  "reported_max_abs": 0.0004034,
+  "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/query-oracles/12536891/oracle.log",
+  "log_sha256": "038d4d13287c74e1ab42bd8dd30d2c0949011c56b876fdef5791028a709ebcb5",
+  "snapshot_sources": {
+    "wn2_query_chunks.py": "a68ccc66e723caec3e92b28db97c4f6f2904baf51d830069593f58510907f9dc",
+    "check_wn2_query_chunks.py": "f9de590d7d5f44843d33cdd6c80fba3082ef19f0c73f3869de960e6a3adfdfd9"
+  },
+  "scope": "Small synthetic attention GPU oracle; snapshot preceded correction to native six-dimensional mask layout. No production promotion or tolerance relaxation."
+}

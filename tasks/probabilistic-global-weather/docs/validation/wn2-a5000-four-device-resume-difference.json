@@ -1,0 +1,116 @@
+{
+  "status": "failed",
+  "scope": "Original four-A5000 initial versus recovery resumed full state; third cached process still running",
+  "metadata_exact_except_elapsed": true,
+  "changed_leaves": 1446,
+  "changed_elements": 540264363,
+  "largest": [
+    {
+      "leaf": "leaf_0164",
+      "changed": 768,
+      "max_abs": 0.0013662625569850206
+    },
+    {
+      "leaf": "leaf_0002",
+      "changed": 589717,
+      "max_abs": 0.0013621952384710312
+    },
+    {
+      "leaf": "leaf_0163",
+      "changed": 1178827,
+      "max_abs": 0.0013427995145320892
+    },
+    {
+      "leaf": "leaf_0165",
+      "changed": 589125,
+      "max_abs": 0.001342032104730606
+    },
+    {
+      "leaf": "leaf_0126",
+      "changed": 768,
+      "max_abs": 0.0013219995889812708
+    },
+    {
+      "leaf": "leaf_0155",
+      "changed": 589628,
+      "max_abs": 0.0013194289058446884
+    },
+    {
+      "leaf": "leaf_0151",
+      "changed": 588322,
+      "max_abs": 0.0013153702020645142
+    },
+    {
+      "leaf": "leaf_0120",
+      "changed": 768,
+      "max_abs": 0.001314007444307208
+    },
+    {
+      "leaf": "leaf_0125",
+      "changed": 589584,
+      "max_abs": 0.0012971358373761177
+    },
+    {
+      "leaf": "leaf_0121",
+      "changed": 588604,
+      "max_abs": 0.001292577013373375
+    },
+    {
+      "leaf": "leaf_0066",
+      "changed": 768,
+      "max_abs": 0.0012835299130529165
+    },
+    {
+      "leaf": "leaf_0119",
+      "changed": 1179503,
+      "max_abs": 0.001251712441444397
+    },
+    {
+      "leaf": "leaf_0067",
+      "changed": 587451,
+      "max_abs": 0.0012481249868869781
+    },
+    {
+      "leaf": "leaf_0154",
+      "changed": 588877,
+      "max_abs": 0.0012427866458892822
+    },
+    {
+      "leaf": "leaf_0127",
+      "changed": 588496,
+      "max_abs": 0.0012265555560588837
+    },
+    {
+      "leaf": "leaf_0001",
+      "changed": 768,
+      "max_abs": 0.0012078674044460058
+    },
+    {
+      "leaf": "leaf_0058",
+      "changed": 767,
+      "max_abs": 0.0011897579533979297
+    },
+    {
+      "leaf": "leaf_0150",
+      "changed": 768,
+      "max_abs": 0.0011627600761130452
+    },
+    {
+      "leaf": "leaf_0055",
+      "changed": 766,
+      "max_abs": 0.0011592702940106392
+    },
+    {
+      "leaf": "leaf_0053",
+      "changed": 768,
+      "max_abs": 0.0011458471417427063
+    }
+  ],
+  "initial_job": "12540690",
+  "recovery_job": "12541220",
+  "same_runtime_metadata": true,
+  "same_source_hashes": true,
+  "initial_gpu_memory_mib": 24564,
+  "recovery_gpu_memory_mib": 23028,
+  "scope_note": "Pre-cuDNN packed-mask snapshot on different A5000 allocations. Loss differs before current update pmean; could reflect local computation or previously divergent replicas. Root cause unproven; do not generalize to canonical PRO6000 path."
+}

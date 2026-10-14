@@ -1,0 +1,177 @@
+{
+  "recorded_utc": "2026-09-08T07:29:05.862939+00:00",
+  "status": "small_two_gpu_regression_passed",
+  "job": "12543869",
+  "slurm_state": "COMPLETED",
+  "elapsed_seconds": 11,
+  "result": {
+    "status": "passed",
+    "devices": 2,
+    "equal_replicas_saved": true,
+    "host_argument_distribution_exact": true,
+    "pmean_exact": true,
+    "parameter_and_optimizer_bit_differences_rejected": true
+  },
+  "transfer_audit": {
+    "devices": [
+      "cuda:0",
+      "cuda:1"
+    ],
+    "full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "shards": [
+      {
+        "device": "cuda:0",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "bits": "0000000000000000"
+      }
+    ],
+    "independent_full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "independent_shards": [
+      {
+        "device": "cuda:0",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      }
+    ]
+  },
+  "previous_failed_transfer_audit": {
+    "devices": [
+      "cuda:0",
+      "cuda:1"
+    ],
+    "full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "shards": [
+      {
+        "device": "cuda:0",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          2
+        ],
+        "values": [
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "bits": "0000000000000000"
+      }
+    ],
+    "independent_full": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "independent_shards": [
+      {
+        "device": "cuda:0",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      },
+      {
+        "device": "cuda:1",
+        "values": [
+          [
+            1.0,
+            0.0
+          ]
+        ],
+        "bits": "0000803f00000000"
+      }
+    ]
+  },
+  "scope": "Observed peer replication corruption avoided with independent host buffers. Small transfer and pmean only; full model four-device correctness and performance still pending. Upstream/driver root cause not established.",
+  "source_sha256": {
+    "slurm/wn2_distributed.py": "86a2aa2e9c14de5a24531162bbc84744f6453f6e981906b26eb510f30d253562",
+    "slurm/check_wn2_checkpoint_replicas.py": "326e30c5340abf82b87df9115634a63271119283b5405852828e009b864e8cbc",
+    "wn2/train_stage.py": "66495ea57f87b69d45e5790c5ac69203de43fd80d87ee140f3d0e6ba19112d62"
+  }
+}

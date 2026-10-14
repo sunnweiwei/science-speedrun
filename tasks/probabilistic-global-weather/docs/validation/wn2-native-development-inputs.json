@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+  "protocol_sha256": "f0279cd79c09e989dc04e2d7f21ff5b2feee3fec0f5711a5457dfd7cd433074e",
+  "cases": [
+    {
+      "case_index": 0,
+      "initialization": "2021-01-05T00:00:00",
+      "file": "inputs-000.nc",
+      "sha256": "c99a5cd621ce4fee3da12584e09b70dab138b1e249c2049b98281d27b07e3f8f",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 1,
+      "initialization": "2021-04-05T00:00:00",
+      "file": "inputs-001.nc",
+      "sha256": "abff032940d5d958515731b7dfa275e50be9b556b71ee42f79ef042b10deba6c",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 2,
+      "initialization": "2021-07-05T00:00:00",
+      "file": "inputs-002.nc",
+      "sha256": "c3d1be233cdf28cfb96de830124787f03ec2cdc34b791c4f30775f9031f40005",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 3,
+      "initialization": "2021-10-05T00:00:00",
+      "file": "inputs-003.nc",
+      "sha256": "45f4af69ac6ac9f8df3f9fe763b0d263767c0c43b6e166576ed526115cb5baca",
+      "isolated_input_repairs": {}
+    }
+  ],
+  "native_input_variables": [
+    "temperature",
+    "geopotential",
+    "u_component_of_wind",
+    "v_component_of_wind",
+    "vertical_velocity",
+    "specific_humidity",
+    "2m_temperature",
+    "mean_sea_level_pressure",
+    "10m_v_component_of_wind",
+    "10m_u_component_of_wind",
+    "sea_surface_temperature",
+    "100m_u_component_of_wind",
+    "100m_v_component_of_wind",
+    "geopotential_at_surface",
+    "land_sea_mask",
+    "year_progress_sin",
+    "year_progress_cos",
+    "day_progress_sin",
+    "day_progress_cos"
+  ],
+  "scope": "Native context schema, time coverage and hashes; not model forecast replay"
+}

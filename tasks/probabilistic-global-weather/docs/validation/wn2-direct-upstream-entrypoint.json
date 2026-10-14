@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checked_unix": 1788988828.140418,
+  "checks": {
+    "unit_tests": 10,
+    "starter_boundary_tests": 2,
+    "shell_syntax": "passed",
+    "apptainer_recipe_render": "passed",
+    "model_cpu_runtime_preflight": "passed",
+    "evaluation_cpu_runtime_preflight": "passed",
+    "truth_store_layouts": 4,
+    "fresh_upstream_context_and_resume": "wn2-direct-upstream-smoke.json",
+    "weather_upstream_metadata_matches_frozen_lock": true,
+    "full_local_rehash": "wn2-direct-upstream-full-verify.json",
+    "verified_case_jobs": 236,
+    "full_local_rehash_seconds": 469.08458495140076
+  },
+  "ibtracs": {
+    "required_sha256": "5584637db168ddd65e115114888ae2bea9587d0439954c2bde776703525005b5",
+    "observed_rolling_url_sha256": "63a883ae5a47bc0a615df6b3bb71a38b89178993443d3c37ff58c721945b72b1",
+    "immutable_public_mirror": "not_published",
+    "behavior": "reject changed bytes; allow matching local snapshot or mirror URL"
+  },
+  "full_rehash_status": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/.materialize/all-status.json",
+  "limitations": [
+    "No full fresh 403 GiB clean-room preparation performed",
+    "Docker runtime command documented but not executed",
+    "Weather metadata pins are not immutable remote chunk version IDs"
+  ]
+}

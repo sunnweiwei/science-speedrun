@@ -1,0 +1,238 @@
+{
+  "status": "fp32_oracle_passed_bf16_measured",
+  "backend": "cpu",
+  "devices": [
+    "cpu"
+  ],
+  "cases": [
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 1,
+      "width": 8,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 2.086162567138672e-07,
+        "relative_l2": 5.284593341112667e-08
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 1.9073486328125e-06,
+          "relative_l2": 1.7269134156287442e-08
+        },
+        {
+          "max_abs": 9.5367431640625e-07,
+          "relative_l2": 2.7107591123263876e-08
+        },
+        {
+          "max_abs": 4.76837158203125e-07,
+          "relative_l2": 1.2223641113547749e-07
+        },
+        {
+          "max_abs": 2.384185791015625e-07,
+          "relative_l2": 8.582435175629962e-08
+        },
+        {
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 8.984418385696119e-08
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 3.5762786865234375e-07,
+        "relative_l2": 1.1842439881237496e-07
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 2,
+      "width": 9,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 2.980232238769531e-07,
+        "relative_l2": 1.16170903436497e-07
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 7.62939453125e-06,
+          "relative_l2": 3.399092666797808e-08
+        },
+        {
+          "max_abs": 1.9073486328125e-06,
+          "relative_l2": 1.0186921138214817e-07
+        },
+        {
+          "max_abs": 1.430511474609375e-06,
+          "relative_l2": 1.6369690890662836e-07
+        },
+        {
+          "max_abs": 1.3113021850585938e-06,
+          "relative_l2": 1.561229275453464e-07
+        },
+        {
+          "max_abs": 3.814697265625e-06,
+          "relative_l2": 1.006027371951449e-07
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 5.960464477539062e-07,
+        "relative_l2": 1.293554627045851e-07
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.float32'>",
+      "batch": 1,
+      "width": 33,
+      "query_chunk": 8,
+      "forward": {
+        "max_abs": 1.7881393432617188e-07,
+        "relative_l2": 1.232868936647748e-07
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 7.573131513316729e-08
+        },
+        {
+          "max_abs": 2.86102294921875e-06,
+          "relative_l2": 1.161559827723931e-07
+        },
+        {
+          "max_abs": 1.430511474609375e-06,
+          "relative_l2": 1.3545960128819232e-07
+        },
+        {
+          "max_abs": 9.5367431640625e-06,
+          "relative_l2": 1.507816322276236e-07
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 7.152557373046875e-07,
+        "relative_l2": 1.3301001931293104e-07
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 1,
+      "width": 8,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.017578125,
+          "relative_l2": 0.004021389911370783
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.125,
+          "relative_l2": 0.0040988040291635415
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.015625,
+        "relative_l2": 0.005088489073477794
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 2,
+      "width": 9,
+      "query_chunk": 4,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.005209634254115679
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.130859375,
+          "relative_l2": 0.0035744844411942493
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.015625,
+        "relative_l2": 0.0053530734761170935
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    },
+    {
+      "dtype": "<class 'jax.numpy.bfloat16'>",
+      "batch": 1,
+      "width": 33,
+      "query_chunk": 8,
+      "forward": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.004132648617217701
+        },
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.25,
+          "relative_l2": 0.004675186804334305
+        }
+      ],
+      "input_gradient": {
+        "max_abs": 0.03125,
+        "relative_l2": 0.005619194827563877
+      },
+      "repeat_exact": true,
+      "parameters_initialized_exactly": true
+    }
+  ],
+  "scope": "Synthetic native attention only; BF16 measurements do not establish full-model equivalence, replay or production acceptance"
+}

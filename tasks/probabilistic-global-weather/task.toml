@@ -1,0 +1,45 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/probabilistic-global-weather"
+version = "0.2.0"
+description = "Train native WeatherNext 2 from scratch with a 580-update curriculum and deliver a 56-member, 15-day global ensemble scored by independent empirical CRPS."
+authors = [{ name = "Sanxing Chen" }]
+keywords = ["model-development", "weather", "probabilistic-forecasting", "offline"]
+
+[metadata]
+author_name = "sc829"
+data_status = "Public prepared HF dataset with pinned revision and SHA-256 verification; upstream materializer retained for maintainer rebuilds"
+delivery_status = "580-update main recipe with complete eight-date comparisons against original Seed 0, GenCast and simple references"
+weather_contract = "wn2-inference/v2"
+validated_runtime = "13 starter/preparation tests and 76 current-source tests in the existing image passed; staged 580 schedule verified in that image; rebuilt 580 image unverified; v2 one-member 15-day isolated inference passed; full independent acceptance passed; Compose config validated; unverified Docker execution is an accepted best-effort delivery limitation"
+weathernext_revision = "89c4b2a77a1c57b328b909c575550fd2e5aadc9c"
+weatherbenchx_revision = "88af2fde7a78f13b77496a2abb8ca88905fa5e95"
+training_initialization = "random, all 183785575 native parameters"
+
+[agent]
+timeout_sec = 88200.0
+
+[environment]
+network_mode = "no-network"
+cpus = 32
+memory_mb = 393216
+storage_mb = 2097152
+gpus = 4
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 43200.0
+
+[verifier.environment]
+network_mode = "no-network"
+# Eight GPUs and 2 TB run all eight cases at once (the planner runs as many cases as GPUs and disk allow;
+# 1 TB fits four). One wave instead of two: about 2.5 h instead of 5.1 h on H100s. CPUs and memory scale
+# with the concurrent cases (scoring and cyclone tracking share one CPU pool).
+cpus = 64
+memory_mb = 786432
+storage_mb = 1907349
+gpus = 8
+build_timeout_sec = 7200.0

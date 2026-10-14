@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "changed_bytes": {
+    "100m_u_component_of_wind": 0,
+    "100m_v_component_of_wind": 0,
+    "10m_u_component_of_wind": 0,
+    "10m_v_component_of_wind": 0,
+    "2m_temperature": 0,
+    "cyclone_all_wind_disc": 0,
+    "cyclone_exists_gaussian_unit_mode": 0,
+    "cyclone_usa_pres_disc": 0,
+    "cyclone_usa_r34_ne_radius_disc": 0,
+    "cyclone_usa_r34_nw_radius_disc": 0,
+    "cyclone_usa_r34_se_radius_disc": 0,
+    "cyclone_usa_r34_sw_radius_disc": 0,
+    "cyclone_usa_r50_ne_radius_disc": 0,
+    "cyclone_usa_r50_nw_radius_disc": 0,
+    "cyclone_usa_r50_se_radius_disc": 0,
+    "cyclone_usa_r50_sw_radius_disc": 0,
+    "cyclone_usa_r64_ne_radius_disc": 0,
+    "cyclone_usa_r64_nw_radius_disc": 0,
+    "cyclone_usa_r64_se_radius_disc": 0,
+    "cyclone_usa_r64_sw_radius_disc": 0,
+    "cyclone_usa_rmw_disc": 0,
+    "cyclone_usa_wind_disc": 0,
+    "geopotential": 0,
+    "mean_sea_level_pressure": 0,
+    "sea_surface_temperature": 0,
+    "specific_humidity": 0,
+    "temperature": 0,
+    "total_precipitation_6hr": 0,
+    "u_component_of_wind": 0,
+    "v_component_of_wind": 0,
+    "vertical_velocity": 0
+  },
+  "scope": "First native six-hour forward, original geometry vs cached geometry on same PRO host; same final seed0 weights, context and strict GPU autotune. Not full rollout or cross-host replay.",
+  "prototype_sha256": "ce75c773fd9b50bf2b6da99ba8b9817175e98cc344b5c31b7e98d96695599502",
+  "geometry_index_sha256": "7cfe3ce8ec767360feda5963d25a51aab82877254bae0627e1741bf1a5109413",
+  "output_sha256": {
+    "capture": "91e68a3551b02638cc43fcd353c77b8dda31c763722a19e1e2ca3a85a63c9418",
+    "load": "91e68a3551b02638cc43fcd353c77b8dda31c763722a19e1e2ca3a85a63c9418"
+  },
+  "operator_directory": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/graph-diagnostic-20260910",
+  "checked_utc": "2026-09-10T12:15:11.798140+00:00",
+  "cross_cpu_trace_v2": {
+    "status": "passed",
+    "scope": "CPU-only complete JAXPR trace using frozen geometry and native receiver tie ordering captured on PRO host. Not a cross-host GPU numerical comparison or full rollout.",
+    "evidence_sha256": {
+      "static_geometry.py": "c5956b6244669d1978fbefeaaa4e8d0c48ee4f872ec15c6b653ca3ae98c00544",
+      "captured-geometry-v2/index.json": "2d9dce55a185e3bfed75ae6e65bd5673fa9c297eee07376f82c4bb3501decba5",
+      "cpu-load-geometry-v2-trace.log": "9bc6066f1ef4ed0eceb1ca4b859f4ccdefa3c7626ad2083fc488311daf330f49",
+      "receiver-order-capture.log": "7e46cb803692cc1f71d6905750506eca65ccc93e32bc921e3c4df2e65655b5ad",
+      "namespace_geometry_v2_cpu_trace.py": "c7f342cb6ac4ce397d8141cc27e6f2d88da6706f2b927c527af0c309ceb60f7c",
+      "load_geometry_v2_trace.py": "fb2573a417c4210afcdfd47f7a49442b8f7a9fe00aec34bd5259f90262a41a6b",
+      "capture_receiver_order.py": "16d76eaa4af8c9f7acda46fd5dd828dc0356e96fc619820df9e7f7419c13d258"
+    },
+    "limitation": "Prototype remains outside shipped starter. Original uninstrumented inference failure is not yet resolved."
+  },
+  "full_entry_validation": {
+    "status": "submitted",
+    "job_id": 12568334,
+    "directory": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/graph-diagnostic-20260910/full-entry-v2",
+    "members": 8,
+    "leads": 40,
+    "case": 20,
+    "scope": "Experimental copied package, unchanged weights, native infer.sh and strict PRO autotune cache; geometry installer added after integrity verification. Not accepted until execution and subsequent reproducibility checks pass.",
+    "sha256": {
+      "run.py": "ff3366dff51b6271d5c225e22bd6b9f797153800c110df94fb8b056daec0b154",
+      "run.sbatch": "4036c61634a57f0c0ad7fb9e6fa466d85c711d211128c877b4d1864bc2f7191a",
+      "namespace_inference.py": "b25fdf47fe5e8d702b7c7b96ab8890da61f3027ca853eee5fcfa6b58b47024d1",
+      "package/package.json": "8a6f52413dc28eaa2a34bf48026263ff70fc69eba18ba4c3617c48bfbc6ab0b3",
+      "package/predict.py": "558e34e21914e843a9214f86f8f34b0b63799a176362a72d3c01154976ab9e2f",
+      "package/static_geometry.py": "c5956b6244669d1978fbefeaaa4e8d0c48ee4f872ec15c6b653ca3ae98c00544"
+    }
+  }
+}

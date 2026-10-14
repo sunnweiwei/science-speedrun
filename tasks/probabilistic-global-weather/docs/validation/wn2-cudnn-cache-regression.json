@@ -1,0 +1,261 @@
+{
+  "job": "12540759",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:02:20"
+  },
+  "regression": {
+    "status": "passed",
+    "unfixed_raw_hash_map_reproduced": true,
+    "fixed_two_layer_gpu_cases": 3,
+    "determinism_required": true,
+    "scope": "Repeated-layer cuDNN compiler regression, not full-model equivalence"
+  },
+  "unfixed": {
+    "status": "failed",
+    "layers": 2,
+    "deterministic_cache_fix": false,
+    "scope": "BF16 synthetic diagnostic only; no equivalence or production acceptance",
+    "cases": [],
+    "error": "IndexError('absl::container_internal::raw_hash_map<>::at')"
+  },
+  "fixed": {
+    "status": "measured_not_accepted",
+    "layers": 2,
+    "deterministic_cache_fix": true,
+    "scope": "BF16 synthetic diagnostic only; no equivalence or production acceptance",
+    "cases": [
+      {
+        "batch": 1,
+        "blocks": 3,
+        "width": 8,
+        "dim": 24,
+        "heads": 3,
+        "pmap_remat": true,
+        "scan_ensemble": true,
+        "forward": {
+          "max_abs": 2.288818359375e-05,
+          "relative_l2": 0.005234705942706374
+        },
+        "input_gradient": {
+          "max_abs": 0.0001220703125,
+          "relative_l2": 0.0016306122514425279
+        },
+        "parameter_gradient_errors": [
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.0007150769233703613,
+            "relative_l2": 0.0008169348803103839
+          },
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.0006561279296875,
+            "relative_l2": 0.0018801643361274678
+          },
+          {
+            "max_abs": 3.0517578125e-05,
+            "relative_l2": 0.003239240579511917
+          },
+          {
+            "max_abs": 2.9802322387695312e-08,
+            "relative_l2": 0.003849909531245405
+          },
+          {
+            "max_abs": 3.0517578125e-05,
+            "relative_l2": 0.003066579948103004
+          },
+          {
+            "max_abs": 1.4901161193847656e-08,
+            "relative_l2": 0.002938024576728849
+          },
+          {
+            "max_abs": 0.001953125,
+            "relative_l2": 0.001125314183344733
+          },
+          {
+            "max_abs": 0.001953125,
+            "relative_l2": 0.0015641945207549473
+          }
+        ],
+        "repeat_exact": true,
+        "native_seconds": 0.0018302973825484515,
+        "cudnn_seconds": 0.0018622114323079586,
+        "native_compiler_memory": {
+          "argument_size_in_bytes": 19776,
+          "output_size_in_bytes": 22188,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 96704
+        },
+        "cudnn_compiler_memory": {
+          "argument_size_in_bytes": 19776,
+          "output_size_in_bytes": 22188,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 135360
+        }
+      },
+      {
+        "batch": 2,
+        "blocks": 3,
+        "width": 9,
+        "dim": 24,
+        "heads": 3,
+        "pmap_remat": true,
+        "scan_ensemble": true,
+        "forward": {
+          "max_abs": 1.52587890625e-05,
+          "relative_l2": 0.004058736723904282
+        },
+        "input_gradient": {
+          "max_abs": 0.0001220703125,
+          "relative_l2": 0.0017081076446703088
+        },
+        "parameter_gradient_errors": [
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.0007079243659973145,
+            "relative_l2": 0.0007746186290314071
+          },
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.0003299117088317871,
+            "relative_l2": 0.0010536946853517378
+          },
+          {
+            "max_abs": 0.0001220703125,
+            "relative_l2": 0.0029501711879270543
+          },
+          {
+            "max_abs": 1.4901161193847656e-08,
+            "relative_l2": 0.0037727369028625612
+          },
+          {
+            "max_abs": 6.103515625e-05,
+            "relative_l2": 0.0029918640943488338
+          },
+          {
+            "max_abs": 1.6763806343078613e-08,
+            "relative_l2": 0.0037485710487271725
+          },
+          {
+            "max_abs": 0.0029296875,
+            "relative_l2": 0.001279152825807278
+          },
+          {
+            "max_abs": 0.001953125,
+            "relative_l2": 0.0015066818885458464
+          }
+        ],
+        "repeat_exact": true,
+        "native_seconds": 0.001918247202411294,
+        "cudnn_seconds": 0.0017706861719489098,
+        "native_compiler_memory": {
+          "argument_size_in_bytes": 21216,
+          "output_size_in_bytes": 26508,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 185792
+        },
+        "cudnn_compiler_memory": {
+          "argument_size_in_bytes": 21216,
+          "output_size_in_bytes": 26508,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 266944
+        }
+      },
+      {
+        "batch": 1,
+        "blocks": 3,
+        "width": 128,
+        "dim": 768,
+        "heads": 6,
+        "pmap_remat": true,
+        "scan_ensemble": true,
+        "forward": {
+          "max_abs": 7.62939453125e-06,
+          "relative_l2": 0.0036832924659613367
+        },
+        "input_gradient": {
+          "max_abs": 0.000244140625,
+          "relative_l2": 0.0014587031620078544
+        },
+        "parameter_gradient_errors": [
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.001054525375366211,
+            "relative_l2": 0.00017114918366860878
+          },
+          {
+            "max_abs": 0.0,
+            "relative_l2": 0.0
+          },
+          {
+            "max_abs": 0.0005035400390625,
+            "relative_l2": 0.0002519107761819508
+          },
+          {
+            "max_abs": 0.0001220703125,
+            "relative_l2": 0.0033113331773284107
+          },
+          {
+            "max_abs": 5.587935447692871e-09,
+            "relative_l2": 0.002126504325286413
+          },
+          {
+            "max_abs": 0.0001220703125,
+            "relative_l2": 0.0033634634894249174
+          },
+          {
+            "max_abs": 5.587935447692871e-09,
+            "relative_l2": 0.0020083641228914634
+          },
+          {
+            "max_abs": 0.015625,
+            "relative_l2": 0.0010291690269414603
+          },
+          {
+            "max_abs": 0.015625,
+            "relative_l2": 0.0007691104604360504
+          }
+        ],
+        "repeat_exact": true,
+        "native_seconds": 0.005670669581741094,
+        "cudnn_seconds": 0.005570008605718613,
+        "native_compiler_memory": {
+          "argument_size_in_bytes": 19470336,
+          "output_size_in_bytes": 20650092,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 36039104
+        },
+        "cudnn_compiler_memory": {
+          "argument_size_in_bytes": 19470336,
+          "output_size_in_bytes": 20650092,
+          "alias_size_in_bytes": 0,
+          "temp_size_in_bytes": 29235136
+        }
+      }
+    ]
+  },
+  "source_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "53ca67aa8928100179f7e92479b152d2e36e98bd0f9b089e1855a60c96150c1c",
+    "wn2_cudnn_attention.py": "c5cef95908f1d7f58914d8c601cc496567287729bd4874d9a0ae26b7e33d8d3c",
+    "check_wn2_cudnn_attention.py": "7aebd01370625c8d4bdcdd9d726867a92c58cf2920e59edfdfd962a09efb4c57"
+  },
+  "scope": "Compiler regression passed; full native training, fresh-process replay and budget not yet verified"
+}

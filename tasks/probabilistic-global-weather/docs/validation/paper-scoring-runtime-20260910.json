@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "python": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/eval-paper-py312/bin/python",
+  "dask": "2026.8.0",
+  "xarray": "2025.7.1",
+  "numpy": "2.2.6",
+  "shape": {
+    "member": 2,
+    "lat": 721,
+    "lon": 1440
+  },
+  "field_sha256": "d2c428d9b8b5313da8d64454d6d729e779e57153d50fe599eb3f8108081f8d46",
+  "scope": "Dependency check, two real 0.25-degree member stores concatenate lazily, one actual 500 hPa temperature panel loads, scorer imports; not full-case scoring",
+  "full_ensemble_metadata_contract": {
+    "status": "passed",
+    "members": 56,
+    "shape": {
+      "case": 1,
+      "lead": 30,
+      "member": 56,
+      "lat": 721,
+      "lon": 1440,
+      "level": 13
+    },
+    "weather_and_rain": true,
+    "derived_and_accumulation_lazy": true,
+    "scope": "Metadata contract and lazy graph construction only; full forecast inventory rehash and scoring remain in submitted jobs"
+  },
+  "metric_tests": "10 passed",
+  "source": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paper-comparison/scoring-source-v3",
+  "requirements_lock_sha256": "7a5537d02eca2d236493e93a1304bf92ebbe2fa5e9d1da346e0ce6a6c3b04fe9",
+  "replacement_jobs": {
+    "core": "12568255",
+    "pooling": "12568257"
+  },
+  "prior_attempts": [
+    {
+      "job": "12568203",
+      "status": "failed_missing_dask"
+    },
+    {
+      "job": "12568205",
+      "status": "failed_missing_dask"
+    },
+    {
+      "job": "12568253",
+      "status": "cancelled_after_metadata_preflight_found_rain_level_coordinate_drop"
+    },
+    {
+      "job": "12568254",
+      "status": "cancelled_after_metadata_preflight_found_rain_level_coordinate_drop"
+    }
+  ],
+  "dispatcher_correction": "Added missing subprocess import before final snapshot; failed dispatcher invocation submitted no job",
+  "checked_utc": "2026-09-10T11:54:47.396877+00:00",
+  "replacement_jobs_by_seed": {
+    "0": {
+      "core": "12568255",
+      "pooling": "12568257"
+    },
+    "1": {
+      "core": "12568256",
+      "pooling": "12568258"
+    }
+  }
+}

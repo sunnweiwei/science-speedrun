@@ -1,0 +1,221 @@
+{
+  "recorded_at_utc": "2026-09-07T18:28:59.837852+00:00",
+  "selected_checkpoint": "WeatherNext2_<2025_model1",
+  "native_grid": [
+    721,
+    1440
+  ],
+  "base_parameters": 183785575,
+  "lora_parameters": 49102848,
+  "lora_rank": 148,
+  "protein_trainable_parameters": 49198221,
+  "audit_status": "passed",
+  "gpu_validation_complete": false,
+  "scientific_skill_evaluation": false,
+  "runs_root": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/runs",
+  "jobs": [
+    {
+      "job_id": 12501512,
+      "gpu": "RTX PRO 6000 96GB",
+      "state": "cancelled",
+      "modes": [
+        "forward",
+        "lora"
+      ],
+      "models": [
+        "wn2",
+        "cyclones"
+      ],
+      "reason": "Replaced by BF16 and block-rematerialized validation job 12501522"
+    },
+    {
+      "job_id": 12501513,
+      "gpu": "RTX A5000 24GB",
+      "state": "failed",
+      "model": "cyclones",
+      "mode": "forward",
+      "reason": "GPU out of memory; failed additional allocation 9568419840 bytes"
+    },
+    {
+      "job_id": 12501514,
+      "gpu": "RTX A5000 24GB",
+      "state": "failed",
+      "model": "wn2",
+      "mode": "forward",
+      "precision": "float32",
+      "reason": "GPU out of memory; failed additional allocation 9568419840 bytes"
+    },
+    {
+      "job_id": 12501516,
+      "gpu": "RTX A5000 24GB",
+      "state": "failed",
+      "model": "wn2",
+      "mode": "forward",
+      "precision": "bfloat16",
+      "reason": "Initial outer BF16 casting wrapper conflicted with float32 SST NaN fill; corrected in job 12501521"
+    },
+    {
+      "job_id": 12501521,
+      "gpu": "RTX A5000 24GB",
+      "state": "failed",
+      "model": "wn2",
+      "mode": "forward",
+      "precision": "bfloat16",
+      "reason": "CUDA graph instantiation OOM; native BF16 forward compiled successfully"
+    },
+    {
+      "job_id": 12501522,
+      "gpu": "RTX PRO 6000 96GB",
+      "state": "failed",
+      "precision": "bfloat16",
+      "transformer_rematerialization_for_lora": true,
+      "modes": [
+        "forward",
+        "lora"
+      ],
+      "models": [
+        "wn2",
+        "cyclones"
+      ],
+      "reason": "Both pretrained forward probes passed; both LoRA probes failed during tracing because BF16 Dataset.mean dropped target variables before CRPS.",
+      "elapsed_seconds": 742,
+      "forward_status": "passed",
+      "training_status": "failed_before_backward"
+    },
+    {
+      "job_id": 12501523,
+      "gpu": "RTX A5000 24GB",
+      "state": "failed",
+      "precision": "bfloat16",
+      "xla_flags": "--xla_gpu_enable_command_buffer=",
+      "model": "wn2",
+      "mode": "forward",
+      "reason": "GPU OOM launching input_scatter_fusion_1 despite BF16 and disabled CUDA graphs"
+    },
+    {
+      "job_id": 12503381,
+      "gpu": "RTX PRO 6000 96GB",
+      "state": "failed",
+      "mode": "random-train",
+      "model": "wn2",
+      "precision": "bfloat16_network_float32_normalization_and_crps",
+      "pretrained_parameters_loaded": false,
+      "wall_limit_seconds": 1800,
+      "note": "Full-parameter random-init probe; read live Slurm/report for current state.",
+      "reason": "BF16 wrapper passed positional inputs to keyword-only ForwardPass; initialization failed before backward"
+    },
+    {
+      "job_id": 12532108,
+      "gpu": "RTX PRO 6000 96GB",
+      "state": "completed",
+      "mode": "random-train",
+      "model": "wn2",
+      "precision": "bfloat16_network_float32_normalization_and_crps",
+      "pretrained_parameters_loaded": false,
+      "elapsed_seconds": 727,
+      "initialization_seconds": 226.17747876001522,
+      "compile_seconds": 431.1031405760441,
+      "step_seconds": [
+        19.434927684022114,
+        18.65125882695429
+      ],
+      "losses": [
+        8.869332313537598,
+        8.060190200805664
+      ],
+      "peak_sampled_gpu_memory_mib": 91248,
+      "training_status": "passed",
+      "report": "wn2-rtxpro6000-bf16-random-train.json"
+    },
+    {
+      "job_id": 12532158,
+      "gpu": "4 x RTX PRO 6000 96GB",
+      "state": "failed",
+      "mode": "random-train-distributed",
+      "model": "wn2",
+      "precision": "bfloat16_network_float32_normalization_and_crps",
+      "pretrained_parameters_loaded": false,
+      "accumulation_per_device": 16,
+      "effective_batch": 64,
+      "wall_limit_seconds": 3600,
+      "note": "Two finite all-parameter updates passed; fresh-process state differs (maximum 1.44e-6 in first failing leaf).",
+      "training_status": "passed",
+      "resume_status": "failed_exact_comparison",
+      "steady_update_seconds": 297.2379,
+      "report": "wn2-four-gpu-accumulation.json"
+    },
+    {
+      "job_id": 12532400,
+      "state": "failed",
+      "gpu": "4 x RTX PRO 6000 96GB",
+      "reason": "Autotuning disabled: contracting dimension too fragmented",
+      "report": "wn2-four-gpu-deterministic-triton-failure.json"
+    },
+    {
+      "job_id": 12532538,
+      "state": "failed",
+      "gpu": "4 x RTX PRO 6000 96GB",
+      "reason": "Triton disabled: requested 163.58 GiB on 96GB GPU",
+      "report": "wn2-four-gpu-deterministic-cublas-oom.json"
+    },
+    {
+      "job_id": 12532596,
+      "state": "cancelled",
+      "gpu": "4 x RTX PRO 6000 96GB",
+      "note": "Deterministic operations with persistent compilation cache; waiting for allocation, no result claimed",
+      "queue_reason": "Priority",
+      "estimated_start_cluster_local": "2026-09-07T08:26:01",
+      "reason": "Superseded by corrected compiler policy and saved-autotuning replay 12533282"
+    }
+  ],
+  "remat_equivalence_check": {
+    "status": "passed",
+    "backend": "cpu",
+    "scope": "Small actual WeatherNext Transformer; parameter names, forward and parameter gradients",
+    "full_size_backward_verified": false,
+    "script_sha256": "1625568763e1ea9e381ba8d0022c4f14e2e303f1aeac1c1d88daffb1c6c00fa9"
+  },
+  "conclusion": "Complete local training/development/test resources and training-only statistics verified. Latest full-native eight-AR two-update diagnostic, cadence/Adam mapping, independent trained development smoke, short and complete eight-member ten-day exact decoded replay with saved inference AOT passed. Four-GPU current-source continuation, all eleven profiles, full shortened training, complete independent scores and final delivery acceptance remain pending.",
+  "pretrained_forward_validation_complete": true,
+  "forward_seconds_wn2": [
+    3.519266272895038,
+    3.0624571540392935
+  ],
+  "forward_seconds_cyclones": [
+    3.5065242149867117,
+    3.057369348127395
+  ],
+  "full_parameter_random_init_training_verified": true,
+  "four_gpu_training_verified": true,
+  "four_gpu_exact_resume_verified": false,
+  "materialized_evaluation_data_report": "wn2-materialized-truth.json",
+  "historical_gpu_validation_complete": true,
+  "audit_scope": "Historical pretrained/configuration and single-step execution checks only; full native curriculum acceptance remains pending",
+  "selected_training": "random initialization; full 183785575 parameters; all eleven native shortened curriculum stages; four RTX PRO 6000 96 GiB",
+  "current_run_record": "wn2-active-run.json",
+  "current_acceptance_gates": {
+    "eight_step_backward": true,
+    "four_gpu_exact_continuation": false,
+    "eleven_stage_runtime_profiles": false,
+    "complete_shortened_curriculum": false,
+    "complete_independent_evaluation": false,
+    "full_reference_comparison": false,
+    "harbor_wn2_delivery": false,
+    "cadence_parameter_and_adam_mapping": true,
+    "training_corpus_and_statistics": true,
+    "eight_step_two_updates": true,
+    "short_decoded_portable_replay": true,
+    "inference_saved_autotuning_replay": true,
+    "full_ten_day_current_replay": true,
+    "verifier_image_gpu_namespace": true,
+    "native_verifier_image_trained_smoke": true,
+    "complete_persistence_reference": true,
+    "complete_gaussian_reference": true,
+    "current_implementation_fits_training_budget": false
+  },
+  "resource_replan_evidence": [
+    "wn2-budget-infeasible.json",
+    "wn2-four-gpu-continuation-failure.json",
+    "wn2-a5000-coarse-two-updates.json"
+  ]
+}

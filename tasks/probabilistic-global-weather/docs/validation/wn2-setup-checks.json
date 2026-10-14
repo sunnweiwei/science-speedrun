@@ -1,0 +1,54 @@
+{
+  "recorded_at_utc": "2026-09-07T03:16:09.597656+00:00",
+  "checks": {
+    "distributed_cpu": {
+      "status": "passed",
+      "script": "slurm/check_wn2_distributed.py",
+      "script_sha256": "79b790064a2d88f70f1685eb1900938cc9a511abcd40eb2dcc8a6bbba5c0348d",
+      "marker": "WN2_FOUR_CPU_ACCUMULATION_ORACLE_STATE_REPLAY_OK",
+      "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/distributed-cpu-check.log"
+    },
+    "cyclone_causality": {
+      "status": "passed",
+      "script": "slurm/check_wn2_cyclone_causality.py",
+      "script_sha256": "8f6ed959cf89e48bde8ad4d7c2960f18fc681c2998e8bb982a9ea62c1e79b6b6",
+      "marker": "WN2_CYCLONE_POST_CUTOFF_CALIBRATION_INVARIANCE_OK",
+      "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/cyclone-causality.log"
+    },
+    "evaluation_suite": {
+      "status": "passed",
+      "tests": 29,
+      "log": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/eval-tests.log",
+      "warning": "netCDF4 NumPy ABI-size RuntimeWarning; real NetCDF round-trip tests pass"
+    }
+  },
+  "source_sha256": {
+    "wn2/audit_data.py": "7c712694a8d26653348bfebf61f9d5fa9aced440220ee3a7c8f5bfe9d3217ccb",
+    "wn2/compare.py": "6bc021f0450a228a084ddbfe9c5fc97e0ee05482bffc78df8895d2c0b5993a48",
+    "wn2/evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+    "wn2/materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+    "wn2/materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+    "wn2/plan_schedule.py": "9b6edf4873006603310cbbce53d9f7df46716ea8f06d5bb5d9505ab7c84436a5",
+    "wn2/smoke.py": "da9d18a93e6d7b5383b40e5ec2b56d4d03ad40305e3deb8a8ef26566968e5dcc",
+    "wn2/test_compare.py": "fb70c357f7343bd0202456d647a6c97544575861880ff3a3f0cd5bc04cdb23fa",
+    "wn2/test_evaluate.py": "114be90cd216e34e7d580c94ef0b8737c6c063a3ccf78f29339638f5fc7b296d",
+    "wn2/test_materialize_inputs.py": "f80970178102dac16f0a0f87649ddd4600973477d47446abb775f2dc5d689152",
+    "wn2/test_materialize_truth.py": "6874ad88ab7077dac25dbfdeadc25efe97533d72d303af3ab50a2f6eb3e12a04",
+    "wn2/test_plan_schedule.py": "2eb472afd755163407e77535d68e707325f278e641c42e27d1064270c4eaa28a",
+    "slurm/check_wn2_crps_precision.py": "8801704fa49fe72858b8b5e27ba6848ac18606e87dc4990860fb4bc265c4dcca",
+    "slurm/check_wn2_cyclone_causality.py": "8f6ed959cf89e48bde8ad4d7c2960f18fc681c2998e8bb982a9ea62c1e79b6b6",
+    "slurm/check_wn2_distributed.py": "79b790064a2d88f70f1685eb1900938cc9a511abcd40eb2dcc8a6bbba5c0348d",
+    "slurm/check_wn2_inputs.py": "ec86d18be65675110875e67726a55d2312236124002306140a249798bc9d3b2b",
+    "slurm/check_wn2_remat.py": "1625568763e1ea9e381ba8d0022c4f14e2e303f1aeac1c1d88daffb1c6c00fa9",
+    "slurm/prepare_wn2.py": "a5267cbe5aad196f8e84075b87b1e1360444a93573ab041b78245b1aa9e3ed34",
+    "slurm/prepare_wn2_cyclones.py": "5b9a5355fedac7fd4287d1c831c4dec03890efd8307bb0a894164cee799dbeb0",
+    "slurm/prepare_wn2_winds.py": "6624710f6b0802e68f35040147628d40fd6def41dde39b8099bfffeb95f8c0df",
+    "slurm/wn2_distributed.py": "ac19f324373cbe0b7570f7adac0fe5e559cb50d79f33e61aace9520ecd496057",
+    "slurm/wn2_distributed.sbatch": "2feed7ba59c169515db23386edfca87f863378ffc8a19ecaffbdbbd822881c61",
+    "slurm/wn2_inputs.sbatch": "a37511113f3d6492dac8657b73bdf91a219af4bed571f3dcef0fd41d2e1c99a3",
+    "slurm/wn2_truth.sbatch": "0cdc827969286685aed8b6e786f29d3f06c065b438a11e53d5ae201cf0f5dfce",
+    "slurm/wn2_truth_finalize.sbatch": "1b606c6ff16597dd026d418dd007a55edbf6366535ce9001a98ffa4c080d2439",
+    "slurm/wn2_validate.sbatch": "0af057d68f656847b9f7eb8f1dfecfa1dad4197c0939f10d2f5b99c221919d38",
+    "slurm/wn2_validation.py": "cbea9d9cd7f39df1e0e95b031f23b3bd009a83aca5de9c24f4abc157d2fa1cde"
+  }
+}

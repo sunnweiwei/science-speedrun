@@ -1,0 +1,250 @@
+{
+  "status": "passed",
+  "changed_leaves": 0,
+  "largest": [],
+  "scope": "A5000 single-device coarse native continuation diagnostic; not the four-GPU acceptance gate",
+  "job": "12535725",
+  "slurm_state": "COMPLETED",
+  "slurm_exit_code": "0:0",
+  "elapsed": "00:18:38",
+  "artifact": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/a5000-coarse-runs/12535725/exact-replay.json",
+  "artifact_sha256": "2ea87ee186838930191b539074907f6d9df5135da447cbaa5394376048fdc264",
+  "reports": {
+    "initial": {
+      "status": "passed",
+      "runner_sha256": "d0ba8c4abaa80bbf60591d195b22d7f95552f53c1906e1240d4ea47cb3805fed",
+      "source_sha256": {
+        "audit_data.py": "7c712694a8d26653348bfebf61f9d5fa9aced440220ee3a7c8f5bfe9d3217ccb",
+        "baseline.py": "35eaf8c2c27677d8cfe9f0004ca8c6dabebbc8215f60428b9c103667ceb15836",
+        "check_forecast_replay.py": "fc78966a2f4ca332972b64c5756598b1aa9217d2908d22671c826afa916aa695",
+        "collect_profiles.py": "b4c593366a330a452583913ab511252648645e9a613cdfa30c68755314cdeb59",
+        "collect_reference.py": "2cfd9ff007f33d335a8e135a0f0aedc8f36701bd1331add516b39f2cab3932e9",
+        "compare.py": "6bc021f0450a228a084ddbfe9c5fc97e0ee05482bffc78df8895d2c0b5993a48",
+        "compare_forecasts.py": "e6a07ade2023a3fba9b73b84820b1154724aca894e9fb7d1d060a5dcca9fbfa6",
+        "evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+        "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+        "materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+        "materialize_training.py": "e275a001fcc12b3a1c01ff453fb3aed49adeabb824a662776874b3e24c847a58",
+        "materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+        "merge_scores.py": "b7ab765ff81b803ac2b7238ee2fdac4fb09b77444814abab9be5f6dee0154217",
+        "namespace_inference.py": "b25fdf47fe5e8d702b7c7b96ab8890da61f3027ca853eee5fcfa6b58b47024d1",
+        "native_model.py": "37ede590f3fc8a77ff28653a2936a9b06dea3bc53bec1f9ed991b877d3c361c6",
+        "package_model.py": "1d88e193794c9c23291b64c8b0277d967249b1e216957cb7f5d09f516c0c5bff",
+        "plan_schedule.py": "3bb18bef5b25a5172955725dd117fe15766bd27d0dccb7b607a16086c33e5c60",
+        "predict.py": "71803f7531976a6179f4b052e8026da8d437baa0ed90ce6085cd3d175a6af120",
+        "prepare_climatology.py": "05725c7cc2a363a650b6448daf8abe874416e6b706e2f0fde7f9fbfec916f47c",
+        "score_case.py": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+        "smoke.py": "da9d18a93e6d7b5383b40e5ec2b56d4d03ad40305e3deb8a8ef26566968e5dcc",
+        "test_compare.py": "fb70c357f7343bd0202456d647a6c97544575861880ff3a3f0cd5bc04cdb23fa",
+        "test_compare_forecasts.py": "39ca5cfaab39994d4aee94445f917f71c2a379b83f296e82400620c8336eea3b",
+        "test_evaluate.py": "114be90cd216e34e7d580c94ef0b8737c6c063a3ccf78f29339638f5fc7b296d",
+        "test_materialize_inputs.py": "f80970178102dac16f0a0f87649ddd4600973477d47446abb775f2dc5d689152",
+        "test_materialize_truth.py": "6874ad88ab7077dac25dbfdeadc25efe97533d72d303af3ab50a2f6eb3e12a04",
+        "test_merge_scores.py": "0b0b17e77cceaf5286c1f24795aec6c11d3da03a7047ff8f8cd6062009985526",
+        "test_plan_schedule.py": "2eb472afd755163407e77535d68e707325f278e641c42e27d1064270c4eaa28a",
+        "test_score_case.py": "a263fbe76b57df8700cb76de2002ce731ab9a4e741a9afba90df1df63219e5e0",
+        "test_training_data.py": "1de281e4fe590f9916525b85e5deb311c13adb50019ece9f32606e304b9b0441",
+        "train.py": "6046243f0287d74099990139491bf65e08f0a1cacf374100d021b13f1a0829d5",
+        "train_stage.py": "d0ba8c4abaa80bbf60591d195b22d7f95552f53c1906e1240d4ea47cb3805fed",
+        "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+        "training_statistics.py": "1da90f7fc49b682203d2c2a1da777016f4df964eab42dc058acd458e4547dae4",
+        "verify_case.py": "e3fb4006046fe9e418c6529e9698a20d6b1bedf1d9b696bb9c44c45bee98277c",
+        "verify_track.py": "6d4a8e88b38c9d47d31d41ae13f5d4dae3cfbd847015647105850d70fbdbc2af",
+        "zarr_safety.py": "33bd72cf87d5213e1d1d161d60bc0027aab3210b7acf4b7bda028fbac5ff690c",
+        "wn2_validation.py": "cc224480b790aab78c3044d15a2fc3d0e5ebccdc2a1957cafe5d536f4c32dc15",
+        "wn2_distributed.py": "317ee0c834f5da5f9882baeb7e766d4adcdc6a08e6ec42e73ea3e31fe2d01a88"
+      },
+      "phase": "complete",
+      "stage": {
+        "name": "era5_1deg_12h",
+        "updates": 400000,
+        "warmup": 1000,
+        "peak_lr": 0.0008,
+        "resolution": 1.0,
+        "cadence_hours": 12,
+        "ar_steps": 1,
+        "mesh_splits": 5,
+        "encoder_aggregate_normalization": 1.0
+      },
+      "devices": 1,
+      "effective_batch": 1,
+      "runtime": {
+        "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+        "versions": {
+          "jax": "0.6.2",
+          "jaxlib": "0.6.2",
+          "dm-haiku": "0.0.14",
+          "optax": "0.2.5",
+          "numpy": "1.26.4",
+          "xarray": "2026.1.0"
+        },
+        "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+        "compilation_cache": "false",
+        "python_hash_seed": "0",
+        "cublas_workspace_config": ":4096:8",
+        "device_kinds": [
+          "NVIDIA RTX A5000"
+        ]
+      },
+      "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_dump_autotune_results_to=/run/autotune.pb --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+      "debug_single_device": true,
+      "unique_weather_windows": 32,
+      "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+      "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+      "pretrained_parameters_loaded": false,
+      "profile": true,
+      "setup_and_initialization_seconds": 253.9041585046798,
+      "parameter_count": 183785575,
+      "stage_update": 1,
+      "microbatch": 0,
+      "updates": [
+        {
+          "stage_update": 1,
+          "global_updates": 1,
+          "seconds": 271.01939139096066,
+          "loss": 8.276849746704102,
+          "gradient_norm": 41.948341369628906,
+          "learning_rate": 0.0008,
+          "weather_indices": [
+            [
+              2
+            ]
+          ],
+          "includes_checkpoint_io": true
+        },
+        {
+          "stage_update": 2,
+          "global_updates": 2,
+          "seconds": 33.87743419222534,
+          "loss": 12.157174110412598,
+          "gradient_norm": 44.771324157714844,
+          "learning_rate": 0.0008,
+          "weather_indices": [
+            [
+              4
+            ]
+          ],
+          "includes_checkpoint_io": true
+        }
+      ],
+      "update_seconds": 33.87743419222534,
+      "overhead_seconds": 504.29667377844453,
+      "includes_io_and_communication": false,
+      "cache_policy": "Frozen training corpus retained in host memory after first pass; first-load and compilation charged as overhead",
+      "includes_final_model_export": true,
+      "wall_seconds": 572.0549422237091,
+      "weights_sha256": "3e5c89a0c02403da996507626d37c444a5275903407da0582bcf1e1be69f0800"
+    },
+    "resumed": {
+      "status": "passed",
+      "runner_sha256": "d0ba8c4abaa80bbf60591d195b22d7f95552f53c1906e1240d4ea47cb3805fed",
+      "source_sha256": {
+        "audit_data.py": "7c712694a8d26653348bfebf61f9d5fa9aced440220ee3a7c8f5bfe9d3217ccb",
+        "baseline.py": "35eaf8c2c27677d8cfe9f0004ca8c6dabebbc8215f60428b9c103667ceb15836",
+        "check_forecast_replay.py": "fc78966a2f4ca332972b64c5756598b1aa9217d2908d22671c826afa916aa695",
+        "collect_profiles.py": "b4c593366a330a452583913ab511252648645e9a613cdfa30c68755314cdeb59",
+        "collect_reference.py": "2cfd9ff007f33d335a8e135a0f0aedc8f36701bd1331add516b39f2cab3932e9",
+        "compare.py": "6bc021f0450a228a084ddbfe9c5fc97e0ee05482bffc78df8895d2c0b5993a48",
+        "compare_forecasts.py": "e6a07ade2023a3fba9b73b84820b1154724aca894e9fb7d1d060a5dcca9fbfa6",
+        "evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427",
+        "forecast_store.py": "201c45cca2d84a4b86f88c01c22dd2c85f529324dac464cae368ea43e027760f",
+        "materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+        "materialize_training.py": "e275a001fcc12b3a1c01ff453fb3aed49adeabb824a662776874b3e24c847a58",
+        "materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+        "merge_scores.py": "b7ab765ff81b803ac2b7238ee2fdac4fb09b77444814abab9be5f6dee0154217",
+        "namespace_inference.py": "b25fdf47fe5e8d702b7c7b96ab8890da61f3027ca853eee5fcfa6b58b47024d1",
+        "native_model.py": "37ede590f3fc8a77ff28653a2936a9b06dea3bc53bec1f9ed991b877d3c361c6",
+        "package_model.py": "1d88e193794c9c23291b64c8b0277d967249b1e216957cb7f5d09f516c0c5bff",
+        "plan_schedule.py": "3bb18bef5b25a5172955725dd117fe15766bd27d0dccb7b607a16086c33e5c60",
+        "predict.py": "71803f7531976a6179f4b052e8026da8d437baa0ed90ce6085cd3d175a6af120",
+        "prepare_climatology.py": "05725c7cc2a363a650b6448daf8abe874416e6b706e2f0fde7f9fbfec916f47c",
+        "score_case.py": "47d0d9d8d956bd3e21f778055acd9459df54547f2a8cf5190d736f1a71b68632",
+        "smoke.py": "da9d18a93e6d7b5383b40e5ec2b56d4d03ad40305e3deb8a8ef26566968e5dcc",
+        "test_compare.py": "fb70c357f7343bd0202456d647a6c97544575861880ff3a3f0cd5bc04cdb23fa",
+        "test_compare_forecasts.py": "39ca5cfaab39994d4aee94445f917f71c2a379b83f296e82400620c8336eea3b",
+        "test_evaluate.py": "114be90cd216e34e7d580c94ef0b8737c6c063a3ccf78f29339638f5fc7b296d",
+        "test_materialize_inputs.py": "f80970178102dac16f0a0f87649ddd4600973477d47446abb775f2dc5d689152",
+        "test_materialize_truth.py": "6874ad88ab7077dac25dbfdeadc25efe97533d72d303af3ab50a2f6eb3e12a04",
+        "test_merge_scores.py": "0b0b17e77cceaf5286c1f24795aec6c11d3da03a7047ff8f8cd6062009985526",
+        "test_plan_schedule.py": "2eb472afd755163407e77535d68e707325f278e641c42e27d1064270c4eaa28a",
+        "test_score_case.py": "a263fbe76b57df8700cb76de2002ce731ab9a4e741a9afba90df1df63219e5e0",
+        "test_training_data.py": "1de281e4fe590f9916525b85e5deb311c13adb50019ece9f32606e304b9b0441",
+        "train.py": "6046243f0287d74099990139491bf65e08f0a1cacf374100d021b13f1a0829d5",
+        "train_stage.py": "d0ba8c4abaa80bbf60591d195b22d7f95552f53c1906e1240d4ea47cb3805fed",
+        "training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57",
+        "training_statistics.py": "1da90f7fc49b682203d2c2a1da777016f4df964eab42dc058acd458e4547dae4",
+        "verify_case.py": "e3fb4006046fe9e418c6529e9698a20d6b1bedf1d9b696bb9c44c45bee98277c",
+        "verify_track.py": "6d4a8e88b38c9d47d31d41ae13f5d4dae3cfbd847015647105850d70fbdbc2af",
+        "zarr_safety.py": "33bd72cf87d5213e1d1d161d60bc0027aab3210b7acf4b7bda028fbac5ff690c",
+        "wn2_validation.py": "cc224480b790aab78c3044d15a2fc3d0e5ebccdc2a1957cafe5d536f4c32dc15",
+        "wn2_distributed.py": "317ee0c834f5da5f9882baeb7e766d4adcdc6a08e6ec42e73ea3e31fe2d01a88"
+      },
+      "phase": "complete",
+      "stage": {
+        "name": "era5_1deg_12h",
+        "updates": 400000,
+        "warmup": 1000,
+        "peak_lr": 0.0008,
+        "resolution": 1.0,
+        "cadence_hours": 12,
+        "ar_steps": 1,
+        "mesh_splits": 5,
+        "encoder_aggregate_normalization": 1.0
+      },
+      "devices": 1,
+      "effective_batch": 1,
+      "runtime": {
+        "weathernext_revision": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+        "versions": {
+          "jax": "0.6.2",
+          "jaxlib": "0.6.2",
+          "dm-haiku": "0.0.14",
+          "optax": "0.2.5",
+          "numpy": "1.26.4",
+          "xarray": "2026.1.0"
+        },
+        "xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+        "compilation_cache": "false",
+        "python_hash_seed": "0",
+        "cublas_workspace_config": ":4096:8",
+        "device_kinds": [
+          "NVIDIA RTX A5000"
+        ]
+      },
+      "raw_xla_flags": "--xla_gpu_exclude_nondeterministic_ops=true --xla_gpu_load_autotune_results_from=/run/autotune.pb --xla_gpu_require_complete_aot_autotune_results=true --xla_dump_to=/run/xla-dump --xla_dump_hlo_as_text --xla_dump_hlo_module_re=.*fn_passed_to_pmap.*",
+      "debug_single_device": true,
+      "unique_weather_windows": 32,
+      "protocol_sha256": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+      "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7",
+      "pretrained_parameters_loaded": false,
+      "profile": true,
+      "setup_and_initialization_seconds": 254.88864581892267,
+      "parameter_count": 183785575,
+      "stage_update": 1,
+      "microbatch": 0,
+      "updates": [
+        {
+          "stage_update": 2,
+          "global_updates": 2,
+          "seconds": 229.9751979596913,
+          "loss": 12.157174110412598,
+          "gradient_norm": 44.771324157714844,
+          "learning_rate": 0.0008,
+          "weather_indices": [
+            [
+              4
+            ]
+          ],
+          "includes_checkpoint_io": true
+        }
+      ],
+      "update_seconds": 229.9751979596913,
+      "overhead_seconds": 34.243048121687025,
+      "includes_io_and_communication": false,
+      "cache_policy": "Frozen training corpus retained in host memory after first pass; first-load and compilation charged as overhead",
+      "includes_final_model_export": true,
+      "wall_seconds": 494.196670726873,
+      "weights_sha256": "3e5c89a0c02403da996507626d37c444a5275903407da0582bcf1e1be69f0800"
+    }
+  }
+}

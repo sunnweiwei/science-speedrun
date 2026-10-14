@@ -1,0 +1,23 @@
+{
+  "status": "native_forward_repeat_passed_backward_pending",
+  "gpu_job": "12533323",
+  "backends": [
+    "cpu",
+    "gpu"
+  ],
+  "checks": [
+    "Independent NumPy sums including empty rows and dropped invalid indices",
+    "Exact adjoint against independently gathered NumPy weights",
+    "Repeated deterministic outputs",
+    "Float32 and bfloat16"
+  ],
+  "helper_sha256": "ccf5e4b43f273bcb20d5e5ddcbc8d6b0944a1bef9569497caec1f79435dcd18e",
+  "oracle_sha256": "4abd1642aa3eb9b5cb258b37fc5e93de8a686077459e60cb4dd6eacac26a8d84",
+  "implementation": "Group static receiver rows by degree; gather their edges; fixed FP32 reduction then native activation dtype; adjoint is the corresponding gather. Graph edges, architecture and parameter set unchanged.",
+  "limitations": "Full eight-step backward, full eight-member ten-day cross-process replay, and four-GPU checkpoint continuation remain pending",
+  "native_forward_repeat_job": "12533327",
+  "steady_forward_seconds": [
+    3.42355657,
+    3.44170046
+  ]
+}

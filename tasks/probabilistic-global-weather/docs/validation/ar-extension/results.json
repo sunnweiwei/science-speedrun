@@ -1,0 +1,1821 @@
+{
+  "status": "complete",
+  "scope": "Paired 2021 development diagnostic: original 562 updates versus extended AR 580 updates; no full-training, test-set or significance claim",
+  "completed_dates": [
+    "2021-01-05T00:00:00.000000000",
+    "2021-04-05T00:00:00.000000000",
+    "2021-07-05T00:00:00.000000000",
+    "2021-10-05T00:00:00.000000000"
+  ],
+  "requested_dates": [
+    "2021-01-05T00:00:00.000000000",
+    "2021-04-05T00:00:00.000000000",
+    "2021-07-05T00:00:00.000000000",
+    "2021-10-05T00:00:00.000000000"
+  ],
+  "members": 8,
+  "summary": [
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 24,
+      "units": "K",
+      "cases": 4,
+      "control_crps": 0.9874933809780061,
+      "control_rmse": 2.0304368813261386,
+      "extended_ar_crps": 0.9818327966909794,
+      "extended_ar_rmse": 2.018062324946546,
+      "crps_improvement_percent": 0.5732275675023213,
+      "crps_improved_dates": 3,
+      "rmse_improvement_percent": 0.6094528962412471,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 72,
+      "units": "K",
+      "cases": 4,
+      "control_crps": 1.6191345013211393,
+      "control_rmse": 3.369585855170479,
+      "extended_ar_crps": 1.5868236100749378,
+      "extended_ar_rmse": 3.3444524738159593,
+      "crps_improvement_percent": 1.9955656074178707,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.745889329869831,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 120,
+      "units": "K",
+      "cases": 4,
+      "control_crps": 1.8780644405632496,
+      "control_rmse": 3.728832908708617,
+      "extended_ar_crps": 1.8228264987758096,
+      "extended_ar_rmse": 3.678098041337375,
+      "crps_improvement_percent": 2.941216530934032,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 1.3606098372697661,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 240,
+      "units": "K",
+      "cases": 4,
+      "control_crps": 2.6375288474561116,
+      "control_rmse": 4.912990179836616,
+      "extended_ar_crps": 2.5198338299010845,
+      "extended_ar_rmse": 4.7790130099609955,
+      "crps_improvement_percent": 4.462321527536794,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 2.72699852781052,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "mean_sea_level_pressure",
+      "lead_hours": 24,
+      "units": "Pa",
+      "cases": 4,
+      "control_crps": 266.1693379595886,
+      "control_rmse": 520.6052724698471,
+      "extended_ar_crps": 263.2632077366252,
+      "extended_ar_rmse": 514.9665449313977,
+      "crps_improvement_percent": 1.0918350871070737,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 1.0831099561666502,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "mean_sea_level_pressure",
+      "lead_hours": 72,
+      "units": "Pa",
+      "cases": 4,
+      "control_crps": 503.83162480137065,
+      "control_rmse": 985.4133380830623,
+      "extended_ar_crps": 487.80810067117545,
+      "extended_ar_rmse": 940.8985045896793,
+      "crps_improvement_percent": 3.18033313937216,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 4.517376797433881,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "mean_sea_level_pressure",
+      "lead_hours": 120,
+      "units": "Pa",
+      "cases": 4,
+      "control_crps": 624.9810603494741,
+      "control_rmse": 1236.046855577988,
+      "extended_ar_crps": 601.0379982809256,
+      "extended_ar_rmse": 1168.8548120154423,
+      "crps_improvement_percent": 3.8310060236321553,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 5.43604340396352,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "mean_sea_level_pressure",
+      "lead_hours": 240,
+      "units": "Pa",
+      "cases": 4,
+      "control_crps": 816.2017754433845,
+      "control_rmse": 1530.7268320581102,
+      "extended_ar_crps": 779.2273517121602,
+      "extended_ar_rmse": 1432.7506465699328,
+      "crps_improvement_percent": 4.530059213745119,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 6.40063161083061,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "geopotential",
+      "lead_hours": 24,
+      "units": "m2 s-2",
+      "cases": 4,
+      "control_crps": 256.9251298947506,
+      "control_rmse": 506.95420332816445,
+      "extended_ar_crps": 254.579264315196,
+      "extended_ar_rmse": 502.15042332509887,
+      "crps_improvement_percent": 0.9130541572619166,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.9475767182772432,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "geopotential",
+      "lead_hours": 72,
+      "units": "m2 s-2",
+      "cases": 4,
+      "control_crps": 530.9596785227261,
+      "control_rmse": 1046.1700126031503,
+      "extended_ar_crps": 516.8932132837397,
+      "extended_ar_rmse": 1013.8198345047889,
+      "crps_improvement_percent": 2.6492530050724716,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 3.0922486506629543,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "geopotential",
+      "lead_hours": 120,
+      "units": "m2 s-2",
+      "cases": 4,
+      "control_crps": 685.558812149789,
+      "control_rmse": 1288.2637921982791,
+      "extended_ar_crps": 662.9048009394338,
+      "extended_ar_rmse": 1238.839191407701,
+      "crps_improvement_percent": 3.304459195749565,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 3.836527975861259,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "geopotential",
+      "lead_hours": 240,
+      "units": "m2 s-2",
+      "cases": 4,
+      "control_crps": 989.8954336475249,
+      "control_rmse": 1698.2150215001163,
+      "extended_ar_crps": 954.038392659888,
+      "extended_ar_rmse": 1638.845113373582,
+      "crps_improvement_percent": 3.622305929376035,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 3.4960183118678323,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "10m_wind_speed",
+      "lead_hours": 24,
+      "units": "m s-1",
+      "cases": 4,
+      "control_crps": 1.4693397516880864,
+      "control_rmse": 2.6185045878154627,
+      "extended_ar_crps": 1.4649338943729373,
+      "extended_ar_rmse": 2.609474502561317,
+      "crps_improvement_percent": 0.29985286317117943,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.3448565756258293,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "10m_wind_speed",
+      "lead_hours": 72,
+      "units": "m s-1",
+      "cases": 4,
+      "control_crps": 2.018991674277177,
+      "control_rmse": 3.532793258314675,
+      "extended_ar_crps": 2.00298220883698,
+      "extended_ar_rmse": 3.4996924489076937,
+      "crps_improvement_percent": 0.7929436086421049,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.9369585760241161,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "10m_wind_speed",
+      "lead_hours": 120,
+      "units": "m s-1",
+      "cases": 4,
+      "control_crps": 3.140056089973039,
+      "control_rmse": 5.604280643432537,
+      "extended_ar_crps": 3.0856706746307947,
+      "extended_ar_rmse": 5.508475269128382,
+      "crps_improvement_percent": 1.731988658288952,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 1.709503509900534,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "10m_wind_speed",
+      "lead_hours": 240,
+      "units": "m s-1",
+      "cases": 4,
+      "control_crps": 5.534698017061689,
+      "control_rmse": 9.926537020123664,
+      "extended_ar_crps": 5.377447528878821,
+      "extended_ar_rmse": 9.681589057778288,
+      "crps_improvement_percent": 2.8411755744959355,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 2.46760740275086,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "total_precipitation_6hr",
+      "lead_hours": 24,
+      "units": "m",
+      "cases": 4,
+      "control_crps": 0.0006451158744121493,
+      "control_rmse": 0.002433187001506393,
+      "extended_ar_crps": 0.0006441903659871598,
+      "extended_ar_rmse": 0.002431785389599568,
+      "crps_improvement_percent": 0.14346390496634553,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.05760395341406488,
+      "rmse_improved_dates": 2
+    },
+    {
+      "variable": "total_precipitation_6hr",
+      "lead_hours": 72,
+      "units": "m",
+      "cases": 4,
+      "control_crps": 0.0006650578358536821,
+      "control_rmse": 0.0025616947868250983,
+      "extended_ar_crps": 0.0006628864214723016,
+      "extended_ar_rmse": 0.0025610769875123534,
+      "crps_improvement_percent": 0.32650008229633265,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.0241168196899344,
+      "rmse_improved_dates": 4
+    },
+    {
+      "variable": "total_precipitation_6hr",
+      "lead_hours": 120,
+      "units": "m",
+      "cases": 4,
+      "control_crps": 0.0007064327933369616,
+      "control_rmse": 0.0025520451864540846,
+      "extended_ar_crps": 0.0007032153091705376,
+      "extended_ar_rmse": 0.0025508995895754134,
+      "crps_improvement_percent": 0.4554550973243532,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.04488936499839058,
+      "rmse_improved_dates": 3
+    },
+    {
+      "variable": "total_precipitation_6hr",
+      "lead_hours": 240,
+      "units": "m",
+      "cases": 4,
+      "control_crps": 0.0007939568395956663,
+      "control_rmse": 0.002658492545377859,
+      "extended_ar_crps": 0.0007840918667953514,
+      "extended_ar_rmse": 0.0026473118344485604,
+      "crps_improvement_percent": 1.2425074397417801,
+      "crps_improved_dates": 4,
+      "rmse_improvement_percent": 0.4205658183521144,
+      "rmse_improved_dates": 4
+    }
+  ],
+  "per_case": [
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "K",
+      "control": {
+        "crps": 1.0639349167565564,
+        "mse": 4.441253640786305,
+        "ensemble_variance": 2.0571090374612515,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.07084330260302,
+        "mse": 4.440927816124098,
+        "ensemble_variance": 2.0564016079106584,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "Pa",
+      "control": {
+        "crps": 264.18426956933774,
+        "mse": 240330.77426557426,
+        "ensemble_variance": 86632.60529731907,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 263.57320900827585,
+        "mse": 238997.79190357702,
+        "ensemble_variance": 86716.46781688262,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 24,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 251.83955309492328,
+        "mse": 251870.15077048232,
+        "ensemble_variance": 122807.96707877785,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 249.4203974070483,
+        "mse": 246780.90854422163,
+        "ensemble_variance": 123711.88600889931,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m s-1",
+      "control": {
+        "crps": 1.444162114198598,
+        "mse": 6.456619980942702,
+        "ensemble_variance": 6.554099184574631,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.4415187167086778,
+        "mse": 6.411863257263399,
+        "ensemble_variance": 6.558512168558482,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m",
+      "control": {
+        "crps": 0.0005904647495205498,
+        "mse": 5.911681696816226e-06,
+        "ensemble_variance": 1.261742761043057e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0005904281908812773,
+        "mse": 5.91309577190176e-06,
+        "ensemble_variance": 1.2420783353201651e-06,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "K",
+      "control": {
+        "crps": 1.7951684761880609,
+        "mse": 15.800749195824949,
+        "ensemble_variance": 8.814618237619243,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.7646823885385414,
+        "mse": 15.6916264259322,
+        "ensemble_variance": 8.821696999028282,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "Pa",
+      "control": {
+        "crps": 444.52663272956653,
+        "mse": 633873.3564535079,
+        "ensemble_variance": 597226.3999674544,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 440.9097831785319,
+        "mse": 613258.1625324016,
+        "ensemble_variance": 597744.2412396638,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 72,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 488.1848326336817,
+        "mse": 940385.5218148107,
+        "ensemble_variance": 718772.4887902163,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 476.3334610299252,
+        "mse": 886824.2569781948,
+        "ensemble_variance": 717735.0171901216,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m s-1",
+      "control": {
+        "crps": 1.7947331609799027,
+        "mse": 9.154878487338268,
+        "ensemble_variance": 12.17625190728799,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.7932551245388564,
+        "mse": 9.13371877434061,
+        "ensemble_variance": 12.288229664221067,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m",
+      "control": {
+        "crps": 0.0006974269321592652,
+        "mse": 7.06462431263217e-06,
+        "ensemble_variance": 2.575794596839526e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006957992681250923,
+        "mse": 7.05877343234632e-06,
+        "ensemble_variance": 2.5726625367944165e-06,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "K",
+      "control": {
+        "crps": 2.0313315707076285,
+        "mse": 17.022430314443994,
+        "ensemble_variance": 12.202935018704066,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.9688602218818778,
+        "mse": 16.656370156464114,
+        "ensemble_variance": 12.26975029786483,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "Pa",
+      "control": {
+        "crps": 561.5076900653164,
+        "mse": 946276.4960218295,
+        "ensemble_variance": 1221895.5908140389,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 556.6827816200553,
+        "mse": 936081.998150126,
+        "ensemble_variance": 1191787.2425155833,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 120,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 609.8798093317283,
+        "mse": 1207597.253775288,
+        "ensemble_variance": 2173377.601139435,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 598.1276522720353,
+        "mse": 1165285.5939096147,
+        "ensemble_variance": 2111110.024259463,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m s-1",
+      "control": {
+        "crps": 3.3876394046188394,
+        "mse": 38.990526296686305,
+        "ensemble_variance": 57.43767580375526,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 3.2876373095135407,
+        "mse": 37.17574857096868,
+        "ensemble_variance": 57.40808728254618,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m",
+      "control": {
+        "crps": 0.000708550166490227,
+        "mse": 6.07776137416232e-06,
+        "ensemble_variance": 9.088688324035987e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0007056054600877517,
+        "mse": 6.074686712730389e-06,
+        "ensemble_variance": 8.857260479444297e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "K",
+      "control": {
+        "crps": 2.4927634709485456,
+        "mse": 25.224646407024654,
+        "ensemble_variance": 31.42455629163569,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.4149700459072956,
+        "mse": 24.447901039542227,
+        "ensemble_variance": 31.344197324143096,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "Pa",
+      "control": {
+        "crps": 876.4073193980869,
+        "mse": 1653751.7824326619,
+        "ensemble_variance": 4973488.4104916835,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 860.7894597010742,
+        "mse": 1607087.6267024253,
+        "ensemble_variance": 4723639.613657324,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 240,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 968.1342078031607,
+        "mse": 2488536.639981594,
+        "ensemble_variance": 7293625.049594681,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 941.1853447750273,
+        "mse": 2395837.551420708,
+        "ensemble_variance": 6992162.284596003,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m s-1",
+      "control": {
+        "crps": 6.881000113075192,
+        "mse": 140.40966701048873,
+        "ensemble_variance": 114.99605311229293,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 6.679174614161739,
+        "mse": 133.37076972531943,
+        "ensemble_variance": 110.42348385630468,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-01-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m",
+      "control": {
+        "crps": 0.0008439643355668412,
+        "mse": 8.439707033865826e-06,
+        "ensemble_variance": 1.6531411099056528e-05,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0008374080762717571,
+        "mse": 8.33827540020229e-06,
+        "ensemble_variance": 1.6164525211548375e-05,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "K",
+      "control": {
+        "crps": 0.964729001801163,
+        "mse": 3.7953844776952135,
+        "ensemble_variance": 3.024111322060331,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.9480409118282899,
+        "mse": 3.7186568592176643,
+        "ensemble_variance": 3.025760914859678,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "Pa",
+      "control": {
+        "crps": 298.81531901090784,
+        "mse": 321652.88693615486,
+        "ensemble_variance": 131245.5257973883,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 291.99348966653804,
+        "mse": 306250.53883312305,
+        "ensemble_variance": 130172.5640967987,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 24,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 291.4943028411449,
+        "mse": 321808.836327172,
+        "ensemble_variance": 108508.02390774559,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 287.5696145904727,
+        "mse": 312411.4253137759,
+        "ensemble_variance": 108804.85053992679,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m s-1",
+      "control": {
+        "crps": 1.4715994985672982,
+        "mse": 6.827585554191375,
+        "ensemble_variance": 7.651966754189122,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.4656304378112632,
+        "mse": 6.782214384368578,
+        "ensemble_variance": 7.581170974893772,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m",
+      "control": {
+        "crps": 0.0007285058545896794,
+        "mse": 6.5439438811738285e-06,
+        "ensemble_variance": 7.853837054399123e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0007261850176191302,
+        "mse": 6.51880530844858e-06,
+        "ensemble_variance": 7.805077814906835e-06,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "K",
+      "control": {
+        "crps": 1.6095744477095926,
+        "mse": 10.252269716927296,
+        "ensemble_variance": 6.559898106519047,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.5513767553450992,
+        "mse": 9.861705349032313,
+        "ensemble_variance": 6.615700226520354,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "Pa",
+      "control": {
+        "crps": 537.0973698850249,
+        "mse": 1065188.6606776586,
+        "ensemble_variance": 680155.3654271229,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 508.6723860248892,
+        "mse": 937270.8598637545,
+        "ensemble_variance": 669977.6967776074,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 72,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 515.2372068823407,
+        "mse": 1044359.7042280827,
+        "ensemble_variance": 547712.3753516899,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 498.1268755721855,
+        "mse": 959328.1316608933,
+        "ensemble_variance": 552935.038891185,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m s-1",
+      "control": {
+        "crps": 2.0154362356961517,
+        "mse": 12.215504357666164,
+        "ensemble_variance": 13.921736686291338,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.001405460038055,
+        "mse": 12.01206188483498,
+        "ensemble_variance": 13.750506321606775,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m",
+      "control": {
+        "crps": 0.0006286134460115104,
+        "mse": 6.23837073986852e-06,
+        "ensemble_variance": 6.829136047716584e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006275376668130389,
+        "mse": 6.237425169012313e-06,
+        "ensemble_variance": 6.57431097368442e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "K",
+      "control": {
+        "crps": 2.017076312450581,
+        "mse": 14.887554720712972,
+        "ensemble_variance": 12.082747809462631,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.925570069257614,
+        "mse": 14.260007587642964,
+        "ensemble_variance": 12.086598689620645,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "Pa",
+      "control": {
+        "crps": 659.4697057230419,
+        "mse": 1716168.6953016226,
+        "ensemble_variance": 1148052.9192257088,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 617.6930097622237,
+        "mse": 1472000.2541006075,
+        "ensemble_variance": 1130821.6239564207,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 120,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 645.7375942492215,
+        "mse": 1607529.4313111252,
+        "ensemble_variance": 950689.0081137469,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 616.589108345576,
+        "mse": 1442481.4957405871,
+        "ensemble_variance": 941455.3544262167,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m s-1",
+      "control": {
+        "crps": 2.262083198677218,
+        "mse": 14.545809988213296,
+        "ensemble_variance": 24.954726250777544,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.2457935004449205,
+        "mse": 14.361276678915521,
+        "ensemble_variance": 24.28799961499849,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m",
+      "control": {
+        "crps": 0.000610344580557653,
+        "mse": 4.421114177212984e-06,
+        "ensemble_variance": 3.286833565256585e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006083794832004815,
+        "mse": 4.425272491966252e-06,
+        "ensemble_variance": 3.234198081656702e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "K",
+      "control": {
+        "crps": 3.016904939837454,
+        "mse": 30.40564719229079,
+        "ensemble_variance": 29.34853231428923,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.842605885114693,
+        "mse": 28.63176788277948,
+        "ensemble_variance": 29.55171524666299,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "Pa",
+      "control": {
+        "crps": 731.4458087871162,
+        "mse": 2463277.671309837,
+        "ensemble_variance": 2723408.02346502,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 685.9697528257116,
+        "mse": 2063580.432396109,
+        "ensemble_variance": 2619385.191188539,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 240,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 966.6753990599767,
+        "mse": 3255512.8831420625,
+        "ensemble_variance": 2949604.379156493,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 926.0225121886948,
+        "mse": 2961760.038854771,
+        "ensemble_variance": 2838217.7606020025,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m s-1",
+      "control": {
+        "crps": 5.098161214545062,
+        "mse": 87.53915859116351,
+        "ensemble_variance": 89.17193476012838,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 4.971485938041054,
+        "mse": 83.70077392261781,
+        "ensemble_variance": 88.71905339790635,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-04-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m",
+      "control": {
+        "crps": 0.0006826627427393302,
+        "mse": 5.189397472991769e-06,
+        "ensemble_variance": 6.378483792369112e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006719267569852976,
+        "mse": 5.168284419720663e-06,
+        "ensemble_variance": 6.145855225971894e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "K",
+      "control": {
+        "crps": 0.9417071166921225,
+        "mse": 4.130351583976633,
+        "ensemble_variance": 2.8434992484788424,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.9344047989459144,
+        "mse": 4.070630003022484,
+        "ensemble_variance": 2.8416899577381542,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "Pa",
+      "control": {
+        "crps": 240.91885530467587,
+        "mse": 249033.5995918296,
+        "ensemble_variance": 209591.2563739622,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 238.19468989271385,
+        "mse": 243765.48173050638,
+        "ensemble_variance": 206471.8275147804,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 24,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 234.3464389807798,
+        "mse": 222344.75664221798,
+        "ensemble_variance": 92446.38209891264,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 232.27840279214254,
+        "mse": 218783.7539476506,
+        "ensemble_variance": 91445.77206408279,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m s-1",
+      "control": {
+        "crps": 1.4288313367912393,
+        "mse": 6.496020150427267,
+        "ensemble_variance": 6.909937305353382,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.428186217618198,
+        "mse": 6.476325887309598,
+        "ensemble_variance": 6.8402794535083835,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m",
+      "control": {
+        "crps": 0.0006408091156120351,
+        "mse": 6.176956305480262e-06,
+        "ensemble_variance": 2.732952859675768e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006405891670766288,
+        "mse": 6.178584205746106e-06,
+        "ensemble_variance": 2.7008669676235065e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "K",
+      "control": {
+        "crps": 1.5267345776240613,
+        "mse": 9.138364231604085,
+        "ensemble_variance": 9.330465185179662,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.4995906932401997,
+        "mse": 9.077172112576958,
+        "ensemble_variance": 9.32415614719212,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "Pa",
+      "control": {
+        "crps": 529.4006740198407,
+        "mse": 1274235.613510899,
+        "ensemble_variance": 811195.0652675256,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 505.0563402276301,
+        "mse": 1137935.830186404,
+        "ensemble_variance": 800368.7577009955,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 72,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 530.7347676071951,
+        "mse": 1156500.1184950762,
+        "ensemble_variance": 652511.3696160574,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 513.7335611801155,
+        "mse": 1071590.417920626,
+        "ensemble_variance": 650944.5249752125,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m s-1",
+      "control": {
+        "crps": 2.041759782335079,
+        "mse": 12.762918414369434,
+        "ensemble_variance": 25.82026546648683,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.0178500981704706,
+        "mse": 12.504070392294517,
+        "ensemble_variance": 25.57983246083445,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m",
+      "control": {
+        "crps": 0.000648410205222519,
+        "mse": 5.436486757540345e-06,
+        "ensemble_variance": 7.522359214581786e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006452584547234437,
+        "mse": 5.4321925329176415e-06,
+        "ensemble_variance": 7.419843839767527e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "K",
+      "control": {
+        "crps": 1.780448311534003,
+        "mse": 11.955855797920107,
+        "ensemble_variance": 11.262805819343065,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.737174335252295,
+        "mse": 11.731361978290368,
+        "ensemble_variance": 11.298033264055059,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "Pa",
+      "control": {
+        "crps": 663.8773438505295,
+        "mse": 2301449.2941340315,
+        "ensemble_variance": 1950725.0758150015,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 625.8374532309659,
+        "mse": 1997233.1846263346,
+        "ensemble_variance": 1911481.9069344779,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 120,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 736.0690233534535,
+        "mse": 2128275.5958753075,
+        "ensemble_variance": 1463757.1176764993,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 702.8220145892376,
+        "mse": 1922919.0529295306,
+        "ensemble_variance": 1447228.3842915583,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m s-1",
+      "control": {
+        "crps": 3.820746458858412,
+        "mse": 42.266537114532916,
+        "ensemble_variance": 35.986670304376645,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 3.7557026173749968,
+        "mse": 40.76370807883235,
+        "ensemble_variance": 35.59754971647389,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m",
+      "control": {
+        "crps": 0.0007572217224490625,
+        "mse": 6.44365079552897e-06,
+        "ensemble_variance": 1.0032524187915444e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0007520659316228936,
+        "mse": 6.427637479244904e-06,
+        "ensemble_variance": 9.811490372258513e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "K",
+      "control": {
+        "crps": 2.683944096675065,
+        "mse": 21.676302357428725,
+        "ensemble_variance": 49.002714392809104,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.526790341090097,
+        "mse": 19.963679308697344,
+        "ensemble_variance": 49.15329103705108,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "Pa",
+      "control": {
+        "crps": 818.1823524897488,
+        "mse": 3599191.5402541803,
+        "ensemble_variance": 3766565.468430546,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 763.4151995159317,
+        "mse": 3014394.657901086,
+        "ensemble_variance": 3617237.1680875123,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 240,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 880.9806916412978,
+        "mse": 2755900.37608084,
+        "ensemble_variance": 3234734.026048358,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 843.9896785688723,
+        "mse": 2490190.2594580958,
+        "ensemble_variance": 3065666.5188183933,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m s-1",
+      "control": {
+        "crps": 4.560325329289621,
+        "mse": 69.68187156394633,
+        "ensemble_variance": 65.02929823987206,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 4.446127958541168,
+        "mse": 66.93450361163309,
+        "ensemble_variance": 65.35005471737352,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-07-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m",
+      "control": {
+        "crps": 0.0007524812857394801,
+        "mse": 7.506776172830338e-06,
+        "ensemble_variance": 6.168208556547333e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0007468789075683771,
+        "mse": 7.485046389334696e-06,
+        "ensemble_variance": 5.88449128944008e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "K",
+      "control": {
+        "crps": 0.9796024886621824,
+        "mse": 4.1237060137395165,
+        "ensemble_variance": 2.098422490169417,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.9740421733866937,
+        "mse": 4.060087511110391,
+        "ensemble_variance": 2.1022881765436323,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "Pa",
+      "control": {
+        "crps": 260.75890795343287,
+        "mse": 273102.1381000566,
+        "ensemble_variance": 311562.94019371935,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 259.29144237897304,
+        "mse": 271748.3571271188,
+        "ensemble_variance": 309096.2379115554,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 24,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 250.02022466215462,
+        "mse": 231986.5133485035,
+        "ensemble_variance": 100499.45220849339,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 249.0486424711205,
+        "mse": 230644.1027766559,
+        "ensemble_variance": 100723.26164196357,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m s-1",
+      "control": {
+        "crps": 1.5327660571952102,
+        "mse": 7.646039420081159,
+        "ensemble_variance": 8.774131778292796,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.5244002053536103,
+        "mse": 7.567025189128961,
+        "ensemble_variance": 8.743349258191355,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 24,
+      "units": "m",
+      "control": {
+        "crps": 0.000620683777926333,
+        "mse": 5.049014053728368e-06,
+        "ensemble_variance": 3.2974449177934502e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.000619559088371603,
+        "mse": 5.043835438183244e-06,
+        "ensemble_variance": 3.2700401531438324e-06,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "K",
+      "control": {
+        "crps": 1.5450605037628427,
+        "mse": 10.225052197103553,
+        "ensemble_variance": 6.959030641291528,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.531644603175911,
+        "mse": 10.110945510913291,
+        "ensemble_variance": 6.99864480383131,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "Pa",
+      "control": {
+        "crps": 504.3018225710505,
+        "mse": 910860.1568459489,
+        "ensemble_variance": 1673284.7705025305,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 496.59389325365066,
+        "mse": 852695.131173819,
+        "ensemble_variance": 1659394.4975865346,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 72,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 589.681906967687,
+        "mse": 1236641.436542333,
+        "ensemble_variance": 1054451.4844538257,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 579.3789553527325,
+        "mse": 1193579.8207815562,
+        "ensemble_variance": 1043811.9025133378,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m s-1",
+      "control": {
+        "crps": 2.2240375180975747,
+        "mse": 15.789211564600603,
+        "ensemble_variance": 23.96939135159642,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.199418152600538,
+        "mse": 15.341537896296021,
+        "ensemble_variance": 23.647697354597625,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 72,
+      "units": "m",
+      "control": {
+        "crps": 0.0006857807600214338,
+        "mse": 7.50963891334651e-06,
+        "ensemble_variance": 4.861837452217605e-07,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0006829502962276316,
+        "mse": 7.508070209585127e-06,
+        "ensemble_variance": 4.829884354889592e-07,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "K",
+      "control": {
+        "crps": 1.6834015675607858,
+        "mse": 11.75093861119639,
+        "ensemble_variance": 11.10125653423382,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1.659701368711451,
+        "mse": 11.465881084361898,
+        "ensemble_variance": 11.16692467393374,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "Pa",
+      "control": {
+        "crps": 615.0695017590086,
+        "mse": 1147352.8312794438,
+        "ensemble_variance": 2900229.6699726945,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 603.9387485104578,
+        "mse": 1059570.8494095516,
+        "ensemble_variance": 2849889.464703938,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 120,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 750.5488216647528,
+        "mse": 1695092.1121946422,
+        "ensemble_variance": 2609159.025278071,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 734.0804285508864,
+        "mse": 1608204.026091014,
+        "ensemble_variance": 2581418.081420824,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m s-1",
+      "control": {
+        "crps": 3.089755297737687,
+        "mse": 29.828972721977934,
+        "ensemble_variance": 35.48844003731181,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 3.0535492711897207,
+        "mse": 29.072465833679423,
+        "ensemble_variance": 35.19420068374405,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 120,
+      "units": "m",
+      "control": {
+        "crps": 0.0007496147038509038,
+        "mse": 9.109212187909576e-06,
+        "ensemble_variance": 1.421217993185417e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0007468103617710236,
+        "mse": 9.100758180442505e-06,
+        "ensemble_variance": 1.440983226251867e-06,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "2m_temperature",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "K",
+      "control": {
+        "crps": 2.3565028823633822,
+        "mse": 19.24329407193991,
+        "ensemble_variance": 46.70420248187512,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 2.2949690474922524,
+        "mse": 18.31251316648678,
+        "ensemble_variance": 46.52526779642475,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "mean_sea_level_pressure",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "Pa",
+      "control": {
+        "crps": 838.7716210985858,
+        "mse": 1656277.5435339534,
+        "ensemble_variance": 3582512.7531448063,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 806.7349948059232,
+        "mse": 1526034.9439866226,
+        "ensemble_variance": 3349780.364611722,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "geopotential",
+      "level_hpa": 500,
+      "lead_hours": 240,
+      "units": "m2 s-2",
+      "control": {
+        "crps": 1143.7914360856644,
+        "mse": 3035787.137790067,
+        "ensemble_variance": 5654441.46304062,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 1104.9560351069576,
+        "mse": 2895465.3727803007,
+        "ensemble_variance": 5498635.058650146,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "10m_wind_speed",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m s-1",
+      "control": {
+        "crps": 5.5993054113368785,
+        "mse": 96.51385168194376,
+        "ensemble_variance": 78.17942742747408,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 5.413001604771323,
+        "mse": 90.92661947519883,
+        "ensemble_variance": 76.86667328684177,
+        "valid_area_fraction": 1.0
+      }
+    },
+    {
+      "case": "2021-10-05T00:00:00.000000000",
+      "variable": "total_precipitation_6hr",
+      "level_hpa": null,
+      "lead_hours": 240,
+      "units": "m",
+      "control": {
+        "crps": 0.0008967189943370135,
+        "mse": 7.13444977563065e-06,
+        "ensemble_variance": 9.09726245582022e-06,
+        "valid_area_fraction": 1.0
+      },
+      "extended_ar": {
+        "crps": 0.0008801537263559739,
+        "mse": 7.041433585987964e-06,
+        "ensemble_variance": 9.176847293663577e-06,
+        "valid_area_fraction": 1.0
+      }
+    }
+  ]
+}

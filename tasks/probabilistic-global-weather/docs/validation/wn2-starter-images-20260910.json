@@ -1,0 +1,57 @@
+{
+  "updated_utc": "2026-09-10T06:48:05.692451+00:00",
+  "status": "both_apptainer_images_built_starter_delivery_and_40_evaluator_tests_passed",
+  "image_directory": "/usr/project/xtmp/sc829/weather-track/images-starter-20260910",
+  "environment_image_sha256": "ece843cc98e4c0af0ff3da5336bcaa473406b94caa831765504e369e4229bd34",
+  "source_inventory_sha256": "3f382bc4bb2534cac0da867b9b0576350b6cc41ea10f7f95ec077609834cf99b",
+  "delivery_check_source_sha256": "8527bb30bb2142664bc0220e0a8a7880e131f72e65afb4547af2758c2f637f12",
+  "delivery_check": {
+    "status": "passed",
+    "verified_files": 26,
+    "model_imports": [
+      "native_model",
+      "train_stage",
+      "package_model",
+      "predict"
+    ],
+    "versions": {
+      "jax": "0.6.2",
+      "jaxlib": "0.6.2",
+      "numpy": "1.26.4",
+      "xarray": "2026.1.0"
+    },
+    "scope": "Physical starter image delivery and CPU imports; no GPU training or Docker/Compose claim"
+  },
+  "build_session_id": 84591,
+  "build_log": "/usr/project/xtmp/sc829/weather-track/images-starter-20260910/build-login.log",
+  "failed_attempts": [
+    {
+      "job": 12567925,
+      "reason": "Compute-node fakeroot setgroups Permission denied before dependency install; known host restriction; reused frozen snapshot on operator host"
+    },
+    {
+      "log": "delivery-check.log",
+      "reason": "Host Python ast.unparse formatting differs from image Python; expected files now regenerated using image Python and byte-compared"
+    },
+    {
+      "log": "delivery-check-runtime.log",
+      "reason": "Import check omitted required XLA deterministic policy; repeated with exact required policy, no model modification"
+    }
+  ],
+  "pending": [
+    "GPU execution in latest delivery image",
+    "Docker/Compose execution",
+    "full final-model training/eval/replay",
+    "resource mirror and final repository/legacy acceptance"
+  ],
+  "tests_image_sha256": "c2f665cf5bb3e20776b213f5e93b1c7837b560f15348895d18e4488fbe154d28",
+  "build_exit_code": 0,
+  "evaluator_tests": {
+    "passed": 40,
+    "seconds": 7.27,
+    "warnings": [
+      "RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility in test_evaluate.py::test_complete_evaluation_and_streamed_serialization; no test failure"
+    ]
+  },
+  "build_log_sha256": "a8dfc6df9ff8f90d361948e380a434c63ae18d8a2c879896cc251f5c951c506a"
+}

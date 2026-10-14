@@ -1,0 +1,371 @@
+{
+  "status": "passed",
+  "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+  "protocol_sha256": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+  "cases": [
+    {
+      "case_index": 0,
+      "initialization": "2022-01-05T00:00:00",
+      "file": "inputs-000.nc",
+      "sha256": "3f2a31fc9d4a906dbfdf1893e451e4b3a0aafb3f56aad71a46f44e025c08e358",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 1,
+      "initialization": "2022-01-16T06:00:00",
+      "file": "inputs-001.nc",
+      "sha256": "490f11ca0c4289a7d3724efdcb80f7d0021ef3dc167f59f8e6a4c493976eaec7",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 2,
+      "initialization": "2022-01-27T12:00:00",
+      "file": "inputs-002.nc",
+      "sha256": "7ba329f23e41347b4a5137f62ad076958e5e347fd2ac114ff2842cfc52e0ecbf",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 3,
+      "initialization": "2022-02-07T18:00:00",
+      "file": "inputs-003.nc",
+      "sha256": "fede7137e73cdfc088324566caba5c8f7c26eda42ef3e069087dbacf19bec715",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 4,
+      "initialization": "2022-02-18T00:00:00",
+      "file": "inputs-004.nc",
+      "sha256": "fcb9e3ff16ee6eb02908d6616988d0d08c01d2bd34d8c63e74270274f1a0d493",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 5,
+      "initialization": "2022-03-01T06:00:00",
+      "file": "inputs-005.nc",
+      "sha256": "c6b8aed5a099f120ea32f5b5945d2a8b1c9a3b9484ec09f4ccfb1c01f7d8a3ba",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 6,
+      "initialization": "2022-03-12T12:00:00",
+      "file": "inputs-006.nc",
+      "sha256": "3070121a269ada4c1db8435ad60a1bc2aa8f113f35aab75ae18c99a975ad3a7c",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 7,
+      "initialization": "2022-03-23T18:00:00",
+      "file": "inputs-007.nc",
+      "sha256": "8a44b57957a2561443b2cfaf264e7977fc8431eb84bce820f1b1f172117df448",
+      "isolated_input_repairs": {
+        "geopotential": {
+          "dimensions": [
+            "time",
+            "level",
+            "lat",
+            "lon"
+          ],
+          "indices": [
+            [
+              0,
+              10,
+              39,
+              781
+            ],
+            [
+              0,
+              10,
+              47,
+              1088
+            ],
+            [
+              0,
+              10,
+              54,
+              1056
+            ],
+            [
+              0,
+              10,
+              70,
+              1134
+            ],
+            [
+              0,
+              10,
+              110,
+              1066
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case_index": 8,
+      "initialization": "2022-04-05T00:00:00",
+      "file": "inputs-008.nc",
+      "sha256": "2a11e93719092c984aa12ed8ef67291f9cbd6a0e6b3a406997dc17df7f3d8eaf",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 9,
+      "initialization": "2022-04-16T06:00:00",
+      "file": "inputs-009.nc",
+      "sha256": "aebbf8e1b1d2e7eacc93507dc06f0d6195f008837f511d00058711600da1c1f2",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 10,
+      "initialization": "2022-04-27T12:00:00",
+      "file": "inputs-010.nc",
+      "sha256": "c81900eb42cebd890853b6b2fb62cbf5ff98c1c3335e930901ed658db725e909",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 11,
+      "initialization": "2022-05-08T18:00:00",
+      "file": "inputs-011.nc",
+      "sha256": "a295330c099c89570fc0fafcc342bf8871111850906aae7b31b5a474e89891a4",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 12,
+      "initialization": "2022-05-19T00:00:00",
+      "file": "inputs-012.nc",
+      "sha256": "822e72a8b45c862946af9803e678026903ff60ef7ea383092801631fc8c24ab3",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 13,
+      "initialization": "2022-05-30T06:00:00",
+      "file": "inputs-013.nc",
+      "sha256": "c2b60629fa742775575da840458377798f5e7a53cd1a20b48528a6a1958354ef",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 14,
+      "initialization": "2022-06-10T12:00:00",
+      "file": "inputs-014.nc",
+      "sha256": "92bf66f2ff8dcaff4dc30eaeedde900cc1778f0108f5c6502c8069e8f090f61c",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 15,
+      "initialization": "2022-06-21T18:00:00",
+      "file": "inputs-015.nc",
+      "sha256": "45e376a6d7960956cafcc579897599036085e046b754dfc3de42409e947af828",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 16,
+      "initialization": "2022-07-05T00:00:00",
+      "file": "inputs-016.nc",
+      "sha256": "7d5160e59b5f214c1dc8b33d58d1a5a957335616884a517ce0e7d9daf81cd959",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 17,
+      "initialization": "2022-07-16T06:00:00",
+      "file": "inputs-017.nc",
+      "sha256": "3c0a36967c12f7e6f513582769565bbad965b87d18a2f7986c0753f103678ab4",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 18,
+      "initialization": "2022-07-27T12:00:00",
+      "file": "inputs-018.nc",
+      "sha256": "3aeba75c911ba097a8cb693d73a663de92daee63c1ebbc3940bd429d0ea795a6",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 19,
+      "initialization": "2022-08-07T18:00:00",
+      "file": "inputs-019.nc",
+      "sha256": "cdd7cb9b418e8a2bc4beee9d7d4ac6436e4a1ae3183540b177b853c315e8a7f5",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 20,
+      "initialization": "2022-08-18T00:00:00",
+      "file": "inputs-020.nc",
+      "sha256": "eadc0f5b9cd2879a2203bdd1fb39acae6ebad5de88488fa2eb69672602cdf545",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 21,
+      "initialization": "2022-08-29T06:00:00",
+      "file": "inputs-021.nc",
+      "sha256": "d2ee306ad37b179b21293e4a2c667dcee0bea5b1467269fe11cd4642b0bc3d4b",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 22,
+      "initialization": "2022-09-09T12:00:00",
+      "file": "inputs-022.nc",
+      "sha256": "763e8d3591f6e19f77abb878a5ebfa3a51604bc312a41d4b7413b177d019f1d8",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 23,
+      "initialization": "2022-09-20T18:00:00",
+      "file": "inputs-023.nc",
+      "sha256": "eb64adccd59add619f5ff8681b14cfa1011c94bff435150e6d77dee499add1ef",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 24,
+      "initialization": "2022-10-05T00:00:00",
+      "file": "inputs-024.nc",
+      "sha256": "84797382e3244a9ab549856233da85904356b154013a664d21bff363c1a3d0ea",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 25,
+      "initialization": "2022-10-16T06:00:00",
+      "file": "inputs-025.nc",
+      "sha256": "ea6d631c808d8bcad1998193dcb1da4dafe369330702e5f3289a68ce924bef2b",
+      "isolated_input_repairs": {
+        "geopotential": {
+          "dimensions": [
+            "time",
+            "level",
+            "lat",
+            "lon"
+          ],
+          "indices": [
+            [
+              0,
+              10,
+              36,
+              843
+            ],
+            [
+              0,
+              10,
+              36,
+              870
+            ],
+            [
+              0,
+              10,
+              60,
+              1019
+            ],
+            [
+              0,
+              10,
+              64,
+              817
+            ],
+            [
+              0,
+              10,
+              83,
+              210
+            ],
+            [
+              0,
+              10,
+              89,
+              418
+            ],
+            [
+              0,
+              10,
+              91,
+              179
+            ],
+            [
+              0,
+              10,
+              110,
+              1267
+            ],
+            [
+              0,
+              10,
+              113,
+              442
+            ],
+            [
+              0,
+              10,
+              129,
+              1353
+            ],
+            [
+              0,
+              10,
+              140,
+              357
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case_index": 26,
+      "initialization": "2022-10-27T12:00:00",
+      "file": "inputs-026.nc",
+      "sha256": "4866287e8c7924b4cf4ef22149f7d1bf2da59d590adc0ef2851eaf8cc3db479e",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 27,
+      "initialization": "2022-11-07T18:00:00",
+      "file": "inputs-027.nc",
+      "sha256": "509fdfacdd65a2bdd5cf5b7031241179355ed37adaa74ba66464c4773314af7e",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 28,
+      "initialization": "2022-11-18T00:00:00",
+      "file": "inputs-028.nc",
+      "sha256": "5ee87eb5da8b8a00fe907e6502a8e64b4c3971518b1a24ea005bda147df9a5ed",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 29,
+      "initialization": "2022-11-29T06:00:00",
+      "file": "inputs-029.nc",
+      "sha256": "640dca21c412ebff2313ce5628b4aeaf9d36fb0f9dca1303f4d4ba154adeb385",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 30,
+      "initialization": "2022-12-10T12:00:00",
+      "file": "inputs-030.nc",
+      "sha256": "113949bde385383261677c28882b574ee10dce00f47e1a6bd27220b562f325ab",
+      "isolated_input_repairs": {}
+    },
+    {
+      "case_index": 31,
+      "initialization": "2022-12-21T18:00:00",
+      "file": "inputs-031.nc",
+      "sha256": "c9146d2433e7318531fde977342e76549a5ee860eb1b47cf77672f604123b198",
+      "isolated_input_repairs": {}
+    }
+  ],
+  "native_input_variables": [
+    "temperature",
+    "geopotential",
+    "u_component_of_wind",
+    "v_component_of_wind",
+    "vertical_velocity",
+    "specific_humidity",
+    "2m_temperature",
+    "mean_sea_level_pressure",
+    "10m_v_component_of_wind",
+    "10m_u_component_of_wind",
+    "sea_surface_temperature",
+    "100m_u_component_of_wind",
+    "100m_v_component_of_wind",
+    "geopotential_at_surface",
+    "land_sea_mask",
+    "year_progress_sin",
+    "year_progress_cos",
+    "day_progress_sin",
+    "day_progress_cos"
+  ],
+  "scope": "Native context schema, time coverage and hashes; not model forecast replay"
+}

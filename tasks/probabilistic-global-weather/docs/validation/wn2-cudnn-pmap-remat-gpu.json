@@ -1,0 +1,179 @@
+{
+  "status": "measured_not_accepted",
+  "scope": "BF16 synthetic diagnostic only; no equivalence or production acceptance",
+  "cases": [
+    {
+      "batch": 1,
+      "blocks": 3,
+      "width": 8,
+      "dim": 24,
+      "heads": 3,
+      "pmap_remat": true,
+      "forward": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.0039018370475895
+      },
+      "input_gradient": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.0012068316337059254
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.015625,
+          "relative_l2": 0.0032470929343772414
+        },
+        {
+          "max_abs": 0.00042724609375,
+          "relative_l2": 0.004825457698806333
+        },
+        {
+          "max_abs": 0.000244140625,
+          "relative_l2": 0.005166881359240933
+        },
+        {
+          "max_abs": 0.015625,
+          "relative_l2": 0.0011056884336188286
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0011005632113665342,
+      "cudnn_seconds": 0.0011128953658044339,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 10464,
+        "output_size_in_bytes": 11684,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 42808
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 10464,
+        "output_size_in_bytes": 11684,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 99896
+      }
+    },
+    {
+      "batch": 2,
+      "blocks": 3,
+      "width": 9,
+      "dim": 24,
+      "heads": 3,
+      "pmap_remat": true,
+      "forward": {
+        "max_abs": 0.000244140625,
+        "relative_l2": 0.004303725643669591
+      },
+      "input_gradient": {
+        "max_abs": 0.00048828125,
+        "relative_l2": 0.002020322946198167
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0078125,
+          "relative_l2": 0.0018820608095003347
+        },
+        {
+          "max_abs": 0.0009765625,
+          "relative_l2": 0.004606327869559307
+        },
+        {
+          "max_abs": 0.00048828125,
+          "relative_l2": 0.0052686808465833455
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.00218710752158016
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.0011027264408767223,
+      "cudnn_seconds": 0.0010449576191604137,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 11904,
+        "output_size_in_bytes": 14564,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 88896
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 11904,
+        "output_size_in_bytes": 14564,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 203064
+      }
+    },
+    {
+      "batch": 1,
+      "blocks": 3,
+      "width": 128,
+      "dim": 768,
+      "heads": 6,
+      "pmap_remat": true,
+      "forward": {
+        "max_abs": 0.0001220703125,
+        "relative_l2": 0.004290421949047855
+      },
+      "input_gradient": {
+        "max_abs": 0.0029296875,
+        "relative_l2": 0.0015072224474634202
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.0625,
+          "relative_l2": 0.0013059029166633109
+        },
+        {
+          "max_abs": 0.001953125,
+          "relative_l2": 0.004773755399498431
+        },
+        {
+          "max_abs": 0.001953125,
+          "relative_l2": 0.0046713400387257435
+        },
+        {
+          "max_abs": 0.25,
+          "relative_l2": 0.001522455338796049
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.002894751401618123,
+      "cudnn_seconds": 0.0028397390153259037,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 10030080,
+        "output_size_in_bytes": 10619972,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 11853888
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 10030080,
+        "output_size_in_bytes": 10619972,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 11802432
+      }
+    }
+  ],
+  "job": "12540285",
+  "slurm": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:01:12"
+  },
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "53ca67aa8928100179f7e92479b152d2e36e98bd0f9b089e1855a60c96150c1c",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "db8461b85e6e3b5ce83a47bf9a64f21b0d2f1d7cc31e24c56d9a00467a7f0d0a"
+  },
+  "finding": "Small PRO6000 pmap + Haiku remat + saved autotune cases passed execution/repeat; does not reproduce native raw_hash_map error. Full native scan/shape structure remains to isolate."
+}

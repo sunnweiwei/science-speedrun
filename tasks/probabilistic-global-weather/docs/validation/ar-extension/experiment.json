@@ -1,0 +1,33 @@
+{
+  "status": "prepared",
+  "seed": 0,
+  "parent_stage": "stage-04",
+  "parent_updates": 556,
+  "original_final_updates": 562,
+  "extended_final_updates": 580,
+  "ar_updates_per_stage": 4,
+  "training_hours_estimate": [
+    11,
+    12
+  ],
+  "training_gpu_hours_estimate": [
+    44,
+    48
+  ],
+  "eval_members": 8,
+  "eval_dates": [
+    "2021-01-05T00:00:00.000000000",
+    "2021-04-05T00:00:00.000000000",
+    "2021-07-05T00:00:00.000000000",
+    "2021-10-05T00:00:00.000000000"
+  ],
+  "eval_lead_hours": [
+    24,
+    72,
+    120,
+    240
+  ],
+  "hypothesis": "Additional AR updates reduce long-rollout drift, especially wind speed.",
+  "primary_endpoint": "Paired 10-day 10m wind-speed RMSE; all five variables and all four leads are reported.",
+  "limitations": "Pilot changes the number of AR-stage updates and hence total training compute; a positive result does not isolate AR horizon from extra optimizer updates. Development dates only; no paper-budget compliance claim."
+}

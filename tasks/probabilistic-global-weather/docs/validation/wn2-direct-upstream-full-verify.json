@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "scope": "all",
+  "verify_only": true,
+  "started_unix": 1788988329.0299497,
+  "sources_lock_sha256": "5701456bf96436608e237d39d7ca2bb516ff295ba5749f4fbc4bc6c5d25988a5",
+  "code_sha256": {
+    "environment/data/materialize.py": "814dbfb2116200eb6a139e2c3d90ce4a2842e7e2db00b347cf357232bf6b5925",
+    "environment/data/runtime_check.py": "a14257efc107a990245532a4d33e89f03d0a99cedc3fd9466ad4d6fce0ebb150",
+    "slurm/prepare_wn2_cyclones.py": "5b9a5355fedac7fd4287d1c831c4dec03890efd8307bb0a894164cee799dbeb0",
+    "wn2/materialize_inputs.py": "b88eda15992d23c3ea457b3c9b9d96b65c6cea2d20c9b1cfb5807c7c27ad84c2",
+    "wn2/materialize_training.py": "e275a001fcc12b3a1c01ff453fb3aed49adeabb824a662776874b3e24c847a58",
+    "wn2/materialize_truth.py": "9dfe319b7cc32e208c4f6ece4ee242e80e11885a713e82bba53731d9e83401e1",
+    "wn2/training_statistics.py": "1da90f7fc49b682203d2c2a1da777016f4df964eab42dc058acd458e4547dae4",
+    "wn2/training_data.py": "b4f44bf80e0b5a7876bd2f52ffe1f5d6ff59f7752a774a64e732004506cf6f57"
+  },
+  "protocols": {
+    "training-protocol.json": "61c86508aaee0b73786c97bc787084e18d6fd1df500cb57f2709a53b47c67277",
+    "protocol.json": "6724bfa280cb7b925d239bcbdd7fe14600769c8da3f04d8b53302157c0fcbc92",
+    "precipitation-protocol.json": "d1279f38c073cbc42b9b687feb1abd04faf103a74fd4a32b51bdd755fbc67f2d",
+    "development-protocol.json": "f0279cd79c09e989dc04e2d7f21ff5b2feee3fec0f5711a5457dfd7cd433074e",
+    "development-precipitation-protocol.json": "0a4f52235933cedcec10a24b5a8b315c4abd1bcbd9e84c8d622dc8d80e0b8b90"
+  },
+  "ended_unix": 1788988798.1145346,
+  "verified_case_jobs": 236,
+  "elapsed_seconds": 469.08458495140076
+}

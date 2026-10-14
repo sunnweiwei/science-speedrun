@@ -1,0 +1,182 @@
+{
+  "scope": "Three fixed shared dates, same as previous WN2/GenCast table. Global native-grid T2m; equal-date mean MSE followed by square root. Persistence holds initialization T2m unchanged at all leads.",
+  "per_case": [
+    {
+      "case": "2022-01-05T00:00:00.000000000",
+      "lead_hours": 24,
+      "persistence_mse": 6.632710974597255,
+      "persistence_mae": 1.4776449061472925,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 5.380565613518475,
+      "gencast_mse": 0.5721197279803234
+    },
+    {
+      "case": "2022-01-05T00:00:00.000000000",
+      "lead_hours": 72,
+      "persistence_mse": 10.806420651539279,
+      "persistence_mae": 1.9373325748843522,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 11.645004645421775,
+      "gencast_mse": 1.1267833154258038
+    },
+    {
+      "case": "2022-01-05T00:00:00.000000000",
+      "lead_hours": 120,
+      "persistence_mse": 11.942425619394763,
+      "persistence_mae": 2.025709814269686,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 16.382489245138892,
+      "gencast_mse": 1.9484150097686985
+    },
+    {
+      "case": "2022-01-05T00:00:00.000000000",
+      "lead_hours": 240,
+      "persistence_mse": 17.68578507946076,
+      "persistence_mae": 2.371648238551547,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 31.38913208898525,
+      "gencast_mse": 4.462974277969293
+    },
+    {
+      "case": "2022-01-05T00:00:00.000000000",
+      "lead_hours": 360,
+      "persistence_mse": 14.4861936025226,
+      "persistence_mae": 2.19643327443745,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 41.76397704238167,
+      "gencast_mse": 6.933607393351474
+    },
+    {
+      "case": "2022-03-01T06:00:00.000000000",
+      "lead_hours": 24,
+      "persistence_mse": 3.9416369056171128,
+      "persistence_mae": 1.27312840749655,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 3.7677661362805677,
+      "gencast_mse": 0.4840746710730765
+    },
+    {
+      "case": "2022-03-01T06:00:00.000000000",
+      "lead_hours": 72,
+      "persistence_mse": 8.165355547886499,
+      "persistence_mae": 1.8049023065634118,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 9.104305473981809,
+      "gencast_mse": 0.8659283753995234
+    },
+    {
+      "case": "2022-03-01T06:00:00.000000000",
+      "lead_hours": 120,
+      "persistence_mse": 12.726923022211885,
+      "persistence_mae": 2.101639169832323,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 15.22772291894232,
+      "gencast_mse": 1.6382665228540374
+    },
+    {
+      "case": "2022-03-01T06:00:00.000000000",
+      "lead_hours": 240,
+      "persistence_mse": 12.800293932262985,
+      "persistence_mae": 2.2009576459860534,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 33.398545083966034,
+      "gencast_mse": 4.572224446666195
+    },
+    {
+      "case": "2022-03-01T06:00:00.000000000",
+      "lead_hours": 360,
+      "persistence_mse": 13.855608318604622,
+      "persistence_mae": 2.332536296424798,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 43.4758381982336,
+      "gencast_mse": 9.149062612736849
+    },
+    {
+      "case": "2022-04-27T12:00:00.000000000",
+      "lead_hours": 24,
+      "persistence_mse": 4.294983002914946,
+      "persistence_mae": 1.354009889049024,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 3.715062047202503,
+      "gencast_mse": 0.516591666072975
+    },
+    {
+      "case": "2022-04-27T12:00:00.000000000",
+      "lead_hours": 72,
+      "persistence_mse": 9.504463839865133,
+      "persistence_mae": 2.002498144855473,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 10.471908788827967,
+      "gencast_mse": 0.9887054472051965
+    },
+    {
+      "case": "2022-04-27T12:00:00.000000000",
+      "lead_hours": 120,
+      "persistence_mse": 10.659193255876259,
+      "persistence_mae": 2.0454777467871503,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 13.892766065077192,
+      "gencast_mse": 1.604191050978951
+    },
+    {
+      "case": "2022-04-27T12:00:00.000000000",
+      "lead_hours": 240,
+      "persistence_mse": 13.089927021810063,
+      "persistence_mae": 2.322681150046755,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 24.557483041632626,
+      "gencast_mse": 4.332365608889966
+    },
+    {
+      "case": "2022-04-27T12:00:00.000000000",
+      "lead_hours": 360,
+      "persistence_mse": 15.369815341237214,
+      "persistence_mae": 2.450522402304501,
+      "valid_area_fraction": 1.0,
+      "wn2-seed-0_mse": 42.369075330997845,
+      "gencast_mse": 5.464654637274634
+    }
+  ],
+  "summary": [
+    {
+      "lead_days": 1,
+      "cases": 3,
+      "persistence_rmse_c": 2.226307172811014,
+      "wn2-seed-0_rmse_c": 2.070699865343563,
+      "gencast_rmse_c": 0.7240594048203446,
+      "wn2_rmse_reduction_vs_persistence_percent": 6.989480578772788
+    },
+    {
+      "lead_days": 3,
+      "cases": 3,
+      "persistence_rmse_c": 3.0809219420649026,
+      "wn2-seed-0_rmse_c": 3.2259995302867783,
+      "gencast_rmse_c": 0.9968980452768684,
+      "wn2_rmse_reduction_vs_persistence_percent": -4.708901781673891
+    },
+    {
+      "lead_days": 5,
+      "cases": 3,
+      "persistence_rmse_c": 3.4316440130780324,
+      "wn2-seed-0_rmse_c": 3.8945679362054357,
+      "gencast_rmse_c": 1.3154052079874712,
+      "wn2_rmse_reduction_vs_persistence_percent": -13.489858544860578
+    },
+    {
+      "lead_days": 10,
+      "cases": 3,
+      "persistence_rmse_c": 3.811211794759151,
+      "wn2-seed-0_rmse_c": 5.457263056837921,
+      "gencast_rmse_c": 2.1108895702622195,
+      "wn2_rmse_reduction_vs_persistence_percent": -43.18970843715056
+    },
+    {
+      "lead_days": 15,
+      "cases": 3,
+      "persistence_rmse_c": 3.8171375515502204,
+      "wn2-seed-0_rmse_c": 6.52198565294377,
+      "gencast_rmse_c": 2.68000775144171,
+      "wn2_rmse_reduction_vs_persistence_percent": -70.86064007033369
+    }
+  ]
+}

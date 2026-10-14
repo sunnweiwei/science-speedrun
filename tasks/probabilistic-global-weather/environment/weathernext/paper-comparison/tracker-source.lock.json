@@ -1,0 +1,9 @@
+{
+  "version": "2.1",
+  "source_doi": "10.5281/zenodo.4385656",
+  "archive_url": "https://zenodo.org/api/records/4385656/files/ClimateGlobalChange/tempestextremes-2.1.zip/content",
+  "bytes": 5253247,
+  "md5": "f827b902788e30a34ad2156b0ab7b14e",
+  "sha256": "99abffd4c618ef6d4a744aa398230e6f7f36d132e7543ce319f9ed000ffa560f",
+  "status": "source_verified; operator DetectNodes and StitchNodes built and exercised on all eight HRES cases"
+}

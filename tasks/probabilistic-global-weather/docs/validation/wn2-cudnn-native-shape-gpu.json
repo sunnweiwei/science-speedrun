@@ -1,0 +1,70 @@
+{
+  "status": "measured_not_accepted",
+  "scope": "BF16 synthetic diagnostic only; no equivalence or production acceptance",
+  "cases": [
+    {
+      "batch": 1,
+      "blocks": 2,
+      "width": 5153,
+      "dim": 768,
+      "heads": 6,
+      "forward": {
+        "max_abs": 1.52587890625e-05,
+        "relative_l2": 0.004228847756032858
+      },
+      "input_gradient": {
+        "max_abs": 0.0009765625,
+        "relative_l2": 0.0007787835334205892
+      },
+      "parameter_gradient_errors": [
+        {
+          "max_abs": 0.0,
+          "relative_l2": 0.0
+        },
+        {
+          "max_abs": 0.25,
+          "relative_l2": 0.0004799365552272289
+        },
+        {
+          "max_abs": 0.00390625,
+          "relative_l2": 0.002448780551259325
+        },
+        {
+          "max_abs": 0.00390625,
+          "relative_l2": 0.0037465011988657066
+        },
+        {
+          "max_abs": 1.0,
+          "relative_l2": 0.0009446903955112394
+        }
+      ],
+      "repeat_exact": true,
+      "native_seconds": 0.11782638402655721,
+      "cudnn_seconds": 0.054086883552372456,
+      "native_compiler_memory": {
+        "argument_size_in_bytes": 25270272,
+        "output_size_in_bytes": 41100356,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 5834315072
+      },
+      "cudnn_compiler_memory": {
+        "argument_size_in_bytes": 25270272,
+        "output_size_in_bytes": 41100356,
+        "alias_size_in_bytes": 0,
+        "temp_size_in_bytes": 2499481904
+      }
+    }
+  ],
+  "job": "12539908",
+  "slurm_status": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:01:32",
+  "mask_scope": "Synthetic dense valid mask; actual coarse block shape only",
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "4024ac7c3a0017cfa4f013c57935c32ca6e218b18501d5a472ce48a15866b3fa",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "acf46924998079f5a13045c495ffcde47035891560a6df2d755cbe7f6c66bcd7"
+  }
+}

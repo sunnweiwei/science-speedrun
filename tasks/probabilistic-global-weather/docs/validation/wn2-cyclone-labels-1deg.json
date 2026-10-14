@@ -1,0 +1,139 @@
+{
+  "schema": "wn2-cyclone-targets/v1",
+  "status": "passed",
+  "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+  "ibtracs_sha256": "5584637db168ddd65e115114888ae2bea9587d0439954c2bde776703525005b5",
+  "runner_sha256": "5b9a5355fedac7fd4287d1c831c4dec03890efd8307bb0a894164cee799dbeb0",
+  "calibration_start": "1980-01-01",
+  "calibration_end": "2020-12-31T23:59:59",
+  "calibration_storms_must_be_wholly_inside_training_interval": true,
+  "calibration_models": {
+    "usa_wind": {
+      "coefficient": 0.9999999999999991,
+      "intercept": 4.263256414560601e-14
+    },
+    "cma_wind": {
+      "coefficient": 0.7415821464444603,
+      "intercept": 9.011206836713356
+    },
+    "newdelhi_wind": {
+      "coefficient": 0.8205217210426701,
+      "intercept": 3.205703062804261
+    },
+    "reunion_wind": {
+      "coefficient": 0.7056244367861126,
+      "intercept": 8.119107777212228
+    },
+    "bom_wind": {
+      "coefficient": 0.8141229136789809,
+      "intercept": 8.284443385771667
+    }
+  },
+  "source": "NOAA IBTrACS v04r01 since1980, retrospective best tracks",
+  "resolution": 1.0,
+  "variables": [
+    "cyclone_exists_gaussian_unit_mode",
+    "cyclone_all_wind_disc",
+    "cyclone_usa_wind_disc",
+    "cyclone_usa_r34_ne_radius_disc",
+    "cyclone_usa_r34_se_radius_disc",
+    "cyclone_usa_r34_sw_radius_disc",
+    "cyclone_usa_r34_nw_radius_disc",
+    "cyclone_usa_r50_ne_radius_disc",
+    "cyclone_usa_r50_se_radius_disc",
+    "cyclone_usa_r50_sw_radius_disc",
+    "cyclone_usa_r50_nw_radius_disc",
+    "cyclone_usa_r64_ne_radius_disc",
+    "cyclone_usa_r64_se_radius_disc",
+    "cyclone_usa_r64_sw_radius_disc",
+    "cyclone_usa_r64_nw_radius_disc",
+    "cyclone_usa_rmw_disc",
+    "cyclone_usa_pres_disc"
+  ],
+  "frames": [
+    {
+      "time": "2020-09-24T00:00:00",
+      "file": "cyclones-2020-09-24T000000.nc",
+      "sha256": "273dd787a038d84c4c0bc53a93d486bf520b3b685b1cf40989144d3617180bef",
+      "seconds": 11.388225035741925,
+      "counts": {
+        "cyclone_exists_gaussian_unit_mode": {
+          "finite": 65160,
+          "nan": 0
+        },
+        "cyclone_all_wind_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_wind_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r34_ne_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r34_se_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r34_sw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r34_nw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r50_ne_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r50_se_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r50_sw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r50_nw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r64_ne_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r64_se_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r64_sw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_r64_nw_radius_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_rmw_disc": {
+          "finite": 89,
+          "nan": 65071
+        },
+        "cyclone_usa_pres_disc": {
+          "finite": 89,
+          "nan": 65071
+        }
+      }
+    }
+  ],
+  "settings": {
+    "existence_gaussian_and_disc_radius_km": 120.0,
+    "scalar_variable_disc_radius_km": 240.0,
+    "quadrant_nan_mask_disc_radius_km": 800.0,
+    "quadrant_num_subgrid": 8,
+    "core_cyclone_variables_only": true
+  },
+  "scope": "Native label materialization only; no meteorological corpus, normalization or scientific evaluation acceptance"
+}

@@ -1,0 +1,13 @@
+# Minimal metric-only runtime; WeatherBench-X is imported from a clean checkout
+# at 88af2fde7a78f13b77496a2abb8ca88905fa5e95 through PYTHONPATH.
+# Beam, loaders and statistical-inference extras are not used by this evaluator.
+numpy==2.2.6
+xarray==2025.7.1
+scipy==1.15.3
+jax==0.6.2
+absl-py==2.3.1
+netCDF4==1.7.2
+zarr==2.18.7
+pandas==2.3.1
+pytest==8.4.1
+gcsfs==2025.7.0

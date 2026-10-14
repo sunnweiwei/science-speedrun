@@ -1,0 +1,58 @@
+{
+  "status": "frozen_before_observing_scores",
+  "training_seed": 0,
+  "inference_seed": 20210910,
+  "members": 8,
+  "lead_hours": [
+    6,
+    24
+  ],
+  "scope": "Weight-only comparison at HRES fine-tuning start (update 544) versus final (562); both use identical final HRES configuration and training-only HRES normalization. Does not test original ERA5-stage normalization or full training trajectory.",
+  "deadline": "2026-09-10T12:00:00-04:00",
+  "cases": [
+    {
+      "case_index": 0,
+      "initialization": "2021-01-05T00:00:00.000000000",
+      "file": "inputs-000.nc",
+      "sha256": "c99a5cd621ce4fee3da12584e09b70dab138b1e249c2049b98281d27b07e3f8f"
+    },
+    {
+      "case_index": 1,
+      "initialization": "2021-04-05T00:00:00.000000000",
+      "file": "inputs-001.nc",
+      "sha256": "abff032940d5d958515731b7dfa275e50be9b556b71ee42f79ef042b10deba6c"
+    },
+    {
+      "case_index": 2,
+      "initialization": "2021-07-05T00:00:00.000000000",
+      "file": "inputs-002.nc",
+      "sha256": "c3d1be233cdf28cfb96de830124787f03ec2cdc34b791c4f30775f9031f40005"
+    },
+    {
+      "case_index": 3,
+      "initialization": "2021-10-05T00:00:00.000000000",
+      "file": "inputs-003.nc",
+      "sha256": "45f4af69ac6ac9f8df3f9fe763b0d263767c0c43b6e166576ed526115cb5baca"
+    }
+  ],
+  "checkpoints": {
+    "before_hres": {
+      "stage": "stage-02",
+      "global_update": 544,
+      "weights_sha256": "b7667929b75cd864bfaee4192ed0170df9ede9bde3e5725127fa405a2ea155ce",
+      "report_sha256": "baa60809f804ebadfd3142e6996eacab79fefba751629644be998cb0fdb59f10"
+    },
+    "final": {
+      "stage": "stage-10",
+      "global_update": 562,
+      "weights_sha256": "08c51632a6e839761a744460e8a099c3641f24439ba1c4c813d772cbb212c3f4",
+      "report_sha256": "2c97ab5595b923e5dd0b8735aada43e528129977234a53aab33ecee9a9a674ee"
+    }
+  },
+  "source_sha256": {
+    "predict.py": "592f7e3ed849eec52c1dcc5b4ffe21b01ab094645b17c1e3df8d2132972f6b0a",
+    "score.py": "e28823f184e1e0786537de82caeb8d6d2ca02eba4cd9c0a2488aba8bd6c81d96",
+    "evaluate.py": "e109bd45a248012aa91388be585d741fa6a416de1dfdf7bf02aa55778c8cc427"
+  },
+  "statistics_manifest_sha256": "5c41c78744dbf6e64ef67377877466a20ba621aacc17386c29ddc4f5bcaf17a7"
+}

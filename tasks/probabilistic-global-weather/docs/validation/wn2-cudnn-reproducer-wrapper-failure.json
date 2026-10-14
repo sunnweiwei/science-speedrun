@@ -1,0 +1,19 @@
+{
+  "status": "failed_diagnostic_wrapper_before_gpu_compilation",
+  "job": "12540140",
+  "slurm": {
+    "state": "FAILED",
+    "exit_code": "1:0",
+    "elapsed": "00:00:04"
+  },
+  "error": "hk.checkpoint should not be used outside hk.transform",
+  "fix": "Create hk.remat inside the transformed function. Corrected native attention reference initialization and pmap gradient passed on CPU.",
+  "sources_sha256": {
+    "wn2_query_chunks.py": "bf4a40614fc0fe70a8505039c41c9298f265a421c82b924756917c2955505580",
+    "wn2_boolean_masks.py": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+    "check_wn2_query_chunks.py": "53ca67aa8928100179f7e92479b152d2e36e98bd0f9b089e1855a60c96150c1c",
+    "wn2_cudnn_attention.py": "d4a116741ca4c0b971d959bb5836cf63f410cfd47655b74ea0850d20dd976114",
+    "check_wn2_cudnn_attention.py": "37c592f40f53eca72cefa7e66b52665f5886a9b1476b8c36697ba792fceb7255"
+  },
+  "scope": "No evidence about original native cuDNN raw_hash_map failure"
+}

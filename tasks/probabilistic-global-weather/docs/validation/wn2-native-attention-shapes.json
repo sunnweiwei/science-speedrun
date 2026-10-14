@@ -1,0 +1,38 @@
+{
+  "evidence": [
+    {
+      "mesh_splits": 5,
+      "nodes": 10242,
+      "attention_hops": 32,
+      "allowed_pairs": 29668002,
+      "block_width": 5153,
+      "blocks": 2,
+      "padded_nodes": 10306,
+      "heads": 6,
+      "batch": 1,
+      "three_logit_blocks_elements": 955922724,
+      "three_logit_blocks_bf16_bytes": 1911845448,
+      "three_softmax_blocks_fp32_bytes": 3823690896,
+      "scope": "Logical tensor sizes before compiler fusion/reuse; not measured peak memory"
+    },
+    {
+      "mesh_splits": 6,
+      "nodes": 40962,
+      "attention_hops": 32,
+      "allowed_pairs": 127019682,
+      "block_width": 10273,
+      "blocks": 4,
+      "padded_nodes": 41092,
+      "heads": 6,
+      "batch": 1,
+      "three_logit_blocks_elements": 7598486088,
+      "three_logit_blocks_bf16_bytes": 15196972176,
+      "three_softmax_blocks_fp32_bytes": 30393944352,
+      "scope": "Logical tensor sizes before compiler fusion/reuse; not measured peak memory"
+    }
+  ],
+  "artifact": "/usr/project/xtmp/sc829/weather-track/wn2-pilot/native-attention-shapes.json",
+  "artifact_sha256": "0e5b3fcf9241fdba7c90ae7f0726ff42a8c6aba65b66ecae9d7d33213bbaece2",
+  "code_sha256": "4357ae6ef28a4ddcd57666abade55383892406a641ed4dbecf7b36970710fa65",
+  "not_production": true
+}

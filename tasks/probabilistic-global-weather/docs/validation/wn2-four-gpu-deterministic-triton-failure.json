@@ -1,0 +1,194 @@
+{
+  "model": "wn2",
+  "mode": "random-train",
+  "status": "failed",
+  "scientific_skill_evaluation": false,
+  "pretrained_parameters_loaded": false,
+  "sample_after_pretraining_cutoff": false,
+  "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+  "runner_sha256": "cbea9d9cd7f39df1e0e95b031f23b3bd009a83aca5de9c24f4abc157d2fa1cde",
+  "precision": "bfloat16",
+  "attention": "triblockdiag_mha",
+  "xla_flags": "--xla_gpu_deterministic_ops=true --xla_gpu_autotune_level=0",
+  "versions": {
+    "jax": "0.6.2",
+    "jaxlib": "0.6.2",
+    "dm-haiku": "0.0.14",
+    "optax": "0.2.5",
+    "numpy": "1.26.4",
+    "xarray": "2026.1.0"
+  },
+  "asset_manifest": {
+    "assets": [
+      {
+        "file": "wn2.npz",
+        "object": "weathernext2/params/WeatherNext2_<2025_model1.npz",
+        "url": "https://storage.googleapis.com/dm_graphcast/weathernext2/params/WeatherNext2_%3C2025_model1.npz?generation=1786019803961574",
+        "generation": "1786019803961574",
+        "bytes": 735348710,
+        "md5": "nbGB+rAWwYYk/YcX2s8n1Q==",
+        "sha256": "0cb95d92e45cccc698a10b5ca7cc339e3e15a450d689792351eb6044ced018bb"
+      },
+      {
+        "file": "cyclones.npz",
+        "object": "weathernext2/params/WeatherNextCyclones_<2024_model1.npz",
+        "url": "https://storage.googleapis.com/dm_graphcast/weathernext2/params/WeatherNextCyclones_%3C2024_model1.npz?generation=1786019803979824",
+        "generation": "1786019803979824",
+        "bytes": 735326830,
+        "md5": "eBz5cN931mljdeovKbh+Yg==",
+        "sha256": "6d0fa19d66dd9d5eaa8791bd8a2c289af688330ffd07aad22da2c1720cf15adc"
+      },
+      {
+        "file": "sample.nc",
+        "object": "weathernext2/dataset/source-hres_forecast_init-2024-10-07 00:00:00_res-0.25_levels-13_steps-01.nc",
+        "url": "https://storage.googleapis.com/dm_graphcast/weathernext2/dataset/source-hres_forecast_init-2024-10-07%2000%3A00%3A00_res-0.25_levels-13_steps-01.nc?generation=1786018983432181",
+        "generation": "1786018983432181",
+        "bytes": 1266741932,
+        "md5": "Wbj1H0rYUvKGtN/QeOPtjA==",
+        "sha256": "f5ea3aab74be45bb67611843e3c62be97c5065a7af647e94f6b4d253957fb2a0"
+      }
+    ],
+    "source_commit": "89c4b2a77a1c57b328b909c575550fd2e5aadc9c",
+    "purpose": "Native 0.25-degree execution and adaptation-budget pilot",
+    "sample_init": "2024-10-07T00:00:00",
+    "lead_hours": 6,
+    "wn2_sample_is_held_out": false,
+    "cyclones_sample_after_pretraining_cutoff": true,
+    "scientific_skill_evaluation": false
+  },
+  "ancillary_winds": {
+    "source": "gs://gcp-public-data-arco-era5/ar/full_37-1h-0p25deg-chunk-1.zarr-v3",
+    "metadata_sha256": "de0368f6b1846fcbc817f0bb7d412cd6f707a8969db313d88c34daf8aad4606e",
+    "timestamps": [
+      "2024-10-06T18:00:00.000000000",
+      "2024-10-07T00:00:00.000000000",
+      "2024-10-07T06:00:00.000000000"
+    ],
+    "variables": [
+      "100m_u_component_of_wind",
+      "100m_v_component_of_wind"
+    ],
+    "sha256": "2ae2f592210b9fe5ef34e8b0525f7090331cdfe6ca90565aeac21068ea130d9f",
+    "purpose": "Compute-only mixed HRES/ERA5 fixture; no scientific skill claim"
+  },
+  "mixed_hres_era5_execution_fixture": true,
+  "architecture": {
+    "layers": 24,
+    "width": 768,
+    "heads": 6,
+    "mesh_splits": 6
+  },
+  "inputs": {
+    "sizes": {
+      "batch": 1,
+      "time": 2,
+      "level": 13,
+      "lat": 721,
+      "lon": 1440
+    },
+    "variables": [
+      "temperature",
+      "geopotential",
+      "u_component_of_wind",
+      "v_component_of_wind",
+      "vertical_velocity",
+      "specific_humidity",
+      "2m_temperature",
+      "mean_sea_level_pressure",
+      "10m_v_component_of_wind",
+      "10m_u_component_of_wind",
+      "sea_surface_temperature",
+      "100m_u_component_of_wind",
+      "100m_v_component_of_wind",
+      "geopotential_at_surface",
+      "land_sea_mask",
+      "year_progress_sin",
+      "year_progress_cos",
+      "day_progress_sin",
+      "day_progress_cos"
+    ]
+  },
+  "targets": {
+    "sizes": {
+      "batch": 1,
+      "time": 1,
+      "level": 13,
+      "lat": 721,
+      "lon": 1440
+    },
+    "variables": [
+      "temperature",
+      "geopotential",
+      "u_component_of_wind",
+      "v_component_of_wind",
+      "vertical_velocity",
+      "specific_humidity",
+      "2m_temperature",
+      "mean_sea_level_pressure",
+      "10m_v_component_of_wind",
+      "10m_u_component_of_wind",
+      "sea_surface_temperature",
+      "100m_u_component_of_wind",
+      "100m_v_component_of_wind",
+      "total_precipitation_6hr",
+      "cyclone_exists_gaussian_unit_mode",
+      "cyclone_all_wind_disc",
+      "cyclone_usa_wind_disc",
+      "cyclone_usa_r34_ne_radius_disc",
+      "cyclone_usa_r34_se_radius_disc",
+      "cyclone_usa_r34_sw_radius_disc",
+      "cyclone_usa_r34_nw_radius_disc",
+      "cyclone_usa_r50_ne_radius_disc",
+      "cyclone_usa_r50_se_radius_disc",
+      "cyclone_usa_r50_sw_radius_disc",
+      "cyclone_usa_r50_nw_radius_disc",
+      "cyclone_usa_r64_ne_radius_disc",
+      "cyclone_usa_r64_se_radius_disc",
+      "cyclone_usa_r64_sw_radius_disc",
+      "cyclone_usa_r64_nw_radius_disc",
+      "cyclone_usa_rmw_disc",
+      "cyclone_usa_pres_disc"
+    ]
+  },
+  "training_ensemble_members": 2,
+  "transformer_block_rematerialization": true,
+  "devices": [
+    {
+      "device": "cuda:0",
+      "kind": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+    },
+    {
+      "device": "cuda:1",
+      "kind": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+    },
+    {
+      "device": "cuda:2",
+      "kind": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+    },
+    {
+      "device": "cuda:3",
+      "kind": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+    }
+  ],
+  "phase": "distributed_compile_and_first_update",
+  "initialization_seed": 0,
+  "initialization": "Native Haiku initializers; no checkpoint parameter arrays loaded",
+  "normalization": "Released config statistics, for execution probing only; not audited for a research split",
+  "initialization_seconds": 227.802303761011,
+  "base_parameters": 183785575,
+  "trainable_parameters": 183785575,
+  "distributed_spec": {
+    "schema": "wn2-distributed-probe/v1",
+    "devices": 4,
+    "accumulation": 16,
+    "seed": 0,
+    "effective_batch": 64,
+    "unique_weather_windows": 1,
+    "ensemble_samples_per_window": 2,
+    "helper_sha256": "ac19f324373cbe0b7570f7adac0fe5e559cb50d79f33e61aace9520ecd496057",
+    "runner_sha256": "cbea9d9cd7f39df1e0e95b031f23b3bd009a83aca5de9c24f4abc157d2fa1cde"
+  },
+  "resumed_from": null,
+  "error": "XlaRuntimeError('CANCELLED: Contracting dimension is too fragmented.')",
+  "traceback": "Traceback (most recent call last):\n  File \"/run/wn2_validation.py\", line 245, in main\n    run_probe(params, loss, inputs, targets, forcings, args.output, save,\n  File \"/run/wn2_distributed.py\", line 90, in run_probe\n    params,state,value,norm,finite,changed = step(params,state,keys,i,t,f)\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/xarray-jax/xarray_jax/jax_transforms.py\", line 159, in result_fn\n    flat_result = pmapped_fn(*flat_args)\n                  ^^^^^^^^^^^^^^^^^^^^^^\njaxlib._jax.XlaRuntimeError: CANCELLED: Contracting dimension is too fragmented.\n--------------------\nFor simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.\n"
+}

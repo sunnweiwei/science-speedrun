@@ -1,0 +1,74 @@
+{
+  "status": "partial_evaluation_not_final_acceptance",
+  "seed": 0,
+  "members": 8,
+  "case_indices": [
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "dates": [
+    "2022-08-29T06:00:00",
+    "2022-09-20T18:00:00",
+    "2022-10-05T00:00:00",
+    "2022-10-16T06:00:00",
+    "2022-10-27T12:00:00",
+    "2022-11-07T18:00:00",
+    "2022-11-18T00:00:00",
+    "2022-11-29T06:00:00",
+    "2022-12-10T12:00:00",
+    "2022-12-21T18:00:00"
+  ],
+  "rows": [
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 24,
+      "case_count": 10,
+      "mean_crps_kelvin": 1.0613297831906616,
+      "rmse_kelvin": 2.1554063067815976
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 72,
+      "case_count": 10,
+      "mean_crps_kelvin": 1.608801325887179,
+      "rmse_kelvin": 3.1979436530107948
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 120,
+      "case_count": 10,
+      "mean_crps_kelvin": 1.9672623383762882,
+      "rmse_kelvin": 3.7962667896434974
+    },
+    {
+      "variable": "2m_temperature",
+      "lead_hours": 240,
+      "case_count": 10,
+      "mean_crps_kelvin": 2.912132569381735,
+      "rmse_kelvin": 5.288846341572979
+    }
+  ],
+  "reports_sha256": {
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-021/weather-scores.json": "e7fba6398c0c96afa78b7b2f5c33f01971806417c284659923d441dd52761273",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-023/weather-scores.json": "7569d3846ac130295ada77d380ea5e6cabd1c35e67c728edf9de9781b32142c4",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-024/weather-scores.json": "86786d7b84d90e672c23f807bd2ca9ad765e010c17f5a77db1b625c8e17011e9",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-025/weather-scores.json": "82f69d269ce46d11219c4ec9c573833db9fe3cc0f4c999cf6e9504edd6e3c557",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-026/weather-scores.json": "e217befd30e3ad89304b2e34e4eb80a74e9ea739c3c082221235b7e65e8dfb49",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-027/weather-scores.json": "b31cc0bb22afbd238868402e8ba74e419cef86135a2fe2b8651b12502d39505e",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-028/weather-scores.json": "68e1ab4987f048d617c9d7eec517f4df61c3b5b55d1ba9b7b83f0b817469c537",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-029/weather-scores.json": "d0b09b2c6b8252c367c8a432d3a4e0708384e06b9876dee769e4994c4aad8020",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-030/weather-scores.json": "f8defb7e102439ef354244187b0c46ce50626ea51d694917c7861132fae44900",
+    "/usr/project/xtmp/sc829/weather-track/wn2-pilot/paired-pipeline-20260909/pipeline-0/curriculum/evaluation/case-031/weather-scores.json": "722f332038f845b4975aaace6ff81a6709c789e92bfe01910ad233b6c9675f8e"
+  },
+  "checked_utc": "2026-09-10T12:15:11.798140+00:00",
+  "aggregation": "Equal weight across these ten completed dates; each native-grid panel already uses geographic area weights",
+  "scope": "Original 32-date eight-member ten-day evaluation; not the eight-date 56-member paper comparison and not an aggregate over all requested dates. Other cases failed strict inference autotune. No GenCast comparison yet."
+}

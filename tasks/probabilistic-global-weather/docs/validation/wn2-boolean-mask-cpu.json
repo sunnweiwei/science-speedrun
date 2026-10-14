@@ -1,0 +1,52 @@
+{
+  "result": {
+    "status": "passed",
+    "scope": "CPU exact logical mask/layout equivalence including padding and boundary blocks; native GPU validation pending",
+    "cases": [
+      {
+        "nodes": 8,
+        "block": 4,
+        "shape": [
+          1,
+          3,
+          2,
+          1,
+          4,
+          4
+        ],
+        "original_bytes": 384,
+        "boolean_bytes": 96
+      },
+      {
+        "nodes": 9,
+        "block": 4,
+        "shape": [
+          1,
+          3,
+          3,
+          1,
+          4,
+          4
+        ],
+        "original_bytes": 576,
+        "boolean_bytes": 144
+      },
+      {
+        "nodes": 3,
+        "block": 4,
+        "shape": [
+          1,
+          3,
+          1,
+          1,
+          4,
+          4
+        ],
+        "original_bytes": 192,
+        "boolean_bytes": 48
+      }
+    ]
+  },
+  "source_sha256": "08c1f5b612042cb5bbe689d277b9bb84b111929e58784e54bb3f6814e9c75920",
+  "production_enabled": false
+}

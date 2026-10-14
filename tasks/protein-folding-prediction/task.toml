@@ -1,0 +1,34 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/protein-folding-prediction"
+version = "0.4.1"
+description = "Continuously improve one from-scratch 45M--55M folding model across nine visible FoldBench tracks."
+authors = [{ name = "Weiwei Sun" }]
+keywords = ["model-development", "protein-folding", "no-msa"]
+
+[metadata]
+data_status = "published: sunweiwei/ai4sci-foldbench-data; immutable revision in environment/data/download-source.json"
+
+[agent]
+timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
+
+[environment]
+network_mode = "no-network"
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+# Verifier replay limit only; it does not constrain development.
+timeout_sec = 86400.0
+
+[verifier.environment]
+network_mode = "no-network"
+gpus = 8
+# environment/contract.md "Resources": host memory for the replay.
+memory_mb = 262144
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

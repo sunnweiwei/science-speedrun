@@ -1,0 +1,60 @@
+{
+  "schema_version": "autofold-model-spec/v1",
+  "model_id": "protenix_pairformer_50m",
+  "display_name": "Protenix Pairformer 50M",
+  "ownership": "official_architecture",
+  "parameter_budget": {
+    "folding_parameters": 48681151,
+    "target": 50000000
+  },
+  "implementation": {
+    "config_module": "official_baselines.protenix.config",
+    "train_module": "official_baselines.protenix.train",
+    "inference_module": "official_baselines.protenix.contract_inference",
+    "runtime_image": "protein-folding:protenix-official"
+  },
+  "capabilities": {
+    "entity_types": ["protein", "rna", "dna", "ligand"],
+    "train_tracks": [
+      "monomer_protein",
+      "monomer_rna",
+      "monomer_dna",
+      "interface_protein_protein",
+      "interface_antibody_antigen",
+      "interface_protein_peptide",
+      "interface_protein_rna",
+      "interface_protein_dna",
+      "interface_protein_ligand"
+    ],
+    "eval_tracks": [
+      "monomer_protein",
+      "monomer_rna",
+      "monomer_dna",
+      "interface_protein_protein",
+      "interface_antibody_antigen",
+      "interface_protein_peptide",
+      "interface_protein_rna",
+      "interface_protein_dna",
+      "interface_protein_ligand"
+    ],
+    "msa": false,
+    "templates": false,
+    "max_eval_tokens": 2048
+  },
+  "data_adapter": {
+    "prepare_module": "official_baselines.protenix.prepare_unified_view",
+    "native_schema": "protenix-weighted-pdb-index",
+    "selection_policy": "capability_only",
+    "full_view_ready": true
+  },
+  "training": {
+    "recipe": "official_protenix_trainer_common_data",
+    "full_loop_ready": true,
+    "checkpoint_resume": true,
+    "validation": true
+  },
+  "export": {
+    "trained_checkpoint_inference": true,
+    "bundle_ready": true
+  }
+}

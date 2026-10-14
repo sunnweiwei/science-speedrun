@@ -1,0 +1,560 @@
+{
+  "format": "foldbench-data-archives/v1",
+  "release_id": "foldbench-100k-esmc-int8-v1",
+  "payload_files": 185995,
+  "payload_bytes": 73068582840,
+  "groups": {
+    "features": {
+      "files": 91366,
+      "bytes": 61910892072
+    },
+    "foldbench": {
+      "files": 4623,
+      "bytes": 2116164115
+    },
+    "manifests": {
+      "files": 3,
+      "bytes": 291989362
+    },
+    "models": {
+      "files": 3,
+      "bytes": 755429835
+    },
+    "objects": {
+      "files": 90000,
+      "bytes": 7994107456
+    }
+  },
+  "archives": [
+    {
+      "path": "archives/features-0000.tar",
+      "size": 1002536960,
+      "sha256": "c4c1adcc77f2904bc6d1e8bc9a5cad093c83e43bf651b8484ed83d2dc455c9ce",
+      "files": 1498,
+      "payload_bytes": 999846368
+    },
+    {
+      "path": "archives/features-0001.tar",
+      "size": 1002516480,
+      "sha256": "36da611a22ccc590fd2bb134307a2b5f7b289c9c05c2fdc67fbe96ab44b01f35",
+      "files": 1510,
+      "payload_bytes": 999798176
+    },
+    {
+      "path": "archives/features-0002.tar",
+      "size": 1002506240,
+      "sha256": "d875887a13c2c585cd18051b122c321dc63c8a23f8a4097f6015c4472e9230ec",
+      "files": 1551,
+      "payload_bytes": 999719704
+    },
+    {
+      "path": "archives/features-0003.tar",
+      "size": 1001809920,
+      "sha256": "7f5d84b5f3565e7b0e9ee8b0540a783d40ce6ee397f2b11977610b56a9ccdb30",
+      "files": 1513,
+      "payload_bytes": 999105848
+    },
+    {
+      "path": "archives/features-0004.tar",
+      "size": 1002690560,
+      "sha256": "1e1bd25e5a32afd1051cda18e67875c9c2233349bf94d2b7f3d8ef31ce084c24",
+      "files": 1540,
+      "payload_bytes": 999932480
+    },
+    {
+      "path": "archives/features-0005.tar",
+      "size": 1002485760,
+      "sha256": "9f3bb82c0447d287d568faecdd380a9ab64dbdda3f89ef8367afc86ba381670e",
+      "files": 1489,
+      "payload_bytes": 999817152
+    },
+    {
+      "path": "archives/features-0006.tar",
+      "size": 1002045440,
+      "sha256": "abc652f29dbb464b07343ca1feea41cb1fc2bedc4263bce2b593c3970bc4062f",
+      "files": 1483,
+      "payload_bytes": 999388624
+    },
+    {
+      "path": "archives/features-0007.tar",
+      "size": 1002229760,
+      "sha256": "4b59a1a8429dcb6d57672f130c8bb3b2d685a6d3b7bff0cc9e1bbde73f924c94",
+      "files": 1521,
+      "payload_bytes": 999490832
+    },
+    {
+      "path": "archives/features-0008.tar",
+      "size": 1002680320,
+      "sha256": "cdc41b92fc4c69c1367e3bf28922f92484cff27b147b8ab38c941f05b25a1463",
+      "files": 1498,
+      "payload_bytes": 999986600
+    },
+    {
+      "path": "archives/features-0009.tar",
+      "size": 1002516480,
+      "sha256": "9c14c2708454a9ce1780da31e813a73d0c6ed1a95bbfbaf99ab9516000860b28",
+      "files": 1466,
+      "payload_bytes": 999882912
+    },
+    {
+      "path": "archives/features-0010.tar",
+      "size": 1002280960,
+      "sha256": "d5e892d5e47512bbed0bfb2a67a9ada62000e9690531812356ca50aff08e5c5f",
+      "files": 1540,
+      "payload_bytes": 999520472
+    },
+    {
+      "path": "archives/features-0011.tar",
+      "size": 1002188800,
+      "sha256": "9dc3019a660814de183ad4e518beba514ee438246a5191a408ec42a8354007a1",
+      "files": 1508,
+      "payload_bytes": 999488096
+    },
+    {
+      "path": "archives/features-0012.tar",
+      "size": 1002444800,
+      "sha256": "3c46368c542a17920c033e573068a7d33e8df9366a59066de6988029c1f30846",
+      "files": 1488,
+      "payload_bytes": 999771984
+    },
+    {
+      "path": "archives/features-0013.tar",
+      "size": 1002598400,
+      "sha256": "877a07bb6658c8a1d44eacd2f2ac42ea8149e50604499cddddcb501c4759cf27",
+      "files": 1526,
+      "payload_bytes": 999865744
+    },
+    {
+      "path": "archives/features-0014.tar",
+      "size": 1001369600,
+      "sha256": "dc2917744473e0aeccb5c7b04953f61d9028f50043b1f6e00c472e1f10c17b40",
+      "files": 1414,
+      "payload_bytes": 998830184
+    },
+    {
+      "path": "archives/features-0015.tar",
+      "size": 1002086400,
+      "sha256": "5330e28bd52d40375667e41731f6b30a0a3811aba1a11a203489e630b5f65514",
+      "files": 1429,
+      "payload_bytes": 999514864
+    },
+    {
+      "path": "archives/features-0016.tar",
+      "size": 1002588160,
+      "sha256": "788d8a6683d4125447fa6646598fcf80d7be7db2c85eaa0b118c4597c48c281a",
+      "files": 1478,
+      "payload_bytes": 999940096
+    },
+    {
+      "path": "archives/features-0017.tar",
+      "size": 1002506240,
+      "sha256": "5d8e7a27ff8428d77a79f83d4112ff35f8f4586c05c985c707edecd7706f27de",
+      "files": 1487,
+      "payload_bytes": 999840104
+    },
+    {
+      "path": "archives/features-0018.tar",
+      "size": 1002106880,
+      "sha256": "dda4f2bd320cf4d0eac4274dcc273f8af78b7820eb16795875a7f46a60882feb",
+      "files": 1530,
+      "payload_bytes": 999369376
+    },
+    {
+      "path": "archives/features-0019.tar",
+      "size": 1002424320,
+      "sha256": "0122f9f0d76fc78ee0d1879c5bd6f4ca3b541f0a44ce9955b3ee47d7f029a664",
+      "files": 1526,
+      "payload_bytes": 999694352
+    },
+    {
+      "path": "archives/features-0020.tar",
+      "size": 1002536960,
+      "sha256": "0b0fec6bc2683765bf1ba8d6f8bcfd56d1c96038d1ca316b926089dc8bc75a87",
+      "files": 1449,
+      "payload_bytes": 999933784
+    },
+    {
+      "path": "archives/features-0021.tar",
+      "size": 1002004480,
+      "sha256": "ce68fa8504449cad823836684405f8615cdac6b01506e4a83e523fd7f8819110",
+      "files": 1462,
+      "payload_bytes": 999381552
+    },
+    {
+      "path": "archives/features-0022.tar",
+      "size": 1002188800,
+      "sha256": "3e3be6534b879bebb30c40fb3a420eb4c5cbf9049b1b63b1536137e407fc5e3f",
+      "files": 1502,
+      "payload_bytes": 999500344
+    },
+    {
+      "path": "archives/features-0023.tar",
+      "size": 1002301440,
+      "sha256": "c3ee65f55a3a17b051d675be0e31d40d3ded7253d2d7722e53868619fd50eb0e",
+      "files": 1517,
+      "payload_bytes": 999575456
+    },
+    {
+      "path": "archives/features-0024.tar",
+      "size": 1002199040,
+      "sha256": "7d231270c0bbdec90999458a380f82d459f640f0446ed06a626054a466ffb7d8",
+      "files": 1458,
+      "payload_bytes": 999584944
+    },
+    {
+      "path": "archives/features-0025.tar",
+      "size": 999710720,
+      "sha256": "d90c19e10c57842472fe63356c4719e8979a5872a1a89cbfa2aafc31e599e982",
+      "files": 1485,
+      "payload_bytes": 997053424
+    },
+    {
+      "path": "archives/features-0026.tar",
+      "size": 1002485760,
+      "sha256": "4f94a2e5643845a88e7dbfc797be4f87da181f58ed30564060a7aa50d7f801e5",
+      "files": 1511,
+      "payload_bytes": 999769936
+    },
+    {
+      "path": "archives/features-0027.tar",
+      "size": 1002690560,
+      "sha256": "1214185f6cfcda6c6b63a31e381eb94d271f6b9678f4b85bec7a8597adfc10fd",
+      "files": 1524,
+      "payload_bytes": 999954344
+    },
+    {
+      "path": "archives/features-0028.tar",
+      "size": 1002485760,
+      "sha256": "4a4d58c97d3a0be004c10bf26f5d2773bd0a5809ce4df7d043a74aad513fa8cd",
+      "files": 1454,
+      "payload_bytes": 999873112
+    },
+    {
+      "path": "archives/features-0029.tar",
+      "size": 1002076160,
+      "sha256": "f949881d12007e429bee8608631344c0ae88e17cb29d5d209a0d5758f342e9a3",
+      "files": 1470,
+      "payload_bytes": 999441856
+    },
+    {
+      "path": "archives/features-0030.tar",
+      "size": 1002721280,
+      "sha256": "f28007d208189d44cc46a5a3d3170abd23f94d58090b3e5e553ca58f033ab07d",
+      "files": 1541,
+      "payload_bytes": 999964776
+    },
+    {
+      "path": "archives/features-0031.tar",
+      "size": 1002219520,
+      "sha256": "ca8ee8578d3f154a33108b4835b70e4512618abc7e02330ffe0dad1f9c0bb58b",
+      "files": 1451,
+      "payload_bytes": 999617624
+    },
+    {
+      "path": "archives/features-0032.tar",
+      "size": 1002352640,
+      "sha256": "9ca08258bc9a28a6df26dc64bc34b418f5630197023709057691bfdab3a0a29c",
+      "files": 1479,
+      "payload_bytes": 999700392
+    },
+    {
+      "path": "archives/features-0033.tar",
+      "size": 1001830400,
+      "sha256": "692843031ca85d25ae90006e7f5e082670d29c4045bc2c483398299f6e1c3604",
+      "files": 1453,
+      "payload_bytes": 999230920
+    },
+    {
+      "path": "archives/features-0034.tar",
+      "size": 1002188800,
+      "sha256": "f0fe7b59731246d8047e87e9ca7951c12a3504ab081f0291fb34c1bb6cbb8c3e",
+      "files": 1496,
+      "payload_bytes": 999502088
+    },
+    {
+      "path": "archives/features-0035.tar",
+      "size": 1002496000,
+      "sha256": "e799930797df3313b59d1b06519bef25b2e0c12b03e875c8570e43e4425df162",
+      "files": 1441,
+      "payload_bytes": 999923456
+    },
+    {
+      "path": "archives/features-0036.tar",
+      "size": 1002475520,
+      "sha256": "93e966d595abeea0eaec7a94f9b0763f1b676b50136b31064b9dfda7655eb8f7",
+      "files": 1475,
+      "payload_bytes": 999827536
+    },
+    {
+      "path": "archives/features-0037.tar",
+      "size": 1001830400,
+      "sha256": "bc1131ddb0ee642e953573f557b7d4ac681486ec9674fdb34a366091377ad5ac",
+      "files": 1496,
+      "payload_bytes": 999145840
+    },
+    {
+      "path": "archives/features-0038.tar",
+      "size": 1001072640,
+      "sha256": "7b0bae8a8d4378770564a020e1cb2af0f88e2c4f8509a6a8949160b4b1ccdb57",
+      "files": 1422,
+      "payload_bytes": 998512760
+    },
+    {
+      "path": "archives/features-0039.tar",
+      "size": 1002557440,
+      "sha256": "1681be37c89b6efcb17b83acf83668d388d0876fd9306b6546ba9d947165c5a8",
+      "files": 1438,
+      "payload_bytes": 999977000
+    },
+    {
+      "path": "archives/features-0040.tar",
+      "size": 1001881600,
+      "sha256": "c1347ea354f9c06aed26abf9ec6610861feee8a6491894b91e45ba24bdf37dc6",
+      "files": 1474,
+      "payload_bytes": 999233008
+    },
+    {
+      "path": "archives/features-0041.tar",
+      "size": 1002321920,
+      "sha256": "629d3f712962bfef8ce6e5fe404f3894c1bc21373135ae24aabf9f62481e863f",
+      "files": 1489,
+      "payload_bytes": 999658904
+    },
+    {
+      "path": "archives/features-0042.tar",
+      "size": 1002485760,
+      "sha256": "3b87bd9c57250a31643dfbf3c62ff32b51eb2782ea11da5690826f7c710506df",
+      "files": 1447,
+      "payload_bytes": 999892576
+    },
+    {
+      "path": "archives/features-0043.tar",
+      "size": 1002250240,
+      "sha256": "c7e6297964c65c4e73b04c6e320168ac007c9e2f65a722f500761faab3739294",
+      "files": 1432,
+      "payload_bytes": 999672376
+    },
+    {
+      "path": "archives/features-0044.tar",
+      "size": 1002455040,
+      "sha256": "7a8fa380ff981c9ae189be49dc9d1f65fbb7efabea243dede7cc22b1ac31e075",
+      "files": 1455,
+      "payload_bytes": 999844632
+    },
+    {
+      "path": "archives/features-0045.tar",
+      "size": 1001922560,
+      "sha256": "3df94bfa4cbf5ab2f2ed7c2daab4ff9c552db9d7f1ca513ad81a6d219ccbf456",
+      "files": 1467,
+      "payload_bytes": 999294592
+    },
+    {
+      "path": "archives/features-0046.tar",
+      "size": 999854080,
+      "sha256": "7dac16755d97f06c00eabab8ea52daaab38e5fad54caefacea97a046449dcdca",
+      "files": 1469,
+      "payload_bytes": 997218224
+    },
+    {
+      "path": "archives/features-0047.tar",
+      "size": 1002127360,
+      "sha256": "ddbb780e100f21274ef40e997ad69d3cd11b6550a61e62b1fcfafbb93b76c7a3",
+      "files": 1454,
+      "payload_bytes": 999529800
+    },
+    {
+      "path": "archives/features-0048.tar",
+      "size": 1002577920,
+      "sha256": "6f2c33d76aecd6bf424fbf2b911c50b0e3cefe5200c6419c4fcca20620583079",
+      "files": 1459,
+      "payload_bytes": 999952616
+    },
+    {
+      "path": "archives/features-0049.tar",
+      "size": 1002424320,
+      "sha256": "ff832e43c6b81e2baba22e54bfab1e2e941067893e2ffa1c5edcebdd4a59fca4",
+      "files": 1516,
+      "payload_bytes": 999701528
+    },
+    {
+      "path": "archives/features-0050.tar",
+      "size": 1002260480,
+      "sha256": "a6fd70ce6fd815de22357e445bc2abbd632f35e9d65e56b2b5f6c5ec1601c38e",
+      "files": 1438,
+      "payload_bytes": 999678744
+    },
+    {
+      "path": "archives/features-0051.tar",
+      "size": 1002383360,
+      "sha256": "0f563757d1b42725b5ed010eb36dea487ab91c2831061102a1c3b02ac92dd4af",
+      "files": 1476,
+      "payload_bytes": 999733192
+    },
+    {
+      "path": "archives/features-0052.tar",
+      "size": 1001809920,
+      "sha256": "2b3a2ffd2992d74a2b3a62a19c7b46042728cb1c70a7b4c38c8cd06e2867f9d0",
+      "files": 1375,
+      "payload_bytes": 999332144
+    },
+    {
+      "path": "archives/features-0053.tar",
+      "size": 1002424320,
+      "sha256": "8144078a32d261b404b03035421af8562fab47556907ddf758e27e0af7a06c85",
+      "files": 1449,
+      "payload_bytes": 999830368
+    },
+    {
+      "path": "archives/features-0054.tar",
+      "size": 1002506240,
+      "sha256": "044cc5dbcb6399bed6408c1b975470d4a2395cee43773c43b6e9f754c36b805b",
+      "files": 1458,
+      "payload_bytes": 999891408
+    },
+    {
+      "path": "archives/features-0055.tar",
+      "size": 1002455040,
+      "sha256": "114a79e2bcd29254bf3a8a1c9f2fd3435aef5bd15b78bacf94b0c43c35834793",
+      "files": 1395,
+      "payload_bytes": 999946016
+    },
+    {
+      "path": "archives/features-0056.tar",
+      "size": 1000734720,
+      "sha256": "fe4c2389590b437d58ca6c3b90b337f26fdca149b599440bd8eed5949b6d22fa",
+      "files": 1453,
+      "payload_bytes": 998130144
+    },
+    {
+      "path": "archives/features-0057.tar",
+      "size": 1001625600,
+      "sha256": "76880da46e65801239be64d64eb9e9bcc6452d597ce808671f0c37fdc8e426b8",
+      "files": 1432,
+      "payload_bytes": 999054432
+    },
+    {
+      "path": "archives/features-0058.tar",
+      "size": 1002393600,
+      "sha256": "c7e4d3a4aee07c6d429d408982223cb269cbbd0046ea76cd288b8bdab198576c",
+      "files": 1445,
+      "payload_bytes": 999796256
+    },
+    {
+      "path": "archives/features-0059.tar",
+      "size": 1002383360,
+      "sha256": "7b4f7c485c370f813741715dd99c8f3d3c0a8a5d92d810e863279cc36e358ff2",
+      "files": 1462,
+      "payload_bytes": 999761752
+    },
+    {
+      "path": "archives/features-0060.tar",
+      "size": 1000919040,
+      "sha256": "4b55da27f7d3fb573e83aaa9215e483bd61c9aad1cd18437c9d7457687cf74e3",
+      "files": 1454,
+      "payload_bytes": 998310048
+    },
+    {
+      "path": "archives/features-0061.tar",
+      "size": 943575040,
+      "sha256": "a8e092e41d3307947d548e8b6fa3e0789ea58fb4b82657ba1c544eaade4430f7",
+      "files": 1348,
+      "payload_bytes": 941154200
+    },
+    {
+      "path": "archives/foldbench-0000.tar",
+      "size": 1002475520,
+      "sha256": "7d8b8531ecfef948e4430bbecbc5d46d8e989396563c772049e12b35054ddb52",
+      "files": 1493,
+      "payload_bytes": 999785456
+    },
+    {
+      "path": "archives/foldbench-0001.tar",
+      "size": 1001052160,
+      "sha256": "af9f967b70209840538e6fe1b1a609bda23ed1fec204247d7d5b51fc1a43491f",
+      "files": 1437,
+      "payload_bytes": 999864537
+    },
+    {
+      "path": "archives/foldbench-0002.tar",
+      "size": 117811200,
+      "sha256": "f484d83ee39568d63ba126ef03f31b7e13a6adac40001878c7ba8fac97a8e47a",
+      "files": 1693,
+      "payload_bytes": 116514122
+    },
+    {
+      "path": "archives/manifests-0000.tar",
+      "size": 291993600,
+      "sha256": "fdf6b5b84ed79a31d587c46b2dbe0d99d80f0918c5cd1bec57beac8cd68d6107",
+      "files": 3,
+      "payload_bytes": 291989362
+    },
+    {
+      "path": "archives/models-0000.tar",
+      "size": 755435520,
+      "sha256": "97996e5f8f7b365cae731d59c063f2d35dfc1ef267c98f5fc6639a7879dbdfbb",
+      "files": 3,
+      "payload_bytes": 755429835
+    },
+    {
+      "path": "archives/objects-0000.tar",
+      "size": 1015490560,
+      "sha256": "6d10b836c57c0f3c5994787e6daaa1aaea1a59fb32a8b5305fc924bf734fda9c",
+      "files": 20248,
+      "payload_bytes": 999968680
+    },
+    {
+      "path": "archives/objects-0001.tar",
+      "size": 1019514880,
+      "sha256": "8a356cabbd53f8b998a4e77bb709e5f6324698dde0c7f8949eb3fd35603eddb8",
+      "files": 25597,
+      "payload_bytes": 999876765
+    },
+    {
+      "path": "archives/objects-0002.tar",
+      "size": 1007196160,
+      "sha256": "17626b4e3271f00bf27919507a0710b095bd94e526df26ccdafc72e8dc6c4e4e",
+      "files": 12558,
+      "payload_bytes": 997580080
+    },
+    {
+      "path": "archives/objects-0003.tar",
+      "size": 1006899200,
+      "sha256": "e0d7a9894848aab34aed9be6d2c5e13f26dc69d00caf2eb7aa6656607ea2bd4a",
+      "files": 9075,
+      "payload_bytes": 999948418
+    },
+    {
+      "path": "archives/objects-0004.tar",
+      "size": 1005015040,
+      "sha256": "94a0c5aac020b74e1e49a1011b927fc849ebbd6f6e94847b32baf5a92cd8fc2f",
+      "files": 6566,
+      "payload_bytes": 999968902
+    },
+    {
+      "path": "archives/objects-0005.tar",
+      "size": 1005219840,
+      "sha256": "e02900e10ddb40af9e4221171c100024021998d1952497385eda8d756e1ad1ea",
+      "files": 7085,
+      "payload_bytes": 999761406
+    },
+    {
+      "path": "archives/objects-0006.tar",
+      "size": 1003407360,
+      "sha256": "872ba129bc1b714b531ead9645b28285d31f319f4b58e31944fd717d50583820",
+      "files": 4698,
+      "payload_bytes": 999774989
+    },
+    {
+      "path": "archives/objects-0007.tar",
+      "size": 1000437760,
+      "sha256": "c002a288606ec3ae5fe2e8ad39a1116638514d161bfd5772fbccb102a110f1e0",
+      "files": 4173,
+      "payload_bytes": 997228216
+    }
+  ],
+  "inventory": {
+    "path": "payload-files.jsonl",
+    "size": 36565890,
+    "sha256": "976eaa6271d133f0fcb44f9c8a2d697766c79096de82ebdba3871773052ffa0a"
+  }
+}

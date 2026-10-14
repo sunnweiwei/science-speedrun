@@ -1,0 +1,39 @@
+{
+  "schema_version": "autofold-model-spec/v1",
+  "model_id": "dplm2_50m",
+  "display_name": "DPLM-2 50M",
+  "ownership": "official_architecture",
+  "parameter_budget": {
+    "folding_parameters": 47053446,
+    "target": 50000000
+  },
+  "implementation": {
+    "config_module": "official_baselines.dplm2.config",
+    "train_module": "official_baselines.dplm2.train",
+    "inference_module": "official_baselines.dplm2.contract_inference",
+    "runtime_image": "protein-folding:dplm2-runtime-v2"
+  },
+  "capabilities": {
+    "entity_types": ["protein"],
+    "train_tracks": ["monomer_protein"],
+    "eval_tracks": ["monomer_protein"],
+    "msa": false,
+    "templates": false
+  },
+  "data_adapter": {
+    "prepare_module": "official_baselines.dplm2.prepare_unified_view",
+    "native_schema": "dplm2-tokenized-folding-view-v1",
+    "selection_policy": "capability_only",
+    "full_view_ready": true
+  },
+  "training": {
+    "recipe": "official_dplm2_three_stage_common_data",
+    "full_loop_ready": true,
+    "checkpoint_resume": true,
+    "validation": true
+  },
+  "export": {
+    "trained_checkpoint_inference": true,
+    "bundle_ready": true
+  }
+}

@@ -43,6 +43,9 @@ case "$task" in
     $DOCKER run --rm --network none -v "$root/release:/source:ro" -v "$t:/task:ro" -v "$root:/out" ndp-grader \
       python /task/environment/data/build_heldout_split.py --source /source --output /out/runtime
     data=$root/runtime/development; private=$root/runtime/private ;;
+  protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
+    inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
+    data=$root; private=$root ;;
   tokamak-magnetic-control)               # no data: the machine description is vendored into the images
     data=$root; private=$root ;;
   *) echo "No prepare recipe for $task; follow its environment/data/MATERIALIZE.md" >&2; exit 1 ;;

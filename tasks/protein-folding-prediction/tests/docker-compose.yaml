@@ -1,0 +1,15 @@
+services:
+  main:
+    shm_size: "32gb"
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data directory}/foldbench
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/suite/suite_manifest.json && test -s /benchmark/features.esmc6b_final_int8.jsonl && test -d /benchmark/ground_truths"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

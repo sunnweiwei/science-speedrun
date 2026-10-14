@@ -1,0 +1,30 @@
+{
+  "model": {
+    "architecture": "pairformer_lite",
+    "d_single": 448,
+    "d_pair": 128,
+    "n_trunk_blocks": 18,
+    "n_structure_blocks": 4,
+    "n_heads": 8,
+    "triangle_hidden": 64,
+    "transition_factor": 4,
+    "dropout": 0.0,
+    "distogram_bins": 64,
+    "max_relative_index": 32
+  },
+  "training": {
+    "seed": 7,
+    "steps": 1000,
+    "crop_size": 128,
+    "batch_size": 1,
+    "workers": 2,
+    "gradient_accumulation": 1,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "log_every": 1,
+    "validate_every": 50,
+    "validation_batches": 8,
+    "checkpoint_every": 100
+  }
+}

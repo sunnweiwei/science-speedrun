@@ -1,0 +1,35 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main`
+# is the agent container; the build context is the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# TASK_DATA_DIR is the materialized release (environment/data/README.md). Its five allowlisted
+# subtrees are mounted read-only under /workspace/data, next to the data README from the image
+# (the manifests store absolute /data/... paths; /data is a link to /workspace/data in the image).
+# TASK_RESEARCH_DIR is an empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "32gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized data directory}/manifests", target: /workspace/data/manifests}
+      - {<<: *data, source: "${TASK_DATA_DIR}/objects", target: /workspace/data/objects}
+      - {<<: *data, source: "${TASK_DATA_DIR}/features", target: /workspace/data/features}
+      - {<<: *data, source: "${TASK_DATA_DIR}/foldbench", target: /workspace/data/foldbench}
+      - {<<: *data, source: "${TASK_DATA_DIR}/models", target: /workspace/data/models}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/manifests/foldingtrain-100k-v1/foldingtrain_100k.jsonl && test -s /workspace/data/foldbench/suite/suite_manifest.json && test -s /workspace/data/foldbench/features.esmc6b_final_int8.jsonl && test -s /workspace/data/models/esmfold2-fast-b28d8ace/model.safetensors && test ! -e /workspace/data/hf"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

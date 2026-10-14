@@ -1,0 +1,60 @@
+{
+  "schema_version": "autofold-model-spec/v1",
+  "model_id": "hybrid_esmc_pairformer_50m",
+  "display_name": "Hybrid ESMC Pairformer 50M",
+  "ownership": "first_party",
+  "parameter_budget": {
+    "folding_parameters": 48763327,
+    "target": 50000000
+  },
+  "implementation": {
+    "config_module": "first_party_baselines.hybrid_esmc_pairformer.config",
+    "train_module": "first_party_baselines.hybrid_esmc_pairformer.train",
+    "inference_module": "first_party_baselines.hybrid_esmc_pairformer.contract_inference",
+    "runtime_image": "protein-folding:hybrid-esmc6b-runtime-v1"
+  },
+  "capabilities": {
+    "entity_types": ["protein", "rna", "dna", "ligand"],
+    "train_tracks": [
+      "monomer_protein",
+      "monomer_rna",
+      "monomer_dna",
+      "interface_protein_protein",
+      "interface_antibody_antigen",
+      "interface_protein_peptide",
+      "interface_protein_rna",
+      "interface_protein_dna",
+      "interface_protein_ligand"
+    ],
+    "eval_tracks": [
+      "monomer_protein",
+      "monomer_rna",
+      "monomer_dna",
+      "interface_protein_protein",
+      "interface_antibody_antigen",
+      "interface_protein_peptide",
+      "interface_protein_rna",
+      "interface_protein_dna",
+      "interface_protein_ligand"
+    ],
+    "msa": false,
+    "templates": false,
+    "max_eval_tokens": 2048
+  },
+  "data_adapter": {
+    "prepare_module": "official_baselines.protenix.prepare_unified_view",
+    "native_schema": "protenix-weighted-pdb-index-plus-esmc-mixed256",
+    "selection_policy": "capability_only",
+    "full_view_ready": true
+  },
+  "training": {
+    "recipe": "official_protenix_trainer_common_data_with_frozen_esmc",
+    "full_loop_ready": true,
+    "checkpoint_resume": true,
+    "validation": true
+  },
+  "export": {
+    "trained_checkpoint_inference": true,
+    "bundle_ready": true
+  }
+}

@@ -1,0 +1,14 @@
+.cache
+**/.cache
+**/__pycache__
+**/*.pyc
+**/*.safetensors
+**/*.npz
+**/*.pt
+**/*.pth
+**/*.ckpt
+**/*.tar*
+**/*.zip
+**/*.zst
+**/.env*
+**/auth*.json

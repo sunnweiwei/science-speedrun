@@ -1,0 +1,2 @@
+{"schema_version":"foldbench-folding-request/v0","request_id":"synthetic-protein","target":{"entities":[{"id":"E1","type":"protein","sequence":"ACDEFGHIK","copies":1}]},"run":{"seeds":[101],"num_samples":1}}
+{"schema_version":"foldbench-folding-request/v0","request_id":"synthetic-complex","target":{"entities":[{"id":"E1","type":"protein","sequence":"MKTW","copies":2},{"id":"E2","type":"rna","sequence":"ACGU","copies":1},{"id":"E3","type":"ligand","smiles":"CCO","copies":1}]},"run":{"seeds":[7,101],"num_samples":2}}

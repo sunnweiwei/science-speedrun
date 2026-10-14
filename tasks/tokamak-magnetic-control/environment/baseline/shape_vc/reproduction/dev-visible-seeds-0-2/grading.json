@@ -1,0 +1,83 @@
+{
+ "scope": "full-suite",
+ "randomization": "visible",
+ "n_cases": 7,
+ "n_seeds": 3,
+ "aggregate_score": 0.7894736842105263,
+ "cases": {
+  "mastu_diverted_hold": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 3,
+   "outcomes": {
+    "success": 3
+   }
+  },
+  "mastu_high_ip_hold": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 3,
+   "outcomes": {
+    "success": 3
+   }
+  },
+  "mastu_ip_ramp": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 3,
+   "outcomes": {
+    "success": 3
+   }
+  },
+  "mastu_p4_shape_hold": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 2,
+   "n_feasible": 1,
+   "n_success": 0,
+   "outcomes": {
+    "kept": 1,
+    "solver_void": 2
+   }
+  },
+  "mastu_pressure_drop": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 3,
+   "outcomes": {
+    "success": 3
+   }
+  },
+  "mastu_sequence": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 2,
+   "outcomes": {
+    "kept": 1,
+    "success": 2
+   }
+  },
+  "mastu_vertical_shift": {
+   "status": "ok",
+   "n_episodes": 3,
+   "n_void": 0,
+   "n_feasible": 3,
+   "n_success": 1,
+   "outcomes": {
+    "kept": 2,
+    "success": 1
+   }
+  }
+ },
+ "note": "reward = fraction of non-void episodes that keep the plasma within the MAST-U steady-state tolerances (METRICS.md); per-case physical metrics alongside."
+}

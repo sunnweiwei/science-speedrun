@@ -1,0 +1,23 @@
+# Development environment. The task's environment/Dockerfile is multi-stage
+# (development, verifier); this overlay selects the development target and the
+# task directory as build context, which the Dockerfile's COPY lines require.
+# No large data: the machine description is vendored into the image (/workspace/data).
+# TASK_RESEARCH_DIR is an empty directory per run on a large disk (TASK_STANDARD.md).
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: development
+    shm_size: "8gb"
+    volumes:
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "python", "-c", "import torch, freegsnke, tokagym; assert __import__('os').path.isdir('/workspace/baseline/starter')"]
+      interval: 10s
+      timeout: 30s
+      retries: 3

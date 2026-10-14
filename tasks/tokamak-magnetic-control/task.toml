@@ -1,0 +1,43 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/tokamak-magnetic-control"
+version = "0.2.0"
+description = "Continuously develop one shared closed-loop magnetic (shape/position/current) controller for a MAST-U-like tokamak simulated by FreeGSNKE, scored by the fraction of sealed-plant episodes within the MAST-U steady-state tolerances."
+authors = [{ name = "Weiwei Sun" }]
+keywords = ["model-development", "autoresearch", "plasma-control", "tokamak", "reinforcement-learning"]
+
+[metadata]
+readiness = "draft v0.2 (verifier review fixes, docs/FIX_PROPOSAL.md): seven MAST-U-like cases incl. a Degrave-style sequence, success fraction under MAST-U tolerances, coil-limit terminations, FAIR-MAST-grounded ranges, sealed plant mechanisms, latency gate; sealed v0.2 seeds 1001-1002 run locally: privileged PID with X-point feedback 1/13 success, 12/13 kept; hold-current through the verifier 0/14; deployable PID and starter not re-run under v0.2; no formal agent run yet"
+data_status = "no large data in the images; machine description vendored from FreeGSNKE (LGPL-3.0); randomization ranges derived from FAIR-MAST (CC BY-SA 4.0) by environment/data/fair_mast/ (developer-side, kept out of the images by .dockerignore)"
+simulator = "FreeGSNKE 3.1.0 free-boundary evolutive Grad-Shafranov; nonlinear solver is ground truth"
+training_regime = "known-task randomized-plant RL; sealed plant (wider ranges plus named mechanisms) for scoring"
+env_version = "tokagym-mastu/v0.2"
+metric_version = "tokamak-shape-metrics/v2"
+scoring = "reward = fraction of non-void sealed episodes kept with steady-state shape and gaps <= 1 cm and Ip error <= 3% (MAST-U requirement); per-case physical metrics alongside; invalid package or median policy compute > 0.5 ms scores 0"
+
+[agent]
+timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
+
+[environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 131072
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+network_mode = "no-network"
+timeout_sec = 36000.0
+
+[verifier.environment]
+# One worker per sealed episode (35, tests/test.sh): the suite finishes in one wave, ~53 min measured.
+cpus = 40
+memory_mb = 49152
+storage_mb = 10240
+network_mode = "no-network"
+build_timeout_sec = 7200.0

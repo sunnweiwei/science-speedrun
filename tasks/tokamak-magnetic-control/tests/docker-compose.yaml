@@ -1,0 +1,16 @@
+# Separate verifier environment: the verifier target of environment/Dockerfile,
+# which carries tests/ (including tests/sealed/perturbations.json) and no torch.
+# Harbor mounts the delivered /workspace/submission; nothing else is mounted.
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: verifier
+    network_mode: none
+    shm_size: "8gb"
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /tests/sealed/perturbations.json && test -x /opt/tokamak-task/evaluation/harbor_verify.py -o -s /opt/tokamak-task/evaluation/harbor_verify.py"]
+      interval: 10s
+      timeout: 10s
+      retries: 3

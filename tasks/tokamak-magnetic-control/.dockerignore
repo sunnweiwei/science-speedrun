@@ -1,0 +1,7 @@
+# Build context of both images is this task directory (compose files use `context: ..`).
+# The developer-side FAIR-MAST tooling and its 3 GB download stay out of every image: the sealed
+# plant's ranges are derived from them, so the agent's image must not carry them.
+environment/data/fair_mast/
+**/__pycache__/
+**/*.pyc
+.git/

@@ -1,0 +1,12 @@
+{"name": "dev-wide (organizer guess; categories from instruction.md, not the sealed values)",
+ "randomization": {
+  "profile": {"pressure": 0.5, "alpha": 0.4, "ip": 0.05},
+  "coil_current_rel": 0.04, "plasma_resistivity_log10": 0.25, "passive_resistance_rel": 0.3,
+  "probe_noise_rel": 0.02, "probe_offset_rel": 0.04, "current_noise_rel": 0.004,
+  "supply_delay_steps": [0, 2], "handover_steps": [0, 20],
+  "pressure_drift_log_per_s": 0.8, "alpha_drift_per_s": 1.2, "resistivity_drift_log10_per_s": 0.5,
+  "crash_rate_hz": 4.0, "crash_depth": [0.1, 0.3], "crash_recovery_s": 0.03,
+  "supply_offset_rel": 0.01, "supply_slew_rel_per_step": 0.5,
+  "supply_stuck_current_rel": 0.01, "supply_stuck_voltage_rel": 0.02,
+  "dead_channel_fraction": 0.05, "flux_loop_drift_rel_per_s": 0.02,
+  "passive_filament_rel": 0.2, "betap_constraint_prob": 0.5}}

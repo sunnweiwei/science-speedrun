@@ -24,11 +24,16 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [timeseries-forecasting](tasks/timeseries-forecasting) | zero-shot forecasting foundation model on GIFT-Eval | 8 GPU, 48 h | 0.334 | 0.275 | 0.447 | GiftEval from HF, 275 GB |
 | [surface-code-decoding](tasks/surface-code-decoding) | neural decoder for Sycamore surface-code experiments | 8 GPU, 48 h | 0.7626 | 0.7557 | 0.7615 | HF release, ~8 GB |
 | [natural-disease-progression](tasks/natural-disease-progression) | next-year disease risk from MIMIC-IV histories | 1 GPU, 24 h | 0.243 | 0.236 | 0.268 | credentialed HF release (MIMIC-IV) |
+| [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1 GPU + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better.
 - Baselines were reproduced in this setup. Their numbers, logs and validation outputs are in each task's `environment/baseline/<name>/` (`RESULTS.md`, `reproduction/`). Agents are told not to retrain them.
 - Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry: about 3.5 h on one GPU.
+- tokamak-magnetic-control was tested on the CMU Babel cluster (Apptainer instead of Docker): an 11 h Codex session on
+  one L40S with 64 CPUs. Its verifier is CPU-bound: 53 min for the `shape_vc` baseline and 90 min for the agent's
+  package on 40 CPUs (35 parallel episodes). Repeated scoring of one package varies by about 0.015 (P4 void
+  episodes), so a one-episode difference from the baseline is within noise.
 
 ## Quick start
 

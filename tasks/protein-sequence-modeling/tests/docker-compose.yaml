@@ -1,0 +1,36 @@
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build: .
+    network_mode: none
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data root}/public/verifier
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/manifest.json && test -s /benchmark/fluorescence.jsonl"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  grader:
+    build: .
+    network_mode: none
+    command: ["python3", "/tests/grader.py", "--sealed", "/sealed/run", "--labels", "/private", "--output", "/sealed/results"]
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data root}/private
+        target: /private
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

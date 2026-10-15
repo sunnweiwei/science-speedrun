@@ -1,0 +1,35 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main`
+# is the agent container; the build context is the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# TASK_DATA_DIR is the materialized root (environment/data/MATERIALIZE.md). Only the entries of
+# public/development are mounted, each read-only under /workspace/data next to the data README from
+# the image; public/verifier and private never reach this container. TASK_RESEARCH_DIR is an empty
+# directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "16gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized PEER data root}/public/development/fit", target: /workspace/data/fit}
+      - {<<: *data, source: "${TASK_DATA_DIR}/public/development/tune", target: /workspace/data/tune}
+      - {<<: *data, source: "${TASK_DATA_DIR}/public/development/pretrain", target: /workspace/data/pretrain}
+      - {<<: *data, source: "${TASK_DATA_DIR}/public/development/manifest.json", target: /workspace/data/manifest.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/public/development/stats.json", target: /workspace/data/stats.json}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/manifest.json && test -s /workspace/data/fit/fluorescence.jsonl && test -s /workspace/data/pretrain/uniref50_subset.fasta"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

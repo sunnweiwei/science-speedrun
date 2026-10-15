@@ -49,6 +49,11 @@ case "$task" in
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;
+  protein-sequence-modeling)              # PEER tasks (TAPE/PEER S3) + full UniRef50 2026_03 decontaminated with MMseqs2 (~6 h on 32 CPUs)
+    # UniProt serves only the current UniRef50 release; after 2026_03 leaves that slot the pinned file is in
+    # previous_releases/release-2026_03/ (build_pretrain_subset.py fails closed on drift).
+    inbox "lmdb numpy" "bash environment/data/materialize.sh $root && mkdir -p $root/cache /tmp/mm && curl -sL https://mmseqs.com/latest/mmseqs-linux-avx2.tar.gz | tar xz --no-same-owner -C /tmp/mm && export PATH=/tmp/mm/mmseqs/bin:\$PATH && curl -sS -C - -o $root/cache/uniref50.fasta.gz https://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.fasta.gz && curl -sS -o $root/cache/uniref50.release_note https://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref50/uniref50.release_note && python3 environment/data/build_pretrain_subset.py $root --all --uniref50 $root/cache/uniref50.fasta.gz --release-note $root/cache/uniref50.release_note --workdir $root/work --threads \$(nproc)"
+    data=$root; private=$root ;;
   protein-design)                         # prepared development views (RCSB snapshot of 2026-10-06, HF) + vendored evaluation view
     inbox "huggingface_hub[hf_xet]>=1.0" "hf download sunweiwei/ai4sci-protein-design-data --repo-type dataset --local-dir $root/_dl --include 'development-*.tar' --include MANIFEST.json && for x in $root/_dl/development-*.tar; do tar xf \$x -C $root; done"
     $DOCKER build -q -f "$t/environment/Dockerfile" -t protein-design-dev "$t"

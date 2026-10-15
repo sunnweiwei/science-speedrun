@@ -1,0 +1,54 @@
+{
+  "schema_version": "peer-protein-model-spec/v1",
+  "model_id": "esm2_t6_8M",
+  "display_name": "ESM-2 8M (from scratch)",
+  "ownership": "reference_architecture",
+  "parameters": {
+    "backbone": 7408351,
+    "with_task_heads": 9244131
+  },
+  "architecture": {
+    "family": "esm2",
+    "layers": 6,
+    "embed_dim": 320,
+    "attention_heads": 20,
+    "ffn_dim": 1280,
+    "position_embedding": "rotary",
+    "norm": "pre_layernorm",
+    "lm_head": "tied_to_token_embedding",
+    "vocab_size": 31,
+    "max_tokens": 1024
+  },
+  "implementation": {
+    "architecture_module": "starter/esm2.py",
+    "train_module": "starter/train.py",
+    "inference_module": "starter/predict.py",
+    "publish_module": "starter/publish.py",
+    "build": "esm2.build('esm2_t6_8M')"
+  },
+  "capabilities": {
+    "tasks": [
+      "fluorescence",
+      "stability",
+      "beta_lactamase",
+      "solubility",
+      "subcellular_localization",
+      "binary_localization",
+      "fold",
+      "secondary_structure",
+      "yeast_ppi",
+      "human_ppi",
+      "ppi_affinity"
+    ],
+    "shared_backbone": true,
+    "pretrained_weights": false,
+    "resume": true,
+    "distributed": false
+  },
+  "measured": {
+    "tokens_per_s": 495000,
+    "peak_memory_gb": 2.9,
+    "full_corpus_epoch_hours": 5.6
+  },
+  "notes": "Architecture only. Weights must be randomly initialized and trained in-session; loading released ESM-2 checkpoints is forbidden by the contract."
+}

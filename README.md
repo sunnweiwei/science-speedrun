@@ -29,6 +29,7 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1 GPU + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
 | [crystal-structure-generation](tasks/crystal-structure-generation) | unconditional crystal-structure generator trained from scratch on MP-20, maximizing stable/metastable, unique and novel (SUN + MetaSUN) structures under LeMat-GenBench | 8 GPU, 24 h | 0.157 | 0.208 | — | MP-20 + scorer assets (~25 GB; gated `facebook/UMA` needs HF_TOKEN) |
 | [molecular-pretraining-transfer](tasks/molecular-pretraining-transfer) | ≤90M molecular encoder pretrained from scratch on the leakage-filtered Uni-Mol2 corpus, transferred to 24 tasks; test MA-RAE QM9 / COMPAS-1D / ExpansionRx / ASAP (lower is better) | 8 GPU, 12 h | 0.186 / 0.164 / 0.735 / 0.657 | 0.183 / 0.166 / 0.744 / 0.636 | 0.192 / 0.121 / 0.668 / 0.644 | rebuilt from pinned public sources (179 GiB download, 173 GiB release) |
+| [protein-design](tasks/protein-design) | one all-atom backbone generator for four design tracks; per-track pass rate (designable by LigandMPNN + RoseTTAFold3 refolding and novel vs the fit corpus) enzyme / sm_binder / ppi_binder / unconditional | 1 GPU, 24 h | 0.082 / 0.025 / 0 / 0.10 | — | — | development views (RCSB snapshot, HF, ~6 GB); 51-target evaluation view vendored |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
@@ -43,6 +44,12 @@ Notes on the table:
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
   under that rule.
+- protein-design was tested on the CMU Babel cluster in two 5 h Codex sessions on one L40S. In the first, near-copies of
+  fit-corpus chains passed refolding, so the task gained a Foldseek novelty gate (a design counts only if its max
+  TM-score to every fit chain is below 0.8) and a 20-design evaluation view. The second session designed new helical
+  topologies and scored 0.082 / 0.025 / 0 / 0.10 (enzyme designs average max TM 0.67 to the fit corpus); the verifier ran
+  in 7.0 h on four A6000 (about 1 h on eight H100s). The starter's published numbers predate the gate and the
+  20-design view, so no baseline is shown.
 - molecular-pretraining-transfer was tested on the CMU Babel cluster: a 5 h Codex session on two L40S. The agent used
   the baseline's logged numbers instead of retraining it, tested a hard-mask objective, a narrower 80.2M pair track and
   a readout encoder against matched controls, sped up its trainer, and published an encoder on par with the 5.1 h,

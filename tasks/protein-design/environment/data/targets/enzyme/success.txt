@@ -1,0 +1,33 @@
+RFD3 enzyme (rigid-ligand active sites, upstream mcsa_41)
+
+Budget, as this task runs it:
+    100 backbones per target, 4 sequences per backbone, 5 predictor models per sequence.
+
+Criteria. The backbone passes if BOTH hold:
+1. Motif sidechain recapitulation. ANY of the 5 predictor models for ANY of the 4
+   LigandMPNN sequences has, after aligning on the motif backbone (N, CA, C), a motif
+   all-atom RMSD <= 1.5 A.
+2. No ligand clashes. A ligand clash is any non-motif backbone atom (N, CA or C) within
+   1.5 A of the closest ligand atom.
+
+Criterion 2 is measured on the raw backbone, so the grader checks it BEFORE folding -
+purely to skip a fold that cannot change the verdict, never as an extra requirement. It
+rejected 60% of enzyme designs on the 2026-09-28 reference run (2,475 of 4,100), which is
+most of the grading cost this track would otherwise spend on designs that cannot pass.
+Nothing else runs before folding except contract validation of the request: `motif_map`
+must name one distinct in-range residue per motif position carrying the requested
+identity, or criterion 1 has nothing to measure against.
+
+Removed 2026-09-26: this file previously also described conditioning gates applied before
+folding - motif all-atom RMSD on the raw design, and ligand burial (>= 50% of ligand
+atoms within 5 A). Neither is in `success.txt`'s criteria, both were this task's own
+invention, and together with the other pre-fold gates they discarded 59% of DESIGNABLE
+enzyme designs (0.022 against 0.054). They are gone from the grader; the pass rate is now
+the published criteria alone.
+
+Deviations from RFdiffusion3's published protocol, deliberate and recorded:
+  - 4 sequences per backbone, not 8. Uniform across all four tracks; "pass if ANY
+    sequence passes" means this can only lower a pass rate, never raise it.
+  - RoseTTAFold3 is the predictor, not Chai-1/AlphaFold. Parameters for RF3 are public
+    and ship in the image; the published thresholds were calibrated with AlphaFold, so
+    these numbers are internally comparable but NOT comparable with the RFD3 paper.

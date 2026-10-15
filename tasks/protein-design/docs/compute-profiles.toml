@@ -1,0 +1,24 @@
+# Optional operator profiles. The official task is the single-GPU "standard" profile.
+
+[standard]
+description = "Official profile: one 24 GB+ GPU for development, one for verification."
+agent_timeout_sec = 86400.0
+inference_timeout_sec = 21600.0
+verifier_timeout_sec = 43200.0
+gpus = 1
+
+[smoke]
+description = "One-hour plumbing check: trimmed splits, few steps, geometry-only scoring."
+agent_timeout_sec = 3600.0
+inference_timeout_sec = 900.0
+verifier_timeout_sec = 1800.0
+gpus = 1
+notes = "Use score.py --geometry-only; produces no benchmark number."
+
+[cpu-only]
+description = "Interface development without a GPU. Cannot measure designability."
+agent_timeout_sec = 86400.0
+inference_timeout_sec = 21600.0
+verifier_timeout_sec = 43200.0
+gpus = 0
+notes = "Unit tests and the geometry/conditioning gates run on CPU; RoseTTAFold3 refolding needs the GPU."

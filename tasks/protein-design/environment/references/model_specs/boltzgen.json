@@ -1,0 +1,18 @@
+{
+  "display_name": "BoltzGen",
+  "install_path": "/opt/references/boltzgen",
+  "license": "MIT",
+  "model_id": "boltzgen",
+  "notes": "All-atom generative binder design across biomolecular target classes.",
+  "ownership": "official_architecture",
+  "paradigm": "trained_generator",
+  "repository": "https://github.com/HannesStark/boltzgen",
+  "representation": "all-atom",
+  "revision": "a3149cf18eeb58648d1abbb27539bd73f746cdda",
+  "schema_version": "protein-design-model-spec/v1",
+  "tracks": [
+    "sm_binder",
+    "ppi_binder"
+  ],
+  "vendored": true
+}

@@ -1,0 +1,77 @@
+# Verifier (TASK_STANDARD.md). TASK_PRIVATE_DIR is the operator's materialized root; its
+# `evaluation` view is verifier-only and is never mounted into the agent's container.
+# `main` replays the submission and seals the backbones; `grader` scores them and never
+# executes submission code. Both are networkless.
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    shm_size: "16gb"
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized protein-design root}/evaluation
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      # Pretrained assets the agent DECLARES rather than ships (environment/contract.md).
+      # The image creates an EMPTY /pretrained, which is all the `trained_generator`
+      # paradigm needs. The `predictor_inversion` and `hybrid` paradigms are REFUSED
+      # without at least one declared asset, and each declared asset must resolve to a
+      # real file under this path in BOTH the development and the verification
+      # container. To support them, create the directory on the host, put the assets in
+      # it, and uncomment:
+      #
+      # - type: bind
+      #   source: ${TASK_PRETRAINED_DIR:?Set TASK_PRETRAINED_DIR}
+      #   target: /pretrained
+      #   read_only: true
+      #   bind:
+      #     create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    gpus: all
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/manifest.json"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  # Trusted scorer. Carries the folding weights in-image and never executes the
+  # submission.
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    shm_size: "16gb"
+    command: ["python3", "/tests/grader.py", "--sealed", "/sealed/run",
+              "--contexts", "/benchmark", "--assets", "/assets",
+              "--reference", "/reference/fit",
+              "--output", "/sealed/results"]
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized protein-design root}/evaluation
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      # The novelty gate's reference: the fit corpus the agent trains on (the same files it sees).
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized protein-design root}/development/fit/structures
+        target: /reference/fit
+        read_only: true
+        bind:
+          create_host_path: false
+      # No /assets mount: LigandMPNN and RoseTTAFold3 parameters are public downloads
+      # baked into the image by environment/fetch_designability_weights.sh. (There is no
+      # PROTEIN_DESIGN_EVAL_ASSETS_DIR override any more - nothing reads it. To use a
+      # pre-fetched host copy, bind it at /assets and pass `--assets` to grader.py.)
+      - sealed:/sealed
+    gpus: all

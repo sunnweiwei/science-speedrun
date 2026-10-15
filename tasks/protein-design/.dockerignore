@@ -1,0 +1,20 @@
+**/__pycache__/
+**/*.py[cod]
+**/submission/
+**/generator.pt
+**/*.pt
+**/*.safetensors
+**/*.npz
+**/.cache/
+/datasets/
+/runs/
+
+# The operator benchmark lives under environment/evaluation/ for tidiness, but it must
+# NOT reach the agent image, which COPYs environment/evaluation wholesale. Its
+# targets-full.json ENUMERATES EVERY EVALUATION TARGET ID (41 enzyme + 4 sm_binder +
+# 5 ppi_binder = the whole 50-target evaluation view, plus the synthetic uncond_L100
+# that is not part of it); targets.json enumerates the frozen 14-target subset. The task
+# is built so an agent sees only /data/fit and /data/tune. The benchmark also drives the
+# verifier-only evaluation view via environment/data/targets/, which is not in the image
+# either, so shipping it would leak the target list AND ship scripts that cannot run.
+/environment/evaluation/benchmark/

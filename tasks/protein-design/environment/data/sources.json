@@ -1,0 +1,129 @@
+{
+  "development_data": {
+    "af3_excluded_ligands": {
+      "license": "BSD-3-Clause",
+      "repository": "https://github.com/RosettaCommons/atomworks",
+      "role": "crystallisation aids and buffers excluded from ligand conditioning; keeps real cofactors such as ZN, MG, FE",
+      "source": "AlphaFold3 Supp. Table 10, via RosettaCommons/atomworks constants.AF3_EXCLUDED_LIGANDS",
+      "vendored_in": "environment/data/assembly.py"
+    },
+    "rcsb_assemblies": {
+      "license": "CC0",
+      "role": "coordinates from which all conditioning is derived",
+      "stability": "immutable per accession; each downloaded file is hashed into provenance.json",
+      "url": "https://files.rcsb.org/download/{pdb_id}-assembly1.cif.gz"
+    },
+    "rcsb_clusters_30": {
+      "license": "CC0",
+      "role": "30% sequence-identity clusters, keyed by ENTITY id; the unit of homology exclusion",
+      "sha256": "26021d2431ca04950fccd702cf69d654f4e24be5be28bf7d297f7c0905d84ef2",
+      "stability": "regenerated weekly; pinned by recorded digest",
+      "url": "https://cdn.rcsb.org/resources/sequence/clusters/clusters-by-entity-30.txt",
+      "verified": "2026-09-04"
+    },
+    "rcsb_entry_index": {
+      "entries": 259016,
+      "license": "CC0",
+      "role": "bulk entry metadata: id, deposition date, resolution, method, HEADER classification",
+      "sha256": "9f9709b11302bc1414ea19b5be6b5e92104804c19fcbcec013010ce0a772fc86",
+      "stability": "regenerated as the PDB grows; pinned by the digest recorded into provenance.json",
+      "url": "https://files.rcsb.org/pub/pdb/derived_data/index/entries.idx",
+      "verified": "2026-09-04"
+    }
+  },
+  "evaluation_targets": {
+    "rfdiffusion3_benchmark": {
+      "contamination": "targets are pre-2010 PDB entries and are in the training set of every current design model; inherent to the benchmark and documented, not solved",
+      "ingested_by": "environment/data/ingest_targets.py",
+      "provenance": "RFdiffusion3 benchmark targets; success criteria in each track's success.txt",
+      "role": "the 50 evaluation targets: 41 M-CSA enzyme active sites, 4 small-molecule sites, 5 binder targets",
+      "supplied_by": "operator, as a directory of input.yaml + motif/ligand .cif files"
+    }
+  },
+  "note": "Pinned upstream sources. Digests marked verified were checked by download on the stated date; entries marked unverified are recorded honestly and re-checked at run time, since these URLs are mutable.",
+  "reference_methods": {
+    "boltzdesign1": {
+      "license": "MIT",
+      "paper": "https://www.biorxiv.org/content/10.1101/2025.04.06.647261v1",
+      "repository": "https://github.com/yehlincho/BoltzDesign1",
+      "role": "architecture reference; trains nothing, inverts a pretrained predictor at inference",
+      "vendored": false
+    },
+    "boltzgen": {
+      "install_path": "/opt/references/boltzgen",
+      "license": "MIT",
+      "paper": "https://www.biorxiv.org/content/10.1101/2025.11.20.689494v1",
+      "repository": "https://github.com/HannesStark/boltzgen",
+      "revision": "a3149cf18eeb58648d1abbb27539bd73f746cdda",
+      "role": "architecture reference; all-atom generative binder design",
+      "vendored": true
+    },
+    "disco": {
+      "install_path": "/opt/references/disco",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/DISCO-design/DISCO",
+      "revision": "82b594f838eb61dd8c78ae3a403ccb8f00cf7abf",
+      "role": "architecture reference; joint sequence-structure co-design",
+      "vendored": true,
+      "weights": "https://huggingface.co/DISCO-Design/DISCO"
+    },
+    "framediff": {
+      "commit": "53359d71cfabc819ffaa571abd2cef736c871a5d",
+      "install_path": null,
+      "license": "MIT",
+      "note": "Literature reference only. Nothing from FrameDiff is shipped or used: an earlier hand-written starter reimplemented its frame representation and ideal-atom placement as an output head, and that starter has been removed in favour of vendoring upstream RFdiffusion3, which diffuses Cartesian all-atom coordinates and has no frame or rotation channel.",
+      "repository": "https://github.com/jasonkyuyim/se3_diffusion",
+      "role": "background reference for frame-based backbone diffusion; not used by this task",
+      "vendored": false
+    },
+    "proteina_complexa": {
+      "install_path": "/opt/references/proteina_complexa",
+      "license": "Apache-2.0 (code); CC BY 4.0 (datasets); NVIDIA Open Model License (weights, commercially usable)",
+      "note": "The original Proteina repository is research/non-commercial only; Proteina-Complexa is not. See its licenses/ directory for full terms and third-party notices.",
+      "repository": "https://github.com/NVIDIA-BioNeMo/Proteina-Complexa",
+      "revision": "33b76585801eb902802cc7410c85bc37ae81b346",
+      "role": "architecture reference; partially-latent flow matching with inference-time search",
+      "vendored": true
+    },
+    "rfdiffusion3": {
+      "install_path": "/opt/references/rfd3",
+      "license": "BSD-3-Clause",
+      "paper": "https://www.biorxiv.org/content/10.1101/2025.09.18.676967v2",
+      "used_by_starter": "environment/baseline/rfd3-small/rfd3 vendors this source at the pinned revision and the starter trains it directly. The only change is layer widths, via configs/experiment/pretrain_small.yaml (12,445,554 parameters against upstream's 168,038,994); block counts, condition mix, transforms, losses, optimizer, schedule and EMA are upstream's. Architecture and recipe only; no RFD3 weights are used, and every parameter is randomly initialised and trained in-session.",
+      "repository": "https://github.com/RosettaCommons/foundry",
+      "revision": "b02eed6a6bdf8f44d14a80cc36e3da13c9f2291c",
+      "role": "the dataset construction and success criteria this task follows",
+      "training_cutoff": "deposition_date < 2024-01-01",
+      "vendored": true
+    }
+  },
+  "schema": "protein-design-sources/v2",
+  "scoring_assets": {
+    "ligandmpnn": {
+      "citation": "Dauparas J. et al.",
+      "commit": "26ec57ac976ade5379920dbd43c7f97a91cf82de",
+      "license": "MIT",
+      "placement": "source VENDORED at environment/evaluation/ligandmpnn (MIT, license retained; run.py's import closure only - see its VENDORED.md) and COPYed to /opt/ligandmpnn in both images, so neither build clones it; parameters PUBLIC and baked into both images at /assets/ligandmpnn_params by environment/fetch_designability_weights.sh",
+  "vendored": true,
+      "repository": "https://github.com/dauparas/LigandMPNN",
+      "role": "ligand-aware inverse folding; supplies the sequences each criterion scores",
+      "checkpoints": {
+        "ligandmpnn_v_32_010_25.pt": "161cd264061fda9680cbb940255522ae42f2966c552d045d87913d9452a80970",
+        "proteinmpnn_v_48_020.pt": "c9cb4a671d79604111231f8dbfc7c590e06f1197453b7a6854ac6661a642f5bd"
+      },
+      "substitution_note": "The original repository deliberately, NOT foundry's models/mpnn re-implementation: upstream advises against the latter for benchmarking, and its ligand_mpnn was measured returning byte-identical sequences with and without a bound ligand."
+    },
+    "rf3": {
+      "citation": "Accelerating Biomolecular Modeling with AtomWorks and RF3, Institute for Protein Design (2025), doi:10.1101/2025.08.14.670328",
+      "commit": "b02eed6a6bdf8f44d14a80cc36e3da13c9f2291c",
+      "checkpoint": "rf3_foundry_01_24_latest_remapped.ckpt",
+      "checkpoint_sha256": "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0",
+      "checkpoint_url": "https://files.ipd.uw.edu/pub/rf3/rf3_foundry_01_24_latest_remapped.ckpt",
+      "license": "BSD-3-Clause (code and model parameters), Institute for Protein Design, University of Washington",
+      "placement": "source vendored at environment/evaluation/rf3; parameters PUBLIC and baked into both images at /assets/rf3 by environment/fetch_designability_weights.sh",
+      "repository": "https://github.com/RosettaCommons/foundry",
+      "role": "complex prediction; the only source of ipTM and interface PAE, and the only way to refold a protein-ligand complex",
+      "substitution_note": "Replaces AlphaFold 3, whose parameters are not redistributable and therefore could not run in the agent image. RFdiffusion3's published thresholds were calibrated with AlphaFold, so scores are internally comparable but NOT directly comparable with the RFdiffusion3 paper. Its enzyme criterion uses Chai-1, which is a further substitution."
+    }
+  }
+}

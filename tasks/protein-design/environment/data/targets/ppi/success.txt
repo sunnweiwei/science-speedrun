@@ -1,0 +1,37 @@
+RFD3 protein binder
+
+Budget, as this task runs it:
+    100 backbones per target, 4 sequences per backbone, 1 predictor model per sequence.
+    (4 sequences is also the published count for this track.)
+
+Designability criterion. The backbone passes if ANY of the 4 sequences satisfies BOTH:
+    binder backbone RMSD <= 2 A            (RFD3 does not state a value for this track;
+                                            2 A is this task's choice)
+    interface min inter-chain PAE <= 1.5   (RFD3 states "evaluate min inter-chain pae"
+                                            but no threshold; the sm_binder value is
+                                            reused and flagged as inferred)
+
+NOTHING runs before folding on this track. The criterion above lives entirely on the
+refolded complex, so every returned design is folded: on the 2026-09-28 reference run all
+500 reached the predictor.
+
+Removed 2026-09-26: this file previously described conditioning gates applied before
+folding - no clash with the target (>= 2.0 A) and hotspot engagement (>= 50% of requested
+hotspots within 5 A). Neither appears in this track's criterion, both were this task's own
+invention, and between them they rejected EVERY designable ppi binder the recorded
+benchmark had found (0.000 against 0.004).
+
+One consequence, stated rather than buried: epitope specificity is now unchecked.
+Interface PAE proves that AN interface exists, not that it is the requested one.
+RFdiffusion3's own ppi criterion has no hotspot term either, so this matches upstream -
+but a design that engages the wrong face and folds well will pass. The hotspots still
+condition GENERATION (`select_hotspots`, and the origin that `infer_ori_strategy:
+hotspots` derives from them); they are simply not re-checked at scoring time.
+
+Deviation from RFdiffusion3's published protocol, deliberate and recorded:
+  - RoseTTAFold3 is the predictor. The published thresholds were calibrated with
+    AlphaFold, so these numbers are internally comparable but NOT comparable with the
+    RFD3 paper.
+
+NOTE: upstream's pretraining sets ppi.frequency = 0.0, so a pretrained-only checkpoint
+has never been trained on PPI conditioning at all.

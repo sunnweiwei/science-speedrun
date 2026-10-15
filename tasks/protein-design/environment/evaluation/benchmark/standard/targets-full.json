@@ -1,0 +1,82 @@
+{
+ "name": "protein-design standard benchmark v1 + full enzyme",
+ "frozen": "2026-09-23",
+ "designs_per_target": 100,
+ "sequences_per_backbone": 4,
+ "note": "Same as targets.json except the enzyme track is the COMPLETE mcsa_41 set instead of the frozen 4-target random draw. The other three tracks were already complete: sm_binder 4/4, ppi_binder 5/5, unconditional 1 synthetic.",
+ "tracks": {
+  "unconditional": {
+   "source": "synthetic",
+   "targets": {
+    "uncond_L100": {
+     "design_length": 100
+    }
+   }
+  },
+  "sm_binder": {
+   "source": "environment/data/targets/sm/input.yaml",
+   "targets": [
+    "FAD",
+    "IAI",
+    "OQO",
+    "SAM"
+   ]
+  },
+  "ppi_binder": {
+   "source": "environment/data/targets/ppi/input.yaml",
+   "targets": [
+    "rfd3_il2ra",
+    "rfd3_il7ra",
+    "rfd3_insulinr",
+    "rfd3_pdl1",
+    "rfd3_tie2"
+   ]
+  },
+  "enzyme": {
+   "source": "environment/data/targets/enzyme/input.yaml",
+   "targets": [
+    "M0024_1nzy",
+    "M0040_13pk",
+    "M0050_1dbt",
+    "M0054_1qfe",
+    "M0058_1cju",
+    "M0078_1al6",
+    "M0092_1dli",
+    "M0093_1dqa",
+    "M0096_1chm",
+    "M0097_1ctt",
+    "M0110_1c0p",
+    "M0129_1os7",
+    "M0151_1q0n",
+    "M0157_1qh5",
+    "M0179_1q3s",
+    "M0188_1xel",
+    "M0209_1lij",
+    "M0255_1mg5",
+    "M0315_1ey3",
+    "M0349_1e3v",
+    "M0365_1pfk",
+    "M0375_4ts9",
+    "M0500_1e3i",
+    "M0552_1fgh",
+    "M0555_1f8r",
+    "M0584_1ldm",
+    "M0630_1j79",
+    "M0636_1uaq",
+    "M0663_1rk2",
+    "M0664_2dhn",
+    "M0674_1uf7",
+    "M0710_1ra0",
+    "M0711_2esd",
+    "M0717_1x7d",
+    "M0731_1mt5",
+    "M0732_1xs1",
+    "M0738_1o98",
+    "M0739_1knp",
+    "M0870_1oh9",
+    "M0904_1qgx",
+    "M0907_1rbl"
+   ]
+  }
+ }
+}

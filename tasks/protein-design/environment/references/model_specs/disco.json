@@ -1,0 +1,19 @@
+{
+  "display_name": "DISCO",
+  "install_path": "/opt/references/disco",
+  "license": "Apache-2.0",
+  "model_id": "disco",
+  "notes": "Joint sequence-structure co-design with cross-modal recycling. No multi-chain complex support, so it does not cover ppi_binder.",
+  "ownership": "official_architecture",
+  "paradigm": "trained_generator",
+  "repository": "https://github.com/DISCO-design/DISCO",
+  "representation": "all-atom",
+  "revision": "82b594f838eb61dd8c78ae3a403ccb8f00cf7abf",
+  "schema_version": "protein-design-model-spec/v1",
+  "tracks": [
+    "unconditional",
+    "sm_binder",
+    "enzyme"
+  ],
+  "vendored": true
+}

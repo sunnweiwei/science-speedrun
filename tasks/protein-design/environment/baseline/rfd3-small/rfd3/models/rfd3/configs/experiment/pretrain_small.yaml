@@ -1,0 +1,35 @@
+# @package _global_
+# RFD3 pretraining, reduced in width only.
+#
+# The ONLY deviation from `pretrain.yaml` is layer widths. Every module, block count,
+# condition probability, transform, crop rule, loss, optimizer, schedule, EMA setting
+# and batching parameter is upstream's, untouched - including the 16 noise draws x 3
+# accumulation passes (48 samples from 3 structures) that `pretrain.yaml` and
+# `rfd3_base.yaml` specify. An earlier revision moved noise draws onto the accumulation
+# axis to fit a 16 GiB A4000; on a 48 GiB L40/L40S that is unnecessary, so it is gone.
+defaults:
+  - pretrain
+
+model:
+  net:
+    # Widths only. Block counts are upstream's: 2 token-initializer pairformer blocks,
+    # 2 diffusion-token-encoder pairformer blocks, 18 diffusion transformer blocks,
+    # 3 atom attention encoder blocks, 3 atom attention decoder blocks, n_recycle 2.
+    c_s: 128          # 384
+    c_z: 32           # 128
+    c_atom: 64        # 128
+    c_atompair: 16    # 16 - UNCHANGED. This is the atom-pair channel that carries the
+                      # reference-conformer geometry (P_LL); narrowing it is exactly the
+                      # kind of cut that cost the hand port its bond geometry.
+    diffusion_module:
+      # c_token must be a multiple of 48: the upcast splits it into `n_split: 3` chunks
+      # (`Upcast`: c_kv = c_token // n_split) and the diffusion transformer runs 16
+      # heads over it. Upstream's 768 = 48 x 16. 256 fails in einops; 192 = 48 x 4.
+      c_token: 192    # 768
+      c_t_embed: 128  # 256
+      upcast:
+        cross_attention_block:
+          c_model: 64      # 128
+      downcast:
+        cross_attention_block:
+          c_model: 64      # 128

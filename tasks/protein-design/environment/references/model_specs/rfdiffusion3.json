@@ -1,0 +1,20 @@
+{
+  "display_name": "RFdiffusion3",
+  "install_path": "/opt/references/rfd3",
+  "license": "BSD-3-Clause",
+  "model_id": "rfdiffusion3",
+  "notes": "All-atom diffusion. Dataset construction and success criteria followed by this task. PDB training cutoff 2024-01-01.",
+  "ownership": "official_architecture",
+  "paradigm": "trained_generator",
+  "repository": "https://github.com/RosettaCommons/foundry",
+  "representation": "atom14",
+  "revision": "b02eed6a6bdf8f44d14a80cc36e3da13c9f2291c",
+  "schema_version": "protein-design-model-spec/v1",
+  "tracks": [
+    "unconditional",
+    "sm_binder",
+    "ppi_binder",
+    "enzyme"
+  ],
+  "vendored": true
+}

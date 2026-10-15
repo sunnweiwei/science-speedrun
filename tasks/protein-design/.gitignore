@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npz
+*.npy
+*.pdb
+*.cif
+*.cif.gz
+# The curated benchmark targets are small (1.2 MB) and the task is not reproducible
+# without them, so they are vendored despite the blanket structure-file exclusions.
+!environment/data/targets/**
+*.txt.gz
+/datasets/
+/runs/
+**/submission/
+**/generator.pt
+**/.cache/

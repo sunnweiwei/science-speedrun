@@ -1,0 +1,19 @@
+{
+  "display_name": "Proteina-Complexa",
+  "install_path": "/opt/references/proteina_complexa",
+  "license": "Apache-2.0 (code); CC BY 4.0 (datasets); NVIDIA Open Model License (weights, commercially usable)",
+  "model_id": "proteina_complexa",
+  "notes": "Partially-latent flow matching plus inference-time optimisation and search. Multi-license repository: code Apache-2.0, datasets CC BY 4.0, weights under the NVIDIA Open Model License, which permits commercial use and derivative models. Vendors code from openfold, alphafold3-pytorch, ProteinMPNN, LigandMPNN and ColabDesign; see its licenses/ directory.",
+  "ownership": "official_architecture",
+  "paradigm": "hybrid",
+  "repository": "https://github.com/NVIDIA-BioNeMo/Proteina-Complexa",
+  "representation": "all-atom",
+  "revision": "33b76585801eb902802cc7410c85bc37ae81b346",
+  "schema_version": "protein-design-model-spec/v1",
+  "tracks": [
+    "sm_binder",
+    "ppi_binder",
+    "enzyme"
+  ],
+  "vendored": true
+}

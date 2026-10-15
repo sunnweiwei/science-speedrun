@@ -1,0 +1,47 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base
+# compose. TASK_DATA_DIR is the operator's materialized root; its `development/fit` and
+# `development/tune` are mounted next to the image's own data/README.md, and the image
+# links /data -> /workspace/data so this task's existing paths keep resolving.
+# TASK_RESEARCH_DIR is an empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "16gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized protein-design root}/development/fit", target: /workspace/data/fit}
+      - {<<: *data, source: "${TASK_DATA_DIR}/development/tune", target: /workspace/data/tune}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+      # No parameter mount. LigandMPNN and RoseTTAFold3 are measuring instruments, never
+      # components, but both sets of weights are public and are baked into the image at
+      # /assets by environment/fetch_designability_weights.sh - which is what lets the
+      # agent score the real designability metric rather than only --geometry-only.
+      # Pretrained assets the agent DECLARES rather than ships (environment/contract.md).
+      # The image creates an EMPTY /pretrained, which is all the `trained_generator`
+      # paradigm needs. The `predictor_inversion` and `hybrid` paradigms are REFUSED
+      # without at least one declared asset, and each declared asset must resolve to a
+      # real file under this path in BOTH the development and the verification
+      # container. To support them, create the directory on the host, put the assets in
+      # it, and uncomment:
+      #
+      # - type: bind
+      #   source: ${TASK_PRETRAINED_DIR:?Set TASK_PRETRAINED_DIR}
+      #   target: /pretrained
+      #   read_only: true
+      #   bind:
+      #     create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/fit/manifest.json && test -s /workspace/data/tune/manifest.json"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

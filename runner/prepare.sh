@@ -49,6 +49,11 @@ case "$task" in
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;
+  protein-design)                         # prepared development views (RCSB snapshot of 2026-10-06, HF) + vendored evaluation view
+    inbox "huggingface_hub[hf_xet]>=1.0" "hf download sunweiwei/ai4sci-protein-design-data --repo-type dataset --local-dir $root/_dl --include 'development-*.tar' --include MANIFEST.json && for x in $root/_dl/development-*.tar; do tar xf \$x -C $root; done"
+    $DOCKER build -q -f "$t/environment/Dockerfile" -t protein-design-dev "$t"
+    $DOCKER run --rm -v "$t:/task:ro" -v "$root:/out" protein-design-dev python3 /task/environment/data/ingest_targets.py --output-root /out/evaluation
+    data=$root; private=$root ;;
   molecular-pretraining-transfer)         # rebuilt from pinned public sources in the task's runtime image (179 GiB download)
     $DOCKER build -q -f "$t/environment/Dockerfile" --target runtime -t mpt-runtime "$t"
     $DOCKER run --rm -v "$t:/task:ro" -v "$root:/out" mpt-runtime bash /task/environment/data/materialize.sh /out

@@ -1,0 +1,111 @@
+# @package _global_
+# THE experiment. Reduced-width RFD3 with PPI conditioning enabled, pointed by default
+# at the task's own containerised data. The agent and the operator run THIS file; there
+# is no second config (it used to be split into `pretrain_small_ppi` + `task_small`,
+# which drifted apart - `task_small` ended up inheriting the NON-ppi recipe, so the
+# agent trained `ppi.frequency: 0.0` and could not reproduce the reported row).
+#
+# ============================ THE RECIPE ============================
+#
+# Exactly TWO deliberate departures from upstream `pretrain`:
+#
+#   1. LAYER WIDTHS, via `pretrain_small` - 12,445,554 parameters against upstream's
+#      168,038,994. Depth, crop, losses, optimizer, schedule and EMA are untouched.
+#   2. `ppi.frequency: 0.0 -> 5.0`, below.
+#
+# `pretrain.yaml` sets `ppi.frequency: 0.0`, so upstream's pretraining stage never
+# trains PPI at all - PPI ability is meant to come from a later fine-tuning stage.
+# Job 25020897 inherited that zero, which is why every ppi_binder evaluation of its
+# checkpoints read exactly 0.000 (0/500 designs on the 2026-09-20 standard benchmark).
+#
+# Frequencies normalise PER EXAMPLE over the conditions valid for it
+# (`conditioning_base.py:265`), and `PPICondition.is_valid_for_example` requires a
+# binary protein-protein interface - `query_pn_unit_iids` of length exactly 2, both
+# all-protein. That is 1,656,244 of 4,390,951 rows (37.7%) of the interfaces table, and
+# never a pn_unit draw. So this override changes the mix ONLY on PPI-eligible examples:
+#
+#     condition        freq   share on a PPI-eligible example
+#     tipatom           5.0   34%   (was 53%)
+#     ppi               5.0   34%   (was  0%)
+#     unconditional     2.0   14%   (was 21%)
+#     island            2.0   14%   (was 21%)
+#     sequence_design   0.5    3%   (was  5%)
+#
+# Parity with tipatom is deliberate: tipatom drives the enzyme and sm_binder tracks,
+# which are the two that currently work, so PPI gets an equal share, not a dominant one.
+#
+# ======================= WHERE THE FILES LIVE =======================
+#
+# Everything below this line is plumbing, not recipe. It defaults to the agent's
+# container; an operator on the cluster overrides the paths on the command line - see
+# `environment/starter/submit_rfd3_small_ppi.sh`, which is the exact invocation behind
+# the row in `environment/evaluation/RESULTS.md`.
+defaults:
+  - pretrain_small
+  - override /paths/data: task
+
+paths:
+  # Upstream's `paths/default.yaml` writes logs and checkpoints to
+  # `/net/scratch/$USER/training/logs`, an IPD-internal mount. `override /paths/data`
+  # above re-points only the INPUT data, so without this a run would try to checkpoint
+  # into a directory that does not exist in the image - and would do it AFTER training,
+  # at the first checkpoint, not at startup.
+  log_dir: ${oc.env:PROTEIN_DESIGN_WORK,/workspace/research}/logs
+
+datasets:
+  # Upstream's validation sets read design-benchmark JSON from an IPD mount that is not
+  # redistributed here, and a missing file fails at dataset CONSTRUCTION rather than at
+  # the first validation. `train.py:159` guards on `cfg.datasets.val` being truthy, so
+  # nulling the node is the supported way to switch validation off. Score instead with
+  # the task's own grader on the tune view - that is the metric the task is judged on.
+  val: null
+
+  train:
+    pdb:
+      sub_datasets:
+        pn_unit:
+          dataset:
+            dataset:
+              data: ${paths.data.pdb_parquet_dir}/pn_units_df_train.parquet
+              filters:
+                # The task holds out evaluation targets by deposition date and then
+                # drops their whole 30% cluster from development, so the corpus is
+                # already disjoint from the benchmark; this bound is belt and braces.
+                # It is a NO-OP on the IPD corpus, whose `_train` parquet is already
+                # cut at 2021-09-20, so it does not change the operator recipe.
+                - "deposition_date < '2024-01-01'"
+                - "resolution < 9.0"
+                - "num_polymer_pn_units <= 300"
+                - "cluster.notnull()"
+                - "~(q_pn_unit_non_polymer_res_names.notnull() and q_pn_unit_non_polymer_res_names.str.contains('${resolve_import:atomworks.constants,AF3_EXCLUDED_LIGANDS_REGEX}', regex=True))"
+        interface:
+          dataset:
+            dataset:
+              data: ${paths.data.pdb_parquet_dir}/interfaces_df_train.parquet
+              filters:
+                - "deposition_date < '2024-01-01'"
+                - "resolution < 9.0"
+                - "num_polymer_pn_units <= 300"
+                - "cluster.notnull()"
+                - "~(pn_unit_1_non_polymer_res_names.notnull() and pn_unit_1_non_polymer_res_names.str.contains('${resolve_import:atomworks.constants,AF3_EXCLUDED_LIGANDS_REGEX}', regex=True))"
+                - "~(pn_unit_2_non_polymer_res_names.notnull() and pn_unit_2_non_polymer_res_names.str.contains('${resolve_import:atomworks.constants,AF3_EXCLUDED_LIGANDS_REGEX}', regex=True))"
+                - "is_inter_molecule"
+
+  # HBPLUS is not installed - not in the image and not on the cluster - so hydrogen-bond
+  # conditioning cannot be computed and upstream's 0.2 raises at runtime. The cost is
+  # that the hbond channel is never learned; it is a free download, so anyone who
+  # installs HBPLUS can restore this to 0.2. Job 25880709 also ran with this at 0.
+  global_transform_args:
+    meta_conditioning_probabilities:
+      calculate_hbonds: 0
+    train_conditions:
+      ppi:
+        frequency: 5.0
+
+trainer:
+  # Defaults are the AGENT's single GPU. Upstream's effective batch is 3 structures per
+  # optimizer step (`grad_accum_steps: 3` x 1 rank); keeping that here is what makes the
+  # AF-3 warmup and decay schedule mean the same thing per unit of data as upstream.
+  # The operator overrides both on the command line for its 8-rank run.
+  devices_per_node: 1
+  grad_accum_steps: 3

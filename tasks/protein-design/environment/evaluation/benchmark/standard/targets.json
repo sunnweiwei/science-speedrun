@@ -1,0 +1,26 @@
+{
+  "name": "protein-design standard benchmark v1",
+  "frozen": "2026-09-19",
+  "designs_per_target": 100,
+  "sequences_per_backbone": 4,
+  "note": "The enzyme sample is a RANDOM draw that has been FROZEN. Re-drawing it would make runs incomparable, which is the whole point of a standard benchmark. Reproduce with: random.Random(20260919).sample(sorted(<41 enzyme ids>), 4).",
+  "enzyme_seed": 20260919,
+  "tracks": {
+    "unconditional": {
+      "source": "synthetic",
+      "targets": {"uncond_L100": {"design_length": 100}}
+    },
+    "sm_binder": {
+      "source": "environment/data/targets/sm/input.yaml",
+      "targets": ["FAD", "IAI", "OQO", "SAM"]
+    },
+    "ppi_binder": {
+      "source": "environment/data/targets/ppi/input.yaml",
+      "targets": ["rfd3_il2ra", "rfd3_il7ra", "rfd3_insulinr", "rfd3_pdl1", "rfd3_tie2"]
+    },
+    "enzyme": {
+      "source": "environment/data/targets/enzyme/input.yaml",
+      "targets": ["M0092_1dli", "M0096_1chm", "M0500_1e3i", "M0907_1rbl"]
+    }
+  }
+}

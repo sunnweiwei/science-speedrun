@@ -1,0 +1,29 @@
+RFD3 small-molecule binder (bare ligand, no pocket template)
+
+Budget, as this task runs it:
+    100 backbones per target, 4 sequences per backbone, 1 predictor model per sequence.
+
+Criterion. The backbone passes if ANY of the 4 sequences satisfies ALL of:
+    backbone RMSD <= 1.5 A
+    backbone-aligned ligand RMSD <= 5 A
+    interface min PAE <= 1.5
+    ipTM >= 0.8
+
+NOTHING runs before folding on this track. The criterion above lives entirely on the
+refolded model, so every returned design is folded: on the 2026-09-28 reference run all
+400 reached the predictor.
+
+Removed 2026-09-26: this file previously described conditioning gates applied before
+folding - a ligand clash bound (>= 1.5 A to backbone atoms) and ligand burial (>= 50% of
+ligand atoms within 5 A). Neither appears in this track's criterion, both were this
+task's own invention, and the clash term belongs to `enzyme` alone, where it IS a
+published conjunct. Ligand burial's rationale was separately obsolete: it existed because
+nothing else forced a design to engage its ligand, which stopped being true once ipTM and
+interface PAE were enforced above.
+
+Deviations from RFdiffusion3's published protocol, deliberate and recorded:
+  - 4 sequences per backbone, not 8. Uniform across all four tracks; "pass if ANY
+    sequence passes" means this can only lower a pass rate, never raise it.
+  - RoseTTAFold3 is the predictor. The published thresholds were calibrated with
+    AlphaFold, so these numbers are internally comparable but NOT comparable with the
+    RFD3 paper.

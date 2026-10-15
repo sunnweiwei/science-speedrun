@@ -1,0 +1,18 @@
+{
+  "display_name": "BoltzDesign1",
+  "install_path": "/opt/references/boltzdesign1",
+  "license": "MIT (asserted in README; the repository ships NO LICENSE file)",
+  "model_id": "boltzdesign1",
+  "notes": "Trains nothing. Inverts a pretrained Boltz-1 at inference by optimising the distogram. Reference for the predictor_inversion paradigm. Its README states \"MIT License - See LICENSE file for details\" but no LICENSE file exists in the repository; treat the README as the only license grant.",
+  "ownership": "reference_only",
+  "paradigm": "predictor_inversion",
+  "repository": "https://github.com/yehlincho/BoltzDesign1",
+  "representation": "all-atom",
+  "revision": "31aeedd7f187ba88dd9e92514070aee13381cb93",
+  "schema_version": "protein-design-model-spec/v1",
+  "tracks": [
+    "sm_binder",
+    "ppi_binder"
+  ],
+  "vendored": true
+}

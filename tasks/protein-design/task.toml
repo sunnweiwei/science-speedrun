@@ -1,0 +1,58 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/protein-design"
+version = "0.1.0"
+description = "Develop one all-atom protein design system across four conditioned design tracks, scored on designability."
+keywords = ["model-development", "protein-design", "all-atom", "designability", "offline"]
+authors = [{ name = "YanjingLiLi" }]
+
+[metadata]
+input_schema = "protein-design-input/v1"
+data_status = "operator materialization required; benchmark targets supplied separately; no training data or generator weights are redistributed (the SCORING models are public downloads, fetched by environment/fetch_designability_weights.sh)"
+rcsb_entry_index_sha256 = "9f9709b11302bc1414ea19b5be6b5e92104804c19fcbcec013010ce0a772fc86"
+rcsb_clusters30_sha256 = "26021d2431ca04950fccd702cf69d654f4e24be5be28bf7d297f7c0905d84ef2"
+evaluation_targets = "51: the curated RFdiffusion3 benchmark (41 enzyme, 4 sm_binder, 5 ppi_binder) plus 1 synthetic unconditional target, which is graded but is not part of that benchmark and carries no published criterion"
+development_split = "temporal, deposition_date < 2024-01-01, cluster-disjoint"
+ligandmpnn_commit = "26ec57ac976ade5379920dbd43c7f97a91cf82de"
+rf3_revision = "b02eed6a6bdf8f44d14a80cc36e3da13c9f2291c"
+rf3_checkpoint_sha256 = "364ef592fd8042a9cf4176d045015190f8322f961ccca38d891b20ca578d3bb0"
+harness_schema = "protein-design-harness/v1"
+structure_representation = "atom14"
+
+[agent]
+timeout_sec = 86400.0
+
+[environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 204800
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+# 20 designs per target over 51 targets = 1,020 designs. Grading folds ~8,600 structures
+# (enzyme is ~91% of them: 4 sequences x 5 predictor models, on the ~48% of designs that
+# clear the published ligand-clash term); the 100-design view took 9 h 33 min on 8x L40S,
+# so this view is ~1.9 h there and less on H100s (measured: 6 h 51 min end to end on 4x L40S with
+# the novelty gate, ~1.4 h on 8x H100 by conversion). Inference gets 43,200 s, grading 129,600 s.
+timeout_sec = 172800.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 102400
+# RoseTTAFold3 needs a substantial GPU, and complex prediction dominates grading cost:
+# ~8,600 folds for the 1,020-design evaluation view. `grader.py` folds one design per
+# visible device (`--workers`), so these 8 are used rather than idle - designs are
+# independent and every fold is already its own subprocess. At a MEASURED 8.9 s/fold on
+# an RTX A4000 that is ~13 h across 8 such cards; on 8 H100s it should be a few hours,
+# but no fold has ever been timed on an H100, so the budget above keeps a wide margin.
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

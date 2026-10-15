@@ -1,0 +1,41 @@
+# TASK-OWNED (not upstream). Data layout inside the agent's container.
+#
+# Upstream's `default.yaml` points at IPD-internal mounts (a PDB mirror, the AF-3 split
+# parquets, a MACE embedding cache, the design benchmarks). None of them exist in this
+# image and there is no network to fetch them, so training would fail at dataset
+# construction rather than train badly. Every path below is either materialised into
+# /data by the operator or created at runtime.
+
+# Structures, in the RCSB divided layout that `PNUnitsDFParser`'s default
+# `path_template` already expects: <pdb_data_dir>/<chars 2-3 of id>/<id>.cif.gz
+pdb_data_dir: ${oc.env:PROTEIN_DESIGN_DATA,/data}/fit/structures
+
+# The two index tables built by `environment/data/build_training_index.py`.
+pdb_parquet_dir: ${oc.env:PROTEIN_DESIGN_DATA,/data}/fit/index
+
+# Distillation is not shipped: upstream's is an internal AF-2 distillation set, and
+# `pretrain.yaml` already samples PDB with probability 1.0.
+monomer_distillation_data_dir: null
+monomer_distillation_parquet_dir: null
+
+# Writing failed examples costs disk and is a debugging aid; off by default, and the
+# agent can point it at its own scratch.
+failed_examples_dir: null
+
+# Upstream's design benchmarks and released weights are not redistributed with this
+# task. The validation datasets that read them are removed in `pretrain_small_ppi.yaml`;
+# these stay non-null so that a stray interpolation resolves to a path rather than
+# to None.
+design_benchmark_data_dir: ${oc.env:PROTEIN_DESIGN_WORK,/workspace/research}/benchmarks
+design_model_weight_dir: ${oc.env:PROTEIN_DESIGN_WORK,/workspace/research}/weights
+
+# Cached MACE embeddings for non-standard components. Upstream's shared cache is not
+# available; an empty writable directory is the supported fallback - atomworks then
+# generates RDKit conformers instead, which it also does on this cluster for any
+# component the shared cache happens to lack.
+residue_cache_dir: ${oc.env:PROTEIN_DESIGN_WORK,/workspace/research}/mace_cache
+
+# Parsed-CIF cache. `pdb_base.yaml` sets `load_from_cache: True, save_to_cache: False`,
+# so this stays empty unless the agent turns saving on - which is worth doing, since a
+# warm cache moves the bottleneck off the CPUs. See environment/data/README.md.
+cif_cache_dir: ${oc.env:PROTEIN_DESIGN_WORK,/workspace/research}/cif_cache

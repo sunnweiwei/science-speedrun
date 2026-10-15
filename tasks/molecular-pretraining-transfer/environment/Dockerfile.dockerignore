@@ -1,0 +1,6 @@
+tests
+docs
+environment/data/build
+environment/data/materialize.sh
+environment/data/CHECKSUMS.json
+**/__pycache__

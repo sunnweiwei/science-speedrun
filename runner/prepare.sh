@@ -49,6 +49,10 @@ case "$task" in
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;
+  molecular-pretraining-transfer)         # rebuilt from pinned public sources in the task's runtime image (179 GiB download)
+    $DOCKER build -q -f "$t/environment/Dockerfile" --target runtime -t mpt-runtime "$t"
+    $DOCKER run --rm -v "$t:/task:ro" -v "$root:/out" mpt-runtime bash /task/environment/data/materialize.sh /out
+    data=$root; private=$root ;;
   crystal-structure-generation)           # MP-20, scorer assets (gated facebook/UMA: HF_TOKEN; MLIP hull license reviewed), sealed final suite
     $DOCKER build -q -f "$t/environment/Dockerfile" -t crystalgen-prepare "$t"
     cg() { $DOCKER run --rm ${HF_TOKEN:+-e HF_TOKEN} -v "$t:/task:ro" -v "$root:$root" crystalgen-prepare "$@"; }

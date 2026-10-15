@@ -1,0 +1,33 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main` is the agent's
+# container; the build context is the task directory because environment/Dockerfile copies instruction.md and
+# environment/... .
+#
+# TASK_DATA_DIR is the materialized release (environment/data/MATERIALIZE.md). Only public/ is mounted:
+#   public/pretrain/     leakage-filtered Uni-Mol2 pretraining corpus (12 shards + a 100k-molecule validation set)
+#   public/downstream/   fine-tune data of the 24 evaluation tasks (train and validation splits only)
+# The test molecules (verifier/) and labels (private/) stay on the host. TASK_RESEARCH_DIR is an empty directory per
+# run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "256gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/pretrain", target: /workspace/data/pretrain}
+      - {<<: *data, source: "${TASK_DATA_DIR}/public/downstream", target: /workspace/data/downstream}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/pretrain/valid_part_0.lmdb && test -s /workspace/data/downstream/manifest.json && test ! -e /workspace/data/test-inputs"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

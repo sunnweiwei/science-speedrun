@@ -1,0 +1,1232 @@
+=== attempt 1 2026-09-28T01:53:51Z
+2026-09-28 01:54:01 | INFO | unicore.distributed.utils | distributed init (rank 0): env://
+2026-09-28 01:54:01 | INFO | unicore.distributed.utils | distributed init (rank 5): env://
+2026-09-28 01:54:01 | INFO | unicore.distributed.utils | initialized host localhost as rank 5
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 6): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 2): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 6
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 2
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 7): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 1): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 4): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | distributed init (rank 3): env://
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 7
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 1
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 4
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 3
+2026-09-28 01:54:02 | INFO | unicore.distributed.utils | initialized host localhost as rank 0
+2026-09-28 01:54:05 | INFO | unicore_cli.train | Namespace(no_progress_bar=False, log_interval=100, log_format='simple', tensorboard_logdir='', wandb_project='', wandb_name='', seed=1, cpu=False, fp16=True, bf16=False, bf16_sr=False, allreduce_fp32_grad=False, fp16_no_flatten_grads=False, fp16_init_scale=4, fp16_scale_window=256, fp16_scale_tolerance=0.0, min_loss_scale=0.0001, threshold_loss_scale=None, user_dir='./unimol2', empty_cache_freq=0, all_gather_list_size=16384, suppress_crashes=False, profile=False, ema_decay=-1.0, validate_with_ema=False, loss='unimol2', optimizer='adam', lr_scheduler='polynomial_decay', task='unimol2', num_workers=8, skip_invalid_size_inputs_valid_test=False, batch_size=32, required_batch_size_multiple=1, data_buffer_size=10, train_subset='train', valid_subset='valid', validate_interval=1, validate_interval_updates=5000, validate_after_updates=0, fixed_validation_seed=None, disable_validation=False, batch_size_valid=32, max_valid_steps=None, curriculum=0, distributed_world_size=8, distributed_rank=0, distributed_backend='nccl', distributed_init_method='env://', distributed_port=-1, device_id=0, distributed_no_spawn=True, ddp_backend='c10d', bucket_cap_mb=25, fix_batches_to_gpus=False, find_unused_parameters=False, fast_stat_sync=False, broadcast_buffers=False, nprocs_per_node=8, arch='unimol2_84M', max_epoch=60, max_update=30000, stop_time_hours=0, no_weight_decay_names='', clip_norm=1.0, per_sample_clip_norm=0, update_freq=[4], lr=[0.0001], stop_min_lr=-1, save_dir='/save', tmp_save_dir='/save/tmp', restore_file='checkpoint_last.pt', finetune_from_model=None, load_from_ema=False, reset_dataloader=False, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, optimizer_overrides='{}', save_interval=1, save_interval_updates=5000, keep_interval_updates=3, keep_last_epochs=-1, keep_best_checkpoints=-1, no_save=False, no_epoch_checkpoints=True, no_last_checkpoints=False, no_save_optimizer_state=False, best_checkpoint_metric='loss', maximize_best_checkpoint_metric=False, patience=-1, checkpoint_suffix='', droppath_prob=0.0, gaussian_std_width=1.0, gaussian_mean_start=0.0, gaussian_mean_stop=9.0, mode='train', data='/data', mask_prob=0.15, drop_feat_prob=0.5, mask_token_prob=0.15, leave_unmasked_prob=0.0, random_token_prob=0.0, noise_type='normal', noise=0.2, max_atoms=256, adam_betas='(0.9, 0.99)', adam_eps=1e-06, weight_decay=0.0001, force_anneal=None, warmup_updates=3000, warmup_ratio=-1.0, end_learning_rate=0.0, power=1.0, total_num_update=30000, masked_token_loss=1.0, masked_coord_loss=1.0, masked_dist_loss=1.0, no_seed_provided=False, encoder_layers=12, encoder_embed_dim=768, pair_embed_dim=512, pair_hidden_dim=64, encoder_ffn_embed_dim=768, encoder_attention_heads=48, dropout=0.1, emb_dropout=0.1, attention_dropout=0.1, activation_dropout=0.0, pooler_dropout=0.0, max_seq_len=512, activation_fn='gelu', pooler_activation_fn='tanh', post_ln=False, x_norm_loss=-1.0, delta_pair_repr_norm_loss=-1.0, notri=False)
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:05 | INFO | unicore_cli.train | UniMol2Model(
+  (embed_tokens): Embedding(128, 768, padding_idx=0)
+  (atom_feature): AtomFeature(
+    (atom_encoder): Embedding(512, 768, padding_idx=0)
+    (degree_encoder): Embedding(128, 768, padding_idx=0)
+    (vnode_encoder): Embedding(1, 768)
+  )
+  (edge_feature): EdgeFeature(
+    (edge_encoder): Embedding(64, 512, padding_idx=0)
+    (shorest_path_encoder): Embedding(512, 512, padding_idx=0)
+    (vnode_virtual_distance): Embedding(1, 512)
+  )
+  (encoder): TransformerEncoderWithPair(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+    (layers): ModuleList(
+      (0-11): 12 x TransformerEncoderLayer(
+        (dropout_module): Dropout()
+        (self_attn): Attention(
+          (linear_q): Linear(in_features=768, out_features=768, bias=False)
+          (linear_k): Linear(in_features=768, out_features=768, bias=False)
+          (linear_v): Linear(in_features=768, out_features=768, bias=False)
+          (linear_o): Linear(in_features=768, out_features=768, bias=True)
+          (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+        )
+        (self_attn_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): Transition(
+          (linear_1): Linear(in_features=768, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (x_layer_norm_opm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (opm): OuterProduct(
+          (linear_in): Linear(in_features=768, out_features=128, bias=True)
+          (linear_out): Linear(in_features=4096, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+        )
+        (pair_layer_norm_ffn): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_ffn): Transition(
+          (linear_1): Linear(in_features=512, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=512, out_features=512, bias=True)
+        )
+        (pair_layer_norm_trimul): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_tri_mul): TriangleMultiplication(
+          (linear_ab_p): Linear(in_features=512, out_features=128, bias=True)
+          (linear_ab_g): Linear(in_features=512, out_features=128, bias=True)
+          (linear_g): Linear(in_features=512, out_features=512, bias=True)
+          (linear_z): Linear(in_features=64, out_features=512, bias=True)
+          (layer_norm_out): LayerNorm(torch.Size([64]), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): MaskLMHead(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+  (se3_invariant_kernel): SE3InvariantKernel(
+    (gaussian): GaussianKernel(
+      (mul): Embedding(512, 1, padding_idx=0)
+      (bias): Embedding(512, 1, padding_idx=0)
+    )
+    (out_proj): NonLinear(
+      (layer1): Linear(in_features=128, out_features=128, bias=True)
+      (layer2): Linear(in_features=128, out_features=512, bias=True)
+    )
+  )
+  (movement_pred_head): MovementPredictionHead(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (q_proj): Linear(in_features=768, out_features=768, bias=False)
+    (k_proj): Linear(in_features=768, out_features=768, bias=False)
+    (v_proj): Linear(in_features=768, out_features=768, bias=False)
+    (force_proj1): Linear(in_features=768, out_features=1, bias=False)
+    (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+  )
+  (classification_heads): ModuleDict()
+)
+2026-09-28 01:54:05 | INFO | unicore_cli.train | task: UniMol2_Task
+2026-09-28 01:54:05 | INFO | unicore_cli.train | model: UniMol2Model
+2026-09-28 01:54:05 | INFO | unicore_cli.train | loss: UniMol2Loss
+2026-09-28 01:54:06 | INFO | unicore_cli.train | num. model params: 84,116,080 (num. trained: 84,116,080)
+2026-09-28 01:54:06 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:06 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 01:54:06 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   0: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   1: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   2: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   3: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   4: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   5: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   6: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | rank   7: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 01:54:06 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 01:54:06 | INFO | unicore_cli.train | training on 8 devices (GPUs)
+2026-09-28 01:54:06 | INFO | unicore_cli.train | batch size per device = 32
+2026-09-28 01:54:06 | INFO | unicore.trainer | Preparing to load checkpoint /save/checkpoint_last.pt
+2026-09-28 01:54:06 | INFO | unicore.trainer | loading train data for epoch 1
+2026-09-28 01:54:36 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 01:54:51 | INFO | unicore.trainer | No existing checkpoint found /save/checkpoint_last.pt
+2026-09-28 01:54:51 | INFO | unicore.optim.adam | using FusedAdam
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 01:55:03 | INFO | unicore.trainer | begin training epoch 1
+2026-09-28 01:55:03 | INFO | unicore_cli.train | Start iterating over samples
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 01:56:09 | INFO | train_inner | epoch 001:    100 / 10240 loss=4.74116, seq_len=37.944, masked_token_loss=4.14566, masked_acc=0.41188, masked_hit_at6=0.567, target_hit_at6=0.732, masked_coord_loss=0.34223, masked_dist_loss=0.25327, ups=1.7, bsz=1024, num_updates=100, lr=3.33333e-06, gnorm=62.315, clip=100, loss_scale=4, train_wall=60.58, gb_free=69.5, wall=124
+2026-09-28 01:57:08 | INFO | train_inner | epoch 001:    200 / 10240 loss=2.6035, seq_len=37.921, masked_token_loss=2.21756, masked_acc=0.73112, masked_hit_at6=1, target_hit_at6=0.731, masked_coord_loss=0.23074, masked_dist_loss=0.15519, ups=1.71, bsz=1024, num_updates=200, lr=6.66667e-06, gnorm=97.863, clip=100, loss_scale=4, train_wall=58.09, gb_free=69.5, wall=182
+2026-09-28 01:58:07 | INFO | train_inner | epoch 001:    300 / 10240 loss=1.62216, seq_len=38.002, masked_token_loss=1.25219, masked_acc=0.73131, masked_hit_at6=1, target_hit_at6=0.731, masked_coord_loss=0.21798, masked_dist_loss=0.15198, ups=1.69, bsz=1024, num_updates=300, lr=1e-05, gnorm=143.346, clip=100, loss_scale=8, train_wall=58.75, gb_free=69.5, wall=241
+2026-09-28 01:59:07 | INFO | train_inner | epoch 001:    400 / 10240 loss=1.31652, seq_len=38.025, masked_token_loss=0.92707, masked_acc=0.73164, masked_hit_at6=1, target_hit_at6=0.732, masked_coord_loss=0.22423, masked_dist_loss=0.16521, ups=1.66, bsz=1024, num_updates=400, lr=1.33333e-05, gnorm=175.939, clip=100, loss_scale=8, train_wall=59.78, gb_free=69.5, wall=301
+2026-09-28 02:00:06 | INFO | train_inner | epoch 001:    500 / 10240 loss=1.1925, seq_len=37.803, masked_token_loss=0.78489, masked_acc=0.74249, masked_hit_at6=0.989, target_hit_at6=0.732, masked_coord_loss=0.23121, masked_dist_loss=0.1764, ups=1.7, bsz=1024, num_updates=500, lr=1.66667e-05, gnorm=175.84, clip=100, loss_scale=8, train_wall=58.31, gb_free=69.5, wall=360
+2026-09-28 02:01:05 | INFO | train_inner | epoch 001:    600 / 10240 loss=1.048, seq_len=37.795, masked_token_loss=0.69136, masked_acc=0.77691, masked_hit_at6=0.942, target_hit_at6=0.73, masked_coord_loss=0.20468, masked_dist_loss=0.15195, ups=1.69, bsz=1024, num_updates=600, lr=2e-05, gnorm=140.083, clip=100, loss_scale=16, train_wall=58.97, gb_free=69.5, wall=419
+2026-09-28 02:02:04 | INFO | train_inner | epoch 001:    700 / 10240 loss=0.85781, seq_len=37.976, masked_token_loss=0.5969, masked_acc=0.80673, masked_hit_at6=0.899, target_hit_at6=0.732, masked_coord_loss=0.15869, masked_dist_loss=0.10222, ups=1.7, bsz=1024, num_updates=700, lr=2.33333e-05, gnorm=62.963, clip=100, loss_scale=16, train_wall=58.4, gb_free=66, wall=478
+2026-09-28 02:03:03 | INFO | train_inner | epoch 001:    800 / 10240 loss=0.72375, seq_len=38.024, masked_token_loss=0.52047, masked_acc=0.8376, masked_hit_at6=0.866, target_hit_at6=0.733, masked_coord_loss=0.13023, masked_dist_loss=0.07304, ups=1.7, bsz=1024, num_updates=800, lr=2.66667e-05, gnorm=22.738, clip=100, loss_scale=32, train_wall=58.56, gb_free=69.5, wall=537
+2026-09-28 02:04:02 | INFO | train_inner | epoch 001:    900 / 10240 loss=0.64203, seq_len=37.988, masked_token_loss=0.47864, masked_acc=0.84816, masked_hit_at6=0.865, target_hit_at6=0.73, masked_coord_loss=0.11, masked_dist_loss=0.05338, ups=1.68, bsz=1024, num_updates=900, lr=3e-05, gnorm=5.411, clip=99, loss_scale=32, train_wall=59, gb_free=69.5, wall=596
+2026-09-28 02:05:01 | INFO | train_inner | epoch 001:   1000 / 10240 loss=0.5567, seq_len=37.884, masked_token_loss=0.4038, masked_acc=0.86389, masked_hit_at6=0.832, target_hit_at6=0.731, masked_coord_loss=0.10632, masked_dist_loss=0.04658, ups=1.7, bsz=1024, num_updates=1000, lr=3.33333e-05, gnorm=2.498, clip=97, loss_scale=32, train_wall=58.57, gb_free=69.5, wall=655
+2026-09-28 02:06:01 | INFO | train_inner | epoch 001:   1100 / 10240 loss=0.48431, seq_len=37.845, masked_token_loss=0.33, masked_acc=0.88422, masked_hit_at6=0.793, target_hit_at6=0.732, masked_coord_loss=0.10656, masked_dist_loss=0.04776, ups=1.66, bsz=1024, num_updates=1100, lr=3.66667e-05, gnorm=12.635, clip=99, loss_scale=64, train_wall=59.85, gb_free=64.1, wall=716
+2026-09-28 02:07:00 | INFO | train_inner | epoch 001:   1200 / 10240 loss=0.44125, seq_len=37.94, masked_token_loss=0.28749, masked_acc=0.90375, masked_hit_at6=0.782, target_hit_at6=0.731, masked_coord_loss=0.10639, masked_dist_loss=0.04736, ups=1.7, bsz=1024, num_updates=1200, lr=4e-05, gnorm=13.123, clip=100, loss_scale=64, train_wall=58.49, gb_free=69.5, wall=774
+2026-09-28 02:07:58 | INFO | train_inner | epoch 001:   1300 / 10240 loss=0.45257, seq_len=37.892, masked_token_loss=0.30011, masked_acc=0.89181, masked_hit_at6=0.76, target_hit_at6=0.731, masked_coord_loss=0.10601, masked_dist_loss=0.04645, ups=1.74, bsz=1024, num_updates=1300, lr=4.33333e-05, gnorm=20.697, clip=100, loss_scale=128, train_wall=57.19, gb_free=69.5, wall=832
+2026-09-28 02:08:56 | INFO | train_inner | epoch 001:   1400 / 10240 loss=0.38319, seq_len=37.852, masked_token_loss=0.2342, masked_acc=0.9167, masked_hit_at6=0.762, target_hit_at6=0.731, masked_coord_loss=0.10471, masked_dist_loss=0.04427, ups=1.71, bsz=1024, num_updates=1400, lr=4.66667e-05, gnorm=9.994, clip=100, loss_scale=128, train_wall=58.06, gb_free=69.5, wall=890
+2026-09-28 02:09:55 | INFO | train_inner | epoch 001:   1500 / 10240 loss=0.34744, seq_len=37.924, masked_token_loss=0.19919, masked_acc=0.9269, masked_hit_at6=0.752, target_hit_at6=0.732, masked_coord_loss=0.10444, masked_dist_loss=0.0438, ups=1.69, bsz=1024, num_updates=1500, lr=5e-05, gnorm=18.321, clip=100, loss_scale=128, train_wall=58.9, gb_free=67.8, wall=950
+2026-09-28 02:10:54 | INFO | train_inner | epoch 001:   1600 / 10240 loss=0.30441, seq_len=37.865, masked_token_loss=0.15763, masked_acc=0.94278, masked_hit_at6=0.745, target_hit_at6=0.731, masked_coord_loss=0.10393, masked_dist_loss=0.04285, ups=1.7, bsz=1024, num_updates=1600, lr=5.33333e-05, gnorm=19.547, clip=100, loss_scale=256, train_wall=58.41, gb_free=69.5, wall=1008
+2026-09-28 02:11:53 | INFO | train_inner | epoch 001:   1700 / 10240 loss=0.30597, seq_len=37.969, masked_token_loss=0.15961, masked_acc=0.94124, masked_hit_at6=0.74, target_hit_at6=0.732, masked_coord_loss=0.1038, masked_dist_loss=0.04255, ups=1.7, bsz=1024, num_updates=1700, lr=5.66667e-05, gnorm=39.599, clip=100, loss_scale=256, train_wall=58.51, gb_free=69.5, wall=1067
+2026-09-28 02:13:12 | INFO | train_inner | epoch 001:   1800 / 10240 loss=0.30769, seq_len=37.95, masked_token_loss=0.16127, masked_acc=0.94174, masked_hit_at6=0.745, target_hit_at6=0.732, masked_coord_loss=0.10373, masked_dist_loss=0.04269, ups=1.26, bsz=1024, num_updates=1800, lr=6e-05, gnorm=28.623, clip=100, loss_scale=512, train_wall=78.71, gb_free=69.5, wall=1146
+2026-09-28 02:14:12 | INFO | train_inner | epoch 001:   1900 / 10240 loss=0.31347, seq_len=37.826, masked_token_loss=0.16715, masked_acc=0.93975, masked_hit_at6=0.743, target_hit_at6=0.732, masked_coord_loss=0.10369, masked_dist_loss=0.04264, ups=1.66, bsz=1024, num_updates=1900, lr=6.33333e-05, gnorm=38.581, clip=99, loss_scale=512, train_wall=59.79, gb_free=67.8, wall=1206
+2026-09-28 02:15:50 | INFO | train_inner | epoch 001:   2000 / 10240 loss=0.28602, seq_len=37.932, masked_token_loss=0.13964, masked_acc=0.94939, masked_hit_at6=0.739, target_hit_at6=0.731, masked_coord_loss=0.10375, masked_dist_loss=0.04262, ups=1.02, bsz=1024, num_updates=2000, lr=6.66667e-05, gnorm=37.018, clip=100, loss_scale=512, train_wall=97.74, gb_free=67.8, wall=1305
+2026-09-28 02:17:24 | INFO | train_inner | epoch 001:   2100 / 10240 loss=0.27778, seq_len=37.863, masked_token_loss=0.13237, masked_acc=0.95175, masked_hit_at6=0.743, target_hit_at6=0.731, masked_coord_loss=0.10338, masked_dist_loss=0.04203, ups=1.07, bsz=1024, num_updates=2100, lr=7e-05, gnorm=36.29, clip=99, loss_scale=1024, train_wall=92.97, gb_free=69.5, wall=1398
+2026-09-28 02:18:24 | INFO | train_inner | epoch 001:   2200 / 10240 loss=0.25545, seq_len=37.874, masked_token_loss=0.11009, masked_acc=0.95942, masked_hit_at6=0.738, target_hit_at6=0.732, masked_coord_loss=0.1033, masked_dist_loss=0.04206, ups=1.66, bsz=1024, num_updates=2200, lr=7.33333e-05, gnorm=44.684, clip=100, loss_scale=1024, train_wall=59.71, gb_free=69.5, wall=1458
+2026-09-28 02:19:24 | INFO | train_inner | epoch 001:   2300 / 10240 loss=0.28494, seq_len=37.925, masked_token_loss=0.13911, masked_acc=0.95044, masked_hit_at6=0.734, target_hit_at6=0.732, masked_coord_loss=0.10357, masked_dist_loss=0.04226, ups=1.67, bsz=1024, num_updates=2300, lr=7.66667e-05, gnorm=52.086, clip=100, loss_scale=1024, train_wall=59.57, gb_free=69.5, wall=1518
+2026-09-28 02:20:21 | INFO | train_inner | epoch 001:   2400 / 10240 loss=0.26479, seq_len=37.826, masked_token_loss=0.1207, masked_acc=0.95571, masked_hit_at6=0.735, target_hit_at6=0.731, masked_coord_loss=0.1028, masked_dist_loss=0.04129, ups=1.74, bsz=1024, num_updates=2400, lr=8e-05, gnorm=48.64, clip=99, loss_scale=2048, train_wall=57.01, gb_free=69.5, wall=1575
+2026-09-28 02:21:20 | INFO | train_inner | epoch 001:   2500 / 10240 loss=0.24027, seq_len=37.883, masked_token_loss=0.09928, masked_acc=0.96303, masked_hit_at6=0.738, target_hit_at6=0.732, masked_coord_loss=0.10134, masked_dist_loss=0.03965, ups=1.7, bsz=1024, num_updates=2500, lr=8.33333e-05, gnorm=40.522, clip=99, loss_scale=2048, train_wall=58.47, gb_free=59.8, wall=1634
+2026-09-28 02:22:20 | INFO | train_inner | epoch 001:   2600 / 10240 loss=0.2488, seq_len=37.824, masked_token_loss=0.10846, masked_acc=0.96022, masked_hit_at6=0.737, target_hit_at6=0.731, masked_coord_loss=0.10109, masked_dist_loss=0.03925, ups=1.68, bsz=1024, num_updates=2600, lr=8.66667e-05, gnorm=33.24, clip=100, loss_scale=4096, train_wall=59.32, gb_free=69.5, wall=1694
+2026-09-28 02:23:18 | INFO | train_inner | epoch 001:   2700 / 10240 loss=0.23428, seq_len=37.945, masked_token_loss=0.09604, masked_acc=0.96412, masked_hit_at6=0.736, target_hit_at6=0.732, masked_coord_loss=0.1001, masked_dist_loss=0.03813, ups=1.71, bsz=1024, num_updates=2700, lr=9e-05, gnorm=34.308, clip=98, loss_scale=4096, train_wall=57.98, gb_free=70.9, wall=1752
+2026-09-28 02:24:16 | INFO | train_inner | epoch 001:   2800 / 10240 loss=0.2227, seq_len=37.873, masked_token_loss=0.0853, masked_acc=0.96805, masked_hit_at6=0.736, target_hit_at6=0.731, masked_coord_loss=0.09981, masked_dist_loss=0.03758, ups=1.73, bsz=1024, num_updates=2800, lr=9.33333e-05, gnorm=37.073, clip=100, loss_scale=4096, train_wall=57.39, gb_free=67.8, wall=1810
+2026-09-28 02:25:15 | INFO | train_inner | epoch 001:   2900 / 10240 loss=0.24298, seq_len=37.826, masked_token_loss=0.10386, masked_acc=0.96182, masked_hit_at6=0.735, target_hit_at6=0.731, masked_coord_loss=0.10053, masked_dist_loss=0.03859, ups=1.7, bsz=1024, num_updates=2900, lr=9.66667e-05, gnorm=41.144, clip=100, loss_scale=8192, train_wall=58.51, gb_free=69.5, wall=1869
+2026-09-28 02:26:15 | INFO | train_inner | epoch 001:   3000 / 10240 loss=0.22525, seq_len=37.916, masked_token_loss=0.08936, masked_acc=0.96662, masked_hit_at6=0.736, target_hit_at6=0.732, masked_coord_loss=0.09904, masked_dist_loss=0.03685, ups=1.66, bsz=1024, num_updates=3000, lr=0.0001, gnorm=31.303, clip=99, loss_scale=8192, train_wall=59.81, gb_free=69.5, wall=1929
+2026-09-28 02:27:14 | INFO | train_inner | epoch 001:   3100 / 10240 loss=0.22081, seq_len=37.909, masked_token_loss=0.08564, masked_acc=0.96879, masked_hit_at6=0.741, target_hit_at6=0.733, masked_coord_loss=0.09874, masked_dist_loss=0.03644, ups=1.69, bsz=1024, num_updates=3100, lr=9.96296e-05, gnorm=42.056, clip=100, loss_scale=16384, train_wall=58.65, gb_free=69.5, wall=1988
+2026-09-28 02:28:12 | INFO | train_inner | epoch 001:   3200 / 10240 loss=0.19822, seq_len=37.841, masked_token_loss=0.06628, masked_acc=0.97541, masked_hit_at6=0.735, target_hit_at6=0.731, masked_coord_loss=0.0969, masked_dist_loss=0.03504, ups=1.72, bsz=1024, num_updates=3200, lr=9.92593e-05, gnorm=18.517, clip=98, loss_scale=16384, train_wall=57.89, gb_free=66, wall=2046
+2026-09-28 02:28:45 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 8192.0
+2026-09-28 02:29:11 | INFO | train_inner | epoch 001:   3301 / 10240 loss=0.21924, seq_len=37.898, masked_token_loss=0.0864, masked_acc=0.96821, masked_hit_at6=0.734, target_hit_at6=0.731, masked_coord_loss=0.0972, masked_dist_loss=0.03564, ups=1.7, bsz=1024, num_updates=3300, lr=9.88889e-05, gnorm=36.272, clip=99, loss_scale=8192, train_wall=58.49, gb_free=69.5, wall=2105
+2026-09-28 02:30:11 | INFO | train_inner | epoch 001:   3401 / 10240 loss=0.18113, seq_len=37.926, masked_token_loss=0.05907, masked_acc=0.9781, masked_hit_at6=0.734, target_hit_at6=0.732, masked_coord_loss=0.09132, masked_dist_loss=0.03075, ups=1.68, bsz=1024, num_updates=3400, lr=9.85185e-05, gnorm=20.794, clip=99, loss_scale=8192, train_wall=59.3, gb_free=69.5, wall=2165
+2026-09-28 02:31:10 | INFO | train_inner | epoch 001:   3501 / 10240 loss=0.18856, seq_len=37.939, masked_token_loss=0.06722, masked_acc=0.9748, masked_hit_at6=0.735, target_hit_at6=0.731, masked_coord_loss=0.09088, masked_dist_loss=0.03046, ups=1.69, bsz=1024, num_updates=3500, lr=9.81481e-05, gnorm=39.592, clip=99, loss_scale=8192, train_wall=58.65, gb_free=69.5, wall=2224
+2026-09-28 02:32:08 | INFO | train_inner | epoch 001:   3601 / 10240 loss=0.18133, seq_len=38.017, masked_token_loss=0.06161, masked_acc=0.97695, masked_hit_at6=0.734, target_hit_at6=0.731, masked_coord_loss=0.09006, masked_dist_loss=0.02966, ups=1.71, bsz=1024, num_updates=3600, lr=9.77778e-05, gnorm=30.613, clip=98, loss_scale=16384, train_wall=58.23, gb_free=64.1, wall=2282
+2026-09-28 02:32:32 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 8192.0
+2026-09-28 02:33:08 | INFO | train_inner | epoch 001:   3702 / 10240 loss=0.17885, seq_len=38.005, masked_token_loss=0.06292, masked_acc=0.97651, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.08801, masked_dist_loss=0.02792, ups=1.68, bsz=1024, num_updates=3700, lr=9.74074e-05, gnorm=34.58, clip=99, loss_scale=8192, train_wall=59.08, gb_free=67.8, wall=2342
+2026-09-28 02:34:06 | INFO | train_inner | epoch 001:   3802 / 10240 loss=0.16201, seq_len=37.904, masked_token_loss=0.0485, masked_acc=0.98214, masked_hit_at6=0.734, target_hit_at6=0.732, masked_coord_loss=0.08686, masked_dist_loss=0.02665, ups=1.73, bsz=1024, num_updates=3800, lr=9.7037e-05, gnorm=18.673, clip=100, loss_scale=8192, train_wall=57.61, gb_free=59.8, wall=2400
+2026-09-28 02:35:03 | INFO | train_inner | epoch 001:   3902 / 10240 loss=0.15693, seq_len=37.854, masked_token_loss=0.04749, masked_acc=0.98249, masked_hit_at6=0.734, target_hit_at6=0.732, masked_coord_loss=0.08442, masked_dist_loss=0.02503, ups=1.74, bsz=1024, num_updates=3900, lr=9.66667e-05, gnorm=15.53, clip=100, loss_scale=16384, train_wall=57.28, gb_free=69.5, wall=2457
+2026-09-28 02:36:03 | INFO | train_inner | epoch 001:   4002 / 10240 loss=0.1519, seq_len=38.004, masked_token_loss=0.04626, masked_acc=0.98305, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.08221, masked_dist_loss=0.02343, ups=1.67, bsz=1024, num_updates=4000, lr=9.62963e-05, gnorm=17.161, clip=99, loss_scale=16384, train_wall=59.45, gb_free=59.8, wall=2517
+2026-09-28 02:37:02 | INFO | train_inner | epoch 001:   4102 / 10240 loss=0.14531, seq_len=37.932, masked_token_loss=0.0419, masked_acc=0.98447, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.08092, masked_dist_loss=0.02249, ups=1.71, bsz=1024, num_updates=4100, lr=9.59259e-05, gnorm=12.208, clip=100, loss_scale=16384, train_wall=58.28, gb_free=67.8, wall=2576
+2026-09-28 02:38:00 | INFO | train_inner | epoch 001:   4202 / 10240 loss=0.14365, seq_len=37.861, masked_token_loss=0.0415, masked_acc=0.98476, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.08015, masked_dist_loss=0.022, ups=1.7, bsz=1024, num_updates=4200, lr=9.55556e-05, gnorm=11.708, clip=100, loss_scale=32768, train_wall=58.46, gb_free=69.5, wall=2635
+2026-09-28 02:38:58 | INFO | train_inner | epoch 001:   4302 / 10240 loss=0.14247, seq_len=37.866, masked_token_loss=0.04096, masked_acc=0.98481, masked_hit_at6=0.734, target_hit_at6=0.732, masked_coord_loss=0.07981, masked_dist_loss=0.0217, ups=1.75, bsz=1024, num_updates=4300, lr=9.51852e-05, gnorm=12.454, clip=99, loss_scale=32768, train_wall=56.96, gb_free=69.5, wall=2692
+2026-09-28 02:39:56 | INFO | train_inner | epoch 001:   4402 / 10240 loss=0.13756, seq_len=37.835, masked_token_loss=0.03815, masked_acc=0.98589, masked_hit_at6=0.733, target_hit_at6=0.731, masked_coord_loss=0.07859, masked_dist_loss=0.02082, ups=1.7, bsz=1024, num_updates=4400, lr=9.48148e-05, gnorm=19.839, clip=100, loss_scale=32768, train_wall=58.45, gb_free=69.5, wall=2751
+2026-09-28 02:40:22 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 02:40:56 | INFO | train_inner | epoch 001:   4503 / 10240 loss=0.13936, seq_len=37.953, masked_token_loss=0.04014, masked_acc=0.98494, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0784, masked_dist_loss=0.02082, ups=1.67, bsz=1024, num_updates=4500, lr=9.44444e-05, gnorm=14.592, clip=99, loss_scale=32768, train_wall=59.6, gb_free=69.5, wall=2811
+2026-09-28 02:41:54 | INFO | train_inner | epoch 001:   4603 / 10240 loss=0.13787, seq_len=37.806, masked_token_loss=0.03886, masked_acc=0.98575, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07826, masked_dist_loss=0.02075, ups=1.74, bsz=1024, num_updates=4600, lr=9.40741e-05, gnorm=15.611, clip=99, loss_scale=32768, train_wall=57.15, gb_free=69.5, wall=2868
+2026-09-28 02:42:43 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 16384.0
+2026-09-28 02:42:53 | INFO | train_inner | epoch 001:   4704 / 10240 loss=0.13661, seq_len=37.988, masked_token_loss=0.0373, masked_acc=0.9861, masked_hit_at6=0.732, target_hit_at6=0.73, masked_coord_loss=0.07833, masked_dist_loss=0.02098, ups=1.69, bsz=1024, num_updates=4700, lr=9.37037e-05, gnorm=16.492, clip=99, loss_scale=16384, train_wall=58.97, gb_free=69.5, wall=2927
+2026-09-28 02:43:53 | INFO | train_inner | epoch 001:   4804 / 10240 loss=0.13249, seq_len=38.081, masked_token_loss=0.03502, masked_acc=0.98701, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.0773, masked_dist_loss=0.02017, ups=1.67, bsz=1024, num_updates=4800, lr=9.33333e-05, gnorm=9.343, clip=100, loss_scale=16384, train_wall=59.54, gb_free=69.5, wall=2987
+2026-09-28 02:44:53 | INFO | train_inner | epoch 001:   4904 / 10240 loss=0.12703, seq_len=37.914, masked_token_loss=0.03242, masked_acc=0.9881, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.07574, masked_dist_loss=0.01886, ups=1.67, bsz=1024, num_updates=4900, lr=9.2963e-05, gnorm=10.335, clip=99, loss_scale=16384, train_wall=59.54, gb_free=67.8, wall=3047
+2026-09-28 02:45:52 | INFO | train_inner | epoch 001:   5004 / 10240 loss=0.12958, seq_len=38.001, masked_token_loss=0.03509, masked_acc=0.98723, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.07562, masked_dist_loss=0.01887, ups=1.69, bsz=1024, num_updates=5000, lr=9.25926e-05, gnorm=14.765, clip=99, loss_scale=32768, train_wall=58.69, gb_free=69.5, wall=3106
+2026-09-28 02:45:52 | INFO | unicore_cli.train | begin validation on "valid" subset
+2026-09-28 02:45:52 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:45:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 02:46:12 | INFO | valid | epoch 001 | valid on 'valid' subset | loss 0.11987 | seq_len 37.95 | masked_token_loss 0.02996 | masked_acc 0.98877 | masked_hit_at6 0.734 | target_hit_at6 0.731 | masked_coord_loss 0.07336 | masked_dist_loss 0.01655 | bsz 100000 | num_updates 5000
+2026-09-28 02:46:12 | INFO | unicore.checkpoint_utils | Preparing to save checkpoint for epoch 1 @ 5000 updates
+2026-09-28 02:46:12 | INFO | unicore.trainer | Saving checkpoint to /save/tmp/checkpoint_1_5000.pt
+2026-09-28 02:46:14 | INFO | unicore.trainer | Finished saving checkpoint to /save/tmp/checkpoint_1_5000.pt
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | Saved checkpoint /save/tmp/checkpoint_1_5000.pt (epoch 1 @ 5000 updates, score 0.11987) (writing took 1.1852673490066081 seconds)
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_5000.pt to /save/checkpoint_1_5000.pt
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_5000.pt to /save/checkpoint_best.pt
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_5000.pt to /save/checkpoint_last.pt
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | removing temp file /save/tmp/checkpoint_1_5000.pt ...
+2026-09-28 02:46:14 | INFO | unicore.checkpoint_utils | finished async ckp saving.
+2026-09-28 02:47:13 | INFO | train_inner | epoch 001:   5104 / 10240 loss=0.12783, seq_len=37.873, masked_token_loss=0.03407, masked_acc=0.9873, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07513, masked_dist_loss=0.01864, ups=1.23, bsz=1024, num_updates=5100, lr=9.22222e-05, gnorm=14.057, clip=98, loss_scale=32768, train_wall=59.08, gb_free=69.5, wall=3187
+2026-09-28 02:48:12 | INFO | train_inner | epoch 001:   5204 / 10240 loss=0.12417, seq_len=37.939, masked_token_loss=0.03208, masked_acc=0.98799, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07422, masked_dist_loss=0.01787, ups=1.69, bsz=1024, num_updates=5200, lr=9.18519e-05, gnorm=12.573, clip=99, loss_scale=65536, train_wall=58.78, gb_free=66, wall=3246
+2026-09-28 02:48:32 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 02:49:11 | INFO | train_inner | epoch 001:   5305 / 10240 loss=0.12279, seq_len=37.905, masked_token_loss=0.0299, masked_acc=0.98886, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07461, masked_dist_loss=0.01828, ups=1.7, bsz=1024, num_updates=5300, lr=9.14815e-05, gnorm=9.633, clip=98, loss_scale=32768, train_wall=58.5, gb_free=64.1, wall=3305
+2026-09-28 02:50:10 | INFO | train_inner | epoch 001:   5405 / 10240 loss=0.12121, seq_len=37.826, masked_token_loss=0.02924, masked_acc=0.98903, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07398, masked_dist_loss=0.01799, ups=1.7, bsz=1024, num_updates=5400, lr=9.11111e-05, gnorm=8.829, clip=98, loss_scale=32768, train_wall=58.54, gb_free=69.5, wall=3364
+2026-09-28 02:51:09 | INFO | train_inner | epoch 001:   5505 / 10240 loss=0.12282, seq_len=37.898, masked_token_loss=0.03139, masked_acc=0.98812, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07374, masked_dist_loss=0.01769, ups=1.7, bsz=1024, num_updates=5500, lr=9.07407e-05, gnorm=13.843, clip=97, loss_scale=65536, train_wall=58.43, gb_free=69.5, wall=3423
+2026-09-28 02:51:25 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 02:52:09 | INFO | train_inner | epoch 001:   5606 / 10240 loss=0.11932, seq_len=37.964, masked_token_loss=0.02901, masked_acc=0.98928, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.07306, masked_dist_loss=0.01726, ups=1.66, bsz=1024, num_updates=5600, lr=9.03704e-05, gnorm=10.843, clip=100, loss_scale=32768, train_wall=60.06, gb_free=69.5, wall=3483
+2026-09-28 02:53:11 | INFO | train_inner | epoch 001:   5706 / 10240 loss=0.11799, seq_len=38.113, masked_token_loss=0.02858, masked_acc=0.98938, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.07252, masked_dist_loss=0.01689, ups=1.62, bsz=1024, num_updates=5700, lr=9e-05, gnorm=8.412, clip=97, loss_scale=32768, train_wall=61.5, gb_free=69.5, wall=3545
+2026-09-28 02:54:10 | INFO | train_inner | epoch 001:   5806 / 10240 loss=0.11808, seq_len=38.014, masked_token_loss=0.02868, masked_acc=0.98933, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07249, masked_dist_loss=0.01691, ups=1.69, bsz=1024, num_updates=5800, lr=8.96296e-05, gnorm=10.743, clip=99, loss_scale=65536, train_wall=58.66, gb_free=69.5, wall=3604
+2026-09-28 02:54:34 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 02:55:10 | INFO | train_inner | epoch 001:   5907 / 10240 loss=0.11831, seq_len=37.888, masked_token_loss=0.02985, masked_acc=0.98881, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0719, masked_dist_loss=0.01656, ups=1.66, bsz=1024, num_updates=5900, lr=8.92593e-05, gnorm=14.871, clip=99, loss_scale=32768, train_wall=59.97, gb_free=69.5, wall=3664
+2026-09-28 02:56:09 | INFO | train_inner | epoch 001:   6007 / 10240 loss=0.11663, seq_len=37.914, masked_token_loss=0.02854, masked_acc=0.98937, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.07176, masked_dist_loss=0.01633, ups=1.69, bsz=1024, num_updates=6000, lr=8.88889e-05, gnorm=9.656, clip=98, loss_scale=32768, train_wall=58.76, gb_free=69.5, wall=3724
+2026-09-28 02:57:10 | INFO | train_inner | epoch 001:   6107 / 10240 loss=0.1167, seq_len=38.03, masked_token_loss=0.02707, masked_acc=0.98992, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07254, masked_dist_loss=0.01709, ups=1.66, bsz=1024, num_updates=6100, lr=8.85185e-05, gnorm=11.56, clip=98, loss_scale=65536, train_wall=60.07, gb_free=69.5, wall=3784
+2026-09-28 02:57:57 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 02:58:08 | INFO | train_inner | epoch 001:   6208 / 10240 loss=0.11691, seq_len=37.854, masked_token_loss=0.0278, masked_acc=0.9897, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07219, masked_dist_loss=0.01693, ups=1.72, bsz=1024, num_updates=6200, lr=8.81481e-05, gnorm=10.824, clip=99, loss_scale=32768, train_wall=57.95, gb_free=67.8, wall=3842
+2026-09-28 02:59:05 | INFO | train_inner | epoch 001:   6308 / 10240 loss=0.11299, seq_len=37.951, masked_token_loss=0.02561, masked_acc=0.99044, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07125, masked_dist_loss=0.01613, ups=1.74, bsz=1024, num_updates=6300, lr=8.77778e-05, gnorm=8.772, clip=98, loss_scale=32768, train_wall=57.02, gb_free=69.5, wall=3900
+2026-09-28 03:00:05 | INFO | train_inner | epoch 001:   6408 / 10240 loss=0.11176, seq_len=37.921, masked_token_loss=0.02534, masked_acc=0.99055, masked_hit_at6=0.731, target_hit_at6=0.73, masked_coord_loss=0.07066, masked_dist_loss=0.01577, ups=1.69, bsz=1024, num_updates=6400, lr=8.74074e-05, gnorm=9.077, clip=99, loss_scale=32768, train_wall=58.99, gb_free=69.5, wall=3959
+2026-09-28 03:01:04 | INFO | train_inner | epoch 001:   6508 / 10240 loss=0.11298, seq_len=37.976, masked_token_loss=0.02613, masked_acc=0.99023, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07099, masked_dist_loss=0.01587, ups=1.7, bsz=1024, num_updates=6500, lr=8.7037e-05, gnorm=8.109, clip=98, loss_scale=65536, train_wall=58.63, gb_free=69.5, wall=4018
+2026-09-28 03:01:20 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:02:03 | INFO | train_inner | epoch 001:   6609 / 10240 loss=0.11122, seq_len=37.904, masked_token_loss=0.0244, masked_acc=0.99085, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07086, masked_dist_loss=0.01596, ups=1.68, bsz=1024, num_updates=6600, lr=8.66667e-05, gnorm=9.124, clip=99, loss_scale=32768, train_wall=59.08, gb_free=69.5, wall=4077
+2026-09-28 03:02:51 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 16384.0
+2026-09-28 03:03:03 | INFO | train_inner | epoch 001:   6710 / 10240 loss=0.1144, seq_len=37.907, masked_token_loss=0.02701, masked_acc=0.98982, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.07115, masked_dist_loss=0.01624, ups=1.68, bsz=1024, num_updates=6700, lr=8.62963e-05, gnorm=18.035, clip=98, loss_scale=16384, train_wall=59.27, gb_free=69.5, wall=4137
+2026-09-28 03:04:01 | INFO | train_inner | epoch 001:   6810 / 10240 loss=0.10986, seq_len=37.92, masked_token_loss=0.02405, masked_acc=0.99074, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07033, masked_dist_loss=0.01548, ups=1.73, bsz=1024, num_updates=6800, lr=8.59259e-05, gnorm=8.018, clip=99, loss_scale=16384, train_wall=57.43, gb_free=69.5, wall=4195
+2026-09-28 03:05:00 | INFO | train_inner | epoch 001:   6910 / 10240 loss=0.10934, seq_len=37.845, masked_token_loss=0.02423, masked_acc=0.9908, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06992, masked_dist_loss=0.0152, ups=1.69, bsz=1024, num_updates=6900, lr=8.55556e-05, gnorm=8.217, clip=96, loss_scale=16384, train_wall=58.8, gb_free=69.5, wall=4254
+2026-09-28 03:05:59 | INFO | train_inner | epoch 001:   7010 / 10240 loss=0.11193, seq_len=37.807, masked_token_loss=0.02482, masked_acc=0.99069, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.07091, masked_dist_loss=0.0162, ups=1.69, bsz=1024, num_updates=7000, lr=8.51852e-05, gnorm=10.12, clip=98, loss_scale=32768, train_wall=58.81, gb_free=69.5, wall=4313
+2026-09-28 03:06:14 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 16384.0
+2026-09-28 03:06:58 | INFO | train_inner | epoch 001:   7111 / 10240 loss=0.1141, seq_len=37.871, masked_token_loss=0.02519, masked_acc=0.99072, masked_hit_at6=0.733, target_hit_at6=0.733, masked_coord_loss=0.07181, masked_dist_loss=0.01709, ups=1.7, bsz=1024, num_updates=7100, lr=8.48148e-05, gnorm=10.167, clip=99, loss_scale=16384, train_wall=58.62, gb_free=69.5, wall=4372
+2026-09-28 03:07:56 | INFO | train_inner | epoch 001:   7211 / 10240 loss=0.10706, seq_len=37.876, masked_token_loss=0.02293, masked_acc=0.99145, masked_hit_at6=0.733, target_hit_at6=0.733, masked_coord_loss=0.06927, masked_dist_loss=0.01486, ups=1.73, bsz=1024, num_updates=7200, lr=8.44444e-05, gnorm=7.003, clip=97, loss_scale=16384, train_wall=57.47, gb_free=69.5, wall=4430
+2026-09-28 03:08:55 | INFO | train_inner | epoch 001:   7311 / 10240 loss=0.10653, seq_len=37.976, masked_token_loss=0.02237, masked_acc=0.99168, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06927, masked_dist_loss=0.0149, ups=1.69, bsz=1023.9, num_updates=7300, lr=8.40741e-05, gnorm=8.061, clip=97, loss_scale=32768, train_wall=58.98, gb_free=69.5, wall=4489
+2026-09-28 03:09:54 | INFO | train_inner | epoch 001:   7411 / 10240 loss=0.10694, seq_len=37.784, masked_token_loss=0.02295, masked_acc=0.99164, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06917, masked_dist_loss=0.01482, ups=1.68, bsz=1024, num_updates=7400, lr=8.37037e-05, gnorm=7.599, clip=99, loss_scale=32768, train_wall=59.08, gb_free=69.5, wall=4548
+2026-09-28 03:10:53 | INFO | train_inner | epoch 001:   7511 / 10240 loss=0.10714, seq_len=37.94, masked_token_loss=0.02349, masked_acc=0.99123, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06895, masked_dist_loss=0.0147, ups=1.7, bsz=1024, num_updates=7500, lr=8.33333e-05, gnorm=10.143, clip=95, loss_scale=32768, train_wall=58.37, gb_free=69.5, wall=4607
+2026-09-28 03:11:52 | INFO | train_inner | epoch 001:   7611 / 10240 loss=0.10557, seq_len=37.892, masked_token_loss=0.02204, masked_acc=0.99185, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06887, masked_dist_loss=0.01467, ups=1.68, bsz=1024, num_updates=7600, lr=8.2963e-05, gnorm=6.233, clip=97, loss_scale=65536, train_wall=59.03, gb_free=69.5, wall=4667
+2026-09-28 03:11:55 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:12:52 | INFO | train_inner | epoch 001:   7712 / 10240 loss=0.10551, seq_len=37.943, masked_token_loss=0.02217, masked_acc=0.99154, masked_hit_at6=0.731, target_hit_at6=0.73, masked_coord_loss=0.06874, masked_dist_loss=0.0146, ups=1.69, bsz=1024, num_updates=7700, lr=8.25926e-05, gnorm=6.9, clip=94, loss_scale=32768, train_wall=58.95, gb_free=69.5, wall=4726
+2026-09-28 03:13:50 | INFO | train_inner | epoch 001:   7812 / 10240 loss=0.10321, seq_len=37.928, masked_token_loss=0.02059, masked_acc=0.99226, masked_hit_at6=0.73, target_hit_at6=0.73, masked_coord_loss=0.06832, masked_dist_loss=0.0143, ups=1.72, bsz=1024, num_updates=7800, lr=8.22222e-05, gnorm=7.606, clip=98, loss_scale=32768, train_wall=57.79, gb_free=69.5, wall=4784
+2026-09-28 03:14:50 | INFO | train_inner | epoch 001:   7912 / 10240 loss=0.10661, seq_len=37.869, masked_token_loss=0.02312, masked_acc=0.99111, masked_hit_at6=0.731, target_hit_at6=0.73, masked_coord_loss=0.0688, masked_dist_loss=0.01469, ups=1.67, bsz=1024, num_updates=7900, lr=8.18519e-05, gnorm=12.024, clip=97, loss_scale=65536, train_wall=59.43, gb_free=69.5, wall=4844
+2026-09-28 03:15:49 | INFO | train_inner | epoch 001:   8012 / 10240 loss=0.10378, seq_len=37.998, masked_token_loss=0.02151, masked_acc=0.9918, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06813, masked_dist_loss=0.01414, ups=1.69, bsz=1024, num_updates=8000, lr=8.14815e-05, gnorm=8.054, clip=98, loss_scale=65536, train_wall=58.71, gb_free=69.5, wall=4903
+2026-09-28 03:16:08 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:16:49 | INFO | train_inner | epoch 001:   8113 / 10240 loss=0.10409, seq_len=38.06, masked_token_loss=0.02178, masked_acc=0.99176, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06811, masked_dist_loss=0.0142, ups=1.65, bsz=1024, num_updates=8100, lr=8.11111e-05, gnorm=8.623, clip=96, loss_scale=32768, train_wall=60.25, gb_free=69.5, wall=4963
+2026-09-28 03:17:47 | INFO | train_inner | epoch 001:   8213 / 10240 loss=0.10461, seq_len=37.858, masked_token_loss=0.02134, masked_acc=0.99217, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06864, masked_dist_loss=0.01463, ups=1.74, bsz=1024, num_updates=8200, lr=8.07407e-05, gnorm=7.003, clip=97, loss_scale=32768, train_wall=57.13, gb_free=69.5, wall=5021
+2026-09-28 03:18:46 | INFO | train_inner | epoch 001:   8313 / 10240 loss=0.10369, seq_len=37.855, masked_token_loss=0.02095, masked_acc=0.99213, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0683, masked_dist_loss=0.01444, ups=1.7, bsz=1024, num_updates=8300, lr=8.03704e-05, gnorm=8.58, clip=96, loss_scale=65536, train_wall=58.49, gb_free=69.5, wall=5080
+2026-09-28 03:19:08 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:19:46 | INFO | train_inner | epoch 001:   8414 / 10240 loss=0.10417, seq_len=38.008, masked_token_loss=0.02047, masked_acc=0.99225, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06883, masked_dist_loss=0.01488, ups=1.64, bsz=1024, num_updates=8400, lr=8e-05, gnorm=5.502, clip=98, loss_scale=32768, train_wall=60.48, gb_free=70.9, wall=5141
+2026-09-28 03:20:45 | INFO | train_inner | epoch 001:   8514 / 10240 loss=0.10139, seq_len=37.844, masked_token_loss=0.02024, masked_acc=0.99235, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06742, masked_dist_loss=0.01373, ups=1.71, bsz=1024, num_updates=8500, lr=7.96296e-05, gnorm=7.542, clip=97, loss_scale=32768, train_wall=58.22, gb_free=69.5, wall=5199
+2026-09-28 03:21:44 | INFO | train_inner | epoch 001:   8614 / 10240 loss=0.10076, seq_len=37.86, masked_token_loss=0.01959, masked_acc=0.99267, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06737, masked_dist_loss=0.0138, ups=1.71, bsz=1024, num_updates=8600, lr=7.92593e-05, gnorm=8.624, clip=99, loss_scale=65536, train_wall=58.29, gb_free=69.5, wall=5258
+2026-09-28 03:22:44 | INFO | train_inner | epoch 001:   8714 / 10240 loss=0.10162, seq_len=37.924, masked_token_loss=0.01959, masked_acc=0.99262, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06781, masked_dist_loss=0.01422, ups=1.67, bsz=1024, num_updates=8700, lr=7.88889e-05, gnorm=7.364, clip=98, loss_scale=65536, train_wall=59.68, gb_free=69.5, wall=5318
+2026-09-28 03:23:41 | INFO | train_inner | epoch 001:   8814 / 10240 loss=0.10154, seq_len=37.875, masked_token_loss=0.0201, masked_acc=0.99234, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06746, masked_dist_loss=0.01398, ups=1.73, bsz=1024, num_updates=8800, lr=7.85185e-05, gnorm=6.775, clip=98, loss_scale=65536, train_wall=57.33, gb_free=69.5, wall=5376
+2026-09-28 03:24:05 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:24:43 | INFO | train_inner | epoch 001:   8915 / 10240 loss=0.10089, seq_len=37.95, masked_token_loss=0.02038, masked_acc=0.99221, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06696, masked_dist_loss=0.01355, ups=1.63, bsz=1024, num_updates=8900, lr=7.81481e-05, gnorm=8.011, clip=97, loss_scale=32768, train_wall=61.11, gb_free=69.5, wall=5437
+2026-09-28 03:25:42 | INFO | train_inner | epoch 001:   9015 / 10240 loss=0.10163, seq_len=38.054, masked_token_loss=0.02024, masked_acc=0.99224, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06744, masked_dist_loss=0.01395, ups=1.68, bsz=1024, num_updates=9000, lr=7.77778e-05, gnorm=7.659, clip=95, loss_scale=32768, train_wall=59.01, gb_free=67.8, wall=5496
+2026-09-28 03:26:40 | INFO | train_inner | epoch 001:   9115 / 10240 loss=0.09969, seq_len=37.936, masked_token_loss=0.01957, masked_acc=0.99243, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.0667, masked_dist_loss=0.01342, ups=1.72, bsz=1024, num_updates=9100, lr=7.74074e-05, gnorm=6.072, clip=97, loss_scale=65536, train_wall=57.8, gb_free=69.5, wall=5554
+2026-09-28 03:27:09 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:27:41 | INFO | train_inner | epoch 001:   9216 / 10240 loss=0.10003, seq_len=37.915, masked_token_loss=0.01942, masked_acc=0.99254, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06696, masked_dist_loss=0.01364, ups=1.66, bsz=1024, num_updates=9200, lr=7.7037e-05, gnorm=9.099, clip=97, loss_scale=32768, train_wall=59.91, gb_free=69.5, wall=5615
+2026-09-28 03:28:37 | INFO | train_inner | epoch 001:   9316 / 10240 loss=0.09846, seq_len=37.809, masked_token_loss=0.01844, masked_acc=0.99292, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0666, masked_dist_loss=0.01342, ups=1.77, bsz=1024, num_updates=9300, lr=7.66667e-05, gnorm=5.429, clip=96, loss_scale=32768, train_wall=56.29, gb_free=67.8, wall=5671
+2026-09-28 03:29:36 | INFO | train_inner | epoch 001:   9416 / 10240 loss=0.09905, seq_len=37.816, masked_token_loss=0.01864, masked_acc=0.99305, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06682, masked_dist_loss=0.0136, ups=1.69, bsz=1024, num_updates=9400, lr=7.62963e-05, gnorm=6.741, clip=96, loss_scale=32768, train_wall=58.78, gb_free=69.5, wall=5731
+2026-09-28 03:29:45 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:30:37 | INFO | train_inner | epoch 001:   9517 / 10240 loss=0.09791, seq_len=38.029, masked_token_loss=0.01858, masked_acc=0.99291, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06618, masked_dist_loss=0.01315, ups=1.64, bsz=1024, num_updates=9500, lr=7.59259e-05, gnorm=7.063, clip=94, loss_scale=32768, train_wall=60.47, gb_free=69.5, wall=5791
+2026-09-28 03:31:35 | INFO | train_inner | epoch 001:   9617 / 10240 loss=0.0979, seq_len=37.936, masked_token_loss=0.01802, masked_acc=0.99312, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06647, masked_dist_loss=0.01341, ups=1.72, bsz=1024, num_updates=9600, lr=7.55556e-05, gnorm=6.792, clip=97, loss_scale=32768, train_wall=57.68, gb_free=67.8, wall=5849
+2026-09-28 03:32:35 | INFO | train_inner | epoch 001:   9717 / 10240 loss=0.09659, seq_len=37.989, masked_token_loss=0.01726, masked_acc=0.99337, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06615, masked_dist_loss=0.01318, ups=1.67, bsz=1024, num_updates=9700, lr=7.51852e-05, gnorm=5.282, clip=97, loss_scale=65536, train_wall=59.65, gb_free=69.5, wall=5909
+2026-09-28 03:33:35 | INFO | train_inner | epoch 001:   9817 / 10240 loss=0.09686, seq_len=37.951, masked_token_loss=0.01807, masked_acc=0.99307, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06583, masked_dist_loss=0.01296, ups=1.69, bsz=1024, num_updates=9800, lr=7.48148e-05, gnorm=8.145, clip=99, loss_scale=65536, train_wall=58.94, gb_free=69.5, wall=5969
+2026-09-28 03:34:09 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:34:33 | INFO | train_inner | epoch 001:   9918 / 10240 loss=0.09698, seq_len=37.873, masked_token_loss=0.01777, masked_acc=0.99311, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06606, masked_dist_loss=0.01315, ups=1.7, bsz=1024, num_updates=9900, lr=7.44444e-05, gnorm=5.972, clip=94, loss_scale=32768, train_wall=58.52, gb_free=69.5, wall=6028
+2026-09-28 03:35:33 | INFO | train_inner | epoch 001:  10018 / 10240 loss=0.09741, seq_len=37.885, masked_token_loss=0.01808, masked_acc=0.99296, masked_hit_at6=0.733, target_hit_at6=0.733, masked_coord_loss=0.06608, masked_dist_loss=0.01326, ups=1.69, bsz=1024, num_updates=10000, lr=7.40741e-05, gnorm=8.3, clip=98, loss_scale=32768, train_wall=58.97, gb_free=70.9, wall=6087
+2026-09-28 03:35:33 | INFO | unicore_cli.train | begin validation on "valid" subset
+2026-09-28 03:35:33 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:33 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 03:35:54 | INFO | valid | epoch 001 | valid on 'valid' subset | loss 0.09226 | seq_len 37.95 | masked_token_loss 0.01634 | masked_acc 0.99363 | masked_hit_at6 0.732 | target_hit_at6 0.731 | masked_coord_loss 0.06422 | masked_dist_loss 0.01171 | bsz 100000 | num_updates 10000 | best_loss 0.09226
+2026-09-28 03:35:54 | INFO | unicore.checkpoint_utils | Preparing to save checkpoint for epoch 1 @ 10000 updates
+2026-09-28 03:35:54 | INFO | unicore.trainer | Saving checkpoint to /save/tmp/checkpoint_1_10000.pt
+2026-09-28 03:35:54 | INFO | unicore.trainer | Finished saving checkpoint to /save/tmp/checkpoint_1_10000.pt
+2026-09-28 03:35:54 | INFO | unicore.checkpoint_utils | Saved checkpoint /save/tmp/checkpoint_1_10000.pt (epoch 1 @ 10000 updates, score 0.09226) (writing took 0.9358233308885247 seconds)
+2026-09-28 03:35:54 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_10000.pt to /save/checkpoint_1_10000.pt
+2026-09-28 03:35:55 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_10000.pt to /save/checkpoint_best.pt
+2026-09-28 03:35:55 | INFO | unicore.checkpoint_utils | copy /save/tmp/checkpoint_1_10000.pt to /save/checkpoint_last.pt
+2026-09-28 03:35:56 | INFO | unicore.checkpoint_utils | removing temp file /save/tmp/checkpoint_1_10000.pt ...
+2026-09-28 03:35:56 | INFO | unicore.checkpoint_utils | finished async ckp saving.
+2026-09-28 03:36:52 | INFO | train_inner | epoch 001:  10118 / 10240 loss=0.09666, seq_len=37.825, masked_token_loss=0.01776, masked_acc=0.99334, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06581, masked_dist_loss=0.01309, ups=1.27, bsz=1024, num_updates=10100, lr=7.37037e-05, gnorm=7.279, clip=96, loss_scale=32768, train_wall=56.75, gb_free=69.5, wall=6166
+2026-09-28 03:37:31 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:37:52 | INFO | train_inner | epoch 001:  10219 / 10240 loss=0.09678, seq_len=37.861, masked_token_loss=0.01765, masked_acc=0.99326, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06594, masked_dist_loss=0.01319, ups=1.66, bsz=1024, num_updates=10200, lr=7.33333e-05, gnorm=6.86, clip=94, loss_scale=32768, train_wall=59.91, gb_free=69.5, wall=6226
+2026-09-28 03:38:07 | INFO | unicore_cli.train | end of epoch 1 (average epoch stats below)
+2026-09-28 03:38:07 | INFO | train | epoch 001 | loss 0.29607 | seq_len 37.915 | masked_token_loss 0.17087 | masked_acc 0.95588 | masked_hit_at6 0.751 | target_hit_at6 0.732 | masked_coord_loss 0.0913 | masked_dist_loss 0.03391 | ups 1.65 | bsz 1024 | num_updates 10221 | lr 7.32556e-05 | gnorm 23.444 | clip 98.4 | loss_scale 32768 | train_wall 6096.92 | gb_free 69.5 | wall 6241
+2026-09-28 03:38:07 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 2
+2026-09-28 03:38:29 | INFO | unicore.trainer | begin training epoch 2
+2026-09-28 03:38:29 | INFO | unicore_cli.train | Start iterating over samples
+2026-09-28 03:39:34 | INFO | train_inner | epoch 002:     79 / 10240 loss=0.09544, seq_len=37.854, masked_token_loss=0.01716, masked_acc=0.99332, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06547, masked_dist_loss=0.01281, ups=0.98, bsz=1021.4, num_updates=10300, lr=7.2963e-05, gnorm=5.143, clip=96, loss_scale=32768, train_wall=71.56, gb_free=64.1, wall=6328
+2026-09-28 03:40:36 | INFO | train_inner | epoch 002:    179 / 10240 loss=0.09554, seq_len=37.931, masked_token_loss=0.01749, masked_acc=0.9933, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.06535, masked_dist_loss=0.01269, ups=1.61, bsz=1024, num_updates=10400, lr=7.25926e-05, gnorm=5.151, clip=94, loss_scale=32768, train_wall=61.59, gb_free=66, wall=6390
+2026-09-28 03:41:37 | INFO | train_inner | epoch 002:    279 / 10240 loss=0.09553, seq_len=37.929, masked_token_loss=0.01704, masked_acc=0.99355, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06557, masked_dist_loss=0.01291, ups=1.64, bsz=1024, num_updates=10500, lr=7.22222e-05, gnorm=6.286, clip=96, loss_scale=65536, train_wall=60.43, gb_free=66, wall=6451
+2026-09-28 03:41:47 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 03:42:40 | INFO | train_inner | epoch 002:    380 / 10240 loss=0.09658, seq_len=37.947, masked_token_loss=0.01746, masked_acc=0.99334, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06583, masked_dist_loss=0.0133, ups=1.58, bsz=1024, num_updates=10600, lr=7.18519e-05, gnorm=7.12, clip=95, loss_scale=32768, train_wall=62.94, gb_free=69.5, wall=6514
+2026-09-28 03:43:40 | INFO | train_inner | epoch 002:    480 / 10240 loss=0.09446, seq_len=37.95, masked_token_loss=0.01678, masked_acc=0.99351, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.06503, masked_dist_loss=0.01265, ups=1.67, bsz=1024, num_updates=10700, lr=7.14815e-05, gnorm=5.9, clip=95, loss_scale=32768, train_wall=59.33, gb_free=69.5, wall=6574
+[rank6]:[E928 04:13:44.533223795 ProcessGroupNCCL.cpp:607] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=119548, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800025 milliseconds before timing out.
+[rank6]:[E928 04:13:44.533445924 ProcessGroupNCCL.cpp:1664] [PG 0 (default_pg) Rank 6] Exception (either an error or timeout) detected by watchdog at work: 119548, last enqueued NCCL work: 119548, last completed NCCL work: 119547.
+[rank6]:[E928 04:13:44.179704598 ProcessGroupNCCL.cpp:1709] [PG 0 (default_pg) Rank 6] Timeout at NCCL work: 119548, last enqueued NCCL work: 119548, last completed NCCL work: 119547.
+[rank6]:[E928 04:13:44.179732723 ProcessGroupNCCL.cpp:621] [Rank 6] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[rank6]:[E928 04:13:44.179737381 ProcessGroupNCCL.cpp:627] [Rank 6] To avoid data inconsistency, we are taking the entire process down.
+[E928 04:13:44.180989603 ProcessGroupNCCL.cpp:1515] [PG 0 (default_pg) Rank 6] Process group watchdog thread terminated with exception: [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=119548, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800025 milliseconds before timing out.
+Exception raised from checkTimeout at /opt/conda/conda-bld/pytorch_1720538456841/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:609 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x7ebce4b76f86 in /opt/conda/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::WorkNCCL::checkTimeout(std::optional<std::chrono::duration<long, std::ratio<1l, 1000l> > >) + 0x1d2 (0x7ebc945fba42 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::watchdogHandler() + 0x233 (0x7ebc94602483 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x10c (0x7ebc9460486c in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: <unknown function> + 0xdbbf4 (0x7ebce46c7bf4 in /opt/conda/lib/python3.11/site-packages/torch/lib/../../../.././libstdc++.so.6)
+frame #5: <unknown function> + 0x94ac3 (0x7ebcf734aac3 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #6: clone + 0x44 (0x7ebcf73dbbf4 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+
+W0928 04:13:45.803000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17 closing signal SIGTERM
+W0928 04:13:45.803000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 18 closing signal SIGTERM
+W0928 04:13:45.804000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 19 closing signal SIGTERM
+W0928 04:13:45.804000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 20 closing signal SIGTERM
+W0928 04:13:45.804000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 21 closing signal SIGTERM
+W0928 04:13:45.805000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 22 closing signal SIGTERM
+W0928 04:13:45.805000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 24 closing signal SIGTERM
+E0928 04:13:49.415000 130869652789056 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -6) local_rank: 6 (pid: 23) of binary: /opt/conda/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.4.0', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+===================================================
+/opt/conda/bin/unicore-train FAILED
+---------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+---------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_04:13:45
+  host      : localhost
+  rank      : 6 (local_rank: 6)
+  exitcode  : -6 (pid: 23)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 23
+===================================================
+=== attempt 2 2026-09-28T04:14:49Z
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 0): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 7): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 7
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 5): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 5
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 1): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 1
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 6): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 2): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 6
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 3): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | distributed init (rank 4): env://
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 2
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 4
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 3
+2026-09-28 04:14:59 | INFO | unicore.distributed.utils | initialized host localhost as rank 0
+2026-09-28 04:15:02 | INFO | unicore_cli.train | Namespace(no_progress_bar=False, log_interval=100, log_format='simple', tensorboard_logdir='', wandb_project='', wandb_name='', seed=1, cpu=False, fp16=True, bf16=False, bf16_sr=False, allreduce_fp32_grad=False, fp16_no_flatten_grads=False, fp16_init_scale=4, fp16_scale_window=256, fp16_scale_tolerance=0.0, min_loss_scale=0.0001, threshold_loss_scale=None, user_dir='./unimol2', empty_cache_freq=0, all_gather_list_size=16384, suppress_crashes=False, profile=False, ema_decay=-1.0, validate_with_ema=False, loss='unimol2', optimizer='adam', lr_scheduler='polynomial_decay', task='unimol2', num_workers=8, skip_invalid_size_inputs_valid_test=False, batch_size=32, required_batch_size_multiple=1, data_buffer_size=10, train_subset='train', valid_subset='valid', validate_interval=1, validate_interval_updates=5000, validate_after_updates=0, fixed_validation_seed=None, disable_validation=False, batch_size_valid=32, max_valid_steps=None, curriculum=0, distributed_world_size=8, distributed_rank=0, distributed_backend='nccl', distributed_init_method='env://', distributed_port=-1, device_id=0, distributed_no_spawn=True, ddp_backend='c10d', bucket_cap_mb=25, fix_batches_to_gpus=False, find_unused_parameters=False, fast_stat_sync=False, broadcast_buffers=False, nprocs_per_node=8, arch='unimol2_84M', max_epoch=60, max_update=30000, stop_time_hours=0, no_weight_decay_names='', clip_norm=1.0, per_sample_clip_norm=0, update_freq=[4], lr=[0.0001], stop_min_lr=-1, save_dir='/save', tmp_save_dir='/save/tmp', restore_file='checkpoint_last.pt', finetune_from_model=None, load_from_ema=False, reset_dataloader=False, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, optimizer_overrides='{}', save_interval=1, save_interval_updates=5000, keep_interval_updates=3, keep_last_epochs=-1, keep_best_checkpoints=-1, no_save=False, no_epoch_checkpoints=True, no_last_checkpoints=False, no_save_optimizer_state=False, best_checkpoint_metric='loss', maximize_best_checkpoint_metric=False, patience=-1, checkpoint_suffix='', droppath_prob=0.0, gaussian_std_width=1.0, gaussian_mean_start=0.0, gaussian_mean_stop=9.0, mode='train', data='/data', mask_prob=0.15, drop_feat_prob=0.5, mask_token_prob=0.15, leave_unmasked_prob=0.0, random_token_prob=0.0, noise_type='normal', noise=0.2, max_atoms=256, adam_betas='(0.9, 0.99)', adam_eps=1e-06, weight_decay=0.0001, force_anneal=None, warmup_updates=3000, warmup_ratio=-1.0, end_learning_rate=0.0, power=1.0, total_num_update=30000, masked_token_loss=1.0, masked_coord_loss=1.0, masked_dist_loss=1.0, no_seed_provided=False, encoder_layers=12, encoder_embed_dim=768, pair_embed_dim=512, pair_hidden_dim=64, encoder_ffn_embed_dim=768, encoder_attention_heads=48, dropout=0.1, emb_dropout=0.1, attention_dropout=0.1, activation_dropout=0.0, pooler_dropout=0.0, max_seq_len=512, activation_fn='gelu', pooler_activation_fn='tanh', post_ln=False, x_norm_loss=-1.0, delta_pair_repr_norm_loss=-1.0, notri=False)
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:15:03 | INFO | unicore_cli.train | UniMol2Model(
+  (embed_tokens): Embedding(128, 768, padding_idx=0)
+  (atom_feature): AtomFeature(
+    (atom_encoder): Embedding(512, 768, padding_idx=0)
+    (degree_encoder): Embedding(128, 768, padding_idx=0)
+    (vnode_encoder): Embedding(1, 768)
+  )
+  (edge_feature): EdgeFeature(
+    (edge_encoder): Embedding(64, 512, padding_idx=0)
+    (shorest_path_encoder): Embedding(512, 512, padding_idx=0)
+    (vnode_virtual_distance): Embedding(1, 512)
+  )
+  (encoder): TransformerEncoderWithPair(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+    (layers): ModuleList(
+      (0-11): 12 x TransformerEncoderLayer(
+        (dropout_module): Dropout()
+        (self_attn): Attention(
+          (linear_q): Linear(in_features=768, out_features=768, bias=False)
+          (linear_k): Linear(in_features=768, out_features=768, bias=False)
+          (linear_v): Linear(in_features=768, out_features=768, bias=False)
+          (linear_o): Linear(in_features=768, out_features=768, bias=True)
+          (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+        )
+        (self_attn_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): Transition(
+          (linear_1): Linear(in_features=768, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (x_layer_norm_opm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (opm): OuterProduct(
+          (linear_in): Linear(in_features=768, out_features=128, bias=True)
+          (linear_out): Linear(in_features=4096, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+        )
+        (pair_layer_norm_ffn): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_ffn): Transition(
+          (linear_1): Linear(in_features=512, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=512, out_features=512, bias=True)
+        )
+        (pair_layer_norm_trimul): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_tri_mul): TriangleMultiplication(
+          (linear_ab_p): Linear(in_features=512, out_features=128, bias=True)
+          (linear_ab_g): Linear(in_features=512, out_features=128, bias=True)
+          (linear_g): Linear(in_features=512, out_features=512, bias=True)
+          (linear_z): Linear(in_features=64, out_features=512, bias=True)
+          (layer_norm_out): LayerNorm(torch.Size([64]), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): MaskLMHead(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+  (se3_invariant_kernel): SE3InvariantKernel(
+    (gaussian): GaussianKernel(
+      (mul): Embedding(512, 1, padding_idx=0)
+      (bias): Embedding(512, 1, padding_idx=0)
+    )
+    (out_proj): NonLinear(
+      (layer1): Linear(in_features=128, out_features=128, bias=True)
+      (layer2): Linear(in_features=128, out_features=512, bias=True)
+    )
+  )
+  (movement_pred_head): MovementPredictionHead(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (q_proj): Linear(in_features=768, out_features=768, bias=False)
+    (k_proj): Linear(in_features=768, out_features=768, bias=False)
+    (v_proj): Linear(in_features=768, out_features=768, bias=False)
+    (force_proj1): Linear(in_features=768, out_features=1, bias=False)
+    (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+  )
+  (classification_heads): ModuleDict()
+)
+2026-09-28 04:15:03 | INFO | unicore_cli.train | task: UniMol2_Task
+2026-09-28 04:15:03 | INFO | unicore_cli.train | model: UniMol2Model
+2026-09-28 04:15:03 | INFO | unicore_cli.train | loss: UniMol2Loss
+2026-09-28 04:15:03 | INFO | unicore_cli.train | num. model params: 84,116,080 (num. trained: 84,116,080)
+2026-09-28 04:15:03 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   0: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   1: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   2: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   3: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   4: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   5: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   6: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | rank   7: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:15:03 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 04:15:03 | INFO | unicore_cli.train | training on 8 devices (GPUs)
+2026-09-28 04:15:03 | INFO | unicore_cli.train | batch size per device = 32
+2026-09-28 04:15:03 | INFO | unicore.trainer | Preparing to load checkpoint /save/checkpoint_last.pt
+2026-09-28 04:15:04 | INFO | unicore.trainer | Broadcast checkpoint from rank_0
+2026-09-28 04:15:04 | INFO | unicore.trainer | loading train data for epoch 1
+2026-09-28 04:15:25 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 04:15:37 | INFO | unicore.optim.adam | using FusedAdam
+2026-09-28 04:15:37 | INFO | unicore.trainer | Loaded checkpoint /save/checkpoint_last.pt (epoch 1 @ 10000 updates)
+2026-09-28 04:15:46 | INFO | unicore.trainer | begin training epoch 1
+2026-09-28 04:15:46 | INFO | unicore_cli.train | Start iterating over samples
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 04:16:54 | INFO | train_inner | epoch 001:  10118 / 10240 loss=0.09575, seq_len=37.825, masked_token_loss=0.01704, masked_acc=0.99361, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06571, masked_dist_loss=0.013, ups=0.77, bsz=1024, num_updates=10100, lr=7.37037e-05, gnorm=6.732, clip=98, loss_scale=32768, train_wall=63.64, gb_free=69.5, wall=0
+2026-09-28 04:17:52 | INFO | train_inner | epoch 001:  10218 / 10240 loss=0.09583, seq_len=37.864, masked_token_loss=0.01763, masked_acc=0.99318, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06542, masked_dist_loss=0.01278, ups=1.72, bsz=1024, num_updates=10200, lr=7.33333e-05, gnorm=7.496, clip=95, loss_scale=32768, train_wall=57.67, gb_free=69.5, wall=0
+2026-09-28 04:18:04 | INFO | unicore_cli.train | end of epoch 1 (average epoch stats below)
+2026-09-28 04:18:04 | INFO | train | epoch 001 | loss 0.29603 | seq_len 37.915 | masked_token_loss 0.17084 | masked_acc 0.95589 | masked_hit_at6 0.751 | target_hit_at6 0.732 | masked_coord_loss 0.09129 | masked_dist_loss 0.0339 | ups 1.64 | bsz 1024 | num_updates 10222 | lr 7.32519e-05 | gnorm 23.446 | clip 98.4 | loss_scale 32768 | train_wall 6100.99 | gb_free 69.5 | wall 0
+2026-09-28 04:18:04 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 2
+2026-09-28 04:18:24 | INFO | unicore.trainer | begin training epoch 2
+2026-09-28 04:18:24 | INFO | unicore_cli.train | Start iterating over samples
+2026-09-28 04:19:19 | INFO | train_inner | epoch 002:     78 / 10240 loss=0.09539, seq_len=37.841, masked_token_loss=0.01712, masked_acc=0.99336, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06544, masked_dist_loss=0.01283, ups=1.15, bsz=1021.4, num_updates=10300, lr=7.2963e-05, gnorm=5.881, clip=98, loss_scale=65536, train_wall=61.3, gb_free=69.5, wall=0
+2026-09-28 04:19:39 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 04:20:23 | INFO | train_inner | epoch 002:    179 / 10240 loss=0.09765, seq_len=37.936, masked_token_loss=0.01796, masked_acc=0.99305, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0663, masked_dist_loss=0.0134, ups=1.57, bsz=1024, num_updates=10400, lr=7.25926e-05, gnorm=8.632, clip=98, loss_scale=32768, train_wall=63.37, gb_free=66.1, wall=0
+2026-09-28 04:21:24 | INFO | train_inner | epoch 002:    279 / 10240 loss=0.09503, seq_len=37.929, masked_token_loss=0.01675, masked_acc=0.99369, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06545, masked_dist_loss=0.01283, ups=1.63, bsz=1024, num_updates=10500, lr=7.22222e-05, gnorm=5.972, clip=97, loss_scale=32768, train_wall=60.9, gb_free=66.1, wall=0
+2026-09-28 04:22:27 | INFO | train_inner | epoch 002:    379 / 10240 loss=0.09516, seq_len=37.953, masked_token_loss=0.01767, masked_acc=0.99329, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06497, masked_dist_loss=0.01253, ups=1.58, bsz=1024, num_updates=10600, lr=7.18519e-05, gnorm=6.091, clip=97, loss_scale=65536, train_wall=62.7, gb_free=64.1, wall=0
+2026-09-28 04:23:10 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 04:23:29 | INFO | train_inner | epoch 002:    480 / 10240 loss=0.09507, seq_len=37.949, masked_token_loss=0.0167, masked_acc=0.99344, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.06539, masked_dist_loss=0.01298, ups=1.62, bsz=1024, num_updates=10700, lr=7.14815e-05, gnorm=5.538, clip=97, loss_scale=32768, train_wall=61.37, gb_free=69.5, wall=0
+[rank6]:[E928 04:53:34.327631565 ProcessGroupNCCL.cpp:607] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800084 milliseconds before timing out.
+[rank6]:[E928 04:53:34.327865389 ProcessGroupNCCL.cpp:1664] [PG 0 (default_pg) Rank 6] Exception (either an error or timeout) detected by watchdog at work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 04:53:34.517653039 ProcessGroupNCCL.cpp:1709] [PG 0 (default_pg) Rank 6] Timeout at NCCL work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 04:53:34.517672581 ProcessGroupNCCL.cpp:621] [Rank 6] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[rank6]:[E928 04:53:34.517676394 ProcessGroupNCCL.cpp:627] [Rank 6] To avoid data inconsistency, we are taking the entire process down.
+[E928 04:53:34.518869972 ProcessGroupNCCL.cpp:1515] [PG 0 (default_pg) Rank 6] Process group watchdog thread terminated with exception: [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800084 milliseconds before timing out.
+Exception raised from checkTimeout at /opt/conda/conda-bld/pytorch_1720538456841/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:609 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x7b90cf176f86 in /opt/conda/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::WorkNCCL::checkTimeout(std::optional<std::chrono::duration<long, std::ratio<1l, 1000l> > >) + 0x1d2 (0x7b907ebfba42 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::watchdogHandler() + 0x233 (0x7b907ec02483 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x10c (0x7b907ec0486c in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: <unknown function> + 0xdbbf4 (0x7b90cecc7bf4 in /opt/conda/lib/python3.11/site-packages/torch/lib/../../../.././libstdc++.so.6)
+frame #5: <unknown function> + 0x94ac3 (0x7b90e199fac3 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #6: clone + 0x44 (0x7b90e1a30bf4 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+
+W0928 04:53:35.048000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17135 closing signal SIGTERM
+W0928 04:53:35.049000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17136 closing signal SIGTERM
+W0928 04:53:35.050000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17137 closing signal SIGTERM
+W0928 04:53:35.050000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17138 closing signal SIGTERM
+W0928 04:53:35.050000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17139 closing signal SIGTERM
+W0928 04:53:35.051000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17140 closing signal SIGTERM
+W0928 04:53:35.051000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 17142 closing signal SIGTERM
+E0928 04:53:38.353000 133589945595712 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -6) local_rank: 6 (pid: 17141) of binary: /opt/conda/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.4.0', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+======================================================
+/opt/conda/bin/unicore-train FAILED
+------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_04:53:35
+  host      : localhost
+  rank      : 6 (local_rank: 6)
+  exitcode  : -6 (pid: 17141)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 17141
+======================================================
+=== attempt 3 2026-09-28T04:54:38Z
+2026-09-28 04:54:47 | INFO | unicore.distributed.utils | distributed init (rank 7): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 0): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 3): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 3
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 1): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 1
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 4): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 4
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 6): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 2): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | distributed init (rank 5): env://
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 2
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 6
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 5
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 7
+2026-09-28 04:54:48 | INFO | unicore.distributed.utils | initialized host localhost as rank 0
+2026-09-28 04:54:51 | INFO | unicore_cli.train | Namespace(no_progress_bar=False, log_interval=100, log_format='simple', tensorboard_logdir='', wandb_project='', wandb_name='', seed=1, cpu=False, fp16=True, bf16=False, bf16_sr=False, allreduce_fp32_grad=False, fp16_no_flatten_grads=False, fp16_init_scale=4, fp16_scale_window=256, fp16_scale_tolerance=0.0, min_loss_scale=0.0001, threshold_loss_scale=None, user_dir='./unimol2', empty_cache_freq=0, all_gather_list_size=16384, suppress_crashes=False, profile=False, ema_decay=-1.0, validate_with_ema=False, loss='unimol2', optimizer='adam', lr_scheduler='polynomial_decay', task='unimol2', num_workers=8, skip_invalid_size_inputs_valid_test=False, batch_size=32, required_batch_size_multiple=1, data_buffer_size=10, train_subset='train', valid_subset='valid', validate_interval=1, validate_interval_updates=5000, validate_after_updates=0, fixed_validation_seed=None, disable_validation=False, batch_size_valid=32, max_valid_steps=None, curriculum=0, distributed_world_size=8, distributed_rank=0, distributed_backend='nccl', distributed_init_method='env://', distributed_port=-1, device_id=0, distributed_no_spawn=True, ddp_backend='c10d', bucket_cap_mb=25, fix_batches_to_gpus=False, find_unused_parameters=False, fast_stat_sync=False, broadcast_buffers=False, nprocs_per_node=8, arch='unimol2_84M', max_epoch=60, max_update=30000, stop_time_hours=0, no_weight_decay_names='', clip_norm=1.0, per_sample_clip_norm=0, update_freq=[4], lr=[0.0001], stop_min_lr=-1, save_dir='/save', tmp_save_dir='/save/tmp', restore_file='checkpoint_last.pt', finetune_from_model=None, load_from_ema=False, reset_dataloader=False, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, optimizer_overrides='{}', save_interval=1, save_interval_updates=5000, keep_interval_updates=3, keep_last_epochs=-1, keep_best_checkpoints=-1, no_save=False, no_epoch_checkpoints=True, no_last_checkpoints=False, no_save_optimizer_state=False, best_checkpoint_metric='loss', maximize_best_checkpoint_metric=False, patience=-1, checkpoint_suffix='', droppath_prob=0.0, gaussian_std_width=1.0, gaussian_mean_start=0.0, gaussian_mean_stop=9.0, mode='train', data='/data', mask_prob=0.15, drop_feat_prob=0.5, mask_token_prob=0.15, leave_unmasked_prob=0.0, random_token_prob=0.0, noise_type='normal', noise=0.2, max_atoms=256, adam_betas='(0.9, 0.99)', adam_eps=1e-06, weight_decay=0.0001, force_anneal=None, warmup_updates=3000, warmup_ratio=-1.0, end_learning_rate=0.0, power=1.0, total_num_update=30000, masked_token_loss=1.0, masked_coord_loss=1.0, masked_dist_loss=1.0, no_seed_provided=False, encoder_layers=12, encoder_embed_dim=768, pair_embed_dim=512, pair_hidden_dim=64, encoder_ffn_embed_dim=768, encoder_attention_heads=48, dropout=0.1, emb_dropout=0.1, attention_dropout=0.1, activation_dropout=0.0, pooler_dropout=0.0, max_seq_len=512, activation_fn='gelu', pooler_activation_fn='tanh', post_ln=False, x_norm_loss=-1.0, delta_pair_repr_norm_loss=-1.0, notri=False)
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:52 | INFO | unicore_cli.train | UniMol2Model(
+  (embed_tokens): Embedding(128, 768, padding_idx=0)
+  (atom_feature): AtomFeature(
+    (atom_encoder): Embedding(512, 768, padding_idx=0)
+    (degree_encoder): Embedding(128, 768, padding_idx=0)
+    (vnode_encoder): Embedding(1, 768)
+  )
+  (edge_feature): EdgeFeature(
+    (edge_encoder): Embedding(64, 512, padding_idx=0)
+    (shorest_path_encoder): Embedding(512, 512, padding_idx=0)
+    (vnode_virtual_distance): Embedding(1, 512)
+  )
+  (encoder): TransformerEncoderWithPair(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+    (layers): ModuleList(
+      (0-11): 12 x TransformerEncoderLayer(
+        (dropout_module): Dropout()
+        (self_attn): Attention(
+          (linear_q): Linear(in_features=768, out_features=768, bias=False)
+          (linear_k): Linear(in_features=768, out_features=768, bias=False)
+          (linear_v): Linear(in_features=768, out_features=768, bias=False)
+          (linear_o): Linear(in_features=768, out_features=768, bias=True)
+          (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+        )
+        (self_attn_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): Transition(
+          (linear_1): Linear(in_features=768, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (x_layer_norm_opm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (opm): OuterProduct(
+          (linear_in): Linear(in_features=768, out_features=128, bias=True)
+          (linear_out): Linear(in_features=4096, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+        )
+        (pair_layer_norm_ffn): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_ffn): Transition(
+          (linear_1): Linear(in_features=512, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=512, out_features=512, bias=True)
+        )
+        (pair_layer_norm_trimul): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_tri_mul): TriangleMultiplication(
+          (linear_ab_p): Linear(in_features=512, out_features=128, bias=True)
+          (linear_ab_g): Linear(in_features=512, out_features=128, bias=True)
+          (linear_g): Linear(in_features=512, out_features=512, bias=True)
+          (linear_z): Linear(in_features=64, out_features=512, bias=True)
+          (layer_norm_out): LayerNorm(torch.Size([64]), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): MaskLMHead(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+  (se3_invariant_kernel): SE3InvariantKernel(
+    (gaussian): GaussianKernel(
+      (mul): Embedding(512, 1, padding_idx=0)
+      (bias): Embedding(512, 1, padding_idx=0)
+    )
+    (out_proj): NonLinear(
+      (layer1): Linear(in_features=128, out_features=128, bias=True)
+      (layer2): Linear(in_features=128, out_features=512, bias=True)
+    )
+  )
+  (movement_pred_head): MovementPredictionHead(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (q_proj): Linear(in_features=768, out_features=768, bias=False)
+    (k_proj): Linear(in_features=768, out_features=768, bias=False)
+    (v_proj): Linear(in_features=768, out_features=768, bias=False)
+    (force_proj1): Linear(in_features=768, out_features=1, bias=False)
+    (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+  )
+  (classification_heads): ModuleDict()
+)
+2026-09-28 04:54:52 | INFO | unicore_cli.train | task: UniMol2_Task
+2026-09-28 04:54:52 | INFO | unicore_cli.train | model: UniMol2Model
+2026-09-28 04:54:52 | INFO | unicore_cli.train | loss: UniMol2Loss
+2026-09-28 04:54:52 | INFO | unicore_cli.train | num. model params: 84,116,080 (num. trained: 84,116,080)
+2026-09-28 04:54:53 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 04:54:53 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   0: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   1: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   2: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   3: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   4: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   5: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   6: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | rank   7: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 04:54:53 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 04:54:53 | INFO | unicore_cli.train | training on 8 devices (GPUs)
+2026-09-28 04:54:53 | INFO | unicore_cli.train | batch size per device = 32
+2026-09-28 04:54:53 | INFO | unicore.trainer | Preparing to load checkpoint /save/checkpoint_last.pt
+2026-09-28 04:54:53 | INFO | unicore.trainer | Broadcast checkpoint from rank_0
+2026-09-28 04:54:54 | INFO | unicore.trainer | loading train data for epoch 1
+2026-09-28 04:55:14 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 04:55:24 | INFO | unicore.optim.adam | using FusedAdam
+2026-09-28 04:55:24 | INFO | unicore.trainer | Loaded checkpoint /save/checkpoint_last.pt (epoch 1 @ 10000 updates)
+2026-09-28 04:55:33 | INFO | unicore.trainer | begin training epoch 1
+2026-09-28 04:55:33 | INFO | unicore_cli.train | Start iterating over samples
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 04:56:46 | INFO | train_inner | epoch 001:  10118 / 10240 loss=0.09575, seq_len=37.825, masked_token_loss=0.01704, masked_acc=0.99361, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06571, masked_dist_loss=0.013, ups=0.75, bsz=1024, num_updates=10100, lr=7.37037e-05, gnorm=6.732, clip=98, loss_scale=32768, train_wall=69.15, gb_free=69.5, wall=0
+2026-09-28 04:57:45 | INFO | train_inner | epoch 001:  10218 / 10240 loss=0.09583, seq_len=37.864, masked_token_loss=0.01763, masked_acc=0.99318, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06542, masked_dist_loss=0.01278, ups=1.7, bsz=1024, num_updates=10200, lr=7.33333e-05, gnorm=7.496, clip=95, loss_scale=32768, train_wall=58.36, gb_free=69.5, wall=0
+2026-09-28 04:57:57 | INFO | unicore_cli.train | end of epoch 1 (average epoch stats below)
+2026-09-28 04:57:57 | INFO | train | epoch 001 | loss 0.29603 | seq_len 37.915 | masked_token_loss 0.17084 | masked_acc 0.95589 | masked_hit_at6 0.751 | target_hit_at6 0.732 | masked_coord_loss 0.09129 | masked_dist_loss 0.0339 | ups 1.64 | bsz 1024 | num_updates 10222 | lr 7.32519e-05 | gnorm 23.446 | clip 98.4 | loss_scale 32768 | train_wall 6107.19 | gb_free 69.5 | wall 0
+2026-09-28 04:57:57 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 2
+2026-09-28 04:58:20 | INFO | unicore.trainer | begin training epoch 2
+2026-09-28 04:58:20 | INFO | unicore_cli.train | Start iterating over samples
+2026-09-28 04:59:30 | INFO | train_inner | epoch 002:     78 / 10240 loss=0.09539, seq_len=37.841, masked_token_loss=0.01712, masked_acc=0.99336, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06544, masked_dist_loss=0.01283, ups=0.96, bsz=1021.4, num_updates=10300, lr=7.2963e-05, gnorm=5.881, clip=98, loss_scale=65536, train_wall=73.3, gb_free=69.5, wall=0
+2026-09-28 04:59:48 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 05:00:30 | INFO | train_inner | epoch 002:    179 / 10240 loss=0.09765, seq_len=37.936, masked_token_loss=0.01796, masked_acc=0.99305, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0663, masked_dist_loss=0.0134, ups=1.64, bsz=1024, num_updates=10400, lr=7.25926e-05, gnorm=8.632, clip=98, loss_scale=32768, train_wall=60.41, gb_free=66.1, wall=0
+2026-09-28 05:01:30 | INFO | train_inner | epoch 002:    279 / 10240 loss=0.09503, seq_len=37.929, masked_token_loss=0.01675, masked_acc=0.99369, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06545, masked_dist_loss=0.01283, ups=1.67, bsz=1024, num_updates=10500, lr=7.22222e-05, gnorm=5.972, clip=97, loss_scale=32768, train_wall=59.52, gb_free=66.1, wall=0
+2026-09-28 05:02:33 | INFO | train_inner | epoch 002:    379 / 10240 loss=0.09516, seq_len=37.953, masked_token_loss=0.01767, masked_acc=0.99329, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06497, masked_dist_loss=0.01253, ups=1.6, bsz=1024, num_updates=10600, lr=7.18519e-05, gnorm=6.091, clip=97, loss_scale=65536, train_wall=62.02, gb_free=64.1, wall=0
+2026-09-28 05:03:15 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 05:03:35 | INFO | train_inner | epoch 002:    480 / 10240 loss=0.09507, seq_len=37.949, masked_token_loss=0.0167, masked_acc=0.99344, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.06539, masked_dist_loss=0.01298, ups=1.61, bsz=1024, num_updates=10700, lr=7.14815e-05, gnorm=5.538, clip=97, loss_scale=32768, train_wall=61.73, gb_free=69.5, wall=0
+[rank6]:[E928 05:33:39.661421700 ProcessGroupNCCL.cpp:607] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800009 milliseconds before timing out.
+[rank6]:[E928 05:33:39.661658432 ProcessGroupNCCL.cpp:1664] [PG 0 (default_pg) Rank 6] Exception (either an error or timeout) detected by watchdog at work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[E928 05:33:40.309623300 ProcessGroupNCCL.cpp:1709] [PG 0 (default_pg) Rank 6] Timeout at NCCL work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[E928 05:33:40.309662776 ProcessGroupNCCL.cpp:621] [Rank 6] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E928 05:33:40.309679371 ProcessGroupNCCL.cpp:627] [Rank 6] To avoid data inconsistency, we are taking the entire process down.
+[E928 05:33:40.310951778 ProcessGroupNCCL.cpp:1515] [PG 0 (default_pg) Rank 6] Process group watchdog thread terminated with exception: [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800009 milliseconds before timing out.
+Exception raised from checkTimeout at /opt/conda/conda-bld/pytorch_1720538456841/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:609 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x7ab0624d2f86 in /opt/conda/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::WorkNCCL::checkTimeout(std::optional<std::chrono::duration<long, std::ratio<1l, 1000l> > >) + 0x1d2 (0x7ab011ffba42 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::watchdogHandler() + 0x233 (0x7ab012002483 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x10c (0x7ab01200486c in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: <unknown function> + 0xdbbf4 (0x7ab0620c7bf4 in /opt/conda/lib/python3.11/site-packages/torch/lib/../../../.././libstdc++.so.6)
+frame #5: <unknown function> + 0x94ac3 (0x7ab074ceaac3 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #6: clone + 0x44 (0x7ab074d7bbf4 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+
+W0928 05:33:40.786000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25789 closing signal SIGTERM
+W0928 05:33:40.787000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25790 closing signal SIGTERM
+W0928 05:33:40.788000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25791 closing signal SIGTERM
+W0928 05:33:40.788000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25792 closing signal SIGTERM
+W0928 05:33:40.789000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25793 closing signal SIGTERM
+W0928 05:33:40.789000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25794 closing signal SIGTERM
+W0928 05:33:40.789000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 25796 closing signal SIGTERM
+E0928 05:33:43.741000 131515857950528 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -6) local_rank: 6 (pid: 25795) of binary: /opt/conda/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.4.0', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+======================================================
+/opt/conda/bin/unicore-train FAILED
+------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_05:33:40
+  host      : localhost
+  rank      : 6 (local_rank: 6)
+  exitcode  : -6 (pid: 25795)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 25795
+======================================================
+=== attempt 4 2026-09-28T05:34:44Z
+2026-09-28 05:34:52 | INFO | unicore.distributed.utils | distributed init (rank 0): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 4): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 6): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 4
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 6
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 5): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 1): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 7): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 5
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 7
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 1
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 3): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | distributed init (rank 2): env://
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 2
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 3
+2026-09-28 05:34:54 | INFO | unicore.distributed.utils | initialized host localhost as rank 0
+2026-09-28 05:34:57 | INFO | unicore_cli.train | Namespace(no_progress_bar=False, log_interval=100, log_format='simple', tensorboard_logdir='', wandb_project='', wandb_name='', seed=1, cpu=False, fp16=True, bf16=False, bf16_sr=False, allreduce_fp32_grad=False, fp16_no_flatten_grads=False, fp16_init_scale=4, fp16_scale_window=256, fp16_scale_tolerance=0.0, min_loss_scale=0.0001, threshold_loss_scale=None, user_dir='./unimol2', empty_cache_freq=0, all_gather_list_size=16384, suppress_crashes=False, profile=False, ema_decay=-1.0, validate_with_ema=False, loss='unimol2', optimizer='adam', lr_scheduler='polynomial_decay', task='unimol2', num_workers=8, skip_invalid_size_inputs_valid_test=False, batch_size=32, required_batch_size_multiple=1, data_buffer_size=10, train_subset='train', valid_subset='valid', validate_interval=1, validate_interval_updates=5000, validate_after_updates=0, fixed_validation_seed=None, disable_validation=False, batch_size_valid=32, max_valid_steps=None, curriculum=0, distributed_world_size=8, distributed_rank=0, distributed_backend='nccl', distributed_init_method='env://', distributed_port=-1, device_id=0, distributed_no_spawn=True, ddp_backend='c10d', bucket_cap_mb=25, fix_batches_to_gpus=False, find_unused_parameters=False, fast_stat_sync=False, broadcast_buffers=False, nprocs_per_node=8, arch='unimol2_84M', max_epoch=60, max_update=30000, stop_time_hours=0, no_weight_decay_names='', clip_norm=1.0, per_sample_clip_norm=0, update_freq=[4], lr=[0.0001], stop_min_lr=-1, save_dir='/save', tmp_save_dir='/save/tmp', restore_file='checkpoint_last.pt', finetune_from_model=None, load_from_ema=False, reset_dataloader=False, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, optimizer_overrides='{}', save_interval=1, save_interval_updates=5000, keep_interval_updates=3, keep_last_epochs=-1, keep_best_checkpoints=-1, no_save=False, no_epoch_checkpoints=True, no_last_checkpoints=False, no_save_optimizer_state=False, best_checkpoint_metric='loss', maximize_best_checkpoint_metric=False, patience=-1, checkpoint_suffix='', droppath_prob=0.0, gaussian_std_width=1.0, gaussian_mean_start=0.0, gaussian_mean_stop=9.0, mode='train', data='/data', mask_prob=0.15, drop_feat_prob=0.5, mask_token_prob=0.15, leave_unmasked_prob=0.0, random_token_prob=0.0, noise_type='normal', noise=0.2, max_atoms=256, adam_betas='(0.9, 0.99)', adam_eps=1e-06, weight_decay=0.0001, force_anneal=None, warmup_updates=3000, warmup_ratio=-1.0, end_learning_rate=0.0, power=1.0, total_num_update=30000, masked_token_loss=1.0, masked_coord_loss=1.0, masked_dist_loss=1.0, no_seed_provided=False, encoder_layers=12, encoder_embed_dim=768, pair_embed_dim=512, pair_hidden_dim=64, encoder_ffn_embed_dim=768, encoder_attention_heads=48, dropout=0.1, emb_dropout=0.1, attention_dropout=0.1, activation_dropout=0.0, pooler_dropout=0.0, max_seq_len=512, activation_fn='gelu', pooler_activation_fn='tanh', post_ln=False, x_norm_loss=-1.0, delta_pair_repr_norm_loss=-1.0, notri=False)
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 05:34:58 | INFO | unicore_cli.train | UniMol2Model(
+  (embed_tokens): Embedding(128, 768, padding_idx=0)
+  (atom_feature): AtomFeature(
+    (atom_encoder): Embedding(512, 768, padding_idx=0)
+    (degree_encoder): Embedding(128, 768, padding_idx=0)
+    (vnode_encoder): Embedding(1, 768)
+  )
+  (edge_feature): EdgeFeature(
+    (edge_encoder): Embedding(64, 512, padding_idx=0)
+    (shorest_path_encoder): Embedding(512, 512, padding_idx=0)
+    (vnode_virtual_distance): Embedding(1, 512)
+  )
+  (encoder): TransformerEncoderWithPair(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+    (layers): ModuleList(
+      (0-11): 12 x TransformerEncoderLayer(
+        (dropout_module): Dropout()
+        (self_attn): Attention(
+          (linear_q): Linear(in_features=768, out_features=768, bias=False)
+          (linear_k): Linear(in_features=768, out_features=768, bias=False)
+          (linear_v): Linear(in_features=768, out_features=768, bias=False)
+          (linear_o): Linear(in_features=768, out_features=768, bias=True)
+          (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+        )
+        (self_attn_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): Transition(
+          (linear_1): Linear(in_features=768, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (x_layer_norm_opm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (opm): OuterProduct(
+          (linear_in): Linear(in_features=768, out_features=128, bias=True)
+          (linear_out): Linear(in_features=4096, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+        )
+        (pair_layer_norm_ffn): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_ffn): Transition(
+          (linear_1): Linear(in_features=512, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=512, out_features=512, bias=True)
+        )
+        (pair_layer_norm_trimul): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_tri_mul): TriangleMultiplication(
+          (linear_ab_p): Linear(in_features=512, out_features=128, bias=True)
+          (linear_ab_g): Linear(in_features=512, out_features=128, bias=True)
+          (linear_g): Linear(in_features=512, out_features=512, bias=True)
+          (linear_z): Linear(in_features=64, out_features=512, bias=True)
+          (layer_norm_out): LayerNorm(torch.Size([64]), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): MaskLMHead(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+  (se3_invariant_kernel): SE3InvariantKernel(
+    (gaussian): GaussianKernel(
+      (mul): Embedding(512, 1, padding_idx=0)
+      (bias): Embedding(512, 1, padding_idx=0)
+    )
+    (out_proj): NonLinear(
+      (layer1): Linear(in_features=128, out_features=128, bias=True)
+      (layer2): Linear(in_features=128, out_features=512, bias=True)
+    )
+  )
+  (movement_pred_head): MovementPredictionHead(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (q_proj): Linear(in_features=768, out_features=768, bias=False)
+    (k_proj): Linear(in_features=768, out_features=768, bias=False)
+    (v_proj): Linear(in_features=768, out_features=768, bias=False)
+    (force_proj1): Linear(in_features=768, out_features=1, bias=False)
+    (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+  )
+  (classification_heads): ModuleDict()
+)
+2026-09-28 05:34:58 | INFO | unicore_cli.train | task: UniMol2_Task
+2026-09-28 05:34:58 | INFO | unicore_cli.train | model: UniMol2Model
+2026-09-28 05:34:58 | INFO | unicore_cli.train | loss: UniMol2Loss
+2026-09-28 05:34:58 | INFO | unicore_cli.train | num. model params: 84,116,080 (num. trained: 84,116,080)
+2026-09-28 05:34:58 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   0: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   1: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   2: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   3: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   4: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   5: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   6: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | rank   7: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 05:34:58 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 05:34:58 | INFO | unicore_cli.train | training on 8 devices (GPUs)
+2026-09-28 05:34:58 | INFO | unicore_cli.train | batch size per device = 32
+2026-09-28 05:34:58 | INFO | unicore.trainer | Preparing to load checkpoint /save/checkpoint_last.pt
+2026-09-28 05:34:58 | INFO | unicore.trainer | Broadcast checkpoint from rank_0
+2026-09-28 05:34:59 | INFO | unicore.trainer | loading train data for epoch 1
+2026-09-28 05:35:19 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 05:35:30 | INFO | unicore.optim.adam | using FusedAdam
+2026-09-28 05:35:30 | INFO | unicore.trainer | Loaded checkpoint /save/checkpoint_last.pt (epoch 1 @ 10000 updates)
+2026-09-28 05:35:39 | INFO | unicore.trainer | begin training epoch 1
+2026-09-28 05:35:39 | INFO | unicore_cli.train | Start iterating over samples
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 05:36:51 | INFO | train_inner | epoch 001:  10118 / 10240 loss=0.09575, seq_len=37.825, masked_token_loss=0.01704, masked_acc=0.99361, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06571, masked_dist_loss=0.013, ups=0.75, bsz=1024, num_updates=10100, lr=7.37037e-05, gnorm=6.732, clip=98, loss_scale=32768, train_wall=68.71, gb_free=69.5, wall=0
+2026-09-28 05:37:48 | INFO | train_inner | epoch 001:  10218 / 10240 loss=0.09583, seq_len=37.864, masked_token_loss=0.01763, masked_acc=0.99318, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06542, masked_dist_loss=0.01278, ups=1.75, bsz=1024, num_updates=10200, lr=7.33333e-05, gnorm=7.496, clip=95, loss_scale=32768, train_wall=56.89, gb_free=69.5, wall=0
+2026-09-28 05:38:01 | INFO | unicore_cli.train | end of epoch 1 (average epoch stats below)
+2026-09-28 05:38:01 | INFO | train | epoch 001 | loss 0.29603 | seq_len 37.915 | masked_token_loss 0.17084 | masked_acc 0.95589 | masked_hit_at6 0.751 | target_hit_at6 0.732 | masked_coord_loss 0.09129 | masked_dist_loss 0.0339 | ups 1.64 | bsz 1024 | num_updates 10222 | lr 7.32519e-05 | gnorm 23.446 | clip 98.4 | loss_scale 32768 | train_wall 6105.76 | gb_free 69.5 | wall 0
+2026-09-28 05:38:01 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 2
+2026-09-28 05:38:22 | INFO | unicore.trainer | begin training epoch 2
+2026-09-28 05:38:22 | INFO | unicore_cli.train | Start iterating over samples
+2026-09-28 05:39:26 | INFO | train_inner | epoch 002:     78 / 10240 loss=0.09539, seq_len=37.841, masked_token_loss=0.01712, masked_acc=0.99336, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06544, masked_dist_loss=0.01283, ups=1.02, bsz=1021.4, num_updates=10300, lr=7.2963e-05, gnorm=5.881, clip=98, loss_scale=65536, train_wall=71.52, gb_free=69.5, wall=0
+2026-09-28 05:39:45 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 05:40:28 | INFO | train_inner | epoch 002:    179 / 10240 loss=0.09765, seq_len=37.936, masked_token_loss=0.01796, masked_acc=0.99305, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0663, masked_dist_loss=0.0134, ups=1.61, bsz=1024, num_updates=10400, lr=7.25926e-05, gnorm=8.632, clip=98, loss_scale=32768, train_wall=61.56, gb_free=66.1, wall=0
+2026-09-28 05:41:28 | INFO | train_inner | epoch 002:    279 / 10240 loss=0.09503, seq_len=37.929, masked_token_loss=0.01675, masked_acc=0.99369, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06545, masked_dist_loss=0.01283, ups=1.67, bsz=1024, num_updates=10500, lr=7.22222e-05, gnorm=5.972, clip=97, loss_scale=32768, train_wall=59.47, gb_free=66.1, wall=0
+2026-09-28 05:42:30 | INFO | train_inner | epoch 002:    379 / 10240 loss=0.09516, seq_len=37.953, masked_token_loss=0.01767, masked_acc=0.99329, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06497, masked_dist_loss=0.01253, ups=1.61, bsz=1024, num_updates=10600, lr=7.18519e-05, gnorm=6.091, clip=97, loss_scale=65536, train_wall=61.75, gb_free=64.1, wall=0
+2026-09-28 05:43:13 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 05:43:32 | INFO | train_inner | epoch 002:    480 / 10240 loss=0.09507, seq_len=37.949, masked_token_loss=0.0167, masked_acc=0.99344, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.06539, masked_dist_loss=0.01298, ups=1.61, bsz=1024, num_updates=10700, lr=7.14815e-05, gnorm=5.538, clip=97, loss_scale=32768, train_wall=61.66, gb_free=69.5, wall=0
+[rank6]:[E928 06:13:37.270967915 ProcessGroupNCCL.cpp:607] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800037 milliseconds before timing out.
+[rank6]:[E928 06:13:37.271208071 ProcessGroupNCCL.cpp:1664] [PG 0 (default_pg) Rank 6] Exception (either an error or timeout) detected by watchdog at work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 06:13:37.856891601 ProcessGroupNCCL.cpp:1709] [PG 0 (default_pg) Rank 6] Timeout at NCCL work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 06:13:37.856922973 ProcessGroupNCCL.cpp:621] [Rank 6] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[rank6]:[E928 06:13:37.856928129 ProcessGroupNCCL.cpp:627] [Rank 6] To avoid data inconsistency, we are taking the entire process down.
+[E928 06:13:37.858182783 ProcessGroupNCCL.cpp:1515] [PG 0 (default_pg) Rank 6] Process group watchdog thread terminated with exception: [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800037 milliseconds before timing out.
+Exception raised from checkTimeout at /opt/conda/conda-bld/pytorch_1720538456841/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:609 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x78d1e94a1f86 in /opt/conda/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::WorkNCCL::checkTimeout(std::optional<std::chrono::duration<long, std::ratio<1l, 1000l> > >) + 0x1d2 (0x78d198ffba42 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::watchdogHandler() + 0x233 (0x78d199002483 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x10c (0x78d19900486c in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: <unknown function> + 0xdbbf4 (0x78d1e90c7bf4 in /opt/conda/lib/python3.11/site-packages/torch/lib/../../../.././libstdc++.so.6)
+frame #5: <unknown function> + 0x94ac3 (0x78d1fbc2eac3 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #6: clone + 0x44 (0x78d1fbcbfbf4 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+
+W0928 06:13:38.353000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34443 closing signal SIGTERM
+W0928 06:13:38.354000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34444 closing signal SIGTERM
+W0928 06:13:38.354000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34445 closing signal SIGTERM
+W0928 06:13:38.354000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34446 closing signal SIGTERM
+W0928 06:13:38.355000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34447 closing signal SIGTERM
+W0928 06:13:38.355000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34448 closing signal SIGTERM
+W0928 06:13:38.355000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 34450 closing signal SIGTERM
+E0928 06:13:41.643000 140346960127808 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -6) local_rank: 6 (pid: 34449) of binary: /opt/conda/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.4.0', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+======================================================
+/opt/conda/bin/unicore-train FAILED
+------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_06:13:38
+  host      : localhost
+  rank      : 6 (local_rank: 6)
+  exitcode  : -6 (pid: 34449)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 34449
+======================================================
+=== attempt 5 2026-09-28T06:14:41Z
+2026-09-28 06:14:51 | INFO | unicore.distributed.utils | distributed init (rank 7): env://
+2026-09-28 06:14:51 | INFO | unicore.distributed.utils | distributed init (rank 0): env://
+2026-09-28 06:14:51 | INFO | unicore.distributed.utils | distributed init (rank 1): env://
+2026-09-28 06:14:51 | INFO | unicore.distributed.utils | initialized host localhost as rank 1
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | distributed init (rank 6): env://
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 6
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | distributed init (rank 2): env://
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 2
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | distributed init (rank 4): env://
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | distributed init (rank 5): env://
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | distributed init (rank 3): env://
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 5
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 4
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 3
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 7
+2026-09-28 06:14:52 | INFO | unicore.distributed.utils | initialized host localhost as rank 0
+2026-09-28 06:14:55 | INFO | unicore_cli.train | Namespace(no_progress_bar=False, log_interval=100, log_format='simple', tensorboard_logdir='', wandb_project='', wandb_name='', seed=1, cpu=False, fp16=True, bf16=False, bf16_sr=False, allreduce_fp32_grad=False, fp16_no_flatten_grads=False, fp16_init_scale=4, fp16_scale_window=256, fp16_scale_tolerance=0.0, min_loss_scale=0.0001, threshold_loss_scale=None, user_dir='./unimol2', empty_cache_freq=0, all_gather_list_size=16384, suppress_crashes=False, profile=False, ema_decay=-1.0, validate_with_ema=False, loss='unimol2', optimizer='adam', lr_scheduler='polynomial_decay', task='unimol2', num_workers=8, skip_invalid_size_inputs_valid_test=False, batch_size=32, required_batch_size_multiple=1, data_buffer_size=10, train_subset='train', valid_subset='valid', validate_interval=1, validate_interval_updates=5000, validate_after_updates=0, fixed_validation_seed=None, disable_validation=False, batch_size_valid=32, max_valid_steps=None, curriculum=0, distributed_world_size=8, distributed_rank=0, distributed_backend='nccl', distributed_init_method='env://', distributed_port=-1, device_id=0, distributed_no_spawn=True, ddp_backend='c10d', bucket_cap_mb=25, fix_batches_to_gpus=False, find_unused_parameters=False, fast_stat_sync=False, broadcast_buffers=False, nprocs_per_node=8, arch='unimol2_84M', max_epoch=60, max_update=30000, stop_time_hours=0, no_weight_decay_names='', clip_norm=1.0, per_sample_clip_norm=0, update_freq=[4], lr=[0.0001], stop_min_lr=-1, save_dir='/save', tmp_save_dir='/save/tmp', restore_file='checkpoint_last.pt', finetune_from_model=None, load_from_ema=False, reset_dataloader=False, reset_lr_scheduler=False, reset_meters=False, reset_optimizer=False, optimizer_overrides='{}', save_interval=1, save_interval_updates=5000, keep_interval_updates=3, keep_last_epochs=-1, keep_best_checkpoints=-1, no_save=False, no_epoch_checkpoints=True, no_last_checkpoints=False, no_save_optimizer_state=False, best_checkpoint_metric='loss', maximize_best_checkpoint_metric=False, patience=-1, checkpoint_suffix='', droppath_prob=0.0, gaussian_std_width=1.0, gaussian_mean_start=0.0, gaussian_mean_stop=9.0, mode='train', data='/data', mask_prob=0.15, drop_feat_prob=0.5, mask_token_prob=0.15, leave_unmasked_prob=0.0, random_token_prob=0.0, noise_type='normal', noise=0.2, max_atoms=256, adam_betas='(0.9, 0.99)', adam_eps=1e-06, weight_decay=0.0001, force_anneal=None, warmup_updates=3000, warmup_ratio=-1.0, end_learning_rate=0.0, power=1.0, total_num_update=30000, masked_token_loss=1.0, masked_coord_loss=1.0, masked_dist_loss=1.0, no_seed_provided=False, encoder_layers=12, encoder_embed_dim=768, pair_embed_dim=512, pair_hidden_dim=64, encoder_ffn_embed_dim=768, encoder_attention_heads=48, dropout=0.1, emb_dropout=0.1, attention_dropout=0.1, activation_dropout=0.0, pooler_dropout=0.0, max_seq_len=512, activation_fn='gelu', pooler_activation_fn='tanh', post_ln=False, x_norm_loss=-1.0, delta_pair_repr_norm_loss=-1.0, notri=False)
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | INFO | unicore_cli.train | UniMol2Model(
+  (embed_tokens): Embedding(128, 768, padding_idx=0)
+  (atom_feature): AtomFeature(
+    (atom_encoder): Embedding(512, 768, padding_idx=0)
+    (degree_encoder): Embedding(128, 768, padding_idx=0)
+    (vnode_encoder): Embedding(1, 768)
+  )
+  (edge_feature): EdgeFeature(
+    (edge_encoder): Embedding(64, 512, padding_idx=0)
+    (shorest_path_encoder): Embedding(512, 512, padding_idx=0)
+    (vnode_virtual_distance): Embedding(1, 512)
+  )
+  (encoder): TransformerEncoderWithPair(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+    (layers): ModuleList(
+      (0-11): 12 x TransformerEncoderLayer(
+        (dropout_module): Dropout()
+        (self_attn): Attention(
+          (linear_q): Linear(in_features=768, out_features=768, bias=False)
+          (linear_k): Linear(in_features=768, out_features=768, bias=False)
+          (linear_v): Linear(in_features=768, out_features=768, bias=False)
+          (linear_o): Linear(in_features=768, out_features=768, bias=True)
+          (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+        )
+        (self_attn_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (ffn): Transition(
+          (linear_1): Linear(in_features=768, out_features=768, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (final_layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (x_layer_norm_opm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+        (opm): OuterProduct(
+          (linear_in): Linear(in_features=768, out_features=128, bias=True)
+          (linear_out): Linear(in_features=4096, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+        )
+        (pair_layer_norm_ffn): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_ffn): Transition(
+          (linear_1): Linear(in_features=512, out_features=512, bias=True)
+          (act): GELU(approximate='none')
+          (linear_2): Linear(in_features=512, out_features=512, bias=True)
+        )
+        (pair_layer_norm_trimul): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+        (pair_tri_mul): TriangleMultiplication(
+          (linear_ab_p): Linear(in_features=512, out_features=128, bias=True)
+          (linear_ab_g): Linear(in_features=512, out_features=128, bias=True)
+          (linear_g): Linear(in_features=512, out_features=512, bias=True)
+          (linear_z): Linear(in_features=64, out_features=512, bias=True)
+          (layer_norm_out): LayerNorm(torch.Size([64]), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+  )
+  (lm_head): MaskLMHead(
+    (dense): Linear(in_features=768, out_features=768, bias=True)
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+  )
+  (se3_invariant_kernel): SE3InvariantKernel(
+    (gaussian): GaussianKernel(
+      (mul): Embedding(512, 1, padding_idx=0)
+      (bias): Embedding(512, 1, padding_idx=0)
+    )
+    (out_proj): NonLinear(
+      (layer1): Linear(in_features=128, out_features=128, bias=True)
+      (layer2): Linear(in_features=128, out_features=512, bias=True)
+    )
+  )
+  (movement_pred_head): MovementPredictionHead(
+    (layer_norm): LayerNorm(torch.Size([768]), eps=1e-05, elementwise_affine=True)
+    (q_proj): Linear(in_features=768, out_features=768, bias=False)
+    (k_proj): Linear(in_features=768, out_features=768, bias=False)
+    (v_proj): Linear(in_features=768, out_features=768, bias=False)
+    (force_proj1): Linear(in_features=768, out_features=1, bias=False)
+    (linear_bias): Linear(in_features=512, out_features=48, bias=True)
+    (pair_layer_norm): LayerNorm(torch.Size([512]), eps=1e-05, elementwise_affine=True)
+  )
+  (classification_heads): ModuleDict()
+)
+2026-09-28 06:14:56 | INFO | unicore_cli.train | task: UniMol2_Task
+2026-09-28 06:14:56 | INFO | unicore_cli.train | model: UniMol2Model
+2026-09-28 06:14:56 | INFO | unicore_cli.train | loss: UniMol2Loss
+2026-09-28 06:14:56 | INFO | unicore_cli.train | num. model params: 84,116,080 (num. trained: 84,116,080)
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | WARNING | unimol2.data.lmdb_dataset | please not that /data/valid_part_1.lmdb not exists.
+2026-09-28 06:14:56 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   0: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   1: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   2: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   3: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   4: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   5: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   6: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | rank   7: capabilities =  9.0  ; total memory = 79.189 GB ; name = NVIDIA H100 80GB HBM3                   
+2026-09-28 06:14:56 | INFO | unicore.utils | ***********************CUDA enviroments for all 8 workers***********************
+2026-09-28 06:14:56 | INFO | unicore_cli.train | training on 8 devices (GPUs)
+2026-09-28 06:14:56 | INFO | unicore_cli.train | batch size per device = 32
+2026-09-28 06:14:56 | INFO | unicore.trainer | Preparing to load checkpoint /save/checkpoint_last.pt
+2026-09-28 06:14:57 | INFO | unicore.trainer | Broadcast checkpoint from rank_0
+2026-09-28 06:14:57 | INFO | unicore.trainer | loading train data for epoch 1
+2026-09-28 06:15:19 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 1
+2026-09-28 06:15:30 | INFO | unicore.optim.adam | using FusedAdam
+2026-09-28 06:15:31 | INFO | unicore.trainer | Loaded checkpoint /save/checkpoint_last.pt (epoch 1 @ 10000 updates)
+2026-09-28 06:15:40 | INFO | unicore.trainer | begin training epoch 1
+2026-09-28 06:15:40 | INFO | unicore_cli.train | Start iterating over samples
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+/opt/conda/lib/python3.11/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+2026-09-28 06:16:46 | INFO | train_inner | epoch 001:  10118 / 10240 loss=0.09575, seq_len=37.825, masked_token_loss=0.01704, masked_acc=0.99361, masked_hit_at6=0.733, target_hit_at6=0.732, masked_coord_loss=0.06571, masked_dist_loss=0.013, ups=0.77, bsz=1024, num_updates=10100, lr=7.37037e-05, gnorm=6.732, clip=98, loss_scale=32768, train_wall=62.65, gb_free=69.5, wall=0
+2026-09-28 06:17:45 | INFO | train_inner | epoch 001:  10218 / 10240 loss=0.09583, seq_len=37.864, masked_token_loss=0.01763, masked_acc=0.99318, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06542, masked_dist_loss=0.01278, ups=1.71, bsz=1024, num_updates=10200, lr=7.33333e-05, gnorm=7.496, clip=95, loss_scale=32768, train_wall=58.06, gb_free=69.5, wall=0
+2026-09-28 06:17:57 | INFO | unicore_cli.train | end of epoch 1 (average epoch stats below)
+2026-09-28 06:17:57 | INFO | train | epoch 001 | loss 0.29603 | seq_len 37.915 | masked_token_loss 0.17084 | masked_acc 0.95589 | masked_hit_at6 0.751 | target_hit_at6 0.732 | masked_coord_loss 0.09129 | masked_dist_loss 0.0339 | ups 1.64 | bsz 1024 | num_updates 10222 | lr 7.32519e-05 | gnorm 23.446 | clip 98.4 | loss_scale 32768 | train_wall 6100.37 | gb_free 69.5 | wall 0
+2026-09-28 06:17:57 | INFO | unicore.tasks.unicore_task | get EpochBatchIterator for epoch 2
+2026-09-28 06:18:22 | INFO | unicore.trainer | begin training epoch 2
+2026-09-28 06:18:22 | INFO | unicore_cli.train | Start iterating over samples
+2026-09-28 06:19:16 | INFO | train_inner | epoch 002:     78 / 10240 loss=0.09539, seq_len=37.841, masked_token_loss=0.01712, masked_acc=0.99336, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06544, masked_dist_loss=0.01283, ups=1.1, bsz=1021.4, num_updates=10300, lr=7.2963e-05, gnorm=5.881, clip=98, loss_scale=65536, train_wall=61.38, gb_free=69.5, wall=0
+2026-09-28 06:19:34 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 06:20:18 | INFO | train_inner | epoch 002:    179 / 10240 loss=0.09765, seq_len=37.936, masked_token_loss=0.01796, masked_acc=0.99305, masked_hit_at6=0.732, target_hit_at6=0.731, masked_coord_loss=0.0663, masked_dist_loss=0.0134, ups=1.63, bsz=1024, num_updates=10400, lr=7.25926e-05, gnorm=8.632, clip=98, loss_scale=32768, train_wall=61.07, gb_free=66.1, wall=0
+2026-09-28 06:21:18 | INFO | train_inner | epoch 002:    279 / 10240 loss=0.09503, seq_len=37.929, masked_token_loss=0.01675, masked_acc=0.99369, masked_hit_at6=0.732, target_hit_at6=0.732, masked_coord_loss=0.06545, masked_dist_loss=0.01283, ups=1.66, bsz=1024, num_updates=10500, lr=7.22222e-05, gnorm=5.972, clip=97, loss_scale=32768, train_wall=59.88, gb_free=66.1, wall=0
+2026-09-28 06:22:20 | INFO | train_inner | epoch 002:    379 / 10240 loss=0.09516, seq_len=37.953, masked_token_loss=0.01767, masked_acc=0.99329, masked_hit_at6=0.731, target_hit_at6=0.731, masked_coord_loss=0.06497, masked_dist_loss=0.01253, ups=1.62, bsz=1024, num_updates=10600, lr=7.18519e-05, gnorm=6.091, clip=97, loss_scale=65536, train_wall=61.32, gb_free=64.1, wall=0
+2026-09-28 06:23:02 | INFO | unicore.trainer | NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32768.0
+2026-09-28 06:23:21 | INFO | train_inner | epoch 002:    480 / 10240 loss=0.09507, seq_len=37.949, masked_token_loss=0.0167, masked_acc=0.99344, masked_hit_at6=0.734, target_hit_at6=0.733, masked_coord_loss=0.06539, masked_dist_loss=0.01298, ups=1.64, bsz=1024, num_updates=10700, lr=7.14815e-05, gnorm=5.538, clip=97, loss_scale=32768, train_wall=60.65, gb_free=69.5, wall=0
+[rank6]:[E928 06:53:25.423067053 ProcessGroupNCCL.cpp:607] [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800023 milliseconds before timing out.
+[rank6]:[E928 06:53:25.423503430 ProcessGroupNCCL.cpp:1664] [PG 0 (default_pg) Rank 6] Exception (either an error or timeout) detected by watchdog at work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 06:53:25.001022417 ProcessGroupNCCL.cpp:1709] [PG 0 (default_pg) Rank 6] Timeout at NCCL work: 8373, last enqueued NCCL work: 8373, last completed NCCL work: 8372.
+[rank6]:[E928 06:53:25.001061625 ProcessGroupNCCL.cpp:621] [Rank 6] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[rank6]:[E928 06:53:25.001066753 ProcessGroupNCCL.cpp:627] [Rank 6] To avoid data inconsistency, we are taking the entire process down.
+[E928 06:53:25.002361863 ProcessGroupNCCL.cpp:1515] [PG 0 (default_pg) Rank 6] Process group watchdog thread terminated with exception: [Rank 6] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=8373, OpType=ALLREDUCE, NumelIn=1, NumelOut=1, Timeout(ms)=1800000) ran for 1800023 milliseconds before timing out.
+Exception raised from checkTimeout at /opt/conda/conda-bld/pytorch_1720538456841/work/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:609 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x96 (0x70289b2d2f86 in /opt/conda/lib/python3.11/site-packages/torch/lib/libc10.so)
+frame #1: c10d::ProcessGroupNCCL::WorkNCCL::checkTimeout(std::optional<std::chrono::duration<long, std::ratio<1l, 1000l> > >) + 0x1d2 (0x70284adfba42 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #2: c10d::ProcessGroupNCCL::watchdogHandler() + 0x233 (0x70284ae02483 in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #3: c10d::ProcessGroupNCCL::ncclCommWatchdog() + 0x10c (0x70284ae0486c in /opt/conda/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so)
+frame #4: <unknown function> + 0xdbbf4 (0x70289aec7bf4 in /opt/conda/lib/python3.11/site-packages/torch/lib/../../../.././libstdc++.so.6)
+frame #5: <unknown function> + 0x94ac3 (0x7028adad3ac3 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+frame #6: clone + 0x44 (0x7028adb64bf4 in /usr/lib/x86_64-linux-gnu/libc.so.6)
+
+W0928 06:53:26.404000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43097 closing signal SIGTERM
+W0928 06:53:26.405000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43098 closing signal SIGTERM
+W0928 06:53:26.405000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43099 closing signal SIGTERM
+W0928 06:53:26.406000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43100 closing signal SIGTERM
+W0928 06:53:26.406000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43101 closing signal SIGTERM
+W0928 06:53:26.406000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43102 closing signal SIGTERM
+W0928 06:53:26.407000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 43104 closing signal SIGTERM
+E0928 06:53:29.011000 138844843853632 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -6) local_rank: 6 (pid: 43103) of binary: /opt/conda/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/bin/torchrun", line 33, in <module>
+    sys.exit(load_entry_point('torch==2.4.0', 'console_scripts', 'torchrun')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+======================================================
+/opt/conda/bin/unicore-train FAILED
+------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_06:53:26
+  host      : localhost
+  rank      : 6 (local_rank: 6)
+  exitcode  : -6 (pid: 43103)
+  error_file: <N/A>
+  traceback : Signal 6 (SIGABRT) received by PID 43103
+======================================================

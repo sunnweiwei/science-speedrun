@@ -28,9 +28,10 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [protein-folding-prediction](tasks/protein-folding-prediction) | one from-scratch biomolecular folding model for all nine FoldBench tracks (monomers, interfaces, ligands) | 8 GPU, 48 h | 0.0003 | 0.037 | 0.557 | HF release, 73 GB |
 | [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1 GPU + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
 | [crystal-structure-generation](tasks/crystal-structure-generation) | unconditional crystal-structure generator trained from scratch on MP-20, maximizing stable/metastable, unique and novel (SUN + MetaSUN) structures under LeMat-GenBench | 8 GPU, 24 h | 0.157 | 0.208 | — | MP-20 + scorer assets (~25 GB; gated `facebook/UMA` needs HF_TOKEN) |
+| [molecular-pretraining-transfer](tasks/molecular-pretraining-transfer) | ≤90M molecular encoder pretrained from scratch on the leakage-filtered Uni-Mol2 corpus, transferred to 24 tasks; test MA-RAE QM9 / COMPAS-1D / ExpansionRx / ASAP (lower is better) | 8 GPU, 12 h | 0.186 / 0.164 / 0.735 / 0.657 | 0.183 / 0.166 / 0.744 / 0.636 | 0.192 / 0.121 / 0.668 / 0.644 | rebuilt from pinned public sources (179 GiB download, 173 GiB release) |
 
 Notes on the table:
-- Rewards are raw task metrics; larger is better.
+- Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
 - Baselines were reproduced in this setup. Their numbers, logs and validation outputs are in each task's `environment/baseline/<name>/` (`RESULTS.md`, `reproduction/`). Agents are told not to retrain them.
 - Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry: about 3.5 h on one GPU.
 - probabilistic-global-weather was tested on the CMU Babel cluster: a 6 h Codex session on two L40S. The agent checked its
@@ -42,6 +43,10 @@ Notes on the table:
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
   under that rule.
+- molecular-pretraining-transfer was tested on the CMU Babel cluster: a 5 h Codex session on two L40S. The agent used
+  the baseline's logged numbers instead of retraining it, tested a hard-mask objective, a narrower 80.2M pair track and
+  a readout encoder against matched controls, sped up its trainer, and published an encoder on par with the 5.1 h,
+  8-H100 baseline (better on COMPAS-1D and ExpansionRx). The verifier ran all 24 fine-tunes in 44 min on four L40.
 - crystal-structure-generation was tested on the CMU Babel cluster: a 6 h Codex session on two L40S. The agent
   resampled MP-20 toward low-hull, multinary rows and published a from-scratch candidate; it scored 0.157 against
   the 2,000-epoch starter's 0.208 (5.4 h on six H100s). The verifier relaxes all 2,500 structures with UMA and scores

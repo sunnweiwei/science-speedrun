@@ -1,0 +1,44 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/molecular-pretraining-transfer"
+version = "2.0.0"
+description = "Pretrain a molecular encoder from scratch on the Uni-Mol2 corpus that transfers to 24 quantum-chemistry and ADMET tasks under a fixed short fine-tune."
+authors = [{ name = "pj20" }, { name = "sunnweiwei" }]
+keywords = ["model-development", "chemistry", "molecular-pretraining", "uni-mol2", "admet", "offline"]
+
+[metadata]
+data_status = "public sources at pinned revisions; environment/data/materialize.sh rebuilds the release (about 190 GB download)"
+unimol2_dataset_revision = "4748959698093f813731c04bfac8308031e2efdc"
+unimol_code_revision = "90f52c41299a1a582da0f9765e9f87aa21faa16a"
+unicore_code_revision = "ace6fae1c8479a9751f2bb1e1d6e4047427bc134"
+expansionrx_revision = "6b898ccc43d10d25b230fb09e22a6e30c30022b5"
+compas_revision = "72e61e3d2bb1a22ecc333ad0e12b92b6ae6b6a04"
+evaluation_protocol = "mpt-v2/fast-24task-15ep"
+reward = "raw metrics only (valid, per-group MA-RAE and mean Spearman, per-task MAE/RAE/R2/Spearman/Kendall); no aggregate yet"
+
+[agent]
+timeout_sec = 43200.0          # external development budget (8 x H100 x 12 h); the agent is not told
+
+[environment]
+network_mode = "no-network"
+cpus = 96
+memory_mb = 786432
+storage_mb = 409600
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 14400.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 262144
+storage_mb = 102400
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

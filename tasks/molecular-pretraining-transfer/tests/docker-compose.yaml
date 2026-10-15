@@ -1,0 +1,41 @@
+# Verifier (TASK_STANDARD.md). `main` fine-tunes the frozen package on the fine-tune data and the test molecules
+# (labels removed) and seals the predictions; `grader` holds the test labels, scores the sealed predictions and never
+# runs package code. Both are networkless. TASK_DATA_DIR / TASK_PRIVATE_DIR: the materialized release
+# (environment/data/MATERIALIZE.md).
+x-ro: &ro
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: .
+      target: main
+    gpus: all
+    network_mode: none
+    shm_size: "64gb"
+    volumes:
+      - {<<: *ro, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/downstream", target: /benchmark/downstream}
+      - {<<: *ro, source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release}/verifier/test-inputs", target: /benchmark/test-inputs}
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/downstream/manifest.json && test -d /benchmark/test-inputs/qm9dft_v2 && test ! -e /labels"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  grader:
+    build:
+      context: .
+      target: grader
+    network_mode: none
+    command: ["python3", "/tests/grader.py", "--sealed", "/sealed/run", "--labels", "/labels", "--output", "/sealed/results"]
+    volumes:
+      - {<<: *ro, source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release}/private/labels", target: /labels}
+      - sealed:/sealed

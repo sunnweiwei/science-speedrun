@@ -27,6 +27,7 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [probabilistic-global-weather](tasks/probabilistic-global-weather) | 15-day global ensemble weather forecasting model (WeatherNext2-style) from random initialization | 4 GPU, 24.5 h | 0.108 | 0.674 | — | HF release, ~206 GB |
 | [protein-folding-prediction](tasks/protein-folding-prediction) | one from-scratch biomolecular folding model for all nine FoldBench tracks (monomers, interfaces, ligands) | 8 GPU, 48 h | 0.0003 | 0.037 | 0.557 | HF release, 73 GB |
 | [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1 GPU + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
+| [crystal-structure-generation](tasks/crystal-structure-generation) | unconditional crystal-structure generator trained from scratch on MP-20, maximizing stable/metastable, unique and novel (SUN + MetaSUN) structures under LeMat-GenBench | 8 GPU, 24 h | 0.157 | 0.208 | — | MP-20 + scorer assets (~25 GB; gated `facebook/UMA` needs HF_TOKEN) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better.
@@ -41,6 +42,10 @@ Notes on the table:
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
   under that rule.
+- crystal-structure-generation was tested on the CMU Babel cluster: a 6 h Codex session on two L40S. The agent
+  resampled MP-20 toward low-hull, multinary rows and published a from-scratch candidate; it scored 0.157 against
+  the 2,000-epoch starter's 0.208 (5.4 h on six H100s). The verifier relaxes all 2,500 structures with UMA and scores
+  them with LeMat-GenBench; with several relaxation workers per GPU it ran in 2 h 9 min on four RTX 6000 Ada.
 - tokamak-magnetic-control was tested on the CMU Babel cluster (Apptainer instead of Docker): an 11 h Codex session on
   one L40S with 64 CPUs. Its verifier is CPU-bound: 53 min for the `shape_vc` baseline and 90 min for the agent's
   package on 40 CPUs (35 parallel episodes). Repeated scoring of one package varies by about 0.015 (P4 void

@@ -1,0 +1,36 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index efdc0b1..5358c34 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -33,7 +33,6 @@ dependencies = [
+     "huggingface_hub ~= 1.19",
+     "pyarrow ~= 23.0",
+     "mace-torch ~= 0.3",
+-    "torch-sim-atomistic ~= 0.5"
+ ]
+ 
+ [project.scripts]
+diff --git a/omg/omg_trainer.py b/omg/omg_trainer.py
+index 6324dd3..34bdb29 100644
+--- a/omg/omg_trainer.py
++++ b/omg/omg_trainer.py
+@@ -32,7 +32,6 @@ from omg.si.corrector import PeriodicBoundaryConditionsCorrector
+ from omg.utils import convert_ase_atoms_to_data, prefixed_stdout, xyz_reader
+ from omg.analysis import (get_coordination_numbers, get_coordination_numbers_species, get_cov, get_space_group,
+                           get_volume_frac, match_rmsds, metre_rmsds, ValidAtoms)
+-from omg.omg_irl.rewards.lemat_genbench_energy_above_hull import get_energy_above_hull
+ 
+ 
+ class OMGTrainer(Trainer):
+@@ -1310,6 +1309,11 @@ class OMGTrainer(Trainer):
+         :raises ValueError:
+             If the result_name does not end with .json.
+         """
++        # This optional analysis command depends on OMatG-IRL and TorchSim.
++        # Import it only when the command is used so ordinary fit/predict does
++        # not require TorchSim.
++        from omg.omg_irl.rewards.lemat_genbench_energy_above_hull import get_energy_above_hull
++
+         with warnings.catch_warnings(), prefixed_stdout(prefix="[MACE] "):
+             warnings.simplefilter("ignore", category=UserWarning)
+             from mace.calculators import mace_mp

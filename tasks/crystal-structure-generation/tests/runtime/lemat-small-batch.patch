@@ -1,0 +1,12 @@
+diff --git a/src/lemat_genbench/utils/distribution_utils.py b/src/lemat_genbench/utils/distribution_utils.py
+--- a/src/lemat_genbench/utils/distribution_utils.py
++++ b/src/lemat_genbench/utils/distribution_utils.py
+@@ -578,3 +578,8 @@
+ def compute_frechetdist_with_cache(mu1_cached, sigma1_cached, generated_crystals):
+     """Compute Fréchet distance using pre-computed reference statistics."""
++    # Sample covariance is undefined for a singleton. Some LAPACK builds hang
++    # in sqrtm on the resulting NaNs; the caller already reports ValueError as
++    # an unavailable diagnostic. Well-posed metrics are unchanged.
++    if len(generated_crystals) < 2:
++        raise ValueError("Frechet distance needs at least two generated structures")
+     Y = np.stack(generated_crystals, axis=0)

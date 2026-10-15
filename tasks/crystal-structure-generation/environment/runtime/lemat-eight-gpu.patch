@@ -1,0 +1,104 @@
+diff --git a/src/lemat_genbench/metrics/novelty_metric.py b/src/lemat_genbench/metrics/novelty_metric.py
+index 266d8d4..3383b05 100644
+--- a/src/lemat_genbench/metrics/novelty_metric.py
++++ b/src/lemat_genbench/metrics/novelty_metric.py
+@@ -207,7 +207,8 @@ class NoveltyMetric(BaseMetric):
+                     "LeMaterial/LeMat-Bulk",
+                     "compatible_pbe",
+                     split="train",
+-                    columns=[
++                ).select_columns(
++                    [
+                         "elements",
+                         "immutable_id",
+                         "chemical_formula_descriptive",
+@@ -215,7 +216,7 @@ class NoveltyMetric(BaseMetric):
+                         "species_at_sites",
+                         "cartesian_site_positions",
+                         "lattice_vectors",
+-                    ],
++                    ]
+                 )
+ 
+                 all_compositions = get_all_compositions()
+diff --git a/src/lemat_genbench/preprocess/multi_mlip_preprocess.py b/src/lemat_genbench/preprocess/multi_mlip_preprocess.py
+index 5d4f610..e25b0ec 100644
+--- a/src/lemat_genbench/preprocess/multi_mlip_preprocess.py
++++ b/src/lemat_genbench/preprocess/multi_mlip_preprocess.py
+@@ -8,6 +8,7 @@ results from multiple MLIPs.
+ 
+ import gc
+ import multiprocessing
++import os
+ import warnings
+ from dataclasses import dataclass, field
+ from typing import Any, Dict, List
+@@ -225,9 +226,12 @@ class MultiMLIPStabilityPreprocessor(BasePreprocessor):
+         timeout: int = 300,
+         name: str = None,
+         description: str = None,
+-        n_jobs: int = 4,  # Use 4 cores to balance speed and memory
++        n_jobs: int | None = None,
+     ):
+-        # Set defaults
++        # Set defaults. CrystalGen maps one spawned worker to each visible GPU;
++        # upstream behavior remains four workers when the environment is unset.
++        if n_jobs is None:
++            n_jobs = int(os.environ.get("CRYSTALGEN_LEMAT_GPU_WORKERS", "4"))
+         if mlip_names is None:
+             mlip_names = ["orb", "mace", "uma"]
+         if mlip_configs is None:
+@@ -317,6 +321,17 @@ class MultiMLIPStabilityPreprocessor(BasePreprocessor):
+         Structure
+             The processed Structure with calculated properties from all MLIPs
+         """
++        gpu_workers = int(os.environ.get("CRYSTALGEN_LEMAT_GPU_WORKERS", "0"))
++        gpu_index = None
++        if gpu_workers > 0 and torch.cuda.is_available():
++            # Bind this worker to one GPU by index. Rewriting CUDA_VISIBLE_DEVICES
++            # here would be too late: the driver reads it once, at first CUDA
++            # initialisation, which import/unpickling in the spawned worker has
++            # already triggered, so every worker would keep physical device 0.
++            identity = multiprocessing.current_process()._identity
++            worker_index = (identity[0] - 1) if identity else 0
++            gpu_index = worker_index % torch.cuda.device_count()
++            torch.cuda.set_device(gpu_index)
+         try:
+             # Create calculators locally to avoid pickling issues
+             calculators = {}
+@@ -340,6 +355,16 @@ class MultiMLIPStabilityPreprocessor(BasePreprocessor):
+                     # Merge user config with defaults (user config takes precedence)
+                     final_config = {**default_config, **mlip_config}
+ 
++                    if gpu_index is not None:
++                        # FairChem UMA accepts only the generic "cuda" token
++                        # (anything else is treated as CPU) and resolves it to
++                        # the current device; ORB and MACE take an explicit
++                        # index so their internal tensors never fall back to
++                        # device 0.
++                        final_config["device"] = (
++                            "cuda" if mlip_name == "uma" else f"cuda:{gpu_index}"
++                        )
++
+                     calculators[mlip_name] = _get_or_create_calculator(
+                         mlip_name, final_config
+                     )
+@@ -375,9 +400,17 @@ class MultiMLIPStabilityPreprocessor(BasePreprocessor):
+ 
+                 try:
+                     # Run MLIP-specific calculations with timeout
++                    # func_timeout runs the calculation in a fresh thread, and
++                    # torch's current device is thread-local, so re-select the
++                    # worker's GPU there before any "cuda" tensor is created.
++                    def _run_on_worker_gpu(*call_args):
++                        if gpu_index is not None:
++                            torch.cuda.set_device(gpu_index)
++                        return _process_single_mlip(*call_args)
++
+                     mlip_result = func_timeout(
+                         timeout,
+-                        _process_single_mlip,
++                        _run_on_worker_gpu,
+                         args=[
+                             structure,
+                             calculator,

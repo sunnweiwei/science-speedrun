@@ -1,0 +1,41 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/crystal-structure-generation"
+version = "0.3.0"
+description = "Develop one from-scratch MP-20 crystal generator, scored on leaderboard-compatible unconditional generation."
+authors = [{ name = "junlin-star" }]
+keywords = ["model-development", "materials", "crystal-generation", "offline"]
+
+[metadata]
+data_status = "MP-20 is public; full evaluation requires operator-prepared LeMat assets and approved UMA access"
+mp20_source_revision = "f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea"
+omg_source_revision = "ed80cb86fd69d4f4d14164c6635b0a8d4939b34f"
+lemat_genbench_revision = "58e6eae3e4a6c87c22171cf069123ecc4e2fa7e6"
+evaluation_protocol = "crystalgen-evaluation/v2-uma200"
+
+[agent]
+timeout_sec = 86400.0
+
+[environment]
+network_mode = "no-network"
+cpus = 32
+memory_mb = 262144
+storage_mb = 102400
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 259200.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 262144
+storage_mb = 102400
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

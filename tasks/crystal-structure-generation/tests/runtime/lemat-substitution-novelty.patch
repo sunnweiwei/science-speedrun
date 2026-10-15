@@ -1,0 +1,192 @@
+diff --git a/src/lemat_genbench/fingerprinting/substitution.py b/src/lemat_genbench/fingerprinting/substitution.py
+new file mode 100644
+index 0000000..362d434
+--- /dev/null
++++ b/src/lemat_genbench/fingerprinting/substitution.py
+@@ -0,0 +1,103 @@
++"""Disorder-aware matching against ordered references (CrystalGen task patch).
++
++A dilute substitution of a known compound, such as one Gd on a Dy site of DyCu, is an ordered
++approximant of a solid solution rather than a new material (MatterGen, Nature 2025, matches with
++compositional disorder for this reason). LeMat-Bulk holds only ordered DFT entries, so MatterGen's
++disordered matcher cannot apply directly: an ordered variant has a different formula from its
++ordered parent. Instead, a structure is compared with the structures obtained by merging a dilute
++substituent back into its host.
++
++- Two elements can substitute under MatterGen's modified Hume-Rothery rule: relative atomic-radius
++  difference <= 0.3 and electronegativity difference <= 1.0
++  (mattergen/evaluation/utils/structure_matcher.py, MIT).
++- A substitution is dilute when the substituent holds at most a quarter of the sites the pair
++  occupies. On MP-20 test materials, only 8 % are such a variant of another LeMat-Bulk entry (23 %
++  at one third, 43 % at one half), so a quarter separates doping from distinct compounds.
++"""
++
++from itertools import combinations
++
++import numpy as np
++from pymatgen.core import Element, Structure
++
++RADIUS_TOLERANCE = 0.3
++ELECTRONEGATIVITY_TOLERANCE = 1.0
++DILUTE_FRACTION = 0.25
++
++
++def substitutable(first: Element, second: Element) -> bool:
++    try:
++        radius = abs(first.atomic_radius - second.atomic_radius) / np.mean(
++            [first.atomic_radius, second.atomic_radius]
++        )
++        return radius <= RADIUS_TOLERANCE and abs(first.X - second.X) <= ELECTRONEGATIVITY_TOLERANCE
++    except (TypeError, ValueError):
++        return False
++
++
++def dissimilarity(first: Element, second: Element) -> float:
++    """Distance within the substitution rule: 0 for identical elements, at most 2 when substitutable."""
++    radius = abs(first.atomic_radius - second.atomic_radius) / np.mean(
++        [first.atomic_radius, second.atomic_radius]
++    )
++    return radius / RADIUS_TOLERANCE + abs(first.X - second.X) / ELECTRONEGATIVITY_TOLERANCE
++
++
++def _dilute_pairs(structure: Structure) -> list[tuple[Element, Element]]:
++    """(host, substituent) pairs where the substituent is dilute, the most similar host first."""
++    composition = structure.composition
++    pairs = []
++    for first, second in combinations(sorted(composition.elements), 2):
++        if not substitutable(first, second):
++            continue
++        for host, guest in ((first, second), (second, first)):
++            share = composition[guest] / (composition[host] + composition[guest])
++            if share <= DILUTE_FRACTION + 1e-9:
++                pairs.append((dissimilarity(host, guest), share, str(host), str(guest), host, guest))
++    return [(host, guest) for *_, host, guest in sorted(pairs, key=lambda item: item[:4])]
++
++
++def dilute_variants(structure: Structure) -> list[Structure]:
++    """Each dilute substituent merged into its host, one pair at a time, then all together."""
++    variants = []
++    for host, guest in _dilute_pairs(structure):
++        variant = structure.copy()
++        variant.replace_species({guest: host})
++        variants.append(variant)
++    merged = canonical(structure)
++    if variants and merged.composition != variants[0].composition:
++        variants.append(merged)
++    return variants
++
++
++def canonical(structure: Structure) -> Structure:
++    """Merge dilute substituents into their hosts until none is left."""
++    current = structure
++    for _ in range(len(structure.composition.elements)):
++        pairs = _dilute_pairs(current)
++        if not pairs:
++            break
++        host, guest = pairs[0]
++        current = current.copy()
++        current.replace_species({guest: host})
++    return current
++
++
++class DisorderAwareMatcher:
++    """Wrap a pairwise matcher: two structures also match when their canonical forms do."""
++
++    def __init__(self, matcher):
++        self.matcher = matcher
++
++    def __getattr__(self, name):
++        return getattr(self.matcher, name)
++
++    def is_equivalent(self, first: Structure, second: Structure, *args, **kwargs) -> bool:
++        if self.matcher.is_equivalent(first, second, *args, **kwargs):
++            return True
++        first_canonical, second_canonical = canonical(first), canonical(second)
++        if first_canonical is first and second_canonical is second:
++            return False
++        if first_canonical.composition.reduced_composition != second_canonical.composition.reduced_composition:
++            return False
++        return self.matcher.is_equivalent(first_canonical, second_canonical, *args, **kwargs)
+diff --git a/src/lemat_genbench/metrics/novelty_metric.py b/src/lemat_genbench/metrics/novelty_metric.py
+index 3383b05..ebcb0ee 100644
+--- a/src/lemat_genbench/metrics/novelty_metric.py
++++ b/src/lemat_genbench/metrics/novelty_metric.py
+@@ -20,6 +20,7 @@ from lemat_genbench.fingerprinting.encode_compositions import (
+     lematbulk_item_to_structure,
+ )
+ from lemat_genbench.fingerprinting.utils import get_fingerprint, get_fingerprinter
++from lemat_genbench.fingerprinting.substitution import dilute_variants
+ from lemat_genbench.metrics.base import BaseMetric, MetricConfig
+ from lemat_genbench.utils.logging import logger
+ 
+@@ -342,26 +343,28 @@ class NoveltyMetric(BaseMetric):
+ 
+             else:
+                 # For comparison-based matchers
+-                df_filtered = filter_df(
+-                    dataset_information["dataset_dataframe"],
+-                    dataset_information["all_compositions"],
+-                    structure,
+-                )
+-                dataset_select = dataset_information["dataset"].select(
+-                    dataset_information["dataset_dataframe"].loc[df_filtered.index][
+-                        "index_number"
+-                    ]
+-                )
+-                is_equivalent = False
+-
+-                for item in tqdm(dataset_select, disable=not verbose):
+-                    ref_structure = lematbulk_item_to_structure(item)
+-                    _is_equivalent = fingerprinter.is_equivalent(
+-                        structure, ref_structure
++                def known(candidate):
++                    df_filtered = filter_df(
++                        dataset_information["dataset_dataframe"],
++                        dataset_information["all_compositions"],
++                        candidate,
+                     )
+-                    is_equivalent = is_equivalent or _is_equivalent
+-
+-                is_novel = not is_equivalent
++                    dataset_select = dataset_information["dataset"].select(
++                        dataset_information["dataset_dataframe"].loc[df_filtered.index][
++                            "index_number"
++                        ]
++                    )
++                    for item in tqdm(dataset_select, disable=not verbose):
++                        ref_structure = lematbulk_item_to_structure(item)
++                        if fingerprinter.is_equivalent(candidate, ref_structure):
++                            return True
++                    return False
++
++                # CrystalGen task patch: a dilute substitution of a known compound is not novel
++                # (lemat_genbench.fingerprinting.substitution).
++                is_novel = not known(structure) and not any(
++                    known(variant) for variant in dilute_variants(structure)
++                )
+ 
+             return 1.0 if is_novel else 0.0
+ 
+diff --git a/src/lemat_genbench/metrics/uniqueness_metric.py b/src/lemat_genbench/metrics/uniqueness_metric.py
+index 545f7de..fb6296b 100644
+--- a/src/lemat_genbench/metrics/uniqueness_metric.py
++++ b/src/lemat_genbench/metrics/uniqueness_metric.py
+@@ -13,6 +13,7 @@ from pymatgen.core import Structure
+ from tqdm import tqdm
+ 
+ from lemat_genbench.fingerprinting.utils import get_fingerprint, get_fingerprinter
++from lemat_genbench.fingerprinting.substitution import DisorderAwareMatcher
+ from lemat_genbench.metrics.base import BaseMetric, MetricConfig, MetricResult
+ from lemat_genbench.utils.logging import logger
+ 
+@@ -93,6 +94,10 @@ class UniquenessMetric(BaseMetric):
+         """Initialize the fingerprinting method."""
+         try:
+             self.fingerprinter = get_fingerprinter(self.config.fingerprint_method)
++            if "structure-matcher" in self.config.fingerprint_method.lower():
++                # CrystalGen task patch: dilute substitutions of one another are not unique
++                # (lemat_genbench.fingerprinting.substitution).
++                self.fingerprinter = DisorderAwareMatcher(self.fingerprinter)
+         except ValueError as e:
+             raise ValueError(
+                 f"Unknown fingerprint method: {self.config.fingerprint_method}. "

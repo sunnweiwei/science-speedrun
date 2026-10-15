@@ -49,6 +49,14 @@ case "$task" in
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;
+  crystal-structure-generation)           # MP-20, scorer assets (gated facebook/UMA: HF_TOKEN; MLIP hull license reviewed), sealed final suite
+    $DOCKER build -q -f "$t/environment/Dockerfile" -t crystalgen-prepare "$t"
+    cg() { $DOCKER run --rm ${HF_TOKEN:+-e HF_TOKEN} -v "$t:/task:ro" -v "$root:$root" crystalgen-prepare "$@"; }
+    cg bash /task/environment/data/materialize.sh "$root/mp20"
+    cg bash /task/environment/data/scorer_assets/materialize.sh "$root/scorer-assets" --acknowledge-hull-license-review --warm-mlips
+    mkdir -p "$root/private"; [ -s "$root/private/request-seed" ] || head -c 64 /dev/urandom > "$root/private/request-seed"
+    cg python3 /task/tests/requests/build_suite.py --seed-file "$root/private/request-seed" --output-root "$root/final-suite"
+    data=$root; private=$root ;;
   tokamak-magnetic-control)               # no data: the machine description is vendored into the images
     data=$root; private=$root ;;
   *) echo "No prepare recipe for $task; follow its environment/data/MATERIALIZE.md" >&2; exit 1 ;;

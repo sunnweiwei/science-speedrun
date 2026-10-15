@@ -1,0 +1,71 @@
+# Verifier (TASK_STANDARD.md). The final-suite directory under TASK_PRIVATE_DIR holds the
+# operator-built final request (tests/requests/build_suite.py). The grader also mounts the prepared
+# scorer assets under TASK_DATA_DIR, the same tree the development container sees. `main` replays
+# the package without any asset; `grader` scores the sealed output and never runs submission code.
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: .
+      target: main
+    gpus: all
+    network_mode: none
+    shm_size: "32gb"
+    volumes:
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the CrystalGen private root}/final-suite"
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /benchmark/requests.jsonl && test -s /benchmark/suite_manifest.json"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  grader:
+    build:
+      context: .
+      target: grader
+    gpus: all
+    network_mode: none
+    shm_size: "32gb"
+    command:
+      - /opt/lemat/.venv/bin/python
+      - /tests/grader.py
+      - --sealed
+      - /sealed/run
+      - --input
+      - /benchmark
+      - --assets
+      - /scorer-assets
+      - --output
+      - /sealed/results
+    environment:
+      HF_HOME: /scorer-assets/huggingface
+      HF_HUB_CACHE: /scorer-assets/huggingface/hub
+      HF_DATASETS_CACHE: /scorer-assets/huggingface/datasets
+      XDG_CACHE_HOME: /scorer-assets/xdg-cache
+      TORCH_HOME: /scorer-assets/torch-cache
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the CrystalGen private root}/final-suite"
+        target: /benchmark
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the CrystalGen data root}/scorer-assets"
+        target: /scorer-assets
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

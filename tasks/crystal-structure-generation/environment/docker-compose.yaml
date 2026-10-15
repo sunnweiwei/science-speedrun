@@ -1,0 +1,45 @@
+# Development environment overlay (TASK_STANDARD.md). Harbor merges it onto its base compose: `main`
+# is the agent container; the build context is the task directory because environment/Dockerfile
+# copies instruction.md and environment/... .
+#
+# TASK_DATA_DIR is the operator's CrystalGen root, prepared on the host as documented in
+# environment/data/MATERIALIZE.md:
+#   $TASK_DATA_DIR/mp20/{train,val,test}.csv, manifest.json
+#   $TASK_DATA_DIR/scorer-assets/            (LeMat-Bulk, MLIP hulls, ORB/MACE/UMA caches, READY.json)
+# Only the train and validation splits and the manifest are mounted; test.csv stays on the host.
+# TASK_RESEARCH_DIR is an empty directory per run on a large disk.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "32gb"
+    environment:
+      HF_HOME: /scorer-assets/huggingface
+      HF_HUB_CACHE: /scorer-assets/huggingface/hub
+      HF_DATASETS_CACHE: /scorer-assets/huggingface/datasets
+      XDG_CACHE_HOME: /scorer-assets/xdg-cache
+      TORCH_HOME: /scorer-assets/torch-cache
+      HF_HUB_OFFLINE: "1"
+      HF_DATASETS_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the CrystalGen data root}/mp20/train.csv", target: /workspace/data/mp20/train.csv}
+      - {<<: *data, source: "${TASK_DATA_DIR}/mp20/val.csv", target: /workspace/data/mp20/val.csv}
+      - {<<: *data, source: "${TASK_DATA_DIR}/mp20/manifest.json", target: /workspace/data/mp20/manifest.json}
+      - {<<: *data, source: "${TASK_DATA_DIR}/scorer-assets", target: /workspace/data/scorer-assets}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/mp20/train.csv && test -s /workspace/data/mp20/val.csv && test -s /scorer-assets/READY.json && test ! -e /workspace/data/mp20/test.csv"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

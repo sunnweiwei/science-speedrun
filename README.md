@@ -102,7 +102,7 @@ Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code
 
 ```text
 tasks/<task>/        Harbor tasks (instruction, environment, tests, docs); see TASK_STANDARD.md
-runner/              one-command sessions, snapshots and scoring (Harbor 0.23, Codex or Claude Code)
+runner/              one-command sessions, snapshots and scoring (Harbor 0.23; Codex, Claude Code or Antigravity/Gemini)
 TASK_STANDARD.md     the task format: workspace, instruction, verifier, data
 ```
 

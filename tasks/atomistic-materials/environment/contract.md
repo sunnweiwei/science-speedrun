@@ -93,7 +93,7 @@ Average the two normalized errors within elasticity and amorphous, then compute
 | Cleavage | Relative MAE: 6.598% |
 | NEB | Barrier MAE: 0.147 eV |
 
-Scales are frozen from PR #90's rounded MP 3-epoch **validation** table, before expanded scratch
+Scales are frozen from the MP fine-tune's rounded 3-epoch **validation** table, before expanded scratch
 results, and reused on test. 50 matches that reference profile; 100 is ideal. This is a custom
 index, not percent accuracy or an official leaderboard metric. It is not comparable to the old
 three-suite Score v1. Missing/invalid primary metrics give 0; per-case failures retain the caps

@@ -326,7 +326,7 @@ def prepare(
         "selection": "Equal counts in 1–4, 5–8, 9–16, 17–32 atom strata; SHA256 pilot-v1 order; no target labels"
         if preset == "pilot"
         else preset,
-        "note": "Public-data evaluator prototype; parity and full-set audits pending.",
+        "note": "Public-data evaluator.",
     }
     if split_manifest is not None:
         manifest["split"] = {

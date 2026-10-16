@@ -3,7 +3,7 @@
     python prepare_mixed.py --pool /workspace/data/pool --checkpoint /workspace/data/models/uma-s-1p1.pt \
         --output RUN_DIR [--mp-frames 500000] [--omat-frames 500000] [--steps 46875] [--world-size 8]
 
-Same model, optimiser and step budget as the #49 MP fine-tune (uma-mp-finetune: AdamW 4e-4,
+Same model, optimiser and step budget as the MP fine-tune (uma-mp-finetune: AdamW 4e-4,
 cosine, loss weights 20/2/1, seed 41, FP32, no EMA, global batch 32, 46,875 updates), with half of
 every batch drawn from OMat24 off-equilibrium frames (rattled and AIMD):
 - dataset "omat": MPtrj + sAlex frames (MP-compatible raw energies) -> energy, forces, stress;

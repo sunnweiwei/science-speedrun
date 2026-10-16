@@ -13,7 +13,7 @@ data_status = "Public DFT training pool (MPtrj, sAlex, MatPES-PBE, OMat24 sample
 evaluation_status = "Crystal Potential Score v2: eight equally weighted suites, plus 15 raw metrics; 1M-frame, 10-epoch scratch trial validation score 37.08; full test replay 2 h 10 min on 8xH100 with all suites concurrent (mixed-replay, Docker)"
 
 [agent]
-timeout_sec = 172800.0         # external development budget (48 h); the MP fine-tune baseline trains in 2 h 16 min
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"

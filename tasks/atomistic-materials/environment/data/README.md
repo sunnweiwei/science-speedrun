@@ -45,7 +45,7 @@ material ID belongs to any evaluation suite, validation or test:
 `pool/blocked.json` lists them. AM26 amorphous systems are not excluded: their compositions (C, Si,
 SiO₂, Li-P-S, Ge-Sb-Te) are common in every source.
 
-Choose training frames and mixture within the 48-hour budget; a full pass over the pool is not required. As a rough scale, the MP fine-tuning
+Choose training frames and mixture yourself; a full pass over the pool is not required. As a rough scale, the MP fine-tuning
 baseline passes 1.5 M frames in 2 h 16 min on eight H100s.
 
 ## `baselines/mp-standard`

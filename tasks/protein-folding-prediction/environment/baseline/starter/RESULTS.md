@@ -3,7 +3,9 @@
 The starter was trained from scratch with `train.sh` defaults: 49,198,221 folding parameters, one
 epoch over the 100K pool. The run took 3.7 h on six H100s, including one resume. It was published
 through the starter's own publication path and replayed by the task's verifier on the full
-visible suite (1,522 requests).
+FoldBench suite (1,522 requests). That was before FoldBench was split: the verifier now scores
+only the test part (1,448 requests), and a small validation part (74) is in your workspace. The
+numbers below are the full-suite ones; the weights are not shipped, so they were not re-scored.
 
 | track | metric | starter | frozen ESMFold2-Fast (reference, `/workspace/data/models`) | native structures (oracle) |
 | --- | --- | ---: | ---: | ---: |

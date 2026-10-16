@@ -21,7 +21,7 @@ services:
       - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized data directory}/manifests", target: /workspace/data/manifests}
       - {<<: *data, source: "${TASK_DATA_DIR}/objects", target: /workspace/data/objects}
       - {<<: *data, source: "${TASK_DATA_DIR}/features", target: /workspace/data/features}
-      - {<<: *data, source: "${TASK_DATA_DIR}/foldbench", target: /workspace/data/foldbench}
+      - {<<: *data, source: "${TASK_DATA_DIR}/foldbench-val", target: /workspace/data/foldbench}
       - {<<: *data, source: "${TASK_DATA_DIR}/models", target: /workspace/data/models}
       - type: bind
         source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"

@@ -24,13 +24,13 @@ from-scratch starter currently reaches 0.037.
 
 - `/workspace/contract.md`: the independently replayed delivery interface.
 - `/workspace/data/`: `README.md` describes the frozen 100K training pool and the fixed-feature
-  semantics. The pool, structures, ESMC-6B features, the visible FoldBench suite and the
+  semantics. The pool, structures, ESMC-6B features, the FoldBench validation split and the
   ESMFold2-Fast reference checkpoint are mounted read-only next to it.
 - `/workspace/baseline/starter/`: the executable approximately-50M starter (an ESMFold2 graph
   trained from scratch) and its reproduced results next to the reference, per track.
 - `/workspace/references/`: runnable approximately-50M architectures, pinned upstream sources and
   prior controlled experiments, not re-run in this setup.
-- `/workspace/evaluation/`: direct development evaluation on the visible suite.
+- `/workspace/evaluation/`: direct development evaluation on the validation split.
 - `/workspace/research/`: writable space for experiments, checkpoints and resume state.
 
 First verify the starter's parameter audit, one-step training path, publication path and
@@ -65,9 +65,9 @@ research line.
   resume only checkpoints from your own candidate lineage.
 - No MSA or template cache is supplied or required. Do not build MSA databases or use MSA or
   template inputs.
-- The complete FoldBench inputs, native structures, fixed inputs and evaluation code are visible
-  for analysis, repeated evaluation and global model selection. There is no organizer-defined
-  hidden development partition.
+- The FoldBench validation split (inputs, native structures, fixed inputs) and the evaluation code
+  are visible for analysis, repeated evaluation and model selection. The test split, which the
+  verifier scores, is not in this workspace.
   - Do not train on benchmark examples: not their inputs, labels, per-example transformations,
     augmentations or distillation targets.
   - Do not fit parameters at test time.

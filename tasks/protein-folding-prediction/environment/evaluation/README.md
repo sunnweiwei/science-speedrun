@@ -1,7 +1,8 @@
 # Self-service development evaluation
 
-You have the complete benchmark at `/workspace/data/foldbench/suite`, native mmCIFs at
-`/workspace/data/foldbench/ground_truths`, and official scoring source at `/opt/foldbench`.
+You have the FoldBench validation split at `/workspace/data/foldbench/suite`, its native mmCIFs at
+`/workspace/data/foldbench/ground_truths`, and official scoring source at `/opt/foldbench`. The
+test split, which the verifier scores, is not in this workspace.
 Its installed Python is `/opt/foldbench-env/bin/python`. Read, copy, run and
 analyze this code directly. There is **no required evaluation service or wrapper**.
 

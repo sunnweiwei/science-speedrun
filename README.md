@@ -46,7 +46,9 @@ Notes on the table:
   49.2M from-scratch model (parameter audit shipped) and published four packages; at this budget the scorer's
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
-  under that rule.
+  under that rule. These three scores are on the full suite. The agent now sees a small validation split
+  (74 assemblies) and the verifier scores the held-out test split (1,448 assemblies); re-verified on the test
+  split: 0.0004, 20 min on 4 L40.
 - atomistic-materials was tested on an 8×H100 host: a Codex session that did not retrain the baseline, published a
   300-update smoke package early, and started mixed-source pretraining (MP + OMat24 + MatPES with source energy
   embeddings) behind a fixed all-suite panel that publishes only improvements without a suite regression; it was

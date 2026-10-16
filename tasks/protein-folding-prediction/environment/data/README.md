@@ -20,7 +20,7 @@ foldbench/
   ground_truths/<request-id>.cif
   features.esmc6b_final_int8.jsonl
   features/esmc6b-final-ln-int8-g64-45b0fa5d-ptsdpa-v1/
-    <sequence-sha256>.safetensors       # Complete suite feature store
+    <sequence-sha256>.safetensors       # Validation-split feature store
 models/
   esmfold2-fast-b28d8ace/               # Reference/baseline only
     config.json
@@ -90,21 +90,26 @@ baseline comparison unless genuinely compatible inputs are available. Never
 silently substitute final-hidden features into the released projection and
 report the result as the released baseline.
 
-## Visible FoldBench suite
+## FoldBench validation split
 
-`/workspace/data/foldbench/suite` has 1,522 coordinate-free assembly requests and 1,823
-target rows across nine tracks. `/workspace/data/foldbench/ground_truths` contains native
-mmCIFs. All are visible for development analysis and evaluation, not training.
-There is no artificial organizer validation split.
+FoldBench is split into a validation part, mounted here, and a test part that only the verifier
+sees. `/workspace/data/foldbench/suite` holds the validation part: 74 coordinate-free assembly
+requests and 108 target rows, a few examples of every track (ten for most tracks, two or three for
+the DNA and RNA monomers).
+`/workspace/data/foldbench/ground_truths` contains their native mmCIFs. They are for development
+analysis, evaluation and model selection, not training. The test part (1,448 assemblies, 1,715
+target rows) is what the verifier scores; it is not in this workspace.
+
+The split keeps related assemblies on one side: assemblies from the same PDB entry, or with an
+identical or highly similar chain, are assigned together, so no validation structure is a near
+copy of a test one.
 
 `/workspace/data/foldbench/features.esmc6b_final_int8.jsonl` covers every unique protein
-sequence in those requests. Its paths resolve within `/workspace/data/foldbench` and use
+sequence in the validation requests. Its paths resolve within `/workspace/data/foldbench` and use
 the same fixed feature identity as training. For replay, relevant rows are staged
 in the input-side feature manifest defined by `contract.md`. Other conforming
 suites use the same interface with their own precomputed tensors; the candidate
 never needs the ESMC checkpoint.
 
-Canonical suite-manifest SHA-256:
-`aeb4883858133891d9dbdc7ed8dfbbbb0bc6d7266a349a64fd6fe7c31494420f`.
-Default run policy is seed 101 and one sample per assembly.
+`suite_manifest.json` records the split (its name, the validation fraction and seed). Default run policy is seed 101 and one sample per assembly.
 

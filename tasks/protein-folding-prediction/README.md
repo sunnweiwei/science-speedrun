@@ -107,10 +107,13 @@ errors; it need not call a service or a prescribed development wrapper.
 [The verifier](tests/README.md) snapshots and replays the currently published model in a fresh environment
 and reports one numeric score per track to Harbor, plus `reward`, their unweighted mean
 (TASK_STANDARD.md). Missing/invalid predictions remain in the original target denominators.
-These remain **benchmark-visible development scores**, not blind holdout results.
-
 The full canonical suite contains 1,522 assemblies and 1,823 target rows, with
-seed 101 and one sample. An inference package must nevertheless handle arbitrary
+seed 101 and one sample. `environment/data/split_suite.py` (run by `materialize.py`) splits it
+into `foldbench-val` (74 assemblies, 108 rows: up to ten examples per track) and `foldbench-test`
+(1,448 assemblies, 1,715 rows). Related assemblies stay on one side: the same PDB entry, or an
+identical or similar chain (k-mer Jaccard >= 0.3), with a fixed seed. The agent mounts only
+`foldbench-val`, with its native structures, for development; the verifier mounts only
+`foldbench-test`. An inference package must nevertheless handle arbitrary
 new requests of the same schema; it may not depend on these IDs or counts.
 
 ## 5. Running
@@ -136,7 +139,7 @@ repository (images built unmodified from `main`; the 73.1 GB release
 re-verified file by file; unit tests 43/43). Full details and artifacts are in
 the integrator's review notes; the numbers below are the ones that matter.
 
-**Evaluator, full 1,522-request suite, three known answers**
+**Evaluator, full 1,522-request suite (measured before the validation/test split), three known answers**
 
 | Submission | monomer_protein lDDT | protein–protein DockQ ≥ 0.23 | antibody–antigen | other tracks |
 | --- | ---: | ---: | ---: | --- |

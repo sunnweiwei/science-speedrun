@@ -215,6 +215,9 @@ def main():
         if sha256(args.destination/relative)!=digest:
             raise ValueError(f'Canonical scientific manifest changed: {relative}')
     subprocess.run([sys.executable,str(HERE/'validate_release.py'),str(args.destination)],check=True)
+    # The agent sees only the validation part of FoldBench; the verifier scores the test part.
+    subprocess.run([sys.executable,str(HERE/'split_suite.py'),str(args.destination/'foldbench'),
+                    str(args.destination)],check=True)
     receipt.update(release_id=manifest['release_id'],manifest_sha256=config['manifest_sha256'])
     if not args.verify_only:
         receipt_path = args.destination/'materialized.json'

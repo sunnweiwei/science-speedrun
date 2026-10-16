@@ -18,15 +18,16 @@ protocol = "natural-disease-progression-protocol/v2"
 report_schema = "natural-disease-progression-report/v3"
 
 [agent]
-timeout_sec = 86400.0
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
 gpus = 1
-cpus = 10
-memory_mb = 22528
-storage_mb = 131072
+cpus = 64
+memory_mb = 131072
+storage_mb = 512000
 build_timeout_sec = 7200.0
+gpu_types = ["H100"]
 
 [verifier]
 environment_mode = "separate"

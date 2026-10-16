@@ -15,13 +15,16 @@ peer_reference = "Xu et al., PEER: A Comprehensive and Multi-Task Benchmark for 
 data_status = "operator materialization from pinned TAPE/PEER S3 archives plus the full decontaminated UniRef50 corpus; verified end to end on real data"
 
 [agent]
-timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
-gpus = 1
-storage_mb = 30720
+gpus = 8
+storage_mb = 1048576
 build_timeout_sec = 7200.0
+gpu_types = ["H100"]
+cpus = 64
+memory_mb = 524288
 
 [verifier]
 environment_mode = "separate"

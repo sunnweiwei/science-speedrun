@@ -84,7 +84,7 @@ they differ only in scale and in where the data lives.
 
 | | agent | operator |
 | --- | --- | --- |
-| budget | 1 GPU, 24 h | 8x L40S, 48 h |
+| budget | 8x H100, 48 h | 8x L40S, 48 h |
 | data | staged into the image, `/data/fit` (the config's default) | the full PDB corpus, passed as `paths.data.*` overrides |
 | how | `train.py experiment=pretrain_small_ppi` | `submit_rfd3_small_ppi.sh` |
 

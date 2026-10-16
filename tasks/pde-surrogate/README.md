@@ -162,8 +162,8 @@ export TASK_RESEARCH_DIR=/large-disk/runs/pde-surrogate-$(date +%s); mkdir -p "$
 harbor trial start -p pde-surrogate -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-The external budget is in `task.toml`: 48 hours, one H100 or A100, 16 CPU cores, 128 GiB RAM and
-400 GiB storage for development. The verifier gets one GPU, four hours for inference, and six
+The external budget is in `task.toml`: 48 hours, eight H100s, at least 64 CPU cores, 512 GiB RAM and
+1 TiB storage for development. The verifier gets one GPU, four hours for inference, and six
 hours in total. Measured costs:
 
 - the starter trains 30,000 steps in 24 minutes on an H100 (40 on an A100);

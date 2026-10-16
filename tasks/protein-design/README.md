@@ -247,7 +247,7 @@ export TASK_RESEARCH_DIR=/large-disk/runs/protein-design-$(date +%s); mkdir -p "
 harbor trial start -p protein-design -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-**Resources (external budget, in `task.toml`)**: development 1 GPU, 8 CPUs, 64 GB RAM, 24-hour
+**Resources (external budget, in `task.toml`)**: development 8× H100, 64 CPUs, 512 GB RAM, 48-hour
 agent timeout; verifier 8 GPUs, 48-hour limit. The measured graded pass of the old 100-design view
 was 9 h 33 min on 8× L40S, dominated by RoseTTAFold3 reloading a 2.8 GB checkpoint once per design
 rather than by folding. The 20-design view (1,020 designs, novelty gate included) took 6 h 51 min

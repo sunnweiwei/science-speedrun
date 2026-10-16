@@ -19,13 +19,13 @@ evaluation_protocol = "mpt-v2/fast-24task-15ep"
 reward = "raw metrics only (valid, per-group MA-RAE and mean Spearman, per-task MAE/RAE/R2/Spearman/Kendall); no aggregate yet"
 
 [agent]
-timeout_sec = 43200.0          # external development budget (8 x H100 x 12 h); the agent is not told
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
 cpus = 96
 memory_mb = 786432
-storage_mb = 409600
+storage_mb = 1048576
 gpus = 8
 gpu_types = ["H100"]
 build_timeout_sec = 7200.0

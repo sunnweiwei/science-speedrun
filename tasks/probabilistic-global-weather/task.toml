@@ -19,15 +19,16 @@ weatherbenchx_revision = "88af2fde7a78f13b77496a2abb8ca88905fa5e95"
 training_initialization = "random, all 183785575 native parameters"
 
 [agent]
-timeout_sec = 88200.0
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
-cpus = 32
-memory_mb = 393216
+cpus = 64
+memory_mb = 524288
 storage_mb = 2097152
-gpus = 4
+gpus = 8
 build_timeout_sec = 7200.0
+gpu_types = ["H100"]
 
 [verifier]
 environment_mode = "separate"

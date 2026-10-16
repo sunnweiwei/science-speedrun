@@ -98,8 +98,8 @@ export TASK_RESEARCH_DIR=/large-disk/runs/vcz-$(date +%s); mkdir -p "$TASK_RESEA
 harbor trial start -p single-cell-perturbation-prediction -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-**Resources (external budget, in `task.toml`).** Development: 8× H100, 48 hours, 512 GiB memory,
-400 GB storage; the release is mounted, not copied. Verifier: one GPU, at most 60 minutes per
+**Resources (external budget, in `task.toml`).** Development: 8× H100, 48 hours, at least 64 CPUs, 512 GiB memory,
+1 TiB storage; the release is mounted, not copied. Verifier: one GPU, at most 60 minutes per
 context, about 25 minutes to score three contexts.
 
 Unit tests (need `cell-eval`, so they run in the verifier image):

@@ -81,7 +81,7 @@ export TASK_RESEARCH_DIR=/large-disk/runs/surface-code-$(date +%s); mkdir -p "$T
 harbor trial start -p surface-code-decoding -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-**External budget (`task.toml`, not told to the agent).** The v1.2 budget is 8 H100 GPUs, 16 CPU cores, 128 GiB memory, 100 GiB writable
+**External budget (`task.toml`, not told to the agent).** The v1.2 budget is 8 H100 GPUs, at least 64 CPU cores, 512 GiB memory, 1 TiB writable
 storage, and 48 hours (384 allocated GPU-hours). The unchanged ten-specialist
 reference recipe schedules one model per GPU in two waves, each with 18 hours
 of pretraining and up to two hours of fine-tuning. Estimate 36–40 hours plus

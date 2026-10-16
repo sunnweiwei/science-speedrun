@@ -211,8 +211,8 @@ harbor trial start -p mass-spectrometry-molecule-retrieval -a <agent> -m <model>
 
 **Compute and delivery (external budget).**
 
-The agent budget is 48 hours on up to eight H100 GPUs, 32 CPU cores, and 256
-GiB of host memory. The formal GLACIER component replays an official checkpoint;
+The agent budget is 48 hours on up to eight H100 GPUs, at least 64 CPU cores, 512
+GiB of host memory and 1 TiB of disk. The formal GLACIER component replays an official checkpoint;
 the separate task-owned result above retrains GLACIER from scratch. The
 official-weight hybrid's complete construction replay used about
 33.1 aggregate P100 GPU-hours, including retained partial work and

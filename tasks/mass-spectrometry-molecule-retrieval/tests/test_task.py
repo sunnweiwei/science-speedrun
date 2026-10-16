@@ -108,7 +108,7 @@ class TaskTests(unittest.TestCase):
         self.assertEqual(config["agent"]["timeout_sec"], 172800.0)
         self.assertEqual(config["environment"]["gpus"], 8)
         self.assertEqual(config["environment"]["gpu_types"], ["H100"])
-        self.assertEqual(config["environment"]["memory_mb"], 262144)
+        self.assertGreaterEqual(config["environment"]["memory_mb"], 524288)  # a floor; more is fine
         self.assertEqual(config["environment"]["network_mode"], "no-network")
         self.assertEqual(config["verifier"]["environment_mode"], "separate")
         self.assertEqual(

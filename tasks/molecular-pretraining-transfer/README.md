@@ -110,7 +110,7 @@ harbor trial start -p molecular-pretraining-transfer -a <agent> -m <model> --all
 
 **Resources** (external budget, in `task.toml`):
 
-- development: 8 H100, 96 CPUs, 768 GB RAM, 12 hours; the baseline's pretraining uses 5.1 h of it;
+- development: 8 H100, 96 CPUs, 768 GB RAM, 48 hours; the baseline's pretraining uses 5.1 h of it;
 - verifier: 8 H100, 4-hour limit.
 
 Unit tests (standard library): `bash molecular-pretraining-transfer/tests/run_unit_tests.sh`.

@@ -126,7 +126,7 @@ export TASK_RESEARCH_DIR=/large-disk/runs/peer-$(date +%s); mkdir -p "$TASK_RESE
 harbor trial start -p protein-sequence-modeling -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-- **External budget:** set by the controller; `task.toml` sets one GPU and the standard 48 h agent budget.
+- **External budget:** set by the controller; `task.toml` sets the standard 8× H100, 48 h agent budget (64 CPUs, 512 GiB). The baseline recipe uses one GPU.
 - **Reference solution:** `solution/solve.sh` publishes the trivial control (Harbor's `oracle`
   agent).
 - **Unit tests:** `bash tests/run_unit_tests.sh`.

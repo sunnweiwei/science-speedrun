@@ -114,8 +114,8 @@ export TASK_RESEARCH_DIR=/large-disk/runs/ndp-$(date +%s); mkdir -p "$TASK_RESEA
 harbor trial start -p natural-disease-progression -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-Resources come from `task.toml`. The agent gets 1 GPU, 10 CPUs, 22 GiB and 128 GiB of disk for
-24 h. The verifier gets the same resources with a 12 h limit; a full verification takes about
+Resources come from `task.toml`. The agent gets 1 H100, at least 64 CPUs, 128 GiB and 500 GiB of disk for
+48 h. The verifier gets 1 GPU, 10 CPUs, 22 GiB and 128 GiB of disk with a 12 h limit; a full verification takes about
 2 min. Both images set `OMP_NUM_THREADS=10`. Without it, PyTorch sizes thread pools by host cores,
 and under a CPU quota training ran about 15× slower. Unit tests:
 

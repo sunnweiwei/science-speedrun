@@ -24,15 +24,15 @@ task_starter_reward = 0.3139
 score_bounds = "persistence 0.2827 (floor) to per-group oracle 0.4203 (ceiling, not achievable by one package); the verifier emits the normalised score (environment/evaluation/score_bounds.json)"
 
 [agent]
-timeout_sec = 172800.0
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
-cpus = 16
-memory_mb = 131072
-storage_mb = 409600
-gpus = 1
-gpu_types = ["H100", "A100"]
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
+gpus = 8
+gpu_types = ["H100"]
 build_timeout_sec = 7200.0
 
 [verifier]

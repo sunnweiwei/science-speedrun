@@ -70,8 +70,8 @@ MAX_PER_CLUSTER = 2
 
 # Structures staged for RFdiffusion3-style training, which learns from whole assemblies
 # rather than from the per-track design requests. Sized to be the same order as the fit
-# view so the two are comparable, and because the agent's budget (1 GPU, 8 CPUs, 24 h)
-# cannot consume more: at a measured ~2 s of preprocessing per drawn example, 8 workers
+# view so the two are comparable, and because the agent's budget when this was sized (1 GPU, 8 CPUs, 24 h; now 8 GPUs,
+# 64 CPUs, 48 h) could not consume more: at a measured ~2 s of preprocessing per drawn example, 8 workers
 # saturate a single H100 well before the corpus is exhausted.
 CORPUS_STRUCTURES = 16000
 

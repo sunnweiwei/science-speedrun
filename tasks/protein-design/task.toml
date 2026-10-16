@@ -22,14 +22,14 @@ harness_schema = "protein-design-harness/v1"
 structure_representation = "atom14"
 
 [agent]
-timeout_sec = 86400.0
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
-cpus = 8
-memory_mb = 65536
-storage_mb = 204800
-gpus = 1
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
+gpus = 8
 gpu_types = ["H100"]
 build_timeout_sec = 7200.0
 

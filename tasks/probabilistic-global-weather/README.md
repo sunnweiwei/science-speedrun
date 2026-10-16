@@ -84,8 +84,8 @@ export TASK_RESEARCH_DIR=/large-disk/runs/weather-$(date +%s); mkdir -p "$TASK_R
 harbor trial start -p probabilistic-global-weather -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-**Resources (external budget, in `task.toml`).** Four GPUs (no specific model), 32 CPU cores,
-384 GiB memory, 2 TiB storage for the agent; the reference recipe caps one training run at 24 hours
+**Resources (external budget, in `task.toml`).** Eight H100s, 64 CPU cores, 512 GiB memory,
+2 TiB storage and 48 hours for the agent; the reference recipe caps one training run at 24 hours
 plus 30 minutes of packaging (measured 87.51 RTX PRO 6000 GPU-hours; 13.1 h on four H100s). The
 separate full evaluation is limited to 12 hours on eight GPUs including CPU scoring (measured: 5.1 h
 with four cases at a time on four H100s; about 2.5 h expected with all eight at once).

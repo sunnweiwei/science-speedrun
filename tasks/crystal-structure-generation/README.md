@@ -241,8 +241,8 @@ export TASK_RESEARCH_DIR=/large-disk/runs/crystalgen-$(date +%s); mkdir -p "$TAS
 harbor trial start -p crystal-structure-generation -a <agent> -m <model> --allow-agent-host <model API host>
 ```
 
-**Resources (external budget, in `task.toml`).** The agent container has eight H100s, 32 CPU cores,
-256 GiB of memory and a 24-hour agent timeout; the verifier also uses eight H100s. For scale: the
+**Resources (external budget, in `task.toml`).** The agent container has eight H100s, 64 CPU cores,
+512 GiB of memory and a 48-hour agent timeout; the verifier also uses eight H100s. For scale: the
 2,000-epoch starter took 5.4 h on six H100s. Scoring 2,500 structures took about 1.2 h of
 relaxation plus 1.5–1.7 h of LeMat scoring on eight H100s with one relaxation worker per GPU; with
 several CPU-bound workers per GPU (the default now, 64 verifier CPUs) a full verifier run took 2 h 9 min

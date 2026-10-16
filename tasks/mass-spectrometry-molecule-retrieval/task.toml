@@ -35,9 +35,9 @@ timeout_sec = 172800.0
 [environment]
 # Fail closed by default; agent-runner may stage a model API allowlist.
 network_mode = "no-network"
-cpus = 32
-memory_mb = 262144
-storage_mb = 204800
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
 gpus = 8
 gpu_types = ["H100"]
 build_timeout_sec = 7200.0

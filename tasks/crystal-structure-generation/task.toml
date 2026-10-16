@@ -16,13 +16,13 @@ lemat_genbench_revision = "58e6eae3e4a6c87c22171cf069123ecc4e2fa7e6"
 evaluation_protocol = "crystalgen-evaluation/v2-uma200"
 
 [agent]
-timeout_sec = 86400.0
+timeout_sec = 172800.0          # external development budget (48 h); the agent is not told
 
 [environment]
 network_mode = "no-network"
-cpus = 32
-memory_mb = 262144
-storage_mb = 102400
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
 gpus = 8
 gpu_types = ["H100"]
 build_timeout_sec = 7200.0

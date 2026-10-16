@@ -5,7 +5,7 @@
 # Official Uni-Mol2 code: Uni-Mol (deepmodeling/Uni-Mol @ 90f52c4, unimol2/) on Uni-Core (dptech-corp/Uni-Core @ ace6fae).
 FROM pytorch/pytorch:2.4.0-cuda12.1-cudnn9-devel@sha256:a55ff10111eb11f998884327d37361592e632899edd24fce99886b69289e33e6 AS runtime
 ENV DEBIAN_FRONTEND=noninteractive PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 TORCH_CUDA_ARCH_LIST="8.0;9.0"
-RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends git curl ca-certificates && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir "typing-extensions>=4.16" "numpy<2" rdkit==2024.3.5 lmdb==1.5.1 pandas==2.2.2 \
       scikit-learn==1.5.2 tensorboardX==2.6.2.2 tokenizers==0.20.3 ml_collections==0.1.1 numba==0.60.0
 RUN git clone https://github.com/dptech-corp/Uni-Core /opt/Uni-Core && cd /opt/Uni-Core \

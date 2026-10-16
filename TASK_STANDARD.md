@@ -21,8 +21,11 @@ the conventions on top of it.
    and no final answer.
 4. **Evaluate (controller, invisible to the agent).** The controller snapshots
    `/workspace/submission` whenever it likes and scores the snapshot with `tests/` in a separate,
-   offline verifier container. The development budget (for example 8 GPUs for 48 hours) is part
-   of this external setup. It lives in `task.toml`, never in the instruction.
+   offline verifier container. The development budget is part of this external setup. It lives in
+   `task.toml`, never in the instruction. There are two standard budgets, both 48 hours on H100s:
+   **8× H100** for tasks whose research is substantial GPU training (at least 64 CPUs, 512 GiB
+   memory, 1 TiB disk), and **1× H100** for lightweight tasks: small models, CPU-bound simulation
+   or tabular data (at least 64 CPUs, 128 GiB, 500 GiB). CPUs, memory and disk are floors; more is fine.
 
 ## What the agent sees
 

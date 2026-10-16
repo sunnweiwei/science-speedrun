@@ -31,7 +31,7 @@ prefix and extended suffix as one from-scratch recipe.
 ## Resource budget
 
 Training permits **24 hours × 4 GPUs = 96 GPU-hours**, plus 30 minutes for
-packaging. The agent timeout is 24.5 hours. The composed measured training
+packaging. The agent timeout was 24.5 hours when this recipe was designed (the task now uses the standard 8× H100, 48 h). The composed measured training
 estimate is **87.51 RTX PRO 6000 GPU-hours**, or **21.88 hours on four GPUs**:
 41.14 GPU-hours through AR2 and 46.37 GPU-hours for the extended suffix.
 This is a sum of measured segments, not a measured uninterrupted 580-update run.

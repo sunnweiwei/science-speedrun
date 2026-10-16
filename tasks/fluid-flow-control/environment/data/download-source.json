@@ -1,0 +1,7 @@
+{
+  "repo_id": "sunweiwei/ai4sci-hydrogym-research-v2",
+  "revision": "3ce0a7e1c394d52b1c8b2c201f01070a8698f07b",
+  "path_prefix": "environments",
+  "data_release_id": "hydrogym-public-research-v2",
+  "data_release_sha256": "cabc8b718cdf9b22fcd661b9b3c5f8e452498e1c299b0fc9c7ac1afc22df47d2"
+}

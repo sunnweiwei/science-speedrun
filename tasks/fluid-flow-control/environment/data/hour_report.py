@@ -1,0 +1,95 @@
+"""Render exact data sizes, measured pilots and explicitly extrapolated budgets."""
+from pathlib import Path
+import public_release as public
+
+ROOT=Path(__file__).resolve().parent
+
+
+def render(release):
+    budget=release['reference_training_budget']
+    cases=release['cases']
+    short=sum(c['reference_training_budgets']['short_multitask_phase']['estimated_seconds'] for c in cases)/3600
+    larger=sum(c['reference_training_budgets']['single_case_research']['estimated_seconds'] for c in cases)/3600
+    lines=[
+        '# 最终固定数据：HydroGym Hour v1', '',
+        f"版本：`{release['release_id']}`。训练与测试成员均已冻结，不是候选清单。", '',
+        f"**19 项：18 项 2D、1 项 3D；{release['files']['count']} 个源文件；"
+        f"{release['files']['bytes']:,} 字节 = {release['files']['bytes']/1e9:.6f} GB。**", '',
+        '500 GB 是一份固定训练/测试源资源的上限，不是必须填满的配额。',
+        '这里的数据是网格、初始流场、几何和运行配置，不是预先生成的大型 RL 轨迹集。',
+        '交互式训练生成的轨迹、训练 checkpoint、Docker 镜像和历史实验不计入这份源数据大小。',
+        '不因本机采用硬链接而少计字节；在新机器完整下载同样只需要上述源文件大小。', '',
+        '## 训练及测试规则', '',
+        '- 训练与测试使用下面同一组环境、网格、初始场和参数；不另藏慢任务、不设可跳过的评分项。',
+        '- 研发模型必须是一个联合训练的共享 checkpoint；表中逐项短训是组织者的运行成本测量，不是可提交的 specialist 模型集合。',
+        '- 测试固定参数和归一化统计，使用原生完整回合：MAIA 201 控制步、Channel 100 控制步、Nozzle 667 控制步。',
+        '- 测试 API seed 固定为 123；原生 reset 的确定性初始场可能与训练相同，不声称是私有测试或不同物理初态。',
+        '- 主指标为每项完整回合的原生累计 reward；没有把不同量纲的 return 直接平均为总分，也未捏造论文 baseline。', '',
+        '## 每项数据大小与参考训练成本', '',
+        '**以下小时数是外推，不是已经完成 4,000/20,000 步训练的实测。**',
+        '每项实际执行了 400 步 PPO（Channel 2,000 步）、多次参数更新、完整固定动作回合、',
+        '训练后完整回合和新进程冻结 checkpoint 重放。成本采用旧仿真步速和新实训步速中较慢者，',
+        '再加入实测冷启动、reset、checkpoint 保存和评估开销。区间右端额外预留 25%；',
+        '这是规划余量，不是统计置信区间、保证的墙钟上限或达到某个分数的保证。', '',
+        '| Task | 共享源数据 MB | 4,000 步短研发阶段，单 H100 小时 | 20,000 步较长训练阶段，单 H100 小时 |',
+        '| --- | ---: | ---: | ---: |',
+    ]
+    for c in cases:
+        b=c['reference_training_budgets']
+        s,l=b['short_multitask_phase'],b['single_case_research']
+        lines.append(f"| {c['id']} | {c['bytes']/1e6:.3f} | {s['estimated_seconds']/3600:.2f}–{s['planning_seconds_with_25pct_reserve']/3600:.2f} | {l['estimated_seconds']/3600:.2f}–{l['planning_seconds_with_25pct_reserve']/3600:.2f} |")
+    lines += [
+        f"| **合计** | **{release['files']['bytes']/1e6:.3f}** | **{short:.2f}–{budget['short_round_serial_single_h100_planning_seconds']/3600:.2f}** | **{larger:.2f}–{budget['larger_round_serial_single_h100_planning_seconds']/3600:.2f}** |", '',
+        '- 短研发轮次：19 项各 4,000 步，合计 76,000 步；多次学习更新用于获得初步研究反馈，不要求完整收敛。',
+        '- 较长轮次：19 项各 20,000 步，合计 380,000 步。每项为约 100 个 MAIA 回合、200 个 Channel 回合或 30 个 Nozzle 回合。',
+        '- 表中合计按一张 H100 串行相加，包括各项实测开销；不是只报告最快单项。整个共享模型的这两个预算均尚未完成端到端实训。',
+        '- 不把八张 GPU 的理论除八时间当成已验证的单 checkpoint 联合训练墙钟；这里不提供未经实测的多卡承诺。',
+        '- 4,000/20,000 是成本说明用的参考采样预算，不是 Agent session 的终止条件，也不限制后续继续训练。', '',
+        '## 实际执行证据', '',
+        '| Task | 已实训控制步 | 含更新的训练秒数 | 固定动作参考 return | 训练后开发 return | 新进程冻结模型 return |',
+        '| --- | ---: | ---: | ---: | ---: | ---: |',
+    ]
+    for c in cases:
+        r=c['training_cost_evidence']; t=r['training']
+        lines.append(f"| {c['id']} | {t['training_controls']} | {t['training_seconds']:.2f} | {t['zero']['return']:.6g} | {t['trained']['return']:.6g} | {r['replay']['return']:.6g} |")
+    lines += [
+        '', '这些是真实短训练结果；有改善也有退步，均保留，不是每项都已训练到好的成绩。',
+        '其中 Nozzle 的固定动作参考为原生 `[0.5, 0.5]`（归一化动作中点），不是无喷注控制。',
+        '开发与独立重放不完全一致的数值也原样保留；本轮不据此宣布论文分数复现。',
+        f"逐项独立重放计时相加为 **{budget['full_evaluation_measured_case_replays_sum_seconds']/60:.2f} 分钟**。",
+        '这是不同短训 checkpoint 的逐项冷启动测量之和，不冒充已经完成一次共享 checkpoint 的统一评测。', '',
+        '## 3D Channel 的明确执行层修复', '',
+        '保留 `72×72×72` 三维流场和 24 个执行器。公开实现将整个 episode 的累计时间传入',
+        '仅对单次 50 CFD 子步控制窗口定义的动作 ramp，使后续窗口的增益变成不断增大的负值。',
+        '本版本使用 `channel-72cube-local-actuator-clock-v1`：仅将该 ramp 的时间改为窗口内时间。',
+        '外层 episode 仍累计到 5,000 CFD 子步；网格、初始文件、dt=0.0002、动作界限和 reward 不变。',
+        '该改动属于**明确版本化的组织者协议修复**，不是声称未经修改复现原论文。',
+        '实测验证：完整零控制回合 U/V/W 差异全为 0；首个非零控制窗口 U/V/W 差异全为 0；',
+        '交替非零动作完整 100 步稳定；修复后 2,000 步 PPO 和新进程交付物重放均完成。',
+        '修复代码及其 SHA256 随本版本保存，不修改上游 checkout 或源数据。', '',
+        '## 明确移出的环境', '',
+        '高成本的 MAIA 3D 圆柱、方柱、立方体、球、Pinball 和翼型，细喷管、3D 喷管、',
+        'Kolmogorov 等没有进入本版训练或评分。Firedrake/NEK/其他未完成相应物理训练配置验收的',
+        '变体也不混入；未验证不等同于证明它们都慢。Cavity 不因耗时排除，而是其完整',
+        '原生无控制回合出现非有限值；不通过裁短回合来掩盖该问题。',
+        '旧 47/28/40 项数据与证据保留，仅从当前默认挂载选择中移出，未删除源文件。', '',
+        '## 发布与边界', '',
+        f"数据清单规范化 SHA256：`{public.digest(release)}`。", '',
+        '默认 `materialize.py` 只准备这 19 项；`--from-local` 复用本地数据并完整验哈希，',
+        '`--download` 使用原有固定 Hugging Face revision 下载接口。',
+        '训练/测试数据成员、资源哈希和本报告中的参考预算已冻结。',
+        '**本轮没有宣称已完成共享模型学习效果验收、论文性能复现或 Harbor 整套自动评分验收。**',
+        '现有统一 evaluator 的 JAX/JAX-Fluids 接入和全套 `suite.json` 验收仍单独标记，',
+        '不会把数据校验回执当成这些工作的完成证明。', '',
+    ]
+    return '\n'.join(lines)
+
+
+if __name__=='__main__':
+    value=public.load_release()
+    if value['release_id']!='hydrogym-public-hour-v1':
+        raise ValueError('The new release must be frozen first')
+    archive=ROOT/'RELEASE-COVERAGE-V1.md'
+    if not archive.exists():
+        archive.write_bytes((ROOT/'RELEASE.md').read_bytes())
+    (ROOT/'RELEASE.md').write_text(render(value))

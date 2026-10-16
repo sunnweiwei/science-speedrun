@@ -31,6 +31,7 @@ The agent column is a behavior test: one GPU and 4–6 h per session, not the ta
 | [molecular-pretraining-transfer](tasks/molecular-pretraining-transfer) | ≤90M molecular encoder pretrained from scratch on the leakage-filtered Uni-Mol2 corpus, transferred to 24 tasks; test MA-RAE QM9 / COMPAS-1D / ExpansionRx / ASAP (lower is better) | 8 GPU, 12 h | 0.186 / 0.164 / 0.735 / 0.657 | 0.183 / 0.166 / 0.744 / 0.636 | 0.192 / 0.121 / 0.668 / 0.644 | rebuilt from pinned public sources (179 GiB download, 173 GiB release) |
 | [protein-design](tasks/protein-design) | one all-atom backbone generator for four design tracks; per-track pass rate (designable by LigandMPNN + RoseTTAFold3 refolding and novel vs the fit corpus) enzyme / sm_binder / ppi_binder / unconditional | 1 GPU, 24 h | 0.082 / 0.025 / 0 / 0.10 | — | — | development views (RCSB snapshot, HF, ~6 GB); 51-target evaluation view vendored |
 | [protein-sequence-modeling](tasks/protein-sequence-modeling) | one from-scratch protein sequence model with heads for eleven PEER understanding tasks (mean task reward) | 1 GPU, 48 h | 0.647 | 0.670 | — | PEER tasks (TAPE/PEER S3, 1.6 GB) + UniRef50 2026_03 decontaminated with MMseqs2 (9.9 GB) |
+| [fluid-flow-control](tasks/fluid-flow-control) | one shared closed-loop controller for all 39 HydroGym flow-control cases (2D/3D cylinder, pinball, airfoil, gust, sphere, cube, channel, nozzle, Kolmogorov; MAIA / JAX / JAX-Fluids CFD), scored by 26 named physical metrics | 8 GPU, 48 h | 25/26 cases valid, near the uncontrolled flows | — (shared starter untrained; per-case specialists in `references/`) | — | HF release, 423 GB (39 CFD environments) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
@@ -45,6 +46,12 @@ Notes on the table:
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
   under that rule.
+- fluid-flow-control was tested on an 8×H100 host: a Codex session that started with a one-case replay, trained one
+  shared model jointly on six cases and compared variants against the recorded per-case references; it published four
+  versions. A host-wide `systemctl daemon-reload` removed the container's GPU access after about 1 h; the agent
+  recorded the failures without inventing values, and the session was ended there. Its package scored 25 of 26 cases
+  (one diverged under its actions), close to the uncontrolled flows. The verifier runs the 26-case suite side by side
+  on eight GPUs in 2 h 21 min (Cube_3D_Re3700, two GPUs, sets the time); the model must still serve all 39 cases.
 - protein-sequence-modeling was tested on the CMU Babel cluster: a 5 h Codex session on one L40. Against matched
   controls the agent adopted a normalized-loss pretraining recipe, a local secondary-structure head and continued
   pretraining, and fixed a resume-shuffle bug; its package scored 0.647 against the starter's 0.670 (11 h on one H100).

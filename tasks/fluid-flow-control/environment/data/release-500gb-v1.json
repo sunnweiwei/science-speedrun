@@ -1,0 +1,2548 @@
+{
+  "release_id": "hydrogym-public-500gb-v1",
+  "selection_status": "frozen",
+  "status": "data-release-not-cfd-certified",
+  "created": "2026-09-06",
+  "scope": "User-approved 500 GB subset of resource-complete public variants matching the audited paper tables. Not the original full paper benchmark; solver/fidelity/objective variants are separate cases.",
+  "supersedes": "hydrogym-public-resources-v1",
+  "data_budget": {
+    "max_bytes": 500000000000,
+    "scope": "One shared copy of fixed training/evaluation source assets",
+    "excludes": [
+      "container_images",
+      "generated_trajectories",
+      "model_checkpoints",
+      "logs",
+      "solver_scratch",
+      "download_caches"
+    ]
+  },
+  "source": {
+    "repo_id": "dynamicslab/HydroGym-environments",
+    "revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+    "code_repo": "https://github.com/dynamicslab/hydrogym",
+    "code_revision": "4ab9854dea3d84e38a59c25e0f5835a00cf8225f"
+  },
+  "source_index_sha256": "b0641ab91b30ae0246a251a925cf9b00ee92155300f9b30e6c7a5fa94a753b2f",
+  "contract": "hydrogym-policy/v1",
+  "case_count": 47,
+  "backend_counts": {
+    "firedrake": 9,
+    "jax": 2,
+    "jax-fluids": 3,
+    "maia": 31,
+    "maia-structured": 1,
+    "nek5000-v19": 1
+  },
+  "files": {
+    "count": 730,
+    "bytes": 488770756805
+  },
+  "training": {
+    "kind": "interactive-environments",
+    "case_ids": [
+      "Cavity_2D_Re7500",
+      "Cavity_2D_Re7500_fine_FD",
+      "Cavity_2D_Re7500_medium_FD",
+      "Channel_3D_Retau180",
+      "Cube_3D_Re3700",
+      "Cylinder_2D_Re1000",
+      "Cylinder_2D_Re100_fine_FD",
+      "Cylinder_2D_Re100_medium_FD",
+      "Cylinder_2D_Re200",
+      "Cylinder_2D_Re200_fine_FD",
+      "Cylinder_2D_Re200_medium_FD",
+      "Cylinder_2D_Re3900",
+      "Cylinder_3D_Re200",
+      "Cylinder_3D_Re3900",
+      "DRA2303Jet_3D_Re400000_Ma02",
+      "Kolmogorov_2D",
+      "NACA0012Gust_2D_Re1000_AOA20",
+      "NACA0012Gust_2D_Re1000_AOA40",
+      "NACA0012Gust_2D_Re100_AOA20",
+      "NACA0012Gust_2D_Re100_AOA40",
+      "NACA0012Gust_3D_Re10000_AOA12",
+      "NACA0012Gust_3D_Re50000_AOA12",
+      "NACA0012_2D_Re1000_AOA20",
+      "NACA0012_2D_Re1000_AOA40",
+      "NACA0012_2D_Re100_AOA20",
+      "NACA0012_2D_Re100_AOA40",
+      "NACA0012_3D_Re10000_AOA12",
+      "NACA0012_3D_Re50000_AOA12",
+      "Nozzle2D_coarse",
+      "Nozzle2D_fine",
+      "Nozzle3D_coarse",
+      "Pinball_2D_Re100",
+      "Pinball_2D_Re100_fine_FD",
+      "Pinball_2D_Re150",
+      "Pinball_2D_Re150_fine_FD",
+      "Pinball_2D_Re30",
+      "Pinball_2D_Re30_fine_FD",
+      "Pinball_2D_Re75",
+      "Pinball_3D_Re100",
+      "Pinball_3D_Re150",
+      "Pinball_3D_Re30",
+      "Pinball_3D_Re75",
+      "Sphere_3D_Re300",
+      "Sphere_3D_Re3700",
+      "SquareCylinder_2D_Re1000",
+      "SquareCylinder_2D_Re200",
+      "TCFmini_3D_Re180"
+    ],
+    "initial_conditions": "All supplied initial states belonging to included cases",
+    "external_data": false,
+    "fixed_transition_count": null
+  },
+  "test": {
+    "case_ids": [
+      "Cavity_2D_Re7500",
+      "Cavity_2D_Re7500_fine_FD",
+      "Cavity_2D_Re7500_medium_FD",
+      "Channel_3D_Retau180",
+      "Cube_3D_Re3700",
+      "Cylinder_2D_Re1000",
+      "Cylinder_2D_Re100_fine_FD",
+      "Cylinder_2D_Re100_medium_FD",
+      "Cylinder_2D_Re200",
+      "Cylinder_2D_Re200_fine_FD",
+      "Cylinder_2D_Re200_medium_FD",
+      "Cylinder_2D_Re3900",
+      "Cylinder_3D_Re200",
+      "Cylinder_3D_Re3900",
+      "DRA2303Jet_3D_Re400000_Ma02",
+      "Kolmogorov_2D",
+      "NACA0012Gust_2D_Re1000_AOA20",
+      "NACA0012Gust_2D_Re1000_AOA40",
+      "NACA0012Gust_2D_Re100_AOA20",
+      "NACA0012Gust_2D_Re100_AOA40",
+      "NACA0012Gust_3D_Re10000_AOA12",
+      "NACA0012Gust_3D_Re50000_AOA12",
+      "NACA0012_2D_Re1000_AOA20",
+      "NACA0012_2D_Re1000_AOA40",
+      "NACA0012_2D_Re100_AOA20",
+      "NACA0012_2D_Re100_AOA40",
+      "NACA0012_3D_Re10000_AOA12",
+      "NACA0012_3D_Re50000_AOA12",
+      "Nozzle2D_coarse",
+      "Nozzle2D_fine",
+      "Nozzle3D_coarse",
+      "Pinball_2D_Re100",
+      "Pinball_2D_Re100_fine_FD",
+      "Pinball_2D_Re150",
+      "Pinball_2D_Re150_fine_FD",
+      "Pinball_2D_Re30",
+      "Pinball_2D_Re30_fine_FD",
+      "Pinball_2D_Re75",
+      "Pinball_3D_Re100",
+      "Pinball_3D_Re150",
+      "Pinball_3D_Re30",
+      "Pinball_3D_Re75",
+      "Sphere_3D_Re300",
+      "Sphere_3D_Re3700",
+      "SquareCylinder_2D_Re1000",
+      "SquareCylinder_2D_Re200",
+      "TCFmini_3D_Re180"
+    ],
+    "regime": "known-task-frozen-model",
+    "visible": true,
+    "independent_hidden_split": false,
+    "one_shared_checkpoint": true,
+    "parameter_updates": false,
+    "normalizer_updates": false,
+    "initial_state_pool_shared_with_training": true,
+    "primary_metric": "mean_undiscounted_native_episode_return_per_case",
+    "aggregate_metric": "none_until_versioned_same_protocol_reference_anchors_exist",
+    "execution_manifest": "suite.json",
+    "execution_manifest_status": "requires_native_protocol_binding_and_full_replay"
+  },
+  "cases": [
+    {
+      "id": "Cavity_2D_Re7500",
+      "environment": "Cavity_2D_Re7500",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "maia",
+      "paper_rows": [
+        10
+      ],
+      "files_sha256": "5d4f8d3df33e3d61eccc85e67b717c9d4fa330d342c9d38963dae81699e1298b",
+      "file_count": 18,
+      "bytes": 57160456,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 7500,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 1,
+          "max_control": 0.04,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cavity_2D_Re7500_fine_FD",
+      "environment": "Cavity_2D_Re7500_fine_FD",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        10
+      ],
+      "files_sha256": "c383b22a14bcceba5cd3582252be97598fcb5a19c1889a69ab80c7290bdb8b73",
+      "file_count": 32,
+      "bytes": 2460545516,
+      "native_configuration": {
+        "flow_family": "Cavity",
+        "Re": 7500,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001209.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001222.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001235.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001248.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001261.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001274.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001287.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001300.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001313.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001326.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001339.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001352.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001365.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001378.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001391.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001404.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001417.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001430.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001443.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001456.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001469.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001482.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001495.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001508.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001521.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001534.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001547.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001560.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001573.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001586.ckpt",
+          "Cavity_2D_Re7500_fine_FD/cavity_Re-7500_Mesh-fine_DT-0.0025_00001599.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cavity_2D_Re7500_medium_FD",
+      "environment": "Cavity_2D_Re7500_medium_FD",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        10
+      ],
+      "files_sha256": "9db85dd72a6d67319bc0c285dfe2e5b101f22d62b4341e15678f82bd392a9b62",
+      "file_count": 32,
+      "bytes": 724417300,
+      "native_configuration": {
+        "flow_family": "Cavity",
+        "Re": 7500,
+        "mesh": "medium",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001209.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001222.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001235.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001248.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001261.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001274.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001287.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001300.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001313.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001326.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001339.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001352.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001365.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001378.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001391.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001404.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001417.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001430.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001443.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001456.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001469.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001482.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001495.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001508.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001521.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001534.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001547.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001560.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001573.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001586.ckpt",
+          "Cavity_2D_Re7500_medium_FD/cavity_Re-7500_Mesh-medium_DT-0.0025_00001599.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Channel_3D_Retau180",
+      "environment": "Channel_3D_Retau180",
+      "family": "differentiable-turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "backend": "jax",
+      "paper_rows": [
+        54
+      ],
+      "files_sha256": "2d8021d020397dddff7be7efaaba6a31ff2836e67b6be3a64a0f3434ed6b0809",
+      "file_count": 5,
+      "bytes": 8960204,
+      "native_configuration": {
+        "env": {
+          "n_agents": 12,
+          "max_episode_steps": 10000
+        },
+        "jax": {
+          "Retau": 180,
+          "observation_type": "u",
+          "observation_plane": 9,
+          "U_bulk": 8,
+          "nu": 0.0019,
+          "num_sim_substeps_per_actuation": 100,
+          "num_action_inputs": 1,
+          "max_control": 1,
+          "compute_grad": false,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cube_3D_Re3700",
+      "environment": "Cube_3D_Re3700",
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "backend": "maia",
+      "paper_rows": [
+        43
+      ],
+      "files_sha256": "78b8ced6559e7699510dc940fc8e053628c27d6f1aa773f42a4f77d6ee9efd09",
+      "file_count": 20,
+      "bytes": 46191156069,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3700,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1000,
+          "num_action_inputs": 4,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re1000",
+      "environment": "Cylinder_2D_Re1000",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "paper_rows": [
+        3
+      ],
+      "files_sha256": "8c79694a83a2f9cf3347c1f0bf4674576f7730b918fd3177d71f2f4cc38b5205",
+      "file_count": 12,
+      "bytes": 170512089,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 225,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re100_fine_FD",
+      "environment": "Cylinder_2D_Re100_fine_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        1
+      ],
+      "files_sha256": "ed6a879ac5108cb991d081d478bc7324e627b53205c87abbc5425a8a3edd3e72",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "native_configuration": {
+        "flow_family": "Cylinder",
+        "Re": 100,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001800.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001830.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001860.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001890.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001920.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001950.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00001980.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002010.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002040.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002070.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002100.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002130.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002160.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002190.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002220.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002250.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002280.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002310.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002340.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002370.ckpt",
+          "Cylinder_2D_Re100_fine_FD/cylinder_Re-100_Mesh-fine_DT-0.01_00002399.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re100_medium_FD",
+      "environment": "Cylinder_2D_Re100_medium_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        1
+      ],
+      "files_sha256": "09298e603f2b65d09c2d7efede1bced5a952a977bfc807edcb6fa8fe619da851",
+      "file_count": 23,
+      "bytes": 124503918,
+      "native_configuration": {
+        "flow_family": "Cylinder",
+        "Re": 100,
+        "mesh": "medium",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000570.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000600.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000630.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000660.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000690.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000720.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000750.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000780.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000810.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000840.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000870.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000900.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000930.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000960.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00000990.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001020.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001050.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001080.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001110.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001140.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001170.ckpt",
+          "Cylinder_2D_Re100_medium_FD/cylinder_Re-100_Mesh-medium_DT-0.01_00001199.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re200",
+      "environment": "Cylinder_2D_Re200",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "paper_rows": [
+        2
+      ],
+      "files_sha256": "aee00b62af16bf2b88bb66aaead3b4c9928111d68303943ab72042208c088c04",
+      "file_count": 12,
+      "bytes": 69499887,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 87,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re200_fine_FD",
+      "environment": "Cylinder_2D_Re200_fine_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        2
+      ],
+      "files_sha256": "ae68894220370f5db76fdef00c400e3a86f41b1a8600bbd0cb3e4ac24b3c0e0f",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "native_configuration": {
+        "flow_family": "Cylinder",
+        "Re": 200,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001800.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001830.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001860.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001890.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001920.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001950.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00001980.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002010.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002040.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002070.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002100.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002130.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002160.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002190.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002220.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002250.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002280.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002310.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002340.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002370.ckpt",
+          "Cylinder_2D_Re200_fine_FD/cylinder_Re-200_Mesh-fine_DT-0.01_00002399.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re200_medium_FD",
+      "environment": "Cylinder_2D_Re200_medium_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        2
+      ],
+      "files_sha256": "71ec456a3d31519c04739a22994d8bad383f444f390edb68c0912061807135b5",
+      "file_count": 22,
+      "bytes": 118844649,
+      "native_configuration": {
+        "flow_family": "Cylinder",
+        "Re": 200,
+        "mesh": "medium",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001800.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001830.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001860.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001890.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001920.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001950.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00001980.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002010.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002040.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002070.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002100.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002130.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002160.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002190.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002220.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002250.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002280.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002310.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002340.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002370.ckpt",
+          "Cylinder_2D_Re200_medium_FD/cylinder_Re-200_Mesh-medium_DT-0.01_00002399.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_2D_Re3900",
+      "environment": "Cylinder_2D_Re3900",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "paper_rows": [
+        4
+      ],
+      "files_sha256": "884bf152fe5ff769f981fdd375150c61761340587fc1e31716c314a522949eb9",
+      "file_count": 12,
+      "bytes": 190547654,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_3D_Re200",
+      "environment": "Cylinder_3D_Re200",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "paper_rows": [
+        21
+      ],
+      "files_sha256": "1914c33483964fe5866627230507af2ae26b9b72bb4eb2f80f2784ed3ab631ef",
+      "file_count": 14,
+      "bytes": 23164180645,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 575,
+          "num_action_inputs": 1,
+          "max_control": 0.0625,
+          "omega": 0.2,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Cylinder_3D_Re3900",
+      "environment": "Cylinder_3D_Re3900",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "paper_rows": [
+        23
+      ],
+      "files_sha256": "ba4578616ea81e593685dcdd0c42dbed246e4b2ad6e356a07bdf96480591eb64",
+      "file_count": 15,
+      "bytes": 41225057239,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1080,
+          "num_action_inputs": 1,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "DRA2303Jet_3D_Re400000_Ma02",
+      "environment": "DRA2303Jet_3D_Re400000_Ma02",
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.2
+      },
+      "backend": "maia-structured",
+      "paper_rows": [
+        52
+      ],
+      "files_sha256": "ef6fc6e92663133651482eca8aa1e293bc5909dc11b779d7691ac2b8f4a9dee1",
+      "file_count": 5,
+      "bytes": 93473319062,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 400000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 1000,
+          "num_action_inputs": 10,
+          "omega": 1,
+          "max_control": 0.05,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Kolmogorov_2D",
+      "environment": "Kolmogorov_2D",
+      "family": "kolmogorov",
+      "dimension": 2,
+      "parameters": {
+        "Re_range": [
+          40,
+          500
+        ]
+      },
+      "backend": "jax",
+      "paper_rows": [
+        19
+      ],
+      "files_sha256": "68e04ff2fd0844d9bc8a8308382746e803474bef66ebd637d0675fff273ae38d",
+      "file_count": 2,
+      "bytes": 1452,
+      "native_configuration": {
+        "env": {
+          "n_agents": 4,
+          "max_episode_steps": 200
+        },
+        "jax": {
+          "Re": 40,
+          "observation_type": "omega",
+          "nu": 0.0019,
+          "num_sim_substeps_per_actuation": 10,
+          "num_action_inputs": 1,
+          "max_control": 1,
+          "compute_grad": false,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA20",
+      "environment": "NACA0012Gust_2D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        16
+      ],
+      "files_sha256": "80960ef871203f9f680b2e24a11737dd0538646451c95980f22df78c3dcd1c4f",
+      "file_count": 13,
+      "bytes": 50741748,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 60,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.461,
+          "unperturbed_avg_lift": 0.915,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA40",
+      "environment": "NACA0012Gust_2D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        17
+      ],
+      "files_sha256": "16069726d52fc7e31695171e10d695c9962a6e38709b81a770ad470fdec2ce23",
+      "file_count": 13,
+      "bytes": 50748958,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.971,
+          "unperturbed_avg_lift": 2.159,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA20",
+      "environment": "NACA0012Gust_2D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        14
+      ],
+      "files_sha256": "4c5da9793a681c459eacdf66d078ce72ce36a830bcd1fa3d0053c257f193d3af",
+      "file_count": 13,
+      "bytes": 50741743,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.577,
+          "unperturbed_avg_lift": 0.783,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA40",
+      "environment": "NACA0012Gust_2D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        15
+      ],
+      "files_sha256": "13c93c8d10c8908a47d93d8b5f4c23e75c6ed7f1c0a10ca98a0e973449b3bea7",
+      "file_count": 13,
+      "bytes": 50748949,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.081,
+          "unperturbed_avg_lift": 1.027,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_3D_Re10000_AOA12",
+      "environment": "NACA0012Gust_3D_Re10000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 10000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "paper_rows": [
+        39
+      ],
+      "files_sha256": "7d613a1b79cae5cb28d63c2cd6317253d424516378bbf2a366e12b9fd76b34a2",
+      "file_count": 20,
+      "bytes": 46558255275,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 10000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.186,
+          "unperturbed_avg_lift": 0.634,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012Gust_3D_Re50000_AOA12",
+      "environment": "NACA0012Gust_3D_Re50000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 50000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "paper_rows": [
+        40
+      ],
+      "files_sha256": "ae9f1972c3936933c7501fa37b7865a32267fe650d1009585d24e807b9f0c8e9",
+      "file_count": 19,
+      "bytes": 46367351482,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 50000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 140,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.157,
+          "unperturbed_avg_lift": 0.514,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA20",
+      "environment": "NACA0012_2D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        16
+      ],
+      "files_sha256": "eded12c4700af91608b486b574a1135e473e88764823c385da77292e1b5d093b",
+      "file_count": 12,
+      "bytes": 50733521,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 170,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA40",
+      "environment": "NACA0012_2D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        17
+      ],
+      "files_sha256": "a69fa3d28a41d953ba8abd4986d42535a99da3769d6b6fb69ec04b8b0b8432c4",
+      "file_count": 12,
+      "bytes": 50740740,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 400,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA20",
+      "environment": "NACA0012_2D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        14
+      ],
+      "files_sha256": "b3b640c9fb63cf916ce899cb2582b8bedc9ea5348e3c246afbbd4f6a57cd0531",
+      "file_count": 12,
+      "bytes": 50733514,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA40",
+      "environment": "NACA0012_2D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        15
+      ],
+      "files_sha256": "c4dbaaad5539c9379783f2e0735a251b015b3455fbe2956697850ffa9c59ce1e",
+      "file_count": 12,
+      "bytes": 50740730,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_3D_Re10000_AOA12",
+      "environment": "NACA0012_3D_Re10000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 10000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "paper_rows": [
+        39
+      ],
+      "files_sha256": "180e1406bc49d6f3048f7b1aa3b639068ae247ca09add4ab94b28a6c66e1f742",
+      "file_count": 19,
+      "bytes": 46558248729,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 10000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 350,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "NACA0012_3D_Re50000_AOA12",
+      "environment": "NACA0012_3D_Re50000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 50000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "paper_rows": [
+        40
+      ],
+      "files_sha256": "e1f5194fec6fe0ce3fa1d83ef84903e4ea33d0a3dc703cca03ce1df21ef66c1f",
+      "file_count": 18,
+      "bytes": 46367344938,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 50000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 700,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Nozzle2D_coarse",
+      "environment": "Nozzle2D_coarse",
+      "family": "divergent-nozzle",
+      "dimension": 2,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "paper_rows": [
+        20
+      ],
+      "files_sha256": "391eb63da2f52d6b2c6b0ced392f530a74afef9bed17c39afd3f3fda3e7f60fe",
+      "file_count": 4,
+      "bytes": 8451737,
+      "native_configuration": {
+        "jaxfluids": {
+          "resolution": "coarse",
+          "secondary_pressure_ratio": 0.9,
+          "is_pressure_probes": true,
+          "steps_per_action": 100,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Nozzle2D_fine",
+      "environment": "Nozzle2D_fine",
+      "family": "divergent-nozzle",
+      "dimension": 2,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "paper_rows": [
+        20
+      ],
+      "files_sha256": "895a3152513441721738487732a872f79d73afb840bf7f610d71ea53656e64fa",
+      "file_count": 4,
+      "bytes": 25266052,
+      "native_configuration": {
+        "jaxfluids": {
+          "resolution": "fine",
+          "secondary_pressure_ratio": 0.9,
+          "is_pressure_probes": true,
+          "steps_per_action": 200,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Nozzle3D_coarse",
+      "environment": "Nozzle3D_coarse",
+      "family": "divergent-nozzle",
+      "dimension": 3,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "paper_rows": [
+        55
+      ],
+      "files_sha256": "dfe953bc2938f8823a1ca96a0fb0d60ecc8a89008e0071516024d0a8b337ed98",
+      "file_count": 4,
+      "bytes": 2880103574,
+      "native_configuration": {
+        "jaxfluids": {
+          "resolution": "coarse",
+          "secondary_pressure_ratio": 0.7,
+          "is_pressure_probes": true,
+          "steps_per_action": 200,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re100",
+      "environment": "Pinball_2D_Re100",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "maia",
+      "paper_rows": [
+        7
+      ],
+      "files_sha256": "9676c316a97f74b31a8b0d45f22e3fbe72b97d2423392a7b644b565d28c5217b",
+      "file_count": 16,
+      "bytes": 76181792,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re100_fine_FD",
+      "environment": "Pinball_2D_Re100_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        7
+      ],
+      "files_sha256": "02220789329b9173c454cda3b336189a4093d25d4d9bd73ffa5ace52d0707739",
+      "file_count": 22,
+      "bytes": 348150537,
+      "native_configuration": {
+        "flow_family": "Pinball",
+        "Re": 100,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000080.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000084.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000088.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000092.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000096.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000100.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000104.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000108.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000112.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000116.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000120.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000124.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000128.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000132.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000136.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000140.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000144.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000148.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000152.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000156.ckpt",
+          "Pinball_2D_Re100_fine_FD/pinball_Re-100_Mesh-fine_DT-0.1_00000159.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re150",
+      "environment": "Pinball_2D_Re150",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "maia",
+      "paper_rows": [
+        8
+      ],
+      "files_sha256": "14b973f617ccb9c1ee7ac553173596091f4de3279067e02cd77c7f5bc0feab79",
+      "file_count": 16,
+      "bytes": 46991787,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.4,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re150_fine_FD",
+      "environment": "Pinball_2D_Re150_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        8
+      ],
+      "files_sha256": "854ef57591201f7cde2af190e8dd43ad2854c5ab708077126842530b4d4c9e41",
+      "file_count": 22,
+      "bytes": 348150537,
+      "native_configuration": {
+        "flow_family": "Pinball",
+        "Re": 150,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000080.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000084.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000088.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000092.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000096.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000100.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000104.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000108.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000112.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000116.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000120.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000124.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000128.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000132.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000136.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000140.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000144.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000148.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000152.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000156.ckpt",
+          "Pinball_2D_Re150_fine_FD/pinball_Re-150_Mesh-fine_DT-0.1_00000159.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re30",
+      "environment": "Pinball_2D_Re30",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "maia",
+      "paper_rows": [
+        5
+      ],
+      "files_sha256": "165653b23b42528863dd92ff2a58094d923666f8c5ec65a9a14607506507be15",
+      "file_count": 16,
+      "bytes": 76181741,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re30_fine_FD",
+      "environment": "Pinball_2D_Re30_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "firedrake",
+      "paper_rows": [
+        5
+      ],
+      "files_sha256": "257b695352f387cbcd86b7916031ca96ec2b1678c63f9bb0153da93aee0217e6",
+      "file_count": 22,
+      "bytes": 348150537,
+      "native_configuration": {
+        "flow_family": "Pinball",
+        "Re": 30,
+        "mesh": "fine",
+        "configuration_source": "resource name plus pinned Firedrake flow implementation",
+        "checkpoint_files": [
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000160.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000168.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000176.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000184.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000192.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000200.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000208.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000216.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000224.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000232.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000240.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000248.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000256.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000264.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000272.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000280.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000288.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000296.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000304.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000312.ckpt",
+          "Pinball_2D_Re30_fine_FD/pinball_Re-30_Mesh-fine_DT-0.1_00000319.ckpt"
+        ]
+      },
+      "configuration_identity_reconstructed": true,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_2D_Re75",
+      "environment": "Pinball_2D_Re75",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 75
+      },
+      "backend": "maia",
+      "paper_rows": [
+        6
+      ],
+      "files_sha256": "b27441d8d2cbee305ef3c7153cdd388ee953093d3a3844a928f6752e10007451",
+      "file_count": 16,
+      "bytes": 76181789,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_3D_Re100",
+      "environment": "Pinball_3D_Re100",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "maia",
+      "paper_rows": [
+        28
+      ],
+      "files_sha256": "bc47063e02c1c79143f3eda704524c177f62e49bbb18101ae2c47433b86dc2f0",
+      "file_count": 17,
+      "bytes": 8342280421,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 195,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_3D_Re150",
+      "environment": "Pinball_3D_Re150",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "maia",
+      "paper_rows": [
+        29
+      ],
+      "files_sha256": "7fe822fd5dc792a63e20db4cba55d58bca2fb45a1c87b0ab5bbce0f2fde0ced9",
+      "file_count": 17,
+      "bytes": 8341950797,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 175,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_3D_Re30",
+      "environment": "Pinball_3D_Re30",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "maia",
+      "paper_rows": [
+        26
+      ],
+      "files_sha256": "95623610abc23b1195ed02676d8da6e24fda76439aa085fc0db6b7e40e16da88",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Pinball_3D_Re75",
+      "environment": "Pinball_3D_Re75",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 75
+      },
+      "backend": "maia",
+      "paper_rows": [
+        27
+      ],
+      "files_sha256": "f063beb75f90d1b43d03ef4a64683002760bd342c32352470294251e7c440970",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 210,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Sphere_3D_Re300",
+      "environment": "Sphere_3D_Re300",
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "backend": "maia",
+      "paper_rows": [
+        44
+      ],
+      "files_sha256": "0304c221b39bb72871506371179276180137078198b8cc8b5c6f3d0c51a61a3a",
+      "file_count": 14,
+      "bytes": 19965486993,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 300,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 825,
+          "num_action_inputs": 10,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "Sphere_3D_Re3700",
+      "environment": "Sphere_3D_Re3700",
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "backend": "maia",
+      "paper_rows": [
+        45
+      ],
+      "files_sha256": "0148d6d82d8a792a6178ab2c8a3c8cb7d58573a292da3b20b527555bc684e808",
+      "file_count": 14,
+      "bytes": 34442722145,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3700,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 2400,
+          "num_action_inputs": 10,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "SquareCylinder_2D_Re1000",
+      "environment": "SquareCylinder_2D_Re1000",
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "paper_rows": [
+        12
+      ],
+      "files_sha256": "08b41d923b965418e6abdaf4dd8e726a6e0306a88c31b3aabb9a10f00ce93a45",
+      "file_count": 12,
+      "bytes": 87142919,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 250,
+          "num_action_inputs": 2,
+          "max_control": 0.05,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "SquareCylinder_2D_Re200",
+      "environment": "SquareCylinder_2D_Re200",
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "paper_rows": [
+        11
+      ],
+      "files_sha256": "658f2de059145d00d453267a5514511b3bf3a0b38162ecb4b088a7b897bd98a0",
+      "file_count": 12,
+      "bytes": 69774977,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 110,
+          "num_action_inputs": 2,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    },
+    {
+      "id": "TCFmini_3D_Re180",
+      "environment": "TCFmini_3D_Re180",
+      "family": "turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "backend": "nek5000-v19",
+      "paper_rows": [
+        51
+      ],
+      "files_sha256": "ef28a23e7cfd7baa9d9d7b8a0cdab7f813af852bd6e84d067c4fb340c4bb97ee",
+      "file_count": 24,
+      "bytes": 19990547,
+      "native_configuration": {
+        "runner": {
+          "nb_interactions": 2500,
+          "nb_episodes": 100,
+          "nb_warmup_episodes": 1,
+          "train_steps": 300,
+          "gradient_steps": 64,
+          "ckpt_int": 5,
+          "RL_algorithm": "TD3",
+          "rescale_actions": true,
+          "learning_rate": "1e-3",
+          "batch_size": 256,
+          "buffer_size": 1000000,
+          "learning_starts": 100,
+          "tau": 0.005,
+          "policy_delay": 2,
+          "target_policy_noise": 0,
+          "target_noise_clip": 0,
+          "action_noise": 0.1,
+          "seed": 1998,
+          "random_init": 6,
+          "rank": 1,
+          "evaluation": false,
+          "normalize_input": "utau",
+          "ctrl_min_amp": -0.06388353,
+          "ctrl_max_amp": 0.06388353,
+          "npl_state": 2,
+          "u_tau": 0.06388353,
+          "dUdy": 12.4271
+        },
+        "simulation": {
+          "CASENAME": "phill",
+          "solver_version": "v19",
+          "exeName": "nek5000",
+          "host": "localhost",
+          "hostfile": "",
+          "compile_path": ".",
+          "restart_folder": "restart_files",
+          "nproc": 10,
+          "TOTCTRL": 220,
+          "ndrl": 1,
+          "znmf_avg": 0,
+          "target_cfl": 2,
+          "y_sensing": 15,
+          "retau": 180,
+          "ys_bdf": 0,
+          "amp_bdf": 0,
+          "ret_bdf": 0,
+          "lx1": 6,
+          "Lx": 2.67,
+          "Ly": 1,
+          "Lz": 0.8,
+          "Nx": 4,
+          "Ny": 16,
+          "Nz": 4,
+          "nxs": 1,
+          "nzs": 1,
+          "tmax": 100000,
+          "stopAt": "numSteps",
+          "numSteps": 500000,
+          "dt": -0.01,
+          "timeStepper": "bdf3",
+          "variableDt": "no",
+          "writeControl": "timeStep",
+          "writeInterval": 100000,
+          "dealiasing": "yes",
+          "filtering": "none",
+          "filterWeight": 0.01,
+          "filterCutoffRatio": 0.9,
+          "stressFormulation": "no",
+          "variableProperties": "no",
+          "p_residualTol": 1e-08,
+          "p_residualProj": "no",
+          "v_residualTol": 1e-08,
+          "v_residualProj": "no",
+          "density": 1,
+          "viscosity": -2800,
+          "advection": "yes",
+          "PARFWRITE": "no",
+          "PARFNAME": "outparfile",
+          "LOGLEVEL": 1,
+          "WALLTIME": "23:45",
+          "READCHKPT": "yes",
+          "CHKPFNUMBER": 1,
+          "CHKPINTERVAL": 10000000,
+          "AVSTEP": 10,
+          "IOSTEP": 300000000,
+          "SMPSTEP": 23
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "full_release_replay_pending"
+    }
+  ],
+  "exclusions": [
+    {
+      "paper_row": 9,
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 4200
+      },
+      "reason": "parameter_mismatch",
+      "detail": "Published low-Re Hub resource is 4140, not 4200. Do not silently change the paper case's identity. Three-jet folders are another actuator choice."
+    },
+    {
+      "paper_row": 18,
+      "family": "stenotic-pipe",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 24,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "reason": "missing_distinct_multiagent_configuration",
+      "detail": "Candidate YAML declares one agent; reusing its mesh does not define the paper MARL task. Single-agent counterparts remain included."
+    },
+    {
+      "paper_row": 25,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "reason": "missing_distinct_multiagent_configuration",
+      "detail": "Candidate YAML declares one agent; reusing its mesh does not define the paper MARL task. Single-agent counterparts remain included."
+    },
+    {
+      "paper_row": 30,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 4200
+      },
+      "reason": "missing_payload",
+      "detail": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 31,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 7500
+      },
+      "reason": "missing_payload",
+      "detail": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 46,
+      "family": "stenotic-pipe",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 47,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 200
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 48,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1400
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 49,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1550
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 50,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 2200
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "environment": "DRA2303SurfaceWave_3D_Re400000_Ma02",
+      "paper_row": 52,
+      "reason": "marker_only_actuation_variant",
+      "detail": "No nonempty CFD payload."
+    },
+    {
+      "paper_row": 53,
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.7
+      },
+      "reason": "missing_payload",
+      "detail": "Three of these directories are zero-byte solver-marker placeholders, not materializable CFD cases."
+    },
+    {
+      "environment": "SquareCylinder_2D_Re3900",
+      "paper_rows": [
+        13
+      ],
+      "reason": "incomplete_native_resource_package",
+      "missing": [
+        "restart_.Netcdf"
+      ],
+      "detail": "Required by the pinned solver's data profile; not excluded for model performance or lack of our evaluator adapter. Can be reconsidered after a validated repair in a new release."
+    },
+    {
+      "environment": "Cube_3D_Re300",
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "backend": "maia",
+      "bytes": 14089621635,
+      "paper_rows": [
+        42
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "Cylinder_3D_Re1000",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "bytes": 41224574218,
+      "paper_rows": [
+        22
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 36489658999,
+      "paper_rows": [
+        37
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 34949198769,
+      "paper_rows": [
+        38
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 23607593595,
+      "paper_rows": [
+        35
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 23493942117,
+      "paper_rows": [
+        36
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012_3D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 36489652445,
+      "paper_rows": [
+        37
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012_3D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 34949192217,
+      "paper_rows": [
+        38
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012_3D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 23607587049,
+      "paper_rows": [
+        35
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012_3D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 23493935571,
+      "paper_rows": [
+        36
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "NACA0012_3D_Re200000_AOA0",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200000,
+        "angle": 0
+      },
+      "backend": "nek5000-v17",
+      "bytes": 174525626413,
+      "paper_rows": [
+        41
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "Nozzle3D_fine",
+      "family": "divergent-nozzle",
+      "dimension": 3,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "bytes": 14400395385,
+      "paper_rows": [
+        55
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re1000",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "bytes": 48646448917,
+      "paper_rows": [
+        33
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re200",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "bytes": 25941477839,
+      "paper_rows": [
+        32
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re3900",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "bytes": 48646448939,
+      "paper_rows": [
+        34
+      ],
+      "reason": "not_selected_500gb_scope",
+      "resource_status": "required_payloads_present",
+      "detail": "User-approved 500 GB scope selection, not missing data or a policy-performance exclusion. Preserve all 2D cases; paired 3D cylinder/sphere Reynolds numbers; all four 3D Pinball cases; cube Re3700; NACA Re10000/50000 at AOA12 with both objectives; both channels; coarse 3D nozzle; DRA2303 jet Ma0.2."
+    }
+  ],
+  "reconstruction_policy": "No missing geometry/flow is synthesized in v1. Firedrake identity is decoded from public checkpoint directory names; its native executable binding still requires validation. Any later repair changes the release ID; never silently backfill a frozen test."
+}

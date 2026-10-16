@@ -1,0 +1,5759 @@
+{
+  "release_id": "hydrogym-public-speed-v1",
+  "selection_status": "frozen",
+  "status": "data-release-not-cfd-certified",
+  "created": "2026-09-07",
+  "scope": "Cost-aware known-task selection from all 62 resource-complete public variants; retain diverse 3D control, not the original paper's full benchmark.",
+  "supersedes": "hydrogym-public-500gb-v1",
+  "data_budget": {
+    "max_bytes": 500000000000,
+    "scope": "One shared copy of fixed training/evaluation source assets",
+    "excludes": [
+      "container_images",
+      "generated_trajectories",
+      "model_checkpoints",
+      "logs",
+      "solver_scratch",
+      "download_caches"
+    ]
+  },
+  "source": {
+    "repo_id": "dynamicslab/HydroGym-environments",
+    "revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+    "code_repo": "https://github.com/dynamicslab/hydrogym",
+    "code_revision": "4ab9854dea3d84e38a59c25e0f5835a00cf8225f"
+  },
+  "source_index_sha256": "b0641ab91b30ae0246a251a925cf9b00ee92155300f9b30e6c7a5fa94a753b2f",
+  "contract": "hydrogym-policy/v1",
+  "case_count": 28,
+  "backend_counts": {
+    "jax": 1,
+    "jax-fluids": 1,
+    "maia": 26
+  },
+  "files": {
+    "count": 390,
+    "bytes": 138268990191
+  },
+  "training": {
+    "kind": "interactive-environments",
+    "case_ids": [
+      "Cavity_2D_Re7500",
+      "Channel_3D_Retau180",
+      "Cylinder_2D_Re1000",
+      "Cylinder_2D_Re200",
+      "Cylinder_2D_Re3900",
+      "NACA0012Gust_2D_Re1000_AOA20",
+      "NACA0012Gust_2D_Re1000_AOA40",
+      "NACA0012Gust_2D_Re100_AOA20",
+      "NACA0012Gust_2D_Re100_AOA40",
+      "NACA0012Gust_3D_Re1000_AOA20",
+      "NACA0012Gust_3D_Re100_AOA20",
+      "NACA0012Gust_3D_Re100_AOA40",
+      "NACA0012_2D_Re1000_AOA20",
+      "NACA0012_2D_Re1000_AOA40",
+      "NACA0012_2D_Re100_AOA20",
+      "NACA0012_2D_Re100_AOA40",
+      "Nozzle2D_coarse",
+      "Pinball_2D_Re100",
+      "Pinball_2D_Re150",
+      "Pinball_2D_Re30",
+      "Pinball_2D_Re75",
+      "Pinball_3D_Re100",
+      "Pinball_3D_Re150",
+      "Pinball_3D_Re30",
+      "Pinball_3D_Re75",
+      "Sphere_3D_Re300",
+      "SquareCylinder_2D_Re1000",
+      "SquareCylinder_2D_Re200"
+    ],
+    "initial_conditions": "All supplied initial states belonging to included cases",
+    "external_data": false,
+    "fixed_transition_count": null
+  },
+  "test": {
+    "case_ids": [
+      "Cavity_2D_Re7500",
+      "Channel_3D_Retau180",
+      "Cylinder_2D_Re1000",
+      "Cylinder_2D_Re200",
+      "Cylinder_2D_Re3900",
+      "NACA0012Gust_2D_Re1000_AOA20",
+      "NACA0012Gust_2D_Re1000_AOA40",
+      "NACA0012Gust_2D_Re100_AOA20",
+      "NACA0012Gust_2D_Re100_AOA40",
+      "NACA0012Gust_3D_Re1000_AOA20",
+      "NACA0012Gust_3D_Re100_AOA20",
+      "NACA0012Gust_3D_Re100_AOA40",
+      "NACA0012_2D_Re1000_AOA20",
+      "NACA0012_2D_Re1000_AOA40",
+      "NACA0012_2D_Re100_AOA20",
+      "NACA0012_2D_Re100_AOA40",
+      "Nozzle2D_coarse",
+      "Pinball_2D_Re100",
+      "Pinball_2D_Re150",
+      "Pinball_2D_Re30",
+      "Pinball_2D_Re75",
+      "Pinball_3D_Re100",
+      "Pinball_3D_Re150",
+      "Pinball_3D_Re30",
+      "Pinball_3D_Re75",
+      "Sphere_3D_Re300",
+      "SquareCylinder_2D_Re1000",
+      "SquareCylinder_2D_Re200"
+    ],
+    "regime": "known-task-frozen-model",
+    "visible": true,
+    "independent_hidden_split": false,
+    "one_shared_checkpoint": true,
+    "parameter_updates": false,
+    "normalizer_updates": false,
+    "initial_state_pool_shared_with_training": true,
+    "primary_metric": "mean_undiscounted_native_episode_return_per_case",
+    "aggregate_metric": "none_until_versioned_same_protocol_reference_anchors_exist",
+    "execution_manifest": "suite.json",
+    "execution_manifest_status": "requires_native_protocol_binding_and_full_replay"
+  },
+  "cases": [
+    {
+      "id": "Cavity_2D_Re7500",
+      "environment": "Cavity_2D_Re7500",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "maia",
+      "paper_rows": [
+        10
+      ],
+      "files_sha256": "5d4f8d3df33e3d61eccc85e67b717c9d4fa330d342c9d38963dae81699e1298b",
+      "file_count": 18,
+      "bytes": 57160456,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 7500,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 1,
+          "max_control": 0.04,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Cavity_2D_Re7500",
+        "status": "complete",
+        "seconds_per_control": 0.15876179018523545,
+        "measured_controls": 5,
+        "substeps_per_control": 150,
+        "startup_seconds": 2.4999464410357177,
+        "reset_seconds": 0.19546241400530562,
+        "sampled_gpu_peak_mib": 969,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 57160456,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.1541122340131551,
+          0.15744599601021037,
+          0.16249384195543826,
+          0.15989968896610662,
+          0.15985718998126686
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            0.2,
+            -0.4,
+            0.2,
+            -0.2,
+            0.6,
+            -0.4,
+            0.6,
+            -0.2,
+            1.0,
+            -0.4,
+            1.0,
+            -0.2,
+            1.4,
+            -0.4,
+            1.4,
+            -0.2,
+            1.8,
+            -0.4,
+            1.8,
+            -0.2
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 150,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.04,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 7500,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "num_sim_substeps_per_actuation": 150,
+              "num_action_inputs": 1,
+              "max_control": 0.04,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Cavity_2D_Re7500",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            20
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 0.8859898819937371
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/Cavity_2D_Re7500",
+        "raw_sha256": {
+          "effective.json": "39cfd433c9889440782828806526b49f84593f0e48afa16b69f6d1062a061308",
+          "steps.jsonl": "82ab2a07201339dc2f9572843211d9dd1365b8ddf8508127d7f756cd040053c8",
+          "result.json": "c64c1581706177bdaa016bfd01123c783bc34624f20a851d28a83a157d5c5a29",
+          "container.json": "5b310f3280c29f2253f2043252e7f90961c772c1dd919303205206d25744e5cf"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Channel_3D_Retau180",
+      "environment": "Channel_3D_Retau180",
+      "family": "differentiable-turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "backend": "jax",
+      "paper_rows": [
+        54
+      ],
+      "files_sha256": "2d8021d020397dddff7be7efaaba6a31ff2836e67b6be3a64a0f3434ed6b0809",
+      "file_count": 5,
+      "bytes": 8960204,
+      "native_configuration": {
+        "env": {
+          "n_agents": 12,
+          "max_episode_steps": 10000
+        },
+        "jax": {
+          "Retau": 180,
+          "observation_type": "u",
+          "observation_plane": 9,
+          "U_bulk": 8,
+          "nu": 0.0019,
+          "num_sim_substeps_per_actuation": 100,
+          "num_action_inputs": 1,
+          "max_control": 1,
+          "compute_grad": false,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Channel_3D_Retau180",
+        "status": "complete",
+        "seconds_per_control": 0.10420105683927734,
+        "measured_controls": 6,
+        "substeps_per_control": 50,
+        "startup_seconds": 0.4084368699695915,
+        "reset_seconds": 0.004158402036409825,
+        "sampled_gpu_peak_mib": 1455,
+        "notes": [
+          "Official class defaults; YAML mismatch is unresolved, not silently applied"
+        ],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "jax",
+        "data_bytes": 8960204,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.10429859696887434,
+          0.10400469100568444,
+          0.10435975901782513,
+          0.10405820998130366,
+          0.10435469803633168,
+          0.10413038602564484
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 8,
+        "effective_diagnostic_configuration": {
+          "backend": "jax",
+          "class": "ChannelFlowSpectralEnv",
+          "params": {
+            "max_steps_in_episode": 5000,
+            "action_dim": 24,
+            "obs_subsample": 8,
+            "obs_include_components": 2,
+            "k_det": 9,
+            "Nx": 72,
+            "Ny": 72,
+            "Nz": 72,
+            "nsteps": 50,
+            "dt": 0.0002,
+            "min_action": -1,
+            "max_action": 1
+          },
+          "scope": "Official class defaults; YAML mismatch is unresolved, not silently applied",
+          "substeps_per_control": 50
+        },
+        "configuration_scope": "Official class defaults; YAML mismatch is unresolved, not silently applied",
+        "audit_directory": "cases/Channel_3D_Retau180",
+        "raw_sha256": {
+          "effective.json": "0a0162080098423b51db437a40327f360410bc72faa9b1932332f9d9886239b9",
+          "steps.jsonl": "2cba9944fe71c478a784758bbb478e3c29e807b0a9d60cf9e1541ff0f19decfb",
+          "result.json": "6e034773e81eab65f7196263ccea3e3d5e262b96a218e362c64eeb89b58a4b93",
+          "container.json": "1a542534d07d2818ba0a1c127af3c5a2e147773fc5311ccb7f3ba62177e87d76"
+        }
+      },
+      "cost_configuration_basis": "Pinned ChannelFlowSpectralEnv class defaults (72^3, 24 actions, 50 CFD substeps/action), not conflicting asset YAML; bind explicitly in the reviewed evaluation protocol."
+    },
+    {
+      "id": "Cylinder_2D_Re1000",
+      "environment": "Cylinder_2D_Re1000",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "paper_rows": [
+        3
+      ],
+      "files_sha256": "8c79694a83a2f9cf3347c1f0bf4674576f7730b918fd3177d71f2f4cc38b5205",
+      "file_count": 12,
+      "bytes": 170512089,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 225,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Cylinder_2D_Re1000",
+        "status": "complete",
+        "seconds_per_control": 0.4253112469799817,
+        "measured_controls": 5,
+        "substeps_per_control": 225,
+        "startup_seconds": 4.1968704969622195,
+        "reset_seconds": 0.5501715620048344,
+        "sampled_gpu_peak_mib": 1197,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 170512089,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.4459514539921656,
+          0.4214166649617255,
+          0.44096329098101705,
+          0.41695868398528546,
+          0.4012661409797147
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 225,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 225,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re1000",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.3769960940117016
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Cylinder_2D_Re1000",
+        "raw_sha256": {
+          "effective.json": "fb37ae1b4112b17835946d02875b22bbaf4276911d0b63fdbd0a03e20928789c",
+          "steps.jsonl": "87c861d69c79f84608820fa7b0f94c2d9a37bc0fbd49629b2c29935663094af2",
+          "result.json": "6f9cf6c970b30ba7d1bcc915381745de4e7588e28616bddf9ced24ab58d20e75",
+          "container.json": "1eacce09e2161d5a40fa8ee8319ae08493d03160872b694001e72b95062376a2"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Cylinder_2D_Re200",
+      "environment": "Cylinder_2D_Re200",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "paper_rows": [
+        2
+      ],
+      "files_sha256": "aee00b62af16bf2b88bb66aaead3b4c9928111d68303943ab72042208c088c04",
+      "file_count": 12,
+      "bytes": 69499887,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 87,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Cylinder_2D_Re200",
+        "status": "complete",
+        "seconds_per_control": 0.11167315639322624,
+        "measured_controls": 5,
+        "substeps_per_control": 87,
+        "startup_seconds": 3.4976904619834386,
+        "reset_seconds": 0.15821526397485286,
+        "sampled_gpu_peak_mib": 797,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 69499887,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.13464084698352963,
+          0.11347110202768818,
+          0.09120934997918084,
+          0.11341875797370449,
+          0.10562572500202805
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 87,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.2,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 200,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 87,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 0.2,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re200",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.396142392011825
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Cylinder_2D_Re200",
+        "raw_sha256": {
+          "effective.json": "0f13310b909a486e24cd26b89cce3a794d5b3a0cbd13e7afbd5701c6429744e8",
+          "steps.jsonl": "6bf3b858a155ca34d07d779f88e2c56ea4b4a8573afb57bbe2fd4ccf5bafb849",
+          "result.json": "16a63e7b084a928666ac5a0c08e0c438d4af53976a39090364bab2ee87b0597f",
+          "container.json": "3cad061f2f6df3d24324bfd612ec0805750be4a56f1bc95d76e136a80583f429"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Cylinder_2D_Re3900",
+      "environment": "Cylinder_2D_Re3900",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "paper_rows": [
+        4
+      ],
+      "files_sha256": "884bf152fe5ff769f981fdd375150c61761340587fc1e31716c314a522949eb9",
+      "file_count": 12,
+      "bytes": 190547654,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Cylinder_2D_Re3900",
+        "status": "complete",
+        "seconds_per_control": 0.6868752258131281,
+        "measured_controls": 5,
+        "substeps_per_control": 500,
+        "startup_seconds": 4.443397033028305,
+        "reset_seconds": 0.8536705379956402,
+        "sampled_gpu_peak_mib": 1199,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 190547654,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.7075887940009125,
+          0.6872693110490218,
+          0.6364643750130199,
+          0.6969746479880996,
+          0.7060790010145865
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 500,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 3900,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 500,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re3900",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.4021667040069588
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Cylinder_2D_Re3900",
+        "raw_sha256": {
+          "effective.json": "f97affbaf5c181d0d0f526c0f4aca4af85e7075380a0b2fe5e2ba96d33228d4a",
+          "steps.jsonl": "089e6298fb34f009639ec64ee4ae5ea430f9d03b38166738d545334524dff98b",
+          "result.json": "dd8fb0ca0c1aed2bc90dc9a7c607139f6810a6e06faee36feba623680b94f5b6",
+          "container.json": "959ad40463e0be9127ac669adc24c07054c223362f0d5838be8eed956ef5fcf1"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA20",
+      "environment": "NACA0012Gust_2D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        16
+      ],
+      "files_sha256": "80960ef871203f9f680b2e24a11737dd0538646451c95980f22df78c3dcd1c4f",
+      "file_count": 13,
+      "bytes": 50741748,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 60,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.461,
+          "unperturbed_avg_lift": 0.915,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_2D_Re1000_AOA20",
+        "status": "complete",
+        "seconds_per_control": 0.0920445327879861,
+        "measured_controls": 5,
+        "substeps_per_control": 60,
+        "startup_seconds": 2.570412218978163,
+        "reset_seconds": 0.10999559401534498,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50741748,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.11986232799245045,
+          0.057058446982409805,
+          0.12203783600125462,
+          0.0503956779721193,
+          0.11086837499169633
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 60,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 60,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.461,
+              "unperturbed_avg_lift": 0.915,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re1000_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9190369679708965
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012Gust_2D_Re1000_AOA20",
+        "raw_sha256": {
+          "effective.json": "947f747340c633f6c554e1deffc171b0e25fc58c493d21be173d3a9d34a8df56",
+          "steps.jsonl": "55bb8ccb93fcb5b6d2faf9cc82c058d5a89a5cb6a958b5e7bccbcff7bda35229",
+          "result.json": "8cb0cb247fccb749b4d3601d1a040f58858702f38f45015ffa615f10c52e23c6",
+          "container.json": "52c726ea86a24ee1a31868ba25f2827b6f37a1649fd42a6525b32c82ff5cb16d"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA40",
+      "environment": "NACA0012Gust_2D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        17
+      ],
+      "files_sha256": "16069726d52fc7e31695171e10d695c9962a6e38709b81a770ad470fdec2ce23",
+      "file_count": 13,
+      "bytes": 50748958,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.971,
+          "unperturbed_avg_lift": 2.159,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_2D_Re1000_AOA40",
+        "status": "complete",
+        "seconds_per_control": 0.09956015280913562,
+        "measured_controls": 5,
+        "substeps_per_control": 75,
+        "startup_seconds": 2.488891929970123,
+        "reset_seconds": 0.11339925701031461,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50748958,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.12352073501097038,
+          0.07227062003221363,
+          0.11004831100581214,
+          0.0916462320019491,
+          0.10031486599473283
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 1.971,
+              "unperturbed_avg_lift": 2.159,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re1000_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9058513710042462
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012Gust_2D_Re1000_AOA40",
+        "raw_sha256": {
+          "effective.json": "26ce5ca92cd735d98ae96ca54822fc71c21c872a60a8af4cc0352ebea3e04ac0",
+          "steps.jsonl": "f95ab7fe83b8cd775eebce0d59eaa80db460f1088c7229923e55ffcc9d2c316d",
+          "result.json": "d368a5f89ed12bd7e1b9c7f5d10968cf72e932489ab5cd957f048d0a4bab01a2",
+          "container.json": "a8caee945af595fa57c6cabaab7edecd2accde79c0899478c6b38f09157947ae"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA20",
+      "environment": "NACA0012Gust_2D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        14
+      ],
+      "files_sha256": "4c5da9793a681c459eacdf66d078ce72ce36a830bcd1fa3d0053c257f193d3af",
+      "file_count": 13,
+      "bytes": 50741743,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.577,
+          "unperturbed_avg_lift": 0.783,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_2D_Re100_AOA20",
+        "status": "complete",
+        "seconds_per_control": 0.09151584400096908,
+        "measured_controls": 5,
+        "substeps_per_control": 75,
+        "startup_seconds": 2.6154373550089076,
+        "reset_seconds": 0.09798928297823295,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50741743,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.12147458404069766,
+          0.05209204601123929,
+          0.11803114996291697,
+          0.0573300079558976,
+          0.10865143203409389
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.577,
+              "unperturbed_avg_lift": 0.783,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re100_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9575456030433998
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012Gust_2D_Re100_AOA20",
+        "raw_sha256": {
+          "effective.json": "90b48ed589742a23de6315a7899329d5ab49ee613072ae1fcfc7901c08875cf4",
+          "steps.jsonl": "5fca67427810b01dcaa34cc8b7a434797737db6aeeeff48fac1587a5280d33be",
+          "result.json": "60a02943caa35930914e22d4bf2af3397afb9af9e7996acc1380f75436d13219",
+          "container.json": "3ab82e80b38dc1ef0871b772715558d8d21dba3964f18b3536dfd968d8d57744"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA40",
+      "environment": "NACA0012Gust_2D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        15
+      ],
+      "files_sha256": "13c93c8d10c8908a47d93d8b5f4c23e75c6ed7f1c0a10ca98a0e973449b3bea7",
+      "file_count": 13,
+      "bytes": 50748949,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.081,
+          "unperturbed_avg_lift": 1.027,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_2D_Re100_AOA40",
+        "status": "complete",
+        "seconds_per_control": 0.11152918060543016,
+        "measured_controls": 5,
+        "substeps_per_control": 75,
+        "startup_seconds": 2.610556527040899,
+        "reset_seconds": 0.1318133840104565,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50748949,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.13339739601360634,
+          0.10335604602005333,
+          0.08837590599432588,
+          0.12048262497410178,
+          0.11203393002506346
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 1.081,
+              "unperturbed_avg_lift": 1.027,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re100_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9686879520304501
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012Gust_2D_Re100_AOA40",
+        "raw_sha256": {
+          "effective.json": "2bb8cb00a912a0b5bead9a36aa3064cdd4802db0c6b981b6d5ce28a876c2e00e",
+          "steps.jsonl": "8a981b87d574ef0c201586ed68e92c5df6388a7eba214d4caf4159d36b4744c3",
+          "result.json": "99dce48739fd4ccaa642b846beb36fb9a69771166050575483f7a87bb14cedd2",
+          "container.json": "4276b5d7e162a7ec791d3ed8f8ed108a872cfb10e768eb09519c2aebdd061d76"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_3D_Re1000_AOA20",
+      "environment": "NACA0012Gust_3D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        37
+      ],
+      "files_sha256": "e30a5d6141db6add04596047b72182fc78ab0722dc6dcb4c5a33ca555c6e9084",
+      "file_count": 19,
+      "bytes": 36489658999,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 160,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.402,
+          "unperturbed_avg_lift": 0.833,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_3D_Re1000_AOA20",
+        "status": "complete",
+        "seconds_per_control": 18.173382404027507,
+        "measured_controls": 2,
+        "substeps_per_control": 160,
+        "startup_seconds": 790.8961098450236,
+        "reset_seconds": 49.67391992703779,
+        "sampled_gpu_peak_mib": 62599,
+        "notes": [
+          "Initial 900-second attempt measured 18\u201319 s/control but timed out before the second reset; the selected follow-up allows 1200 seconds and requests three controls, without changing the native CFD interval."
+        ],
+        "prior_attempt": "cases-expanded/NACA0012Gust_3D_Re1000_AOA20",
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 36489658999,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          18.72723705403041,
+          17.619527754024602
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 1200,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 3,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            1.4698463103929542,
+            -0.49167194890777677,
+            -1.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            -1.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            -1.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            -1.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            -1.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            -1.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            -1.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            -1.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            -1.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            -1.0,
+            3.136512977059621,
+            0.17499471775888986,
+            -1.0,
+            3.136512977059621,
+            0.5083280510922232,
+            -1.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            -1.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            -1.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            -1.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            -1.0,
+            1.4698463103929542,
+            -0.49167194890777677,
+            0.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            0.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            0.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            0.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            0.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            0.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            0.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            0.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            0.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            0.0,
+            3.136512977059621,
+            0.17499471775888986,
+            0.0,
+            3.136512977059621,
+            0.5083280510922232,
+            0.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            0.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            0.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            0.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            0.0,
+            1.4698463103929542,
+            -0.49167194890777677,
+            1.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            1.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            1.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            1.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            1.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            1.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            1.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            1.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            1.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            1.0,
+            3.136512977059621,
+            0.17499471775888986,
+            1.0,
+            3.136512977059621,
+            0.5083280510922232,
+            1.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            1.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            1.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            1.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            1.0
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 160,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.075,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 160,
+              "num_action_inputs": 3,
+              "max_control": 0.075,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.402,
+              "unperturbed_avg_lift": 0.833,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_3D_Re1000_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.8782471810118295
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-expanded-reset-check/NACA0012Gust_3D_Re1000_AOA20",
+        "raw_sha256": {
+          "effective.json": "0e43a8d7e45466cbf1a6d3ec1a2809d318132a1d769348f1a07a88e424c2eee9",
+          "steps.jsonl": "fd85c71f2f98099e589dfdea9cc6e63cc5d53af854efe16e6be32af7ad955da4",
+          "result.json": "435e16b979785937af48ea2da122d35ade55b9d3c6ef8c7a891c5b36b2d0adba",
+          "container.json": "74969347a84e40fb370c15cc5c03cf8c678e73ebadc5c52b8d8bf2625a510d46"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_3D_Re100_AOA20",
+      "environment": "NACA0012Gust_3D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        35
+      ],
+      "files_sha256": "bba6732c2041ebe0fdcf32a1a2d2782b230697d3f9040355bdaa1a4e06fe2200",
+      "file_count": 19,
+      "bytes": 23607593595,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.577,
+          "unperturbed_avg_lift": 0.777,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_3D_Re100_AOA20",
+        "status": "complete",
+        "seconds_per_control": 5.560243062581867,
+        "measured_controls": 5,
+        "substeps_per_control": 75,
+        "startup_seconds": 539.2071485830238,
+        "reset_seconds": 25.443672908993904,
+        "sampled_gpu_peak_mib": 40941,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 23607593595,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          5.8579376739799045,
+          5.373606656969059,
+          5.337797575979494,
+          5.770434528996702,
+          5.461438876984175
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 900,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            1.4698463103929542,
+            -0.49167194890777677,
+            -1.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            -1.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            -1.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            -1.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            -1.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            -1.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            -1.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            -1.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            -1.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            -1.0,
+            3.136512977059621,
+            0.17499471775888986,
+            -1.0,
+            3.136512977059621,
+            0.5083280510922232,
+            -1.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            -1.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            -1.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            -1.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            -1.0,
+            1.4698463103929542,
+            -0.49167194890777677,
+            0.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            0.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            0.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            0.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            0.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            0.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            0.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            0.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            0.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            0.0,
+            3.136512977059621,
+            0.17499471775888986,
+            0.0,
+            3.136512977059621,
+            0.5083280510922232,
+            0.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            0.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            0.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            0.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            0.0,
+            1.4698463103929542,
+            -0.49167194890777677,
+            1.0,
+            1.4698463103929542,
+            -0.15833861557444345,
+            1.0,
+            1.4698463103929542,
+            0.17499471775888986,
+            1.0,
+            1.4698463103929542,
+            0.5083280510922232,
+            1.0,
+            2.3031796437262875,
+            -0.49167194890777677,
+            1.0,
+            2.3031796437262875,
+            -0.15833861557444345,
+            1.0,
+            2.3031796437262875,
+            0.17499471775888986,
+            1.0,
+            2.3031796437262875,
+            0.5083280510922232,
+            1.0,
+            3.136512977059621,
+            -0.49167194890777677,
+            1.0,
+            3.136512977059621,
+            -0.15833861557444345,
+            1.0,
+            3.136512977059621,
+            0.17499471775888986,
+            1.0,
+            3.136512977059621,
+            0.5083280510922232,
+            1.0,
+            3.9698463103929544,
+            -0.49167194890777677,
+            1.0,
+            3.9698463103929544,
+            -0.15833861557444345,
+            1.0,
+            3.9698463103929544,
+            0.17499471775888986,
+            1.0,
+            3.9698463103929544,
+            0.5083280510922232,
+            1.0
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.075,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.075,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.577,
+              "unperturbed_avg_lift": 0.777,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_3D_Re100_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.9627643810235895
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-expanded/NACA0012Gust_3D_Re100_AOA20",
+        "raw_sha256": {
+          "effective.json": "92293a00fc066f6198dbe9f7c846664cecd3aa6aada84df8647078d4045200f6",
+          "steps.jsonl": "9f6c5b8f14c07ac136a50296236cd4c843a9280ec9a54c2d16e984917326bf53",
+          "result.json": "ed9645c6b48bbc51819d6eab5b942c9231912ac84ec19df1c9a71906d0d5a8be",
+          "container.json": "7d14968934060d00c473e39b0622ce1b59626c20f6bf24946ee8cf0b19428ec9"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012Gust_3D_Re100_AOA40",
+      "environment": "NACA0012Gust_3D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        36
+      ],
+      "files_sha256": "1077d0969bf3c7ea424bc509bd947bdf29061135ee1e143d1d574903724ecb3f",
+      "file_count": 19,
+      "bytes": 23493942117,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 90,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.078,
+          "unperturbed_avg_lift": 1.014,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012Gust_3D_Re100_AOA40",
+        "status": "complete",
+        "seconds_per_control": 6.254872527788393,
+        "measured_controls": 5,
+        "substeps_per_control": 90,
+        "startup_seconds": 531.3573982990347,
+        "reset_seconds": 26.554571987013333,
+        "sampled_gpu_peak_mib": 40981,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 23493942117,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          6.488080303010065,
+          6.30585364397848,
+          6.103282811003737,
+          5.9550144039676525,
+          6.422131476982031
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 900,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            1.383022221559489,
+            -0.4966849838234946,
+            -1.0,
+            1.383022221559489,
+            -0.16335165049016126,
+            -1.0,
+            1.383022221559489,
+            0.16998168284317206,
+            -1.0,
+            1.383022221559489,
+            0.5033150161765054,
+            -1.0,
+            2.2163555548928224,
+            -0.4966849838234946,
+            -1.0,
+            2.2163555548928224,
+            -0.16335165049016126,
+            -1.0,
+            2.2163555548928224,
+            0.16998168284317206,
+            -1.0,
+            2.2163555548928224,
+            0.5033150161765054,
+            -1.0,
+            3.0496888882261555,
+            -0.4966849838234946,
+            -1.0,
+            3.0496888882261555,
+            -0.16335165049016126,
+            -1.0,
+            3.0496888882261555,
+            0.16998168284317206,
+            -1.0,
+            3.0496888882261555,
+            0.5033150161765054,
+            -1.0,
+            3.883022221559489,
+            -0.4966849838234946,
+            -1.0,
+            3.883022221559489,
+            -0.16335165049016126,
+            -1.0,
+            3.883022221559489,
+            0.16998168284317206,
+            -1.0,
+            3.883022221559489,
+            0.5033150161765054,
+            -1.0,
+            1.383022221559489,
+            -0.4966849838234946,
+            0.0,
+            1.383022221559489,
+            -0.16335165049016126,
+            0.0,
+            1.383022221559489,
+            0.16998168284317206,
+            0.0,
+            1.383022221559489,
+            0.5033150161765054,
+            0.0,
+            2.2163555548928224,
+            -0.4966849838234946,
+            0.0,
+            2.2163555548928224,
+            -0.16335165049016126,
+            0.0,
+            2.2163555548928224,
+            0.16998168284317206,
+            0.0,
+            2.2163555548928224,
+            0.5033150161765054,
+            0.0,
+            3.0496888882261555,
+            -0.4966849838234946,
+            0.0,
+            3.0496888882261555,
+            -0.16335165049016126,
+            0.0,
+            3.0496888882261555,
+            0.16998168284317206,
+            0.0,
+            3.0496888882261555,
+            0.5033150161765054,
+            0.0,
+            3.883022221559489,
+            -0.4966849838234946,
+            0.0,
+            3.883022221559489,
+            -0.16335165049016126,
+            0.0,
+            3.883022221559489,
+            0.16998168284317206,
+            0.0,
+            3.883022221559489,
+            0.5033150161765054,
+            0.0,
+            1.383022221559489,
+            -0.4966849838234946,
+            1.0,
+            1.383022221559489,
+            -0.16335165049016126,
+            1.0,
+            1.383022221559489,
+            0.16998168284317206,
+            1.0,
+            1.383022221559489,
+            0.5033150161765054,
+            1.0,
+            2.2163555548928224,
+            -0.4966849838234946,
+            1.0,
+            2.2163555548928224,
+            -0.16335165049016126,
+            1.0,
+            2.2163555548928224,
+            0.16998168284317206,
+            1.0,
+            2.2163555548928224,
+            0.5033150161765054,
+            1.0,
+            3.0496888882261555,
+            -0.4966849838234946,
+            1.0,
+            3.0496888882261555,
+            -0.16335165049016126,
+            1.0,
+            3.0496888882261555,
+            0.16998168284317206,
+            1.0,
+            3.0496888882261555,
+            0.5033150161765054,
+            1.0,
+            3.883022221559489,
+            -0.4966849838234946,
+            1.0,
+            3.883022221559489,
+            -0.16335165049016126,
+            1.0,
+            3.883022221559489,
+            0.16998168284317206,
+            1.0,
+            3.883022221559489,
+            0.5033150161765054,
+            1.0
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 90,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.075,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 90,
+              "num_action_inputs": 3,
+              "max_control": 0.075,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 1.078,
+              "unperturbed_avg_lift": 1.014,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_3D_Re100_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.8903258020291105
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-expanded/NACA0012Gust_3D_Re100_AOA40",
+        "raw_sha256": {
+          "effective.json": "ce3f9ac6f6ea0d8a7c041ab3d3395b215e25f8cb4c09764a629f3ad280e48e4a",
+          "steps.jsonl": "cb18088986f877c9a3729b16b9b425b644b2980f438703a398ea35cf24463d31",
+          "result.json": "1846836b72de7d7e2c2ce5846deb0f924e6d122bf602d222b80bcd564747622c",
+          "container.json": "b69166345f931e43449add9d195235cf6a1bd846a9260c90fc1d1c70ecf6ee8a"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA20",
+      "environment": "NACA0012_2D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        16
+      ],
+      "files_sha256": "eded12c4700af91608b486b574a1135e473e88764823c385da77292e1b5d093b",
+      "file_count": 12,
+      "bytes": 50733521,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 170,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012_2D_Re1000_AOA20",
+        "status": "complete",
+        "seconds_per_control": 0.21767494919477032,
+        "measured_controls": 5,
+        "substeps_per_control": 170,
+        "startup_seconds": 2.7003884649602696,
+        "reset_seconds": 0.2501358799636364,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50733521,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.24950285599334165,
+          0.22321967699099332,
+          0.2034889420028776,
+          0.19533212902024388,
+          0.21683114196639508
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 170,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 170,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re1000_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9501181999803521
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012_2D_Re1000_AOA20",
+        "raw_sha256": {
+          "effective.json": "ccb62959f7f8f63a6512a43a63ca66cef3d59fbb132ad1dbdba12a027c02a972",
+          "steps.jsonl": "8df249953367c5247d426010f15d2170ce03b61ff475cd44d10056b3fe3e2696",
+          "result.json": "a6744202d1645eeaef550a20361c083329b7ea0e46712370bc2241f9c5e09f7f",
+          "container.json": "33012401b1aa92f804521fcbd4b84f37e1b9fff8599d219755009fc109dcea44"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA40",
+      "environment": "NACA0012_2D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        17
+      ],
+      "files_sha256": "a69fa3d28a41d953ba8abd4986d42535a99da3769d6b6fb69ec04b8b0b8432c4",
+      "file_count": 12,
+      "bytes": 50740740,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 400,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012_2D_Re1000_AOA40",
+        "status": "complete",
+        "seconds_per_control": 0.34950262140482663,
+        "measured_controls": 5,
+        "substeps_per_control": 400,
+        "startup_seconds": 2.585940265969839,
+        "reset_seconds": 0.3753474190016277,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50740740,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.3932997360243462,
+          0.3297066939994693,
+          0.3487513780128211,
+          0.3344160330016166,
+          0.34133926598588005
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 400,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 400,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re1000_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9420462650014088
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012_2D_Re1000_AOA40",
+        "raw_sha256": {
+          "effective.json": "63f516746194cf9bb26dc51dded8d588cdd631e6114912e567b91090688bac0f",
+          "steps.jsonl": "e3f1dd8eddd041a95a7aff655ca9d24c2e2adde6c7552033906cebf075a6f44a",
+          "result.json": "8c70d5cb8c0af9ffeb05b522318ce311db8a417b515546496559dd9f30504a3d",
+          "container.json": "c813372864405f2f2a89abfde871cb7aceb49afa671aba1a19220dfcf65e2aaa"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA20",
+      "environment": "NACA0012_2D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "paper_rows": [
+        14
+      ],
+      "files_sha256": "b3b640c9fb63cf916ce899cb2582b8bedc9ea5348e3c246afbbd4f6a57cd0531",
+      "file_count": 12,
+      "bytes": 50733514,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012_2D_Re100_AOA20",
+        "status": "complete",
+        "seconds_per_control": 0.4424112385953777,
+        "measured_controls": 5,
+        "substeps_per_control": 375,
+        "startup_seconds": 2.552798791031819,
+        "reset_seconds": 0.5127502100076526,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50733514,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.4866435269941576,
+          0.4441722080227919,
+          0.41424342297250405,
+          0.46305531001416966,
+          0.4039417249732651
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 375,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 375,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re100_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9181561020086519
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012_2D_Re100_AOA20",
+        "raw_sha256": {
+          "effective.json": "af2a9767714d26668fa8dc43997ef1f026ca19331c4405988aff7db712971ff8",
+          "steps.jsonl": "6e1c535ffa659f1c5cb33ff7f9c5bb65e885e3dfcbab18981e91843c3748b938",
+          "result.json": "52c31edb03e156f0e205f3926bcd9dec8472be2260f87abe25d741bbefa9f79a",
+          "container.json": "135a5a3587b5e57eba0917c9db355fbd5b420d2880d2c15dfbd56c8c567f6d83"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA40",
+      "environment": "NACA0012_2D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "paper_rows": [
+        15
+      ],
+      "files_sha256": "c4dbaaad5539c9379783f2e0735a251b015b3455fbe2956697850ffa9c59ce1e",
+      "file_count": 12,
+      "bytes": 50740730,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "NACA0012_2D_Re100_AOA40",
+        "status": "complete",
+        "seconds_per_control": 0.449443707766477,
+        "measured_controls": 5,
+        "substeps_per_control": 375,
+        "startup_seconds": 2.513295823999215,
+        "reset_seconds": 0.4839473669999279,
+        "sampled_gpu_peak_mib": 967,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 50740730,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.4728675519581884,
+          0.4508206360042095,
+          0.4313954349490814,
+          0.43781862896867096,
+          0.4543162869522348
+        ],
+        "runtime_image_id": "sha256:5a8398d47ea2b11f439feb7626ef2a053c7d2fabecf4f6dee7510e0c355cee74",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 375,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 375,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re100_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9133094749995507
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-corrected/NACA0012_2D_Re100_AOA40",
+        "raw_sha256": {
+          "effective.json": "64f67f701a80b30d8802e58ff68f2d8dd6f0a7552167db2a2206e5329df99878",
+          "steps.jsonl": "fa989bf73b5862531958e09a394ca32a6ab2a9e157c35b47829da7f7267bd0db",
+          "result.json": "ab12f8228520af8c581eb3cc4e0a5ed213c8c3a85d1af454e3e350d7e30ed9bb",
+          "container.json": "45c03b63627b82824cfe898dde4d865b7afd4df594b893707aa78b5fa599d80b"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Nozzle2D_coarse",
+      "environment": "Nozzle2D_coarse",
+      "family": "divergent-nozzle",
+      "dimension": 2,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "paper_rows": [
+        20
+      ],
+      "files_sha256": "391eb63da2f52d6b2c6b0ced392f530a74afef9bed17c39afd3f3fda3e7f60fe",
+      "file_count": 4,
+      "bytes": 8451737,
+      "native_configuration": {
+        "jaxfluids": {
+          "resolution": "coarse",
+          "secondary_pressure_ratio": 0.9,
+          "is_pressure_probes": true,
+          "steps_per_action": 100,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Nozzle2D_coarse",
+        "status": "complete",
+        "seconds_per_control": 0.9036629906040616,
+        "measured_controls": 5,
+        "substeps_per_control": 100,
+        "startup_seconds": 26.03548924002098,
+        "reset_seconds": 0.580352628021501,
+        "sampled_gpu_peak_mib": 963,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "jax-fluids",
+        "data_bytes": 8451737,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.9035572070279159,
+          0.8997354640159756,
+          0.9066797849955037,
+          0.9023831189842895,
+          0.9059593779966235
+        ],
+        "runtime_image_id": "sha256:88341b526bbeb8fd3dfc5bc2a75ee82e66f1959eb1529e0998c5c012a6c854be",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "jax-fluids",
+          "source_configuration": {
+            "jaxfluids": {
+              "resolution": "coarse",
+              "secondary_pressure_ratio": 0.9,
+              "is_pressure_probes": true,
+              "steps_per_action": 100,
+              "is_scale_observations": true,
+              "ngpus": 1,
+              "render_mode": "SAVE"
+            }
+          },
+          "substeps_per_control": 100,
+          "case": "Nozzle2D_coarse",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            6
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 7.933878819982056
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases-dependencies/Nozzle2D_coarse",
+        "raw_sha256": {
+          "effective.json": "d03da580d4650df626f2128e22f45ab7a1e12b5bdad9061334eeb5212b20e09e",
+          "steps.jsonl": "b5b43cf005a9dacd1b649ba08873e6f0af85cbf8b450bcc7f61f7970e65c41c8",
+          "result.json": "cb2b3c56dd574e5942c6cba9356ad8d1ee830498d74b30856a575b112b722179",
+          "container.json": "dba2246bd614a3ae42c3f2f7c3e2091f227976e250ec125756ced2f4aaf1866b"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_2D_Re100",
+      "environment": "Pinball_2D_Re100",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "maia",
+      "paper_rows": [
+        7
+      ],
+      "files_sha256": "9676c316a97f74b31a8b0d45f22e3fbe72b97d2423392a7b644b565d28c5217b",
+      "file_count": 16,
+      "bytes": 76181792,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_2D_Re100",
+        "status": "complete",
+        "seconds_per_control": 0.22811751479748638,
+        "measured_controls": 5,
+        "substeps_per_control": 200,
+        "startup_seconds": 3.4042881830246188,
+        "reset_seconds": 0.2996639500488527,
+        "sampled_gpu_peak_mib": 797,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 76181792,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.22975326603045687,
+          0.2440605919691734,
+          0.23196039098547772,
+          0.22464200999820605,
+          0.2101713150041178
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 200,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 200,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re100",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.4208731109974906
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_2D_Re100",
+        "raw_sha256": {
+          "effective.json": "d0bcdc4c9ad8686a9203b05d82a8824735829b449a998561509ccff79cee885e",
+          "steps.jsonl": "10168114a357acae84ff8758527b0ab0efabc940233d5a754a3d0a3586c50651",
+          "result.json": "3a971ead3359cdaaa3833e63add107c336d8ea907362cb279170f5d0871ca2bc",
+          "container.json": "df504bde7343dc6f5a8caff2b0d8e0208da617e564d88e71513e0d66f8215c28"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_2D_Re150",
+      "environment": "Pinball_2D_Re150",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "maia",
+      "paper_rows": [
+        8
+      ],
+      "files_sha256": "14b973f617ccb9c1ee7ac553173596091f4de3279067e02cd77c7f5bc0feab79",
+      "file_count": 16,
+      "bytes": 46991787,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.4,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_2D_Re150",
+        "status": "complete",
+        "seconds_per_control": 0.20765014360658823,
+        "measured_controls": 5,
+        "substeps_per_control": 150,
+        "startup_seconds": 3.5697935789939947,
+        "reset_seconds": 0.2555185569799505,
+        "sampled_gpu_peak_mib": 797,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 46991787,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.24126802600221708,
+          0.19995341001776978,
+          0.19336216698866338,
+          0.19409442599862814,
+          0.20957268902566284
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 150,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.4,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 150,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 150,
+              "num_action_inputs": 3,
+              "max_control": 0.4,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re150",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.983645208994858
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_2D_Re150",
+        "raw_sha256": {
+          "effective.json": "a8e2a9ffdb6f42f80458f35f7df6ce8a443fa8ed037dd00aa7fd6dfa73e0abd9",
+          "steps.jsonl": "c510f7a9e078b10eaf942bf23e5f7512eb0db1b1c8c6f7607302dd45a6ea05da",
+          "result.json": "2dde13dd677234390fc4d2e321731cb96866015215b00af7caf55e18f962baa8",
+          "container.json": "13ae060da754c47f3a37718f65fe19bc6c0244e918e96e3a8d21847737d75bfa"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_2D_Re30",
+      "environment": "Pinball_2D_Re30",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "maia",
+      "paper_rows": [
+        5
+      ],
+      "files_sha256": "165653b23b42528863dd92ff2a58094d923666f8c5ec65a9a14607506507be15",
+      "file_count": 16,
+      "bytes": 76181741,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_2D_Re30",
+        "status": "complete",
+        "seconds_per_control": 0.39403740399284287,
+        "measured_controls": 5,
+        "substeps_per_control": 270,
+        "startup_seconds": 3.127853248035535,
+        "reset_seconds": 0.4274682870018296,
+        "sampled_gpu_peak_mib": 965,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 76181741,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.4157860060222447,
+          0.381675730983261,
+          0.3949350719922222,
+          0.40957566699944437,
+          0.3682145439670421
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 270,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 30,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 270,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re30",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.8290509110083804
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_2D_Re30",
+        "raw_sha256": {
+          "effective.json": "cc03985ea750451178bc961114fbd8c99843786f4f1f70bf345c90e0d9daefea",
+          "steps.jsonl": "0019b9c15ee7ddab5fd98a0a1eeb7f34db8bdfefc58fcadd5ba57ee8cbf4d6fa",
+          "result.json": "d9491291102fa5d2874ad73a74a5a64482814a02402f13aa4e014d1949bea395",
+          "container.json": "48c0428cfa04166992b413319489c05e38b939b21ea43677b15a34297c4b40b5"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_2D_Re75",
+      "environment": "Pinball_2D_Re75",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 75
+      },
+      "backend": "maia",
+      "paper_rows": [
+        6
+      ],
+      "files_sha256": "b27441d8d2cbee305ef3c7153cdd388ee953093d3a3844a928f6752e10007451",
+      "file_count": 16,
+      "bytes": 76181789,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_2D_Re75",
+        "status": "complete",
+        "seconds_per_control": 0.27201258138520645,
+        "measured_controls": 5,
+        "substeps_per_control": 200,
+        "startup_seconds": 3.354655983974226,
+        "reset_seconds": 0.3372739830520004,
+        "sampled_gpu_peak_mib": 943,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 76181789,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.2950110519886948,
+          0.2534971009590663,
+          0.2693727079895325,
+          0.2614414779818617,
+          0.28074056800687686
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 200,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 75,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 200,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re75",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.415602921973914
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_2D_Re75",
+        "raw_sha256": {
+          "effective.json": "0e50a103555f1252609e21abe78bd413fd2f1c1b123bf737a53847c2cfb95ae7",
+          "steps.jsonl": "b614703b2716736bb5d786a67ccfadc11338779ed938739b1d9d29610720da3c",
+          "result.json": "d6141480a7050557e33a5112095dd236815051a3e2c1d2b0e244ed7a9be1f0f0",
+          "container.json": "d56a62abde2f21a6fea469dbd6a0c1774e42290fe087fbcf11aa02f0ee964cbe"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_3D_Re100",
+      "environment": "Pinball_3D_Re100",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "maia",
+      "paper_rows": [
+        28
+      ],
+      "files_sha256": "bc47063e02c1c79143f3eda704524c177f62e49bbb18101ae2c47433b86dc2f0",
+      "file_count": 17,
+      "bytes": 8342280421,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 195,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_3D_Re100",
+        "status": "complete",
+        "seconds_per_control": 10.125855647400021,
+        "measured_controls": 5,
+        "substeps_per_control": 195,
+        "startup_seconds": 243.62527991301613,
+        "reset_seconds": 17.85169856803259,
+        "sampled_gpu_peak_mib": 16749,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 8342280421,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          10.26538612897275,
+          9.856088861008175,
+          9.98246333800489,
+          10.252739503979683,
+          10.27260040503461
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 480,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            -0.5,
+            2.0,
+            -0.25,
+            -0.5,
+            2.0,
+            0.25,
+            -0.5,
+            2.0,
+            0.75,
+            -0.5,
+            3.0,
+            -0.75,
+            -0.5,
+            3.0,
+            -0.25,
+            -0.5,
+            3.0,
+            0.25,
+            -0.5,
+            3.0,
+            0.75,
+            -0.5,
+            4.0,
+            -0.75,
+            -0.5,
+            4.0,
+            -0.25,
+            -0.5,
+            4.0,
+            0.25,
+            -0.5,
+            4.0,
+            0.75,
+            -0.5,
+            5.0,
+            -0.75,
+            -0.5,
+            5.0,
+            -0.25,
+            -0.5,
+            5.0,
+            0.25,
+            -0.5,
+            5.0,
+            0.75,
+            -0.5,
+            2.0,
+            -0.75,
+            0.0,
+            2.0,
+            -0.25,
+            0.0,
+            2.0,
+            0.25,
+            0.0,
+            2.0,
+            0.75,
+            0.0,
+            3.0,
+            -0.75,
+            0.0,
+            3.0,
+            -0.25,
+            0.0,
+            3.0,
+            0.25,
+            0.0,
+            3.0,
+            0.75,
+            0.0,
+            4.0,
+            -0.75,
+            0.0,
+            4.0,
+            -0.25,
+            0.0,
+            4.0,
+            0.25,
+            0.0,
+            4.0,
+            0.75,
+            0.0,
+            5.0,
+            -0.75,
+            0.0,
+            5.0,
+            -0.25,
+            0.0,
+            5.0,
+            0.25,
+            0.0,
+            5.0,
+            0.75,
+            0.0,
+            2.0,
+            -0.75,
+            0.5,
+            2.0,
+            -0.25,
+            0.5,
+            2.0,
+            0.25,
+            0.5,
+            2.0,
+            0.75,
+            0.5,
+            3.0,
+            -0.75,
+            0.5,
+            3.0,
+            -0.25,
+            0.5,
+            3.0,
+            0.25,
+            0.5,
+            3.0,
+            0.75,
+            0.5,
+            4.0,
+            -0.75,
+            0.5,
+            4.0,
+            -0.25,
+            0.5,
+            4.0,
+            0.25,
+            0.5,
+            4.0,
+            0.75,
+            0.5,
+            5.0,
+            -0.75,
+            0.5,
+            5.0,
+            -0.25,
+            0.5,
+            5.0,
+            0.25,
+            0.5,
+            5.0,
+            0.75,
+            0.5
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 195,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.5,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 195,
+              "num_action_inputs": 3,
+              "max_control": 0.5,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_3D_Re100",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.0357954730279744
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_3D_Re100",
+        "raw_sha256": {
+          "effective.json": "0abde1c0a9fdfd73ba98fcc8e8e4ba34b9b5fd39cd8f7a2a1b92a67be44fdb9e",
+          "steps.jsonl": "dc1d431ee9d6484761d9b639c0ad71fda3641adc9639e616b19cc2ea434cb8c1",
+          "result.json": "aa7b66708ca7be6ca03be737ae4cdb101d5df7f79b7cdd4ae896ef6743202b9f",
+          "container.json": "b98758bd03ed3322389f98efa3a8d92ba973c0968d3076a90f835dc1ccc2904f"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_3D_Re150",
+      "environment": "Pinball_3D_Re150",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "maia",
+      "paper_rows": [
+        29
+      ],
+      "files_sha256": "7fe822fd5dc792a63e20db4cba55d58bca2fb45a1c87b0ab5bbce0f2fde0ced9",
+      "file_count": 17,
+      "bytes": 8341950797,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 175,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_3D_Re150",
+        "status": "complete",
+        "seconds_per_control": 10.641818806191441,
+        "measured_controls": 5,
+        "substeps_per_control": 175,
+        "startup_seconds": 250.05961936101085,
+        "reset_seconds": 18.12009893200593,
+        "sampled_gpu_peak_mib": 16755,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 8341950797,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          10.929978038009722,
+          10.554429064970464,
+          10.717473141965456,
+          10.477888652007096,
+          10.529325134004466
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 480,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            -0.5,
+            2.0,
+            -0.25,
+            -0.5,
+            2.0,
+            0.25,
+            -0.5,
+            2.0,
+            0.75,
+            -0.5,
+            3.0,
+            -0.75,
+            -0.5,
+            3.0,
+            -0.25,
+            -0.5,
+            3.0,
+            0.25,
+            -0.5,
+            3.0,
+            0.75,
+            -0.5,
+            4.0,
+            -0.75,
+            -0.5,
+            4.0,
+            -0.25,
+            -0.5,
+            4.0,
+            0.25,
+            -0.5,
+            4.0,
+            0.75,
+            -0.5,
+            5.0,
+            -0.75,
+            -0.5,
+            5.0,
+            -0.25,
+            -0.5,
+            5.0,
+            0.25,
+            -0.5,
+            5.0,
+            0.75,
+            -0.5,
+            2.0,
+            -0.75,
+            0.0,
+            2.0,
+            -0.25,
+            0.0,
+            2.0,
+            0.25,
+            0.0,
+            2.0,
+            0.75,
+            0.0,
+            3.0,
+            -0.75,
+            0.0,
+            3.0,
+            -0.25,
+            0.0,
+            3.0,
+            0.25,
+            0.0,
+            3.0,
+            0.75,
+            0.0,
+            4.0,
+            -0.75,
+            0.0,
+            4.0,
+            -0.25,
+            0.0,
+            4.0,
+            0.25,
+            0.0,
+            4.0,
+            0.75,
+            0.0,
+            5.0,
+            -0.75,
+            0.0,
+            5.0,
+            -0.25,
+            0.0,
+            5.0,
+            0.25,
+            0.0,
+            5.0,
+            0.75,
+            0.0,
+            2.0,
+            -0.75,
+            0.5,
+            2.0,
+            -0.25,
+            0.5,
+            2.0,
+            0.25,
+            0.5,
+            2.0,
+            0.75,
+            0.5,
+            3.0,
+            -0.75,
+            0.5,
+            3.0,
+            -0.25,
+            0.5,
+            3.0,
+            0.25,
+            0.5,
+            3.0,
+            0.75,
+            0.5,
+            4.0,
+            -0.75,
+            0.5,
+            4.0,
+            -0.25,
+            0.5,
+            4.0,
+            0.25,
+            0.5,
+            4.0,
+            0.75,
+            0.5,
+            5.0,
+            -0.75,
+            0.5,
+            5.0,
+            -0.25,
+            0.5,
+            5.0,
+            0.25,
+            0.5,
+            5.0,
+            0.75,
+            0.5
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 175,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.5,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 150,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 175,
+              "num_action_inputs": 3,
+              "max_control": 0.5,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_3D_Re150",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.8636775719933212
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_3D_Re150",
+        "raw_sha256": {
+          "effective.json": "f3d3174bd8ce6fcc7dc9a041b35297c6a2e75d156d3129e5b24e8aa08620a515",
+          "steps.jsonl": "caac850c601afac91182ebe03a44cfd3576a679e9841fc3b87c4563badf4d8ae",
+          "result.json": "455aca48f236f69fec99d323c7503604aaac94d57fa021d48511a14893be4493",
+          "container.json": "4ca75d4c01138c5beb9f056791e864d2a3e861ff1a52daf8f2fafbb83a796265"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_3D_Re30",
+      "environment": "Pinball_3D_Re30",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "maia",
+      "paper_rows": [
+        26
+      ],
+      "files_sha256": "95623610abc23b1195ed02676d8da6e24fda76439aa085fc0db6b7e40e16da88",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_3D_Re30",
+        "status": "complete",
+        "seconds_per_control": 15.94669300399255,
+        "measured_controls": 5,
+        "substeps_per_control": 270,
+        "startup_seconds": 247.84864788403502,
+        "reset_seconds": 21.20258444803767,
+        "sampled_gpu_peak_mib": 16749,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 8342280167,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          16.245034809981007,
+          16.04317274800269,
+          15.91413619701052,
+          15.99503106897464,
+          15.536090195993893
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 480,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            -0.5,
+            2.0,
+            -0.25,
+            -0.5,
+            2.0,
+            0.25,
+            -0.5,
+            2.0,
+            0.75,
+            -0.5,
+            3.0,
+            -0.75,
+            -0.5,
+            3.0,
+            -0.25,
+            -0.5,
+            3.0,
+            0.25,
+            -0.5,
+            3.0,
+            0.75,
+            -0.5,
+            4.0,
+            -0.75,
+            -0.5,
+            4.0,
+            -0.25,
+            -0.5,
+            4.0,
+            0.25,
+            -0.5,
+            4.0,
+            0.75,
+            -0.5,
+            5.0,
+            -0.75,
+            -0.5,
+            5.0,
+            -0.25,
+            -0.5,
+            5.0,
+            0.25,
+            -0.5,
+            5.0,
+            0.75,
+            -0.5,
+            2.0,
+            -0.75,
+            0.0,
+            2.0,
+            -0.25,
+            0.0,
+            2.0,
+            0.25,
+            0.0,
+            2.0,
+            0.75,
+            0.0,
+            3.0,
+            -0.75,
+            0.0,
+            3.0,
+            -0.25,
+            0.0,
+            3.0,
+            0.25,
+            0.0,
+            3.0,
+            0.75,
+            0.0,
+            4.0,
+            -0.75,
+            0.0,
+            4.0,
+            -0.25,
+            0.0,
+            4.0,
+            0.25,
+            0.0,
+            4.0,
+            0.75,
+            0.0,
+            5.0,
+            -0.75,
+            0.0,
+            5.0,
+            -0.25,
+            0.0,
+            5.0,
+            0.25,
+            0.0,
+            5.0,
+            0.75,
+            0.0,
+            2.0,
+            -0.75,
+            0.5,
+            2.0,
+            -0.25,
+            0.5,
+            2.0,
+            0.25,
+            0.5,
+            2.0,
+            0.75,
+            0.5,
+            3.0,
+            -0.75,
+            0.5,
+            3.0,
+            -0.25,
+            0.5,
+            3.0,
+            0.25,
+            0.5,
+            3.0,
+            0.75,
+            0.5,
+            4.0,
+            -0.75,
+            0.5,
+            4.0,
+            -0.25,
+            0.5,
+            4.0,
+            0.25,
+            0.5,
+            4.0,
+            0.75,
+            0.5,
+            5.0,
+            -0.75,
+            0.5,
+            5.0,
+            -0.25,
+            0.5,
+            5.0,
+            0.25,
+            0.5,
+            5.0,
+            0.75,
+            0.5
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 270,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.5,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 30,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 270,
+              "num_action_inputs": 3,
+              "max_control": 0.5,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_3D_Re30",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.415421857032925
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_3D_Re30",
+        "raw_sha256": {
+          "effective.json": "333c38736299c1134aa2fba0a1ec6fd3c983c938b249a60196307af44bf696b1",
+          "steps.jsonl": "a422061a8ec2e1267ffc4d7d161092d2cdfac6b167abb05267c371bbb20001c0",
+          "result.json": "7901d9c48e80d5cc5129eb492483be363ec54353802e039b75494645f0cb8999",
+          "container.json": "b943824159e697cf073d0e19c000a901c25abd442daf74db1865708321a03781"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Pinball_3D_Re75",
+      "environment": "Pinball_3D_Re75",
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 75
+      },
+      "backend": "maia",
+      "paper_rows": [
+        27
+      ],
+      "files_sha256": "f063beb75f90d1b43d03ef4a64683002760bd342c32352470294251e7c440970",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 210,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Pinball_3D_Re75",
+        "status": "complete",
+        "seconds_per_control": 12.15718868720578,
+        "measured_controls": 5,
+        "substeps_per_control": 210,
+        "startup_seconds": 241.3811845870223,
+        "reset_seconds": 19.404204191989265,
+        "sampled_gpu_peak_mib": 16749,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 8342280167,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          11.358265732997097,
+          12.067847958009224,
+          12.546168981993105,
+          12.319597346009687,
+          12.494063417019788
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 480,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            -0.5,
+            2.0,
+            -0.25,
+            -0.5,
+            2.0,
+            0.25,
+            -0.5,
+            2.0,
+            0.75,
+            -0.5,
+            3.0,
+            -0.75,
+            -0.5,
+            3.0,
+            -0.25,
+            -0.5,
+            3.0,
+            0.25,
+            -0.5,
+            3.0,
+            0.75,
+            -0.5,
+            4.0,
+            -0.75,
+            -0.5,
+            4.0,
+            -0.25,
+            -0.5,
+            4.0,
+            0.25,
+            -0.5,
+            4.0,
+            0.75,
+            -0.5,
+            5.0,
+            -0.75,
+            -0.5,
+            5.0,
+            -0.25,
+            -0.5,
+            5.0,
+            0.25,
+            -0.5,
+            5.0,
+            0.75,
+            -0.5,
+            2.0,
+            -0.75,
+            0.0,
+            2.0,
+            -0.25,
+            0.0,
+            2.0,
+            0.25,
+            0.0,
+            2.0,
+            0.75,
+            0.0,
+            3.0,
+            -0.75,
+            0.0,
+            3.0,
+            -0.25,
+            0.0,
+            3.0,
+            0.25,
+            0.0,
+            3.0,
+            0.75,
+            0.0,
+            4.0,
+            -0.75,
+            0.0,
+            4.0,
+            -0.25,
+            0.0,
+            4.0,
+            0.25,
+            0.0,
+            4.0,
+            0.75,
+            0.0,
+            5.0,
+            -0.75,
+            0.0,
+            5.0,
+            -0.25,
+            0.0,
+            5.0,
+            0.25,
+            0.0,
+            5.0,
+            0.75,
+            0.0,
+            2.0,
+            -0.75,
+            0.5,
+            2.0,
+            -0.25,
+            0.5,
+            2.0,
+            0.25,
+            0.5,
+            2.0,
+            0.75,
+            0.5,
+            3.0,
+            -0.75,
+            0.5,
+            3.0,
+            -0.25,
+            0.5,
+            3.0,
+            0.25,
+            0.5,
+            3.0,
+            0.75,
+            0.5,
+            4.0,
+            -0.75,
+            0.5,
+            4.0,
+            -0.25,
+            0.5,
+            4.0,
+            0.25,
+            0.5,
+            4.0,
+            0.75,
+            0.5,
+            5.0,
+            -0.75,
+            0.5,
+            5.0,
+            -0.25,
+            0.5,
+            5.0,
+            0.25,
+            0.5,
+            5.0,
+            0.75,
+            0.5
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 210,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.5,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 75,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 210,
+              "num_action_inputs": 3,
+              "max_control": 0.5,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_3D_Re75",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.4257590270135552
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Pinball_3D_Re75",
+        "raw_sha256": {
+          "effective.json": "b9502b788fb8634c232aa64ea31de7941d962587eca491681e3e8ab62d918add",
+          "steps.jsonl": "588747f53b10cf556f2a17d39b237b9fd7f32a143dda5cd97da7ce910577efcc",
+          "result.json": "c1bb2dbdc8afa391acf253430b066fb0d1332d7f87b27d91b14d7a01a681dc8f",
+          "container.json": "6aee48746f3870a43c00eaeaa9b6afb02d530d19f7f893394d51a393b893bd3a"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "Sphere_3D_Re300",
+      "environment": "Sphere_3D_Re300",
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "backend": "maia",
+      "paper_rows": [
+        44
+      ],
+      "files_sha256": "0304c221b39bb72871506371179276180137078198b8cc8b5c6f3d0c51a61a3a",
+      "file_count": 14,
+      "bytes": 19965486993,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 300,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 825,
+          "num_action_inputs": 10,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "Sphere_3D_Re300",
+        "status": "complete",
+        "seconds_per_control": 28.751523560786154,
+        "measured_controls": 5,
+        "substeps_per_control": 825,
+        "startup_seconds": 131.57386640296318,
+        "reset_seconds": 44.50348274601856,
+        "sampled_gpu_peak_mib": 32051,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 3,
+        "backend": "maia",
+        "data_bytes": 19965486993,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          28.91938975296216,
+          28.67405463499017,
+          28.61174782400485,
+          28.736717852996662,
+          28.815707738976926
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 480,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            -0.5,
+            2.0,
+            -0.25,
+            -0.5,
+            2.0,
+            0.25,
+            -0.5,
+            2.0,
+            0.75,
+            -0.5,
+            3.0,
+            -0.75,
+            -0.5,
+            3.0,
+            -0.25,
+            -0.5,
+            3.0,
+            0.25,
+            -0.5,
+            3.0,
+            0.75,
+            -0.5,
+            4.0,
+            -0.75,
+            -0.5,
+            4.0,
+            -0.25,
+            -0.5,
+            4.0,
+            0.25,
+            -0.5,
+            4.0,
+            0.75,
+            -0.5,
+            5.0,
+            -0.75,
+            -0.5,
+            5.0,
+            -0.25,
+            -0.5,
+            5.0,
+            0.25,
+            -0.5,
+            5.0,
+            0.75,
+            -0.5,
+            2.0,
+            -0.75,
+            0.0,
+            2.0,
+            -0.25,
+            0.0,
+            2.0,
+            0.25,
+            0.0,
+            2.0,
+            0.75,
+            0.0,
+            3.0,
+            -0.75,
+            0.0,
+            3.0,
+            -0.25,
+            0.0,
+            3.0,
+            0.25,
+            0.0,
+            3.0,
+            0.75,
+            0.0,
+            4.0,
+            -0.75,
+            0.0,
+            4.0,
+            -0.25,
+            0.0,
+            4.0,
+            0.25,
+            0.0,
+            4.0,
+            0.75,
+            0.0,
+            5.0,
+            -0.75,
+            0.0,
+            5.0,
+            -0.25,
+            0.0,
+            5.0,
+            0.25,
+            0.0,
+            5.0,
+            0.75,
+            0.0,
+            2.0,
+            -0.75,
+            0.5,
+            2.0,
+            -0.25,
+            0.5,
+            2.0,
+            0.25,
+            0.5,
+            2.0,
+            0.75,
+            0.5,
+            3.0,
+            -0.75,
+            0.5,
+            3.0,
+            -0.25,
+            0.5,
+            3.0,
+            0.25,
+            0.5,
+            3.0,
+            0.75,
+            0.5,
+            4.0,
+            -0.75,
+            0.5,
+            4.0,
+            -0.25,
+            0.5,
+            4.0,
+            0.25,
+            0.5,
+            4.0,
+            0.75,
+            0.5,
+            5.0,
+            -0.75,
+            0.5,
+            5.0,
+            -0.25,
+            0.5,
+            5.0,
+            0.25,
+            0.5,
+            5.0,
+            0.75,
+            0.5
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 825,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.0625,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 300,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.1154,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 825,
+              "num_action_inputs": 10,
+              "max_control": 0.0625,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "Sphere_3D_Re300",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            96
+          ],
+          "action_shape": [
+            10
+          ],
+          "construct_seconds": 0.8942571189836599
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/Sphere_3D_Re300",
+        "raw_sha256": {
+          "effective.json": "9d2c01e93059eb30ff7b2201edc1e6ee4ebfe535f20f63a7f342e72f2d77eb2b",
+          "steps.jsonl": "e93a7ccb3320adec9e5f727df78d0ab68439ffe96f125d12c1591b29c9cb6224",
+          "result.json": "7afec7cf7b74aad4a96b612436218c4d10718c6f4fed52394a0857ff80d86929",
+          "container.json": "6796294dcce2017d229362eacbebdb904c49bdb813a8da922d95e11afc14d6fb"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "SquareCylinder_2D_Re1000",
+      "environment": "SquareCylinder_2D_Re1000",
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "paper_rows": [
+        12
+      ],
+      "files_sha256": "08b41d923b965418e6abdaf4dd8e726a6e0306a88c31b3aabb9a10f00ce93a45",
+      "file_count": 12,
+      "bytes": 87142919,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 250,
+          "num_action_inputs": 2,
+          "max_control": 0.05,
+          "omega": 1,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "SquareCylinder_2D_Re1000",
+        "status": "complete",
+        "seconds_per_control": 0.38246636220719665,
+        "measured_controls": 5,
+        "substeps_per_control": 250,
+        "startup_seconds": 3.038407131040003,
+        "reset_seconds": 0.40062007203232497,
+        "sampled_gpu_peak_mib": 1087,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 87142919,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.43037722300505266,
+          0.3831771959667094,
+          0.35738830402260646,
+          0.3677288650069386,
+          0.37366022303467616
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 250,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.05,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 250,
+              "num_action_inputs": 2,
+              "max_control": 0.05,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "SquareCylinder_2D_Re1000",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 1.002146013022866
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/SquareCylinder_2D_Re1000",
+        "raw_sha256": {
+          "effective.json": "21d2769f34c92350a20c9196e2fc962fc7d4a74d1245f166e6d46ae5ff98c72a",
+          "steps.jsonl": "fe7285b2a605b19cdde64717fd260e41a78c1ce28227424d08d5fe504d6337e4",
+          "result.json": "409c2575ac53bece62ec1a021718aaf948091ce567f8891d8751c51d1b2af1fa",
+          "container.json": "8e7ac1d87e114375a32fa7e3dcdbe530988dc8f483b88e97f6355d859b3e4c0f"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    },
+    {
+      "id": "SquareCylinder_2D_Re200",
+      "environment": "SquareCylinder_2D_Re200",
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "paper_rows": [
+        11
+      ],
+      "files_sha256": "658f2de059145d00d453267a5514511b3bf3a0b38162ecb4b088a7b897bd98a0",
+      "file_count": 12,
+      "bytes": 69774977,
+      "native_configuration": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 110,
+          "num_action_inputs": 2,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      },
+      "configuration_identity_reconstructed": false,
+      "resource_status": "required_payloads_present",
+      "execution_status": "short_native_loop_passed_full_evaluation_pending",
+      "cost_screening": {
+        "case": "SquareCylinder_2D_Re200",
+        "status": "complete",
+        "seconds_per_control": 0.09624245940940454,
+        "measured_controls": 5,
+        "substeps_per_control": 110,
+        "startup_seconds": 3.4325426110299304,
+        "reset_seconds": 0.12889246601844206,
+        "sampled_gpu_peak_mib": 797,
+        "notes": [],
+        "prior_attempt": null,
+        "dimension": 2,
+        "backend": "maia",
+        "data_bytes": 69774977,
+        "hardware": "1 H100",
+        "timing_samples_seconds": [
+          0.1231207280070521,
+          0.1240828589652665,
+          0.0624349900172092,
+          0.09044796001398936,
+          0.08112576004350558
+        ],
+        "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+        "probe_wall_limit_seconds": 240,
+        "container_exit_code": 0,
+        "timed_control_count_including_warmup": 6,
+        "effective_diagnostic_configuration": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 110,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.2,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 200,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 110,
+              "num_action_inputs": 2,
+              "max_control": 0.03,
+              "omega": 0.2,
+              "render": false
+            }
+          },
+          "case": "SquareCylinder_2D_Re200",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 1.3875759600196034
+        },
+        "configuration_scope": "Source-native settings with explicit diagnostic sensors",
+        "audit_directory": "cases/SquareCylinder_2D_Re200",
+        "raw_sha256": {
+          "effective.json": "9834a57da739835ed5358745d5938b0bfa4e14011bbbd6de24d1df9497b8e2d8",
+          "steps.jsonl": "4b0ffd483eb28149ad3a53cff32fe57a04f6c4ba2f3b5fda2eb19412532bbab2",
+          "result.json": "f9dcae0f9d9c71fe2c0c4375b46dfae5a1d5c0325b20d6ab11c450a8588e435e",
+          "container.json": "27d74d812c97ac924724e6a0685c91adb26e2eb797f054dc788c3edf7d2578c9"
+        }
+      },
+      "cost_configuration_basis": "Unmodified source-native YAML control interval, action bounds, reward and mesh; final sensor/horizon/replay certification remains required."
+    }
+  ],
+  "exclusions": [
+    {
+      "paper_row": 9,
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 4200
+      },
+      "reason": "parameter_mismatch",
+      "detail": "Published low-Re Hub resource is 4140, not 4200. Do not silently change the paper case's identity. Three-jet folders are another actuator choice."
+    },
+    {
+      "paper_row": 18,
+      "family": "stenotic-pipe",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 24,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "reason": "missing_distinct_multiagent_configuration",
+      "detail": "Candidate YAML declares one agent; reusing its mesh does not define the paper MARL task. Single-agent counterparts remain included."
+    },
+    {
+      "paper_row": 25,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "reason": "missing_distinct_multiagent_configuration",
+      "detail": "Candidate YAML declares one agent; reusing its mesh does not define the paper MARL task. Single-agent counterparts remain included."
+    },
+    {
+      "paper_row": 30,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 4200
+      },
+      "reason": "missing_payload",
+      "detail": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 31,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 7500
+      },
+      "reason": "missing_payload",
+      "detail": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 46,
+      "family": "stenotic-pipe",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 47,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 200
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 48,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1400
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 49,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1550
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 50,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 2200
+      },
+      "reason": "missing_payload",
+      "detail": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "environment": "DRA2303SurfaceWave_3D_Re400000_Ma02",
+      "paper_row": 52,
+      "reason": "marker_only_actuation_variant",
+      "detail": "No nonempty CFD payload."
+    },
+    {
+      "paper_row": 53,
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.7
+      },
+      "reason": "missing_payload",
+      "detail": "Three of these directories are zero-byte solver-marker placeholders, not materializable CFD cases."
+    },
+    {
+      "environment": "SquareCylinder_2D_Re3900",
+      "paper_rows": [
+        13
+      ],
+      "reason": "incomplete_native_resource_package",
+      "missing": [
+        "restart_.Netcdf"
+      ],
+      "detail": "Required by the pinned solver's data profile; not excluded for model performance or lack of our evaluator adapter. Can be reconsidered after a validated repair in a new release."
+    },
+    {
+      "environment": "Cavity_2D_Re7500_fine_FD",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "firedrake",
+      "bytes": 2460545516,
+      "paper_rows": [
+        10
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cavity_2D_Re7500_medium_FD",
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "backend": "firedrake",
+      "bytes": 724417300,
+      "paper_rows": [
+        10
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cube_3D_Re300",
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "backend": "maia",
+      "bytes": 14089621635,
+      "paper_rows": [
+        42
+      ],
+      "reason": "measured_control_cost_over_limit",
+      "resource_status": "required_payloads_present",
+      "detail": "Short post-warmup estimate 43.9494 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "environment": "Cube_3D_Re3700",
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "backend": "maia",
+      "bytes": 46191156069,
+      "paper_rows": [
+        43
+      ],
+      "reason": "runtime_unresolved",
+      "resource_status": "required_payloads_present",
+      "detail": "Native probe did not complete or lacks enough timing samples; retained logs distinguish errors from slow integration."
+    },
+    {
+      "environment": "Cylinder_2D_Re100_fine_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "bytes": 1173600561,
+      "paper_rows": [
+        1
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cylinder_2D_Re100_medium_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "bytes": 124503918,
+      "paper_rows": [
+        1
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cylinder_2D_Re200_fine_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "firedrake",
+      "bytes": 1173600561,
+      "paper_rows": [
+        2
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cylinder_2D_Re200_medium_FD",
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "firedrake",
+      "bytes": 118844649,
+      "paper_rows": [
+        2
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Cylinder_3D_Re1000",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "bytes": 41224574218,
+      "paper_rows": [
+        22
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "Cylinder_3D_Re200",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "bytes": 23164180645,
+      "paper_rows": [
+        21
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "Cylinder_3D_Re3900",
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "bytes": 41225057239,
+      "paper_rows": [
+        23
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "DRA2303Jet_3D_Re400000_Ma02",
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.2
+      },
+      "backend": "maia-structured",
+      "bytes": 93473319062,
+      "paper_rows": [
+        52
+      ],
+      "reason": "configuration_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Source constructor fails on missing reductionFactor; not a measured slow solver."
+    },
+    {
+      "environment": "Kolmogorov_2D",
+      "family": "kolmogorov",
+      "dimension": 2,
+      "parameters": {
+        "Re_range": [
+          40,
+          500
+        ]
+      },
+      "backend": "jax",
+      "bytes": 1452,
+      "paper_rows": [
+        19
+      ],
+      "reason": "objective_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "The timed class default has reward_alpha=0 and differs from public YAML; no accepted fluid-control objective."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re10000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 10000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "bytes": 46558255275,
+      "paper_rows": [
+        39
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 34949198769,
+      "paper_rows": [
+        38
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "NACA0012Gust_3D_Re50000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 50000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "bytes": 46367351482,
+      "paper_rows": [
+        40
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "NACA0012_3D_Re10000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 10000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "bytes": 46558248729,
+      "paper_rows": [
+        39
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "NACA0012_3D_Re1000_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 36489652445,
+      "paper_rows": [
+        37
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "NACA0012_3D_Re1000_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 34949192217,
+      "paper_rows": [
+        38
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "NACA0012_3D_Re100_AOA20",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "backend": "maia",
+      "bytes": 23607587049,
+      "paper_rows": [
+        35
+      ],
+      "reason": "measured_control_cost_over_limit",
+      "resource_status": "required_payloads_present",
+      "detail": "Short post-warmup estimate 34.3000 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "environment": "NACA0012_3D_Re100_AOA40",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "backend": "maia",
+      "bytes": 23493935571,
+      "paper_rows": [
+        36
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "NACA0012_3D_Re200000_AOA0",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200000,
+        "angle": 0
+      },
+      "backend": "nek5000-v17",
+      "bytes": 174525626413,
+      "paper_rows": [
+        41
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "NACA0012_3D_Re50000_AOA12",
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 50000,
+        "angle": 12
+      },
+      "backend": "maia",
+      "bytes": 46367344938,
+      "paper_rows": [
+        40
+      ],
+      "reason": "bounded_probe_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "environment": "Nozzle2D_fine",
+      "family": "divergent-nozzle",
+      "dimension": 2,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "bytes": 25266052,
+      "paper_rows": [
+        20
+      ],
+      "reason": "control_response_unverified",
+      "resource_status": "required_payloads_present",
+      "detail": "Clock/fields finite, but reward, observed magnitude and primitive sum unchanged in six steps including a small action."
+    },
+    {
+      "environment": "Nozzle3D_coarse",
+      "family": "divergent-nozzle",
+      "dimension": 3,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "bytes": 2880103574,
+      "paper_rows": [
+        55
+      ],
+      "reason": "configuration_incomplete",
+      "resource_status": "required_payloads_present",
+      "detail": "Source configuration omits required num_actuators; not a measured slow solver."
+    },
+    {
+      "environment": "Nozzle3D_fine",
+      "family": "divergent-nozzle",
+      "dimension": 3,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "backend": "jax-fluids",
+      "bytes": 14400395385,
+      "paper_rows": [
+        55
+      ],
+      "reason": "runtime_binding_unverified",
+      "resource_status": "required_payloads_present",
+      "detail": "Complete distributed source restart, but layout/executor and actuator binding unresolved; no measured runtime."
+    },
+    {
+      "environment": "Pinball_2D_Re100_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "backend": "firedrake",
+      "bytes": 348150537,
+      "paper_rows": [
+        7
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Pinball_2D_Re150_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 150
+      },
+      "backend": "firedrake",
+      "bytes": 348150537,
+      "paper_rows": [
+        8
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Pinball_2D_Re30_fine_FD",
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 30
+      },
+      "backend": "firedrake",
+      "bytes": 348150537,
+      "paper_rows": [
+        5
+      ],
+      "reason": "control_interval_unbound",
+      "resource_status": "required_payloads_present",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "environment": "Sphere_3D_Re3700",
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "backend": "maia",
+      "bytes": 34442722145,
+      "paper_rows": [
+        45
+      ],
+      "reason": "measured_control_cost_over_limit",
+      "resource_status": "required_payloads_present",
+      "detail": "Short post-warmup estimate 171.2599 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re1000",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "backend": "maia",
+      "bytes": 48646448917,
+      "paper_rows": [
+        33
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re200",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "backend": "maia",
+      "bytes": 25941477839,
+      "paper_rows": [
+        32
+      ],
+      "reason": "measured_control_cost_over_limit",
+      "resource_status": "required_payloads_present",
+      "detail": "Short post-warmup estimate 63.6730 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "environment": "SquareCylinder_3D_Re3900",
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "backend": "maia",
+      "bytes": 48646448939,
+      "paper_rows": [
+        34
+      ],
+      "reason": "speed_not_established",
+      "resource_status": "required_payloads_present",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "environment": "TCFmini_3D_Re180",
+      "family": "turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "backend": "nek5000-v19",
+      "bytes": 19990547,
+      "paper_rows": [
+        51
+      ],
+      "reason": "solver_restart_mismatch",
+      "resource_status": "required_payloads_present",
+      "detail": "The timed binary mesh and restart timestep differ from YAML; fast CPU timing does not certify the intended task."
+    }
+  ],
+  "reconstruction_policy": "No source geometry/restart/mesh/time step is modified. Short-loop timing is not full-episode physical or evaluator certification; any later membership or physical protocol change is separately versioned.",
+  "selection_spec_sha256": "36d97c79ece694fbd67c45512191797eb176fd99da6c01592e392cd96ce5e5d2",
+  "cost_evidence_sha256": "0a6b9eecb7d8c96af25aa858afeb6bea9095572c817a1ae5af1d71ae95f1e803",
+  "selection_policy": {
+    "primary": "Preserve distinct 3D/2D control phenomena and meaningful parameter variations under practical measured cost.",
+    "measured_control_seconds_upper_bound": 30,
+    "minimum_post_warmup_samples": 2,
+    "limit_scope": "Organizer membership-screening rule on this H100 measurement, not an agent/evaluator per-step timeout.",
+    "source_assets": "All source files and initial states for each retained case; shared train/eval copy.",
+    "physics": "No mesh coarsening or CFD substep/timestep changes for speed; class/YAML discrepancies remain explicit until protocol acceptance.",
+    "cost_warning": "Different control steps advance different physical intervals; full-episode and full-suite costs still require measurement.",
+    "readiness": "Complete short loop is required, but is not full evaluator or physical validation.",
+    "scoring": "Every selected case is mandatory; no optional expensive track, no per-model subset or per-task expert checkpoint."
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "algorithm": "PPO",
+  "description": "Organizer retry for unstable symmetric actuators: small initial stochastic actions; unchanged native bounds, solver, reward and optimizer recipe. Not a recovered paper setting.",
+  "network": {"initial_scale": 0.05, "initial_mean_bias": 0.0, "initial_mean_weight_scale": 0.01}
+}

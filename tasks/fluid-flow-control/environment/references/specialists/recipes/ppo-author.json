@@ -1,0 +1,6 @@
+{
+  "algorithm": "PPO",
+  "description": "Released author's Mish/lambda .97/clip .1 optimization ablation. Paper physics/reward retained; not paper-exact settings.",
+  "network": {"activation": "mish"},
+  "optim": {"gae_lambda": 0.97, "clip_epsilon": 0.1}
+}

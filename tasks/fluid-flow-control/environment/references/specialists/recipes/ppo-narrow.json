@@ -1,0 +1,7 @@
+{
+  "algorithm": "PPO",
+  "description": "Paper ReLU/GAE; lower initial exploration scale and entropy, constant training reward scale.",
+  "reward_scale": 0.1,
+  "network": {"initial_scale": 0.3},
+  "optim": {"entropy_coef": 0.001, "critic_lr": 0.001}
+}

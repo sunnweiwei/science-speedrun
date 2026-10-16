@@ -71,6 +71,9 @@ case "$task" in
     mkdir -p "$root/private"; [ -s "$root/private/request-seed" ] || head -c 64 /dev/urandom > "$root/private/request-seed"
     cg python3 /task/tests/requests/build_suite.py --seed-file "$root/private/request-seed" --output-root "$root/final-suite"
     data=$root; private=$root ;;
+  fluid-flow-control)                     # HydroGym release (423 GB, 39 cases, pinned HF commit), every file hash-verified
+    inbox "huggingface_hub>=1.0,<2" "python environment/data/materialize.py $root --download"
+    data=$root; private=$root ;;
   tokamak-magnetic-control)               # no data: the machine description is vendored into the images
     data=$root; private=$root ;;
   *) echo "No prepare recipe for $task; follow its environment/data/MATERIALIZE.md" >&2; exit 1 ;;

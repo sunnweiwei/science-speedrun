@@ -1,0 +1,6 @@
+# CPU protocol/training tests only. This is NOT the production CFD image.
+FROM pytorch/pytorch:2.7.1-cuda12.6-cudnn9-runtime
+RUN python -m pip install --no-cache-dir stable-baselines3==2.7.1 gymnasium==1.2.3
+ENV PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1
+WORKDIR /task
+CMD ["python", "-m", "unittest", "discover", "-s", "fluid-flow-control/tests", "-v"]

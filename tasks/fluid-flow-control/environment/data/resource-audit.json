@@ -1,0 +1,1107 @@
+{
+  "status": "resource-audit-not-benchmark-release",
+  "source_revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "denominator": "Paper table parameter rows, not expanded benchmark cases or the advertised 61 environments",
+  "paper_rows": 55,
+  "resource_counts": {
+    "candidate_payload_unvalidated": 44,
+    "missing_payload": 9,
+    "parameter_mismatch": 1,
+    "partial_variant_payload": 1
+  },
+  "missing_payload_fraction": 0.16363636363636364,
+  "scope_exclusions": [],
+  "warning": "Missing fraction is a lower-bound inventory diagnostic; candidate payloads may still be incomplete or incompatible. No cases are excluded by this audit.",
+  "rows": [
+    {
+      "paper_row": 1,
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_2D_Re100_fine_FD",
+        "Cylinder_2D_Re100_medium_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re100 currently has Firedrake resources only; rotary-cylinder folders are distinct actuation variants, not interchangeable copies."
+    },
+    {
+      "paper_row": 2,
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_2D_Re200",
+        "Cylinder_2D_Re200_fine_FD",
+        "Cylinder_2D_Re200_medium_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re100 currently has Firedrake resources only; rotary-cylinder folders are distinct actuation variants, not interchangeable copies."
+    },
+    {
+      "paper_row": 3,
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_2D_Re1000"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re100 currently has Firedrake resources only; rotary-cylinder folders are distinct actuation variants, not interchangeable copies."
+    },
+    {
+      "paper_row": 4,
+      "family": "cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 3900
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_2D_Re3900"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re100 currently has Firedrake resources only; rotary-cylinder folders are distinct actuation variants, not interchangeable copies."
+    },
+    {
+      "paper_row": 5,
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 30
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_2D_Re30",
+        "Pinball_2D_Re30_fine_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Only Re100 MAIA has manual baseline training evidence so far; other variants remain unvalidated."
+    },
+    {
+      "paper_row": 6,
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 75
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_2D_Re75"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Only Re100 MAIA has manual baseline training evidence so far; other variants remain unvalidated."
+    },
+    {
+      "paper_row": 7,
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_2D_Re100",
+        "Pinball_2D_Re100_fine_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Only Re100 MAIA has manual baseline training evidence so far; other variants remain unvalidated."
+    },
+    {
+      "paper_row": 8,
+      "family": "pinball",
+      "dimension": 2,
+      "parameters": {
+        "Re": 150
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_2D_Re150",
+        "Pinball_2D_Re150_fine_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Only Re100 MAIA has manual baseline training evidence so far; other variants remain unvalidated."
+    },
+    {
+      "paper_row": 9,
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 4200
+      },
+      "resource_status": "parameter_mismatch",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [
+        "Cavity_2D_Re4140",
+        "Cavity3Jet_2D_Re4140"
+      ],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Published low-Re Hub resource is 4140, not 4200. Do not silently change the paper case's identity. Three-jet folders are another actuator choice."
+    },
+    {
+      "paper_row": 10,
+      "family": "cavity",
+      "dimension": 2,
+      "parameters": {
+        "Re": 7500
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cavity_2D_Re7500",
+        "Cavity_2D_Re7500_fine_FD",
+        "Cavity_2D_Re7500_medium_FD"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "firedrake"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Published low-Re Hub resource is 4140, not 4200. Do not silently change the paper case's identity. Three-jet folders are another actuator choice."
+    },
+    {
+      "paper_row": 11,
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 200
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_2D_Re200"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 12,
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_2D_Re1000"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 13,
+      "family": "square-cylinder",
+      "dimension": 2,
+      "parameters": {
+        "Re": 3900
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_2D_Re3900"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 14,
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_2D_Re100_AOA20",
+        "NACA0012Gust_2D_Re100_AOA20"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Wake control and prescribed-gust mitigation require different forcing; selecting one folder does not validate both objectives."
+    },
+    {
+      "paper_row": 15,
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_2D_Re100_AOA40",
+        "NACA0012Gust_2D_Re100_AOA40"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Wake control and prescribed-gust mitigation require different forcing; selecting one folder does not validate both objectives."
+    },
+    {
+      "paper_row": 16,
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_2D_Re1000_AOA20",
+        "NACA0012Gust_2D_Re1000_AOA20"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Wake control and prescribed-gust mitigation require different forcing; selecting one folder does not validate both objectives."
+    },
+    {
+      "paper_row": 17,
+      "family": "naca0012",
+      "dimension": 2,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_2D_Re1000_AOA40",
+        "NACA0012Gust_2D_Re1000_AOA40"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Wake control and prescribed-gust mitigation require different forcing; selecting one folder does not validate both objectives."
+    },
+    {
+      "paper_row": 18,
+      "family": "stenotic-pipe",
+      "dimension": 2,
+      "parameters": {
+        "Re": 100
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 19,
+      "family": "kolmogorov",
+      "dimension": 2,
+      "parameters": {
+        "Re_range": [
+          40,
+          500
+        ]
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Kolmogorov_2D"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "jax"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Public YAML is Re40 with four agents; paper's precise GPPO experiment config/gradient weighting is not identified. Do not substitute default YAML for the figure setup."
+    },
+    {
+      "paper_row": 20,
+      "family": "divergent-nozzle",
+      "dimension": 2,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Nozzle2D_coarse",
+        "Nozzle2D_fine"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "jax-fluids"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Paper table gives 450000 degrees of freedom. Fidelity mapping and native adapter still require validation."
+    },
+    {
+      "paper_row": 21,
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_3D_Re200"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 22,
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_3D_Re1000"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 23,
+      "family": "cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_3D_Re3900"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 24,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_3D_Re1000"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Shared grid is not a reviewed multi-agent actuation/reward adapter. Paper MARL comparison needs its own mapping."
+    },
+    {
+      "paper_row": 25,
+      "family": "cylinder-marl",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cylinder_3D_Re3900"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Shared grid is not a reviewed multi-agent actuation/reward adapter. Paper MARL comparison needs its own mapping."
+    },
+    {
+      "paper_row": 26,
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 30
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_3D_Re30"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re150 grid cell count agrees with the paper table; uncontrolled mean drag over the first 200 controls differs and is under investigation."
+    },
+    {
+      "paper_row": 27,
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 75
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_3D_Re75"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re150 grid cell count agrees with the paper table; uncontrolled mean drag over the first 200 controls differs and is under investigation."
+    },
+    {
+      "paper_row": 28,
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_3D_Re100"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re150 grid cell count agrees with the paper table; uncontrolled mean drag over the first 200 controls differs and is under investigation."
+    },
+    {
+      "paper_row": 29,
+      "family": "pinball",
+      "dimension": 3,
+      "parameters": {
+        "Re": 150
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Pinball_3D_Re150"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re150 grid cell count agrees with the paper table; uncontrolled mean drag over the first 200 controls differs and is under investigation."
+    },
+    {
+      "paper_row": 30,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 4200
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 31,
+      "family": "cavity",
+      "dimension": 3,
+      "parameters": {
+        "Re": 7500
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."
+    },
+    {
+      "paper_row": 32,
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_3D_Re200"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 33,
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_3D_Re1000"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 34,
+      "family": "square-cylinder",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3900
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "SquareCylinder_3D_Re3900"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 35,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 20
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re100_AOA20",
+        "NACA0012Gust_3D_Re100_AOA20"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 36,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100,
+        "angle": 40
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re100_AOA40",
+        "NACA0012Gust_3D_Re100_AOA40"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 37,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 20
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re1000_AOA20",
+        "NACA0012Gust_3D_Re1000_AOA20"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 38,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 1000,
+        "angle": 40
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re1000_AOA40",
+        "NACA0012Gust_3D_Re1000_AOA40"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 39,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 10000,
+        "angle": 12
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re10000_AOA12",
+        "NACA0012Gust_3D_Re10000_AOA12"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 40,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 50000,
+        "angle": 12
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re50000_AOA12",
+        "NACA0012Gust_3D_Re50000_AOA12"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 41,
+      "family": "naca0012",
+      "dimension": 3,
+      "parameters": {
+        "Re": 200000,
+        "angle": 0
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "NACA0012_3D_Re200000_AOA0"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia",
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."
+    },
+    {
+      "paper_row": 42,
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cube_3D_Re300"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Hub additionally has Re1000, not listed as a row in this paper table."
+    },
+    {
+      "paper_row": 43,
+      "family": "cube",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Cube_3D_Re3700"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Hub additionally has Re1000, not listed as a row in this paper table."
+    },
+    {
+      "paper_row": 44,
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 300
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Sphere_3D_Re300"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 45,
+      "family": "sphere",
+      "dimension": 3,
+      "parameters": {
+        "Re": 3700
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Sphere_3D_Re3700"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Payload presence does not establish paper parity."
+    },
+    {
+      "paper_row": 46,
+      "family": "stenotic-pipe",
+      "dimension": 3,
+      "parameters": {
+        "Re": 100
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 47,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 200
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 48,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1400
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 49,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 1550
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 50,
+      "family": "turbulent-boundary-layer",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 2200
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "No corresponding directory in the pinned public Hub inventory."
+    },
+    {
+      "paper_row": 51,
+      "family": "turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "TCFmini_3D_Re180"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [
+        "TCFlarge_3D_Re207"
+      ],
+      "solver_candidates": [
+        "nek5000"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Only the Re180 candidate matches the table's Reynolds number; configuration/mesh parity remains to validate."
+    },
+    {
+      "paper_row": 52,
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.2
+      },
+      "resource_status": "partial_variant_payload",
+      "candidate_payloads": [
+        "DRA2303Jet_3D_Re400000_Ma02"
+      ],
+      "marker_only": [
+        "DRA2303SurfaceWave_3D_Re400000_Ma02"
+      ],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia-structured"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Three of these directories are zero-byte solver-marker placeholders, not materializable CFD cases."
+    },
+    {
+      "paper_row": 53,
+      "family": "dra2303",
+      "dimension": 3,
+      "parameters": {
+        "Re": 400000,
+        "angle": 2,
+        "Mach": 0.7
+      },
+      "resource_status": "missing_payload",
+      "candidate_payloads": [],
+      "marker_only": [
+        "DRA2303Jet_3D_Re400000_Ma07",
+        "DRA2303SurfaceWave_3D_Re400000_Ma07"
+      ],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "maia-structured"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Three of these directories are zero-byte solver-marker placeholders, not materializable CFD cases."
+    },
+    {
+      "paper_row": 54,
+      "family": "differentiable-turbulent-channel",
+      "dimension": 3,
+      "parameters": {
+        "Retau": 180
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Channel_3D_Retau180"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "jax"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Not interchangeable with the nondifferentiable Nek5000 case."
+    },
+    {
+      "paper_row": 55,
+      "family": "divergent-nozzle",
+      "dimension": 3,
+      "parameters": {
+        "pressure_ratio": 4.6
+      },
+      "resource_status": "candidate_payload_unvalidated",
+      "candidate_payloads": [
+        "Nozzle3D_coarse",
+        "Nozzle3D_fine"
+      ],
+      "marker_only": [],
+      "related_not_equivalent": [],
+      "solver_candidates": [
+        "jax-fluids"
+      ],
+      "evaluation_status": "not_full_suite_validated",
+      "notes": "Paper table gives 225000000 degrees of freedom; source availability alone does not validate this simulation or its cost."
+    }
+  ]
+}

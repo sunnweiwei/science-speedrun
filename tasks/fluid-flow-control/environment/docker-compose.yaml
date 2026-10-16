@@ -1,0 +1,29 @@
+# Development environment overlay (TASK_STANDARD.md): the development target of the multi-stage
+# Dockerfile, built from the task directory. TASK_DATA_DIR is the prepared release; it is mounted
+# read-only at /workspace/data/release, next to the task's data code and descriptors from the image
+# (/data is a link to it, the evaluator's default). TASK_RESEARCH_DIR is an empty directory per run on
+# a large disk.
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: development
+    shm_size: "32gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the prepared release}
+        target: /workspace/data/release
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty writable directory on a large disk}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "bash", "/opt/hydrogym-task/evaluation/evaluate_native.sh", "--data", "/workspace/data/release", "--case", "all", "--preflight"]
+      interval: 10s
+      timeout: 10s
+      retries: 1

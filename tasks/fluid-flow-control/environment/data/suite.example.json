@@ -1,0 +1,31 @@
+{
+  "release_id": "UNRELEASED-example-do-not-grade",
+  "status": "draft",
+  "source_revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "coverage": {
+    "status": "pending",
+    "description": "Example only. Complete paper-to-resource mapping and all required solver adapters are pending."
+  },
+  "policy_timeout_sec": 120,
+  "cases": [
+    {
+      "id": "Cylinder_2D_Re200",
+      "environment": "Cylinder_2D_Re200",
+      "family": "cylinder",
+      "backend": "maia",
+      "solver_processes": 1,
+      "timeout_sec": 3600,
+      "horizon": 201,
+      "seeds": [101, 202, 303],
+      "initialization": "Upstream restart; seed does not randomize the flow. Repeated replays are not independent flow samples.",
+      "provenance": "UNVALIDATED: illustrative probes below, not claimed to match paper sensors",
+      "env_kwargs": {
+        "probe_locations": [1.0, -0.5, 1.0, 0.0, 1.0, 0.5, 2.0, -0.5, 2.0, 0.0, 2.0, 0.5],
+        "obs_normalization_strategy": "none"
+      },
+      "observation_size": 12,
+      "action_size": 1,
+      "baseline": {"algorithm": "UNMEASURED", "anchor_description": "Uncontrolled cylinder: native zero action", "anchor_return": null, "reference_return": null}
+    }
+  ]
+}

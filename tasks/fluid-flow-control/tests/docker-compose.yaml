@@ -1,0 +1,21 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: verifier
+    # The replayed policy needs no network; the verifier is offline end to end.
+    network_mode: none
+    shm_size: "32gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the prepared release}
+        target: /data
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD", "bash", "/opt/hydrogym-task/evaluation/evaluate_native.sh", "--data", "/data", "--case", "all", "--preflight"]
+      interval: 10s
+      timeout: 10s
+      retries: 1

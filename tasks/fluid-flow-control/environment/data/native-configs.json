@@ -1,0 +1,1697 @@
+{
+  "revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "configs": [
+    {
+      "name": "Cavity3Jet_2D_Re4140",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 4140,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 250,
+          "num_action_inputs": 3,
+          "max_control": 0.02,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cavity3Jet_2D_Re7500",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 7500,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.04,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cavity_2D_Re4140",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 4140,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 250,
+          "num_action_inputs": 1,
+          "max_control": 0.02,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cavity_2D_Re7500",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 7500,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 1,
+          "max_control": 0.04,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Channel_3D_Retau180",
+      "config": {
+        "env": {
+          "n_agents": 12,
+          "max_episode_steps": 10000
+        },
+        "jax": {
+          "Retau": 180,
+          "observation_type": "u",
+          "observation_plane": 9,
+          "U_bulk": 8,
+          "nu": 0.0019,
+          "num_sim_substeps_per_actuation": 100,
+          "num_action_inputs": 1,
+          "max_control": 1,
+          "compute_grad": false,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cube_3D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1000,
+          "num_action_inputs": 4,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cube_3D_Re300",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 300,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1625,
+          "num_action_inputs": 4,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cube_3D_Re3700",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3700,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1000,
+          "num_action_inputs": 4,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_2D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 225,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_2D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 87,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_2D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 1,
+          "max_control": 0.03,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_3D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1080,
+          "num_action_inputs": 1,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_3D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 575,
+          "num_action_inputs": 1,
+          "max_control": 0.0625,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Cylinder_3D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1080,
+          "num_action_inputs": 1,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "DRA2303Jet_3D_Re400000_Ma02",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 400000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "num_sim_substeps_per_actuation": 1000,
+          "num_action_inputs": 10,
+          "omega": 1,
+          "max_control": 0.05,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Kolmogorov_2D",
+      "config": {
+        "env": {
+          "n_agents": 4,
+          "max_episode_steps": 200
+        },
+        "jax": {
+          "Re": 40,
+          "observation_type": "omega",
+          "nu": 0.0019,
+          "num_sim_substeps_per_actuation": 10,
+          "num_action_inputs": 1,
+          "max_control": 1,
+          "compute_grad": false,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_2D_Re1000_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 60,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.461,
+          "unperturbed_avg_lift": 0.915,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_2D_Re1000_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.971,
+          "unperturbed_avg_lift": 2.159,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_2D_Re100_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.577,
+          "unperturbed_avg_lift": 0.783,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_2D_Re100_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.081,
+          "unperturbed_avg_lift": 1.027,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re10000_AOA12",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 10000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.186,
+          "unperturbed_avg_lift": 0.634,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re1000_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 160,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.402,
+          "unperturbed_avg_lift": 0.833,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re1000_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 175,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.992,
+          "unperturbed_avg_lift": 1.072,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re100_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 75,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.577,
+          "unperturbed_avg_lift": 0.777,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re100_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 90,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 1.078,
+          "unperturbed_avg_lift": 1.014,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012Gust_3D_Re50000_AOA12",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 50000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 140,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "unperturbed_avg_drag": 0.157,
+          "unperturbed_avg_lift": 0.514,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_2D_Re1000_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 170,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_2D_Re1000_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 400,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_2D_Re100_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_2D_Re100_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.03,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re10000_AOA12",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 10000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 350,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re1000_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 375,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re1000_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1300,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re100_AOA20",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re100_AOA40",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re200000_AOA0",
+      "config": {
+        "simulation": {
+          "CASENAME": "naca_wing",
+          "solver_version": "v17",
+          "exeName": "nek5000",
+          "nzs": 1,
+          "nxs": 1,
+          "out_log": "logfile",
+          "host": "localhost",
+          "hostfile": "",
+          "nproc": 4096,
+          "TOTCTRL": 5000,
+          "ndrl": 40,
+          "znmf_avg": 1,
+          "target_cfl": 2,
+          "num_nodes_srun": 4,
+          "oversubscribe": false,
+          "lx1": 8,
+          "Lx": 10,
+          "Ly": 2,
+          "Lz": 0.1,
+          "Nx": 10024,
+          "Ny": 1,
+          "Nz": 22,
+          "tmax": 1400,
+          "numSteps": 5000000,
+          "dt": -0.000015,
+          "writeInterval": 5000,
+          "writeLA2": 5000,
+          "p_residualTol": 0.000001,
+          "v_residualTol": 1e-8,
+          "density": 1,
+          "viscosity": -200000,
+          "READCHKPT": 1,
+          "CHKPFNUMBER": 6,
+          "CHKPINTERVAL": 5000,
+          "AVSTEP": 10,
+          "IOSTEP": 5000,
+          "writePTS": 50
+        },
+        "runner": {
+          "nb_interactions": 2500,
+          "rank": 1,
+          "rescale_actions": true,
+          "normalize_input": "None",
+          "ctrl_min_amp": -1,
+          "ctrl_max_amp": 1,
+          "ctrl_array_size": 1,
+          "npl_state": 2,
+          "u_tau": 0.048,
+          "dUdy": 480.54
+        }
+      }
+    },
+    {
+      "name": "NACA0012_3D_Re50000_AOA12",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 50000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 700,
+          "num_action_inputs": 3,
+          "max_control": 0.075,
+          "omega": 0.25,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "NACA4412_3D_Re75000_AOA5",
+      "config": {
+        "simulation": {
+          "CASENAME": "small_wing",
+          "solver_version": "v17",
+          "exeName": "nek5000",
+          "nzs": 1,
+          "nxs": 1,
+          "out_log": "logfile",
+          "host": "localhost",
+          "hostfile": "",
+          "compile_path": "../envs/cases/small_wing",
+          "restart_folder": "../data/restarts/rs8_small_wing",
+          "nproc": 12,
+          "TOTCTRL": 1000,
+          "ndrl": 3,
+          "znmf_avg": 0,
+          "target_cfl": 2,
+          "num_nodes_srun": 4,
+          "oversubscribe": false,
+          "lx1": 6,
+          "Lx": 10,
+          "Ly": 2,
+          "Lz": 0.02,
+          "Nx": 10500,
+          "Ny": 1,
+          "Nz": 3,
+          "tmax": 1400,
+          "numSteps": 5000000,
+          "dt": -0.000015,
+          "writeInterval": 5,
+          "writeLA2": 5,
+          "p_residualTol": 0.000001,
+          "v_residualTol": 1e-8,
+          "density": 1,
+          "viscosity": -75000,
+          "READCHKPT": 1,
+          "CHKPFNUMBER": 6,
+          "CHKPINTERVAL": 2500,
+          "AVSTEP": 10,
+          "IOSTEP": 5,
+          "writePTS": 50
+        },
+        "runner": {
+          "nb_interactions": 2500,
+          "rank": 1,
+          "rescale_actions": false,
+          "normalize_input": "None",
+          "ctrl_min_amp": -1,
+          "ctrl_max_amp": 1,
+          "ctrl_array_size": 1,
+          "npl_state": 2
+        }
+      }
+    },
+    {
+      "name": "Nozzle2D_coarse",
+      "config": {
+        "jaxfluids": {
+          "resolution": "coarse",
+          "secondary_pressure_ratio": 0.9,
+          "is_pressure_probes": true,
+          "steps_per_action": 100,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      }
+    },
+    {
+      "name": "Nozzle2D_fine",
+      "config": {
+        "jaxfluids": {
+          "resolution": "fine",
+          "secondary_pressure_ratio": 0.9,
+          "is_pressure_probes": true,
+          "steps_per_action": 200,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      }
+    },
+    {
+      "name": "Nozzle3D_coarse",
+      "config": {
+        "jaxfluids": {
+          "resolution": "coarse",
+          "secondary_pressure_ratio": 0.7,
+          "is_pressure_probes": true,
+          "steps_per_action": 200,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      }
+    },
+    {
+      "name": "Nozzle3D_fine",
+      "config": {
+        "jaxfluids": {
+          "resolution": "fine",
+          "secondary_pressure_ratio": 0.7,
+          "is_pressure_probes": true,
+          "steps_per_action": 200,
+          "is_scale_observations": true,
+          "ngpus": 1,
+          "render_mode": "SAVE"
+        }
+      }
+    },
+    {
+      "name": "Pinball_2D_Re100",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_2D_Re150",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 150,
+          "num_action_inputs": 3,
+          "max_control": 0.4,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_2D_Re30",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_2D_Re75",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 200,
+          "num_action_inputs": 3,
+          "max_control": 0.25,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_3D_Re100",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 100,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 195,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_3D_Re150",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 150,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 175,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_3D_Re30",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 30,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 270,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Pinball_3D_Re75",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 75,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 210,
+          "num_action_inputs": 3,
+          "max_control": 0.5,
+          "omega": 0,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_2D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 225,
+          "num_action_inputs": 1,
+          "max_control": 0.3,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_2D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 87,
+          "num_action_inputs": 1,
+          "max_control": 0.3,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_2D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 500,
+          "num_action_inputs": 1,
+          "max_control": 0.2,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_3D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1080,
+          "num_action_inputs": 1,
+          "max_control": 0.5,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_3D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 575,
+          "num_action_inputs": 1,
+          "max_control": 0.5,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "RotaryCylinder_3D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1080,
+          "num_action_inputs": 1,
+          "max_control": 0.5,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Sphere_3D_Re300",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 300,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 825,
+          "num_action_inputs": 10,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "Sphere_3D_Re3700",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3700,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 2400,
+          "num_action_inputs": 10,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_2D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 250,
+          "num_action_inputs": 2,
+          "max_control": 0.05,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_2D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 110,
+          "num_action_inputs": 2,
+          "max_control": 0.03,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_2D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.0577,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 275,
+          "num_action_inputs": 2,
+          "max_control": 0.015,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_3D_Re1000",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 1000,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1750,
+          "num_action_inputs": 2,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_3D_Re200",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 200,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 750,
+          "num_action_inputs": 2,
+          "max_control": 0.0625,
+          "omega": 0.2,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "SquareCylinder_3D_Re3900",
+      "config": {
+        "env": {
+          "n_agents": 1,
+          "max_episode_steps": 200
+        },
+        "maia": {
+          "Re": 3900,
+          "observation_type": [
+            "u",
+            "v"
+          ],
+          "U_inf": 0.1154,
+          "rho_inf": 1,
+          "num_sim_substeps_per_actuation": 1700,
+          "num_action_inputs": 2,
+          "max_control": 0.0625,
+          "omega": 1,
+          "render": false
+        }
+      }
+    },
+    {
+      "name": "TCFlarge_3D_Re207",
+      "config": {
+        "runner": {
+          "nb_interactions": 2500,
+          "nb_episodes": 100,
+          "nb_warmup_episodes": 1,
+          "train_steps": 300,
+          "gradient_steps": 64,
+          "ckpt_int": 5,
+          "RL_algorithm": "TD3",
+          "rescale_actions": true,
+          "learning_rate": "1e-3",
+          "batch_size": 2048,
+          "buffer_size": 20000000,
+          "learning_starts": 100,
+          "tau": 0.005,
+          "policy_delay": 2,
+          "target_policy_noise": 0.2,
+          "target_noise_clip": 0.5,
+          "action_noise": 0.1,
+          "seed": 20010603,
+          "random_init": 6,
+          "rank": 1,
+          "evaluation": false,
+          "normalize_input": "utau",
+          "ctrl_min_amp": -0.063,
+          "ctrl_max_amp": 0.063,
+          "npl_state": 2,
+          "u_tau": 0.063,
+          "dUdy": 13.1
+        },
+        "simulation": {
+          "CASENAME": "tcf",
+          "solver_version": "v19",
+          "exeName": "nek5000",
+          "host": "localhost",
+          "hostfile": "",
+          "compile_path": ".",
+          "restart_folder": "restart_files",
+          "nproc": 512,
+          "TOTCTRL": 128,
+          "ndrl": 13,
+          "znmf_avg": 1,
+          "target_cfl": 2,
+          "y_sensing": 15,
+          "retau": 207,
+          "ys_bdf": 0,
+          "amp_bdf": 0,
+          "ret_bdf": 0,
+          "lx1": 8,
+          "Lx": 6.28,
+          "Ly": 1,
+          "Lz": 3.14,
+          "Nx": 10,
+          "Ny": 9,
+          "Nz": 9,
+          "nxs": 1,
+          "nzs": 1,
+          "tmax": 100000,
+          "stopAt": "numSteps",
+          "numSteps": 500000,
+          "dt": -0.004,
+          "timeStepper": "bdf3",
+          "variableDt": "no",
+          "writeControl": "timeStep",
+          "writeInterval": 100000,
+          "dealiasing": "yes",
+          "filtering": "none",
+          "filterWeight": 0.01,
+          "filterCutoffRatio": 0.9,
+          "stressFormulation": "no",
+          "variableProperties": "no",
+          "p_residualTol": 1e-8,
+          "p_residualProj": "no",
+          "v_residualTol": 1e-8,
+          "v_residualProj": "no",
+          "density": 1,
+          "viscosity": -3300,
+          "advection": "yes",
+          "PARFWRITE": "no",
+          "PARFNAME": "outparfile",
+          "LOGLEVEL": 1,
+          "WALLTIME": "23:45",
+          "READCHKPT": "yes",
+          "CHKPFNUMBER": 1,
+          "CHKPINTERVAL": 10000000,
+          "AVSTEP": 10,
+          "IOSTEP": 300000000,
+          "SMPSTEP": 1000
+        }
+      }
+    },
+    {
+      "name": "TCFmini_3D_Re180",
+      "config": {
+        "runner": {
+          "nb_interactions": 2500,
+          "nb_episodes": 100,
+          "nb_warmup_episodes": 1,
+          "train_steps": 300,
+          "gradient_steps": 64,
+          "ckpt_int": 5,
+          "RL_algorithm": "TD3",
+          "rescale_actions": true,
+          "learning_rate": "1e-3",
+          "batch_size": 256,
+          "buffer_size": 1000000,
+          "learning_starts": 100,
+          "tau": 0.005,
+          "policy_delay": 2,
+          "target_policy_noise": 0,
+          "target_noise_clip": 0,
+          "action_noise": 0.1,
+          "seed": 1998,
+          "random_init": 6,
+          "rank": 1,
+          "evaluation": false,
+          "normalize_input": "utau",
+          "ctrl_min_amp": -0.06388353,
+          "ctrl_max_amp": 0.06388353,
+          "npl_state": 2,
+          "u_tau": 0.06388353,
+          "dUdy": 12.4271
+        },
+        "simulation": {
+          "CASENAME": "phill",
+          "solver_version": "v19",
+          "exeName": "nek5000",
+          "host": "localhost",
+          "hostfile": "",
+          "compile_path": ".",
+          "restart_folder": "restart_files",
+          "nproc": 10,
+          "TOTCTRL": 220,
+          "ndrl": 1,
+          "znmf_avg": 0,
+          "target_cfl": 2,
+          "y_sensing": 15,
+          "retau": 180,
+          "ys_bdf": 0,
+          "amp_bdf": 0,
+          "ret_bdf": 0,
+          "lx1": 6,
+          "Lx": 2.67,
+          "Ly": 1,
+          "Lz": 0.8,
+          "Nx": 4,
+          "Ny": 16,
+          "Nz": 4,
+          "nxs": 1,
+          "nzs": 1,
+          "tmax": 100000,
+          "stopAt": "numSteps",
+          "numSteps": 500000,
+          "dt": -0.01,
+          "timeStepper": "bdf3",
+          "variableDt": "no",
+          "writeControl": "timeStep",
+          "writeInterval": 100000,
+          "dealiasing": "yes",
+          "filtering": "none",
+          "filterWeight": 0.01,
+          "filterCutoffRatio": 0.9,
+          "stressFormulation": "no",
+          "variableProperties": "no",
+          "p_residualTol": 1e-8,
+          "p_residualProj": "no",
+          "v_residualTol": 1e-8,
+          "v_residualProj": "no",
+          "density": 1,
+          "viscosity": -2800,
+          "advection": "yes",
+          "PARFWRITE": "no",
+          "PARFNAME": "outparfile",
+          "LOGLEVEL": 1,
+          "WALLTIME": "23:45",
+          "READCHKPT": "yes",
+          "CHKPFNUMBER": 1,
+          "CHKPINTERVAL": 10000000,
+          "AVSTEP": 10,
+          "IOSTEP": 300000000,
+          "SMPSTEP": 23
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Materialized CFD resources and local experiment artifacts stay outside Git.
+/datasets/
+/local-data/
+/runs/
+/outputs/
+**/environments/
+*.h5
+*.hdf5
+*.nc
+*.vtk
+*.vtu
+*.msh
+*.stl
+*.bin

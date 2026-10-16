@@ -1,0 +1,48 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/fluid-flow-control"
+version = "0.7.0"
+description = "Continuously develop one shared closed-loop controller for HydroGym's known flow-control tasks."
+authors = [{ name = "Weiwei Sun" }]
+keywords = ["model-development", "autoresearch", "fluid-control", "reinforcement-learning"]
+
+[metadata]
+readiness = "39-case frozen data and physical metrics; 38 specialist baselines independently verified, final case ongoing; portable shared PPO starter and multi-metric Harbor verifier; not a full-paper or shared-model SOTA claim"
+research_cost_scope = "4000 controls per case is a planning reference, not validated convergence: 30 single-H100 cases within 50 hours, 5 borderline cases, one expensive single-GPU case, and 3 explicit two-H100 exceptions"
+data_release = "hydrogym-public-research-v2"
+data_budget_bytes = 500000000000
+training_regime = "known-task multi-task RL; not held-out-task or zero-shot evaluation"
+data_env_var = "TASK_DATA_DIR"
+metric_version = "hydrogym-physical-metrics/v1"
+scoring = "39 named physical metrics, with documented directions; no mixed-unit scalar aggregate"
+
+[agent]
+timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
+
+[environment]
+network_mode = "no-network"
+cpus = 32
+memory_mb = 1572864
+storage_mb = 614400
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 14400.0
+
+[verifier]
+environment_mode = "separate"
+network_mode = "no-network"
+# Replay budget only. Research duration is chosen by the runner. The 26-case suite runs side by side on
+# eight GPUs: 2 h 21 min on 8xH100 for an agent package (2026-10-16), set by Cube_3D_Re3700 (two GPUs,
+# 2.3 h); 3.9 h when other jobs shared the host's GPUs.
+timeout_sec = 43200.0
+
+[verifier.environment]
+cpus = 64
+memory_mb = 524288
+storage_mb = 65536
+network_mode = "no-network"
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 14400.0

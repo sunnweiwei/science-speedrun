@@ -1,0 +1,31 @@
+{
+  "status": "audited-inventory-not-validated-suite",
+  "source": "https://www.nature.com/articles/s41586-026-10917-6",
+  "tables": "Extended Data Tables 1 and 2, visually inspected in article PDF pages 16 and 17",
+  "resource_revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "count_warning": "The paper states 61 environments. Its table rows include parameter ranges, multiple solvers and MARL variants; neither 89 Hub directories nor 66 environment YAMLs establishes that count or coverage.",
+  "groups": [
+    {"family": "cylinder", "dimension": 2, "reynolds": [100,200,1000,3900], "solvers": ["maia","firedrake"], "resource_pattern": "Cylinder_2D_Re{Re}", "notes": "Re100 currently has Firedrake resources only; rotary-cylinder folders are distinct actuation variants, not interchangeable copies."},
+    {"family": "pinball", "dimension": 2, "reynolds": [30,75,100,150], "solvers": ["maia","firedrake"], "resource_pattern": "Pinball_2D_Re{Re}", "notes": "Only Re100 MAIA has manual baseline training evidence so far; other variants remain unvalidated."},
+    {"family": "cavity", "dimension": 2, "reynolds": [4200,7500], "solvers": ["maia","firedrake"], "resource_pattern": "Cavity_2D_Re{Re}", "notes": "Published low-Re Hub resource is 4140, not 4200. Do not silently change the paper case's identity. Three-jet folders are another actuator choice."},
+    {"family": "square-cylinder", "dimension": 2, "reynolds": [200,1000,3900], "solvers": ["maia"], "resource_pattern": "SquareCylinder_2D_Re{Re}"},
+    {"family": "naca0012", "dimension": 2, "reynolds": [100,1000], "angles": [20,40], "solvers": ["maia"], "resource_patterns": ["NACA0012_2D_Re{Re}_AOA{angle}","NACA0012Gust_2D_Re{Re}_AOA{angle}"], "notes": "Wake control and prescribed-gust mitigation require different forcing; selecting one folder does not validate both objectives."},
+    {"family": "stenotic-pipe", "dimension": 2, "reynolds": [100], "solvers": ["maia"], "resource_pattern": null, "notes": "No corresponding directory in the pinned public Hub inventory."},
+    {"family": "kolmogorov", "dimension": 2, "reynolds_range": [40,500], "solvers": ["jax"], "resource_pattern": "Kolmogorov_2D", "notes": "Public YAML is Re40 with four agents; paper's precise GPPO experiment config/gradient weighting is not identified. Do not substitute default YAML for the figure setup."},
+    {"family": "divergent-nozzle", "dimension": 2, "pressure_ratio": 4.6, "solvers": ["jax-fluids"], "resource_patterns": ["Nozzle2D_coarse","Nozzle2D_fine"], "notes": "Paper table gives 450000 degrees of freedom. Fidelity mapping and native adapter still require validation."},
+    {"family": "cylinder", "dimension": 3, "reynolds": [200,1000,3900], "solvers": ["maia"], "resource_pattern": "Cylinder_3D_Re{Re}"},
+    {"family": "cylinder-marl", "dimension": 3, "reynolds": [1000,3900], "solvers": ["maia"], "resource_pattern": "Cylinder_3D_Re{Re}", "notes": "Shared grid is not a reviewed multi-agent actuation/reward adapter. Paper MARL comparison needs its own mapping."},
+    {"family": "pinball", "dimension": 3, "reynolds": [30,75,100,150], "solvers": ["maia"], "resource_pattern": "Pinball_3D_Re{Re}", "notes": "Re150 grid cell count agrees with the paper table; uncontrolled mean drag over the first 200 controls differs and is under investigation."},
+    {"family": "cavity", "dimension": 3, "reynolds": [4200,7500], "solvers": ["maia"], "resource_pattern": null, "notes": "No 3D cavity resource directory in the pinned Hub. A 2D Re7500 folder is not this case."},
+    {"family": "square-cylinder", "dimension": 3, "reynolds": [200,1000,3900], "solvers": ["maia"], "resource_pattern": "SquareCylinder_3D_Re{Re}"},
+    {"family": "naca0012", "dimension": 3, "conditions": [[100,20],[100,40],[1000,20],[1000,40],[10000,12],[50000,12],[200000,0]], "solvers": ["maia","nek5000"], "resource_patterns": ["NACA0012_3D_Re{Re}_AOA{angle}","NACA0012Gust_3D_Re{Re}_AOA{angle}"], "notes": "Re200000/AOA0 is Nek5000; no corresponding gust variant is assumed."},
+    {"family": "cube", "dimension": 3, "reynolds": [300,3700], "solvers": ["maia"], "resource_pattern": "Cube_3D_Re{Re}", "notes": "Hub additionally has Re1000, not listed as a row in this paper table."},
+    {"family": "sphere", "dimension": 3, "reynolds": [300,3700], "solvers": ["maia"], "resource_pattern": "Sphere_3D_Re{Re}"},
+    {"family": "stenotic-pipe", "dimension": 3, "reynolds": [100], "solvers": ["maia"], "resource_pattern": null, "notes": "No corresponding directory in the pinned public Hub inventory."},
+    {"family": "turbulent-boundary-layer", "dimension": 3, "friction_reynolds": [200,1400,1550,2200], "solvers": ["maia"], "resource_pattern": null, "notes": "No corresponding directory in the pinned public Hub inventory."},
+    {"family": "turbulent-channel", "dimension": 3, "friction_reynolds": [180], "solvers": ["nek5000"], "resource_candidates": ["TCFmini_3D_Re180","TCFlarge_3D_Re207"], "notes": "Only the Re180 candidate matches the table's Reynolds number; configuration/mesh parity remains to validate."},
+    {"family": "dra2303", "dimension": 3, "reynolds": [400000], "angles": [2], "mach": [0.2,0.7], "solvers": ["maia-structured"], "resource_candidates": ["DRA2303Jet_3D_Re400000_Ma02","DRA2303Jet_3D_Re400000_Ma07","DRA2303SurfaceWave_3D_Re400000_Ma02","DRA2303SurfaceWave_3D_Re400000_Ma07"], "notes": "Three of these directories are zero-byte solver-marker placeholders, not materializable CFD cases."},
+    {"family": "differentiable-turbulent-channel", "dimension": 3, "friction_reynolds": [180], "solvers": ["jax"], "resource_pattern": "Channel_3D_Retau180", "notes": "Not interchangeable with the nondifferentiable Nek5000 case."},
+    {"family": "divergent-nozzle", "dimension": 3, "pressure_ratio": 4.6, "solvers": ["jax-fluids"], "resource_patterns": ["Nozzle3D_coarse","Nozzle3D_fine"], "notes": "Paper table gives 225000000 degrees of freedom; source availability alone does not validate this simulation or its cost."}
+  ]
+}

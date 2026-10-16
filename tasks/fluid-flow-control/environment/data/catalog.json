@@ -1,0 +1,686 @@
+{
+  "repo_id": "dynamicslab/HydroGym-environments",
+  "revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "kind": "upstream-resource-inventory-not-evaluation-suite",
+  "directories": [
+    {
+      "name": "Cavity3Jet_2D_Re4140",
+      "file_count": 18,
+      "bytes": 57088603,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cavity3Jet_2D_Re7500",
+      "file_count": 18,
+      "bytes": 57160756,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cavity_2D_Re4140",
+      "file_count": 18,
+      "bytes": 57088300,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cavity_2D_Re7500",
+      "file_count": 18,
+      "bytes": 57160456,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cavity_2D_Re7500_fine_FD",
+      "file_count": 32,
+      "bytes": 2460545516,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cavity_2D_Re7500_medium_FD",
+      "file_count": 32,
+      "bytes": 724417300,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Channel_3D_Retau180",
+      "file_count": 5,
+      "bytes": 8960204,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cube_3D_Re1000",
+      "file_count": 20,
+      "bytes": 46191157524,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cube_3D_Re300",
+      "file_count": 20,
+      "bytes": 14089621635,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cube_3D_Re3700",
+      "file_count": 20,
+      "bytes": 46191156069,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_2D_Re1000",
+      "file_count": 12,
+      "bytes": 170512089,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_2D_Re100_fine_FD",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_2D_Re100_medium_FD",
+      "file_count": 23,
+      "bytes": 124503918,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_2D_Re200",
+      "file_count": 12,
+      "bytes": 69499887,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_2D_Re200_fine_FD",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_2D_Re200_medium_FD",
+      "file_count": 22,
+      "bytes": 118844649,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_2D_Re3900",
+      "file_count": 12,
+      "bytes": 190547654,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_2D_Re500_fine_FD",
+      "file_count": 22,
+      "bytes": 1173538569,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_2D_Re500_medium_FD",
+      "file_count": 22,
+      "bytes": 118844649,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Cylinder_3D_Re1000",
+      "file_count": 14,
+      "bytes": 41224574218,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_3D_Re200",
+      "file_count": 14,
+      "bytes": 23164180645,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Cylinder_3D_Re3900",
+      "file_count": 15,
+      "bytes": 41225057239,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "DRA2303Jet_3D_Re400000_Ma02",
+      "file_count": 5,
+      "bytes": 93473319062,
+      "has_environment_config": true,
+      "solver_markers": [
+        ".MAIA_STRCTRD"
+      ]
+    },
+    {
+      "name": "DRA2303Jet_3D_Re400000_Ma07",
+      "file_count": 1,
+      "bytes": 0,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".MAIA_STRCTRD"
+      ]
+    },
+    {
+      "name": "DRA2303SurfaceWave_3D_Re400000_Ma02",
+      "file_count": 1,
+      "bytes": 0,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".MAIA_STRCTRD"
+      ]
+    },
+    {
+      "name": "DRA2303SurfaceWave_3D_Re400000_Ma07",
+      "file_count": 1,
+      "bytes": 0,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".MAIA_STRCTRD"
+      ]
+    },
+    {
+      "name": "Kolmogorov_2D",
+      "file_count": 2,
+      "bytes": 1452,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_2D_Re1000_AOA20",
+      "file_count": 13,
+      "bytes": 50741748,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_2D_Re1000_AOA40",
+      "file_count": 13,
+      "bytes": 50748958,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_2D_Re100_AOA20",
+      "file_count": 13,
+      "bytes": 50741743,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_2D_Re100_AOA40",
+      "file_count": 13,
+      "bytes": 50748949,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re10000_AOA12",
+      "file_count": 20,
+      "bytes": 46558255275,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re1000_AOA20",
+      "file_count": 19,
+      "bytes": 36489658999,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re1000_AOA40",
+      "file_count": 19,
+      "bytes": 34949198769,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re100_AOA20",
+      "file_count": 19,
+      "bytes": 23607593595,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re100_AOA40",
+      "file_count": 19,
+      "bytes": 23493942117,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012Gust_3D_Re50000_AOA12",
+      "file_count": 19,
+      "bytes": 46367351482,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_2D_Re1000_AOA20",
+      "file_count": 12,
+      "bytes": 50733521,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_2D_Re1000_AOA40",
+      "file_count": 12,
+      "bytes": 50740740,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_2D_Re100_AOA20",
+      "file_count": 12,
+      "bytes": 50733514,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_2D_Re100_AOA40",
+      "file_count": 12,
+      "bytes": 50740730,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re10000_AOA12",
+      "file_count": 19,
+      "bytes": 46558248729,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re1000_AOA20",
+      "file_count": 18,
+      "bytes": 36489652445,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re1000_AOA40",
+      "file_count": 18,
+      "bytes": 34949192217,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re100_AOA20",
+      "file_count": 18,
+      "bytes": 23607587049,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re100_AOA40",
+      "file_count": 18,
+      "bytes": 23493935571,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA0012_3D_Re200000_AOA0",
+      "file_count": 18,
+      "bytes": 174525626413,
+      "has_environment_config": true,
+      "solver_markers": [
+        ".NEK5000_v17"
+      ]
+    },
+    {
+      "name": "NACA0012_3D_Re50000_AOA12",
+      "file_count": 18,
+      "bytes": 46367344938,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "NACA4412_3D_Re75000_AOA5",
+      "file_count": 24,
+      "bytes": 354113216,
+      "has_environment_config": true,
+      "solver_markers": [
+        ".NEK5000_v17"
+      ]
+    },
+    {
+      "name": "Nozzle2D_coarse",
+      "file_count": 4,
+      "bytes": 8451737,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Nozzle2D_fine",
+      "file_count": 4,
+      "bytes": 25266052,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Nozzle3D_coarse",
+      "file_count": 4,
+      "bytes": 2880103574,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Nozzle3D_fine",
+      "file_count": 6,
+      "bytes": 14400395385,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_2D_Re100",
+      "file_count": 16,
+      "bytes": 76181792,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_2D_Re100_fine_FD",
+      "file_count": 22,
+      "bytes": 348150537,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Pinball_2D_Re120_fine_FD",
+      "file_count": 22,
+      "bytes": 348150537,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Pinball_2D_Re150",
+      "file_count": 16,
+      "bytes": 46991787,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_2D_Re150_fine_FD",
+      "file_count": 22,
+      "bytes": 348150537,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Pinball_2D_Re30",
+      "file_count": 16,
+      "bytes": 76181741,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_2D_Re30_fine_FD",
+      "file_count": 22,
+      "bytes": 348150537,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Pinball_2D_Re75",
+      "file_count": 16,
+      "bytes": 76181789,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_2D_Re80_fine_FD",
+      "file_count": 22,
+      "bytes": 348150537,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "Pinball_3D_Re100",
+      "file_count": 17,
+      "bytes": 8342280421,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_3D_Re150",
+      "file_count": 17,
+      "bytes": 8341950797,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_3D_Re30",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Pinball_3D_Re75",
+      "file_count": 17,
+      "bytes": 8342280167,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_2D_Re1000",
+      "file_count": 12,
+      "bytes": 170511820,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_2D_Re100_fine_FD",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_2D_Re100_medium_FD",
+      "file_count": 23,
+      "bytes": 124503918,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_2D_Re200",
+      "file_count": 12,
+      "bytes": 69499618,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_2D_Re200_fine_FD",
+      "file_count": 22,
+      "bytes": 1173600561,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_2D_Re200_medium_FD",
+      "file_count": 22,
+      "bytes": 118844649,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_2D_Re3900",
+      "file_count": 12,
+      "bytes": 190547385,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_2D_Re500_fine_FD",
+      "file_count": 22,
+      "bytes": 1173538569,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_2D_Re500_medium_FD",
+      "file_count": 22,
+      "bytes": 118844649,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "RotaryCylinder_3D_Re1000",
+      "file_count": 14,
+      "bytes": 41224573764,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_3D_Re200",
+      "file_count": 14,
+      "bytes": 23164180190,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "RotaryCylinder_3D_Re3900",
+      "file_count": 15,
+      "bytes": 41225056783,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Sphere_3D_Re300",
+      "file_count": 14,
+      "bytes": 19965486993,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Sphere_3D_Re3700",
+      "file_count": 14,
+      "bytes": 34442722145,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_2D_Re1000",
+      "file_count": 12,
+      "bytes": 87142919,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_2D_Re200",
+      "file_count": 12,
+      "bytes": 69774977,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_2D_Re3900",
+      "file_count": 11,
+      "bytes": 8346049,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_3D_Re1000",
+      "file_count": 19,
+      "bytes": 48646448917,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_3D_Re200",
+      "file_count": 19,
+      "bytes": 25941477839,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "SquareCylinder_3D_Re3900",
+      "file_count": 19,
+      "bytes": 48646448939,
+      "has_environment_config": true,
+      "solver_markers": []
+    },
+    {
+      "name": "Step_2D_Re600_fine_FD",
+      "file_count": 22,
+      "bytes": 1596877968,
+      "has_environment_config": false,
+      "solver_markers": [
+        ".FIREDRAKE"
+      ]
+    },
+    {
+      "name": "TCFlarge_3D_Re207",
+      "file_count": 42,
+      "bytes": 531351133,
+      "has_environment_config": true,
+      "solver_markers": [
+        ".NEK5000"
+      ]
+    },
+    {
+      "name": "TCFmini_3D_Re180",
+      "file_count": 24,
+      "bytes": 19990547,
+      "has_environment_config": true,
+      "solver_markers": [
+        ".NEK5000"
+      ]
+    }
+  ]
+}

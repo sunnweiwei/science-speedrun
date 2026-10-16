@@ -1,0 +1,57 @@
+[
+  {
+    "case": "Pinball_2D_Re100",
+    "planned_controls": 100000,
+    "training_run": "hg-pinball2d-ddpg-bootstrap-a025-s42-20260906",
+    "evaluation_dir": "hg-pinball2d-ddpg-bootstrap-a025-s42-20260906/independent-best",
+    "checkpoint": "hg-pinball2d-ddpg-bootstrap-a025-s42-20260906/best.pt",
+    "selection": "Best development-return checkpoint of completed seed42; not final checkpoint or three-seed mean",
+    "paper_figure": "Extended Data Fig.2a, DDPG red test curve",
+    "paper_late_drag_visual_range": [0.0, 0.1],
+    "setup_note": "Explicit max rotation .25; author example .5 previously became nonfinite with this recipe. Seed43 active; seed44 queued."
+  },
+  {
+    "case": "Cylinder_2D_Re3900",
+    "planned_controls": 500000,
+    "training_run": "hg-cylinder2d-ppo-bootstrap-s42-20260906",
+    "evaluation_dir": "hg-stage1-cylinder3900-fresh20k-s42-20260907-r2",
+    "checkpoint": "hg-cylinder2d-ppo-bootstrap-s42-20260906/policy-0020000.pt",
+    "selection": "Immutable 20k checkpoint, selected by development return; full run continues",
+    "paper_figure": "Extended Data Fig.2c, PPO blue test curve",
+    "paper_late_drag_visual_range": [1.0, 1.4],
+    "setup_note": "Public-default sensors; full three-seed recipe, mesh and exact test window remain unverified."
+  },
+  {
+    "case": "Cylinder_2D_Re1000",
+    "planned_controls": 400000,
+    "training_run": "hg-stage1-cylinder1000-ppo-full-s42-20260907",
+    "evaluation_dir": "hg-stage1-cylinder1000-ppo-check-s42-20260906/independent-final",
+    "checkpoint": "hg-stage1-cylinder1000-ppo-check-s42-20260906/candidate.pt",
+    "selection": "Separate 400-control pilot final checkpoint; NOT the newly started full run",
+    "paper_figure": "Extended Data Fig.3a, from-scratch PPO blue test curve",
+    "paper_late_drag_visual_range": [1.1, 1.3],
+    "setup_note": "From scratch, not transfer; public 65-probe defaults; SI 350 substeps; paper-specific LR/config unresolved."
+  },
+  {
+    "case": "SquareCylinder_2D_Re200",
+    "planned_controls": 600000,
+    "training_run": "hg-stage1-square200-ppo-full-s42-20260907",
+    "evaluation_dir": "hg-stage1-square200-ppo-check-s42-20260907/independent-final",
+    "checkpoint": "hg-stage1-square200-ppo-check-s42-20260907/candidate.pt",
+    "selection": "Separate 400-control pilot final checkpoint, not its untrained best checkpoint or full run",
+    "paper_figure": "Extended Data Fig.3c, from-scratch PPO blue test curve",
+    "paper_late_drag_visual_range": [1.1, 1.2],
+    "setup_note": "SI independent jets and 225 substeps; Hub two inputs/.03; old author paired one-input/.066 defaults not adopted."
+  },
+  {
+    "case": "Pinball_3D_Re150",
+    "planned_controls": 100000,
+    "training_run": "hg-pinball3d-ppo-bootstrap-check-20260906",
+    "evaluation_dir": "hg-pinball3d-gpu7-trained400-fresh-repeat-20260906/run",
+    "checkpoint": "hg-pinball3d-ppo-bootstrap-check-20260906/candidate.pt",
+    "selection": "400-control pilot only; no full training launched. Second fresh-process replay.",
+    "paper_figure": "Fig.2a, PPO blue test curve",
+    "paper_late_drag_visual_range": [0.0, 0.2],
+    "setup_note": "Fresh vs training-process replay differs; unchanged-policy two-reset diagnostic running. Existing grid's uncontrolled CD also differs from paper."
+  }
+]

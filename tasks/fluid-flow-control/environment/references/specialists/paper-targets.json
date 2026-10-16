@@ -1,0 +1,2111 @@
+{
+  "schema": "hydrogym-paper-audit/v1",
+  "date": "2026-09-06",
+  "status": "evidence-audit-not-executable-protocol",
+  "data_release_id": "hydrogym-public-500gb-v1",
+  "data_release_sha256": "226b7059b4b6b34bb4a8f169374f2a6bc74bc4f780b22ccbc3171c06b34778f3",
+  "source_priority": [
+    "final Nature paper and supplement",
+    "paper-specific code/config with established provenance",
+    "pinned public defaults (labelled as defaults, never silently equated to paper runs)"
+  ],
+  "sources": {
+    "article": {
+      "url": "https://www.nature.com/articles/s41586-026-10917-6",
+      "sha256": "ba9a67f3507ea353655f236824e88a95ddde8f709032f2b86766d65acf2b1e09",
+      "pdf_pages": 17
+    },
+    "supplement": {
+      "url": "https://www.nature.com/articles/s41586-026-10917-6",
+      "sha256": "e985c2916810e795aeaf65f9a8581f806ab1f76647e46deced4ba369889cbbf7",
+      "pdf_pages": 74,
+      "note": "Supplementary Information attachment; locators below use PDF page numbers, not printed page numbers."
+    },
+    "platform": {
+      "url": "https://github.com/dynamicslab/hydrogym/tree/4ab9854dea3d84e38a59c25e0f5835a00cf8225f",
+      "revision": "4ab9854dea3d84e38a59c25e0f5835a00cf8225f"
+    },
+    "data": {
+      "url": "https://huggingface.co/datasets/dynamicslab/HydroGym-environments/tree/cf5ef6748443ae72e9647f398487e98d421a7243",
+      "revision": "cf5ef6748443ae72e9647f398487e98d421a7243"
+    },
+    "author_torchrl": {
+      "url": "https://github.com/cl126162/TheHydroGymProject/tree/20a483ecc6ea711f6b380fff05f212ca4d7e2c67",
+      "revision": "20a483ecc6ea711f6b380fff05f212ca4d7e2c67"
+    },
+    "author_kolmogorov": {
+      "url": "https://github.com/smokbel/Controlling-Kolmogorov-Flow/tree/45563a836b2eb3ad8ba319ec873b7b2df4802585",
+      "revision": "45563a836b2eb3ad8ba319ec873b7b2df4802585",
+      "note": "Related implementation, not established as the final-paper experiment."
+    }
+  },
+  "benchmark_primary_metric": "mean_undiscounted_native_episode_return_per_case",
+  "global_unresolved": [
+    "comparison_statistic",
+    "training_recipe",
+    "replay_protocol"
+  ],
+  "notes": [
+    "No exact matched-statistic learned-policy acceptance scalar is established by this audit.",
+    "Training defaults do not automatically specify independent evaluation duration.",
+    "Physical validation values are transcribed, not newly measured, and do not certify the frozen meshes/restarts.",
+    "Suggested diagnostics do not become paper-reported secondary scores without their own source and aggregation window.",
+    "No data, executable evaluator or existing experiment was changed by this audit."
+  ],
+  "metric_profiles": {
+    "cylinder": {
+      "paper_reward": "-abs(CD) - omega * abs(CL)",
+      "paper_parameters": {
+        "omega_by_Re": {
+          "100": 0.1,
+          "200": 0.2,
+          "1000": 1,
+          "3900": 1
+        }
+      },
+      "paper_source": "SI 5A, PDF 26-27",
+      "diagnostics": [
+        "mean_CD",
+        "CL_rms",
+        "CL_oscillation_amplitude",
+        "St",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/cylinder.py:get_reward",
+      "issues": [
+        "timing",
+        "sensing"
+      ]
+    },
+    "pinball": {
+      "paper_reward": "-abs(sum_i CD_i) - abs(sum_i CL_i)",
+      "paper_parameters": {
+        "omega": 1
+      },
+      "paper_source": "SI 5B, PDF 29-31",
+      "diagnostics": [
+        "mean_total_CD",
+        "mean_CL_per_cylinder",
+        "total_CL_rms",
+        "f0",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/pinball.py:get_reward",
+      "issues": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ]
+    },
+    "cavity": {
+      "paper_reward": "-sum_i(((obs_i - target_mean_i) / target_std_i)^2)",
+      "paper_parameters": {
+        "reference_mean_instability_cycles": 1000
+      },
+      "paper_source": "SI 5C Eq.36, PDF 32-34",
+      "diagnostics": [
+        "probe_fluctuation_energy",
+        "field_TKE_if_available",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/cavity.py:get_reward",
+      "issues": [
+        "cavity_reward",
+        "timing",
+        "sensing"
+      ]
+    },
+    "square": {
+      "paper_reward": "-abs(CD) - omega * abs(CL)",
+      "paper_parameters": {
+        "omega": "Cylinder framework; coefficient mapping must be checked in the resolved case."
+      },
+      "paper_source": "SI 5D, PDF 35-36",
+      "diagnostics": [
+        "mean_CD",
+        "CL_rms",
+        "CL_std",
+        "St",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/square_cylinder.py:get_reward",
+      "issues": [
+        "timing",
+        "sensing"
+      ]
+    },
+    "cube": {
+      "paper_reward": "Same reward framework as square cylinder; no separate side-force term specified in SI 5F.",
+      "paper_parameters": {
+        "omega": null
+      },
+      "paper_source": "SI 5F, PDF 43-44",
+      "diagnostics": [
+        "mean_CD",
+        "CL_rms",
+        "side_force_rms",
+        "St",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/cube.py:get_reward",
+      "issues": [
+        "three_dimensional_forces",
+        "sensing"
+      ]
+    },
+    "sphere": {
+      "paper_reward": "Same default drag/lift objective as cylinder; explicit omega for Re300/3700 not given.",
+      "paper_parameters": {
+        "omega": null
+      },
+      "paper_source": "SI 5G, PDF 46-47",
+      "diagnostics": [
+        "mean_CD",
+        "CL_rms",
+        "side_force_rms",
+        "St",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/sphere.py:get_reward",
+      "issues": [
+        "sphere_actuation",
+        "three_dimensional_forces",
+        "timing",
+        "sensing"
+      ]
+    },
+    "naca_gust": {
+      "paper_reward": "-abs(CL - CL_ref) - 0.25 * abs(CD - CD_ref)",
+      "paper_parameters": {
+        "omega": 0.25,
+        "gust_factor": 2,
+        "gust_profile": "1-cosine",
+        "actuators": 3,
+        "jet_chord_fraction": 0.03
+      },
+      "paper_source": "SI 5E Eq.37, PDF 41-42",
+      "diagnostics": [
+        "lift_deviation",
+        "drag_deviation",
+        "peak_load",
+        "load_fluctuation",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/naca0012.py:NACA0012Gust.get_reward",
+      "issues": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ]
+    },
+    "naca_steady": {
+      "paper_reward": null,
+      "paper_parameters": {},
+      "paper_source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+      "native_reward": "CL / CD; -100 if drag < 1e-6 or lift < 0",
+      "diagnostics": [
+        "mean_CL",
+        "mean_CD",
+        "lift_drag_ratio",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/maia/envs/naca0012.py:NACA0012.get_reward",
+      "issues": [
+        "steady_naca_target",
+        "sensing"
+      ]
+    },
+    "dra_jet": {
+      "paper_reward": "Global net power saving, including aerodynamic benefit and actuation cost; no complete scalar normalization located.",
+      "paper_parameters": {
+        "actuators": 1,
+        "jet_velocity_bounds_relative_to_Uinf": [
+          -0.1,
+          0.1
+        ]
+      },
+      "paper_source": "SI 5I, PDF 49-50",
+      "diagnostics": [
+        "mean_CD",
+        "mean_CL",
+        "actuation_power",
+        "net_power_saving"
+      ],
+      "native_source": "hydrogym/maia/envs/dra2303.py:DRA2303Base.get_reward",
+      "issues": [
+        "dra_objective",
+        "sensing"
+      ]
+    },
+    "kolmogorov": {
+      "paper_reward": "Fig.3b maximizes mixing/TKE with an action-cost penalty. SI also defines a separate dissipation/extreme-event objective. Exact weights not located.",
+      "paper_parameters": {
+        "control_wavenumbers": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "paper_source": "Article PDF 4-5 Fig.3b; SI 4D and 5M, PDF 22-23,57-58",
+      "diagnostics": [
+        "mean_TKE",
+        "dissipation_rate",
+        "extreme_event_rate",
+        "mean_absolute_action"
+      ],
+      "native_source": "hydrogym/jax/envs/kolmogorov.py:_reward",
+      "issues": [
+        "kolmogorov_objective",
+        "gppo",
+        "sensing",
+        "timing"
+      ]
+    },
+    "jax_channel": {
+      "paper_reward": "Ratio of uncontrolled to controlled wall-shear-stress magnitude (described in prose).",
+      "paper_parameters": {
+        "Retau": 180,
+        "grid": [
+          72,
+          72,
+          72
+        ],
+        "domain": [
+          6.283185307179586,
+          2,
+          3.141592653589793
+        ]
+      },
+      "paper_source": "SI 5L, PDF 55-57",
+      "diagnostics": [
+        "wall_shear",
+        "relative_wall_shear_reduction",
+        "velocity_statistics",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/jax/envs/channel.py:step_env",
+      "issues": [
+        "jax_channel",
+        "gppo",
+        "timing"
+      ]
+    },
+    "nek_channel": {
+      "paper_reward": "1 - tau_w_controlled / tau_w_reference",
+      "paper_parameters": {},
+      "paper_source": "SI 5K Eq.38, PDF 54-55; control demonstration is Re_tau206, not selected Re_tau180.",
+      "diagnostics": [
+        "wall_shear",
+        "relative_wall_shear_reduction",
+        "velocity_statistics",
+        "control_effort"
+      ],
+      "native_source": "hydrogym/nek/env.py:_normalize_reward",
+      "issues": [
+        "nek_case_identity",
+        "timing"
+      ]
+    },
+    "nozzle": {
+      "paper_reward": "-sqrt((delta0-delta0_ref)^2 + (delta1-delta1_ref)^2); one angle in 2D",
+      "paper_parameters": {
+        "NPR": 4.6,
+        "SPR_range": [
+          0.7,
+          0.9
+        ],
+        "action_range": [
+          0,
+          1
+        ]
+      },
+      "paper_source": "SI 5N Eq.41-43, PDF 58-62",
+      "diagnostics": [
+        "angular_tracking_error",
+        "thrust_angles",
+        "wall_pressure",
+        "actuation"
+      ],
+      "native_source": "hydrogym/jaxfluids/envs/nozzle.py:_get_reward",
+      "issues": [
+        "nozzle_protocol"
+      ]
+    },
+    "fd_cavity": {
+      "paper_reward": "Negative time integral of the flow objective (SI 3F). The objective below is from pinned flow code; complete paper-specific case recipe not located.",
+      "paper_parameters": {},
+      "paper_source": "SI 3F, PDF 20; MAIA probe-error formula is not an identified Firedrake RL experiment.",
+      "native_objective": "0.5 * integral(inner(u-uB,u-uB))",
+      "native_source": "hydrogym/firedrake/envs/cavity/flow.py:evaluate_objective",
+      "diagnostics": [
+        "perturbation_kinetic_energy",
+        "control_effort"
+      ],
+      "issues": [
+        "firedrake_binding"
+      ]
+    },
+    "fd_cylinder": {
+      "paper_reward": "Negative time integral of the flow objective (SI 3F). The objective below is from pinned flow code; complete paper-specific case recipe not located.",
+      "paper_parameters": {},
+      "paper_source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+      "native_objective": "CD",
+      "native_source": "hydrogym/firedrake/envs/cylinder/flow.py:evaluate_objective",
+      "diagnostics": [
+        "mean_CD",
+        "CL_rms",
+        "control_effort"
+      ],
+      "issues": [
+        "firedrake_binding"
+      ]
+    },
+    "fd_pinball": {
+      "paper_reward": "Negative time integral of the flow objective (SI 3F). The objective below is from pinned flow code; complete paper-specific case recipe not located.",
+      "paper_parameters": {},
+      "paper_source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+      "native_objective": "sum_i CD_i",
+      "native_source": "hydrogym/firedrake/envs/pinball/flow.py:evaluate_objective",
+      "diagnostics": [
+        "mean_total_CD",
+        "total_CL_rms",
+        "control_effort"
+      ],
+      "issues": [
+        "firedrake_binding"
+      ]
+    }
+  },
+  "curve_evidence": {
+    "ed2a": {
+      "source": "Article Extended Data Fig.2a, PDF 14",
+      "methods": [
+        "PPO",
+        "DDPG",
+        "TD3"
+      ],
+      "plotted_training_episode_extent": 500,
+      "training_seeds_reported": 3,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          -0.2,
+          0
+        ],
+        "DDPG": [
+          -0.2,
+          0
+        ],
+        "TD3": [
+          -0.2,
+          0
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "2D Pinball Re100. Main text says approximately 90% drag reduction; no exact matched-window statistic recovered. ED caption: training mean +/- 1 SD; test is one policy rollout."
+    },
+    "fig2a": {
+      "source": "Article Fig.2a, PDF 4",
+      "methods": [
+        "PPO",
+        "DDPG",
+        "TD3"
+      ],
+      "plotted_training_episode_extent": 500,
+      "training_seeds_reported": 3,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          -0.35,
+          0
+        ],
+        "DDPG": [
+          -0.35,
+          0
+        ],
+        "TD3": [
+          -0.35,
+          0
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "3D Pinball Re150. Ranges are deliberately coarse and cannot rank methods. Caption reports n=3, but independent test initializations/window remain unresolved."
+    },
+    "ed2c": {
+      "source": "Article Extended Data Fig.2c, PDF 14",
+      "methods": [
+        "PPO",
+        "DDPG",
+        "TD3"
+      ],
+      "plotted_training_episode_extent": 2500,
+      "training_seeds_reported": 3,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          -430,
+          -390
+        ],
+        "DDPG": [
+          -430,
+          -390
+        ],
+        "TD3": [
+          -430,
+          -390
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "2D cylinder Re3900. Axis multiplier is 10^2. ED caption: training mean +/- 1 SD; test is one policy rollout."
+    },
+    "ed3a": {
+      "source": "Article Extended Data Fig.3a, PDF 15",
+      "methods": [
+        "PPO",
+        "PPO_transfer_finetuned",
+        "PPO_transfer_zero_shot"
+      ],
+      "plotted_training_episode_extent": 2000,
+      "training_seeds_reported": 3,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          -380,
+          -320
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "2D cylinder Re200 to Re1000. Blue PPO is a from-scratch comparison; only it belongs to single-task-from-scratch reproduction. Source checkpoint/transfer training is a different experiment."
+    },
+    "ed3c": {
+      "source": "Article Extended Data Fig.3c, PDF 15",
+      "methods": [
+        "PPO",
+        "PPO_transfer_finetuned",
+        "PPO_transfer_zero_shot"
+      ],
+      "plotted_training_episode_extent": 3000,
+      "training_seeds_reported": 3,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          -245,
+          -225
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "Visual labels explicitly identify circular Re200 to square Re200, both 2D. Blue from-scratch PPO is a specialist target candidate; transfer is not the same training-resource setup."
+    },
+    "fig3b": {
+      "source": "Article Fig.3b, PDF 5",
+      "methods": [
+        "PPO",
+        "GPPO"
+      ],
+      "plotted_training_episode_extent": 500,
+      "training_seeds_reported": 1,
+      "approximate_training_endpoint_ranges": {
+        "PPO": [
+          25,
+          35
+        ],
+        "GPPO": [
+          40,
+          50
+        ]
+      },
+      "readout_kind": "coarse_visual_estimate_not_acceptance_target",
+      "test_scalar_target": null,
+      "note": "Kolmogorov enhanced mixing, exact figure Re/config unresolved. Caption gives 65% sample reduction on one training seed; it is not a fixed-policy full-test reward target."
+    }
+  },
+  "issues": {
+    "comparison_statistic": "No raw per-seed curves, exact plotting normalization, matched test windows or per-case scalar acceptance targets were located. Plot endpoints are not native episode returns. Test time labelled 0..1 does not identify physical duration.",
+    "training_recipe": "Paper gives shared descriptions/ranges, not complete recipes for all cases. Exact seed values, checkpoint selection, normalization calibration, per-case hyperparameters and stopping budgets remain unresolved.",
+    "replay_protocol": "Exact initialization/phase schedule, gust/target trajectories, evaluation repetitions, inference action convention, physical averaging window and solver boundary semantics require executable binding. Changing only RNG seed is not a new deterministic flow state.",
+    "timing": "Paper CFD iteration counts differ from Hub YAML. Check base/fine-grid subcycling and physical dt before changing counts; a numerical count mismatch alone does not establish a physical-time mismatch.",
+    "sensing": "Public configurable/default probes and action normalization do not establish final-paper sensor coordinates, ordering, physical amplitudes or smoothing constants.",
+    "pinball_omega": "SI requires omega=1; every selected MAIA Pinball YAML uses omega=0. Old author code also used drag column twice in its reward. Current platform fixes columns but YAML still removes lift penalty.",
+    "cavity_reward": "SI Eq.36 uses squared normalized probe error; current MAIA get_reward uses absolute normalized error. Running-mean variant is not the fixed paper target. Reference calibration/variance provenance remains unresolved.",
+    "three_dimensional_forces": "Current cube/sphere code adds both transverse force absolute penalties; SI refers to drag/lift framework without an explicit separate side-force prescription. Resolve coefficients and force normalizations.",
+    "sphere_actuation": "SI specifies eight jets; selected Hub YAML declares ten action inputs. Resolve actual solver jet IDs and action mapping before accepting either as a paper match.",
+    "gust_protocol": "omega=0.25 and G=2 are reported; exact gust timing and reference averaging window are not recovered. Selected gust YAML substeps lie outside the SI stated 225..1000 range. Fig.2c positive training rewards need reconciliation with nonpositive Eq.37. Its Re1000/AOA20/3D result cannot transfer to selected Re10000/50000 cases.",
+    "steady_naca_target": "Native non-gust CL/CD objective is identified from code, not an exact learned-policy result in SI 5E. Do not reuse gust or Nek wing skin-friction targets.",
+    "dra_objective": "SI jet has one degree of freedom and net-power-saving reward. YAML has ten inputs; native jet reward is -CD with C_P=0. Physical amplitude scaling and energy cost are unresolved.",
+    "kolmogorov_objective": "Hub YAML Re40 vs platform default Re200 vs related author example Re250. Fig.3b exact Re unknown. Native reward is -(alpha*TKE + L1(action)), alpha=0 by default; it does not reward enhanced mixing. Observation/transition lag and solver corrections also differ; see JAX_RECONSTRUCTION.md.",
+    "gppo": "No exact final-paper adaptive gradient/entropy weighting or complete GPPO trainer located. Eq.34 reward augmentation and GI-PPO are not established substitutes for the Fig.3b Eq.32 trajectory-gradient experiment.",
+    "jax_channel": "SI describes finite-difference DNS, adaptive dt and shear ratio; platform class is pseudo-spectral with -wall_shear reward. YAML vs class defaults differ. State.time increments nsteps although horizon comment says RL steps. Reconcile actual solver, observation, forcing and horizon semantics.",
+    "nek_case_identity": "Paper learned-control transfer uses open channel Re_tau206, domain 2pi x 1 x pi and N=7. Selected TCFmini Re180 YAML has another domain/discretization. Re180 SI Fig.19 is uncontrolled validation; 38% wing reduction is not its policy score.",
+    "nozzle_protocol": "Ninj=8 appears as an illustration, not a uniquely fixed recipe; selected 3D YAML omits required num_actuators. Exact reference trajectory, time horizon, seeds and action schedule unspecified. Native reward radians vs validation figure degrees. Source 2D SPR0.9 differs from Fig.23 validation SPR0.7.",
+    "firedrake_binding": "SI 3F specifies a negative time-integrated objective as reward. Assets identify Re/mesh but not final-paper RL replay protocol. Native flow objectives differ from MAIA reward formulas. Must verify wrapper implementation against that integration rule and bind sensor/action layout and physical control interval separately; never copy MAIA CFD step counts.",
+    "result_identity": "Related paper result has different dimension/Re/actuation/solver or objective; no direct acceptance transfer is allowed."
+  },
+  "cases": [
+    {
+      "id": "Cavity_2D_Re7500",
+      "metric_profile": "cavity",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5C Eq.36, PDF 32-34",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": 400,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 150,
+        "action_inputs": 1,
+        "omega": 0
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "cavity_reward",
+        "timing",
+        "sensing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.3 validates velocity profile at Re7500; learned comparison ED Fig.2b is Re4200; Fig.2b is 3D Re7500."
+    },
+    {
+      "id": "Cavity_2D_Re7500_fine_FD",
+      "metric_profile": "fd_cavity",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; MAIA probe-error formula is not an identified Firedrake RL experiment.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cavity_2D_Re7500_medium_FD",
+      "metric_profile": "fd_cavity",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; MAIA probe-error formula is not an identified Firedrake RL experiment.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Channel_3D_Retau180",
+      "metric_profile": "jax_channel",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5L, PDF 55-57",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 10000,
+        "cfd_substeps": 100,
+        "action_inputs": 1,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "jax_channel",
+        "gppo",
+        "timing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.20 is uncontrolled velocity validation; GPPO/PPO are discussed, but no matching learned-policy numerical plot found."
+    },
+    {
+      "id": "Cube_3D_Re3700",
+      "metric_profile": "cube",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5F, PDF 43-44",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 1000,
+        "action_inputs": 4,
+        "omega": 1
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "three_dimensional_forces",
+        "sensing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Table 5 validates Re300/1000, not Re3700."
+    },
+    {
+      "id": "Cylinder_2D_Re1000",
+      "metric_profile": "cylinder",
+      "learned_result_status": "case_plot_located_setup_unresolved",
+      "curve_refs": [
+        "ed3a"
+      ],
+      "paper_training_defaults": {
+        "source": "SI 5A, PDF 26-27",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 350,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 225,
+        "action_inputs": 1,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 1b, PDF 25",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.234,
+          "mean_CD": 1.533,
+          "CL_oscillation_amplitude": 1.449
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re100_fine_FD",
+      "metric_profile": "fd_cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re100_medium_FD",
+      "metric_profile": "fd_cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re200",
+      "metric_profile": "cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5A, PDF 26-27",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 200,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 87,
+        "action_inputs": 1,
+        "omega": 0.2
+      },
+      "physics_validation": {
+        "source": "SI Table 1a, PDF 25",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.196,
+          "mean_CD": 1.341,
+          "CL_oscillation_amplitude": 0.659
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re200_fine_FD",
+      "metric_profile": "fd_cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re200_medium_FD",
+      "metric_profile": "fd_cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_2D_Re3900",
+      "metric_profile": "cylinder",
+      "learned_result_status": "case_plot_located_setup_unresolved",
+      "curve_refs": [
+        "ed2c"
+      ],
+      "paper_training_defaults": {
+        "source": "SI 5A, PDF 26-27",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 600,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 500,
+        "action_inputs": 1,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 1c, PDF 25",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.21,
+          "mean_CD": 1.68,
+          "CL_oscillation_amplitude": 1.61
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Cylinder_3D_Re200",
+      "metric_profile": "cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5A, PDF 26-27",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 400,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 575,
+        "action_inputs": 1,
+        "omega": 0.2
+      },
+      "physics_validation": {
+        "source": "SI Table 2a, PDF 26",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.192,
+          "mean_CD": 1.318,
+          "CL_rms": 0.418
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Extended Data Fig.3d is 3D Re1000 (excluded), not Re200."
+    },
+    {
+      "id": "Cylinder_3D_Re3900",
+      "metric_profile": "cylinder",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5A, PDF 26-27",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 1200,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 1080,
+        "action_inputs": 1,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 2c, PDF 26",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.217,
+          "mean_CD": 1.074,
+          "Lz_over_D": 4
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.3c-d approximately 8% drag reduction is MARL with ten spanwise segments, not selected one-input case."
+    },
+    {
+      "id": "DRA2303Jet_3D_Re400000_Ma02",
+      "metric_profile": "dra_jet",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5I, PDF 49-50",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 1000,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 1000,
+        "action_inputs": 10,
+        "omega": 1
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "dra_objective",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Kolmogorov_2D",
+      "metric_profile": "kolmogorov",
+      "learned_result_status": "family_plot_located_case_unresolved",
+      "curve_refs": [
+        "fig3b"
+      ],
+      "paper_training_defaults": {
+        "source": "Article PDF 4-5 Fig.3b; SI 4D and 5M, PDF 22-23,57-58",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 10,
+        "action_inputs": 1,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "kolmogorov_objective",
+        "gppo",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA20",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 60,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re1000_AOA40",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 75,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA20",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 75,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012Gust_2D_Re100_AOA40",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 75,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012Gust_3D_Re10000_AOA12",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 150,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012Gust_3D_Re50000_AOA12",
+      "metric_profile": "naca_gust",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E Eq.37, PDF 41-42",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 140,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "gust_protocol",
+        "sensing",
+        "timing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "Fig.2c 3D Re1000/AOA20/G2 learned result is outside this variant. SI Fig.8 contains only illustrative flow snapshots."
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA20",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 170,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.6 contains uncontrolled lift/drag versus angle, not an RL test score."
+    },
+    {
+      "id": "NACA0012_2D_Re1000_AOA40",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 400,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.6 contains uncontrolled lift/drag versus angle, not an RL test score."
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA20",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 375,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "NACA0012_2D_Re100_AOA40",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 375,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "NACA0012_3D_Re10000_AOA12",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 350,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "NACA0012_3D_Re50000_AOA12",
+      "metric_profile": "naca_steady",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5E, PDF 38-42; environment inventory is not a learned-policy target.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 700,
+        "action_inputs": 3,
+        "omega": 0.25
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "steady_naca_target",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Nozzle2D_coarse",
+      "metric_profile": "nozzle",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5N Eq.41-43, PDF 58-62",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": 100,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "nozzle_protocol",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.23 is non-RL prescribed-injection validation at SPR0.7; selected YAML SPR0.9."
+    },
+    {
+      "id": "Nozzle2D_fine",
+      "metric_profile": "nozzle",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5N Eq.41-43, PDF 58-62",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": 200,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "nozzle_protocol",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.23 is non-RL prescribed-injection validation at SPR0.7; selected YAML SPR0.9."
+    },
+    {
+      "id": "Nozzle3D_coarse",
+      "metric_profile": "nozzle",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5N Eq.41-43, PDF 58-62",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": 200,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "nozzle_protocol",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.24 is a flow/actuator illustration with eight jets, not an RL performance table."
+    },
+    {
+      "id": "Pinball_2D_Re100",
+      "metric_profile": "pinball",
+      "learned_result_status": "case_plot_located_setup_unresolved",
+      "curve_refs": [
+        "ed2a"
+      ],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 170,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 200,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 2D Re100",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.088,
+          "mean_total_CD": 2.904,
+          "mean_CL_2": -0.079,
+          "mean_CL_3": 0.11
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re100_fine_FD",
+      "metric_profile": "fd_pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re150",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 100,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 150,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 2D Re150",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.12,
+          "mean_total_CD": 2.922,
+          "mean_CL_2": -0.0441,
+          "mean_CL_3": 0.033
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re150_fine_FD",
+      "metric_profile": "fd_pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re30",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 230,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 270,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 2D Re30",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.064,
+          "mean_total_CD": 2.651,
+          "mean_CL_2": -0.361,
+          "mean_CL_3": 0.361
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re30_fine_FD",
+      "metric_profile": "fd_pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 3F, PDF 20; no solver-specific learned-policy target located.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": null,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "firedrake_binding"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_2D_Re75",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 190,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 200,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_3D_Re100",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 225,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 195,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 3D Re100",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.087,
+          "mean_total_CD": 2.795,
+          "mean_CL_2": -0.0107,
+          "mean_CL_3": 0.119
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_3D_Re150",
+      "metric_profile": "pinball",
+      "learned_result_status": "case_plot_located_setup_unresolved",
+      "curve_refs": [
+        "fig2a"
+      ],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 200,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 175,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 3D Re150",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.113,
+          "mean_total_CD": 2.949,
+          "mean_CL_2": -0.0467,
+          "mean_CL_3": 0.0297
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_3D_Re30",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 250,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 270,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": {
+        "source": "SI Table 3, PDF 29, 3D Re30",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "f0": 0.061,
+          "mean_total_CD": 2.597,
+          "mean_CL_2": -0.358,
+          "mean_CL_3": 0.359
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Pinball_3D_Re75",
+      "metric_profile": "pinball",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5B, PDF 29-31",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 235,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 210,
+        "action_inputs": 3,
+        "omega": 0
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "pinball_omega",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Sphere_3D_Re300",
+      "metric_profile": "sphere",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5G, PDF 46-47",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 300,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 825,
+        "action_inputs": 10,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 6a, PDF 46",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.142,
+          "mean_CD": 0.636
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "sphere_actuation",
+        "three_dimensional_forces",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "Sphere_3D_Re3700",
+      "metric_profile": "sphere",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5G, PDF 46-47",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 750,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 2400,
+        "action_inputs": 10,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 6b, PDF 46",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.212,
+          "mean_CD": 0.391
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "sphere_actuation",
+        "three_dimensional_forces",
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "SquareCylinder_2D_Re1000",
+      "metric_profile": "square",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5D, PDF 35-36",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 750,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 250,
+        "action_inputs": 2,
+        "omega": 1
+      },
+      "physics_validation": {
+        "source": "SI Table 4b, PDF 35",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.121,
+          "mean_CD": 2.302,
+          "CL_std": 1.405
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "SquareCylinder_2D_Re200",
+      "metric_profile": "square",
+      "learned_result_status": "case_plot_located_setup_unresolved",
+      "curve_refs": [
+        "ed3c"
+      ],
+      "paper_training_defaults": {
+        "source": "SI 5D, PDF 35-36",
+        "episode_control_steps": 200,
+        "cfd_steps_per_control_action": 225,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 200,
+        "cfd_substeps": 110,
+        "action_inputs": 2,
+        "omega": 0.2
+      },
+      "physics_validation": {
+        "source": "SI Table 4a, PDF 35",
+        "kind": "uncontrolled_flow_validation_not_learned_policy",
+        "values": {
+          "St": 0.151,
+          "mean_CD": 1.469,
+          "CL_rms": 0.391
+        },
+        "averaging_window": null,
+        "acceptance_tolerance": null
+      },
+      "issue_refs": [
+        "timing",
+        "sensing"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      }
+    },
+    {
+      "id": "TCFmini_3D_Re180",
+      "metric_profile": "nek_channel",
+      "learned_result_status": "not_located_for_exact_variant",
+      "curve_refs": [],
+      "paper_training_defaults": {
+        "source": "SI 5K Eq.38, PDF 54-55; control demonstration is Re_tau206, not selected Re_tau180.",
+        "episode_control_steps": null,
+        "cfd_steps_per_control_action": null,
+        "note": "Environment defaults from SI, not a recovered full figure-specific training or test recipe. Null means not fixed from paper for this exact variant."
+      },
+      "public_config_values": {
+        "episode_limit": 2500,
+        "cfd_substeps": null,
+        "action_inputs": null,
+        "omega": null
+      },
+      "physics_validation": null,
+      "issue_refs": [
+        "nek_case_identity",
+        "timing",
+        "result_identity"
+      ],
+      "paper_acceptance": {
+        "metric": null,
+        "target": null,
+        "tolerance": null,
+        "ready": false
+      },
+      "related_evidence": "SI Fig.19 is uncontrolled Re180 validation; learned wing-transfer training is Re206 and 38% is a local wing skin-friction result."
+    }
+  ]
+}

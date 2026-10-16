@@ -1,0 +1,220 @@
+{
+  "release_id": "hydrogym-public-speed-v1",
+  "status": "frozen",
+  "max_source_bytes": 500000000000,
+  "cost_evidence_sha256": "0a6b9eecb7d8c96af25aa858afeb6bea9095572c817a1ae5af1d71ae95f1e803",
+  "case_ids": [
+    "Cavity_2D_Re7500",
+    "Channel_3D_Retau180",
+    "Cylinder_2D_Re1000",
+    "Cylinder_2D_Re200",
+    "Cylinder_2D_Re3900",
+    "NACA0012Gust_2D_Re1000_AOA20",
+    "NACA0012Gust_2D_Re1000_AOA40",
+    "NACA0012Gust_2D_Re100_AOA20",
+    "NACA0012Gust_2D_Re100_AOA40",
+    "NACA0012Gust_3D_Re1000_AOA20",
+    "NACA0012Gust_3D_Re100_AOA20",
+    "NACA0012Gust_3D_Re100_AOA40",
+    "NACA0012_2D_Re1000_AOA20",
+    "NACA0012_2D_Re1000_AOA40",
+    "NACA0012_2D_Re100_AOA20",
+    "NACA0012_2D_Re100_AOA40",
+    "Nozzle2D_coarse",
+    "Pinball_2D_Re100",
+    "Pinball_2D_Re150",
+    "Pinball_2D_Re30",
+    "Pinball_2D_Re75",
+    "Pinball_3D_Re100",
+    "Pinball_3D_Re150",
+    "Pinball_3D_Re30",
+    "Pinball_3D_Re75",
+    "Sphere_3D_Re300",
+    "SquareCylinder_2D_Re1000",
+    "SquareCylinder_2D_Re200"
+  ],
+  "candidate_inventory_count": 62,
+  "policy": {
+    "primary": "Preserve distinct 3D/2D control phenomena and meaningful parameter variations under practical measured cost.",
+    "measured_control_seconds_upper_bound": 30,
+    "minimum_post_warmup_samples": 2,
+    "limit_scope": "Organizer membership-screening rule on this H100 measurement, not an agent/evaluator per-step timeout.",
+    "source_assets": "All source files and initial states for each retained case; shared train/eval copy.",
+    "physics": "No mesh coarsening or CFD substep/timestep changes for speed; class/YAML discrepancies remain explicit until protocol acceptance.",
+    "cost_warning": "Different control steps advance different physical intervals; full-episode and full-suite costs still require measurement.",
+    "readiness": "Complete short loop is required, but is not full evaluator or physical validation.",
+    "scoring": "Every selected case is mandatory; no optional expensive track, no per-model subset or per-task expert checkpoint."
+  },
+  "excluded_complete_resources": [
+    {
+      "case": "Cavity_2D_Re7500_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cavity_2D_Re7500_medium_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cube_3D_Re300",
+      "reason": "measured_control_cost_over_limit",
+      "detail": "Short post-warmup estimate 43.9494 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "case": "Cube_3D_Re3700",
+      "reason": "runtime_unresolved",
+      "detail": "Native probe did not complete or lacks enough timing samples; retained logs distinguish errors from slow integration."
+    },
+    {
+      "case": "Cylinder_2D_Re100_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cylinder_2D_Re100_medium_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cylinder_2D_Re200_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cylinder_2D_Re200_medium_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Cylinder_3D_Re1000",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "Cylinder_3D_Re200",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "Cylinder_3D_Re3900",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "DRA2303Jet_3D_Re400000_Ma02",
+      "reason": "configuration_incomplete",
+      "detail": "Source constructor fails on missing reductionFactor; not a measured slow solver."
+    },
+    {
+      "case": "Kolmogorov_2D",
+      "reason": "objective_unbound",
+      "detail": "The timed class default has reward_alpha=0 and differs from public YAML; no accepted fluid-control objective."
+    },
+    {
+      "case": "NACA0012Gust_3D_Re10000_AOA12",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "NACA0012Gust_3D_Re1000_AOA40",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "NACA0012Gust_3D_Re50000_AOA12",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "NACA0012_3D_Re10000_AOA12",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "NACA0012_3D_Re1000_AOA20",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "NACA0012_3D_Re1000_AOA40",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "NACA0012_3D_Re100_AOA20",
+      "reason": "measured_control_cost_over_limit",
+      "detail": "Short post-warmup estimate 34.3000 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "case": "NACA0012_3D_Re100_AOA40",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "NACA0012_3D_Re200000_AOA0",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "NACA0012_3D_Re50000_AOA12",
+      "reason": "bounded_probe_incomplete",
+      "detail": "Diagnostic wall limit reached; no completed reset/control/reset loop. Startup timeout is not a steady-state speed measurement."
+    },
+    {
+      "case": "Nozzle2D_fine",
+      "reason": "control_response_unverified",
+      "detail": "Clock/fields finite, but reward, observed magnitude and primitive sum unchanged in six steps including a small action."
+    },
+    {
+      "case": "Nozzle3D_coarse",
+      "reason": "configuration_incomplete",
+      "detail": "Source configuration omits required num_actuators; not a measured slow solver."
+    },
+    {
+      "case": "Nozzle3D_fine",
+      "reason": "runtime_binding_unverified",
+      "detail": "Complete distributed source restart, but layout/executor and actuator binding unresolved; no measured runtime."
+    },
+    {
+      "case": "Pinball_2D_Re100_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Pinball_2D_Re150_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Pinball_2D_Re30_fine_FD",
+      "reason": "control_interval_unbound",
+      "detail": "CPU smoke steps each advance one CFD substep; a comparable native RL control interval is not established. Not excluded by data size or model score."
+    },
+    {
+      "case": "Sphere_3D_Re3700",
+      "reason": "measured_control_cost_over_limit",
+      "detail": "Short post-warmup estimate 171.2599 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "case": "SquareCylinder_3D_Re1000",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "SquareCylinder_3D_Re200",
+      "reason": "measured_control_cost_over_limit",
+      "detail": "Short post-warmup estimate 63.6730 s/control exceeds the new 30 s screening bound; sample count and cleanup status remain in evidence."
+    },
+    {
+      "case": "SquareCylinder_3D_Re3900",
+      "reason": "speed_not_established",
+      "detail": "Reviewed in the full resource-complete inventory, but no completed compatible cost probe. Not assumed slow merely because large."
+    },
+    {
+      "case": "TCFmini_3D_Re180",
+      "reason": "solver_restart_mismatch",
+      "detail": "The timed binary mesh and restart timestep differ from YAML; fast CPU timing does not certify the intended task."
+    }
+  ]
+}

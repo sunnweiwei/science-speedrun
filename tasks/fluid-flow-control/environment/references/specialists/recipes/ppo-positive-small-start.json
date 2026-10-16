@@ -1,0 +1,5 @@
+{
+  "algorithm": "PPO",
+  "description": "Organizer retry for positive nozzle actuators: normalized initial mean near -1 maps to native action near zero, not midpoint. Native bounds and physics remain unchanged; not a recovered paper setting.",
+  "network": {"initial_scale": 0.05, "initial_mean_bias": -3.0, "initial_mean_weight_scale": 0.01}
+}

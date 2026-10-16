@@ -1,0 +1,5 @@
+{
+  "algorithm": "TD3",
+  "description": "Lower actor step size to reduce early critic exploitation; native reward and noise unchanged.",
+  "optim": {"actor_lr": 0.0001, "critic_lr": 0.001}
+}

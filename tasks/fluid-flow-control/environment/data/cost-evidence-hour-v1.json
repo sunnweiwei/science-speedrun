@@ -1,0 +1,3651 @@
+{
+  "release_id": "hydrogym-public-hour-v1",
+  "created": "2026-09-07",
+  "source_revision": "cf5ef6748443ae72e9647f398487e98d421a7243",
+  "code_revision": "4ab9854dea3d84e38a59c25e0f5835a00cf8225f",
+  "method": "Native PPO 400 controls (Channel 2000), full zero/trained/fresh frozen episodes. Same 256x256 task-conditioned padded MLP. Specialist timing pilots are not a trained joint model.",
+  "limitations": "One timing seed; longer budgets are extrapolations. No paper convergence, universal learning improvement, or eight-way linear scaling claim.",
+  "channel_clock_check": {
+    "status": "passed",
+    "profile": "channel-72cube-local-actuator-clock-v1",
+    "zero_returns": [
+      -26.41579383611679,
+      -26.41579383611679
+    ],
+    "zero_final_field_max_abs_differences": {
+      "U": 0.0,
+      "V": 0.0,
+      "W": 0.0
+    },
+    "nonzero_first_window_max_abs_differences": {
+      "U": 0.0,
+      "V": 0.0,
+      "W": 0.0
+    },
+    "alternating_nonzero_full_episode_return": -26.410652592778206,
+    "controls_per_episode": 100,
+    "outer_CFD_clock": 5000,
+    "grid": [
+      72,
+      72,
+      72
+    ],
+    "dt": 0.0002,
+    "native_action_bounds": [
+      -1,
+      1
+    ],
+    "wall_seconds": 59.75570641004015
+  },
+  "cases": [
+    {
+      "case": "Channel_3D_Retau180",
+      "data_bytes": 8960204,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 293.5727782819886,
+      "previous_seconds_per_control": 0.10420105683927734,
+      "training": {
+        "status": "passed",
+        "case": "Channel_3D_Retau180",
+        "profile": {
+          "backend": "jax",
+          "class": "ChannelFlowSpectralEnv",
+          "params": {
+            "max_steps_in_episode": 5000,
+            "action_dim": 24,
+            "obs_subsample": 8,
+            "obs_include_components": 2,
+            "k_det": 9,
+            "Nx": 72,
+            "Ny": 72,
+            "Nz": 72,
+            "nsteps": 50,
+            "dt": 0.0002,
+            "min_action": -1,
+            "max_action": 1
+          },
+          "scope": "Official class defaults; YAML mismatch is unresolved, not silently applied",
+          "substeps_per_control": 50
+        },
+        "seed": 42,
+        "training_controls": 2000,
+        "ppo_epochs": 100,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 209.82396320294356,
+        "end_to_end_seconds": 251.88284420897253,
+        "zero": {
+          "return": -26.41579383611679,
+          "controls": 100,
+          "seconds": 24.046204297046643
+        },
+        "trained": {
+          "return": -27.890992492437363,
+          "controls": 100,
+          "seconds": 10.363906285027042
+        },
+        "observation_size": 128,
+        "action_size": 24,
+        "episode_controls": 100,
+        "checkpoint_sha256": "8a19b39aa65b1c2df4fe4a07e444dbffbce9f53744682667c72e25c432c138a9",
+        "learning_rate": 0.0003,
+        "initial_log_std": -3.0,
+        "initial_action_weight_multiplier": 1.0,
+        "runtime_repair": "channel-72cube-local-actuator-clock-v1",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -27.890992492437363,
+        "steps": 100,
+        "terminated": true,
+        "truncated": false,
+        "wall_time_sec": 26.338197246950585,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 34.44197342201369
+      },
+      "runtime_profile": {
+        "backend": "jax",
+        "class": "ChannelFlowSpectralEnv",
+        "params": {
+          "max_steps_in_episode": 5000,
+          "action_dim": 24,
+          "obs_subsample": 8,
+          "obs_include_components": 2,
+          "k_det": 9,
+          "Nx": 72,
+          "Ny": 72,
+          "Nz": 72,
+          "nsteps": 50,
+          "dt": 0.0002,
+          "min_action": -1,
+          "max_action": 1
+        },
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol.",
+        "substeps_per_control": 50,
+        "actuator_clock_profile": "channel-72cube-local-actuator-clock-v1",
+        "adapter_sha256": "46a5b80c519c971bbf318cfcdb005b2a1e79d61571ca67bb1f3b744603af665a"
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/channel-local-clock",
+      "raw_file_sha256": {
+        "container.json": "5f436acb1834d931beac291de1cbb65faf9d4dbd7f181c64b7a8dc81e64c96c4",
+        "result.json": "ec231f26fd79d4d2f3896935eadca739116176f74f12a960dab7e80c0e0ee5b7",
+        "replay.json": "a99e4c292eac39a9036ce098e01599fb07ffc2bbdaaca5a50ea57ca32a30b9f0",
+        "container.log": "bd30f78a0cf61358164f9bde014d576f4ce06bb33e4b92235a030e73d4ce09b0",
+        "model.zip": "8a19b39aa65b1c2df4fe4a07e444dbffbce9f53744682667c72e25c432c138a9"
+      },
+      "training_note": "The unmodified class failed three PPO pilots at different exploration scales. This release explicitly repairs actuator ramp time to the local 50-CFD-step control window, leaving outer episode clock/grid/dt/reward/action bounds unchanged. Zero-flow-control invariance and first-window invariance checked; not an unmodified-paper result."
+    },
+    {
+      "case": "Cylinder_2D_Re1000",
+      "data_bytes": 170512089,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 383.8189223589725,
+      "previous_seconds_per_control": 0.4253112469799817,
+      "training": {
+        "status": "passed",
+        "case": "Cylinder_2D_Re1000",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 225,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 225,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re1000",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.3769960940117016
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 145.42180618201382,
+        "end_to_end_seconds": 299.34702674200526,
+        "zero": {
+          "return": -499.20643383875205,
+          "controls": 201,
+          "seconds": 79.3203336870065
+        },
+        "trained": {
+          "return": -502.4339221715589,
+          "controls": 201,
+          "seconds": 72.95599626400508
+        },
+        "observation_size": 32,
+        "action_size": 1,
+        "episode_controls": 201,
+        "checkpoint_sha256": "6ddf08223a489ccb0fad68ea7570b4df4ee266aed98ecb9f861b5bcd901b7b76",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -498.7367764857949,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 74.20402437803568,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 76.1589258259628
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 225,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 1.0,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 225,
+            "num_action_inputs": 1,
+            "max_control": 0.03,
+            "omega": 1,
+            "render": false
+          }
+        },
+        "case": "Cylinder_2D_Re1000",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          1
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Cylinder_2D_Re1000",
+      "raw_file_sha256": {
+        "container.json": "0a569c199d94b9878663c5190858591ccc9a19b9b4d46c64aa4f76e5386b11b9",
+        "result.json": "106b9df3cecbc6bad870fb642c388ef892dab40c10252e05d09bc89502872a7b",
+        "replay.json": "da5dac1e515c982765b60fa1b12b69686107725313831fba007e9b396642842f",
+        "container.log": "e4171832631bf26a6a12516c7dc7d36254485801886ebd0ca298e9dafc6e3994",
+        "model.zip": "6ddf08223a489ccb0fad68ea7570b4df4ee266aed98ecb9f861b5bcd901b7b76"
+      }
+    },
+    {
+      "case": "Cylinder_2D_Re200",
+      "data_bytes": 69499887,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 118.7514249329688,
+      "previous_seconds_per_control": 0.11167315639322624,
+      "training": {
+        "status": "passed",
+        "case": "Cylinder_2D_Re200",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 87,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.2,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 200,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 87,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 0.2,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re200",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.396142392011825
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 40.62284455599729,
+        "end_to_end_seconds": 84.70093877601903,
+        "zero": {
+          "return": -288.4834850129141,
+          "controls": 201,
+          "seconds": 22.614537491986994
+        },
+        "trained": {
+          "return": -289.22765088466616,
+          "controls": 201,
+          "seconds": 19.89104805502575
+        },
+        "observation_size": 32,
+        "action_size": 1,
+        "episode_controls": 201,
+        "checkpoint_sha256": "e03c3a780f1c148bd605a3c69060613fabab8fcc46376a0da7adf6338408acbc",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -288.3407694224625,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 23.958496755978558,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 26.00449771696003
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 87,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.2,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 200,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 87,
+            "num_action_inputs": 1,
+            "max_control": 0.03,
+            "omega": 0.2,
+            "render": false
+          }
+        },
+        "case": "Cylinder_2D_Re200",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          1
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Cylinder_2D_Re200",
+      "raw_file_sha256": {
+        "container.json": "5e3d727652d05700c8f53daa607d24847e8934012b5be78f6a8872aeda3e482c",
+        "result.json": "63a6b75a85c54d0826cb97a712bbd14f79ad8cd96f0dfa95fbe06c117314e301",
+        "replay.json": "df3401714279767e6c56bd150641fabf9d6fd785a137e546160aae1fd8729602",
+        "container.log": "826c4fa4a46bf4a219e08cc5262a7e60f741de08385c1eb601a54cff66d4dcaa",
+        "model.zip": "e03c3a780f1c148bd605a3c69060613fabab8fcc46376a0da7adf6338408acbc"
+      },
+      "portable_replay_source_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/portable-replays/Cylinder_2D_Re200",
+      "portable_replay_sha256": "89227ec88f5cebb6046ab4cbaccf9be7282a4adf80b959c4a75a11a5ccd56c53"
+    },
+    {
+      "case": "Cylinder_2D_Re3900",
+      "data_bytes": 190547654,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 682.9621628099703,
+      "previous_seconds_per_control": 0.6868752258131281,
+      "training": {
+        "status": "passed",
+        "case": "Cylinder_2D_Re3900",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 500,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 3900,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 500,
+              "num_action_inputs": 1,
+              "max_control": 0.03,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "Cylinder_2D_Re3900",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            1
+          ],
+          "construct_seconds": 1.4021667040069588
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 252.61242393701104,
+        "end_to_end_seconds": 516.2820707730134,
+        "zero": {
+          "return": -564.9794843057324,
+          "controls": 201,
+          "seconds": 131.6423891740269
+        },
+        "trained": {
+          "return": -579.5473256601781,
+          "controls": 201,
+          "seconds": 130.41624579305062
+        },
+        "observation_size": 32,
+        "action_size": 1,
+        "episode_controls": 201,
+        "checkpoint_sha256": "bcce560e1badf545cb55d467713576e0b63e033938da6ae23033896c4277fa7c",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -553.8942535148044,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 156.18033346504671,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 157.99749855301343
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 500,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 1.0,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 3900,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 500,
+            "num_action_inputs": 1,
+            "max_control": 0.03,
+            "omega": 1,
+            "render": false
+          }
+        },
+        "case": "Cylinder_2D_Re3900",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          1
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Cylinder_2D_Re3900",
+      "raw_file_sha256": {
+        "container.json": "de8715c36a778931ceb419d12ef6cab6f742a07d3b9b493bd43397c78d081ee4",
+        "result.json": "b8942c023deb7c9e387f0e5a9c1f2c03122dbdc8742997337b284c53d6634f4a",
+        "replay.json": "21fe1434cc78b16762b2f7fffec6362482fe2894394dac359ae175757c4775ea",
+        "container.log": "90bbca7c536fd51ac9188d2d1bb668aee45f3f6b1b9bd601eeb5c870222fbbe6",
+        "model.zip": "bcce560e1badf545cb55d467713576e0b63e033938da6ae23033896c4277fa7c"
+      }
+    },
+    {
+      "case": "NACA0012Gust_2D_Re1000_AOA20",
+      "data_bytes": 50741748,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 86.62468435103074,
+      "previous_seconds_per_control": 0.0920445327879861,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012Gust_2D_Re1000_AOA20",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 60,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 60,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.461,
+              "unperturbed_avg_lift": 0.915,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re1000_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9190369679708965
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 29.074223370000254,
+        "end_to_end_seconds": 60.91476390697062,
+        "zero": {
+          "return": -100.93946042240748,
+          "controls": 201,
+          "seconds": 15.138300682010595
+        },
+        "trained": {
+          "return": -104.09508223220108,
+          "controls": 201,
+          "seconds": 14.989628002978861
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "e0b32e7c276a382da62407d6530bf3cea17aefd9147d20657eef76a3a96dd6e2",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -103.88028702493908,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 14.848772262979764,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 16.998572206008248
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.758770483143634,
+          -3.933407057425958,
+          11.758770483143634,
+          -1.2667403907592916,
+          11.758770483143634,
+          1.399926275907375,
+          11.758770483143634,
+          4.066592942574042,
+          18.4254371498103,
+          -3.933407057425958,
+          18.4254371498103,
+          -1.2667403907592916,
+          18.4254371498103,
+          1.399926275907375,
+          18.4254371498103,
+          4.066592942574042,
+          25.092103816476968,
+          -3.933407057425958,
+          25.092103816476968,
+          -1.2667403907592916,
+          25.092103816476968,
+          1.399926275907375,
+          25.092103816476968,
+          4.066592942574042,
+          31.758770483143635,
+          -3.933407057425958,
+          31.758770483143635,
+          -1.2667403907592916,
+          31.758770483143635,
+          1.399926275907375,
+          31.758770483143635,
+          4.066592942574042
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 60,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 60,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "unperturbed_avg_drag": 0.461,
+            "unperturbed_avg_lift": 0.915,
+            "render": false
+          }
+        },
+        "case": "NACA0012Gust_2D_Re1000_AOA20",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012Gust_2D_Re1000_AOA20",
+      "raw_file_sha256": {
+        "container.json": "ab1a7a24e4e681e086a730d8c5b068ed9db23964668c7715f920fd31fcf6be0a",
+        "result.json": "2f41596f589206e64a0f600c8f687e0877009c232590092c3272f7c726cfa9c4",
+        "replay.json": "d411a72dca0246c5ffa37ecfee310e292a7312b6c3b5cec62bd9ae84a8484a14",
+        "container.log": "c09045a275e7a18e80abda2612775e331a088d1bc7ae4122232ef6b59200a97a",
+        "model.zip": "e0b32e7c276a382da62407d6530bf3cea17aefd9147d20657eef76a3a96dd6e2"
+      },
+      "portable_replay_source_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/portable-replays/NACA0012Gust_2D_Re1000_AOA20",
+      "portable_replay_sha256": "95cec1a09f6f4779306e6575fe4f954e35474019ecbebb4ee29cedd73b5b83ca"
+    },
+    {
+      "case": "NACA0012Gust_2D_Re1000_AOA40",
+      "data_bytes": 50748958,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 101.7495938949869,
+      "previous_seconds_per_control": 0.09956015280913562,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012Gust_2D_Re1000_AOA40",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 1.971,
+              "unperturbed_avg_lift": 2.159,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re1000_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9058513710042462
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 35.211172887007706,
+        "end_to_end_seconds": 73.57693422504235,
+        "zero": {
+          "return": -188.92170406460383,
+          "controls": 201,
+          "seconds": 19.2416635749978
+        },
+        "trained": {
+          "return": -189.22753711230877,
+          "controls": 201,
+          "seconds": 17.69128216803074
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "1d6d0184b54590539b259115558d870128fee0e667f00f6167e64b8d888b12bb",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -188.66281044249328,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 19.46590637997724,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 21.3104908799869
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.064177772475912,
+          -3.97363341950125,
+          11.064177772475912,
+          -1.3069667528345836,
+          11.064177772475912,
+          1.3596999138320829,
+          11.064177772475912,
+          4.02636658049875,
+          17.73084443914258,
+          -3.97363341950125,
+          17.73084443914258,
+          -1.3069667528345836,
+          17.73084443914258,
+          1.3596999138320829,
+          17.73084443914258,
+          4.02636658049875,
+          24.397511105809244,
+          -3.97363341950125,
+          24.397511105809244,
+          -1.3069667528345836,
+          24.397511105809244,
+          1.3596999138320829,
+          24.397511105809244,
+          4.02636658049875,
+          31.06417777247591,
+          -3.97363341950125,
+          31.06417777247591,
+          -1.3069667528345836,
+          31.06417777247591,
+          1.3596999138320829,
+          31.06417777247591,
+          4.02636658049875
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 75,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 75,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "unperturbed_avg_drag": 1.971,
+            "unperturbed_avg_lift": 2.159,
+            "render": false
+          }
+        },
+        "case": "NACA0012Gust_2D_Re1000_AOA40",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012Gust_2D_Re1000_AOA40",
+      "raw_file_sha256": {
+        "container.json": "38f3ef475b1d7f71b42e5e3e61a3ef67dbe6b1297ee3b24da81742e270cca8cf",
+        "result.json": "28470893955aceb6e5b746e7d737896ec4d6cf6ec9b597bec438854da4172bfa",
+        "replay.json": "66d568566427a8b11cff909061ba2da5365bf2173013e9b7b87bc6d706bd1ac2",
+        "container.log": "bfc9d1324921650602b6e247b8afaff0c4d34f41a497ca254a48cce00770d617",
+        "model.zip": "1d6d0184b54590539b259115558d870128fee0e667f00f6167e64b8d888b12bb"
+      }
+    },
+    {
+      "case": "NACA0012Gust_2D_Re100_AOA20",
+      "data_bytes": 50741743,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 89.75000321795233,
+      "previous_seconds_per_control": 0.09151584400096908,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012Gust_2D_Re100_AOA20",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 0.577,
+              "unperturbed_avg_lift": 0.783,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re100_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9575456030433998
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 28.249568109982647,
+        "end_to_end_seconds": 59.24751835904317,
+        "zero": {
+          "return": -43.69056772951588,
+          "controls": 201,
+          "seconds": 15.194446012959816
+        },
+        "trained": {
+          "return": -45.07713436168163,
+          "controls": 201,
+          "seconds": 14.234812447975855
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "b236e98e8c61ee7152d93fd62dc8e953397fbd97af1b813b5760f2812452e094",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -44.639967210393415,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 20.982666305964813,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 23.024015544971917
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.758770483143634,
+          -3.933407057425958,
+          11.758770483143634,
+          -1.2667403907592916,
+          11.758770483143634,
+          1.399926275907375,
+          11.758770483143634,
+          4.066592942574042,
+          18.4254371498103,
+          -3.933407057425958,
+          18.4254371498103,
+          -1.2667403907592916,
+          18.4254371498103,
+          1.399926275907375,
+          18.4254371498103,
+          4.066592942574042,
+          25.092103816476968,
+          -3.933407057425958,
+          25.092103816476968,
+          -1.2667403907592916,
+          25.092103816476968,
+          1.399926275907375,
+          25.092103816476968,
+          4.066592942574042,
+          31.758770483143635,
+          -3.933407057425958,
+          31.758770483143635,
+          -1.2667403907592916,
+          31.758770483143635,
+          1.399926275907375,
+          31.758770483143635,
+          4.066592942574042
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 75,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 100,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 75,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "unperturbed_avg_drag": 0.577,
+            "unperturbed_avg_lift": 0.783,
+            "render": false
+          }
+        },
+        "case": "NACA0012Gust_2D_Re100_AOA20",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012Gust_2D_Re100_AOA20",
+      "raw_file_sha256": {
+        "container.json": "7618a087120778a3556ca9abf4b8aee023398aafade2a7f4cf4a044f15b95b77",
+        "result.json": "c3f94d889da8cf0c3cc2f1885fe654cdd92aa913ff7b67783e34a975f076c014",
+        "replay.json": "c717871cd4a34dcffceb8140e710ff58f48188e649ca14e56e2e3f700e50d2ba",
+        "container.log": "a7a946f87be8fcb199cefe6acbd76caf9a7ecd5659a84b0e0b0d15b331af7edf",
+        "model.zip": "b236e98e8c61ee7152d93fd62dc8e953397fbd97af1b813b5760f2812452e094"
+      },
+      "portable_replay_source_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/portable-replays/NACA0012Gust_2D_Re100_AOA20",
+      "portable_replay_sha256": "90750a2f1f5e08c0a9a8e78c68eca12df5c6fce25b2f9b8a7dcf713dec865f6c"
+    },
+    {
+      "case": "NACA0012Gust_2D_Re100_AOA40",
+      "data_bytes": 50748949,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 107.97303320199717,
+      "previous_seconds_per_control": 0.11152918060543016,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012Gust_2D_Re100_AOA40",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 75,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 75,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "unperturbed_avg_drag": 1.081,
+              "unperturbed_avg_lift": 1.027,
+              "render": false
+            }
+          },
+          "case": "NACA0012Gust_2D_Re100_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9686879520304501
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 39.6290474460111,
+        "end_to_end_seconds": 82.11073932400905,
+        "zero": {
+          "return": -65.38211811818208,
+          "controls": 201,
+          "seconds": 21.09210464498028
+        },
+        "trained": {
+          "return": -66.09380284202908,
+          "controls": 201,
+          "seconds": 19.826867032970767
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "2b27f21b79cacef17b73c4d3598b8e431eb6f21500ec48ed5a90da437b9f8411",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -65.50520440188969,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 16.869206575967837,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 18.75884456402855
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.064177772475912,
+          -3.97363341950125,
+          11.064177772475912,
+          -1.3069667528345836,
+          11.064177772475912,
+          1.3596999138320829,
+          11.064177772475912,
+          4.02636658049875,
+          17.73084443914258,
+          -3.97363341950125,
+          17.73084443914258,
+          -1.3069667528345836,
+          17.73084443914258,
+          1.3596999138320829,
+          17.73084443914258,
+          4.02636658049875,
+          24.397511105809244,
+          -3.97363341950125,
+          24.397511105809244,
+          -1.3069667528345836,
+          24.397511105809244,
+          1.3596999138320829,
+          24.397511105809244,
+          4.02636658049875,
+          31.06417777247591,
+          -3.97363341950125,
+          31.06417777247591,
+          -1.3069667528345836,
+          31.06417777247591,
+          1.3596999138320829,
+          31.06417777247591,
+          4.02636658049875
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 75,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 100,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 75,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "unperturbed_avg_drag": 1.081,
+            "unperturbed_avg_lift": 1.027,
+            "render": false
+          }
+        },
+        "case": "NACA0012Gust_2D_Re100_AOA40",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012Gust_2D_Re100_AOA40",
+      "raw_file_sha256": {
+        "container.json": "717fd7dc59646c2907167ff023794fe0998995309c072c0a75a552b68b48e06b",
+        "result.json": "ca4d439e6490dd3a14eab3d4fe6481b6288060ae521e9e3fe5e2f6e17e81a614",
+        "replay.json": "679afff94b686e2933f0f666126f8bd03f13e3e15d6a47833f302f9ae1445478",
+        "container.log": "fb2bba6e61ce54494b8a8d6dfa23c3de57e1ea21b89992d1667af6fffcfeb32c",
+        "model.zip": "2b27f21b79cacef17b73c4d3598b8e431eb6f21500ec48ed5a90da437b9f8411"
+      }
+    },
+    {
+      "case": "NACA0012_2D_Re1000_AOA20",
+      "data_bytes": 50733521,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 207.06064703699667,
+      "previous_seconds_per_control": 0.21767494919477032,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012_2D_Re1000_AOA20",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 170,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 170,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re1000_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9501181999803521
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 76.1059754670132,
+        "end_to_end_seconds": 155.96842706098687,
+        "zero": {
+          "return": 398.1705997930943,
+          "controls": 201,
+          "seconds": 39.70292278804118
+        },
+        "trained": {
+          "return": 300.9419100523326,
+          "controls": 201,
+          "seconds": 38.655311850016005
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "ee19fe50ab9ba4df5017fe63816d8e00409eb40341d956729d971f55be8a7237",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": 403.10336064116325,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 41.937199699983466,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 43.82566761103226
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.758770483143634,
+          -3.933407057425958,
+          11.758770483143634,
+          -1.2667403907592916,
+          11.758770483143634,
+          1.399926275907375,
+          11.758770483143634,
+          4.066592942574042,
+          18.4254371498103,
+          -3.933407057425958,
+          18.4254371498103,
+          -1.2667403907592916,
+          18.4254371498103,
+          1.399926275907375,
+          18.4254371498103,
+          4.066592942574042,
+          25.092103816476968,
+          -3.933407057425958,
+          25.092103816476968,
+          -1.2667403907592916,
+          25.092103816476968,
+          1.399926275907375,
+          25.092103816476968,
+          4.066592942574042,
+          31.758770483143635,
+          -3.933407057425958,
+          31.758770483143635,
+          -1.2667403907592916,
+          31.758770483143635,
+          1.399926275907375,
+          31.758770483143635,
+          4.066592942574042
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 170,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 170,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "render": false
+          }
+        },
+        "case": "NACA0012_2D_Re1000_AOA20",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012_2D_Re1000_AOA20",
+      "raw_file_sha256": {
+        "container.json": "0678ad1f5d7db700e645c36dedebaf14b09d35020ca5a59a8ba2cd5748b9af2e",
+        "result.json": "5a427f470f35793981a8279b9cf01a9a523b8d901ee7284dd1d9d4f380989732",
+        "replay.json": "6b63df01ac8f237214687431eddb096b8ab7da993a9cda02e41ae47a5ccbadbe",
+        "container.log": "522396f526e222b7e3045b64c3e9eaea7aeb9268b33d565f8f660fa18c1ac573",
+        "model.zip": "ee19fe50ab9ba4df5017fe63816d8e00409eb40341d956729d971f55be8a7237"
+      }
+    },
+    {
+      "case": "NACA0012_2D_Re1000_AOA40",
+      "data_bytes": 50740740,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 382.786586540984,
+      "previous_seconds_per_control": 0.34950262140482663,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012_2D_Re1000_AOA40",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 400,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 400,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re1000_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9420462650014088
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 147.29333515203325,
+        "end_to_end_seconds": 296.6555426000268,
+        "zero": {
+          "return": 222.4137915382054,
+          "controls": 201,
+          "seconds": 75.10389384499285
+        },
+        "trained": {
+          "return": 222.98293186859866,
+          "controls": 201,
+          "seconds": 72.79842709598597
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "7f92646d987df0adfb8a0b320bacff7ce700a46a247663fed84d9ef16f0e6ea0",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": 222.4592773945261,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 77.16422717197565,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 78.95078700303566
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.064177772475912,
+          -3.97363341950125,
+          11.064177772475912,
+          -1.3069667528345836,
+          11.064177772475912,
+          1.3596999138320829,
+          11.064177772475912,
+          4.02636658049875,
+          17.73084443914258,
+          -3.97363341950125,
+          17.73084443914258,
+          -1.3069667528345836,
+          17.73084443914258,
+          1.3596999138320829,
+          17.73084443914258,
+          4.02636658049875,
+          24.397511105809244,
+          -3.97363341950125,
+          24.397511105809244,
+          -1.3069667528345836,
+          24.397511105809244,
+          1.3596999138320829,
+          24.397511105809244,
+          4.02636658049875,
+          31.06417777247591,
+          -3.97363341950125,
+          31.06417777247591,
+          -1.3069667528345836,
+          31.06417777247591,
+          1.3596999138320829,
+          31.06417777247591,
+          4.02636658049875
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 400,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 400,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "render": false
+          }
+        },
+        "case": "NACA0012_2D_Re1000_AOA40",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012_2D_Re1000_AOA40",
+      "raw_file_sha256": {
+        "container.json": "dd2dc6c62f50f551bb1e6dc3e3440720ce06ada9178fd3bf86ade2b179abcd07",
+        "result.json": "5d2fd24dd83b1194ff4d31464be81ffa7b818cb707656d6541784649d4d3eafa",
+        "replay.json": "a6d9cc83cf696878c54fcb094d675aeefd88df0ac807697b5d36fdc255314d70",
+        "container.log": "3def62b4ea6b46c15f7308b9259cce20a639f77726e3ec8f6c44871338685244",
+        "model.zip": "7f92646d987df0adfb8a0b320bacff7ce700a46a247663fed84d9ef16f0e6ea0"
+      }
+    },
+    {
+      "case": "NACA0012_2D_Re100_AOA20",
+      "data_bytes": 50733514,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 455.96725782798603,
+      "previous_seconds_per_control": 0.4424112385953777,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012_2D_Re100_AOA20",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.758770483143634,
+            -3.933407057425958,
+            11.758770483143634,
+            -1.2667403907592916,
+            11.758770483143634,
+            1.399926275907375,
+            11.758770483143634,
+            4.066592942574042,
+            18.4254371498103,
+            -3.933407057425958,
+            18.4254371498103,
+            -1.2667403907592916,
+            18.4254371498103,
+            1.399926275907375,
+            18.4254371498103,
+            4.066592942574042,
+            25.092103816476968,
+            -3.933407057425958,
+            25.092103816476968,
+            -1.2667403907592916,
+            25.092103816476968,
+            1.399926275907375,
+            25.092103816476968,
+            4.066592942574042,
+            31.758770483143635,
+            -3.933407057425958,
+            31.758770483143635,
+            -1.2667403907592916,
+            31.758770483143635,
+            1.399926275907375,
+            31.758770483143635,
+            4.066592942574042
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 375,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 375,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re100_AOA20",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9181561020086519
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 183.06090431602206,
+        "end_to_end_seconds": 369.2821089489735,
+        "zero": {
+          "return": 272.64156218645525,
+          "controls": 201,
+          "seconds": 93.45320320501924
+        },
+        "trained": {
+          "return": 170.49701120534357,
+          "controls": 201,
+          "seconds": 91.15017263399204
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "8df8d274d71f8f573953741ec46407631018265f1efa8c8739e83b01d03e6491",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": 271.85271172397694,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 77.27137127099559,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 79.21931554301409
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.758770483143634,
+          -3.933407057425958,
+          11.758770483143634,
+          -1.2667403907592916,
+          11.758770483143634,
+          1.399926275907375,
+          11.758770483143634,
+          4.066592942574042,
+          18.4254371498103,
+          -3.933407057425958,
+          18.4254371498103,
+          -1.2667403907592916,
+          18.4254371498103,
+          1.399926275907375,
+          18.4254371498103,
+          4.066592942574042,
+          25.092103816476968,
+          -3.933407057425958,
+          25.092103816476968,
+          -1.2667403907592916,
+          25.092103816476968,
+          1.399926275907375,
+          25.092103816476968,
+          4.066592942574042,
+          31.758770483143635,
+          -3.933407057425958,
+          31.758770483143635,
+          -1.2667403907592916,
+          31.758770483143635,
+          1.399926275907375,
+          31.758770483143635,
+          4.066592942574042
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 375,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 100,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 375,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "render": false
+          }
+        },
+        "case": "NACA0012_2D_Re100_AOA20",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012_2D_Re100_AOA20",
+      "raw_file_sha256": {
+        "container.json": "09966524df402aa1fa223a775ab8f5e97487b51a13c9eb59e86fc184293e792d",
+        "result.json": "c17339d1a34dbc281f8717add84be1b570fb86edf3de4e5d1046cd9f2144f920",
+        "replay.json": "1418e639f4f946a5ec2ebad17ce20ad36b8896a18a794d9e6b90fb31ad8cbb5c",
+        "container.log": "fe83bb893a56ab5873471d05ea689e27d6b826f03eddfb3bbe5b693b4a4a717a",
+        "model.zip": "8df8d274d71f8f573953741ec46407631018265f1efa8c8739e83b01d03e6491"
+      }
+    },
+    {
+      "case": "NACA0012_2D_Re100_AOA40",
+      "data_bytes": 50740730,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 431.80383250000887,
+      "previous_seconds_per_control": 0.449443707766477,
+      "training": {
+        "status": "passed",
+        "case": "NACA0012_2D_Re100_AOA40",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            11.064177772475912,
+            -3.97363341950125,
+            11.064177772475912,
+            -1.3069667528345836,
+            11.064177772475912,
+            1.3596999138320829,
+            11.064177772475912,
+            4.02636658049875,
+            17.73084443914258,
+            -3.97363341950125,
+            17.73084443914258,
+            -1.3069667528345836,
+            17.73084443914258,
+            1.3596999138320829,
+            17.73084443914258,
+            4.02636658049875,
+            24.397511105809244,
+            -3.97363341950125,
+            24.397511105809244,
+            -1.3069667528345836,
+            24.397511105809244,
+            1.3596999138320829,
+            24.397511105809244,
+            4.02636658049875,
+            31.06417777247591,
+            -3.97363341950125,
+            31.06417777247591,
+            -1.3069667528345836,
+            31.06417777247591,
+            1.3596999138320829,
+            31.06417777247591,
+            4.02636658049875
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 375,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.25,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 375,
+              "num_action_inputs": 3,
+              "max_control": 0.03,
+              "omega": 0.25,
+              "render": false
+            }
+          },
+          "case": "NACA0012_2D_Re100_AOA40",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.9133094749995507
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 166.32807834103005,
+        "end_to_end_seconds": 336.2908657559892,
+        "zero": {
+          "return": 190.02723168801504,
+          "controls": 201,
+          "seconds": 84.64504435600247
+        },
+        "trained": {
+          "return": 193.07775407318488,
+          "controls": 201,
+          "seconds": 83.85477369499858
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "02a28b0a6d5a60c638baac7e00c91d85d70f5cdd0e0a740ac67e731617820d68",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": 191.58241738468573,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 86.15994953498011,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 88.00873646698892
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          11.064177772475912,
+          -3.97363341950125,
+          11.064177772475912,
+          -1.3069667528345836,
+          11.064177772475912,
+          1.3596999138320829,
+          11.064177772475912,
+          4.02636658049875,
+          17.73084443914258,
+          -3.97363341950125,
+          17.73084443914258,
+          -1.3069667528345836,
+          17.73084443914258,
+          1.3596999138320829,
+          17.73084443914258,
+          4.02636658049875,
+          24.397511105809244,
+          -3.97363341950125,
+          24.397511105809244,
+          -1.3069667528345836,
+          24.397511105809244,
+          1.3596999138320829,
+          24.397511105809244,
+          4.02636658049875,
+          31.06417777247591,
+          -3.97363341950125,
+          31.06417777247591,
+          -1.3069667528345836,
+          31.06417777247591,
+          1.3596999138320829,
+          31.06417777247591,
+          4.02636658049875
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 375,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.25,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 100,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 375,
+            "num_action_inputs": 3,
+            "max_control": 0.03,
+            "omega": 0.25,
+            "render": false
+          }
+        },
+        "case": "NACA0012_2D_Re100_AOA40",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/NACA0012_2D_Re100_AOA40",
+      "raw_file_sha256": {
+        "container.json": "918a01b516fa926cb8036aceac0826d6af469d349d86b535bf848ca0e3bab32f",
+        "result.json": "921b36d740f6025214869ce554615342b6b780f12f7e36ee38bbdcbedf059355",
+        "replay.json": "d25e0b4ad32f6975c934622f224fe38d55bc2a1b4db44a38acfd844c67611feb",
+        "container.log": "85eb3b3cd38f0751591b3302ee5e034b289299d3d8a8a62e7e26b0d7fa0f6782",
+        "model.zip": "02a28b0a6d5a60c638baac7e00c91d85d70f5cdd0e0a740ac67e731617820d68"
+      }
+    },
+    {
+      "case": "Nozzle2D_coarse",
+      "data_bytes": 8451737,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:88341b526bbeb8fd3dfc5bc2a75ee82e66f1959eb1529e0998c5c012a6c854be",
+      "container_exit_code": 0,
+      "container_wall_seconds": 2179.9329612809815,
+      "previous_seconds_per_control": 0.9036629906040616,
+      "training": {
+        "status": "passed",
+        "case": "Nozzle2D_coarse",
+        "profile": {
+          "backend": "jax-fluids",
+          "source_configuration": {
+            "jaxfluids": {
+              "resolution": "coarse",
+              "secondary_pressure_ratio": 0.9,
+              "is_pressure_probes": true,
+              "steps_per_action": 100,
+              "is_scale_observations": true,
+              "ngpus": 1,
+              "render_mode": "SAVE"
+            }
+          },
+          "substeps_per_control": 100,
+          "case": "Nozzle2D_coarse",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            6
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 7.933878819982056
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 349.6557060810155,
+        "end_to_end_seconds": 1541.3840286629857,
+        "zero": {
+          "return": -71.9927851103446,
+          "controls": 667,
+          "seconds": 609.2995506419684
+        },
+        "trained": {
+          "return": -71.67462763993294,
+          "controls": 667,
+          "seconds": 572.686458976008
+        },
+        "observation_size": 6,
+        "action_size": 2,
+        "episode_controls": 667,
+        "checkpoint_sha256": "ea640b7fb9c9e6c5e8ed4da1f5653563bf613e37cb125927f590ee520b5cf892",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -71.43159684348657,
+        "steps": 667,
+        "terminated": true,
+        "truncated": false,
+        "wall_time_sec": 619.4626434050151,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 629.2140684199985
+      },
+      "runtime_profile": {
+        "backend": "jax-fluids",
+        "source_configuration": {
+          "jaxfluids": {
+            "resolution": "coarse",
+            "secondary_pressure_ratio": 0.9,
+            "is_pressure_probes": true,
+            "steps_per_action": 100,
+            "is_scale_observations": true,
+            "ngpus": 1,
+            "render_mode": "SAVE"
+          }
+        },
+        "substeps_per_control": 100,
+        "case": "Nozzle2D_coarse",
+        "observation_shape": [
+          6
+        ],
+        "action_shape": [
+          2
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/nozzle-coarse",
+      "raw_file_sha256": {
+        "container.json": "44bf1db8c10415639f5c5564e51bfc6a74092ea7d764ab1a2c2f2c7f7c073c79",
+        "result.json": "720d93ee7da6c0ac24afb0c181a8a16f933a15b473e7a645eca28e710772e65f",
+        "replay.json": "00ef4038fe0d635a802acaf3e71604bebb82959bfa8b883f894d27d9a774e573",
+        "container.log": "f20f496fb31122a17cce980b5ae4ebefa5eff078793eda4d4f13048d551d6e5c",
+        "model.zip": "ea640b7fb9c9e6c5e8ed4da1f5653563bf613e37cb125927f590ee520b5cf892"
+      },
+      "fixed_control_note": "The training field named zero is a zero NORMALIZED action, i.e. native [0.5,0.5], not a no-injection baseline."
+    },
+    {
+      "case": "Pinball_2D_Re100",
+      "data_bytes": 76181792,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 218.50692994700512,
+      "previous_seconds_per_control": 0.22811751479748638,
+      "training": {
+        "status": "passed",
+        "case": "Pinball_2D_Re100",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 200,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 100,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 200,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re100",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.4208731109974906
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 81.73589641897706,
+        "end_to_end_seconds": 166.4181742159999,
+        "zero": {
+          "return": -583.9628817010619,
+          "controls": 201,
+          "seconds": 42.543898258998524
+        },
+        "trained": {
+          "return": -500.13818963862053,
+          "controls": 201,
+          "seconds": 40.68048408103641
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "acddd3be19779b16d6b32c4c802745f4e402a0715db5a9ac40b797cb9fc22238",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -500.07948168186596,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 43.06828648701776,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 44.95016911200946
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 200,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.0,
+        "max_control": 0.25,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 100,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 200,
+            "num_action_inputs": 3,
+            "max_control": 0.25,
+            "omega": 0,
+            "render": false
+          }
+        },
+        "case": "Pinball_2D_Re100",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Pinball_2D_Re100",
+      "raw_file_sha256": {
+        "container.json": "ea2ef187eb5636d0a5662cf08883e37e0eadb2244427bd913507dc20c3a22a54",
+        "result.json": "cf59ca540080a8b2320e73619fa8b3d16115af2ffd8b3ffbb3bf13b999e4d98e",
+        "replay.json": "d074964ede11f248a11a29fce7b3117af256959c7cd8ac58c268edd7f4bb3bdb",
+        "container.log": "48b2305dd16b71d543e3d136f59e8311054d9075b82192c576bd2d83b27922db",
+        "model.zip": "acddd3be19779b16d6b32c4c802745f4e402a0715db5a9ac40b797cb9fc22238"
+      }
+    },
+    {
+      "case": "Pinball_2D_Re150",
+      "data_bytes": 46991787,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 205.11522532894742,
+      "previous_seconds_per_control": 0.20765014360658823,
+      "training": {
+        "status": "passed",
+        "case": "Pinball_2D_Re150",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 150,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.4,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 150,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 150,
+              "num_action_inputs": 3,
+              "max_control": 0.4,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re150",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.983645208994858
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 80.82938165398082,
+        "end_to_end_seconds": 160.16817573999288,
+        "zero": {
+          "return": -591.8875194861002,
+          "controls": 201,
+          "seconds": 44.273061287007295
+        },
+        "trained": {
+          "return": -441.8231392970415,
+          "controls": 201,
+          "seconds": 33.59818243503105
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "a53f68c9f2516197ddae4f661c6c834581560ce09f4ceeabf4223977655ddacc",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -441.7489372481667,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 35.69704458100023,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 37.664805507985875
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 150,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.0,
+        "max_control": 0.4,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 150,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 150,
+            "num_action_inputs": 3,
+            "max_control": 0.4,
+            "omega": 0,
+            "render": false
+          }
+        },
+        "case": "Pinball_2D_Re150",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Pinball_2D_Re150",
+      "raw_file_sha256": {
+        "container.json": "137f1cf9d718123066ef0fe16b9f2e735e8bad383b8bca51aba26f687cea0686",
+        "result.json": "21726bda85b59f41e372b511f7daf5454a10dc5ab4263b618ceb72bdff7affe4",
+        "replay.json": "8cfeb4b8650b2fe515676c892b55ce310520011f1bc12afc4f2e05129f610238",
+        "container.log": "8784118dde3d2ebb05d57af22d6560feb691e96544498023725fabfa5b89f572",
+        "model.zip": "a53f68c9f2516197ddae4f661c6c834581560ce09f4ceeabf4223977655ddacc"
+      }
+    },
+    {
+      "case": "Pinball_2D_Re30",
+      "data_bytes": 76181741,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 372.01882139901863,
+      "previous_seconds_per_control": 0.39403740399284287,
+      "training": {
+        "status": "passed",
+        "case": "Pinball_2D_Re30",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 270,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 30,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 270,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re30",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 0.8290509110083804
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 150.4565222170204,
+        "end_to_end_seconds": 291.4863397749723,
+        "zero": {
+          "return": -708.9250516946747,
+          "controls": 201,
+          "seconds": 72.70322393201059
+        },
+        "trained": {
+          "return": -595.2042678177686,
+          "controls": 201,
+          "seconds": 66.8683903789497
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "dfddc9786f386c171748a002650e11bde1678357ef47b125608c0e95838ec931",
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -595.0398709076118,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 71.19443438900635,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 73.17763210996054
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 270,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.0,
+        "max_control": 0.25,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 30,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 270,
+            "num_action_inputs": 3,
+            "max_control": 0.25,
+            "omega": 0,
+            "render": false
+          }
+        },
+        "case": "Pinball_2D_Re30",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Pinball_2D_Re30",
+      "raw_file_sha256": {
+        "container.json": "055f75749281009e3b8b3b5470cac5439262073f5ae491e851afa9bff38eb39c",
+        "result.json": "f1aafd543db3178ee2ca4517a2f6599c350a7edadce33b31de9f29aca0ada9d6",
+        "replay.json": "467dabf3425b4c52b25abd6c6c5db60c333383e34b64f25e5eefe4508207e2ab",
+        "container.log": "ef3e557627b4f5b9cb2aa7b8723cfb21985fe59be4945802e0880e06557d3a62",
+        "model.zip": "dfddc9786f386c171748a002650e11bde1678357ef47b125608c0e95838ec931"
+      }
+    },
+    {
+      "case": "Pinball_2D_Re75",
+      "data_bytes": 76181789,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 258.34212233597646,
+      "previous_seconds_per_control": 0.27201258138520645,
+      "training": {
+        "status": "passed",
+        "case": "Pinball_2D_Re75",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 200,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.0,
+          "max_control": 0.25,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 75,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 200,
+              "num_action_inputs": 3,
+              "max_control": 0.25,
+              "omega": 0,
+              "render": false
+            }
+          },
+          "case": "Pinball_2D_Re75",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            3
+          ],
+          "construct_seconds": 1.415602921973914
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 97.07580365799367,
+        "end_to_end_seconds": 198.5216720610042,
+        "zero": {
+          "return": -607.4338731185555,
+          "controls": 201,
+          "seconds": 51.15714453998953
+        },
+        "trained": {
+          "return": -513.7387540262515,
+          "controls": 201,
+          "seconds": 48.87005038798088
+        },
+        "observation_size": 32,
+        "action_size": 3,
+        "episode_controls": 201,
+        "checkpoint_sha256": "50f165b5a14195b0fdf690021fcc354d6b00546afda5ee27523651ea9dd0deb5",
+        "learning_rate": 0.0003,
+        "initial_log_std": 0.0,
+        "initial_action_weight_multiplier": 1.0,
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -513.5135744200935,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 50.99405762297101,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 52.74994102399796
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 200,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.0,
+        "max_control": 0.25,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 75,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 200,
+            "num_action_inputs": 3,
+            "max_control": 0.25,
+            "omega": 0,
+            "render": false
+          }
+        },
+        "case": "Pinball_2D_Re75",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          3
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/Pinball_2D_Re75",
+      "raw_file_sha256": {
+        "container.json": "5d18a0e319498f01578a02c43344f2d5f44390dbce56ad7906ff041dcec4ba31",
+        "result.json": "ef30b1beb27546614219b0e588b7b848dbca44bc7951e92df9d0d53a660133c3",
+        "replay.json": "3cc811c094b7ac903ffd1f88975d8c6311a2bfb688b148ec0f5d5dd99161fbd9",
+        "container.log": "b8e2bfb32968edc99648c9192145d3e75273ae4371a54f0a02de54f3ce83f1a1",
+        "model.zip": "50f165b5a14195b0fdf690021fcc354d6b00546afda5ee27523651ea9dd0deb5"
+      }
+    },
+    {
+      "case": "SquareCylinder_2D_Re1000",
+      "data_bytes": 87142919,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 370.81844823400024,
+      "previous_seconds_per_control": 0.38246636220719665,
+      "training": {
+        "status": "passed",
+        "case": "SquareCylinder_2D_Re1000",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 250,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 1.0,
+          "max_control": 0.05,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 1000,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 250,
+              "num_action_inputs": 2,
+              "max_control": 0.05,
+              "omega": 1,
+              "render": false
+            }
+          },
+          "case": "SquareCylinder_2D_Re1000",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 1.002146013022866
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 144.30429901200114,
+        "end_to_end_seconds": 290.70324586704373,
+        "zero": {
+          "return": -693.2368456123842,
+          "controls": 201,
+          "seconds": 72.89733079500729
+        },
+        "trained": {
+          "return": -623.5087735410625,
+          "controls": 201,
+          "seconds": 72.07250634400407
+        },
+        "observation_size": 32,
+        "action_size": 2,
+        "episode_controls": 201,
+        "checkpoint_sha256": "a72aaaca875326888e9f760a66cd960f62d893d90de8cc6b0261d96cfe10f1ea",
+        "learning_rate": 0.0003,
+        "initial_log_std": -3.0,
+        "initial_action_weight_multiplier": 1.0,
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -606.3943706361306,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 70.9814050339628,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 72.83202574698953
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 250,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 1.0,
+        "max_control": 0.05,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 1000,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 250,
+            "num_action_inputs": 2,
+            "max_control": 0.05,
+            "omega": 1,
+            "render": false
+          }
+        },
+        "case": "SquareCylinder_2D_Re1000",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          2
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/square1000-small-exploration",
+      "raw_file_sha256": {
+        "container.json": "5c0d7ede9791cc9c3a2d70ff377fa6a89130dc5b7d14628246178bb4b445d9f5",
+        "result.json": "3bcc35ce3b9bae9667ba81aca35b9725a91c21e2ba37adc0375f9fa6aed03a11",
+        "replay.json": "734bad35c2ec155e4bf1e712936deaa0e1ccf339b1b09312c20510724bd0b0ed",
+        "container.log": "984ad3d3aba2ede8b1356db6facf4e4669650589089e6ede20edd642de34786f",
+        "model.zip": "a72aaaca875326888e9f760a66cd960f62d893d90de8cc6b0261d96cfe10f1ea"
+      },
+      "training_note": "Default PPO exploration produced nonfinite native reward; smaller initial log_std=-3 changes the policy only, not solver, horizon or allowed actions."
+    },
+    {
+      "case": "SquareCylinder_2D_Re200",
+      "data_bytes": 69774977,
+      "hardware": "1 H100",
+      "runtime_image_id": "sha256:1eb3775b0b4997b2b9fee6a68a8810f687879978a1fab7f7976d53f62266842d",
+      "container_exit_code": 0,
+      "container_wall_seconds": 133.01335235103033,
+      "previous_seconds_per_control": 0.09624245940940454,
+      "training": {
+        "status": "passed",
+        "case": "SquareCylinder_2D_Re200",
+        "profile": {
+          "backend": "maia",
+          "probe_locations": [
+            2.0,
+            -0.75,
+            2.0,
+            -0.25,
+            2.0,
+            0.25,
+            2.0,
+            0.75,
+            3.0,
+            -0.75,
+            3.0,
+            -0.25,
+            3.0,
+            0.25,
+            3.0,
+            0.75,
+            4.0,
+            -0.75,
+            4.0,
+            -0.25,
+            4.0,
+            0.25,
+            4.0,
+            0.75,
+            5.0,
+            -0.75,
+            5.0,
+            -0.25,
+            5.0,
+            0.25,
+            5.0,
+            0.75
+          ],
+          "probe_scope": "diagnostic-only; not paper or frozen evaluator sensors",
+          "substeps_per_control": 110,
+          "native_max_episode_steps": 200,
+          "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+          "omega": 0.2,
+          "max_control": 0.03,
+          "source_configuration": {
+            "env": {
+              "n_agents": 1,
+              "max_episode_steps": 200
+            },
+            "maia": {
+              "Re": 200,
+              "observation_type": [
+                "u",
+                "v"
+              ],
+              "U_inf": 0.0577,
+              "rho_inf": 1,
+              "num_sim_substeps_per_actuation": 110,
+              "num_action_inputs": 2,
+              "max_control": 0.03,
+              "omega": 0.2,
+              "render": false
+            }
+          },
+          "case": "SquareCylinder_2D_Re200",
+          "status": "native-cost-screening-not-certified-protocol",
+          "observation_shape": [
+            32
+          ],
+          "action_shape": [
+            2
+          ],
+          "construct_seconds": 1.3875759600196034
+        },
+        "seed": 42,
+        "training_controls": 400,
+        "ppo_epochs": 20,
+        "changed_parameter_tensors": 13,
+        "training_seconds": 47.68745950504672,
+        "end_to_end_seconds": 98.52026814996498,
+        "zero": {
+          "return": -314.74546040296474,
+          "controls": 201,
+          "seconds": 25.802728940965608
+        },
+        "trained": {
+          "return": -305.7239973595895,
+          "controls": 201,
+          "seconds": 23.477291515038814
+        },
+        "observation_size": 32,
+        "action_size": 2,
+        "episode_controls": 201,
+        "checkpoint_sha256": "b63c08e25dfc6d2586e7a3b5177749c46b70e19b9b4d6814163a701e30fecacd",
+        "learning_rate": 0.0003,
+        "initial_log_std": -3.0,
+        "initial_action_weight_multiplier": 1.0,
+        "scope": "Real short PPO update and timing; not convergence or shared-model performance certification"
+      },
+      "replay": {
+        "status": "passed",
+        "seed": 123,
+        "return": -304.98391062357155,
+        "steps": 201,
+        "terminated": true,
+        "truncated": true,
+        "wall_time_sec": 25.74667085299734,
+        "diagnostics": {},
+        "protocol": "hydrogym-policy/v1",
+        "relocated": true,
+        "wall_seconds": 27.564792996970937
+      },
+      "runtime_profile": {
+        "backend": "maia",
+        "probe_locations": [
+          2.0,
+          -0.75,
+          2.0,
+          -0.25,
+          2.0,
+          0.25,
+          2.0,
+          0.75,
+          3.0,
+          -0.75,
+          3.0,
+          -0.25,
+          3.0,
+          0.25,
+          3.0,
+          0.75,
+          4.0,
+          -0.75,
+          4.0,
+          -0.25,
+          4.0,
+          0.25,
+          4.0,
+          0.75,
+          5.0,
+          -0.75,
+          5.0,
+          -0.25,
+          5.0,
+          0.25,
+          5.0,
+          0.75
+        ],
+        "probe_scope": "Fixed organizer sensors, explicitly adopted unchanged from native cost probes",
+        "substeps_per_control": 110,
+        "native_max_episode_steps": 200,
+        "native_horizon_off_by_one": "Native done is iter > max_episode_steps",
+        "omega": 0.2,
+        "max_control": 0.03,
+        "source_configuration": {
+          "env": {
+            "n_agents": 1,
+            "max_episode_steps": 200
+          },
+          "maia": {
+            "Re": 200,
+            "observation_type": [
+              "u",
+              "v"
+            ],
+            "U_inf": 0.0577,
+            "rho_inf": 1,
+            "num_sim_substeps_per_actuation": 110,
+            "num_action_inputs": 2,
+            "max_control": 0.03,
+            "omega": 0.2,
+            "render": false
+          }
+        },
+        "case": "SquareCylinder_2D_Re200",
+        "observation_shape": [
+          32
+        ],
+        "action_shape": [
+          2
+        ],
+        "scope": "Frozen organizer native runtime profile. Not a recovered paper protocol."
+      },
+      "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cases/SquareCylinder_2D_Re200",
+      "raw_file_sha256": {
+        "container.json": "f391841e51fa0398cfc6343faa9962a98dff053cebc35d206e09700d0fec18d5",
+        "result.json": "38d93b2efff0acfa2c4f3a820ff27f1950414eaaf048cb2ef482f07d2a3e63d3",
+        "replay.json": "b8838d92fe58668edca19b47c4730b1aa80133ea69f9e769a01b3f47abfd3955",
+        "container.log": "b6e0965dd0ae61866deb1b36b5e1d38d208e9bc318bf94b2c4add3381624ae85",
+        "model.zip": "b63c08e25dfc6d2586e7a3b5177749c46b70e19b9b4d6814163a701e30fecacd"
+      }
+    }
+  ],
+  "excluded_runtime_failure": {
+    "case": "Cavity_2D_Re7500",
+    "reason": "Native uncontrolled full episode produced nonfinite reward; not excluded for speed",
+    "evidence_directory": "/mnt/workspace/hydrogym/reproduction/hour-release-20260908/cavity-with-pyarrow",
+    "error": "Expected a finite scalar native reward"
+  }
+}

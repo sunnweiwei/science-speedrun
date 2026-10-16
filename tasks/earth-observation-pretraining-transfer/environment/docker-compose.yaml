@@ -1,0 +1,21 @@
+# Task-root build; operator prepares the development-only views first.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR}/19837", target: /workspace/data/19837}
+      - {<<: *data, source: "${TASK_DATA_DIR}/eval", target: /workspace/data/eval}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR}"
+        target: /workspace/research
+        bind:
+          create_host_path: false

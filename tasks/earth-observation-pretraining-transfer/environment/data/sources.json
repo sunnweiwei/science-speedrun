@@ -1,0 +1,46 @@
+{
+  "subset_1k_h5py_data.tar": {
+    "size": 17855037440,
+    "sha256": "47c20e06bea4d45b0fd8090181a9cb2b91c4dda326140d1e2fe6fc77614a01f5",
+    "md5": "eb56490bacd029bd95ef532af75699e6",
+    "url": "https://storage.googleapis.com/ai2-olmoearth-projects-public-data/pretraining_data/subset_1k/subset_1k_h5py_data.tar?generation=1770417300178199",
+    "license": "CC-BY-4.0; retain component-source terms"
+  },
+  "awf.tar": {
+    "size": 1869219840,
+    "sha256": "d0837f14235f9ef3207af6d84c428bb9dcb81bd18ee6a96d03ce4b5fff992090",
+    "md5": "38eff4ef1ec7f3ec5f28317e7726af5d",
+    "url": "https://huggingface.co/datasets/allenai/olmoearth_projects_awf/resolve/da8eb6aab65b518cb8223912ba9091cbaa5dad2f/dataset.tar",
+    "license": "Apache-2.0 per dataset card; satellite source terms also apply"
+  },
+  "lfmc.tar": {
+    "size": 49791580160,
+    "sha256": "f2a90775f394150a3f4b5b65aec393dc77edd745d01711a1dd47e9c8deea105f",
+    "md5": "dc11374e88310d01ed82ff80584a8fa0",
+    "url": "https://storage.googleapis.com/ai2-olmoearth-projects-public-data/projects/lfmc/20251029/dataset.tar?generation=1761767821061437",
+    "license": "CC0 for labeled dataset per project docs; satellite source terms also apply"
+  },
+  "lfmc_annotations.geojson": {
+    "size": 15193289,
+    "sha256": "5af83f4387442008f31c07635034b76be7b6d4a2e891a203cc9ace8fc8cd0d23",
+    "md5": "03ea6c07fc5bfe57d833931eb66f51ec",
+    "url": "https://storage.googleapis.com/ai2-olmoearth-projects-public-data/projects/lfmc/20251029/annotation_features.geojson",
+    "license": "CC0 per project docs"
+  },
+  "h5py_data-0000.tar": {
+    "size": 48336896000,
+    "sha256": "c87d26c128f52c91cb78b91f5920ec4186a39ef56eb5337506fe337b31bc584c",
+    "url": "https://huggingface.co/datasets/allenai/olmoearth_pretrain_dataset/resolve/27a2be0d820196aff3b700a94c0874d780da3caf/h5py_data/0000.tar?download=true",
+    "hf_revision": "27a2be0d820196aff3b700a94c0874d780da3caf",
+    "source_samples": 10009,
+    "license": "CC-BY-4.0 per dataset card; retain component-source terms"
+  },
+  "h5py_data-0001.tar": {
+    "size": 48339015680,
+    "sha256": "c24ef8b6ba8c1e32746608227091ac556e2d8127d2e8e7cf1dccf02b3f120e98",
+    "url": "https://huggingface.co/datasets/allenai/olmoearth_pretrain_dataset/resolve/27a2be0d820196aff3b700a94c0874d780da3caf/h5py_data/0001.tar?download=true",
+    "hf_revision": "27a2be0d820196aff3b700a94c0874d780da3caf",
+    "license": "CC-BY-4.0 per dataset card; retain component-source terms",
+    "source_samples": 10006
+  }
+}

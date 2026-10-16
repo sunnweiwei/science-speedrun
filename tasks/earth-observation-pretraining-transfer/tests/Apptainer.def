@@ -1,0 +1,32 @@
+Bootstrap: docker
+From: python:3.12.11-slim-bookworm
+
+# Operator first runs environment/setup.sh to create the pinned runtime.
+# Build from the repository root. This copies installed packages into the image;
+# inference does not bind the host virtualenv or source checkout.
+%files
+    {{ EARTH_RUNTIME_ROOT }}/olmoearth-upstream/.venv/lib/python3.12/site-packages /opt/pinned-packages
+    earth-observation-pretraining-transfer/tests/test.sh /tests/test.sh
+    earth-observation-pretraining-transfer/tests/grade.py /tests/grade.py
+    earth-observation-pretraining-transfer/tests/replay.py /tests/replay.py
+    earth-observation-pretraining-transfer/tests/namespace.py /tests/namespace.py
+    earth-observation-pretraining-transfer/environment/evaluation/probes.py /evaluation/probes.py
+    earth-observation-pretraining-transfer/environment/evaluation/package_contract.py /evaluation/package_contract.py
+
+%post
+    cp -a /opt/pinned-packages/. /usr/local/lib/python3.12/site-packages/
+    rm -rf /opt/pinned-packages
+    apt-get update
+    apt-get install -y --no-install-recommends bubblewrap libglib2.0-0 libgl1
+    rm -rf /var/lib/apt/lists/*
+    mkdir -p /workspace/submission /data/eval /logs/verifier
+    mkdir -p /data/eval/awf /data/eval/lfmc
+    touch /data/eval/awf/inputs.h5 /data/eval/lfmc/inputs.h5
+    CUDA_VISIBLE_DEVICES='' python -c 'import h5py, torch, sklearn, olmoearth_pretrain'
+
+%environment
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+    export WANDB_MODE=disabled
+    export HF_HUB_OFFLINE=1
+    export OLMO_INFERENCE_HASHSEED=0

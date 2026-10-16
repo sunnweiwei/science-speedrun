@@ -33,6 +33,7 @@ The budget column is the agent's development budget in `task.toml`, one of two s
 | [protein-sequence-modeling](tasks/protein-sequence-modeling) | one from-scratch protein sequence model with heads for eleven PEER understanding tasks (mean task reward) | 8× H100, 48 h | 0.647 | 0.670 | — | PEER tasks (TAPE/PEER S3, 1.6 GB) + UniRef50 2026_03 decontaminated with MMseqs2 (9.9 GB) |
 | [fluid-flow-control](tasks/fluid-flow-control) | one shared closed-loop controller for all 39 HydroGym flow-control cases (2D/3D cylinder, pinball, airfoil, gust, sphere, cube, channel, nozzle, Kolmogorov; MAIA / JAX / JAX-Fluids CFD), scored by 26 named physical metrics | 8× H100, 48 h | 25/26 cases valid, near the uncontrolled flows | — (shared starter untrained; per-case specialists in `references/`) | — | HF release, 423 GB (39 CFD environments) |
 | [atomistic-materials](tasks/atomistic-materials) | one universal interatomic potential (energy, forces, stress) from random initialization (UMA-S architecture) for eight suites: stability screening, phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces, Li-migration NEB (Crystal Potential Score v2 / 100) | 8× H100, 48 h | 0.105 | 0.371 (scratch, validation) | 0.50 (pretrained UMA-S mixed replay) | HF release, 89 GB (42.4M-frame DFT pool + eight suites) |
+| [earth-observation-pretraining-transfer](tasks/earth-observation-pretraining-transfer) | one from-scratch geospatial encoder (Sentinel-1/2 time series, OlmoEarth-style) whose frozen features transfer to AWF land-cover classification and live fuel moisture (LFMC) regression; reward = mean of AWF accuracy and LFMC MAE skill | 1× H100, 48 h | 0.406 | — (starter: 77.0% AWF / 21.46 LFMC MAE, validation) | — | pinned public sources, ~148 GB download (agent view 100 GB, private 12 GB) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
@@ -49,6 +50,14 @@ Notes on the table:
   under that rule. These three scores are on the full suite. The agent now sees a small validation split
   (74 assemblies) and the verifier scores the held-out test split (1,448 assemblies); re-verified on the test
   split: 0.0004, 20 min on 4 L40.
+- earth-observation-pretraining-transfer was tested on an 8×H100 host with the Antigravity CLI (Gemini 4 Argon, then
+  Gemini 3.8 Flash): the agents ran a starter smoke run, the raw-feature and random-initialization controls the
+  instruction asks for, published early with full provenance, and then trained the starter recipe from scratch as
+  their first real candidate (no checkpoint is provided); the sessions were stopped after about 1.5 h. The smoke
+  package (20 + 10 updates) scored 0.406 through Harbor's separate verifier on one H100 in 32 min. The verifier had
+  only run under Apptainer; ai4sci-tasks#149 fixed four Docker/Harbor failures (grading at start-up, procfs in the
+  model namespace, an empty CUDA_VISIBLE_DEVICES, non-numeric reward.json) and added `replay.py --no-namespace` for
+  development where the workspace cannot create namespaces.
 - atomistic-materials was tested on an 8×H100 host: a Codex session that did not retrain the baseline, published a
   300-update smoke package early, and started mixed-source pretraining (MP + OMat24 + MatPES with source energy
   embeddings) behind a fixed all-suite panel that publishes only improvements without a suite regression; it was

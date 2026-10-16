@@ -75,6 +75,15 @@ case "$task" in
     read -r repo rev sha < <(python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); print(d["repo_id"], d["revision"], d["manifest_sha256"])' "$t/environment/data/download-source.json")
     inbox "huggingface_hub>=1.0,<2" "cd environment/data && python release.py install --root $root/release --repo-id $repo --revision $rev --manifest-sha256 $sha"
     data=$root/release; private=$root/release ;;
+  earth-observation-pretraining-transfer)  # pinned public sources (~148 GB), materialized in the task's own runtime image
+    $DOCKER build -q -f "$t/environment/Dockerfile" -t eo-runtime "$t"
+    $DOCKER run --rm -v "$t:/task:ro" -v "$root:/out" -e CUDA_VISIBLE_DEVICES= eo-runtime bash -c \
+      "apt-get update -qq && apt-get install -y -qq curl >/dev/null && \
+       python /task/environment/data/materialize.py --pretrain-source two-shards --output /out/prepared --workers 8 && \
+       mkdir -p /out/agent-data /out/private && cp -aL /out/prepared/19837 /out/agent-data/19837 && \
+       python /task/environment/evaluation/screening.py prepare --data-root /out/prepared --output /out/agent-data/eval --site-fraction 1 && \
+       cp -aL /out/prepared/eval/. /out/private/"
+    data=$root/agent-data; private=$root/private ;;
   fluid-flow-control)                     # HydroGym release (423 GB, 39 cases, pinned HF commit), every file hash-verified
     inbox "huggingface_hub>=1.0,<2" "python environment/data/materialize.py $root --download"
     data=$root; private=$root ;;

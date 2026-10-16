@@ -1,0 +1,40 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/earth-observation-pretraining-transfer"
+version = "0.4.1"
+description = "Learn Earth observation representations from scratch and evaluate transfer to land-cover classification and live fuel moisture regression with fixed AWF/LFMC frozen probes."
+authors = [{ name = "Sanxing Chen" }, { name = "James Cai" }]
+keywords = ["model-development", "earth-observation", "representation-learning", "geospatial"]
+
+[metadata]
+author_name = "Sanxing Chen and James Cai"
+data_status = "Pinned public sources; 19,837 geographically filtered pretraining samples; complete 1,459 AWF and 44,022 LFMC windows"
+delivery_status = "Large starter scores 77.034884% AWF validation accuracy and 21.459503 LFMC validation MAE after 6000 WorldCover + 1000 moisture updates; one adaptive seed; replication and untouched-test generalization unproven"
+
+# Docker acceptance is best effort on this cluster; see docs/READINESS.md.
+[agent]
+timeout_sec = 172800.0
+
+[environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 131072
+storage_mb = 524288
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 14400.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 4
+memory_mb = 32768
+storage_mb = 131072
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

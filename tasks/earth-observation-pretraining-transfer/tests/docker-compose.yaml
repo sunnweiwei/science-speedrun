@@ -1,0 +1,22 @@
+# The controller supplies a submission snapshot and collects /logs/verifier.
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    # Same outer-container namespace settings as the weather verifier: bwrap's user namespace needs
+    # an unmasked /proc (systempaths=unconfined) and tests/test.sh detaches the NVIDIA runtime's
+    # /proc/driver/nvidia mounts before the model runs. The inner model namespace drops
+    # capabilities and unshares the network.
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+      - systempaths=unconfined
+    cap_add: [SYS_ADMIN]
+    volumes:
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR}"
+        target: /data/eval
+        read_only: true
+        bind:
+          create_host_path: false

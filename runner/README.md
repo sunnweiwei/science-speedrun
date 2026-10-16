@@ -13,7 +13,7 @@ task's own verifier. It is the tooling behind the agent-behavior tests of the ta
 | `run_trial.sh`, `run_verify.sh` | the two halves of `run.sh` |
 | `config.sh` | every setting, overridable from the environment |
 | `Dockerfile.runner`, `Dockerfile.prepare` | the Harbor runner image and the data-preparation image |
-| `harbor_ext/` | Harbor extensions: GPU-aware Docker environment, the continuing Codex and Claude Code agents, the copy agent |
+| `harbor_ext/` | Harbor extensions: GPU-aware Docker environment, the continuing Codex, Claude Code and Antigravity agents, the copy agent |
 
 ## Setup
 
@@ -30,6 +30,10 @@ task's own verifier. It is the tooling behind the agent-behavior tests of the ta
      - Set `CLAUDE_BIN` to a host `claude` binary; the default is the one on `PATH`.
      - Authenticate with a subscription login by exporting `CLAUDE_CODE_OAUTH_TOKEN` from `claude setup-token` (default), or with `ANTHROPIC_API_KEY`.
      - The token is passed by name from your environment and is never written to disk.
+   - **Antigravity CLI with Gemini** (`AGENT_KIND=antigravity`):
+     - Install `agy` once on the host (`curl -fsSL https://antigravity.google/cli/install.sh | bash`), set `AGY_BIN` to it and add its directory to `MOUNT_ROOTS`. It is mounted read-only into the task container, which has no network to download it.
+     - Export `GEMINI_API_KEY` (or `GOOGLE_API_KEY`); it is passed by name and never written to disk. The model defaults to `AGY_MODEL=google/gemini-4-argon`.
+     - Per-minute quota errors (429) on a shared Gemini project end a turn early; the resume loop waits before continuing.
 5. **Data.** `runner/prepare.sh TASK /data/TASK` for each task you will run. Private Hugging Face repositories need `HF_TOKEN`.
    - Add every data root outside `EVAL_ROOT` to `MOUNT_ROOTS`.
    - natural-disease-progression is MIMIC-IV derived: its release is credentialed and its terms forbid redistribution.

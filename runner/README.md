@@ -64,4 +64,6 @@ AGENT_KIND=claude-code HOURS=48 runner/run.sh single-cell-perturbation-predictio
   - Image builds fill Docker's disk: run `docker builder prune` between batches.
   - Agents may write hundreds of GB under `research/`, for example decompressed copies of training data. Cap a run with a loop-mounted filesystem on a shared disk.
 - **Rollout logs.** `codex exec --json` stdout can stop updating after a few hours; the rollout jsonl under `agent/sessions/` is authoritative.
+- **Host networking.** If containers on the default Docker bridge have no outbound access (task image builds fail in `git fetch` or `pip install`), set `HARBOR_BUILD_NETWORK=host`: task images then build on the host network.
+- **GPUs lost mid-run.** A `systemctl daemon-reload` on the host resets the device rules of running containers that got their GPUs only through a reservation ("Failed to initialize NVML: Unknown Error"). The runner therefore also passes the GPU device nodes explicitly, which survives the reload.
 - **Stopping a run.** `docker stop run-NAME`, then remove its `NAME__*` containers and network by name.

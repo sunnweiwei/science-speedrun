@@ -11,7 +11,7 @@ mkdir -p "$EVAL_ROOT/trials-verify" "$EVAL_ROOT/research/$name"
 exec 9>"$EVAL_ROOT/.verify.lock"; flock 9
 $DOCKER run --rm --name "verify-$name" $(runner_mounts) -v "$pkg:$pkg" -w "$EVAL_ROOT" \
   -e PYTHONPATH="$HARNESS_DIR" -e HARBOR_GPU_DEVICE_IDS="${GPU_IDS:-}" \
-  -e HARBOR_SKIP_VERIFIER=0 -e HARBOR_COPY_PACKAGE="$pkg" \
+  -e HARBOR_SKIP_VERIFIER=0 -e HARBOR_COPY_PACKAGE="$pkg" -e HARBOR_BUILD_NETWORK="${HARBOR_BUILD_NETWORK:-}" \
   -e TASK_RESEARCH_DIR="$EVAL_ROOT/research/$name" --env-file "$data_env" \
   "$RUNNER_IMAGE" harbor trial start -p "$TASKS_DIR/$task" -a harbor_ext.copy_agent:CopyPackageAgent \
   --env harbor_ext.local_gpu_docker:LocalGpuDockerEnvironment \

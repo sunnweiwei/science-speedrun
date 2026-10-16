@@ -8,6 +8,8 @@ This subclass allocates the task's declared GPU count ([environment] gpus for th
     --env harbor_ext.local_gpu_docker:LocalGpuDockerEnvironment
     HARBOR_GPU_DEVICE_IDS=0,1,2,3   optional pool; the first N ids are used. Unset: the first N GPUs.
     HARBOR_GPU_CAP=1                agent-eval sessions: at most this many GPUs per environment.
+    HARBOR_BUILD_NETWORK=host       build the task images with this network (for a host whose default
+                                    Docker bridge has no outbound access during RUN steps).
     HARBOR_SKIP_VERIFIER=1          do not start the separate verifier environment (the trial records
                                     an error after the agent artifacts are collected); the saved
                                     package is scored later with the task's full verifier resources.
@@ -39,6 +41,13 @@ class LocalGpuDockerEnvironment(DockerEnvironment):
     @property
     def _docker_compose_paths(self) -> list[Path]:
         paths = list(super()._docker_compose_paths)
+        if getattr(self, "_gpu_overlay_dir", None) is None:
+            self._gpu_overlay_dir = tempfile.TemporaryDirectory()
+        network = os.environ.get("HARBOR_BUILD_NETWORK")
+        if network:
+            path = Path(self._gpu_overlay_dir.name) / "docker-compose-build-network.json"
+            path.write_text(json.dumps({"services": {"main": {"build": {"network": network}}}}))
+            paths.append(path)
         n = self._effective_gpus
         cap = os.environ.get("HARBOR_GPU_CAP")
         if cap:   # codex-eval: every session gets at most this many GPUs (1), whatever the task declares
@@ -51,8 +60,16 @@ class LocalGpuDockerEnvironment(DockerEnvironment):
         device = {"driver": "nvidia", "capabilities": ["gpu"]}
         device.update({"device_ids": pool[:n]} if pool else {"count": n})
         overlay = {"services": {"main": {"deploy": {"resources": {"reservations": {"devices": [device]}}}}}}
-        if getattr(self, "_gpu_overlay_dir", None) is None:
-            self._gpu_overlay_dir = tempfile.TemporaryDirectory()
+        # Also list the device nodes explicitly. A `systemctl daemon-reload` anywhere on the host resets
+        # the device rules of running containers that got their GPUs only through the reservation
+        # ("Failed to initialize NVML: Unknown Error", EPERM on /dev/nvidia*); explicit device nodes
+        # survive it (NVIDIA container toolkit troubleshooting). Indices only: UUID pools are skipped.
+        indices = pool[:n] if pool else [str(i) for i in range(n)]
+        if all(i.isdigit() for i in indices):
+            # Host paths, resolved by dockerd (this process runs in the runner container without GPUs).
+            nodes = [f"/dev/nvidia{i}" for i in indices] + ["/dev/nvidiactl", "/dev/nvidia-uvm",
+                                                             "/dev/nvidia-uvm-tools"]
+            overlay["services"]["main"]["devices"] = [f"{d}:{d}" for d in nodes]
         path = Path(self._gpu_overlay_dir.name) / "docker-compose-gpus.json"
         path.write_text(json.dumps(overlay))
         return paths + [path]

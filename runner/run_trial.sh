@@ -16,7 +16,7 @@ if [ "${GPUS:-task}" != task ]; then resources+=(--override-gpus "$GPUS"); cap=(
 [ -n "${AGENT_MEMORY_MB:-}" ] && resources+=(--override-memory-mb "$AGENT_MEMORY_MB")
 mkdir -p "$EVAL_ROOT/trials" "$EVAL_ROOT/research/$name"
 $DOCKER run --rm --name "run-$name" $(runner_mounts) -w "$EVAL_ROOT" \
-  -e PYTHONPATH="$HARNESS_DIR" -e HARBOR_GPU_DEVICE_IDS="${GPU_IDS:-}" "${cap[@]}" -e HARBOR_SKIP_VERIFIER=1 \
+  -e PYTHONPATH="$HARNESS_DIR" -e HARBOR_GPU_DEVICE_IDS="${GPU_IDS:-}" "${cap[@]}" -e HARBOR_SKIP_VERIFIER=1 -e HARBOR_BUILD_NETWORK="${HARBOR_BUILD_NETWORK:-}" \
   "${auth[@]}" -e TASK_RESEARCH_DIR="$EVAL_ROOT/research/$name" --env-file "$data_env" \
   "$RUNNER_IMAGE" harbor trial start -p "$TASKS_DIR/$task" "${agent[@]}" \
   --env harbor_ext.local_gpu_docker:LocalGpuDockerEnvironment "${resources[@]}" \

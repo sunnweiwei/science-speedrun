@@ -18,7 +18,6 @@ than the historical d5 config's width of 128. The runtime uses a separately
 pinned modern environment; upstream's original Python 3.8.12 / TensorFlow 2.4.1
 installation metadata is not used.
 
-See `../../reproduction/upstream-audit.md` for architecture, protocol
-differences, and input adaptations. Source provenance verifies the implementation
+Source provenance verifies the implementation
 copy; it does not imply reproduction of the paper's complete experimental
 protocol or reported accuracy.

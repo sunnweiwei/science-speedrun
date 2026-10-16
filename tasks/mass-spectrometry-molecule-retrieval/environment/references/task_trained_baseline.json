@@ -283,7 +283,7 @@
     "model_execution": "Input-only offline namespaces; trusted grading receives private labels separately. Operator repartitioned cached prediction scoring; not an unmodified single-H100 timing acceptance.",
     "production_docker_acceptance": false,
     "single_h100_acceptance": false,
-    "raw_evidence_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913",
+    "raw_evidence_path": "<author-workspace>/task_release/acceptance-40edda8/cs-cpu-score-20260913",
     "cpu_recovery_script_sha256": "e08c5fd8d8d614aade8f13b733be7ca7fd594ff666063d11a91d8cce1bf706b5"
   },
   "interpretation": "Task-owned from-scratch model quality measured on the full test fold. Different initialization, fallback, and heterogeneous commissioning hardware from the external reference; not a matched-budget agent comparison."

@@ -20,9 +20,6 @@ unreleased implementation cannot currently be certified.
   four PDF pages: cover followed by printed pages 1–3 / Algorithms 1–5.
 - [PMC article mirror](https://pmc.ncbi.nlm.nih.gov/articles/PMC11602728/).
 
-Artifact directory:
-`/home/users/xy200/yinxunjian/mycode/ai4sci-artifacts/surface-code-decoding/20260919/references/alphaqubit/`.
-
 | File | Bytes | SHA256 |
 | --- | ---: | --- |
 | `nature-2024.pdf` | 5,849,106 | `565794ee61a72c7d62a6e094dbd60ed826ddced241bcb7c7d810ae18cc830e28` |
@@ -386,20 +383,3 @@ These are **implementation assumptions**, not facts recovered from the paper.
 The source supports reporting a single-model, single-fold, compute-bounded
 AlphaQubit-design reproduction if clearly labeled; it does not support calling
 that the full20-seed/two-fold published result.
-
-## Retired LSTM run: stop audit
-
-The user pivoted the primary baseline to AlphaQubit. Root stopped active LSTM
-jobs and cancelled the pending chain. Read-only verification found eight
-previously active jobs ended with Slurm signal10/SIGUSR1 (`FAILED`, `0:10`),
-because the signal reached the batch shell before Python could publish its
-final snapshot. Their progress files remain `training` and their last sessions
-have no end timestamp; this was **not a graceful training completion**.
-
-All16 `best.keras` / `last.keras` archives were verified readable with finite
-model/optimizer tensors and optimizer iterations matching embedded data
-cursors. Prior atomic checkpoints remain usable. Exact SHA256 values,
-recoverable epoch/batch cursors, job accounting and lower bounds on lost work
-are retained outside Git in
-`native-v1/pivot-stop.json` under the artifact root. No old weights, metadata,
-progress files, or Slurm jobs were modified by this audit.

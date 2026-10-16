@@ -1,6 +1,6 @@
 # Starter: reproduced results
 
-Reproduced by the task reviewers on one 8×H100 host (2026-09-19/20) with the task's development
+Reproduced in this setup on eight H100s (2026-09-19/20) with the task's development
 image, the pinned MP-20 materialization and prepared scorer assets. Each row is one unconditional
 request of 2,500 structures (seed 20260919), relaxed with the fixed UMA-200 recipe and scored by
 the unchanged LeMat ensemble, exactly as `/workspace/evaluation/score.sh` does.

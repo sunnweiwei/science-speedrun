@@ -238,40 +238,4 @@ paragraph. The task is research use. The card's Apache-2.0 tag does **not**
 describe every constituent of the pretraining corpus: `largest_*` (LargeST) is
 CC BY-NC 4.0 and is 43.1% of the allow-listed bytes, and about a quarter more
 carries Kaggle, research-only or registration-gated terms. Nothing is
-redistributed here, so those terms bind the user directly;
-`../../UPSTREAM_LICENSES.md` has the table and the two options for tightening
-the allow-list. `docs/UPSTREAM_LICENSES.md` in the task repository
-collects every upstream license, including the non-commercial license of the
-TimesFM-3 checkpoint, which is downloaded only by maintainers for the replay
-and never redistributed.
-
-## Why this corpus is not republished
-
-`pde-surrogate` publishes a pinned data release on the Hub. This task does not,
-and the reason is worth stating so nobody adds one for symmetry.
-
-Every byte of the permitted corpus is **byte-identical to upstream**
-`Salesforce/GiftEvalPretrain` at the pinned revision. What is task-specific is
-which 95 of its 152 directories are permitted, and that is already pinned here
-in `sources.lock.json` with a SHA-256 per file. Uploading 273 GB would duplicate
-Salesforce's data to add nothing a consumer cannot already verify.
-
-`pde-surrogate` is different because its split *creates* files: the corpus there
-stores training and held-out trajectories in the same HDF5, so the release
-carries truncated heads and held-out tails that exist nowhere upstream. Here the
-corpus and the evaluation data are separate repositories to begin with.
-
-Two things were checked before concluding this, both recorded in
-`docs/validation/republication_readiness.json`:
-
-- **Nothing in the corpus describes the held-out windows.** `pde-surrogate` found
-  that PDEArena ships `pde_test_seed_*.yaml`, the generator seeds for its test
-  trajectories, and nearly published them. The equivalent search here over all
-  326 corpus files returns zero matches.
-- **A release would have to be labelled CC BY-NC 4.0**, because LargeST is 43.1%
-  of the allow-list and is non-commercial. Four Kaggle-sourced directories worth
-  1.9% remain unresolved, their competition rules being login-walled.
-
-If a release is ever wanted anyway — for one-step reproduction rather than for
-the bytes — `build_release.py` produces it, and `tests/test_release.py` enforces
-that the six leaking directories can never enter one.
+redistributed here, so those terms bind the user directly.

@@ -1,4 +1,4 @@
-# Research report — virtual-cell-zeroshot
+# Research report
 
 ## Current best candidate
 - candidate_id: (none yet) · submission SHA-256: · published (UTC):

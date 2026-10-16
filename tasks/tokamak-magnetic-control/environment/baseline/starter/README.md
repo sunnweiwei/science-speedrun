@@ -35,7 +35,7 @@ python /workspace/baseline/starter/train.py --run /workspace/research/run-001 --
     --residual-package /workspace/baseline/shape_vc/package --residual-scale 0.05 \
     --demo-episodes 1 --demo-min-episodes 32 --critic-warmup 1000 --publish-every 24 --snapshot-every 24
 
-# 3. learning curve of the snapshots on visible draws (the sealed curve is the maintainers' job)
+# 3. learning curve of the snapshots on visible draws
 python /workspace/evaluation/curve.py --run /workspace/research/run-001/run --output /workspace/research/curve-001 \
     --randomization visible --seeds 0 1 2 --workers 6 --every 2 --watch
 

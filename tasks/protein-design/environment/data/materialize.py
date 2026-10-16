@@ -70,9 +70,19 @@ MAX_PER_CLUSTER = 2
 
 # Structures staged for RFdiffusion3-style training, which learns from whole assemblies
 # rather than from the per-track design requests. Sized to be the same order as the fit
-# view so the two are comparable, and because the agent's budget when this was sized (1 GPU, 8 CPUs, 24 h; now 8 GPUs,
-# 64 CPUs, 48 h) could not consume more: at a measured ~2 s of preprocessing per drawn example, 8 workers
-# saturate a single H100 well before the corpus is exhausted.
+# view so the two are comparable.
+#
+# For scale, measured from the pinned indexes at the 2024-01-01 cutoff: 225,264 eligible
+# entries, 31,059 of them post-cutoff (evaluation), 112,281 dropped as homologues of an
+# evaluation cluster, leaving a development pool of 81,924 that splits into 35,033 fit and
+# 46,891 tune. This default therefore stages 46% of the fit pool, about 3.7 GiB.
+#
+# Raising it costs no GPU time: sampling is with replacement and an "epoch" is only a
+# counter, so a run stops on its own budget rather than on exhausting the corpus, and the
+# corpus bounds only how many DISTINCT structures it can draw from. It is not free either,
+# because this directory doubles as the novelty reference the grader scores against
+# (tests/docker-compose.yaml mounts it at /reference/fit), so changing it changes scoring
+# and must stay in step with the prepared copy on Hugging Face.
 CORPUS_STRUCTURES = 16000
 
 

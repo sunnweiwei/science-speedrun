@@ -29,7 +29,7 @@ from-scratch starter currently reaches 0.037.
 - `/workspace/baseline/starter/`: the executable approximately-50M starter (an ESMFold2 graph
   trained from scratch) and its reproduced results next to the reference, per track.
 - `/workspace/references/`: runnable approximately-50M architectures, pinned upstream sources and
-  prior controlled experiments, not re-run by the integrator.
+  prior controlled experiments, not re-run in this setup.
 - `/workspace/evaluation/`: direct development evaluation on the visible suite.
 - `/workspace/research/`: writable space for experiments, checkpoints and resume state.
 

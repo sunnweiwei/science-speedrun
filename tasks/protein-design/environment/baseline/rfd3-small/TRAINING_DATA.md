@@ -284,7 +284,7 @@ assembly build, crop, condition sampling, featurisation - costs a **median 2.05 
 mean 2.50 s per drawn example** on one core, measured through upstream's own loader at
 crop 256 with 16 noise draws.
 
-That sets the shape of the problem on the agent's budget at the time (1 GPU, 8 CPUs, 24 h; now 8 GPUs, 64 CPUs, 48 h): eight
+That sets the shape of the problem: eight
 loader workers deliver roughly 3 examples/s, so the CPUs are not obviously the binding
 constraint, and the honest answer is that **you should measure GPU utilisation before
 assuming either side is**. Turning on `save_to_cache` for the parsed-CIF cache

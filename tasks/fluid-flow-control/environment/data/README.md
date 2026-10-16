@@ -6,8 +6,8 @@
   release.json                       exact membership, runtime profiles and exclusions
   source-files.json                  Git blob/LFS hashes and byte sizes
   native-configs.json                pinned source configurations
-  selection-research-v2.json, SELECTION-RESEARCH-V2.md   selection rationale and per-case costs
-  *.py, other *.json, *.md           release code and selection history the evaluator imports; not data
+  selection-research-v2.json         selection rationale and per-case costs
+  *.py, other *.json                 release code and descriptors the evaluator imports; not data
   release/                           the prepared release, read-only (also reachable as /data)
     release.json  materialized.json
     environments/<CASE>/...          geometry, grids, configuration and initial flow states, 39 cases
@@ -29,7 +29,7 @@ experience or model checkpoints.
 - [release.json](release.json): exact membership, runtime profiles and exclusions.
 - [source-files.json](source-files.json): Git blob/LFS hashes and byte sizes.
 - [native-configs.json](native-configs.json): pinned source configurations.
-- [selection/cost table](SELECTION-RESEARCH-V2.md) and [selection-research-v2.json](selection-research-v2.json): rationale and per-case costs.
+- [selection-research-v2.json](selection-research-v2.json): selection rationale and per-case costs.
 - Canonical release SHA256:
   `cabc8b718cdf9b22fcd661b9b3c5f8e452498e1c299b0fc9c7ac1afc22df47d2`.
 

@@ -2,9 +2,7 @@
 
 Protein-design benchmarks report novelty as the maximum TM-score of each designable design to the PDB or the
 training set, computed with Foldseek in TM-align mode (lower is more novel); generative models typically sit
-around 0.45-0.8 depending on the task. An agent package in the Babel acceptance round (#117) instead
-retrieved fit-corpus backbones: 90-100 % of its designs reached TM >= 0.9 to a fit chain, many identical
-(TM 1.0, sequence identity 1.0). A design therefore passes only if, besides the published designability
+around 0.45-0.8 depending on the task. A design therefore passes only if, besides the published designability
 criterion, its maximum TM-score to the fit corpus is below `common.NOVELTY_MAX_TM`.
 
 The reference is the fit corpus the agent trains on (`development/fit/structures`), mounted read-only into

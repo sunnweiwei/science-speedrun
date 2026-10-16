@@ -16,7 +16,7 @@
     "slurm_job": "12473780",
     "gpu_count": 0,
     "mces_workers": 16,
-    "python": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/mces_env/bin/python",
+    "python": "<author-workspace>/mces_env/bin/python",
     "source_revision": "2a11b42355b85e0e5462c8a172bc30aedad1f0f0"
   },
   "report": {
@@ -99,66 +99,66 @@
     "disagreements": 0
   },
   "source_artifacts": {
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/data/task_materialized/public/verifier/manifest.json": {
+    "<author-workspace>/data/task_materialized/public/verifier/manifest.json": {
       "sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
       "bytes": 553
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_clean_replay/top5/rankings.jsonl": {
+    "<author-workspace>/runs/mist_clean_replay/top5/rankings.jsonl": {
       "sha256": "78a781884f442039c66963eeab7187f27645440e644d3088f85dbb81e8fd7f3d",
       "bytes": 299465574
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/grading/sealed/rankings.jsonl": {
+    "<author-workspace>/task_release/acceptance-40edda8/cs-cpu-score-20260913/grading/sealed/rankings.jsonl": {
       "sha256": "14bd3670c28d31d20d3d20c28eed8c26711bd6c71787c5e47426434193a97e26",
       "bytes": 299465574
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/glacier_full_test/hybrid_clean_mist/rankings.jsonl": {
+    "<author-workspace>/runs/glacier_full_test/hybrid_clean_mist/rankings.jsonl": {
       "sha256": "b703afcdd0b543486d54b36b79e096de3259b25dbf0e29ebfb876b5d19e7a8c6",
       "bytes": 299465574
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/model_manifest.json": {
+    "<author-workspace>/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/model_manifest.json": {
       "sha256": "7fd7b4c11cfbe9f4b2e19316806374688d818431526deaece36f5fa5855d5f69",
       "bytes": 434
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_train_full_cls/msg_mist/spectra_encoder.pt": {
+    "<author-workspace>/runs/mist_train_full_cls/msg_mist/spectra_encoder.pt": {
       "sha256": "30715dbd198bb1d0d776a5dcb9d37488b8d5480c243a1572d62ed27b73e92c6b",
       "bytes": 114206138
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/.versions/generation-_ntrd0ob/glacier.ckpt": {
+    "<author-workspace>/task_release/acceptance-40edda8/native-recovery-20260912/work/frozen-submission/.versions/generation-_ntrd0ob/glacier.ckpt": {
       "sha256": "2619bfbf041bc9a115b286fa2a9b02856081528942de6ef90f2ec2c46d46b0fd",
       "bytes": 60532834
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl": {
+    "<author-workspace>/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl": {
       "sha256": "1f293459ce15a99c652025ae29817afc7741356217dbd4e11177dc4b75b86f73",
       "bytes": 170585298
     },
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919/run.py": {
+    "<author-workspace>/runs/scratch_glacier_clean_mist_20260919/run.py": {
       "sha256": "8dde16926b39ead51f962984d039e9acca815eca06a1c5498533bb496c0f563c",
       "bytes": 8316
     },
-    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/tests/grader.py": {
+    "tests/grader.py": {
       "sha256": "bce006b09ec8f90136099efdcc90cb1d27eb87fb714fc290f2e0ed71ab3cd6d6",
       "bytes": 8689
     },
-    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/tests/common.py": {
+    "tests/common.py": {
       "sha256": "c2b5ff3fcd00367b27bdd5b7a69d20e48cfa6e61df9da95221c1beb81fff7eda",
       "bytes": 5908
     },
-    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/environment/references/scripts/merge_glacier_fallback.py": {
+    "environment/references/scripts/merge_glacier_fallback.py": {
       "sha256": "5ef9d0acff2106bc57850a4725550723505f83ac325258163ce26b0b16227296",
       "bytes": 5630
     }
   },
   "merge_command": [
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/mces_env/bin/python",
-    "/usr/project/xtmp/xy200/mycode/ai4sci-tasks/massspecgym-retrieval/environment/references/scripts/merge_glacier_fallback.py",
+    "<author-workspace>/mces_env/bin/python",
+    "environment/references/scripts/merge_glacier_fallback.py",
     "--input-root",
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/data/task_materialized/public/verifier",
+    "<author-workspace>/data/task_materialized/public/verifier",
     "--glacier",
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl",
+    "<author-workspace>/task_release/acceptance-40edda8/cs-cpu-score-20260913/work/merged-native/rankings.jsonl",
     "--fallback",
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/mist_clean_replay/top5/rankings.jsonl",
+    "<author-workspace>/runs/mist_clean_replay/top5/rankings.jsonl",
     "--output-root",
-    "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919/merged"
+    "<author-workspace>/runs/scratch_glacier_clean_mist_20260919/merged"
   ],
   "scoring": {
     "implementation": "tests/grader.py:score",
@@ -173,7 +173,7 @@
     "input_and_labels_manifest_hashes_verified": true,
     "rankings_sealed_before_loading_labels": true
   },
-  "raw_evidence_path": "/usr/project/xtmp/xy200/mycode/_massspecgym_repro/runs/scratch_glacier_clean_mist_20260919",
+  "raw_evidence_path": "<author-workspace>/runs/scratch_glacier_clean_mist_20260919",
   "raw_report_sha256": "bb1f8ae8030983cc472a736e796a100eb052cc4fd55b55f1946cc48d78613d2f",
   "official_reference_changed": false,
   "fully_from_scratch_pipeline": false,

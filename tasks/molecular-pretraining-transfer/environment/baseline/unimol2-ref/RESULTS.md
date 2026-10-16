@@ -17,8 +17,8 @@ pins. The first attempt hung at update 10,700 (the unequal-shard `IndexError` de
 
 ## Transfer (verifier, test sets)
 
-The package made by `publish.py` from `checkpoint_last.pt` was replayed through the isolated verifier
-(`tests/docker-compose.yaml`, 8 H100, 31 min). The released 84M checkpoint and the untrained architecture were run
+The package made by `publish.py` from `checkpoint_last.pt` was replayed through the isolated verifier.
+The released 84M checkpoint and the untrained architecture were run
 with the same fine-tune code (`evaluation/protocol`) on the same data.
 
 | group | tasks | baseline MA-RAE | mean Spearman | released 84M MA-RAE | no pretraining MA-RAE |
@@ -66,6 +66,6 @@ value on six ExpansionRx endpoints and on COMPAS dipole moment, so its correlati
 
 - Fine-tunes are deterministic: the verifier replay reproduced the development run's MAE on all 24 tasks to the
   printed precision.
-- Pretraining is still improving at 30k updates. Longer schedules, a better use of the 8 GPUs (throughput, batch
+- Pretraining is still improving at 30k updates. Longer schedules, better use of the GPUs (throughput, batch
   size), and objectives or data choices that help ADMET are the obvious first levers.
 - ExpansionRx and COMPAS-1D separate the baseline from the released model; QM9 and ASAP barely do.

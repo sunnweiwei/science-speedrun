@@ -151,7 +151,3 @@ it for all tracks. Contract validation checks packaging and replayability;
 from-scratch training provenance, absence of transformed pretrained parameters,
 benchmark-data compliance, and the one-model rule also require code/checkpoint
 review and cannot be proven solely by successful execution.
-
-This visible verifier runs predictor and scorer sequentially in one container;
-it is not a hardened boundary against malicious code reading native structures.
-A private evaluator must isolate input-only inference from label-bearing scoring.

@@ -45,7 +45,7 @@ permitted, so an agent starts from random initialization.
   strongest, is a verified baseline here.
 - **DPOT** (Hao et al., ICML 2024): an AFNO transformer pretrained on twelve datasets. It
   collapses on unseen physics under this protocol.
-- **Poseidon, MPP, BCAT, PROSE-FD**: audited in `environment/references/SOTA_AUDIT.md`, and
+- **Poseidon, MPP, BCAT, PROSE-FD**: audited in `docs/SOTA_AUDIT.md`, and
   excluded for license, data-availability or protocol reasons.
 
 **Status.**
@@ -89,7 +89,7 @@ The paper's split cannot be reproduced from public artifacts:
 - the paper's transfer subsets from The Well were never published.
 
 The full release's `hyp.hdf5` is excluded: it is a content copy of `diff.hdf5`
-(`environment/data/AUDIT.md` §7).
+(`docs/AUDIT-decisions.md` §7).
 
 **Materialization (controller).** Harbor does not run this step.
 
@@ -120,7 +120,7 @@ corpus file that still carries a held-out tail.
 | `/workspace/data/` | `README.md`, `AUDIT.md`, `split.json`, `split_smoke.json`, `sources.lock.json`; the four datasets (read-only mounts) |
 | `/workspace/baseline/starter/` | channel-shared U-Net, 473k parameters: train, publish (atomic), infer; reproduced reward **0.3127** |
 | `/workspace/baseline/cnext_unet/` | The Well's CNextU-net recipe, 18.6M, from scratch on PDEArena, with The Well's source at `/opt/the_well`; reproduced reward **0.3447** |
-| `/workspace/references/` | released-model replays (`released_models.md`) and the task designer's audit (`SOTA_AUDIT.md`), not verified by the integrator |
+| `/workspace/references/` | released-model replays (`released_models.md`), not verified in this setup; the task designer's audit is in `docs/SOTA_AUDIT.md`, outside the image |
 | `/workspace/evaluation/` | the verifier's scorer, the case builders and a tiny synthetic contract example |
 | `/workspace/submission/` | empty; the agent keeps the current package here |
 | `/workspace/research/` | empty, writable, on a large disk (`TASK_RESEARCH_DIR`) |

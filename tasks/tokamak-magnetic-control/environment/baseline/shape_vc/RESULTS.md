@@ -77,12 +77,6 @@ Comparison on the same sealed seeds (v0.3): hold-current 0/35 (all lost); privil
 descriptors, FreeGSNKE PCS gains) 7/34 success (one void), 19/34 kept; its holds miss on the 1.2-1.4 cm
 shape RMS and it loses seeds 1004/1005 (vertical loop under supply delay).
 
-## v0.2 history
-
-Under v0.2 (rigid vertical shifts, X-point tolerance relative to psi_bndry) the same control law
-without the vertical outer loop scored 11/34 (one void), 26/34 kept. Vertical shift and sequence had
-no success there: X-point height errors were 7-50 cm, and for the sequence the shape RMS was 3.6-4.3 cm.
-
 ## Development plant (dev randomization, seeds 5001-5007, not the sealed seeds)
 
 The same controller run on the simulator boundary instead of the estimator gives the upper bound
@@ -92,5 +86,5 @@ on 450- and 700-step proxies:
 - the vertical outer loop (v0.3): with the simulator boundary, 10 of 12 vertical-shift, hold and P4
   episodes pass, against 6 of 12 without it.
 
-Run 2026-10-05, 35 verifier workers on a 208-core host shared with the privileged-PID run, nonlinear
+Run 2026-10-05, nonlinear
 solver, FreeGSNKE 3.1.0.

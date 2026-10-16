@@ -77,7 +77,7 @@ $TASK_PRIVATE_DIR/
 - Not downloaded: `rayleigh_benard` and `shear_flow` (optional sources, not in the split); the
   remaining PDEArena validation shards.
 - 2026-09-22: every file of the full corpus fingerprinted by content; `hyp.hdf5` is a copy of
-  `diff.hdf5` and is excluded from the split (`AUDIT.md` §7). Release `pde-surrogate-split-v2`
+  `diff.hdf5` and is excluded from the split (`docs/AUDIT-decisions.md` §7). Release `pde-surrogate-split-v2`
   built with a reader-level check on every member, verified anonymously from the Hub and
   content-checked for leakage (`docs/validation/release_leakage.json`).
 

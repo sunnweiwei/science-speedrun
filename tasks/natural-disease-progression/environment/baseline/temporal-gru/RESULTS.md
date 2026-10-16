@@ -20,7 +20,7 @@ The test row was scored through the task's own two-phase verifier, after packagi
 | constant prediction (chance) | 0.05 | 0.0501 |
 | statistical: empirical-Bayes sex/age/burden/history strata | 0.146 | 0.185 |
 | **temporal-gru (this baseline)** | 0.211 | **0.236** |
-| LightGBM on 567 hand-built features (maintainer reference; not an eligible submission) | 0.235 | **0.268** |
+| LightGBM on 567 hand-built features (reference; not an eligible submission) | 0.235 | **0.268** |
 
 ## Reading the numbers
 
@@ -30,8 +30,7 @@ The test row was scored through the task's own two-phase verifier, after packagi
 - The baseline ranks well but its risks are compressed: a calibration slope near 3 means the
   predicted spread is about a third of what it should be. That is not rewarded, but it is reported
   and worth fixing.
-- Validation is small (3,915 patients, 14 endpoints with ≥ 20 cases). In the design prototype, a
-  single model's interval was about ±0.03. Treat validation differences below about 0.03 as noise,
+- Validation is small (3,915 patients, 14 endpoints with ≥ 20 cases). A single model's interval is about
+  ±0.03. Treat validation differences below about 0.03 as noise,
   or score on an internal fold of the ICD-10-era training patients as well.
-- These are single-seed numbers. For the v2 metric, seed SD was about 0.004
-  ([../../../docs/longitudinal-v2-report.md](../../../docs/longitudinal-v2-report.md)).
+- These are single-seed numbers; seed SD on a closely related metric was about 0.004.

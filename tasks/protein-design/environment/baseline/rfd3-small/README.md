@@ -79,28 +79,18 @@ randomly initialised and trained in-session, as the contract requires.
 
 ## Training
 
-**One config, `experiment=pretrain_small_ppi`.** Both the agent and the operator run it;
-they differ only in scale and in where the data lives.
+**One config, `experiment=pretrain_small_ppi`.** It defaults to the container's data
+(`/data/fit`), so `train.py experiment=pretrain_small_ppi` runs with no overrides. Against
+upstream `pretrain` the resolved model differs in exactly the **7 width leaves**, and the only
+other change is `ppi.frequency: 0.0 -> 5.0` (both verified by composing and diffing).
 
-| | agent | operator |
-| --- | --- | --- |
-| budget | 8x H100, 48 h | 8x L40S, 48 h |
-| data | staged into the image, `/data/fit` (the config's default) | the full PDB corpus, passed as `paths.data.*` overrides |
-| how | `train.py experiment=pretrain_small_ppi` | `submit_rfd3_small_ppi.sh` |
+Three things are easy to get wrong when scaling it up:
 
-The config defaults to the container, so the agent runs it with no overrides at all. The
-operator's script supplies the cluster's mirror and split directory plus 8 ranks. Nothing
-about the model or the recipe differs between them - against upstream `pretrain` the
-resolved model differs in exactly the **7 width leaves**, and the only other change is
-`ppi.frequency: 0.0 -> 5.0` (both verified by composing and diffing).
-
-**`submit_rfd3_small_ppi.sh` is the exact recipe behind the numbers in
-`../evaluation/RESULTS.md`** - it is kept here so the reported row is reproducible rather
-than anecdotal. Its site paths are `${FOUNDRY}`, `${WORK}`, `${PQ}` and `${VENV_PY}`;
-everything else is portable. It documents the three things that are easy to get wrong:
-one rank per GPU **launched by srun** (`trainer.devices_per_node=8` alone silently trains
-on 1 of 8), a short `TMPDIR` (dataloader workers bind an AF_UNIX socket and the path has
-a 108-character limit), and `calculate_hbonds=0` (upstream's 0.2 raises without HBPLUS).
+- **one process per GPU.** The trainer does not spawn ranks itself; `trainer.devices_per_node=8`
+  alone silently trains on 1 of 8 GPUs.
+- **a short `TMPDIR`.** Dataloader workers bind an AF_UNIX socket, and its path has a
+  108-character limit.
+- **`calculate_hbonds=0`.** Upstream's 0.2 raises without HBPLUS.
 
 `pretrain_small_ppi` differs from `pretrain_small` by **one leaf**,
 `ppi.frequency: 0.0 -> 5.0`. Upstream's pretraining stage sets it to zero - PPI is meant
@@ -213,7 +203,6 @@ almost always this.
 | `rfd3_collect.py` | upstream output -> the task's submission format |
 | `rfd3_infer.sh` | the three inference stages, upstream untouched in the middle |
 | `infer.sh` | contract entry point; checkpoint discovery + `rfd3_infer.sh` |
-| `submit_rfd3_small_ppi.sh` | the 8x L40S operator recipe behind `RESULTS.md` |
 | `TRAINING_DATA.md` | the data contract: schema, clusters, and how to get the corpus |
 | `residues.py` | the atom14 table, byte-identical to the grader's copy |
 

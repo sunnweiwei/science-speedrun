@@ -320,7 +320,7 @@ def render_report(asset_root: Path) -> str:
              "<a href='https://www.nature.com/articles/s41586-024-08148-8'>Nature 2024 paper</a> and "
              "<a href='https://media.springernature.com/full/springer-static/esm/art%3A10.1038%2Fs41586-024-08148-8/MediaObjects/41586_2024_8148_MOESM1_ESM.pdf'>supplementary pseudocode</a>. "
              "The repository records reconstruction choices in reproduction/alphaqubit-source-audit.md and "
-             "reproduction/alphaqubit-implementation-options.md. Choices include unspecified residual-block internals, "
+             "docs/campaign/alphaqubit-implementation-options.md. Choices include unspecified residual-block internals, "
              "cycle encoding, value-head dimension, optimizer conventions, and the interpretation of schedule units. "
              "Paper-level accuracy requires measured evidence; implementation and runtime checks alone do not establish it.</p>")
     if evidence.warnings:

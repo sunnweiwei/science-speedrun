@@ -2,7 +2,7 @@
   "schema_version": 1,
   "reviewed_utc": "2026-09-19T05:16:44.283163+00:00",
   "sources": {
-    "artifact_directory": "/home/users/xy200/yinxunjian/mycode/ai4sci-artifacts/surface-code-decoding/20260919/classical-v1",
+    "artifact_directory": null,
     "scores_sha256": "08d92616118cc37f7c34d78b3e56b83aee5c2ab8157563a990dd4708e3ec06f2",
     "condition_counts_sha256": "118c2669f8bcd32ac1fbbb9093a361b77a80bd16e5ef8bfa13200e173954a256",
     "validation_sha256": "7921e688736268b891d942e396a8aef98517dca37138fb7b9965e5e3333313d6",

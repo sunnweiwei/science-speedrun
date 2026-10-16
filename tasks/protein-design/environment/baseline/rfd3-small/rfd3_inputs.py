@@ -261,7 +261,7 @@ def build_ppi_binder(context, length, structure_path):
             # `set_com` (`rfd3/utils/inference.py`) falls through to "COM of fixed
             # motif"; here the whole target chain IS the fixed motif, so the origin
             # becomes the TARGET's centre of mass and the binder is diffused from
-            # inside it. Measured on job 27302604, which omitted this: median minimum
+            # inside it. Measured on a run that omitted this: median minimum
             # binder-target atom distance 0.25-0.45 A on all five targets, binder COM
             # 2.4-6.7 A from the target COM, ipTM 0.19 and pass rate 0/500 - the track
             # was not measuring the model at all. `protein_binder_design.md` recommends

@@ -2,3 +2,14 @@
 **/*.pyc
 .git/
 .pytest_cache/
+# Release design history and operator notes: kept in the repository, out of both images.
+environment/data/RELEASE.md
+environment/data/RELEASE-500GB-V1.md
+environment/data/RELEASE-COVERAGE-V1.md
+environment/data/RELEASE-HOUR-V1.md
+environment/data/RELEASE-SPEED-V1.md
+environment/data/SELECTION-RESEARCH-V2.md
+environment/data/EXPANSION.md
+environment/data/HOUR-SCALE-REVIEW.md
+environment/data/COST-RESULTS-20260907.md
+environment/data/MATERIALIZE.md

@@ -28,7 +28,7 @@ states what was actually run.
 | Inference isolated from the held-out targets: a Bubblewrap namespace when the container may create one, an unprivileged uid otherwise, the determinism rerun under the same isolation; a red-team probe proves the boundary | `tests/isolation.py`, `tests/test_isolation.py` |
 | Harbor-conformant images and overlays: `main` service, task-directory build context, pinned installable runtime (`constraints.txt`), bubblewrap and the runner uid in the verifier image, `score_bounds.json` and both manifests baked in, `security_opt` for user namespaces | `environment/{Dockerfile,docker-compose.yaml}`, `tests/{Dockerfile,docker-compose.yaml}`, `task.toml` |
 | Machine-readable validation record | `docs/release_validation.json` |
-| Benchmark and model audit with verified pins | `environment/references/SOTA_AUDIT.md` |
+| Benchmark and model audit with verified pins | `docs/SOTA_AUDIT.md` |
 
 ## Reference runs (all finished; trained on the contributor's A100)
 

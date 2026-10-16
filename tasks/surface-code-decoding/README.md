@@ -119,7 +119,7 @@ H100 timing claims. Main v1 test LER is 3.012653% at d3 and 3.228889% at d5;
 the official paper's ensemble/protocol is different and headline accuracy was
 not reproduced. See [compact results](environment/baseline/alphaqubit/reproduction/alphaqubit-summary.json).
 
-Historical v1 release acceptance is recorded in [machine-readable evidence](environment/baseline/alphaqubit/reproduction/release-acceptance.json).
+Historical v1 release acceptance is recorded in [machine-readable evidence](docs/campaign/release-acceptance.json).
 All 3.25 million test shots were freshly replayed in offline, input-only GPU
 containers: P=0.7550636538461539 and score=0.858096277311141. Compared with
 historical output, 25 decisions changed; the accepted historical reference

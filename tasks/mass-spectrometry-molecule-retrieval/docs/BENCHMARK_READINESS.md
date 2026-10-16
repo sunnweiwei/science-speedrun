@@ -525,7 +525,7 @@ The independent byte-identical result is a rescore of cached simulations, not
 a second complete GPU inference run. The paper's no-CF 69.69% and CF 69.95%
 remain distinct published results; neither is the full-task target. See the
 [official paper](https://arxiv.org/html/2606.29161v1) and
-[reference reproduction ledger](environment/references/GLACIER_REPRODUCTION.md).
+[reference reproduction ledger](reproduction-logs/GLACIER_REPRODUCTION.md).
 
 The fallback domain comprises 43.30% of the test spectra. A hypothetical ten
 percentage-point gain there would add 4.33 points overall if the other domain

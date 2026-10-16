@@ -6,7 +6,7 @@ This directory is a Python project, and the image sets `PYTHONPATH=/workspace/ba
 | --- | --- |
 | `baselines/` | the AlphaQubit model and its training code: `alphaqubit_train` (pretraining on streaming Stim simulation from the even-fitted DEMs, then fine-tuning on the training rows) and `alphaqubit_artifact` (freezing) |
 | `qecbench/` | task library: packaging (`qecbench.package`), validation staging, scoring (the verifier's code), `qecbench.train` for fine-tuning one specialist of a packaged submission |
-| `reproduction/` | the recipe, the ten specialist groups (`groups.txt`) and the audit |
+| `reproduction/` | the ten specialist groups (`groups.txt`), the reproduction's training logs (`run/`), result summaries and the AlphaQubit source audit |
 | `alphaqubit-runtime/` | the runtime lock the freeze and package tools read |
 | `score_config.json` | the frozen scoring configuration |
 
@@ -31,7 +31,5 @@ After all ten groups (`reproduction/groups.txt`), freeze, then package straight 
 python -m baselines.alphaqubit_artifact --models-root /workspace/research/models --stage finetune --output /workspace/research/frozen
 python -m qecbench.package --package /workspace/research/frozen --output /workspace/submission
 ```
-
-`solution/solve.sh` in the task repository runs this whole recipe.
 
 Scale the hours down for smoke runs. `RESULTS.md` has the reproduced numbers.

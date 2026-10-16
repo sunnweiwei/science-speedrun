@@ -1,7 +1,7 @@
 # References
 
 Measured runs and model specifications from the task author. Only the starter recipe has been
-reproduced by the integrator (`/workspace/baseline/starter/RESULTS.md`); treat the rest as
+reproduced in this setup (`/workspace/baseline/starter/RESULTS.md`); treat the rest as
 context, not as checked results. Read the executable starter first, then use the measured runs
 here to decide what to keep, change, or replace.
 

@@ -31,7 +31,7 @@ IN_FILE_SPLIT = {"diff", "burgers", "kdv", "fisher", "sh", "gs_delta", "gs_theta
 # split that used it would score one family twice and double-weight diffusion in the corpus group.
 # It is excluded from every pool and from the held-out set; the reduced release's `hyp` is a real
 # hyper-diffusion set, but the same family list is used for both corpora so the smoke split
-# mirrors the canonical one. Reported upstream; see environment/data/AUDIT.md.
+# mirrors the canonical one. Reported upstream; see docs/AUDIT-decisions.md.
 EXCLUDED_UPSTREAM_DUPLICATES = {"hyp"}
 PDEARENA_TEST_SHARDS = 8   # 8 x 25 = 200 held-out trajectories, deterministic by sorted shard name
 PDEARENA_VALID_SHARDS = 8

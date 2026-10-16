@@ -9,10 +9,8 @@ as `baseline/starter/publish.py` does) that the verifier copies to a sealed loca
 inside a kernel namespace (Bubblewrap, `tests/isolation.py`) that contains the
 declared runtime, the package (read-only, at `/submission`), one input
 directory (read-only) and one output directory: no network, no data
-directory, no labels, no workspace, no host `/tmp`, one GPU
-(`docs/validation/isolation_probe.json` shows what a canary package could see).
-The calls share one wall-clock budget (4 hours for the full test split,
-`TIMESERIES_INFERENCE_TIMEOUT_SECONDS` in `tests/test.sh`). Where Docker refuses
+directory, no labels, no workspace, no host `/tmp`, one GPU.
+The calls share one wall-clock budget (4 hours for the full test split). Where Docker refuses
 the network namespace the sandbox is built without it and the container's own
 no-network policy keeps the package offline; where no namespace works the
 verifier runs the package as an unprivileged uid while the labels, the data
@@ -223,5 +221,4 @@ would fit on longer histories (a statistical model on the 140k-point
 - Inference uses only `INPUT_DIR`; no dataset files, no network (enforced by
   the namespace, not by trust).
 - A manifest that declares `pretrained_assets` scores 0 (`status.json`
-  records `rule_violation`); undeclared use is a rule violation that the
-  verifier cannot detect and that a reviewer should look for in the package.
+  records `rule_violation`); undeclared use is a rule violation.

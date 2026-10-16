@@ -1,10 +1,10 @@
-# Data: virtual-cell-zeroshot release v1
+# Data: release v1
 
 Everything the agent may use is under this directory, mounted read-only; the frozen SE-600M
 release is `se600m/`, also reachable at `/opt/se600m`. There is no network. `manifest.json` lists
 every training source with URL / pinned revision / size / SHA-256 / licence and the sampling and QC
 parameters; `splits.json` describes the split design and counts. Which public screen each test
-context comes from is kept in the operator's manifest, which is not mounted: here the test sources
+context comes from is not disclosed: here the test sources
 appear only under their context ids (`ctx_near`, `ctx_mid`, `ctx_far`), including in
 `gene_panel.csv`. Write derived files under `/workspace/research`.
 

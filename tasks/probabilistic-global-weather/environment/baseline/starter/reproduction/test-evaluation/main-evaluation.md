@@ -106,7 +106,7 @@ Each row summarizes **all evaluated leads** (12–360 h every 12 h; 24 h accumul
 | geopotential_300_minus_500 | surface / derived | m²/s² | 30 | 371 | 460 | 456 | 113 | 546 | 938 | 925 | 261 | 1.08e+03 | 1.08e+03 | 249 |
 | total_precipitation_24hr | surface / derived | mm / 24 h | 29 | 2.94 | 2.6 | 2.56 | 1.51 | 7.83 | 7.2 | 7.16 | 5.76 | 3.89 | 3.87 | 5.24 |
 
-[Complete table at every evaluated lead: 2,969 rows, all four models](<https:/github.com/T0-RSI/ai4sci-tasks/blob/main/probabilistic-global-weather/docs/validation/results-summary/main-evaluation-by-lead.csv>). No leads or field/level combinations are omitted from this CSV.
+The complete table at every evaluated lead (2,969 rows, all four models) is `main-evaluation-by-lead.csv` in this directory. No leads or field/level combinations are omitted from this CSV.
 
 ### Spatial pooling — all evaluated variable families
 

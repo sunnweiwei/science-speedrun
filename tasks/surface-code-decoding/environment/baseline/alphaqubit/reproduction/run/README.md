@@ -1,6 +1,6 @@
-# Integrator run: AlphaQubit recipe from scratch on H100s
+# Reproduction run: AlphaQubit recipe from scratch on H100s
 
-The run behind the integrator row of `../../RESULTS.md` (P 0.75569). The baseline has already been
+The run behind the reproduction row of `../../RESULTS.md` (P 0.75569). The baseline has already been
 trained and scored; these logs are its record, so there is no need to train it again to see what it
 does. The task author's own run is documented in `/workspace/data/reference/results`.
 

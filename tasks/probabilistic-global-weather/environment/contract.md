@@ -1,4 +1,4 @@
-# WN2 model delivery contract — implementation under validation
+# WN2 model delivery contract
 
 Deliver one portable model directory at `/workspace/submission`, including
 `infer.sh`, trained parameters, configuration, preprocessing and all inference

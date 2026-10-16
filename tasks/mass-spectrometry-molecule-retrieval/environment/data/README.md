@@ -114,7 +114,7 @@ by `environment/runtime/install.sh` (default `/opt/glacier/bin/python` and
 records file/source hashes, domain counts and exclusions. Selected spectra
 without an assignable fragment are excluded from fitting with a recorded
 reason; this never removes queries from the benchmark denominator. No test
-file is read by this preparation. It runs before the agent budget begins.
+file is read by this preparation.
 The completed preparation retains **99,119 train** and **9,720 validation**
 spectra from the eligible 99,341/9,734; 222/14 rows have no assignable fragment.
 Those exclusions apply only to fragment-supervised fitting/validation.

@@ -115,10 +115,8 @@ residues**. Not a subsample — there is no reason to withhold
 data the candidate could otherwise sample from, and unrepeated data is strictly
 better than repeated data.
 
-Sizing this was where the reasoning had to be corrected. The first instinct is
-to ask whether a candidate can finish an epoch, and to subsample until the
-answer is yes. That is the wrong question: pretraining samples minibatches from
-a corpus and never needs to complete a pass — ESM-2 itself repeated its ~65M
+Pretraining samples minibatches from a corpus and never needs to complete a
+pass — ESM-2 itself repeated its ~65M
 sequences roughly 58 times over 1e12 tokens. Seeing 25% of a large corpus once
 beats seeing 100% of a small one four times.
 
@@ -134,9 +132,7 @@ token-budget batches:
 An 8M-scale model therefore covers the whole corpus in under six hours and a
 35M-scale one in well under a day, so a research loop can afford repeated full
 passes at small scale or partial passes at larger scale — choosing between them
-is an experiment, not a constraint imposed by data volume. `--size N` still
-takes a random sample instead, and `--size 100000` is the right smoke-test
-setting.
+is an experiment, not a constraint imposed by data volume.
 
 **Batch by tokens, not by sequences.** Over this length distribution (mean 265,
 p99 1659) fixed 64-sequence batches pad to the batch maximum and waste **3.4× of
@@ -145,34 +141,3 @@ length before forming token-budget batches removes essentially all of it
 (99.9% efficiency) and measures 4× faster end to end. ESM-2 batches this way
 too ("2 million tokens as batch size"); a candidate that uses fixed-count
 batches is giving up most of its budget.
-
-### Measured builds
-
-Sampled runs against the current release, for calibration:
-
-| | `--size 200000` | `--size 5000000` |
-| --- | --- | --- |
-| Wall clock | ~14 min, 128 threads | 1h 23m, 64 threads |
-| Sequences kept | 199,745 | 4,993,902 |
-| Residues | 52,998,944 | 1,324,789,425 |
-| FASTA | 56 MB | 1.4 GB |
-| Contamination removed | 255 (0.128%) | 6,098 (0.122%) |
-| Length | mean 265.3, median 203 | mean 265.3, median 203 |
-
-Two things these confirm. Sampled mean length (265.3) matches the
-whole-database figure for the same range (265.4), so the reservoir sampling is
-unbiased. And the contamination rate is stable across a 25× size change
-(0.128% → 0.122%), so it is a property of the corpus rather than sampling
-noise. Small as it is, it matters: those sequences are near-duplicates of
-held-out test proteins, and a `fold` or `subcellular_localization` model that
-memorized them would be scored on recall rather than generalization.
-
-Cost scales better than linearly — 25× the queries took only 6× the wall clock
-(on half the threads), because MMseqs amortizes its target index, which is what
-makes the `--all` build affordable. The scan is a fixed ~7 minutes regardless
-of size, since the whole 8.2 GiB file is read either way. `--threads` is passed
-through, and `--workdir` should point at fast node-local storage for `--all`.
-The `-s 7` sensitivity is
-ESM-2's setting, kept deliberately: lowering it would be faster but would let
-more remote homologs of the test set survive.
-

@@ -6,7 +6,7 @@
 --data may repeat; each shard is taken from the first directory that has it. Produces data/{train,valid}/*.hdf5
 (one file per source shard, trajectories from the manifest's pools) plus stats.yaml (z-score statistics over the
 training split). The held-out test shards are not in the workspace: their cases are skipped, and data/test/ is
-written only when a --data directory holds them (a maintainer's full materialization).
+written only when a --data directory holds them (a full materialization).
 """
 import argparse
 import json

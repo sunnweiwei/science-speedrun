@@ -1,10 +1,10 @@
 # Reproduction record: starter (native WN2, 580-update recipe)
 
-The reviewers' run behind `../RESULTS.md`. The baseline has already been trained and scored; these
+The run behind `../RESULTS.md`. The baseline has already been trained and scored; these
 files are its record, so there is no need to train it again to see what it does.
 
 Run:
-- `train.py` with `schedule.json`, seed 0, on four H100 80 GB in Docker, 2026-09-25;
+- `train.py` with `schedule.json`, seed 0, on four H100 80 GB, 2026-09-25;
 - all eleven stages passed in 13.1 h;
 - 183,785,575 parameters, no pretrained parameters loaded;
 - the published package scored reward 0.674377 (normalized CRPS 0.482850) in the full verifier.

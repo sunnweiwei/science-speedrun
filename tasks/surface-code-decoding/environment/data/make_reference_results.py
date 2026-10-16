@@ -54,7 +54,7 @@ def main() -> None:
     (args.output / "test_summary.json").write_text(json.dumps({**REFERENCE_TEST,
         "reference_lower_bound_mwpm": 0.7160463461538461, "reference_upper_bound_tn": 0.7615159615384615}, indent=2) + "\n")
     (args.output / "training_record.json").write_text(json.dumps({
-        "model": "independent AlphaQubit reproduction (not Google code or weights); architecture in reproduction/README.md",
+        "model": "independent AlphaQubit reproduction (not Google code or weights); architecture in reproduction/alphaqubit-source-audit.md",
         "recipe": "per group: baselines.alphaqubit_train --stage pretrain (pij simulations) then --stage finetune "
                   "(--init-model pretrain/best.npz); frozen with baselines.alphaqubit_artifact",
         "measured_resources": summary["measured_resources"],

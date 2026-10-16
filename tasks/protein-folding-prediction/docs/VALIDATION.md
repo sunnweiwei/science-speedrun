@@ -35,3 +35,8 @@ payload breakdown, download pin and materialization tests. This publication
 changes storage and download wiring, not the training pool, evaluation suite,
 metrics, feature representation, research prompt or submission contract.
 
+## Verifier isolation note (moved from contract.md)
+
+This visible verifier runs predictor and scorer sequentially in one container;
+it is not a hardened boundary against malicious code reading native structures.
+A private evaluator must isolate input-only inference from label-bearing scoring.

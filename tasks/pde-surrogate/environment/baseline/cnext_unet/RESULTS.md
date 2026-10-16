@@ -23,8 +23,7 @@ Per group, epoch-120 checkpoint:
 The task author's run of the same recipe (A100-40GB, stopped by a 12-hour cap at epoch 124,
 best-validation epoch 120) scored 0.3446, with PDEArena VRMSE 0.2978.
 
-On the turbulent radiative layer, the author's run of `train_trl2d.sh` reached VRMSE 0.6743. The
-integrator has not re-run it. Released checkpoints replayed under the task protocol for
-comparison are in `/workspace/references/SOTA_AUDIT.md`.
+On the turbulent radiative layer, the author's run of `train_trl2d.sh` reached VRMSE 0.6743 (not re-run in this setup). Released checkpoints replayed under the task
+protocol for comparison are in `/workspace/references/released_models.md`.
 
 Weights are not shipped. Every model you submit must be trained from random initialization.

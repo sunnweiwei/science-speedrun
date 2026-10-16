@@ -1,7 +1,7 @@
 # References: the official-weight GLACIER / clean-MIST target, audits and reproduction scripts
 
-This directory is reference material. The task author ran the official-weight replay below; the
-integrator did not re-run it. The integrator's own reproductions (DeepSets and native GLACIER from
+This directory is reference material. The task author ran the official-weight replay below; it
+was not re-run in this setup. The reproductions made in this setup (DeepSets and native GLACIER from
 scratch) are in `/workspace/baseline/starter/RESULTS.md`. `scripts/` holds the author's
 reproduction scripts; five of them are packaged into every native GLACIER submission by
 `baseline/starter/glacier/publish.py`.
@@ -51,16 +51,14 @@ full test: **40.322397% / 56.846662% / 70.773525%** Hit@1/5/20 and
 MCES@1 **13.169600**, with all 17,556 rankings valid. Its full validation Hit@1
 is 35.987441%. Both encoders start randomly; GLACIER uses 99,119 annotated
 experimental training spectra and DeepSets uses all 194,119 training spectra.
-The optional clean synthetic corpus was not used in this run. Its measured
-H200 training and CS A5000/CPU replay establish a reproduced score; single-H100
-timing remains unverified. Exact metrics, configuration, branch counts and
+The optional clean synthetic corpus was not used in this run. Exact metrics, configuration, branch counts and
 artifact hashes are in [task_trained_baseline.json](task_trained_baseline.json).
 
 On 2026-09-19 UTC, a supplemental evaluation combined the same scratch GLACIER
 predictions with the existing clean MIST fallback. Trusted rescoring of all
 17,556 queries gave **48.285486% / 64.057872% / 74.561404%** Hit@1/5/20
 and **12.327666** MCES@1. Integrity checks, merging and scoring took 188.47
-seconds on CS with 16 MCES workers and no GPU; Hit@k was available after 13.64
+seconds with 16 MCES workers and no GPU; Hit@k was available after 13.64
 seconds. These timings exclude the historical training and prediction runs.
 The published routing predicate was unchanged: 9,954 GLACIER queries and 7,602
 MIST queries. Every GLACIER ranking matched the scratch run, and every fallback
@@ -169,8 +167,6 @@ and all 59 tensors exactly match the selected EMA checkpoint.
 As a standalone full-task method, clean MIST obtains 39.8724083%/51.4866712%/
 63.1408066% Hit@1/5/20 and MCES@1 15.1668375. Its ranking SHA-256 is
 `78a781884f442039c66963eeab7187f27645440e644d3088f85dbb81e8fd7f3d`.
-The complete independent training and formula-stage audit remains in
-`REPRODUCTION.md`; it is retained as both provenance and the hybrid fallback.
 
 ## Reproduction lock
 
@@ -213,62 +209,7 @@ The formal complete ranking SHA-256 is
 second independent four-shard scoring pass and strict merge produce the same
 hash; the files are byte-identical. Recovery from upstream DataLoader
 host-memory pressure used only public `(query ID, candidate InChIKey, collision
-energy)` keys. The detailed failure, recovery, support, and label-access ledger is in
-`GLACIER_REPRODUCTION.md`.
-
-## Compute and runnable replay
-
-These are **operator-side** commands for the frozen official-weight/MIST
-comparison. The agent image now contains native GLACIER source/runtime and
-train/validation-only MAGMa supervision for the scratch recipe in
-`/workspace/baseline/starter/glacier/README.md`. It does not contain reference weights or
-the external MIST runtime. These reproduction commands do not authorize
-pretrained initialization. The completed scratch score is recorded above;
-matched-H100 training/replay remains a separate acceptance item.
-
-The construction replay used eight parallel P100 shards. The initial large
-feature-cache jobs produced usable predictions for roughly 94--98% of every
-shard before a 64 GiB host-memory cgroup OOM; answer-free set-difference jobs
-completed the remainder with batch size 2, two workers, a 64-entry feature
-cache, prefetch factor 1, and about 5.1--5.3 GiB process RSS. Total construction
-cost was approximately 33.1 P100 GPU-hours including retained partial
-work, diagnostics, and one cancelled insurance retry. This is inference, not
-GLACIER training. A single-H100 six-hour replay has not been directly timed and
-must not be inferred from the parallel P100 wall clock.
-
-The verifier's six-hour envelope includes scoring: `main_verifier.py` defaults
-to a five-hour model-inference timeout, followed by up to one hour waiting for
-the trusted grader. Full package replay must be measured against both limits.
-
-Prepare and verify the immutable operator-side assets:
-
-```bash
-bash environment/references/scripts/prepare_glacier_reference_assets.sh ASSET_ROOT
-(cd ASSET_ROOT/ms-pred && uv sync --extra cu124)
-```
-
-The formal runner requires the independently trained clean MIST weight and
-checks its digest rather than silently substituting the weaker released weight:
-
-```bash
-export MASS_SPEC_GLACIER_PYTHON=ASSET_ROOT/ms-pred/.venv/bin/python
-export MASS_SPEC_MIST_CHECKPOINT=/absolute/path/to/clean/spectra_encoder.pt
-bash environment/references/scripts/run_glacier_reference.sh \
-  INPUT_ROOT OUTPUT_ROOT ASSET_ROOT
-```
-
-The runner uses `MASS_SPEC_GLACIER_PYTHON` for both task adapters by default;
-set `MASS_SPEC_REFERENCE_PYTHON` only if the MIST branch needs a separate
-compatible interpreter.
-
-`run_glacier_reference.sh` defaults to H100-oriented batch size 16, two loader
-workers, feature-cache budget 64, and prefetch factor 1. All are overridable by
-`MASS_SPEC_GLACIER_*` variables. The runner consumes only public contract input
-and emits `OUTPUT_ROOT/rankings.jsonl`, one complete candidate permutation per
-query. `resume_glacier_candidates.py` and the scorer's `--exclude-ranking`
-and `--query-id-file` options support answer-free recovery and query-disjoint
-parallel scoring; `merge_partial_rankings.py` rejects overlap, unknown queries,
-or incomplete permutations.
+energy)` keys.
 
 ## What an agent should explore
 

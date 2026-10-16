@@ -73,8 +73,7 @@ artifacts, timeout, nonzero inference exit, or malformed predictions emit score
 0 with `model_quality_measured=false`. Missing/corrupt mounted datasets, invalid
 trusted calibration, network-isolation failure, snapshot corruption, and other
 infrastructure errors remove reward files and emit `infrastructure_error`.
-The Harbor verifier timeout is 3900 seconds, including at most 3600 inference
-seconds and 300 grading seconds. Use fresh named volumes for each replay.
+Inference is limited to 3600 seconds.
 
 Only the trusted Git/Docker verifier's scorer and `score_config.json` define the
 official result. A scorer copy inside a submission or the development release

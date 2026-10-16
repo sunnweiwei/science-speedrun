@@ -25,11 +25,8 @@ measurement. See the aggregate [training and test record](../../../references/ta
 and [SOTA/protocol audit](../../../references/SOTA_AUDIT.md).
 
 New publications use native **inference batch size 64**, with two CPU workers.
-A [reviewer replay](https://github.com/T0-RSI/ai4sci-tasks/pull/27#issuecomment-5750791449)
-reported 3.4–3.9 hours for all 17,556 test queries on one H100 at batch 64,
-compared with about five hours at batch 8. This is reviewer timing evidence;
-acceptance of the current native Docker images with freshly downloaded HF data
-is a separate deployment check. Training still defaults to batch 8.
+A replay of all 17,556 test queries took 3.4–3.9 hours on one H100 at batch 64,
+compared with about five hours at batch 8. Training still defaults to batch 8.
 
 ## Available resources
 
@@ -157,7 +154,7 @@ fallback and training data stay fixed. Stop training before this manual export
 so a later automatic publication does not replace the chosen inference setting.
 Existing packages retain their saved configuration until explicitly republished.
 Measure memory use and runtime on the deployment GPU after lowering the batch;
-the reviewer's H100 batch-64 timing does not apply to every override or device.
+the H100 batch-64 timing above does not apply to every override or device.
 
 ## Validate a research change
 

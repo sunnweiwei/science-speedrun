@@ -136,5 +136,5 @@ faults are distinguishable from model quality.
 - No pretrained assets: the package's weights must originate from training
   started at random initialization inside the development session;
   `model_manifest.json` lists `"pretrained_assets": []`. Reference packages
-  run by the task maintainers (released checkpoints replayed as the external
-  target) are exempt and marked as such.
+  (released checkpoints replayed as the external target) are exempt and
+  marked as such.

@@ -1,7 +1,7 @@
 # Released checkpoints replayed under this task's protocol
 
 These numbers are the task author's replays of released pretrained checkpoints through the task's
-verifier. The integrator has not re-run them. They show where published models land on the same
+verifier. They were not re-run in this setup. They show where published models land on the same
 cases. The checkpoints themselves are not in the workspace and may not be used: every submitted
 model is trained from random initialization.
 

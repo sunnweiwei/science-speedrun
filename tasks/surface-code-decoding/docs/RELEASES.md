@@ -39,5 +39,5 @@ eight GPUs are available together and the existing microbatch/runtime fits;
 with four GPUs the same wave scheduler needs about 54–60 hours, and with two
 about 90–100 hours. Agents can use less compute or choose another decoder.
 Datasets, submission protocol, fixed score anchors and the one-GPU verifier
-budget are unchanged. See the [deployment follow-up](../environment/baseline/alphaqubit/reproduction/deployment-followup.md).
+budget are unchanged. See the [deployment follow-up](campaign/deployment-followup.md).
 

@@ -94,9 +94,9 @@ See [the agent evaluation protocol](AGENT_EVALUATION.md),
   This additional null control rules out candidate position as an answer cue.
 - The MIST constant-spectrum control, independent full training, reference
   packaging, and isolated-container replay are tracked in
-  `reference/REPRODUCTION.md`; the GLACIER method replay, validation-first gate,
+  `docs/reproduction-logs/REPRODUCTION.md`; the GLACIER method replay, validation-first gate,
   resource failures/recovery, controls, and final promotion decision are in
-  `reference/GLACIER_REPRODUCTION.md`.
+  `docs/reproduction-logs/GLACIER_REPRODUCTION.md`.
 
 ## Materialized release acceptance (2026-09-22)
 

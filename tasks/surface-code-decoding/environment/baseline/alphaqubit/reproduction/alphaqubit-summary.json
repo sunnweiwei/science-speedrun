@@ -250,6 +250,6 @@
     "d5 remains worse than released tensor network and belief matching; official error suppression is not reproduced.",
     "Harbor packaging, physical data separation, generic input loaders and verifier budget validation remain pending."
   ],
-  "artifact_root": "/home/users/xy200/yinxunjian/mycode/ai4sci-artifacts/surface-code-decoding/20260919",
+  "artifact_root": null,
   "large_artifact_availability": "Stored in the documented CS artifact root; a distributable pinned model/data release is not yet published."
 }

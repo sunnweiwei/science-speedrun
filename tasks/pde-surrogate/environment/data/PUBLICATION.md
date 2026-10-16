@@ -30,7 +30,7 @@ history but must not be used:
   with `pde_io.read_window`, `materialize.py` refuses a corpus member it cannot
   read, and `tests/test_release.py` reads every fixture back the same way;
 - it carried upstream's `hyp.hdf5`, which is a content copy of `diff.hdf5`
-  (`AUDIT.md` §7). The split no longer uses that file, so the release cuts nine
+  (`docs/AUDIT-decisions.md` §7). The split no longer uses that file, so the release cuts nine
   corpus files instead of ten.
 
 ## Published payload

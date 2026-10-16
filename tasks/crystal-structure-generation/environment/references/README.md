@@ -14,7 +14,7 @@ Material we have **not** re-run in this setup. Verified code and numbers are in
 
 ## Historical results of the task author
 
-Measured by the task author on Modal with an earlier (v0) model that also had conditional
+Measured by the task author with an earlier (v0) model that also had conditional
 adapters, 2,000 epochs from scratch on MP-20 train, then 2,500 unconditional structures through
 the same UMA-200 relaxation and LeMat scoring. Those checkpoints do not load into the current
 starter and were not re-run here.

@@ -2,8 +2,7 @@
 
 The reproduced numbers for this baseline. The criteria behind them, the enzyme-target
 distribution and the full write-up of how the graded and operator paths were reconciled are
-in [../../evaluation/RESULTS.md](../../evaluation/RESULTS.md); the integrator's checks are in
-[../../../docs/VALIDATION.md](../../../docs/VALIDATION.md).
+in [../../evaluation/RESULTS.md](../../evaluation/RESULTS.md).
 
 ## What this baseline is
 
@@ -17,8 +16,8 @@ and how to run it.
 
 ## Transfer (verifier, 51-target evaluation view)
 
-Checkpoint `epoch-0100.ckpt`, the real protocol of 51 targets × 100 designs, 9 h 33 min on
-8 × L40S. `conditioning_satisfied` is 100 % on all four tracks.
+Checkpoint `epoch-0100.ckpt`, the real protocol of 51 targets × 100 designs.
+`conditioning_satisfied` is 100 % on all four tracks.
 
 | track | `pass_rate` | `diversity` | operator harness |
 |---|---:|---:|---:|
@@ -33,9 +32,8 @@ the graded path posed a different problem from the published specs; `input.yaml`
 of truth and residue renumbering is the only licensed difference. The five are written up in
 [../../evaluation/RESULTS.md](../../evaluation/RESULTS.md).
 
-**This row was measured by the task author on their cluster and is accepted from their report
-rather than reproduced by the integrator**, because the checkpoint is not distributable. The
-same basis was used for virtual-cell-zeroshot, tokamak-magnetic-control and hydrogym.
+**This row is accepted from the task author's report rather than reproduced in this setup**,
+because the checkpoint is not distributable.
 
 ## Anchors
 
@@ -45,7 +43,7 @@ same basis was used for virtual-cell-zeroshot, tokamak-magnetic-control and hydr
 | `rfd3-small` above | 0.0624 | 0.0275 | 0.002 | 0.420 |
 
 The trivial row is a **partial** null system: one target per track and two designs each, run
-by the integrator through the real scorer, where nothing was designable on any track. The full
+through the real scorer, where nothing was designable on any track. The full
 null row over all 51 targets is still open, and matters most on `enzyme`, where 28 of 41
 targets score exactly 0.
 

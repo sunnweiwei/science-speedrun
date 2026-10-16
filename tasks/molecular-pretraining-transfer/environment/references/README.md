@@ -28,7 +28,7 @@ With the official 40-epoch recipe on all 107k training molecules, the released m
 agg-MAE 0.0055 Ha. The 5k-molecule, 15-epoch protocol here gives 0.0087 Ha. The ExpansionRx leaderboard winner
 reached MA-RAE 0.48 with task-specific models trained on all data.
 
-## Earlier small-scale study (v1 of this task, PR #22, by pj20)
+## Earlier small-scale study
 
 Studied on PCQM4Mv2 HOMO–LUMO gap, with 4.8 M-parameter models and 256k pretraining molecules:
 

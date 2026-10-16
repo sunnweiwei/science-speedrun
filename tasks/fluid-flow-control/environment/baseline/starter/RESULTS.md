@@ -8,8 +8,7 @@ What is measured and verified:
 
 - Per-case specialist controllers: 39 cases, PPO (DDPG for Pinball_2D_Re100), 4,000 or 20,000
   controls each.
-  - The integrator matched every published value to the campaign's raw evaluation results, with
-    matching hashes.
+  - Every published value matches the campaign's raw evaluation results, with matching hashes.
   - Five specialist packages were replayed on GPU through the verifier. Three were bit-identical;
     Channel_3D_Retau180 differed by 1.7e-7 relative; Nozzle2D_coarse varies about 0.5 % run to run
     because the solver is not deterministic.

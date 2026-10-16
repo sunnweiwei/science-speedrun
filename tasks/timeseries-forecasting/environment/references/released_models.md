@@ -2,7 +2,7 @@
 
 The same 97 GIFT-Eval configurations, metrics and normalizer as the reward. The "task replay" column
 is the task author's replay of each released checkpoint through this task's verifier. The other
-columns are the public leaderboard's own numbers. The integrator has not re-run these. Replay
+columns are the public leaderboard's own numbers. These were not re-run in this setup. Replay
 and board agree to within 0.003 reward except for Chronos-Bolt (0.006, from a changed long-horizon
 heuristic in its library). None of these checkpoints is in the workspace, and none may be used.
 
@@ -17,4 +17,4 @@ heuristic in its library). None of these checkpoints is in the workspace, and no
 
 The released models were pretrained for days on multi-GPU clusters, on corpora of about 10^11
 observations. The task author also trained a 41.8M-parameter scale-up of the starter recipe on
-this corpus: reward 0.207 (not reproduced by the integrator).
+this corpus: reward 0.207 (not reproduced in this setup).

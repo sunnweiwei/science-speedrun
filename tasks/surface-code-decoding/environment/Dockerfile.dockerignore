@@ -1,0 +1,6 @@
+# The Slurm-accounting report tools are maintainer-side (tests import them); keep them out of the agent image.
+environment/baseline/alphaqubit/baselines/accounting.py
+environment/baseline/alphaqubit/baselines/report.py
+environment/baseline/alphaqubit/baselines/alphaqubit_report.py
+**/__pycache__
+**/*.pyc

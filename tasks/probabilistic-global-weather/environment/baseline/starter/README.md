@@ -32,7 +32,7 @@ exported as a completed model.
 
 The environment compiles kernels as needed. Compiler caches and autotuning
 files are local runtime artifacts, not an agent profiling workflow. The runner
-uses the model Python environment; it does not require Slurm or nested Apptainer.
+uses the model Python environment; it does not require a job scheduler.
 
 After training, follow `/workspace/evaluation/README.md` for visible development
 scores. Scoring is a separate action and test truth is not available to this

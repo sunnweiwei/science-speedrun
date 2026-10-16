@@ -3,8 +3,8 @@
 The native model implementation and global-data-parity training objective are
 unchanged. A circuit-derived detector parity converts between native targets and
 official path-observable labels. Our detector representation and bounded training
-protocol are task adaptations; see ``reproduction/upstream-audit.md`` before
-comparing with published results.
+protocol are task adaptations, so results are not directly comparable with
+published ones.
 """
 
 from __future__ import annotations

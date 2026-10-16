@@ -7,7 +7,7 @@ all 97 GIFT-Eval configurations (326,490 instances).
 | | relative MASE | relative WQL | reward | normalised |
 | --- | ---: | ---: | ---: | ---: |
 | **timesfm3-50m (this directory)** | 0.873 | 0.603 | **0.275** | 0.547 |
-| starter-41m (8 GPUs, this host) | 0.940 | 0.681 | 0.200 | 0.40 |
+| starter-41m (8 GPUs) | 0.940 | 0.681 | 0.200 | 0.40 |
 | starter (6.4M) | 1.006 | 0.699 | 0.161 | 0.31 |
 | TimesFM-3 released (331M, external target) | 0.669 | 0.458 | 0.447 | 0.90 |
 
@@ -20,8 +20,7 @@ Validation skill on the 15 stratified configs rose from −0.12 at step 5,000 to
 then fluctuated between +0.04 and +0.12. The best was at step 100,000 (+0.120). The step-30,000
 checkpoint already scored 0.274 on test, so the last 120,000 steps barely moved the reward.
 
-How the recipe was chosen. Same model, test reward, from `docs/validation/corpus_scaling.json` in
-the task repository:
+How the recipe was chosen (same model, test reward):
 
 | corpus | sampling | test reward |
 | --- | --- | ---: |

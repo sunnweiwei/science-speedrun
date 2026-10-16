@@ -1,7 +1,7 @@
 # PDE surrogate data
 
 `/workspace/data` holds this file, `AUDIT.md`, the task's split (`split.json`, and `split_smoke.json`
-for maintainer smoke runs), the source lock (`sources.lock.json`), and four read-only datasets
+for smoke runs), the source lock (`sources.lock.json`), and four read-only datasets
 prepared before the session:
 
 ```text
@@ -43,7 +43,7 @@ creates (the truncated heads and held-out tails of nine corpus files, see "The
 published release") and downloads everything else from the pinned upstreams.
 Nothing under this directory is committed except code, the lock and
 documentation. The full corpus release ships `hyp.hdf5` as a content copy of
-`diff.hdf5`; the split excludes it (`AUDIT.md` §7).
+`diff.hdf5`; the split excludes it (`AUDIT.md` §5).
 
 ## Array layouts
 
@@ -82,8 +82,7 @@ orientation and strain tensors the PDE-Transformer paper dropped.
 ## Splits and visibility
 
 The task's own trajectory-level split for training, validation and held-out
-evaluation is `split.json` under this directory (`make_split.py` regenerates it
-from the lock; `AUDIT.md` §5 records the decisions). Upstream data are public, so evaluation is
+evaluation is `split.json` under this directory. Upstream data are public, so evaluation is
 benchmark-visible: the verifier replays the delivered package on trajectories
 the agent could in principle have downloaded, and the rules in
 `instruction.md` forbid using them. The materializer can prepare development

@@ -78,11 +78,10 @@ differ.
 
 Reading the table: the near > mid > far ordering is the context-distance gradient the task is
 built to expose; the far context (Flex chemistry, pluripotent) keeps only ~30 % of the transfer
-that works on the near context. Per-stratum and seen/withheld breakdowns are in each verifier run's operator-side
-`report.json`. A group score is the mean of the six per-perturbation metrics (the effect-size
-Spearman is a whole-run property and is not split by group); the four runs above were graded
-before `cellscore.py` adopted that rule, so the group numbers quoted here are recomputed from
-their per-metric values. For B1 the withheld targets score 0 in every context because the table
+that works on the near context.
+A group score is the mean of the six per-perturbation metrics (the effect-size
+Spearman is a whole-run property and is not split by group); the group numbers quoted here are
+computed from their per-metric values. For B1 the withheld targets score 0 in every context because the table
 has nothing to say about them, and `conserved-strong` targets transfer better than
 `context-variable` ones (all 300 requests: 0.129 vs 0.057 near, 0.106 vs 0.060 mid, 0.051 vs
 0.044 far) — the advantage shrinks with context distance.
@@ -95,4 +94,4 @@ the withheld targets where B1 scores 0 (ESM-2 perturbation features generalise t
 perturbed in training), while it gives up PDS and MAE. B2 folds hct116/hek293t were not run
 (GPU time); each B2 training is 20k steps ≈ 1.5 h on an uncontended H100 (4.5 h under load).
 Rows are reproducible from this directory; runtimes: table build < 2 min, B1 inference 8–30 s
-per context, B2 inference 2–5 min per context, verifier scoring ≈ 25 min for three contexts.
+per context, B2 inference 2–5 min per context.

@@ -1,7 +1,7 @@
 # References: approximately-50M architectures and prior experiments
 
 The folding architectures, pinned upstream sources and prior controlled experiments below have not
-been re-run by the integrator. Treat their numbers as context, not as checked results. The
+been re-run in this setup. Treat their numbers as context, not as checked results. The
 verified starter and the frozen ESMFold2-Fast reference numbers are in
 `/workspace/baseline/starter/RESULTS.md`. Read the executable starter first, then use these
 references to decide what to reproduce, retain, or replace.

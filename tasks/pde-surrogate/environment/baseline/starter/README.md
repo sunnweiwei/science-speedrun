@@ -8,7 +8,7 @@ something that already trains and publishes while you build the real model.
 
 **Where to start instead.** `../cnext_unet/` runs The Well's CNextU-net recipe: a real
 18.6M-parameter architecture trained from scratch, the best measured numbers on PDEArena and the
-turbulent layer. `/workspace/references/SOTA_AUDIT.md` covers the rest of the field.
+turbulent layer.
 
 - `model.py`: channel-shared residual U-Net. It takes 4 context frames of one channel and outputs
   the next frame of that channel. Shared weights across channels make it independent of each

@@ -1,0 +1,26 @@
+{
+  "summary.csv.gz": {
+    "url": "https://ndownloader.figshare.com/files/64706751",
+    "sha256": "adbdd8b24086d4888195d8894c77f6d5fb29ce33bbb5d7d3898b4d79e964dc54"
+  },
+  "initial.jsonl.gz": {
+    "url": "https://ndownloader.figshare.com/files/53161835",
+    "sha256": "98d545172c1ea9060f03f40cace6f8173a4ac06f1ee875ccd963765211519b58"
+  },
+  "cse.jsonl.gz": {
+    "url": "https://ndownloader.figshare.com/files/53161832",
+    "sha256": "e77ffb20a485380e564ebb81ca1e7c86ebdb10c1967d0fbbe52bbab6b935a382"
+  },
+  "elements.json.gz": {
+    "url": "https://ndownloader.figshare.com/files/40387775",
+    "sha256": "9fd6ef848a91c88840a0d1709b5856d0edb4af22095237e59db52f2acd6bbf79"
+  },
+  "mdr.csv": {
+    "url": "https://alexandria.icams.rub.de/data/phonon_benchmark/pbe.csv",
+    "sha256": "5875695dc44166cf4f09888485c4cfebee03494f65b3e1b3b4b4381620e5d752"
+  },
+  "elastic.json.gz": {
+    "url": "https://huggingface.co/datasets/materialyze/matcalc-bench/resolve/54b2b336cccca933f51c82f47f2dbeed7bab054f/mp-pbe-elasticity-2025.3.json.gz",
+    "sha256": "5c5f4305417e7f422e25f8cd9b1cf47862d589e90cdfb18ad79e51db67b88e5d"
+  }
+}

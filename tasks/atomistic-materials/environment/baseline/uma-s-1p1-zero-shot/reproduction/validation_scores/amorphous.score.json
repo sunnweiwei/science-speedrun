@@ -1,0 +1,18 @@
+{
+ "suite": "amorphous",
+ "items": 376,
+ "carbon_energy_RelRMSE_pct": 10.933623523801046,
+ "carbon_force_RelRMSE_pct": 18.64917258211131,
+ "gst_energy_RelRMSE_pct": 2.456540835594397,
+ "gst_force_RelRMSE_pct": 16.41188431165808,
+ "lips_energy_RelRMSE_pct": 0.9289623038931012,
+ "lips_force_RelRMSE_pct": 11.658898465159494,
+ "silica_energy_RelRMSE_pct": 1.1891530885387411,
+ "silica_force_RelRMSE_pct": 1.6958309944940413,
+ "silicon_energy_RelRMSE_pct": 5.112955733953646,
+ "silicon_force_RelRMSE_pct": 11.14571115897136,
+ "energy_RelRMSE_pct_mean": 4.124247097156187,
+ "force_RelRMSE_pct_mean": 11.912299502478856,
+ "failed": 0,
+ "complete": true
+}

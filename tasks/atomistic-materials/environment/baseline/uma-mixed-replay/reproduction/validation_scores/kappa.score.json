@@ -1,0 +1,9 @@
+{
+ "suite": "kappa",
+ "items": 40,
+ "kappa_SRME": 0.3855547514410027,
+ "kappa_SRE": 0.30883910856976476,
+ "kappa_SRD": -0.25860111879242353,
+ "censored_or_failed": 1,
+ "complete": true
+}

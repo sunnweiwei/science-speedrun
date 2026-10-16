@@ -1,0 +1,161 @@
+volumes:
+  sealed:
+  verifier_logs:
+
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    shm_size: "64gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/physical/inputs
+        target: /benchmark/test/physical/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/kappa/inputs
+        target: /benchmark/test/kappa/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/mof/inputs
+        target: /benchmark/test/mof/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/amorphous/inputs
+        target: /benchmark/test/amorphous/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/cleavage/inputs
+        target: /benchmark/test/cleavage/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/neb/inputs
+        target: /benchmark/test/neb/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed
+      - verifier_logs:/logs/verifier
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -d /benchmark/test/physical/inputs &&
+          test -d /benchmark/test/kappa/inputs &&
+          test -d /benchmark/test/mof/inputs &&
+          test -d /benchmark/test/amorphous/inputs &&
+          test -d /benchmark/test/cleavage/inputs &&
+          test -d /benchmark/test/neb/inputs &&
+          test ! -e /benchmark/test/physical/references &&
+          test -z "$$(ls -A /labels 2>/dev/null)"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    command:
+      - python
+      - /tests/grader.py
+      - --sealed
+      - /sealed/run
+      - --labels
+      - /labels
+      - --output
+      - /sealed/results
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/physical/inputs
+        target: /labels/physical/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/kappa/inputs
+        target: /labels/kappa/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/mof/inputs
+        target: /labels/mof/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/amorphous/inputs
+        target: /labels/amorphous/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/cleavage/inputs
+        target: /labels/cleavage/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/test/neb/inputs
+        target: /labels/neb/inputs
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/physical/references
+        target: /labels/physical/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/kappa/references
+        target: /labels/kappa/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/mof/references
+        target: /labels/mof/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/amorphous/references
+        target: /labels/amorphous/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/cleavage/references
+        target: /labels/cleavage/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized release (verifier-only tree)}/test/neb/references
+        target: /labels/neb/references
+        read_only: true
+        bind:
+          create_host_path: false
+      - sealed:/sealed

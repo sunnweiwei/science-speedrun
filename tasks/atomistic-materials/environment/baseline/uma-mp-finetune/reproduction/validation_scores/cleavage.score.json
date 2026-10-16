@@ -1,0 +1,9 @@
+{
+ "suite": "cleavage",
+ "items": 2000,
+ "cleavage_relMAE_pct": 6.597912688788347,
+ "cleavage_MAE_eV_A2": 0.0066746426188003995,
+ "cleavage_signed_eV_A2": -0.005365016588127423,
+ "failed": 0,
+ "complete": true
+}

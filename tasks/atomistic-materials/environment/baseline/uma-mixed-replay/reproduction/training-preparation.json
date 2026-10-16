@@ -1,0 +1,34 @@
+{
+ "version": "mixed-replay-v1",
+ "frames": {
+  "omat": {
+   "train": 500000,
+   "val": 2500
+  },
+  "offeq": {
+   "train": 500000,
+   "val": 2500
+  }
+ },
+ "omat24_subsets": [
+  "aimd-from-PBE-1000-npt",
+  "aimd-from-PBE-1000-nvt",
+  "aimd-from-PBE-3000-npt",
+  "aimd-from-PBE-3000-nvt",
+  "rattled-1000",
+  "rattled-1000-subsampled",
+  "rattled-300",
+  "rattled-300-subsampled",
+  "rattled-500",
+  "rattled-500-subsampled",
+  "rattled-relax"
+ ],
+ "force_rms": {
+  "omat": 0.6581259648033486,
+  "offeq": 2.7793049876913742
+ },
+ "steps": 46875,
+ "global_batch_size": 32,
+ "pool_manifest_sha256": "2629d03687c095e7890716d87d4ea2c8425fe11febbe16f6703d7780fb076c0c",
+ "initial_checkpoint_sha256": "07068e9c76702ca173d13155095f2117c1b327ec228557e64cd2709c777b824a"
+}

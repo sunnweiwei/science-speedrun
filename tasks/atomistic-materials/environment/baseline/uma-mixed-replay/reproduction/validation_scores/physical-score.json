@@ -1,0 +1,81 @@
+{
+  "protocol": "atomistic-materials-v0.1",
+  "valid": true,
+  "preset": "val",
+  "leaderboard_comparable": false,
+  "scoring_versions": {
+    "numpy": "1.26.4",
+    "pymatgen": "2023.5.10",
+    "ase": "3.26.0"
+  },
+  "metrics": {
+    "phonons": {
+      "n": 300,
+      "failed": 0,
+      "max_freq": {
+        "MAE": 53.20297435894147,
+        "unit": "K"
+      },
+      "avg_freq": {
+        "MAE": 17.666464796823057,
+        "unit": "K"
+      },
+      "entropy": {
+        "MAE": 24.563469472927263,
+        "unit": "J/(mol primitive cell K)"
+      },
+      "heat_capacity": {
+        "MAE": 10.479048638530292,
+        "unit": "J/(mol primitive cell K)"
+      },
+      "free_energy": {
+        "MAE": 11.233245639074566,
+        "unit": "kJ/mol primitive cell"
+      }
+    },
+    "elasticity": {
+      "n": 300,
+      "failed": 0,
+      "bulk_modulus_vrh": {
+        "MAE": 5.868086552657904,
+        "unit": "GPa"
+      },
+      "shear_modulus_vrh": {
+        "MAE": 7.361299823284688,
+        "unit": "GPa"
+      }
+    },
+    "discovery": {
+      "n": 1000,
+      "threshold_eV_per_atom": 0.0,
+      "F1": 0.8459214501510574,
+      "precision": 0.8641975308641975,
+      "recall": 0.8284023668639053,
+      "TP": 140,
+      "FP": 22,
+      "FN": 29,
+      "TN": 809,
+      "hull_MAE_meV_per_atom": 21.513845519279368,
+      "failed": 0,
+      "unique_prototypes": {
+        "n": 837,
+        "threshold_eV_per_atom": 0.0,
+        "F1": 0.8837209302325582,
+        "precision": 0.8976377952755905,
+        "recall": 0.8702290076335878,
+        "TP": 114,
+        "FP": 13,
+        "FN": 17,
+        "TN": 693,
+        "hull_MAE_meV_per_atom": 22.286849287133712
+      }
+    }
+  },
+  "coverage": {
+    "expected": 1600,
+    "successful": 1600
+  },
+  "total_case_seconds": 44644.43865822675,
+  "nonconverged_initial_relaxations": 8,
+  "nonconverged_strained_relaxations": 0
+}

@@ -32,6 +32,7 @@ The budget column is the agent's development budget in `task.toml`, one of two s
 | [protein-design](tasks/protein-design) | one all-atom backbone generator for four design tracks; per-track pass rate (designable by LigandMPNN + RoseTTAFold3 refolding and novel vs the fit corpus) enzyme / sm_binder / ppi_binder / unconditional | 8× H100, 48 h | 0.082 / 0.025 / 0 / 0.10 | — | — | development views (RCSB snapshot, HF, ~6 GB); 51-target evaluation view vendored |
 | [protein-sequence-modeling](tasks/protein-sequence-modeling) | one from-scratch protein sequence model with heads for eleven PEER understanding tasks (mean task reward) | 8× H100, 48 h | 0.647 | 0.670 | — | PEER tasks (TAPE/PEER S3, 1.6 GB) + UniRef50 2026_03 decontaminated with MMseqs2 (9.9 GB) |
 | [fluid-flow-control](tasks/fluid-flow-control) | one shared closed-loop controller for all 39 HydroGym flow-control cases (2D/3D cylinder, pinball, airfoil, gust, sphere, cube, channel, nozzle, Kolmogorov; MAIA / JAX / JAX-Fluids CFD), scored by 26 named physical metrics | 8× H100, 48 h | 25/26 cases valid, near the uncontrolled flows | — (shared starter untrained; per-case specialists in `references/`) | — | HF release, 423 GB (39 CFD environments) |
+| [atomistic-materials](tasks/atomistic-materials) | one universal interatomic potential (energy, forces, stress) from random initialization (UMA-S architecture) for eight suites: stability screening, phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces, Li-migration NEB (Crystal Potential Score v2 / 100) | 8× H100, 48 h | 0.105 | 0.371 (scratch, validation) | 0.50 (pretrained UMA-S mixed replay) | HF release, 89 GB (42.4M-frame DFT pool + eight suites) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
@@ -46,6 +47,13 @@ Notes on the table:
   stereochemistry checks zero the structures (0.0003), as for the starter's monomer tracks. The verifier ran in
   25 min on 4 L40S. The baseline 0.037 predates the CAPRI-geometry interface rule; the reference is ESMFold2-Fast
   under that rule.
+- atomistic-materials was tested on an 8×H100 host: a Codex session that did not retrain the baseline, published a
+  300-update smoke package early, and started mixed-source pretraining (MP + OMat24 + MatPES with source energy
+  embeddings) behind a fixed all-suite panel that publishes only improvements without a suite regression; it was
+  stopped after about 50 min. The verifier runs all eight suites at once with a shared 3 h limit: a trained
+  package finishes in about 2 h (2 h 5 min for the pretrained mixed-replay model); unfinished cases of a weak package
+  score as failures, so the smoke package scored 0.105 at the limit. The baseline is the 10-epoch scratch trial's
+  validation Score v2 (37.08); its test split was never used.
 - fluid-flow-control was tested on an 8×H100 host: a Codex session that started with a one-case replay, trained one
   shared model jointly on six cases and compared variants against the recorded per-case references; it published four
   versions. A host-wide `systemctl daemon-reload` removed the container's GPU access after about 1 h; the agent

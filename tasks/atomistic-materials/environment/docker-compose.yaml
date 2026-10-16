@@ -1,0 +1,41 @@
+# Agent workspace. Network and GPUs come from task.toml; only development entries are mounted.
+services:
+  main:
+    build: .
+    shm_size: "64gb"
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/pool
+        target: /workspace/data/pool
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/val
+        target: /workspace/data/val
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release (public tree)}/baselines/mp-standard
+        target: /workspace/data/baselines/mp-standard
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to an empty per-run directory}
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -s /workspace/data/pool/manifest.json &&
+          test -s /workspace/data/val/physical/inputs/cases.jsonl &&
+          test -d /workspace/data/val/kappa/references &&
+          test -s /workspace/data/baselines/mp-standard/manifest.json &&
+          test ! -e /workspace/data/test
+      interval: 10s
+      timeout: 10s
+      retries: 3

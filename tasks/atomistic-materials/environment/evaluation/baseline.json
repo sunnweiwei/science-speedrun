@@ -1,0 +1,11 @@
+{
+  "model": "uma-s-1p1",
+  "repository": "facebook/UMA",
+  "revision": "f611b917d9c68566bbbeccbb0aa0f7cad1696cb2",
+  "filename": "checkpoints/uma-s-1p1.pt",
+  "sha256": "07068e9c76702ca173d13155095f2117c1b327ec228557e64cd2709c777b824a",
+  "task_name": "omat",
+  "inference_settings": "default",
+  "fairchem_core": "2.16.0",
+  "status": "Smoke baseline, pending final checkpoint selection and adaptation pilot"
+}

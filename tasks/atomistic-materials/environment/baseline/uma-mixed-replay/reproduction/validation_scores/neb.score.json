@@ -1,0 +1,9 @@
+{
+ "suite": "neb",
+ "items": 256,
+ "barrier_MAE_eV": 0.15702739474336003,
+ "barrier_MAE_converged_eV": 0.10756423418970298,
+ "converged_frac": 0.96875,
+ "failed": 0,
+ "complete": true
+}

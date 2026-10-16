@@ -1,0 +1,34 @@
+# UMA-S K4L2 / 32-expert architecture, initialized by the constructor.
+# Source: facebookresearch/fairchem@a1605489fc8ffe875108721b2c25d08b70375f5b
+# configs/uma/training_release/{backbone/K4L2,uma_sm_direct_pretrain}.yaml
+# Task changes: single omat domain, conservative E/F/S from step zero,
+# 300 neighbors, on-the-fly graphs, and version-1.1 composition averaging.
+model: fairchem.core.models.uma.escn_moe.eSCNMDMoeBackbone
+num_experts: 32
+moe_dropout: 0.05
+moe_layer_type: pytorch
+use_composition_embedding: true
+model_version: 1.1
+max_num_elements: 100
+sphere_channels: 128
+lmax: 2
+mmax: 2
+num_layers: 4
+hidden_channels: 128
+edge_channels: 128
+distance_function: gaussian
+num_distance_basis: 64
+cutoff: 6.0
+max_neighbors: 300
+otf_graph: true
+always_use_pbc: false
+regress_forces: true
+regress_stress: true
+direct_forces: false
+norm_type: rms_norm_sh
+act_type: gate
+ff_type: spectral
+chg_spin_emb_type: rand_emb
+cs_emb_grad: true
+dataset_emb_grad: true
+dataset_mapping: {omat: omat}

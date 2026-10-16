@@ -1,0 +1,38 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/atomistic-materials"
+version = "3.0.0"
+description = "Develop one universal crystal potential (energy, forces, stress) from random initialization (UMA-S starter architecture) that stays MP-compatible for stability screening and accurate far from equilibrium: phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces and Li migration."
+authors = [{ name = "junlin-star" }]
+keywords = ["model-development", "materials", "interatomic-potential", "uma", "data-engineering", "pretraining"]
+
+[metadata]
+data_status = "Public DFT training pool (MPtrj, sAlex, MatPES-PBE, OMat24 sample); evaluation compositions/parents excluded except common AM26 compositions; eight suites with agent-visible validation and held-out test splits"
+evaluation_status = "Crystal Potential Score v2: eight equally weighted suites, plus 15 raw metrics; 1M-frame, 10-epoch scratch trial validation score 37.08; full test replay 2 h 10 min on 8xH100 with all suites concurrent (mixed-replay, Docker)"
+
+[agent]
+timeout_sec = 172800.0         # external development budget (48 h); the MP fine-tune baseline trains in 2 h 16 min
+
+[environment]
+network_mode = "no-network"
+cpus = 128
+memory_mb = 786432
+storage_mb = 1048576
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 14400.0          # 3 h shared inference limit (tests/main_verifier.py) + grading
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 128
+memory_mb = 524288
+storage_mb = 204800
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

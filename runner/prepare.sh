@@ -71,6 +71,10 @@ case "$task" in
     mkdir -p "$root/private"; [ -s "$root/private/request-seed" ] || head -c 64 /dev/urandom > "$root/private/request-seed"
     cg python3 /task/tests/requests/build_suite.py --seed-file "$root/private/request-seed" --output-root "$root/final-suite"
     data=$root; private=$root ;;
+  atomistic-materials)                    # prepared HF release (89 GB: pool, val, test, models), every artifact checksummed
+    read -r repo rev sha < <(python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); print(d["repo_id"], d["revision"], d["manifest_sha256"])' "$t/environment/data/download-source.json")
+    inbox "huggingface_hub>=1.0,<2" "cd environment/data && python release.py install --root $root/release --repo-id $repo --revision $rev --manifest-sha256 $sha"
+    data=$root/release; private=$root/release ;;
   fluid-flow-control)                     # HydroGym release (423 GB, 39 cases, pinned HF commit), every file hash-verified
     inbox "huggingface_hub>=1.0,<2" "python environment/data/materialize.py $root --download"
     data=$root; private=$root ;;

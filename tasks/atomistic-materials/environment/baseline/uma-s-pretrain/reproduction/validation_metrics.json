@@ -1,0 +1,43 @@
+{
+ "run": "scratch-10ep-mixed1m-20261005-01",
+ "split": "validation (4,312 cases, eight suites); the 9,071-case test was not used",
+ "crystal_potential_score_v2": 37.08,
+ "metrics": {
+  "discovery_F1": 0.7592,
+  "discovery_hull_MAE_meV_per_atom": 32.52,
+  "phonon_max_freq_MAE_K": 91.104,
+  "phonon_avg_freq_MAE_K": 37.162,
+  "phonon_entropy_MAE": 51.326,
+  "phonon_heat_capacity_MAE": 19.97,
+  "phonon_free_energy_MAE": 23.706,
+  "bulk_modulus_MAE_GPa": 12.85,
+  "shear_modulus_MAE_GPa": 14.193,
+  "kappa_SRME": 0.8523,
+  "mof_bulk_modulus_MAPE_pct": 39.427,
+  "amorphous_energy_RelRMSE_pct": 25.445,
+  "amorphous_force_RelRMSE_pct": 27.852,
+  "cleavage_relMAE_pct": 8.411,
+  "neb_barrier_MAE_eV": 0.147
+ },
+ "cases": {
+  "discovery": 1000,
+  "phonon": 300,
+  "elasticity": 300,
+  "kappa": 40,
+  "mof": 40,
+  "amorphous": 376,
+  "cleavage": 2000,
+  "neb": 256
+ },
+ "failures": {
+  "case_execution_failures": 0,
+  "kappa_max_penalty_cases": 2,
+  "unconverged_initial_relaxations": 7,
+  "unconverged_neb_paths": 8
+ },
+ "dev_loss_normalized": {
+  "update_1000": 1.971,
+  "update_312500": 0.27
+ },
+ "metric_names": "the verifier's reward keys (tests/grader.py REWARD_KEYS); lower is better except discovery_F1"
+}

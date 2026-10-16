@@ -1,0 +1,23 @@
+[project]
+name = "atomistic-materials-scoring"
+version = "0.1.0"
+description = "Historical MP2020 correction runtime, isolated from the UMA runtime"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "pymatgen==2023.5.10",
+  "numpy==1.26.4",
+  "scipy==1.13.1",
+  "ase==3.26.0",
+  "monty==2024.5.24",
+]
+
+[dependency-groups]
+dev = ["pytest==8.4.2"]
+
+[tool.uv]
+package = false
+build-constraint-dependencies = ["Cython==0.29.37", "numpy==1.26.4"]
+
+[tool.pytest.ini_options]
+pythonpath = ["../evaluation"]
+testpaths = ["tests"]

@@ -53,7 +53,7 @@ Track semantics follow the benchmark, and they are not symmetric:
 
 ### Contamination
 
-These targets are old PDB entries (`1nzy`, `13pk`, `1dbt` and similar), so they are in
+These targets are old PDB entries, so they are in
 the training set of every current design model. That is inherent to the benchmark and
 is **not** solved here - RFdiffusion3 accepts the same exposure, since scaffolding a
 known catalytic site is the task. The temporal holdout below therefore protects only

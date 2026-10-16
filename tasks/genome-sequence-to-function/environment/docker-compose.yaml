@@ -23,12 +23,6 @@ services:
         bind:
           create_host_path: false
       - type: bind
-        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/test.parquet
-        target: /workspace/data/public/test.parquet
-        read_only: true
-        bind:
-          create_host_path: false
-      - type: bind
         source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/public/junction_tracks.parquet
         target: /workspace/data/public/junction_tracks.parquet
         read_only: true
@@ -77,12 +71,6 @@ services:
         bind:
           create_host_path: false
       - type: bind
-        source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/variant_evals/public
-        target: /workspace/data/variant_evals/public
-        read_only: true
-        bind:
-          create_host_path: false
-      - type: bind
         source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the materialized release}/variant_evals/valid
         target: /workspace/data/variant_evals/valid
         read_only: true
@@ -101,7 +89,7 @@ services:
           test -s /workspace/data/reference/GRCh38.p13.genome.fa.fai &&
           test -s /workspace/data/public/train.parquet &&
           test -s /workspace/data/public/valid.parquet &&
-          test -s /workspace/data/public/test.parquet &&
+          test ! -e /workspace/data/public/test.parquet &&
           test -s /workspace/data/labels/train.parquet &&
           test -s /workspace/data/labels/valid.parquet &&
           test ! -e /workspace/data/labels/test.parquet &&
@@ -111,7 +99,7 @@ services:
           test -d /workspace/data/targets/train &&
           test -d /workspace/data/targets/valid &&
           test ! -e /workspace/data/targets/test &&
-          test -s /workspace/data/variant_evals/public/perturbations.parquet &&
+          test ! -e /workspace/data/variant_evals/public &&
           test -s /workspace/data/variant_evals/valid/labels/tracks.parquet &&
           test ! -e /workspace/data/variant_evals/labels
       interval: 10s

@@ -7,4 +7,4 @@ This is the record of the run behind `../RESULTS.md`: run `scratch-10ep-mixed1m-
 | `validation_metrics.json` | Score v2 and the 15 raw metrics under the verifier's reward-key names; case counts per suite; failure counts; start and end dev loss |
 | `training-loss.png` | training and labeled-dev loss over the 312,500 updates (320 dev checks), plus per-source dev errors |
 
-Raw validation predictions, training logs and the mixed-sample preparation script remain in the task author's storage. No test predictions exist for this run: its test split was not used.
+Raw validation predictions, training logs and the mixed-sample preparation script are not included. No test predictions exist for this run: its test split was not used.

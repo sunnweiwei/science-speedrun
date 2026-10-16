@@ -32,9 +32,8 @@ there is the scientifically interesting outcome.
   and how each is scored.
 - `/workspace/data/` (read-only):
   - `README.md` and the reference genome;
-  - public manifests for train, validation and test;
+  - public manifests for train and validation;
   - train and validation targets, labels and scoring queries;
-  - `variant_evals/public/perturbations.parquet`, the variant queries the verifier will ask;
   - `variant_evals/valid/`, a development split of every variant evaluation, with labels.
 
   Train targets are stored as 8-bit codes with per-track ranges. The supplied dataset reader

@@ -7,14 +7,14 @@ read-only.
 | path | content |
 |---|---|
 | `reference/GRCh38.p13.genome.fa` (+ `.fai`) | the pinned reference genome; all sequence comes from here |
-| `public/{train,valid,test}.parquet` | manifests: `example_id`, chromosome, 1,048,576-bp input window with padding, and the central 196,608-bp target window. The test manifest has no targets |
+| `public/{train,valid}.parquet` | manifests: `example_id`, chromosome, 1,048,576-bp input window with padding, and the central 196,608-bp target window. The test manifest, same format, stays with the verifier |
 | `public/junction_tracks.parquet` | the 734 splice-junction tracks and their strand half |
 | `metadata/tracks.parquet` | all 5,930 tracks: family, assay, biosample and ontology term, strand, data source |
 | `labels/{train,valid}.parquet` | per example: where its targets are (`target_shard`, `target_group`) and its splice-site positions |
 | `targets/train/` | 41,020 examples in 250 Zarr shards, 8-bit (see below), 331 GB |
 | `targets/valid/` | 200 examples, full precision |
 | `scoring/{train,valid}/` | junction scoring queries per example: the (donor, acceptor) pairs scored for junctions |
-| `variant_evals/public/perturbations.parquet` | the 6,587 test variant and perturbation queries that `perturb.sh` must answer (labels stay with the verifier) |
+| `variant_evals/valid/public/perturbations.parquet` | the development split's variant and perturbation queries, in the format `perturb.sh` answers; the 6,587 test queries and their labels stay with the verifier |
 | `variant_evals/valid/` | the development split of the same 13 evaluations: 2,697 queries (`public/`) with labels and published anchors (`labels/`) |
 
 ## Targets

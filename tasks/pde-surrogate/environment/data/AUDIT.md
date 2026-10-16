@@ -83,8 +83,7 @@ Facts, with sources:
   lists 17 names, and the full release ships exactly those 17 plus 7 test
   files. The paper's "16 PDEs" counts Gray-Scott once.
 - **Generator** (`simulations_apebench/`): `exponax==0.1.0` on JAX, with the
-  per-PDE parameter ranges in `simulation_setups_2d.py`. Fresh held-out
-  instances can be generated from pinned seeds; **unverified** here.
+  per-PDE parameter ranges in `simulation_setups_2d.py`.
 
 ### Metric as implemented upstream
 

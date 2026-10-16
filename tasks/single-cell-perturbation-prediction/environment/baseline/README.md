@@ -77,7 +77,7 @@ comparable: ctx_far is built from that dataset, but the metric panel and the nor
 differ.
 
 Reading the table: the near > mid > far ordering is the context-distance gradient the task is
-built to expose; the far context (Flex chemistry, pluripotent) keeps only ~30 % of the transfer
+built to expose; the far context (Flex chemistry) keeps only ~30 % of the transfer
 that works on the near context.
 A group score is the mean of the six per-perturbation metrics (the effect-size
 Spearman is a whole-run property and is not split by group); the group numbers quoted here are

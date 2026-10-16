@@ -82,8 +82,8 @@ def split_ligands(context):
     `ingest_targets.py` stores ALL of a target's ligands in one flat array each -
     `ligand_coords` and `ligand_elements` concatenated, with `ligand_ccd` and
     `ligand_atom_counts` saying where the boundaries are. 29 of the 41 enzyme targets
-    carry more than one ligand (a cofactor plus a substrate, often plus a metal:
-    M0040_13pk is MG + ADP + 3PG), so reading `ligand_ccd[0]` and handing it the whole
+    carry more than one ligand (a cofactor plus a substrate, often plus a metal,
+    e.g. MG + ADP + 3PG), so reading `ligand_ccd[0]` and handing it the whole
     element array asks the CCD for a component that explains every ligand at once. That
     never embeds, so the target was silently skipped - which cost 29 of 41 enzyme
     targets, i.e. the agent-facing path could reach only 12 of them.

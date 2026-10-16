@@ -149,9 +149,9 @@ per-target breakdown is in the run's own `report-full.json`.
   convergence. This is a floor for the architecture, not its ceiling.
 - **Benchmark contamination is extensive.** **43 of the 50 conditioned
   targets are in the training corpus**: all 41 enzyme targets (deposited 1987–2014, every
-  one before the corpus's 2021-09-30 cut) plus sm_binder FAD (7bkc) and SAM (7c7m). Only
+  one before the corpus's 2021-09-30 cut) plus two of the four sm_binder targets. Only
   7 are clean — the 5 ppi targets, excluded by upstream's own dataset filters, and
-  sm_binder IAI (5sdv) and OQO (7v11), both deposited post-cut. Verified against the
+  the other two sm_binder targets, both deposited post-cut. Verified against the
   public atomworks metadata, not assumed.
   Contamination does **not** explain the scores: 28 of the 41 contaminated enzyme targets
   score 0.00, and the two contaminated sm_binder targets total 4 passes against the clean

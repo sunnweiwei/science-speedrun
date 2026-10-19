@@ -1,0 +1,364 @@
+{
+  "scope": "A5000; fixed real seed81 growth, 128 steps x batch4 x workers, 3 repeats; replicated independent windows; setup and PolicyPeaks excluded; not full-volume timing",
+  "uuid": "GPU-4ab6611d-f03a-9b9b-eb20-098821219ed8",
+  "trace_sha256": "22e88cfca6c7174dfe065e1e7ebd2da9e2e492ec6424627ae0943562c0af242f",
+  "source_sha256": "30fef62b5a8c718c66730fe9ee329158c843b5d2857c65c8eef3b25355912b2e",
+  "backend_sha256": "4dc84e4cfbb15ecf0191b263864eff9aaff79c1310e339b21ac01f5e58bc375c",
+  "job_id": "13034657",
+  "artifact_root": "/usr/project/xtmp/sc829/fruit-fly-brain/runs/pathfinder-budget-v1/mps-inference-opt-20261017",
+  "mps_clients": {
+    "servers": "1270712\n",
+    "clients": [
+      "1270916\n1270917\n1270918\n1270919\n"
+    ]
+  },
+  "checkpoint_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+  "results": [
+    {
+      "name": "single-eager",
+      "workers": 1,
+      "mps": false,
+      "backend": "eager",
+      "fov_per_second": 153.276973580881,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 361.0,
+          "max": 361.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 87.0,
+          "max": 90.0
+        },
+        "controller_busy_percent": {
+          "median": 33.0,
+          "max": 34.0
+        },
+        "power_W": {
+          "median": 219.81,
+          "max": 227.59
+        }
+      },
+      "sample_count": 21,
+      "repeat_fov_per_second": [
+        142.48113149923773,
+        153.276973580881,
+        153.8565654675555
+      ],
+      "speedup_vs_mps_eager": 0.8830922632899602
+    },
+    {
+      "name": "single-norm",
+      "workers": 1,
+      "mps": false,
+      "backend": "norm",
+      "fov_per_second": 224.48660829275823,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 343.0,
+          "max": 343.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 83.0,
+          "max": 84.0
+        },
+        "controller_busy_percent": {
+          "median": 49.0,
+          "max": 50.0
+        },
+        "power_W": {
+          "median": 207.01,
+          "max": 229.0
+        }
+      },
+      "sample_count": 13,
+      "repeat_fov_per_second": [
+        224.48660829275823,
+        224.3587191331347,
+        228.5343245042005
+      ],
+      "speedup_vs_mps_eager": 1.293360524834021
+    },
+    {
+      "name": "single-norm-graph",
+      "workers": 1,
+      "mps": false,
+      "backend": "norm-graph",
+      "fov_per_second": 232.1035682598469,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 369.0,
+          "max": 369.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 82.5,
+          "max": 87.0
+        },
+        "controller_busy_percent": {
+          "median": 50.0,
+          "max": 52.0
+        },
+        "power_W": {
+          "median": 194.77,
+          "max": 228.79
+        }
+      },
+      "sample_count": 14,
+      "repeat_fov_per_second": [
+        231.59876073296087,
+        232.1035682598469,
+        235.52550400588166
+      ],
+      "speedup_vs_mps_eager": 1.337244992667514
+    },
+    {
+      "name": "multi-no-mps-eager",
+      "workers": 4,
+      "mps": false,
+      "backend": "eager",
+      "fov_per_second": 156.44842013393563,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1433.0,
+          "max": 1433.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 37.0,
+          "max": 38.0
+        },
+        "power_W": {
+          "median": 228.905,
+          "max": 229.75
+        }
+      },
+      "sample_count": 72,
+      "repeat_fov_per_second": [
+        156.44842013393563,
+        156.68326744860036,
+        156.15110756935331
+      ],
+      "speedup_vs_mps_eager": 0.901364283209262
+    },
+    {
+      "name": "multi-no-mps-norm",
+      "workers": 4,
+      "mps": false,
+      "backend": "norm",
+      "fov_per_second": 245.6372100714253,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1361.0,
+          "max": 1361.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 55.0,
+          "max": 56.0
+        },
+        "power_W": {
+          "median": 228.765,
+          "max": 229.3
+        }
+      },
+      "sample_count": 46,
+      "repeat_fov_per_second": [
+        240.881385886992,
+        246.6068701498784,
+        245.6372100714253
+      ],
+      "speedup_vs_mps_eager": 1.4152179203599824
+    },
+    {
+      "name": "multi-no-mps-norm-graph",
+      "workers": 4,
+      "mps": false,
+      "backend": "norm-graph",
+      "fov_per_second": 249.73475894429703,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1465.0,
+          "max": 1465.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 57.0,
+          "max": 58.0
+        },
+        "power_W": {
+          "median": 229.085,
+          "max": 231.3
+        }
+      },
+      "sample_count": 46,
+      "repeat_fov_per_second": [
+        249.73475894429703,
+        249.74260275754565,
+        249.45909279269958
+      ],
+      "speedup_vs_mps_eager": 1.4388256001278512
+    },
+    {
+      "name": "multi-mps-eager",
+      "workers": 4,
+      "mps": true,
+      "backend": "eager",
+      "fov_per_second": 173.568470648636,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1449.0,
+          "max": 1449.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 38.0,
+          "max": 39.0
+        },
+        "power_W": {
+          "median": 229.31,
+          "max": 229.7
+        }
+      },
+      "sample_count": 66,
+      "repeat_fov_per_second": [
+        173.568470648636,
+        173.6173987165635,
+        173.5043439349197
+      ],
+      "speedup_vs_mps_eager": 1.0
+    },
+    {
+      "name": "multi-mps-norm",
+      "workers": 4,
+      "mps": true,
+      "backend": "norm",
+      "fov_per_second": 278.59755568290853,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1377.0,
+          "max": 1377.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 60.0,
+          "max": 61.0
+        },
+        "power_W": {
+          "median": 229.27,
+          "max": 229.76
+        }
+      },
+      "sample_count": 40,
+      "repeat_fov_per_second": [
+        277.9920577723973,
+        278.7108793398679,
+        278.59755568290853
+      ],
+      "speedup_vs_mps_eager": 1.60511615180898
+    },
+    {
+      "name": "multi-mps-norm-graph",
+      "workers": 4,
+      "mps": true,
+      "backend": "norm-graph",
+      "fov_per_second": 275.1379776265384,
+      "trace_exact": true,
+      "gpu_stats": {
+        "used_MiB": {
+          "median": 1481.0,
+          "max": 1481.0
+        },
+        "total_MiB": {
+          "median": 24564.0,
+          "max": 24564.0
+        },
+        "gpu_busy_percent": {
+          "median": 100.0,
+          "max": 100.0
+        },
+        "controller_busy_percent": {
+          "median": 59.0,
+          "max": 60.0
+        },
+        "power_W": {
+          "median": 229.25,
+          "max": 229.81
+        }
+      },
+      "sample_count": 41,
+      "repeat_fov_per_second": [
+        275.29699208844414,
+        275.1379776265384,
+        274.74109329754737
+      ],
+      "speedup_vs_mps_eager": 1.585184086708438
+    }
+  ],
+  "source_receipts": {
+    "summary.json": "a01a18556f88aef2d018ff273e64cb6e859c36f95ca875fc6980706642021b55",
+    "analysis.json": "f0c9f3acb76523d028b9d949d23c16ed907a3b685897752391e23a4179f596aa",
+    "mps-evidence.json": "3dec48fa35fa2fd3be282db8a0c64424b3a7d1f916c8dbb0f8d7e018f18128ad",
+    "mps-clients.json": "e8617b3ed5e7f7bc3c27634bfe9708fcf9608175dd535afceb89e92629f421da",
+    "bench.py": "30fef62b5a8c718c66730fe9ee329158c843b5d2857c65c8eef3b25355912b2e"
+  },
+  "limitations": [
+    "One A5000; no H100 validation or extrapolated H100 speedup",
+    "Three repeats of one replicated real seed trace, not different anatomical windows",
+    "Initial seed selection, setup, final segmentation assignment, stitching and downstream excluded",
+    "Full-window parity of norm32-graph was separately validated; MPS full-window parity not established here"
+  ]
+}

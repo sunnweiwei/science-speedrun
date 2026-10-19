@@ -1,0 +1,7 @@
+{
+  "job_id": "90000004",
+  "partition": "cpu",
+  "gpus": 0,
+  "interval_seconds": 2700,
+  "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/monitor.sbatch"
+}

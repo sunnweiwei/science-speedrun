@@ -1,0 +1,131 @@
+{
+  "complete": true,
+  "full_pipeline_complete": false,
+  "production_promoted": false,
+  "scope": "12 deterministic real101cube consensus fragments; SciPy EDT function only, no GPU or full baseline speedup claim",
+  "crop_zyx": [
+    800,
+    901,
+    800,
+    901,
+    800,
+    901
+  ],
+  "results": [
+    {
+      "id": 297223,
+      "voxels": 3,
+      "seconds": {
+        "original": 0.09794369991868734,
+        "bounded": 0.0011259329815705617
+      },
+      "exact": true
+    },
+    {
+      "id": 902222,
+      "voxels": 9,
+      "seconds": {
+        "original": 0.08917521499097347,
+        "bounded": 0.01078122699012359
+      },
+      "exact": true
+    },
+    {
+      "id": 925932,
+      "voxels": 10,
+      "seconds": {
+        "original": 0.10015080031007528,
+        "bounded": 0.001642451932032903
+      },
+      "exact": true
+    },
+    {
+      "id": 933705,
+      "voxels": 1,
+      "seconds": {
+        "original": 0.0893105339879791,
+        "bounded": 0.0011097099632024765
+      },
+      "exact": true
+    },
+    {
+      "id": 973648,
+      "voxels": 3,
+      "seconds": {
+        "original": 0.09196066359678905,
+        "bounded": 0.001127286193271478
+      },
+      "exact": true
+    },
+    {
+      "id": 1493485,
+      "voxels": 34,
+      "seconds": {
+        "original": 0.08840085907528798,
+        "bounded": 0.002740965224802494
+      },
+      "exact": true
+    },
+    {
+      "id": 1493488,
+      "voxels": 4,
+      "seconds": {
+        "original": 0.08992487223198016,
+        "bounded": 0.0012006827940543492
+      },
+      "exact": true
+    },
+    {
+      "id": 1493489,
+      "voxels": 2,
+      "seconds": {
+        "original": 0.08939902018755674,
+        "bounded": 0.0011026303594311078
+      },
+      "exact": true
+    },
+    {
+      "id": 157594809,
+      "voxels": 3769,
+      "seconds": {
+        "original": 0.09239340666681528,
+        "bounded": 0.003604788022736708
+      },
+      "exact": true
+    },
+    {
+      "id": 158055590,
+      "voxels": 2137,
+      "seconds": {
+        "original": 0.0886060909057657,
+        "bounded": 0.002296936077376207
+      },
+      "exact": true
+    },
+    {
+      "id": 158278713,
+      "voxels": 1861,
+      "seconds": {
+        "original": 0.09227769790838163,
+        "bounded": 0.0023776919891436896
+      },
+      "exact": true
+    },
+    {
+      "id": 161742691,
+      "voxels": 2042,
+      "seconds": {
+        "original": 0.08804987215747435,
+        "bounded": 0.0020936746150255203
+      },
+      "exact": true
+    }
+  ],
+  "source_sha256": "8a4c5a4bd96f6c16f57dfda9b12196c6f561d882d01443f05789b0dd2cc555b3",
+  "audit_script_sha256": "fad1baec8ff56b7eac079196a8a63432f13af456ddc5ab2c926de2371910b96e",
+  "audit_script_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/fragment-edt-audit-v1/audit.py",
+  "tests_passed": 9,
+  "tested_scope": "Boundary/all-foreground/disconnected/random distance maps exact; synthetic full resegmentation seeds, retries and score reports identical. Real12-fragment distance arrays exact.",
+  "original_total_seconds": 1.097592731937766,
+  "bounded_total_seconds": 0.031203977142771084
+}

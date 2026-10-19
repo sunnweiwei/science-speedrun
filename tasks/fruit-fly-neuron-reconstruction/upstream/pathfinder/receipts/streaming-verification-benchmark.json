@@ -1,0 +1,51 @@
+{
+  "scope": "Standalone full-artifact verification only, not full packing or end-to-end pipeline",
+  "baseline": {
+    "sha256": "f9d2bd1b92f49226c33dbae7049c720757b0c2a8c6d5dcb00cbc29c372b97289",
+    "shape": [
+      1762,
+      1762,
+      1762
+    ],
+    "uncompressed_bytes": 21881531040,
+    "mode": "materialized",
+    "wall_seconds": 117.26135669182986,
+    "cpu_seconds": 118.523800151,
+    "peak_rss_kib": 43348348,
+    "artifact": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-test-v4/replay/prediction/member-0/packed/segmentation.npz",
+    "archive_sha256": "14e03890af36908ce52ea3624968044d9707585cbcf3e9514103ff3c7e2bdff6",
+    "verifier_source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-test-v4/source/pathfinder/window_io.py",
+    "verifier_sha256": "ab4b25918c62016d8679ac1e7903d58af1109809e5d4b6cd0ab3241d85f0546d",
+    "compressed_bytes": 586513994
+  },
+  "streaming": {
+    "sha256": "f9d2bd1b92f49226c33dbae7049c720757b0c2a8c6d5dcb00cbc29c372b97289",
+    "uncompressed_bytes": 21881531040,
+    "shape": [
+      1762,
+      1762,
+      1762
+    ],
+    "mode": "streaming",
+    "wall_seconds": 99.82982868794352,
+    "cpu_seconds": 99.793665923,
+    "peak_rss_kib": 390996,
+    "artifact": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-test-v4/replay/prediction/member-0/packed/segmentation.npz",
+    "archive_sha256": "14e03890af36908ce52ea3624968044d9707585cbcf3e9514103ff3c7e2bdff6",
+    "verifier_source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-worktree/fruit-fly-brain/upstream/pathfinder/window_io.py",
+    "verifier_sha256": "3395f686fb7d44c2dd26bd85b9ed4e94a9e19ab07ec2b2d65636679d2d85f02d",
+    "compressed_bytes": 586513994
+  },
+  "exact_npy_identity": true,
+  "samples_per_mode": 1,
+  "order": [
+    "materialized",
+    "streaming"
+  ],
+  "cache_controlled": false,
+  "peak_rss_reduction_fraction": 0.9909801406964805,
+  "wall_reduction_fraction": 0.1486553498583295,
+  "cpu_reduction_fraction": 0.1580284652039312,
+  "gpu_hours": 0,
+  "running_campaign_source_changed": false
+}

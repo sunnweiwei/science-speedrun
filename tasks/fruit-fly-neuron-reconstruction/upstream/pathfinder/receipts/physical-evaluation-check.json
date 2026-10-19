@@ -1,0 +1,39 @@
+{
+  "purpose": "Reference self-check only; not a model score",
+  "nerl": 1.0,
+  "nodes": 78015,
+  "maximum_erl_nm": 12022.468850375388,
+  "suite_sha256": "e4864c6d467b6e0a2c4be746d2e61adb9c4719f547882f31177f9f1c700887a4",
+  "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+  "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+  "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+  "node_assignments_sha256": "f22dc15793e151a94b3923727c636973ebf5a7532150ad45f89878a14f2a8283",
+  "regression_tests": 105,
+  "skipped": 2,
+  "native_nisb_reference": {
+    "skeleton_sha256": "8037e9bdd4a409b72249a785ba92620c7216c3a47716aace0f919cbaef76b581",
+    "skeletons": 416,
+    "nodes": 791035,
+    "edges": 790610,
+    "total_reference_length": 102506886.37884426,
+    "coordinate_units": "native XYZ voxel indices",
+    "physical_resolution_nm": [
+      9,
+      9,
+      20
+    ],
+    "outside_nodes": 0,
+    "coordinate_min": [
+      34.0,
+      33.0,
+      16.0
+    ],
+    "coordinate_max": [
+      2966.0,
+      2966.0,
+      1335.0
+    ],
+    "loaded_with": "Pinned upstream PyTC load_nerl_graph",
+    "quality_score": false
+  }
+}

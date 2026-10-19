@@ -1,0 +1,143 @@
+{
+  "schema": "pathfinder-continuous-image/v1",
+  "dataset_id": "AxonEM-M-author-continuous-raw",
+  "axes": "zyx",
+  "coordinate_convention": "voxel_outer_corner",
+  "origin_nm": [
+    3000,
+    4384,
+    4384
+  ],
+  "voxel_size_nm": [
+    16,
+    16,
+    16
+  ],
+  "native_voxel_size_nm": [
+    40,
+    8,
+    8
+  ],
+  "shape": [
+    1500,
+    1500,
+    1500
+  ],
+  "source_url": "https://huggingface.co/datasets/pytc/EM30/resolve/63519706548316c1f00863cbea0ece40358a759a/EM30-M-im-pad.zip",
+  "source_archive_sha256": "93824734ec7c2c09df87f8b01e32a556446c437988618b27b5234df76659eccf",
+  "training_alignment": [
+    {
+      "block": "0-3584-0",
+      "local_z": 20,
+      "archive_z": 20,
+      "crop_yx": [
+        640,
+        896,
+        640,
+        896
+      ],
+      "pixel_exact": true,
+      "training_source_sha256": "6eecd77c017d956668923e9499d8a0dd4da7fe9aafafc51175d225afbb318fec"
+    },
+    {
+      "block": "350-1792-1792",
+      "local_z": 45,
+      "archive_z": 395,
+      "crop_yx": [
+        640,
+        896,
+        640,
+        896
+      ],
+      "pixel_exact": true,
+      "training_source_sha256": "6643df841dae5f634718f6c840d52a31f44b8ea33cc034c9e13ca5c91c5f8521"
+    },
+    {
+      "block": "700-3584-0",
+      "local_z": 69,
+      "archive_z": 769,
+      "crop_yx": [
+        640,
+        896,
+        640,
+        896
+      ],
+      "pixel_exact": true,
+      "training_source_sha256": "3da6ff665d9f908b66e996424fcc18eafc13abaea0f6f1cc0950d03254da3fcd"
+    }
+  ],
+  "files": {
+    "raw.npy": "65bfa2dbc6881eac6534d82e19fdd5b2396e3094ea39e41612633e1057554650",
+    "image_valid_z.npy": "42bbc07028ae3043e425a16e326f92c9729be68863e80b8e16de010a84c96955"
+  },
+  "image_valid": {
+    "layout": "z vector broadcasts over y,x",
+    "scope": "only detected full-plane0/128 filler defects",
+    "zero_means": "one or more nonzero interpolation source weights touched filler; not GT/background",
+    "valid_planes": 1465,
+    "invalid_output_planes": [
+      161,
+      162,
+      163,
+      164,
+      165,
+      306,
+      307,
+      308,
+      309,
+      310,
+      711,
+      712,
+      713,
+      714,
+      715,
+      809,
+      810,
+      811,
+      812,
+      813,
+      836,
+      837,
+      838,
+      839,
+      840,
+      1311,
+      1312,
+      1313,
+      1314,
+      1315,
+      1454,
+      1455,
+      1456,
+      1457,
+      1458
+    ],
+    "source_filler_planes": [
+      160,
+      218,
+      380,
+      419,
+      430,
+      620,
+      677
+    ],
+    "filler_values_preserved": true,
+    "all_source_defects_detected": false
+  },
+  "disk_bytes": 24413148372,
+  "seconds": 217.5305787678808,
+  "ground_truth_included": false,
+  "paper_comparable": false,
+  "geometric_full20um_sphere_possible": true,
+  "full_context_image_validity_verified": false,
+  "job_id": 90000007,
+  "gpu_count": 0,
+  "code_commit": "2c7d363",
+  "source_manifest": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/continuous24/manifest.json",
+  "source_manifest_sha256": "a00f4a16616b8e9341d01885a4b1da2ccf4fdad2408a1b6a858ea4527150c8d3",
+  "source_plane_count": 602,
+  "raw_file_bytes": 3375000128,
+  "plane_valid_file_bytes": 1628,
+  "interpolation_rounding_note": "float32 separable accumulation can differ by1uint8 gray level from scipy near rounding ties; voxel-center convention matches",
+  "split_usage": "development continuous image; not a new neuron-disjoint test split"
+}

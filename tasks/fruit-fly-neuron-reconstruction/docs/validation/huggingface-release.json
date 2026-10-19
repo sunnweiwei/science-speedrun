@@ -1,0 +1,31 @@
+{
+  "complete": true,
+  "manifest_sha256": "db319f336b8da8dc8f74cb4cd397bae27d743211b612a9b9653c8f8a26408c30",
+  "files": 722,
+  "repo_id": "sanxing/ai4sci-fruit-fly-brain",
+  "revision": "86286a6b000210eca271a3e376f730319b6406b9",
+  "anonymous": true,
+  "schema": "pathfinder-hf-release-validation/v1",
+  "checked_at": "2026-10-05T20:19:55.648382+00:00",
+  "public_url": "https://huggingface.co/datasets/sanxing/ai4sci-fruit-fly-brain",
+  "public": true,
+  "gated": false,
+  "bytes": 14537257535,
+  "unique_blobs": 692,
+  "clean_cache_before_download": true,
+  "full_anonymous_materialization_exit_code": 0,
+  "offline_verification_exit_code": 0,
+  "all_file_sizes_and_sha256_verified": true,
+  "development_test_split_present": false,
+  "download_client": "huggingface_hub==2.1.1",
+  "unit_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "log_sha256": {
+    "hf-download.log": "730ff42ecbf58fc832f454f2f5d3a50725a48788038264713d768d9134ff16fc",
+    "hf-offline.log": "1054b652959307484f9e73c43e9dafd05a25c9e8b46e93d7578d3368b8f0e4aa",
+    "hf-tests.log": "52a482dd47b3cfc516bf33d5dee572c51bd4bbe37b4875eddd762fdb38689d2a"
+  },
+  "scope": "Prepared resource publication and independent HF download; not fresh upstream reconstruction, full training or GPU container acceptance"
+}

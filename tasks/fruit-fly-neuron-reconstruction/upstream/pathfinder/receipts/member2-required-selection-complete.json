@@ -1,0 +1,68 @@
+{
+  "timestamp_utc": "2026-10-04T03:35:12.061415+00:00",
+  "member": 2,
+  "full_member_complete": true,
+  "full_pipeline_complete": false,
+  "pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+  "verified_windows": 125,
+  "phase_receipts": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-2-infer-phase.json": "3a7457402fd642e32669ec2d9c9a3407bee3691208fb8fec1b9f38608468be4d",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-2-pack-phase.json": "93d4b5cea672a0fe6135ecf3114ef45ec4deb329ebd42a4071eb5a473993f6c9",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-2-retire-phase.json": "b789a0e59452121f3ad3e8ee9cc3e9ac50582a1b6a431acbbc82920c24335f46"
+  },
+  "verified_file_hashes": 1172,
+  "retained_hashes": 1157,
+  "archive_bytes": 1690861646,
+  "decoded_npy_bytes": 21881531040,
+  "decoded_npy_sha256": "e157988e3dd24e2545a53f276bddfb6382a1960dab222c6e1f8c8b23396e9e80",
+  "shape": [
+    1762,
+    1762,
+    1762
+  ],
+  "dtype": "uint32",
+  "released_original_npy_bytes": 21881531040,
+  "resources": {
+    "infer": {
+      "wall": "2:53.33",
+      "max_rss_kib": 525736,
+      "sha256": "ac28430926c8a00a93ab794397255afb06a3802b50039fb14f8b9131c87ef40f"
+    },
+    "pack": {
+      "wall": "51:05.92",
+      "max_rss_kib": 23869304,
+      "sha256": "01f27539842065914be19d86f3bf4310c0cb785c12a88c3dcf8916eeb3f39613"
+    },
+    "retire": {
+      "wall": "3:30.06",
+      "max_rss_kib": 44864888,
+      "sha256": "83162110b17c5e4ab69fc1d7a37f28a621f460325f4849069965a54a9bf3e818"
+    }
+  },
+  "audit_seconds": 91.46945222467184,
+  "auditor_sha256": "e161fc2848536ebee279a15f9b27e8fc4528447e691bc05c70b787841b4ef6ac",
+  "scope": "Independent read-only retained-file hashes, exact full packed NPY bytes/header, and three completed trusted CPU phases. No full-six comparison or disk-peak claim.",
+  "auditor_source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/member-2-completion-audit-v1/audit.py",
+  "accepted_windows": [
+    125,
+    125,
+    125,
+    101,
+    125,
+    125
+  ],
+  "scheduler_observation_utc": "2026-10-04T03:36:00Z",
+  "running_jobs": {
+    "90000188": 4,
+    "90000195": 3
+  },
+  "pending_jobs": [],
+  "accounting": {
+    "settled_gpuh": 1015.7472222222223,
+    "settled_allocationh": 293.27,
+    "reserved_inclusive_gpuh": 1155.7472222222223,
+    "reserved_inclusive_allocationh": 333.27,
+    "downstream_hold_gpuh": 37,
+    "downstream_hold_allocationh": 9.25
+  }
+}

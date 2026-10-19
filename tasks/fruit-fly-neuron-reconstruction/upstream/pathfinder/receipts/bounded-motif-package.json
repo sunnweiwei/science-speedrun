@@ -1,0 +1,10 @@
+{
+  "status": "prepared_not_executed",
+  "pending_dispatch_job": "90000017",
+  "package_manifest_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+  "weight_bytes_unchanged": true,
+  "model_code_bytes_unchanged": true,
+  "source_commit": "a3c44aa",
+  "script_sha256": "63d40831ee05868cf81afd7b3ee3ba33065d7f684e35082a4c4846d62a0b862a",
+  "scope": "Bounded exact-prefix motif enumeration; no smaller model, new training or new GPU reservation"
+}

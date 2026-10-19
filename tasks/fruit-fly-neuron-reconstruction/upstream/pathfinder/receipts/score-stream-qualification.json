@@ -1,0 +1,37 @@
+{
+  "timestamp_utc": "2026-10-04T12:19:45.130371+00:00",
+  "full_pipeline_complete": false,
+  "production_promoted": false,
+  "tests_passed_before_additional_output_assertions": 31,
+  "change": "Disk-decision fresh shards append each result to JSONL; completion manifest binds count/hash; merge validates identity and streams records; pipeline retains JSONL hashes. Legacy list receipts remain readable.",
+  "evidence": [
+    "Mock predictor returns identical complete candidate records with sink and list modes",
+    "Stream and list shard merge results identical",
+    "Corrupted bytes and wrong row counts rejected",
+    "Unfinished streams never publish final file"
+  ],
+  "remaining": [
+    "Accepted-pair unions retain memory proportional to accepted results",
+    "Full production package/source admission and measured GPU throughput",
+    "All three full-volume method scores"
+  ],
+  "source_sha256": {
+    "score_stream.py": "41089e4388e8b3e999173793d4043a56179530922233be8f85aa1c6dfc69f0d9",
+    "run_ffn_agglomeration.py": "ac79da510dc171ca94c74174405ae5e5a590e5d6657ff0fdbfa45094a8d594aa",
+    "merge_ffn_agglomeration.py": "52914371d670ad7ca70a607aa4de627329d0d4972f8959cd43236c50a2757eb0",
+    "ensemble_pipeline.py": "084cb4b3c9d712e2a3787f3315d6f9f005c75845e17b8f0c8eda97d90f51eec8"
+  },
+  "resume_update": {
+    "timestamp_utc": "2026-10-04T12:21:55.573543+00:00",
+    "tests_passed": 20,
+    "production_promoted": false,
+    "behavior": "Disk-table resume streams retained complete records to a new score file; pending rows are a lazy view with a completion bytearray. Pair lookup preserves strided shard identity. Input hashes, coordinates, completion counts, duplicate rejection and frozen gate checks retained.",
+    "memory": "Two bytearrays per assigned decision while validating; one remains for pending iteration. No retained-result list or pending-candidate list for disk-table path. Legacy JSON input still materializes its original results.",
+    "coverage": [
+      "Same retained and pending candidates as legacy implementation",
+      "Forged signatures, shard IDs, centers, gates and counts rejected",
+      "Incomplete accepted scores and duplicate prior rows rejected",
+      "Strided pair lookup rejects another shard"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "90000214",
+  "state": "FAILED",
+  "actual_seconds": 27,
+  "gpu_hours": 0.0075,
+  "reason": "Current torch2.6.0+cu124 lacks sm_120 kernel; actual full-model forward failed",
+  "production_promoted": false,
+  "source_log": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/slurm-90000214.log",
+  "source_log_sha256": "08a50b54452f6dc7259a20a0d828358f19a14cca5a355d8638bdf90af58e081a",
+  "all_other_jobs_unchanged": true,
+  "full_pipeline_complete": false
+}

@@ -1,0 +1,149 @@
+{
+  "timestamp_utc": "2026-10-03T00:01:08.028552+00:00",
+  "full_pipeline_complete": false,
+  "ledger_gpu_hours_charged_or_reserved": 782.37,
+  "held_downstream_gpu_hours": 37,
+  "unallocated_gpu_hours": 180.63,
+  "unallocated_allocation_hours": 38.9075,
+  "unscheduled_regular_windows": 235,
+  "effective_unallocated_gpu_hours": 155.63,
+  "max_average_gpu_minutes_per_unscheduled_window_under_both_caps": 39.73531914893617,
+  "binding_remaining_cap": "allocation_hours",
+  "observed_member2_window0_inference_seconds": 8415.476266602986,
+  "observed_member2_window0_calls": 1176889,
+  "caveat": "Assumes current reservations remain fully charged, the downstream hold remains unchanged, all submitted windows succeed, and subsequent allocations use four GPUs with zero overhead/idle time. This is a conditional resource ceiling, not a runtime prediction. Released unused reservations can increase the remaining allowance.",
+  "remaining_by_member": [
+    {
+      "member": 2,
+      "previously_verified_windows": 25,
+      "submitted_windows": 46,
+      "unscheduled_regular_windows": 54
+    },
+    {
+      "member": 3,
+      "previously_verified_windows": 0,
+      "submitted_windows": 65,
+      "unscheduled_regular_windows": 60
+    },
+    {
+      "member": 4,
+      "previously_verified_windows": 0,
+      "submitted_windows": 65,
+      "unscheduled_regular_windows": 60
+    },
+    {
+      "member": 5,
+      "previously_verified_windows": 0,
+      "submitted_windows": 64,
+      "unscheduled_regular_windows": 61
+    }
+  ],
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/remaining-budget-feasibility-both-caps-20261003.json": "174fcbc40579ff5984e86d913f45415f72d3d2e361f3cc2716dd5fd67a3d0dce"
+  },
+  "later_conditional_projections": [
+    {
+      "report": {
+        "timestamp_utc": "2026-10-03T06:38:51.929653+00:00",
+        "scope": "Conditional remaining-work planning from verified regular-window call counts; not a lower bound, completion claim or authority to increase caps",
+        "assumptions": [
+          "Previously accepted regular windows are not a random sample. Future windows can be faster or slower.",
+          "Inference seconds per model call estimated from whole verified workers; per-window times are estimates.",
+          "Remaining counts include currently running but unaccepted windows; their GPU work already spent is included in projected remaining work, so this is a projection from terminal-job accounting only.",
+          "Perfect four-GPU packing is optimistic: startup, final-lane idle time and partial attempts are not separately projected."
+        ],
+        "source_hashes": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/integrity-audit.json": "4dfc4b1577d449ce94059f8ff6b531f3af2701c6215fd4b779c6c54a0a01bbd9",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/qualification-0/shard-0/receipt.json": "7f104ff78b04316008659703a3db94332e38f033db4b3b920465f1e68c641a72",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/qualification-0/shard-1/receipt.json": "9497c9991a86b22400c548ed15572b323820e56fefe500a810a5677fe47a6b93",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/qualification-0/shard-2/receipt.json": "cee803146298e6d78017f6a71086a623e9b8f85abcd0a9e95006c14eb2cfa6c4",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/qualification-0/shard-3/receipt.json": "f59d3c6befbf821eece8c95f0383c412f21423e81a140d11a631977a6b4c3009",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-single-v1/integrity-audit.json": "88bcb91efa919dd56802f4c9000ca25f38dc34a5dbe0faa43424f804201ffd19",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-single-v1/window-31/receipt.json": "5f7a1491f0fcad0e1c80f6c50a3f9552bd5017ea6e9c357ffbad00c7cf1ddd96",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/integrity-audit.json": "a445cf0c98dfbc8ad613cfb02a8dc4313e142aa609525aad3384953f744b040a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/output/shard-0/receipt.json": "7d0b478e35d8b7976b76334a6bd4322e0d5926efaa9df57b63663629fdb54523",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/output/shard-1/receipt.json": "d2e700c58b7f80ba820861a713605a63455c2fed93a397f044af4a4e91be47b9",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/output/shard-2/receipt.json": "46e5f6a2fd1c98c99f9274a78c3f89059155cf7d52e4886695015d21bfaf5305",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/output/shard-3/receipt.json": "c9e7cf3545264672d36b163e3101c4861d34ccdc166a189d3a1216accc68f197",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/accepted-window-0.json": "57a70f5e52862784e20021acf325294736fee6ccc1ff1e5ea0e190dc9aa29b8f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/qualification-0/shard-3/receipt.json": "66f2dc130193fa8225edd6f85ff3d7bcbcde54e080d58c0281fd5c1c9bb1072c",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/integrity-audit.json": "722ce9741c0d4f25d7ace1aa840a610e7f179a0d678673573c4bc602cfb22b24",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/output/shard-0/receipt.json": "0e9165bd9006e3e291243296f587d2f08bb30ece8f2f5e9fd5db95d091b85063",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/output/shard-1/receipt.json": "e2b1afbc15c961cdde1d3a967e05f423476068a6cca777eccecb4851c105e244",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/output/shard-2/receipt.json": "5c87c41d90e3e829b7d17765203783de3f25d9efed1d9975fe88f6604e0686cc",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/output/shard-3/receipt.json": "4ebc879b9415042ad24aa78e4b88deb645e8fd3ca39d9e742d6569e4c17b1007",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/integrity-audit.json": "698d9f792e698c77e024757b4e4e8e14644acae16a8c57b2b32deaa98cdcb428",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-0/receipt.json": "43132421662de4cf2663c74d849e1bbf705d63741ae7b45d83833b842dbe8315",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-1/receipt.json": "876569e15c82c4e21bad53477c2ae72a878cd92bfdf55641974eff8d5341de74",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-2/receipt.json": "5cb6c7e16027936158dc54f88f444fa181d14193b6c69d0cfc7f12a8698b024a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-3/receipt.json": "fd8d68b9a15e939dcee541be1086b05ad44d1be10e14f4c62253d6d76699cb2a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/integrity-audit.json": "8328e3e7b442d656e007cdd5311a3d35a70781fd6daf41fb685b9a97d06776ef",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-0/receipt.json": "229dbfb679b0f905b2d1052aa28aaa44cc43ea20f2ccef868f766071fe48e866",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-1/receipt.json": "f1da83285a32d47c5e183ec690f159d3e4ee96dac08b0b767ed9a0cd4b9e85b7",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-2/receipt.json": "5b6422f4e6efe93e7519a311f3077909f636e56363e34fb84002e7bb126427ac",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-3/receipt.json": "c00de08580b5df0165e5c19e42cb66929e000c995c13b1cc45268e3111fd9967",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/integrity-audit.json": "55ee9653d25a9b936da530581c4d85af8c091b544e4c1dc2123cb14cd7785e3e",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/output/shard-0/receipt.json": "1013683774a5929b627841cdc6efd3247a9984c0005a22540b28e1e95464a978",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/output/shard-1/receipt.json": "3822138fd75c91d3adaa496c39a95d629664a5ffe8699a0c12e8e02b2daa8791",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/output/shard-2/receipt.json": "b5f3a678feaa06d07e9b6390326ae9ee83ac11bd74f2541ff82e6219c76e8dbb",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-regular-wave1/integrity-audit.json": "9c44b9e494cf2de5d4f1e0f26204cd81ffadf0e2caeb24165a01b9ab4598a4c2",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-regular-wave1/output/shard-0/receipt.json": "04d2862c6432f956c14bc4b0189231b261a4b24b063b99907b5c29d8e8bd785d",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-regular-wave1/output/shard-1/receipt.json": "c308b160bae1f582a0fd7a1020e54fb7685926c4567f5f60a67056a37cced2ba",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-regular-wave1/output/shard-2/receipt.json": "b12224acadbf69218385328e16bed8c75ed1dbb0427722a499b8c692d16cdde1"
+        },
+        "members": {
+          "2": {
+            "verified_regular_samples": 10,
+            "remaining_unaccepted_windows": 54,
+            "worker_calls_per_second": 138.78484651547754,
+            "median_sample_calls": 1086175.5,
+            "mean_sample_calls": 1523358.6,
+            "remaining_gpu_hours_at_median": 117.39489511330054,
+            "remaining_gpu_hours_at_mean": 164.64606600585665
+          },
+          "3": {
+            "verified_regular_samples": 4,
+            "remaining_unaccepted_windows": 60,
+            "worker_calls_per_second": 138.94158773504438,
+            "median_sample_calls": 1087896.5,
+            "mean_sample_calls": 1376341.5,
+            "remaining_gpu_hours_at_median": 130.4980648983912,
+            "remaining_gpu_hours_at_mean": 165.09833645879831
+          },
+          "4": {
+            "verified_regular_samples": 24,
+            "remaining_unaccepted_windows": 40,
+            "worker_calls_per_second": 131.23536281527947,
+            "median_sample_calls": 284577.0,
+            "mean_sample_calls": 324038.3333333333,
+            "remaining_gpu_hours_at_median": 24.093861584528078,
+            "remaining_gpu_hours_at_mean": 27.434876154483685
+          },
+          "5": {
+            "verified_regular_samples": 18,
+            "remaining_unaccepted_windows": 46,
+            "worker_calls_per_second": 131.9902385153756,
+            "median_sample_calls": 283641.0,
+            "mean_sample_calls": 306642.94444444444,
+            "remaining_gpu_hours_at_median": 27.458861408485674,
+            "remaining_gpu_hours_at_mean": 29.68564528185266
+          }
+        },
+        "terminal_job_gpu_hours": 727.9772222222222,
+        "terminal_job_allocation_hours": 191.58,
+        "median_scenario": {
+          "additional_inference_gpu_hours": 299.44568300470553,
+          "cumulative_gpu_hours_including_37h_downstream": 1064.4229052269277,
+          "cumulative_allocation_hours_ideal_4gpu_packing_including_9_25h_downstream": 275.6914207511764
+        },
+        "mean_scenario": {
+          "additional_inference_gpu_hours": 386.8649239009913,
+          "cumulative_gpu_hours_including_37h_downstream": 1151.8421461232135,
+          "cumulative_allocation_hours_ideal_4gpu_packing_including_9_25h_downstream": 297.54623097524785
+        }
+      },
+      "report_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/remaining-cost-scenarios-20261003T0640.json",
+      "report_sha256": "b1562fd3c4cb9b0d980718f8e662446a40cd1a076854b3a02667ff67a843205a"
+    }
+  ]
+}

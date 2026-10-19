@@ -1,0 +1,172 @@
+{
+  "timestamp_utc": "2026-10-04T11:56:07.546489+00:00",
+  "full_pipeline_complete": false,
+  "production_optimization_promoted": false,
+  "unit_tests_passed": 18,
+  "bounded_gpu_diagnostic_job": "90000197",
+  "bounded_gpu_diagnostic_minutes": 10,
+  "bounded_gpu_diagnostic_gpus": 1,
+  "diagnostic_state_at_last_check": "PENDING",
+  "full_index_compact_coverage_audit": "running; no result claimed",
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/postprocess-scale-audit-v1/result.json": {
+      "sha256": "975d35f10d299487ae180eedf6f9de02fbff10f7219b8e7c645eba0e31a35808",
+      "content": {
+        "complete": true,
+        "full_pipeline_complete": false,
+        "timestamp_utc": "2026-10-04T11:43:40.069174+00:00",
+        "indexed_instances": 449986773,
+        "positive_voxels": 2009001544,
+        "eligible_centers": 23456620,
+        "skipped_centers": 426530153,
+        "shard_counts": [
+          5864155,
+          5864155,
+          5864155,
+          5864155
+        ],
+        "size_bin_lower_bounds": [
+          0,
+          1,
+          2,
+          10,
+          100,
+          500,
+          1000,
+          10000
+        ],
+        "size_histogram": [
+          0,
+          326458807,
+          104321566,
+          16385620,
+          2437714,
+          269130,
+          113033,
+          903
+        ],
+        "eligible_size_histogram": [
+          0,
+          16758293,
+          5615232,
+          924715,
+          139063,
+          14590,
+          4727,
+          0
+        ],
+        "index_sha256": "ee5b59faf60f73896a7006b1673275028d2cf54ef13a1809645119864ec9c673",
+        "table_sha256": "e51b43949fcbd266ddacc5a5ccaae328417a363463ac5345f349379c831858e0",
+        "source_sha256": "3025365029fdad8464c90b28b259156a859db77b6ba719d8b39637de0e9b13fc",
+        "seconds": 53.74565150681883,
+        "selection": "Unmodified full10um representative-center eligibility; no filtering or changed protocol"
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/bulk-candidate-benchmark-v1/result.json": {
+      "sha256": "f5edc38f9f5c5d8c12e118509f4c48be966f465a99694ee0b52a3547e8c75998",
+      "content": {
+        "full_growth_equivalence": false,
+        "scope": "Candidate CPU function only, real128cube labels; synthetic probabilities; no model speedup claim",
+        "results": [
+          {
+            "seed": 297232,
+            "probability": "zero",
+            "seconds": {
+              "original": 2.020977090112865,
+              "bulk": 0.08066531457006931
+            },
+            "speedup": 25.053854942291938,
+            "edges": 0,
+            "exact": true
+          },
+          {
+            "seed": 297232,
+            "probability": "random",
+            "seconds": {
+              "original": 2.7178389206528664,
+              "bulk": 0.13831779547035694
+            },
+            "speedup": 19.649235381540837,
+            "edges": 95,
+            "exact": true
+          },
+          {
+            "seed": 297257,
+            "probability": "zero",
+            "seconds": {
+              "original": 3.4697719421237707,
+              "bulk": 0.10679492354393005
+            },
+            "speedup": 32.490045659300286,
+            "edges": 0,
+            "exact": true
+          },
+          {
+            "seed": 297257,
+            "probability": "random",
+            "seconds": {
+              "original": 4.560110463760793,
+              "bulk": 0.17850548215210438
+            },
+            "speedup": 25.546052753019243,
+            "edges": 136,
+            "exact": true
+          },
+          {
+            "seed": 306490,
+            "probability": "zero",
+            "seconds": {
+              "original": 1.2299549151211977,
+              "bulk": 0.06045622564852238
+            },
+            "speedup": 20.344553467030064,
+            "edges": 0,
+            "exact": true
+          },
+          {
+            "seed": 306490,
+            "probability": "random",
+            "seconds": {
+              "original": 1.6284470716491342,
+              "bulk": 0.10526332817971706
+            },
+            "speedup": 15.470222154375275,
+            "edges": 72,
+            "exact": true
+          }
+        ],
+        "source_sha256": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-worktree/fruit-fly-brain/upstream/pathfinder/sense.py": "a5e5ba808e3f0c4bea3b5eeeb123beefc9c063586439f2b74e7b9c65870e48a6",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-worktree/fruit-fly-brain/upstream/pathfinder/index_storage.py": "3bfbaa0159aa876dc4ea0164878f07eb79902f3ca08df181b8e38f23fc4ea013",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/trusted-source/pathfinder/sense.py": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/bulk-candidate-benchmark-v1/bench.py": "7b78bb8f192f924690275390c0ab2776fe9bac6ad0b10f49bbb576430e401aa2"
+        },
+        "table_sha256": "e51b43949fcbd266ddacc5a5ccaae328417a363463ac5345f349379c831858e0"
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/downstream-refine/settlement.json": {
+      "sha256": "a5a6be4b3066baee805494677748a28bd6886bb42f78cc93e1a77e19b1ffa79d",
+      "content": {
+        "timestamp_utc": "2026-10-04T11:43:10.917275+00:00",
+        "job_id": "90000196",
+        "sacct_stdout": "90000196|OUT_OF_MEMORY|4195|billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=128G,node=1|gpu\n",
+        "only_settled_jobs": [
+          "90000196"
+        ],
+        "previous_ledger_sha256": "5affbedeb4249fbc16d7bd7959c97d229482dd5df6e4a47e4527e8cda972ed8b",
+        "new_ledger_sha256": "d7755f62d95d5b8b95db6aef69a0325a430dff1bca9461ca7c183db06783fcab",
+        "actual_gpuh": 4.661111111111111,
+        "phase_complete": false,
+        "full_pipeline_complete": false
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/downstream-cpu-failure.json": {
+      "sha256": "44e9d499213233caa4fc51820a3764a445c2214ab2c12554f872d62fe787478e",
+      "content": {
+        "error": "CalledProcessError(1, ['/usr/bin/time', '-v', '-o', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/downstream-decisions.resources.txt', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python', '-B', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/trusted-source/pathfinder/ensemble_pipeline.py', 'decisions', '--root', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1', '--run', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/replay/prediction'])",
+        "timestamp_utc": "2026-10-04T11:33:38.419671+00:00",
+        "full_pipeline_complete": false
+      }
+    }
+  }
+}

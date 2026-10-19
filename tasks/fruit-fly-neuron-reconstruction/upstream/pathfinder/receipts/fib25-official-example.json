@@ -1,0 +1,98 @@
+{
+  "schema": "fib25-example-evaluation/v1",
+  "generated": {
+    "vi_split_bits": 0.8986941485651114,
+    "vi_merge_bits": 0.9184148369065575,
+    "vi_total_bits": 1.8171089854716689,
+    "adapted_rand_error": 0.1573582081615037,
+    "adapted_rand_precision": 0.8474587087873355,
+    "adapted_rand_recall": 0.8378793236810839,
+    "scored_voxels": 15624750,
+    "omitted_prediction_fraction": 0.11248179970879534,
+    "gt_positive_instances": 525,
+    "prediction_positive_instances": 254
+  },
+  "released": {
+    "vi_split_bits": 0.8986528422706199,
+    "vi_merge_bits": 0.9184037005061506,
+    "vi_total_bits": 1.8170565427767706,
+    "adapted_rand_error": 0.15736557799264583,
+    "adapted_rand_precision": 0.8474594512230643,
+    "adapted_rand_recall": 0.8378640245665193,
+    "scored_voxels": 15624750,
+    "omitted_prediction_fraction": 0.11248992783884543,
+    "gt_positive_instances": 525,
+    "prediction_positive_instances": 254
+  },
+  "prediction_bytes_equal": false,
+  "inputs": {
+    "mapped_ground_truth": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/fib25-v1/resolved-labels/training_sample2.npy",
+      "sha256": "8ce92b46d55d4f92deb3596fa4f65c56a8a1c3c55462267619dd474bbe80d9d6"
+    },
+    "generated_prediction": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/fib25-v1/author-inference-v2/0/0/seg-0_0_0.npz",
+      "sha256": "45edaa1de52688f45dd54059c942f99d724abbd32b9bc3a5d3749a999824ebd5"
+    },
+    "released_prediction": {
+      "path": "/scratch/researcher/fruit-fly-brain/vendor/google-ffn/results/fib25/sample-training2.npz",
+      "sha256": "78136f6f2ddeb761e190cbe142196e68904a44845ea38cd38f6c72e6978b1950"
+    }
+  },
+  "adapter_sha256": "8ebe0773aea72e7a901c349a55b6dbd84a257fd316c399217124cb82a8389558",
+  "published_scalar_reproduced": false,
+  "scope": "Locally derived full-volume voxel metrics of the official example; GT zero ignored, predicted zero retained; no paper-score claim",
+  "generated_minus_released": {
+    "vi_total_bits": 5.244269489823594e-05,
+    "adapted_rand_error": -7.369831142134409e-06,
+    "omitted_prediction_fraction": -8.12813005009183e-06
+  },
+  "inference_job": {
+    "job_id": "90000062",
+    "terminal_state": "CANCELLED after completed segmentation; optional probability export crashed and executor hung",
+    "allocation_elapsed_seconds": 3470,
+    "segmentation_finished_utc": "2026-09-28T16:08:03Z",
+    "gpu_hours": 0
+  },
+  "scoring_job": {
+    "job_id": "90000064",
+    "state": "COMPLETED",
+    "elapsed_seconds": 20
+  },
+  "direct_label_difference": {
+    "voxels": 15625000,
+    "different_voxel_ids": 482,
+    "different_voxel_id_fraction": 3.0848e-05,
+    "scope": "Direct label-ID comparison; identities happen to follow the same seed order, not an optimal relabeling metric"
+  },
+  "compatibility_patches": {
+    "source_commit": "b8df2d96d7c8da057fd2702ced19732a08ab6ae4",
+    "file": "ffn/training/tracker.py",
+    "before_sha256": "3b646358c6517dea0e855ff00d326c12bb9dfdef062417ba7ab6ea56ea17b1ef",
+    "after_sha256": "99a4b0a46b7377a7600cdba330f33d9d2ea12e71b6a661c8adb90c8510aa0759",
+    "change": "Restore font initialization in an otherwise empty try block; syntax error prevented importing official inference",
+    "model_or_inference_algorithm_changed": false,
+    "protobuf": "PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python",
+    "additional_patches": [
+      {
+        "file": "ffn/inference/runner.py",
+        "before_sha256": "7e428b59f7ab776d8002e626d6ca60dea9b02ad85d0fbe61d780b04beea93754",
+        "after_sha256": "b8d400043daffd3e8243fddbdf8345c397614fc3b2f9d9e72107492c9e826bc6",
+        "change": "Initialize partial_segment_iters=0 for fresh inference, matching Canvas.segment_all default",
+        "failed_job": "90000061",
+        "failure": "UnboundLocalError before segmentation; executor thread kept allocation alive, explicitly cancelled"
+      },
+      {
+        "file": "ffn/inference/runner.py",
+        "before_sha256": "b8d400043daffd3e8243fddbdf8345c397614fc3b2f9d9e72107492c9e826bc6",
+        "after_sha256": "3d5fa38c499d2380ee9c4d6d349766a539c9a0236d27e9fbfe0ab0a5f2766071",
+        "change": "Skip optional probability export when canvas.seg_prob is None; completed segmentation is already atomically saved",
+        "failed_job": "90000062",
+        "failure": "Segmentation completed and saved at16:08:03UTC; optional probability export raised AttributeError; hung executor cancelled at16:39UTC",
+        "applied_after_completed_segmentation": true,
+        "segmentation_rerun": false
+      }
+    ]
+  },
+  "claim": "Near reproduction of released official checkpoint example output; not byte-identical, not a paper scalar or our FFN15 baseline validation"
+}

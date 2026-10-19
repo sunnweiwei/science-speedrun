@@ -1,0 +1,80 @@
+{
+  "checked_at_utc": "2026-09-26T14:52:10.074713+00:00",
+  "job_id": "90000003",
+  "job_state": "RUNNING",
+  "monitor_job_id": "90000004",
+  "monitor_state": "RUNNING",
+  "metrics_scope": "fixed 64 development crops per stage, not reconstruction or paper score",
+  "stages": {
+    "ffn": {
+      "first": {
+        "step": 1,
+        "seconds": 3.293846901971847,
+        "train_loss": 0.6067844368517399,
+        "validation_bce": 0.5705780847364998,
+        "validation_dice": 0.00993832486498578,
+        "best_validation_bce": 0.5705780847364998,
+        "aggregate_samples_per_second": 19.430132814492396,
+        "max_memory_allocated_gb": 4.807386624,
+        "paper_comparable": false
+      },
+      "latest": {
+        "step": 15583,
+        "seconds": 18001.14127670694,
+        "train_loss": 0.09783544996753335,
+        "validation_bce": 0.1550137296947684,
+        "validation_dice": 0.872322904586839,
+        "best_validation_bce": 0.10464019882129261,
+        "aggregate_samples_per_second": 55.4027094419846,
+        "max_memory_allocated_gb": 4.82140672,
+        "paper_comparable": false
+      },
+      "selected_by_bce": {
+        "step": 14000,
+        "seconds": 16172.629943285137,
+        "train_loss": 0.12913038255646825,
+        "validation_bce": 0.10464019882129261,
+        "validation_dice": 0.9016442615392263,
+        "best_validation_bce": 0.10464019882129261,
+        "aggregate_samples_per_second": 55.40224459086414,
+        "max_memory_allocated_gb": 4.82140672,
+        "paper_comparable": false
+      }
+    },
+    "sense": {
+      "first": {
+        "step": 1,
+        "seconds": 3.119502477813512,
+        "train_loss": 0.6218522042036057,
+        "validation_bce": 0.6083650153464415,
+        "validation_dice": 0.0,
+        "best_validation_bce": 0.6083650153464415,
+        "aggregate_samples_per_second": 10.258029969083054,
+        "max_memory_allocated_gb": 11.396518912,
+        "paper_comparable": false
+      },
+      "latest": {
+        "step": 19250,
+        "seconds": 21143.10276892595,
+        "train_loss": 0.010279884212650359,
+        "validation_bce": 0.034747599636566456,
+        "validation_dice": 0.7531802866592805,
+        "best_validation_bce": 0.02961174024280652,
+        "aggregate_samples_per_second": 29.13479665857575,
+        "max_memory_allocated_gb": 11.481527296,
+        "paper_comparable": false
+      },
+      "selected_by_bce": {
+        "step": 16250,
+        "seconds": 17880.081479043234,
+        "train_loss": 0.02625801134854555,
+        "validation_bce": 0.02961174024280652,
+        "validation_dice": 0.7668597751684079,
+        "best_validation_bce": 0.02961174024280652,
+        "aggregate_samples_per_second": 29.082641513793366,
+        "max_memory_allocated_gb": 11.481527296,
+        "paper_comparable": false
+      }
+    }
+  }
+}

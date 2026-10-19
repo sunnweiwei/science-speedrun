@@ -1,0 +1,15 @@
+{
+  "schema": "pathfinder-prepared-resource-release/v1",
+  "manifest_sha256": "db319f336b8da8dc8f74cb4cd397bae27d743211b612a9b9653c8f8a26408c30",
+  "files": 722,
+  "bytes": 14537257535,
+  "public_url": "https://huggingface.co/datasets/sanxing/ai4sci-fruit-fly-brain",
+  "publication_status": "Public immutable Hugging Face release",
+  "source": "MaleCNS v1.0 prepared data and pinned FFN/connectomics/FPS runtime",
+  "development_contains_test_split": false,
+  "predictions_included": false,
+  "model_weights_included": false,
+  "repo_id": "sanxing/ai4sci-fruit-fly-brain",
+  "revision": "86286a6b000210eca271a3e376f730319b6406b9",
+  "storage_layout": "blobs/{sha256}"
+}

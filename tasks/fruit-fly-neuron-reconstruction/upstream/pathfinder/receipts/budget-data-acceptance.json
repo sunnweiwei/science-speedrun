@@ -1,0 +1,11 @@
+{
+  "data_files_verified": true,
+  "shapes": [
+    65,
+    128
+  ],
+  "train_blocks": 4,
+  "validation_blocks": 1,
+  "test_blocks": 1,
+  "paper_comparable": false
+}

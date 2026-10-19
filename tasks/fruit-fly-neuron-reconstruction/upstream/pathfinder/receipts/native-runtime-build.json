@@ -1,0 +1,62 @@
+{
+  "job": "90000025",
+  "state": "COMPLETED",
+  "elapsed_seconds": 573,
+  "gpu_used": false,
+  "cpu_tests": 81,
+  "skipped": 0,
+  "image_sha256": "4f2f3d0a9a05be240b37324532a00d5f7ba31f0e3b46e11002350c2554b70756",
+  "image_bytes": 3305828352,
+  "base": {
+    "image": "docker.io/library/python",
+    "tag": "3.11.13-slim-bookworm",
+    "index_digest": "sha256:86adf8dbadc3d6e82ee5dd2c74bec2e1c2467cdad47886280501df722372d2e1",
+    "linux_amd64_digest": "sha256:cec9aa7aa96eea4fa036e9b82be1e6b325f2e3707f462d885868df51ec0a4b47",
+    "checked_utc": "2026-09-27T00:03:08.335629+00:00"
+  },
+  "recipe_sha256": "e2c1658d3b346fab94fb3b6ebcb4fc1b065a5e0649c75fc50f6cef81495822ba",
+  "lock_sha256": "fcdd8a1270228af655163d7e5d4289f07d86a51f6e3d2037e43db0c4a722b5a1",
+  "frozen_suite_scoring": {
+    "status": "scored",
+    "primary_metric": "nerl",
+    "reward": 0.5238821980488535,
+    "metrics_sha256": "96ce165d3530ae591bb067dd695e9a3cf1312c2ad2065da1a442e6fedab793d2",
+    "suite_sha256": "988136324c03ec40c394c42a0985853b9a56b326e5e37dabdbba08ab148a8629",
+    "prediction_manifest_sha256": "aba615d316e3ef0e2671cc4917357f658288b718f2ca4255c15f3bb2ebe14a65",
+    "paper_comparable": false,
+    "model_execution_verified": false,
+    "scope": "Frozen local sparse skeletons; not official PATHFINDER protocol"
+  },
+  "isolation": {
+    "host_paths_hidden": [
+      "/home/researcher",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/native-image-context-v2/upstream/pathfinder",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1"
+    ],
+    "network_namespace": "net:[4026535904]",
+    "host_network_namespace": "net:[4026531833]",
+    "read_only_mounts": [
+      "/code",
+      "/prediction",
+      "/trusted"
+    ],
+    "gpu_visible": false,
+    "python": "3.11.13",
+    "numpy": "1.26.4",
+    "networkx": "3.6.1"
+  },
+  "model_check": {
+    "schema": "pathfinder-package-check/v1",
+    "package_manifest_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+    "parameters": {
+      "ffn": 1110273,
+      "sense": 5019185,
+      "shape": 8189281
+    },
+    "extension_loaded": true,
+    "gpu_forward_verified": false,
+    "task_replay_verified": false,
+    "paper_comparable": false
+  },
+  "scope": "Fresh PATHFINDER runtime built from pinned Python base and hashed wheels; CPU isolation verified, GPU forward/task integration pending"
+}

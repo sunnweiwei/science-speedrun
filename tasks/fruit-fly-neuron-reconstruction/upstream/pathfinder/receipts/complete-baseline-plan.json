@@ -1,0 +1,16 @@
+{
+  "status": "planned_after_archive_completion",
+  "reason": "Validation traditional baseline evaluated9746/79725 candidates (12.22%) in3000s perGPU; complete candidate comparison requires continuation. Preserve completed scores and all historical compute.",
+  "previous_allocation_hours": 80,
+  "new_allocation_hours": 90,
+  "new_gpu_hours": 360,
+  "remaining_stage_caps_hours": {
+    "validation_baseline_continuation": 8,
+    "test_inference": 12.5,
+    "test_baseline": 8
+  },
+  "observed_charged_allocation_seconds": 215472,
+  "observed_charged_gpu_seconds": 815460,
+  "user_authorization": "Prior explicit budget flexibility: \u989d\u5ea6\u4e0d\u662f\u6b7b\u7684; complete credible baseline comparison",
+  "source_change": "Candidate driver resume only; identical FFN weights, decision list, scoring rule, batch8, and prior completed candidate scores"
+}

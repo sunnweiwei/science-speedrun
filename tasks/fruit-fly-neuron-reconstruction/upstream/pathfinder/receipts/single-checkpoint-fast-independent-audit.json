@@ -1,0 +1,95 @@
+{
+  "complete": true,
+  "job_id": null,
+  "plan_sha256": "34c83ea3978b36b8d1f0f33ad781261b6e2f4078516d9540d8aee81ead3882d6",
+  "script_sha256": "f7146f56a22d48f7eda0f13ae79d199da7bc5d8d6d68fa52108f452f7591ef21",
+  "controls": 23,
+  "rows": [
+    {
+      "domain": "frozen-full-test-core",
+      "method": "ffn",
+      "sampled_nodes": 575913,
+      "node_assignments_exact": true,
+      "recomputed": {
+        "erl_nm": 2.067464993092896,
+        "maximum_erl_nm": 56261.53384795884,
+        "nerl": 3.674739829667661e-05,
+        "total_path_length_nm": 12749613.377595901,
+        "split_errors": 3993,
+        "merge_errors": 5047,
+        "omitted_nodes": 169481,
+        "omitted_node_fraction": 0.2942822961106973
+      },
+      "difference_from_report": {
+        "erl_nm": -1.0579253295617264e-07,
+        "maximum_erl_nm": 0.0161763186333701,
+        "nerl": -1.2445987694772141e-11,
+        "total_path_length_nm": 0.0,
+        "split_errors": 0.0,
+        "merge_errors": 0.0,
+        "omitted_nodes": 0.0,
+        "omitted_node_fraction": 0.0
+      },
+      "reported_metrics_sha256": "66efacd3825c556d3d765d9e0a31bf63aef3e7f18202b749dfd8855dfd696afa"
+    },
+    {
+      "domain": "frozen-full-test-core",
+      "method": "shared-proposal-ffn",
+      "sampled_nodes": 575913,
+      "node_assignments_exact": true,
+      "recomputed": {
+        "erl_nm": 2.067464993092896,
+        "maximum_erl_nm": 56261.53384795884,
+        "nerl": 3.674739829667661e-05,
+        "total_path_length_nm": 12749613.377595901,
+        "split_errors": 3993,
+        "merge_errors": 5047,
+        "omitted_nodes": 169481,
+        "omitted_node_fraction": 0.2942822961106973
+      },
+      "difference_from_report": {
+        "erl_nm": -1.0579253295617264e-07,
+        "maximum_erl_nm": 0.0161763186333701,
+        "nerl": -1.2445987694772141e-11,
+        "total_path_length_nm": 0.0,
+        "split_errors": 0.0,
+        "merge_errors": 0.0,
+        "omitted_nodes": 0.0,
+        "omitted_node_fraction": 0.0
+      },
+      "reported_metrics_sha256": "003198523b4d81e6fc04a5d18eaf726b7f982a7aeb0f01011a52ea08baf68d7b"
+    },
+    {
+      "domain": "frozen-full-test-core",
+      "method": "disjoint-pair-shape",
+      "sampled_nodes": 575913,
+      "node_assignments_exact": true,
+      "recomputed": {
+        "erl_nm": 2.0595313944251177,
+        "maximum_erl_nm": 56261.53384795884,
+        "nerl": 3.660638545672777e-05,
+        "total_path_length_nm": 12749613.377595901,
+        "split_errors": 3984,
+        "merge_errors": 5047,
+        "omitted_nodes": 169481,
+        "omitted_node_fraction": 0.2942822961106973
+      },
+      "difference_from_report": {
+        "erl_nm": -1.0693443242004719e-07,
+        "maximum_erl_nm": 0.0161763186333701,
+        "nerl": -1.2425739948150431e-11,
+        "total_path_length_nm": 0.0,
+        "split_errors": 0.0,
+        "merge_errors": 0.0,
+        "omitted_nodes": 0.0,
+        "omitted_node_fraction": 0.0
+      },
+      "reported_metrics_sha256": "0f164c3ae40a3b5619dee561c0f97650f9df552da7edce334ea267976488fcdd"
+    }
+  ],
+  "seconds": 87.05479311477393,
+  "peak_rss_kib": 3217300,
+  "relative_tolerance": 1e-06,
+  "absolute_tolerance": 1e-10,
+  "scope": "Independent physical sampling and metric arithmetic for the frozen-core simplified ablation"
+}

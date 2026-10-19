@@ -1,0 +1,59 @@
+{
+  "timestamp_utc": "2026-10-02T23:49:16.171637+00:00",
+  "full_pipeline_complete": false,
+  "jobs": [
+    {
+      "member": 3,
+      "job": {
+        "job_id": "90000161",
+        "reserved_seconds": 28800,
+        "gpus": 4,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/run.sbatch",
+        "script_sha256": "ba0e9513d56341b854fd18ef465c7f1f213ec01d7150f0f5b9c9f5e762a6a79a",
+        "gpu_type": "a5000",
+        "state": "PENDING"
+      },
+      "observed_state": "PENDING",
+      "observed_reason": "Priority",
+      "seed_order": "descending",
+      "window_count": 65,
+      "checkpoint_sha256": "e3e50addd1c6827f79d3efcd8d5180a5bdc8e4b77f5cff526a9f60ad904a6f10",
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/plan.json": "bb80c3fc15195bb45448f1404f5894249cf046054b93a9c68d51dfa6be37aec4",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/selection.json": "f723d40483c64e09639a2e237038d7ed40ec6cfb38c163473ec9ffc34f06679d",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-3/run.sbatch": "ba0e9513d56341b854fd18ef465c7f1f213ec01d7150f0f5b9c9f5e762a6a79a",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/launch_recovery_selection.py": "a1aa44008737f0bdc4f854b01328cf4610cef24b9d2be7f36056d0a5dca8d34f"
+      }
+    },
+    {
+      "member": 5,
+      "job": {
+        "job_id": "90000162",
+        "reserved_seconds": 28800,
+        "gpus": 3,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/run.sbatch",
+        "script_sha256": "6c764c79ef5ed82b7d1c940c72aa734edf15c87a2cd5d425a5a61c07de34be10",
+        "gpu_type": "a5000",
+        "state": "SUBMITTED"
+      },
+      "observed_state": "PENDING",
+      "observed_reason": "Priority",
+      "seed_order": "descending",
+      "window_count": 64,
+      "checkpoint_sha256": "be7eed2dc6c6c534e11a2d9627d3cf431104acb2959405a8e7b086316aed3b34",
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/plan.json": "ccbe428484983e7984bda20cf15a4a50634aa36696386a5172229d06bf0d27a7",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/selection.json": "ba6338f2da0c1daff372a1340516ce6ead7dcdaf52082d22a264592f9cff246d",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/member-5/run.sbatch": "6c764c79ef5ed82b7d1c940c72aa734edf15c87a2cd5d425a5a61c07de34be10",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-descending-windows-v1/launch_recovery_selection.py": "a1aa44008737f0bdc4f854b01328cf4610cef24b9d2be7f36056d0a5dca8d34f"
+      }
+    }
+  ],
+  "charged_or_reserved_gpu_hours": 782.37,
+  "charged_or_reserved_allocation_hours": 206.8425,
+  "reserved_concurrent_gpus": 20,
+  "observed_running_gpus": 13,
+  "held_downstream_gpu_hours": 37,
+  "held_downstream_allocation_hours": 9.25,
+  "scope": "Required descending members using the frozen full-model recovery-v2 worker; all six complete 125-window members remain required."
+}

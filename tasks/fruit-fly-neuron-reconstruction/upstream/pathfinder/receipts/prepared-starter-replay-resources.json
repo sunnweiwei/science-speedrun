@@ -1,0 +1,164 @@
+{
+  "schema": "pathfinder-prepared-replay-resources/v1",
+  "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1",
+  "gpu_jobs": [
+    {
+      "job_id": "90000231",
+      "state": "COMPLETED",
+      "actual_seconds": 4169,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:42",
+      "end": "2026-10-05T10:17:11",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000232",
+      "state": "COMPLETED",
+      "actual_seconds": 4173,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:45",
+      "end": "2026-10-05T10:17:18",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000233",
+      "state": "COMPLETED",
+      "actual_seconds": 4070,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:45",
+      "end": "2026-10-05T10:15:35",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000234",
+      "state": "COMPLETED",
+      "actual_seconds": 4070,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:45",
+      "end": "2026-10-05T10:15:35",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000235",
+      "state": "COMPLETED",
+      "actual_seconds": 4071,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:45",
+      "end": "2026-10-05T10:15:36",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000236",
+      "state": "COMPLETED",
+      "actual_seconds": 4257,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:45",
+      "end": "2026-10-05T10:18:42",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000237",
+      "state": "COMPLETED",
+      "actual_seconds": 4207,
+      "gpus": 4,
+      "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T09:07:48",
+      "end": "2026-10-05T10:17:55",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000238",
+      "state": "COMPLETED",
+      "actual_seconds": 201,
+      "gpus": 4,
+      "alloc_tres": "billing=32,cpu=32,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T10:20:14",
+      "end": "2026-10-05T10:23:35",
+      "time_zone": "America/New_York"
+    },
+    {
+      "job_id": "90000239",
+      "state": "COMPLETED",
+      "actual_seconds": 178,
+      "gpus": 4,
+      "alloc_tres": "billing=32,cpu=32,gres/gpu:a5000=4,gres/gpu=4,mem=192G,node=1",
+      "exit_code": "0:0",
+      "start": "2026-10-05T10:20:14",
+      "end": "2026-10-05T10:23:12",
+      "time_zone": "America/New_York"
+    }
+  ],
+  "downstream_gpu_hours": 32.66222222222222,
+  "downstream_allocation_hours": 8.165555555555555,
+  "observed_gpu_concurrency": 28,
+  "controller_wall_seconds": 5179,
+  "controller_gnu_time_max_rss_kib": 43365040,
+  "sampled_peak_logical_bytes": 71511836126,
+  "storage_sample_count": 177,
+  "terminal_storage": {
+    "time": 1791210798.0791578,
+    "logical_bytes": 71511836126,
+    "sampled_peak_bytes": 71511836126,
+    "by_path": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1": 24661826864,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/context": 2130644932,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/stitched": 22782050014,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/inference": 990666345,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/image": 5773877851,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/suite": 107812237,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1": 5882138002,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/cache": 2469120546,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/tmp": 6713699335
+    },
+    "within_200gb": true,
+    "stage_terminal": true
+  },
+  "storage_scope": {
+    "paths": [
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/context",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/stitched",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/inference",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/image",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/suite",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/cache",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/tmp"
+    ],
+    "interval_seconds": 15,
+    "limit_bytes": 200000000000,
+    "scope": "Observed resident assets for prepared-context downstream replay, including reused FFN windows/context, raw images, suite, and Python environment. Excludes historical training and other campaigns. Sampled usage is not an exact instantaneous peak or a cold-start FFN measurement. Revision 2 also conservatively charges the entire shared cache/tmp, including unrelated retained historical files."
+  },
+  "scope": "New complete SENSE, FFN/SHAPE postprocessing, merging, scoring and in-controller arithmetic audit; verified FFN/context reused. Excludes training, fresh FFN/context production, prior runs/failures, and subsequent replay-comparison audit. Historical ledger retained.",
+  "limits": "Storage is sampled logical bytes, not an exact instantaneous peak; GNU time RSS is process/child maximum, not summed concurrent host/node memory. Allocation memory is a reservation, not measured GPU-node RSS.",
+  "evidence_sha256": {
+    "final-sacct.txt": "ed7693b13cf006a8b0518b6772eb6114bcdd5218f5940e60ca0fabc41086dc6e",
+    "controller.resources.txt": "2a385801089399740eee7d937ed4369eb5bc0b3fa3a097d70acf72d815454d8d",
+    "resource-samples.jsonl": "b03f58f1f701b8d49f6ec2ea8db2a487bf5c550315e1314f94fe45118282008b",
+    "resource-scope.json": "45f79a51276fe185b61bc6c48b1d880571aa78d54b2a679fba8f967bbfb9cf6c",
+    "resource-latest.json": "bcf27316d9d7c315a7e4db51ef4ffd2164555b1c8c3dc7bc6f66f9ab653003d3",
+    "plan.json": "79cc763565ab59a529bab257aba1f99dcdc860802fc724b9870b52376b61b6ff"
+  },
+  "separate_comparison_audit": {
+    "wall_seconds": 213.51,
+    "peak_rss_kib": 5184472,
+    "exit_status": 0,
+    "resource_log_sha256": "d4ca6408aae9c69fe576243f1ee48f6e953228770e473b617323d4cfa54af230"
+  },
+  "prepared_context_resource_review_complete": true,
+  "cold_start_resource_acceptance": false
+}

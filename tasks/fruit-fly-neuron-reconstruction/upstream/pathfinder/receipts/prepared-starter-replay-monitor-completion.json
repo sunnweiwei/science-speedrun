@@ -1,0 +1,15 @@
+{
+  "time": 1791211083.672158,
+  "scheduler_jobs": [],
+  "stopped": [
+    {
+      "pid": 1986787,
+      "command": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-worktree/fruit-fly-brain/upstream/pathfinder/monitor_delivery.py --runs /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1 /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v3 /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4 /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1 --output /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1 "
+    },
+    {
+      "pid": 1986443,
+      "command": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1/source/pathfinder/monitor_delivery.py --runs /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1 --output /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1/monitor "
+    }
+  ],
+  "reason": "All replay GPU jobs completed and final scheduler/accounting observation saved; recurring monitoring no longer needed."
+}

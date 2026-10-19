@@ -1,0 +1,242 @@
+{
+  "checked_date": "2026-09-28",
+  "source": "https://storage.googleapis.com/storage/v1/b/ffn-flyem-fib25/o",
+  "complete_listing": true,
+  "objects": [
+    {
+      "name": "training_sample1/",
+      "size": "0",
+      "generation": "1510344450608284",
+      "md5Hash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+    },
+    {
+      "name": "training_sample1/README.md",
+      "size": "247",
+      "generation": "1510344785979641",
+      "md5Hash": "GPWcrHtSQUBWGF09rzyUCQ=="
+    },
+    {
+      "name": "training_sample1/grayscale_maps.h5",
+      "size": "13159134",
+      "generation": "1510344465437316",
+      "md5Hash": "ZH9AAH6Kpw47OkFWHrnIQA=="
+    },
+    {
+      "name": "training_sample2/",
+      "size": "0",
+      "generation": "1510344476960525",
+      "md5Hash": "1B2M2Y8AsgTpgAmY7PhCfg=="
+    },
+    {
+      "name": "training_sample2/README.md",
+      "size": "247",
+      "generation": "1510344794577617",
+      "md5Hash": "GPWcrHtSQUBWGF09rzyUCQ=="
+    },
+    {
+      "name": "training_sample2/grayscale_maps.h5",
+      "size": "13069219",
+      "generation": "1510344489808639",
+      "md5Hash": "xvHmMcL/WMd3ivLuPwNZwQ=="
+    },
+    {
+      "name": "training_sample2/groundtruth.h5",
+      "size": "1922717",
+      "generation": "1510344489137587",
+      "md5Hash": "qqYZZvgpK+C5y3tKCh7m9g=="
+    },
+    {
+      "name": "tstvol-520-1/",
+      "size": "11",
+      "generation": "1567437583472062",
+      "md5Hash": "apnFdauH+MfR7R5S5+NJzg=="
+    },
+    {
+      "name": "tstvol-520-1/groundtruth.h5",
+      "size": "21724993",
+      "generation": "1567440270897724",
+      "md5Hash": "QkkV5FzjcjTlky2kNmgvFw=="
+    },
+    {
+      "name": "tstvol-520-1/raw.h5",
+      "size": "118197678",
+      "generation": "1567441180539742",
+      "md5Hash": "fopdrZYJUk4+KvT95Dj0qQ=="
+    },
+    {
+      "name": "validation_sample/README.md",
+      "size": "247",
+      "generation": "1510344805855162",
+      "md5Hash": "GPWcrHtSQUBWGF09rzyUCQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00000-of-00025.gz",
+      "size": "91238076",
+      "generation": "1510344738268234",
+      "md5Hash": "1r3eV/kaj/M3o8ij4F1xSw=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00001-of-00025.gz",
+      "size": "89853887",
+      "generation": "1510344738272023",
+      "md5Hash": "AqNFZCllEwrlKMXWKNqA0Q=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00002-of-00025.gz",
+      "size": "89826145",
+      "generation": "1510344738268536",
+      "md5Hash": "hH+mUx29LBGPp/R3/a7pjQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00003-of-00025.gz",
+      "size": "91205289",
+      "generation": "1510344738271495",
+      "md5Hash": "gOaSKMKPV9XqVQt4qfVihA=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00004-of-00025.gz",
+      "size": "91258874",
+      "generation": "1510344738267820",
+      "md5Hash": "m5uRdOuD0IAS1225NoqWQQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00005-of-00025.gz",
+      "size": "91197795",
+      "generation": "1510344738284267",
+      "md5Hash": "zbf94Tev11hixsZBviX7Zg=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00006-of-00025.gz",
+      "size": "90214100",
+      "generation": "1510344738324273",
+      "md5Hash": "PC2MypHBnyp8WLHe+hZ3nQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00007-of-00025.gz",
+      "size": "89973367",
+      "generation": "1510344738230149",
+      "md5Hash": "JCvvM3rf5yyg8fcEoROv5w=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00008-of-00025.gz",
+      "size": "91180097",
+      "generation": "1510344738354063",
+      "md5Hash": "JAMMb9KUYCgkmGq/z29xpw=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00009-of-00025.gz",
+      "size": "91085601",
+      "generation": "1510344738267881",
+      "md5Hash": "YhIDzZbSbNYn1+XTuH3LyQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00010-of-00025.gz",
+      "size": "90688519",
+      "generation": "1510344738231966",
+      "md5Hash": "xufmEFhnmGYhMMucn64IrQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00011-of-00025.gz",
+      "size": "91190264",
+      "generation": "1510344738264606",
+      "md5Hash": "D7szKFBQ1iWS/tpsPtCjlQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00012-of-00025.gz",
+      "size": "90903254",
+      "generation": "1510344738270446",
+      "md5Hash": "u6vIJ7clswA6UdH83fdcPA=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00013-of-00025.gz",
+      "size": "90513843",
+      "generation": "1510344738352679",
+      "md5Hash": "DEpSV1aVYaIjLRbYmgnTyg=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00014-of-00025.gz",
+      "size": "91213331",
+      "generation": "1510344738309738",
+      "md5Hash": "yX7FMP5VuUhl78L+3wDDAg=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00015-of-00025.gz",
+      "size": "89648881",
+      "generation": "1510344738269264",
+      "md5Hash": "M3PdBJfcyknQdm4uCXJCNQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00016-of-00025.gz",
+      "size": "91226991",
+      "generation": "1510344738276895",
+      "md5Hash": "+IzVoP68EaAJX4RFONmrNg=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00017-of-00025.gz",
+      "size": "91243321",
+      "generation": "1510344738340987",
+      "md5Hash": "ObtGSvPu6Mch0sBcQKEzAA=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00018-of-00025.gz",
+      "size": "91228673",
+      "generation": "1510344738266594",
+      "md5Hash": "lS4W97+YLSxX5o9jUwTE9A=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00019-of-00025.gz",
+      "size": "91310836",
+      "generation": "1510344738287398",
+      "md5Hash": "pGGFVUbIbOcHFe05vhVwCw=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00020-of-00025.gz",
+      "size": "91179261",
+      "generation": "1510344738348552",
+      "md5Hash": "QCvRAVgFT8PeaSqZfsseOw=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00021-of-00025.gz",
+      "size": "90285746",
+      "generation": "1510344738305754",
+      "md5Hash": "qz3xKXdDRyTljOroZL+pbQ=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00022-of-00025.gz",
+      "size": "90981228",
+      "generation": "1510344738230150",
+      "md5Hash": "xEnYjkpAGN2Lt7WVLY2yNg=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00023-of-00025.gz",
+      "size": "91246085",
+      "generation": "1510344738316682",
+      "md5Hash": "hQHRcT2MJZ8pJS3nwpD9ww=="
+    },
+    {
+      "name": "validation_sample/fib_flyem_validation1_label_lom24_24_24_part14_wbbox_coords-00024-of-00025.gz",
+      "size": "89231734",
+      "generation": "1510344738267763",
+      "md5Hash": "UZa5owJOu61jO8LVsrgNWA=="
+    },
+    {
+      "name": "validation_sample/grayscale_maps.h5",
+      "size": "118301389",
+      "generation": "1510344712254070",
+      "md5Hash": "6vZhKgGN5r74fGhbxuUVdA=="
+    },
+    {
+      "name": "validation_sample/groundtruth.h5",
+      "size": "22392831",
+      "generation": "1510344712298857",
+      "md5Hash": "fUOc1RTxAeRuj2gi8Ijq6w=="
+    },
+    {
+      "name": "validation_sample_$folder$",
+      "size": "6",
+      "generation": "1510344711387418",
+      "md5Hash": "hRFItP2P1650vZEAxcDImA=="
+    }
+  ],
+  "note": "Metadata only; no image or label downloads. tstvol-520-1 provenance unresolved; excluded from FIB-25 split."
+}

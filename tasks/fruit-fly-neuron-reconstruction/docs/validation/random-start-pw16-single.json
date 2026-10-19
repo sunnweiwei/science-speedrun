@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-10-06T10:49:46.718723+00:00",
+  "candidate": {
+    "job_id": "90000245",
+    "variant": "cold-start-normalized-v1--normalized-gain3-positive16-restart",
+    "step": 5900,
+    "checkpoint_sha256": "ef4d1ec755c93fe28ad38667eb5b4fe314429ce5c44d43cbf0fa1c5336442a0f",
+    "nerl": 0.026728474000757976,
+    "baseline_fraction": 0.3775780046032159,
+    "omitted_node_fraction": 0.28946756954126,
+    "split_errors": 384,
+    "merge_errors": 372,
+    "wall_seconds": 8008.678881653119,
+    "complete": true,
+    "passes_multiblock_resource_screen": true
+  },
+  "leading_candidate": {
+    "job_id": "90000243",
+    "variant": "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long",
+    "step": 16300,
+    "checkpoint_sha256": "4ffa7b3e879b27946b7fed329a6c0413ed459f2c85e4a20ba11514c5b30a89d9",
+    "nerl": 0.0406382664047008,
+    "baseline_fraction": 0.5740737589128994,
+    "omitted_node_fraction": 0.4377448051516962,
+    "split_errors": 539,
+    "merge_errors": 224,
+    "wall_seconds": 5349.051711503416,
+    "complete": true,
+    "passes_multiblock_resource_screen": true
+  },
+  "baseline_nerl": 0.0707892771159857,
+  "candidate_to_leader_nerl": 0.6577168852278152,
+  "candidate_to_leader_wall": 1.4972147052588844,
+  "audit": "compare_singles.py passed: complete, no budget exhaustion, same raw/context/scorer/graph/checkpoint provenance",
+  "decision": "Do not add eight-window evaluation for step5900 in this bounded round: full single nERL is lower and evaluation is slower than step16300. Await complete step16300 paired multi before final selection.",
+  "limitation": "Single-region comparison does not prove global ordering across all125 regions.",
+  "test_used": false
+}

@@ -1,0 +1,59 @@
+{
+  "checked_at_utc": "2026-09-26T02:59:10.411920+00:00",
+  "source_audit_passed": true,
+  "components": {
+    "google-ffn": {
+      "commit": "b8df2d96d7c8da057fd2702ced19732a08ab6ae4",
+      "url": "https://github.com/google/ffn",
+      "files": [
+        "train.py",
+        "run_inference.py",
+        "README.md",
+        "LICENSE"
+      ],
+      "role": "Public FFN component; PATHFINDER FFN v1.5 parity unverified",
+      "files_sha256": {
+        "train.py": "61aaffe1ae502babc123116a30ab3c7050620ad0c1de16e2c72fa8d5fe2a0a83",
+        "run_inference.py": "1ea728a53962dd717bcab900b69cd156a7895224f26cb39feca0cad813f34bcd",
+        "README.md": "f0b0405f313f81bbb7c48e76eaeacdf4fc74743cecf9d8970adc91d6e4521ec8",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      "tracked_files": 87,
+      "pathfinder_named_paths": []
+    },
+    "google-connectomics": {
+      "commit": "bf2f6caf083bb5d459ec86f5e859c366857be1ea",
+      "url": "https://github.com/google-research/connectomics",
+      "files": [
+        "connectomics/mogen/flow_matching/train.py",
+        "connectomics/mogen/flow_matching/inference.py",
+        "connectomics/mogen/models/pointinfinity.py",
+        "LICENSE"
+      ],
+      "role": "MoGen public source; not the SENSE/SHAPE reconstruction pipeline",
+      "files_sha256": {
+        "connectomics/mogen/flow_matching/train.py": "7301e3c5559c6795ea4343cfedfbbfdd1beab12e321b0b915a138a45f2d51fc2",
+        "connectomics/mogen/flow_matching/inference.py": "dac6097908a36ab391c52d38e407b92b5b2585a9bfe39cae50a9f22ba6bf0dc5",
+        "connectomics/mogen/models/pointinfinity.py": "6195ac80339e1c6c1c83a3b523ef0182cb297eb47adb13f07a1dcdb6d107547c",
+        "LICENSE": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+      },
+      "tracked_files": 165,
+      "pathfinder_named_paths": []
+    }
+  },
+  "official_pathfinder_replay_ready": false,
+  "missing_release_artifacts": [
+    "verified PATHFINDER release and runnable configuration",
+    "FFN v1.5 / SENSE / SHAPE matching trained checkpoints",
+    "IBEAM-mSEM EM and proofread evaluation reconstruction",
+    "author train/validation/test spatial definitions and preprocessing",
+    "author evaluation implementation or numerical parity fixtures"
+  ],
+  "author_model_replayed": false,
+  "sota_gap_measured": false,
+  "availability": "No complete public PATHFINDER release verified in this audit; absence is not proof of permanent closure",
+  "paper_release_statement_url": "https://www.researchgate.net/publication/391957338_Accelerating_Neuron_Reconstruction_with_PATHFINDER",
+  "paper_doi": "10.1101/2025.05.16.654254",
+  "paper_table1_nerl": 0.942,
+  "paper_metric_is_not_cremi_partner_f1": true
+}

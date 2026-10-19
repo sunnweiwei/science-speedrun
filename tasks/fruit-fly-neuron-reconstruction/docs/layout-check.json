@@ -1,0 +1,36 @@
+{
+  "schema": "pathfinder-task-layout-check/v1",
+  "complete": true,
+  "scope": "Static repository conventions, TOML/compose parsing and baseline wrapper routing only; no Docker build or isolated inference",
+  "layout": {
+    "fruit-fly-brain": {
+      "instruction": "ok",
+      "readme": "ok",
+      "workspace": "ok",
+      "baseline": "ok",
+      "materialize": "n/a",
+      "layout": "ok",
+      "toml": "ok",
+      "compose": "ok",
+      "verifier": "ok",
+      "budget": "ok"
+    }
+  },
+  "checks": [
+    "scripts/audit_tasks.py fruit-fly-brain passed",
+    "Both compose YAML files parsed with PyYAML",
+    "Baseline CLI --help passed",
+    "execute selects frozen run source; malformed execute args rejected",
+    "git diff --check passed"
+  ],
+  "files": {
+    "fruit-fly-brain/instruction.md": "19651411f4cd4e5419c61f2c75fe930a9874c23aa887d24cc47c3efa39ccfeb7",
+    "fruit-fly-brain/task.toml": "ed7d23a3dd143737a5b3e932326c640d6cf002bd96ffcad9c60999cadd8fc910",
+    "fruit-fly-brain/environment/Dockerfile": "3dd4941b0338c520f85aab600dfadcf89871120052b97eec415a99804a2e75cf",
+    "fruit-fly-brain/environment/docker-compose.yaml": "71709b6d01fc7e81128e81487ca5898a15e4f518c70c573bb205b7c1bbf6e355",
+    "fruit-fly-brain/environment/baseline/pathfinder-fast/run.sh": "0a7414d3482dc9afce681e196ba593d285bf50e9662429d7c6626fe09e95da30"
+  },
+  "docker_executable_available": false,
+  "docker_build_verified": false,
+  "isolated_model_replay_verified": false
+}

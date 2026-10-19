@@ -1,0 +1,19 @@
+{
+  "url": "https://storage.googleapis.com/gweb-research2023-media/pubtools/4536.pdf",
+  "bytes": 6394675,
+  "sha256": "8408fe12758da0dfa6bc837aca4be2624f37041a6f4b622c4f89b4e83c23ed59",
+  "scope": "Byte-pinned PDF directly linked from Google publication page; original final journal PDF not separately compared. Internal 35-versus-33 training-block counts retained as unresolved.",
+  "publication_page": "https://research.google/pubs/high-precision-automated-reconstruction-of-neurons-with-flood-filling-networks/",
+  "publication_page_identifies": "Nature Methods (2018)",
+  "checked_on": "2026-10-01",
+  "pages_read_one_indexed": [
+    4,
+    7,
+    20,
+    22,
+    24
+  ],
+  "local_render_checked_one_indexed": [
+    22
+  ]
+}

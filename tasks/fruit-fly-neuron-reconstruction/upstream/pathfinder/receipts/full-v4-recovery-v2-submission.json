@@ -1,0 +1,16 @@
+{
+  "job": {
+    "job_id": "90000156",
+    "reserved_seconds": 28800,
+    "gpus": 4,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/qualification.sbatch",
+    "script_sha256": "9301953f5b51d61b7ace60e1f209e8b028c91cd1e152033b05f676175976459f",
+    "gpu_type": "a5000",
+    "state": "SUBMITTED"
+  },
+  "plan_sha256": "1dadcc11bfa2b0f70b8956204d703ee8c943453c48376ac0a8a4fc457df18e0f",
+  "plan": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v2/plan.json",
+  "charged_or_reserved_gpu_hours": 659.9677777777778,
+  "charged_or_reserved_allocation_hours": 168.2161111111111,
+  "full_pipeline_complete": false
+}

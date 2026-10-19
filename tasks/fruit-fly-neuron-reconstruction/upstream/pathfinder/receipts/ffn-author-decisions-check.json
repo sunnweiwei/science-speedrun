@@ -1,0 +1,38 @@
+{
+  "result": {
+    "decisions": [
+      {
+        "pair": [
+          1,
+          2
+        ],
+        "distance_nm": 8.0,
+        "center_zyx": [
+          74,
+          69,
+          69
+        ]
+      }
+    ],
+    "chunks": 8,
+    "roi_zyx": [
+      50,
+      110,
+      50,
+      110,
+      50,
+      110
+    ],
+    "tile": 32,
+    "max_distance_nm": 64,
+    "halo_voxels": 6
+  },
+  "real_author_function": true,
+  "model_quality": false,
+  "chunk_boundary_touching_pair_check": true,
+  "adapter_sha256": "75d071a6b4a4f89b857fd0fb3783bacc2ebc4286b80dfaf2a25a0afc9a27e68d",
+  "source_commits": {
+    "ffn": "b8df2d96d7c8da057fd2702ced19732a08ab6ae4",
+    "connectomics": "bf2f6caf083bb5d459ec86f5e859c366857be1ea"
+  }
+}

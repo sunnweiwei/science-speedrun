@@ -1,0 +1,113 @@
+{
+  "gpu_job_id": "90000009",
+  "cpu_jobs": {
+    "monitor": "90000010",
+    "assembly": "90000011"
+  },
+  "allocation_limit_seconds": 28800,
+  "model_seconds_per_shard": 28200,
+  "planned_tiles": 12167,
+  "prediction_shape": [
+    1468,
+    1468,
+    1468
+  ],
+  "raw_shape": [
+    1500,
+    1500,
+    1500
+  ],
+  "code_snapshot": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-continuous-v1",
+  "gpu_count": 4,
+  "remaining_reserved_allocation_seconds": 8579,
+  "observational_holes_disclosed": true,
+  "completion": {
+    "checked_at_utc": "2026-09-27T06:00:58.551238+00:00",
+    "slurm_state": "COMPLETED",
+    "exit_code": "0:0",
+    "actual_allocation_seconds": 27642,
+    "gpu_seconds": 110568,
+    "complete_tiles": 12167,
+    "partial_tiles": 0,
+    "unstarted_tiles": 0,
+    "shards": [
+      {
+        "shard": 0,
+        "complete_tiles": 3042,
+        "receipt_sha256": "67f7e0bdac0719466b31ad9bcdf774f1e428ceb83824384b59cfa25752c2bce0",
+        "model_windows": 4415045,
+        "model_batches": 277048,
+        "seconds": 27622.01080938382
+      },
+      {
+        "shard": 1,
+        "complete_tiles": 3042,
+        "receipt_sha256": "077f1ff1ac23c3b5ed052a41866a3d2cc9604e322bd06f4a1e370f1562d0589f",
+        "model_windows": 4445973,
+        "model_batches": 278684,
+        "seconds": 27191.023841159185
+      },
+      {
+        "shard": 2,
+        "complete_tiles": 3042,
+        "receipt_sha256": "ed05321b0d5c2b109a90cda67db5fd46603eba6cd11dd87af972e2cdfbade2db",
+        "model_windows": 4408037,
+        "model_batches": 276107,
+        "seconds": 27252.35383678996
+      },
+      {
+        "shard": 3,
+        "complete_tiles": 3041,
+        "receipt_sha256": "ad27b9312d70fa3898f057d71a07f571990af73a9a00640cd0bdad1a850d61f0",
+        "model_windows": 4404827,
+        "model_batches": 276316,
+        "seconds": 27109.486319359858
+      }
+    ],
+    "shared_provenance": {
+      "raw_sha256": "65bfa2dbc6881eac6534d82e19fdd5b2396e3094ea39e41612633e1057554650",
+      "checkpoint_sha256": "778c449b17823fe62bd7bcef26afa61c7d4c33e978f0b32a8ece353573773303",
+      "roi": [
+        16,
+        1484,
+        16,
+        1484,
+        16,
+        1484
+      ],
+      "metadata": {
+        "axes": "zyx",
+        "voxel_size_nm": [
+          16,
+          16,
+          16
+        ],
+        "raw_origin_nm": [
+          3000.0,
+          4384.0,
+          4384.0
+        ],
+        "origin_nm": [
+          3256.0,
+          4640.0,
+          4640.0
+        ],
+        "shape": [
+          1468,
+          1468,
+          1468
+        ],
+        "coordinate_convention": "voxel_outer_corner"
+      },
+      "id_stride": 262145,
+      "tile_size": 64,
+      "shards": 4
+    },
+    "scope": "Receipt integrity, unique tile membership, complete flags and shared provenance; full tile hash/ID/geometry validation remains the queued assembly job.",
+    "assembly_job": "90000011",
+    "assembly_state_at_check": "PENDING:Priority",
+    "dispatcher_job": "90000017",
+    "charged_allocation_seconds_after_ffn": 76663,
+    "remaining_allocation_seconds": 9737
+  }
+}

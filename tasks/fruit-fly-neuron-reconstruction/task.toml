@@ -1,0 +1,40 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+
+[task]
+name = "ai4sci/fruit-fly-neuron-reconstruction"
+version = "0.4.0"
+description = "Train the FFN, SENSE and SHAPE weights of a fixed PATHFINDER-style pipeline that reconstructs fruit-fly neurons from electron microscopy, scored by local sparse nERL."
+authors = [{ name = "Sanxing Chen" }]
+keywords = ["model-development", "connectomics", "segmentation", "neuroscience"]
+
+[metadata]
+author_name = "Sanxing Chen"
+data_status = "Pinned 14.54 GB prepared MaleCNS v1.0 release on Hugging Face; frozen train/validation/test regions with shared-ID exclusions; private test scores a 512^3 core inside a 1762^3 prediction"
+delivery_status = "Formal Docker verifier ran end to end on 4 H100s (FFN 4 h 46 min, total about 7 h; about 4 h projected on 8): an agent package with the baseline FFN recipe and briefly trained SENSE/SHAPE scored nERL 2.2e-5; the author starter scores 0.0350 stitched eight-window development nERL"
+
+[agent]
+timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
+
+[environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 524288
+storage_mb = 1048576
+gpus = 8
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+
+[verifier]
+environment_mode = "separate"
+network_mode = "no-network"
+timeout_sec = 43200.0           # measured full run: about 4 h on 8 H100s, 7 h on 4
+
+[verifier.environment]
+cpus = 64
+memory_mb = 524288
+storage_mb = 409600
+gpus = 8
+gpu_types = ["H100"]
+network_mode = "no-network"
+build_timeout_sec = 7200.0

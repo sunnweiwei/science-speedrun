@@ -1,0 +1,43 @@
+{
+  "timestamp_utc": "2026-10-03T16:14:33.929106+00:00",
+  "job_id": "90000189",
+  "state": "COMPLETED",
+  "allocation_seconds": 174,
+  "gpu_hours": 0.04833333333333333,
+  "prior_ledger_sha256": "e5cd6f9181f50d3f01a0b9ea13f24f2fa747c9de155eb480a37ee741832b4a2b",
+  "all_other_jobs_unchanged": true,
+  "hardware": "NVIDIA RTX A6000",
+  "bf16": true,
+  "window_shape": [
+    500,
+    500,
+    468
+  ],
+  "directions": [
+    "ascending",
+    "descending"
+  ],
+  "steps_per_direction": 4096,
+  "exact_evolving_input_output_and_decisions": true,
+  "partial_labels_exact": true,
+  "production_promotion": false,
+  "full_reconstruction_complete": false,
+  "reference_instrumented_predict_seconds": 43.259518230333924,
+  "graph_instrumented_predict_seconds": 39.14820463769138,
+  "predict_throughput_gain_fraction": 0.10501921175420215,
+  "reference_predict_plus_movement_seconds": 48.57950432598591,
+  "graph_predict_plus_movement_seconds": 44.13177300710231,
+  "instrumented_predict_plus_movement_gain_fraction": 0.10078297371301637,
+  "reference_model_event_seconds": 41.4506322722435,
+  "reference_cpu_movement_seconds": 5.319986095651984,
+  "reference_h2d_seconds": 0.9126650565192104,
+  "reference_d2h_seconds": 0.4719496320001781,
+  "source_pins_verified": true,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/growth-graph-parity-20261003/result.json": "afa8b3f5381e0290f6b789224d8104e641779a9bc49cfa4a85546184f473340c",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/growth-graph-parity-20261003/plan.json": "0a1cf43a9417e7cd8055bfc2ae99d09ba1e04557ef6e2f8756d55b2ec656e449",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/growth-graph-parity-20261003/diagnose.py": "52c760f4cfc0371176b2db2812f322c7e30787fdfe947aa7432f33a46ff1b7bd",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/growth-graph-parity-20261003/terminal-sacct.txt": "579e6865d8278c5b987eaa039929a52a527fd395719de837cb66b7032a22043b"
+  },
+  "scope": "One original boundary-clipped500x500x468 window, two4096-step trajectories on A6000; same checkpoint/BF16. CUDA-event instrumentation and paired execution affect timing; not a full-window speedup or A5000 qualification. Partial diagnostic labels are never accepted. Production snapshots remain unchanged; no unsubmitted production windows currently exist."
+}

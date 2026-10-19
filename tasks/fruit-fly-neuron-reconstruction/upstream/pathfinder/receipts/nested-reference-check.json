@@ -1,0 +1,19 @@
+{
+  "purpose": "Real-reference adapter self-check only; not a model quality score",
+  "lineage": {
+    "parent_suite_sha256": "e4864c6d467b6e0a2c4be746d2e61adb9c4719f547882f31177f9f1c700887a4",
+    "adapter_sha256": "4fc698095dfcdcc1ebbd099866426d0735baeb695e7d47d2ba99387b6e2a9168",
+    "source_nodes": 78015,
+    "retained_nodes": 10122,
+    "source_edges": 75250,
+    "retained_edges": 9704,
+    "policy": "Centered induced subgraph; no reskeletonization; preserve IDs and physical positions"
+  },
+  "nerl": 1.0,
+  "omitted_nodes": 0,
+  "split_errors": 0,
+  "merge_errors": 0,
+  "suite_sha256": "d16b0bf34d4502ce8d8985d3e228398fe88f26fe0f05eaf9771d6d1ef5726f54",
+  "node_assignments_sha256": "d9d195bfafc6ae4c028d1e96afc38e31d91013c406352a679153facb19417749",
+  "targeted_tests": 14
+}

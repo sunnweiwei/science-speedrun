@@ -1,0 +1,19 @@
+# Observed PATHFINDER runtime; Python3.11, Linux x86_64.
+numpy==1.26.4
+torch==2.6.0
+scipy==1.17.1
+scikit-image==0.26.0
+h5py==3.13.0
+networkx==3.6.1
+matplotlib==3.10.8
+Pillow==12.3.0
+# CPU skeleton preparation/evaluation fixtures.
+kimimaro==5.8.4
+connected-components-3d==4.1.0
+# Pinned Google FFN decision-point and connectomics bounding-box imports.
+absl-py==2.1.0
+dataclasses-json==0.6.7
+pandas==2.2.3
+
+# Triton runtime compiler imports (measured with the FFN norm32 backend).
+setuptools==75.8.0

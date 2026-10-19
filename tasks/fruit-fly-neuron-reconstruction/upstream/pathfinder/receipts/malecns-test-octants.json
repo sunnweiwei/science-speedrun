@@ -1,0 +1,64 @@
+{
+  "parent_suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+  "regions": [
+    {
+      "region": "octant-000",
+      "nodes": 96955,
+      "edges": 94115,
+      "evaluable": true,
+      "suite_sha256": "c9d17fa9bb62279556c96e5d5c3684109de03f27e8a80b637d8aa11f95f22aa6"
+    },
+    {
+      "region": "octant-001",
+      "nodes": 82940,
+      "edges": 80873,
+      "evaluable": true,
+      "suite_sha256": "7f92be79d9fd00a651d62e95147182bc3a54ea4db5aa3c62f32ab0df68173d47"
+    },
+    {
+      "region": "octant-010",
+      "nodes": 76816,
+      "edges": 75412,
+      "evaluable": true,
+      "suite_sha256": "4e13f40aed85ea9da2e30eb47c9807bae3e710edfea200912af113b38f990a9b"
+    },
+    {
+      "region": "octant-011",
+      "nodes": 45741,
+      "edges": 45118,
+      "evaluable": true,
+      "suite_sha256": "cfe03f974b0db06010c001da81830d6a5bc4c2c5348c11120e8732c40551d727"
+    },
+    {
+      "region": "octant-100",
+      "nodes": 86939,
+      "edges": 84565,
+      "evaluable": true,
+      "suite_sha256": "6a892b37179e036eada798f22cc5e6fb100057c07319dceba4d55ecd0de3d38e"
+    },
+    {
+      "region": "octant-101",
+      "nodes": 76233,
+      "edges": 74362,
+      "evaluable": true,
+      "suite_sha256": "b8bec8e96e86138675dedac84eccfd0b61b914a8bb67d5b9feb7468ddecd1239"
+    },
+    {
+      "region": "octant-110",
+      "nodes": 59799,
+      "edges": 58834,
+      "evaluable": true,
+      "suite_sha256": "5f7bfb7a8de310151051ab4568c3f3459c907a4404d239d80004a313ca8239bf"
+    },
+    {
+      "region": "octant-111",
+      "nodes": 50490,
+      "edges": 49887,
+      "evaluable": true,
+      "suite_sha256": "436f35a25a237b87a1d4310811ee26f500d42e801ffb37bb487a4ac929c704a4"
+    }
+  ],
+  "independent_samples": false,
+  "primary_result": "Unpartitioned 512-cube",
+  "cross_octant_edges_omitted": 2193
+}

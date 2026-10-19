@@ -1,0 +1,61 @@
+{
+  "schema": "pathfinder-final-replay-audit/v1",
+  "job": {
+    "job_id": "90000040",
+    "reserved_seconds": 37200,
+    "gpus": 4,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/final-replay-proposal-v1/replay.sbatch",
+    "script_sha256": "8a97ce44d002d9c0ff62d1905142c39b329c8b1dadb23659d688f7447b5ae5f9",
+    "state": "COMPLETED",
+    "actual_seconds": 29498
+  },
+  "result": {
+    "schema": "pathfinder-model-replay-result/v1",
+    "model_replayed": true,
+    "package_manifest_sha256": "c8be29ae8d4d37acc60c03ed8888d024b0c82aa04695a2b4679b8eb5eb6ffdf8",
+    "plan_sha256": "ab266a9d57eb6e7a69949efe7a8fda5ccf89220e1d3fcc5ad5d2c173fce4538d",
+    "reward": 0.003559393762668457,
+    "phases": {
+      "ffn": "0458d000763db46df10e877e4bf90094ee1e3a8591daf73897893c6879c1aa8d",
+      "assemble": "6b165163bc68e0582a87f8256ecb9f6da8d55acb42d3d94f7bda10224d57533f",
+      "refine": "1bcd07352d749bc2b31dc1cd4169d8d40d5d9b9b2b3641da9bc2b8ac68ee5359",
+      "score": "30599335f94a3447d38e177507dca87ae6bffcf6aee40cf0ce2f5e0b5090cb28"
+    },
+    "learned_merges_present": true,
+    "all_prediction_tiles_complete": true,
+    "model_stages_containerized": false,
+    "paper_comparable": false,
+    "scope": "Fresh model execution and local sparse score; inspect coverage, training exposure and quality separately"
+  },
+  "files_rehashed": 25,
+  "ffn_and_final_predictions_byte_identical_to_science_run": true,
+  "development_metrics": {
+    "nerl": 0.003559393762668457,
+    "erl_nm": 313.78234083350355,
+    "split_errors": 147,
+    "merge_errors": 0,
+    "omitted_nodes": 285,
+    "omitted_node_fraction": 0.08911819887429644
+  },
+  "budget": {
+    "limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 115200,
+      "gpu_seconds": 460800
+    },
+    "charged_seconds": 107188,
+    "charged_gpu_seconds": 428752,
+    "bytes_on_disk": 121056823260
+  },
+  "report_sha256": {
+    "final-model-replay-v1/model-replay.json": "390b8cd1289403884cce5bee3de4913b22e9a8268fb80930e11ea1023d04a5a9",
+    "final-model-replay-v1/score/verification.json": "506691101824e70bfb4f59a67f16f0e2674387b626303bd33481d87a927cdc2c",
+    "final-model-replay-v1/score/assessment/metrics.json": "75b580b30160d3536da70552e8ee33161bcfc60aac547ff1183e9cd2c37fa732",
+    "final-model-replay-v1/submission/prediction.json": "f7fd9b266d8cdec835f3ba8e056b4b0ff0c795f81b2255724d02d0a22fc65005",
+    "final-model-replay-v1/submission/receipt.json": "04e193ad3d03b4c671674b8401b1566b7c33420351dabca5af033a467050dfa7"
+  },
+  "docker_verified": false,
+  "scope": "Complete fresh v6 model execution on original continuous EM and frozen development suite. Previously frozen test score remains applicable to byte-identical final prediction; test was not rerun here. Quality remains weak; no paper parity claim.",
+  "frozen_trusted_code_and_package_revalidated": true,
+  "trusted_source_files": 71
+}

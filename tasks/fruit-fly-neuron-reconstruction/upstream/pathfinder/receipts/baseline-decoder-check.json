@@ -1,0 +1,19 @@
+{
+  "purpose": "Decoder numeric check on full-model CPU output; not a benchmark score",
+  "passed": true,
+  "shape": [
+    128,
+    128,
+    128
+  ],
+  "instances": 25,
+  "dtype": "uint8",
+  "parallel_seconds": 3.248918385244906,
+  "serial_seconds": 1.0432143108919263,
+  "exact_label_match": true,
+  "threshold": 0.66,
+  "edge_offset": 0,
+  "input_sha256": "34ecf38a41d12b597619a42e632689de731e7623b6103c1a964c39188097685d",
+  "segmentation_sha256": "5977905a05d677a7d29108eb2fd4733e980874d3dfbfdd413b23ae534a94ea65",
+  "model_quality_verified": false
+}

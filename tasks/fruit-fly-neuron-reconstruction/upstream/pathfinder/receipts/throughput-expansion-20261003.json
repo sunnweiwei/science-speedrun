@@ -1,0 +1,315 @@
+{
+  "timestamp_utc": "2026-10-03T15:52:52.062363+00:00",
+  "full_pipeline_complete": false,
+  "accepted_windows": [
+    125,
+    125,
+    84,
+    84,
+    125,
+    125
+  ],
+  "complete_members": [
+    0,
+    1,
+    4,
+    5
+  ],
+  "new_jobs": [
+    {
+      "member": 3,
+      "gpus": 1,
+      "gpu_type": "a5000",
+      "hours": 8,
+      "indices": [
+        30
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-00-m3",
+      "plan_sha256": "91a93ba78965e16e6651ac657897082cf4a99e633058e3ac44976a097be30809",
+      "script_sha256": "adc6604da4f178f0443bd69809b40dc3254bb2cce0e9583553ff403902c79413",
+      "job_id": "90000178"
+    },
+    {
+      "member": 3,
+      "gpus": 1,
+      "gpu_type": "a5000",
+      "hours": 8,
+      "indices": [
+        32
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-01-m3",
+      "plan_sha256": "0e81f0f9b9637c0d016ae74eefda81e5697cbf498f9bbd010504dc30b74be794",
+      "script_sha256": "45c79089dd649edd2feeea3da9820af5956e943f3aee269211c5b9e5ae806b95",
+      "job_id": "90000179"
+    },
+    {
+      "member": 3,
+      "gpus": 1,
+      "gpu_type": "a5000",
+      "hours": 8,
+      "indices": [
+        33
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-02-m3",
+      "plan_sha256": "3746255383586c1b31c0842f615ddfb2982de1f874c19d99d0595881587e6e13",
+      "script_sha256": "c88c9493873191a405e6e06e9fd4b3f96f23e4f6f40df682d1fec537914ebb85",
+      "job_id": "90000180"
+    },
+    {
+      "member": 3,
+      "gpus": 1,
+      "gpu_type": "a5000",
+      "hours": 8,
+      "indices": [
+        35
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-03-m3",
+      "plan_sha256": "f2c356f8465204d641dacdd0b315e4226d772a30b2c3e6440f9f17c6b079818c",
+      "script_sha256": "8bb4c1cef94a6bc306bf69e38587764dd96a8975512b8d8cb96c3811b6ead7f7",
+      "job_id": "90000181"
+    },
+    {
+      "member": 2,
+      "gpus": 3,
+      "gpu_type": "a6000",
+      "hours": 12,
+      "indices": [
+        52,
+        53,
+        55,
+        56,
+        57,
+        58
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2",
+      "plan_sha256": "737630bb0e6af0135302c83ca0ea0ab74850ccdda95ffecc4549e14932e55191",
+      "script_sha256": "60998dfe9ffbbcd9d48262237b29a2adf007e8532e167c04eefbb37baa9826de",
+      "job_id": "90000182"
+    },
+    {
+      "member": 2,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 12,
+      "indices": [
+        60,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        75
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-05-m2",
+      "plan_sha256": "fab11cd61b202d1554bd6a0db1639589cb8053747a06f9fab6ee3921d50d8020",
+      "script_sha256": "d97141231f194e32b2e9f41ebaa99c05c593512d9783a907c0deafe09585c871",
+      "job_id": "90000183"
+    },
+    {
+      "member": 2,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 12,
+      "indices": [
+        76,
+        77,
+        78,
+        80,
+        81,
+        82,
+        83,
+        85
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2",
+      "plan_sha256": "a804823c918e659ec4e850a2fc02c1d02c2c6e90e626efaefeac4a2be2fdbf24",
+      "script_sha256": "332d08ecdd27746753384e35a47fcf575262c284a793d826e92a2d10c19fe0c6",
+      "job_id": "90000184"
+    },
+    {
+      "member": 2,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 12,
+      "indices": [
+        86,
+        87,
+        88,
+        90,
+        91,
+        92,
+        93
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-07-m2",
+      "plan_sha256": "c6b2b2b3feedd52d452b4277899910fdd01a159b35efd9c026d41cb8429bfd67",
+      "script_sha256": "936ba4ae04e2a866e22b7eaea545b77f4a386460e41fd9c2091d3ba5a7247127",
+      "job_id": "90000185"
+    },
+    {
+      "member": 3,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 20,
+      "indices": [
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        50,
+        51,
+        52,
+        53,
+        55,
+        56,
+        57
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-08-m3",
+      "plan_sha256": "e1867d4b561ace887cd62b85040744510c8d88e71e14037b2d76fbf8def15af2",
+      "script_sha256": "db885920280bd8f4a2a249c2986d7d0be0df40cb59bb3afdd3bf624225aa4636",
+      "job_id": "90000186"
+    },
+    {
+      "member": 3,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 20,
+      "indices": [
+        58,
+        60,
+        62,
+        63,
+        65,
+        66,
+        67,
+        68,
+        75,
+        76,
+        77,
+        78
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-09-m3",
+      "plan_sha256": "270fe614614b29b2eb6c3deb5b255cb24d946cd9241e202c3b86b8affd48c937",
+      "script_sha256": "4f9c672864baaf9da7453679afd293c24d7b3df4e2d5b4e41e913451c17cdcb7",
+      "job_id": "90000187"
+    },
+    {
+      "member": 3,
+      "gpus": 4,
+      "gpu_type": "a5000",
+      "hours": 20,
+      "indices": [
+        80,
+        81,
+        82,
+        83,
+        85,
+        86,
+        87,
+        88,
+        90,
+        91,
+        92,
+        93
+      ],
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-10-m3",
+      "plan_sha256": "aae0ccd983a2322006eb329945d0f5a76250b131eefcdb020ee8f0d566a0f7c8",
+      "script_sha256": "16148355e116b9bd2081fd20d672d6bbfe7b78772e066786e366229ccfc561bc",
+      "job_id": "90000188"
+    }
+  ],
+  "new_disjoint_windows": 70,
+  "running_gpus": 16,
+  "pending_gpus": 23,
+  "reserved_concurrency": 39,
+  "scheduler": {
+    "timestamp_utc": "2026-10-03T15:52:52.062363+00:00",
+    "format": "job|state|gres|reason_or_node|elapsed",
+    "squeue": "90000182|PENDING|gres/gpu:a6000:3|(Priority)|0:00\n90000187|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000188|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000186|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000185|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000184|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000176|RUNNING|gres/gpu:a5000:4|gpu-node-12|36:56\n90000183|RUNNING|gres/gpu:a5000:4|gpu-node-05|11:16\n90000173|RUNNING|gres/gpu:a5000:4|gpu-node-01|4:52:20\n90000178|RUNNING|gres/gpu:a5000:1|gpu-node-02|17:46\n90000179|RUNNING|gres/gpu:a5000:1|gpu-node-04|17:46\n90000180|RUNNING|gres/gpu:a5000:1|gpu-node-06|17:46\n90000181|RUNNING|gres/gpu:a5000:1|gpu-node-11|17:46\n"
+  },
+  "execution_limits": {
+    "gpu_hours": 1500,
+    "allocation_hours": 400,
+    "concurrent_gpus": 40,
+    "per_job_max_gpus": 4,
+    "partition": "gpu",
+    "user_budget_ceiling": false
+  },
+  "resource_authorization": {
+    "timestamp_utc": "2026-10-03T14:50:29.845830+00:00",
+    "previous_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 918000,
+      "gpu_seconds": 3600000,
+      "concurrent_gpus": 20
+    },
+    "new_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 1440000,
+      "gpu_seconds": 5400000,
+      "concurrent_gpus": 40
+    },
+    "prior_ledger_sha256": "49559a0b7e4baa7649eced868c790177c879637acfc6dc8e3619dfdfdcb65a3d",
+    "user_instruction": "\u9884\u7b97\u4e0d\u91cd\u8981 \u6211\u4eec\u53ef\u4ee5\u4ece\u63d0\u5347gpu\u5e76\u884c\u6570\u91cf \u4f18\u5316\u6548\u7387\u7684\u5404\u79cd\u89d2\u5ea6 \u8fd9\u4e2a\u8fdb\u5ea6\u6162\u4e86 \u8981\u8bf4\u6e05\u695a\u662f\u4e3a\u4ec0\u4e48\u6162 \u5c31\u5e94\u8be5\u8fd9\u4e48\u6162\u5417",
+    "reason": "Delivery priority: remove cumulative-budget wait from scheduling and allow up to40 independent GPU lanes; bounded execution settings chosen within user-authorized resource flexibility. Actual Slurm partition/account availability remains controlling.",
+    "historical_jobs_preserved": true,
+    "scientific_protocol_unchanged": true,
+    "per_job_gpu_max": 4,
+    "gpu_partition": "gpu",
+    "scope": "Compute resource amendment only; no GPU jobs launched, no live frozen source or model modified.",
+    "prior_job_count": 107
+  },
+  "settled": {
+    "gpu_hours": 875.4869444444445,
+    "allocation_hours": 229.8761111111111
+  },
+  "charged_plus_full_reservations": {
+    "gpu_hours": 1383.4869444444444,
+    "allocation_hours": 383.8761111111111
+  },
+  "downstream_hold": {
+    "gpu_hours": 37,
+    "allocation_hours": 9.25
+  },
+  "cache_admission": {
+    "complete": true,
+    "tests": [
+      {
+        "seed_order": "ascending",
+        "all_input_canvas_requests_exact": true,
+        "full_labels_and_stats_exact": true,
+        "requests": 11
+      },
+      {
+        "seed_order": "descending",
+        "all_input_canvas_requests_exact": true,
+        "full_labels_and_stats_exact": true,
+        "requests": 11
+      }
+    ],
+    "validator_sha256": "547611e0ac73044947b921dc313ac7c3b60d1a9c82ed1210923435e577645a52",
+    "scope": "Cache provider against unchanged frozen growth, exact requests/final labels in both directions; real500-cube PolicyPeaks equality is separately pinned in admission."
+  },
+  "controller_startup": {
+    "initial_failure": "Missing trusted-source parent on import path; no GPU jobs affected",
+    "corrected_pid": 416846,
+    "initial_failure_preserved": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/controller-startup-v1",
+    "readiness": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/handoff-status.json"
+  },
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/authorization.json": "2536406d0f2ee7ada85f6bd4bd8b5ff6a9bbbd7465e24788d296ef15afd74ea8",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/submitted.json": "390d7d39c69918413ca1048683ab5521823cd91f52d43095e01384a261398075",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/batch-admission.json": "985cbe0b474d63dbbca03e9575a419a9515aa64be474abf15e39b043bac035fc",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/scheduler-observation.json": "3cfff56be9451acafa9f46ecd284faad9457479614f6550d15717aa19f6809b5",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/snapshot-admission.json": "644e4bed14a659c8e0a1a263e58f99a3dce960cc28e009d063075584458bcfd6",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/cached-adapter-validation.json": "8b3b9ede213dd4b5b53587e6c53cebd680668bda0dfe197bb73ac10d8c154180",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/continuation-ready.json": "4b4238a23e78ace539d786cff7f80f5ffabf5e776d71ab0204960135007ce2ad",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/event-config.json": "3142b3ee55e19b6797a4152c7aebf175eae72a8476230a15a73da39aa0e54066",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/event_controller.py": "ea8a72e8877f1950b03ac15647988c13f029da25b1871cd1c6eab755b757bb56",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/member_cpu.py": "53096dc00aea9bd9cbff8e81e2804427271ea0397754643501f7a02baaf58da6",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/audit_terminal_queue.py": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/association-limits.txt": "6414ca5a90bd2692a49abed7b239cebb1de80bdb785933299d6358d0010ea243",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/gpu-availability.json": "12fb280401622385844c4d509c99986fecba0cec6e43dae694c551ba4c140d3d"
+  }
+}

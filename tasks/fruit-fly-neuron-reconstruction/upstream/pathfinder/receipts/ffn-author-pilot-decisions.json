@@ -1,0 +1,19 @@
+{
+  "schema": "ffn-author-pilot-decisions/v1",
+  "job_id": "90000065",
+  "state": "COMPLETED",
+  "elapsed_seconds": 8,
+  "candidates": 131,
+  "chunks": 8,
+  "source_decisions_sha256": "37ef262e311f2434f639eda108c794a5df1de2195d473ae78d26a00815c79d62",
+  "base_sha256": "29d401a7bc6613617b30ce0ae2af80a12d81adb03659ab023abae4cdecdc2cb6",
+  "author_sources": {
+    "ffn_commit": "b8df2d96d7c8da057fd2702ced19732a08ab6ae4",
+    "connectomics_commit": "bf2f6caf083bb5d459ec86f5e859c366857be1ea",
+    "decision_point_sha256": "4f183f213eeae32532c6ff5ada5d9a042c5d322a548dc965c564e21e2d09a2dd",
+    "labels_sha256": "74f98d2cd23db145f282cb31c71c7742fa431688868655f71548f621edb81e06"
+  },
+  "ground_truth_used": false,
+  "scope": "Known pilot predictions only; candidate adapter check, not new method quality or GPU execution",
+  "gpu_profile_status": "Prepared16-pair four-GPU smoke check; not submitted while training runs"
+}

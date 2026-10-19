@@ -1,0 +1,174 @@
+{
+  "timestamp_utc": "2026-10-04T12:10:38.697240+00:00",
+  "full_pipeline_complete": false,
+  "production_promoted": false,
+  "old": {
+    "complete": true,
+    "full_pipeline_complete": false,
+    "production_promoted": false,
+    "scope": "Real32cube consensus labels with synthetic zero distances; reducer storage/I/O benchmark only, not full watershed or complete decision generation",
+    "pairs": 38010,
+    "vote_bytes": 8749557,
+    "original_seconds": 2.7419487023726106,
+    "partition_seconds": 57.2826454853639,
+    "reduction_seconds": 4.837972444482148,
+    "exact": true,
+    "source_sha256": {
+      "decision_spill.py": "c297d3b8bafe18f40f75767c03773f380169874be163d7a32934e8c9c3bad14d",
+      "decision_centroid.py": "aaa2c8a5911e08a12c9042b08f5685eb344cd37901b8b2126c93e51a0c798f83"
+    }
+  },
+  "buffered": {
+    "complete": true,
+    "full_pipeline_complete": false,
+    "production_promoted": false,
+    "scope": "Real32cube consensus labels with synthetic zero distances; reducer storage/I/O benchmark only, not full watershed or complete decision generation",
+    "pairs": 38010,
+    "vote_bytes": 8749557,
+    "original_seconds": 2.737720384262502,
+    "partition_seconds": 1.2621795367449522,
+    "reduction_seconds": 4.832432482391596,
+    "exact": true,
+    "source_sha256": {
+      "decision_spill.py": "b89baf41b4c5a711311d313c86325d4c6697de876b6bc22c02f8d808a6e53a3a",
+      "decision_centroid.py": "aaa2c8a5911e08a12c9042b08f5685eb344cd37901b8b2126c93e51a0c798f83"
+    }
+  },
+  "all_vote_and_result_files_exact": [
+    {
+      "file": "result-0.npy",
+      "sha256": "bb9f20235f1e559080b22d971106ba1ca9d97070af3ca0ca52c2c0cd2297c503"
+    },
+    {
+      "file": "result-1.npy",
+      "sha256": "934da6797445709ca86b1156fb218e7438be1a01a57a385c361c420d19dff04b"
+    },
+    {
+      "file": "result-10.npy",
+      "sha256": "9d97652986dec24d7c2ce664dc27d117341bf68d37d62ebee402ebf33dbabe70"
+    },
+    {
+      "file": "result-11.npy",
+      "sha256": "c1e20447f1e1cc91321c6a562dfcb72205bc37e9cd01527458598e4fbddbc41e"
+    },
+    {
+      "file": "result-12.npy",
+      "sha256": "24d069ba3573291a8c7b5a2242f92b33c0bf115fba3788732ad559477bbde90e"
+    },
+    {
+      "file": "result-13.npy",
+      "sha256": "d9aee7e3eabdda65c6a1c0f05c817e576021d2745a51679824f804f3b4284e42"
+    },
+    {
+      "file": "result-14.npy",
+      "sha256": "cc7bb4f103ad5c0519408b771057c7860928d3a8b28cb7eb4ac16d3427f6d2b7"
+    },
+    {
+      "file": "result-15.npy",
+      "sha256": "d9d649f60d2a667dd3a69901a7b5cf35faaf8c90820d8f0789aa35d588136853"
+    },
+    {
+      "file": "result-2.npy",
+      "sha256": "03e612b7fe3028d7e166e9ee98678764ec4b37aff61229cdfdae4e79a8a2af80"
+    },
+    {
+      "file": "result-3.npy",
+      "sha256": "55d3d7a778241f30e74abbcb0c99d7dae467f4974707c492a9ccf017f44b54ed"
+    },
+    {
+      "file": "result-4.npy",
+      "sha256": "2a6c63806e0157a581c4affa46b7df62b6230936c1aa77324fbec0b035404500"
+    },
+    {
+      "file": "result-5.npy",
+      "sha256": "4fd899460e12c922a07c816d82f07b53331e427c5406c54128f27ce958d1153f"
+    },
+    {
+      "file": "result-6.npy",
+      "sha256": "dd6f03f8593434891df5855cf044bad67cd3d26f2ef26e2385254c25a92df039"
+    },
+    {
+      "file": "result-7.npy",
+      "sha256": "a770af93b60a0f5e15ab234e9ded615bc1cb7e34231030db136e30c49bed9b96"
+    },
+    {
+      "file": "result-8.npy",
+      "sha256": "d19b353658c5274307bbb69fd631b1d6558180eabbcb795f90d1ae34f19b4607"
+    },
+    {
+      "file": "result-9.npy",
+      "sha256": "6da00a90d0608bd40ed80c637f24801dd3f5090c2dc365219cfa746c276548af"
+    },
+    {
+      "file": "votes-0.bin",
+      "sha256": "5a812cf56eba9ed9dfe5ba51d46706c85e25f8563eafacb86de5654030d5e877"
+    },
+    {
+      "file": "votes-1.bin",
+      "sha256": "79bacf6f162850e3f77957d9ba62e5467963d306506b0c0ce60cfb88d558044f"
+    },
+    {
+      "file": "votes-10.bin",
+      "sha256": "717cea0770086d19d9ccf10ed59c6e405efb5254417041dd692f52def2d4d964"
+    },
+    {
+      "file": "votes-11.bin",
+      "sha256": "aedc6b3212514aef7a7d595bba34c8059119651c749b57e4b0ccfa922dcf5149"
+    },
+    {
+      "file": "votes-12.bin",
+      "sha256": "7e6e25c99e8c3f7bbc61fa98a83e1d149487f5b9a68f2f966834f21294151893"
+    },
+    {
+      "file": "votes-13.bin",
+      "sha256": "5832a7506f36ae9a2cc78ca400b0e784b9e211242b6d2b1b3fb5028b723d4ae0"
+    },
+    {
+      "file": "votes-14.bin",
+      "sha256": "49f87f9905ef143476549dd2daf6c472f3c6ceb8eb517d73f1c15855c78bb39d"
+    },
+    {
+      "file": "votes-15.bin",
+      "sha256": "a27450cafbe72fe91fd7cb749e9f957180baf9c076a38edfc035822ed2e84b4a"
+    },
+    {
+      "file": "votes-2.bin",
+      "sha256": "3c95659edc1b73473ae2d2abecf9bb0929e9fdaae77aa269748234c7d4598a60"
+    },
+    {
+      "file": "votes-3.bin",
+      "sha256": "56517db7628e397d99f10c1b195d7ae6ca5bde5ec4643295d91b30174afe4edd"
+    },
+    {
+      "file": "votes-4.bin",
+      "sha256": "3305ade1374785e23134d9a66184eae352e2c402960f5c80ca32834bcf61a865"
+    },
+    {
+      "file": "votes-5.bin",
+      "sha256": "c65ae13c665f0faaa265e745d92d3bac1e16f69f364dc8bbbd357b1d571d4192"
+    },
+    {
+      "file": "votes-6.bin",
+      "sha256": "f7b984b9d5ed2537323d859695d61ff3dc8cea5c0c86999c05275fed77416b5a"
+    },
+    {
+      "file": "votes-7.bin",
+      "sha256": "cfbea9b210c5de55222d26c3550492b9967b2935038747b8eae5905b6bbcc4f1"
+    },
+    {
+      "file": "votes-8.bin",
+      "sha256": "d7c67c200077c12c96e1e82f060a36432a80593b9c2735cc8b8ae94e63658a97"
+    },
+    {
+      "file": "votes-9.bin",
+      "sha256": "cfbab9943bebb9eafcd85c4cb18f642276278620d2caf3c5fa64ea0b59c8ea81"
+    }
+  ],
+  "limitations": [
+    "Small real32cube labels with synthetic distances, not full watershed",
+    "Disk reduction remains slower than in-memory on this small case",
+    "No whole-volume throughput extrapolation or production admission",
+    "JSON shard score loading and accepted-pair unions still scale with evaluated results"
+  ],
+  "merge_change": "Memory-mapped sorted pair lookup and ordinal coverage bytearray replace Python expected-pair list/assigned sets for disk tables; ensemble intersection starts from passing pairs, preserving exact three-checkpoint conjunction"
+}

@@ -1,0 +1,219 @@
+{
+  "timestamp_utc": "2026-10-04T13:20:15.586135+00:00",
+  "scope": "Full SENSE campaign submitted; no completion or current running GPU claim",
+  "evidence": {
+    "campaign.json": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-parallel-recovery-v1/campaign.json",
+      "sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec"
+    },
+    "package-admission.json": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-parallel-recovery-v1/package-admission.json",
+      "sha256": "61c1e28968b6373036a51d7d0cfac34a919c1ca94b540a9c650b7de51c60708f"
+    },
+    "resource-amendment.json": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-parallel-recovery-v1/resource-amendment.json",
+      "sha256": "bde8c9c2191a5de616b22868479ba29ed9c146079da08c744c6fe2dc5b8bfa78"
+    },
+    "submissions.json": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-parallel-recovery-v1/submissions.json",
+      "sha256": "b6d877b90df3b246ed16c97c1ed9ea8709329ac56bbf45d3b503109475b9ead9"
+    }
+  },
+  "submissions": {
+    "complete": true,
+    "jobs": [
+      {
+        "group": 0,
+        "ranks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "job_id": "90000198",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 1,
+        "ranks": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "job_id": "90000199",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 2,
+        "ranks": [
+          8
+        ],
+        "job_id": "90000200",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 3,
+        "ranks": [
+          9
+        ],
+        "job_id": "90000201",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 4,
+        "ranks": [
+          10
+        ],
+        "job_id": "90000202",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 5,
+        "ranks": [
+          11
+        ],
+        "job_id": "90000203",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 6,
+        "ranks": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "job_id": "90000204",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 7,
+        "ranks": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "job_id": "90000205",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 8,
+        "ranks": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "job_id": "90000206",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 9,
+        "ranks": [
+          24,
+          25,
+          26,
+          27
+        ],
+        "job_id": "90000207",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 10,
+        "ranks": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "job_id": "90000208",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 11,
+        "ranks": [
+          32,
+          33,
+          34,
+          35
+        ],
+        "job_id": "90000209",
+        "gpus": 4,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 12,
+        "ranks": [
+          36
+        ],
+        "job_id": "90000210",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 13,
+        "ranks": [
+          37
+        ],
+        "job_id": "90000211",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 14,
+        "ranks": [
+          38
+        ],
+        "job_id": "90000212",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      },
+      {
+        "group": 15,
+        "ranks": [
+          39
+        ],
+        "job_id": "90000213",
+        "gpus": 1,
+        "campaign_sha256": "aa6c7e9265bf0bcb5553b3402e755d27d99b5c581ee9c6803117bb90cdc5a8ec",
+        "state": "submitted; no running-state claim"
+      }
+    ],
+    "full_pipeline_complete": false
+  },
+  "monitor": {
+    "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hourly-watch-v1/watch.py",
+    "scheduler_interval_seconds": 3600,
+    "completion_file_interval_seconds": 60
+  },
+  "validation": "test_budget_run: 7 passed; cached settled charges retained; filesystem scan shortcut requires valid root-bound development waiver",
+  "full_pipeline_complete": false
+}

@@ -1,0 +1,881 @@
+{
+  "schema": "malecns-domain-comparison/v1",
+  "regions": [
+    {
+      "region": "full-core",
+      "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0002905351245848011,
+            "after": 0.00028390903775449955,
+            "delta": -6.626086830301549e-06
+          },
+          "erl_nm": {
+            "before": 16.345947046059976,
+            "after": 15.973153344763142,
+            "delta": -0.37279370129683365
+          },
+          "split_errors": {
+            "before": 13238,
+            "after": 13048,
+            "delta": -190
+          },
+          "merge_errors": {
+            "before": 7469,
+            "after": 7472,
+            "delta": 3
+          },
+          "omitted_node_fraction": {
+            "before": 0.3382542154804632,
+            "after": 0.3382542154804632,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0002902269526264687,
+            "after": 0.00028390903775449955,
+            "delta": -6.3179148719691306e-06
+          },
+          "erl_nm": {
+            "before": 16.328608823980353,
+            "after": 15.973153344763142,
+            "delta": -0.3554554792172109
+          },
+          "split_errors": {
+            "before": 13243,
+            "after": 13048,
+            "delta": -195
+          },
+          "merge_errors": {
+            "before": 7470,
+            "after": 7472,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.3382542154804632,
+            "after": 0.3382542154804632,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.02280649143462698,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-000",
+      "suite_sha256": "c9d17fa9bb62279556c96e5d5c3684109de03f27e8a80b637d8aa11f95f22aa6",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0007667408205344373,
+            "after": 0.0007666656050505812,
+            "delta": -7.521548385611577e-08
+          },
+          "erl_nm": {
+            "before": 12.249312695770517,
+            "after": 12.248111066801975,
+            "delta": -0.0012016289685412573
+          },
+          "split_errors": {
+            "before": 1877,
+            "after": 1863,
+            "delta": -14
+          },
+          "merge_errors": {
+            "before": 1193,
+            "after": 1191,
+            "delta": -2
+          },
+          "omitted_node_fraction": {
+            "before": 0.4262080346552524,
+            "after": 0.4262080346552524,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0007667408205344373,
+            "after": 0.0007666656050505812,
+            "delta": -7.521548385611577e-08
+          },
+          "erl_nm": {
+            "before": 12.249312695770517,
+            "after": 12.248111066801975,
+            "delta": -0.0012016289685412573
+          },
+          "split_errors": {
+            "before": 1877,
+            "after": 1863,
+            "delta": -14
+          },
+          "merge_errors": {
+            "before": 1193,
+            "after": 1191,
+            "delta": -2
+          },
+          "omitted_node_fraction": {
+            "before": 0.4262080346552524,
+            "after": 0.4262080346552524,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -9.809766461069428e-05,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-001",
+      "suite_sha256": "7f92be79d9fd00a651d62e95147182bc3a54ea4db5aa3c62f32ab0df68173d47",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.000960543976753664,
+            "after": 0.0009272048964894374,
+            "delta": -3.333908026422654e-05
+          },
+          "erl_nm": {
+            "before": 11.637908193331755,
+            "after": 11.233973376441336,
+            "delta": -0.40393481689041977
+          },
+          "split_errors": {
+            "before": 1261,
+            "after": 1258,
+            "delta": -3
+          },
+          "merge_errors": {
+            "before": 699,
+            "after": 699,
+            "delta": 0
+          },
+          "omitted_node_fraction": {
+            "before": 0.5628406076681939,
+            "after": 0.5628406076681939,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0009592915368794959,
+            "after": 0.0009272048964894374,
+            "delta": -3.2086640390058437e-05
+          },
+          "erl_nm": {
+            "before": 11.622733687399712,
+            "after": 11.233973376441336,
+            "delta": -0.3887603109583768
+          },
+          "split_errors": {
+            "before": 1264,
+            "after": 1258,
+            "delta": -6
+          },
+          "merge_errors": {
+            "before": 700,
+            "after": 699,
+            "delta": -1
+          },
+          "omitted_node_fraction": {
+            "before": 0.5628406076681939,
+            "after": 0.5628406076681939,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.034708541275644794,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-010",
+      "suite_sha256": "4e13f40aed85ea9da2e30eb47c9807bae3e710edfea200912af113b38f990a9b",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.00037156221176495575,
+            "after": 0.0003669814423527722,
+            "delta": -4.580769412183556e-06
+          },
+          "erl_nm": {
+            "before": 10.183632650283988,
+            "after": 10.058084703070119,
+            "delta": -0.1255479472138692
+          },
+          "split_errors": {
+            "before": 2198,
+            "after": 2161,
+            "delta": -37
+          },
+          "merge_errors": {
+            "before": 1352,
+            "after": 1355,
+            "delta": 3
+          },
+          "omitted_node_fraction": {
+            "before": 0.16417152676525723,
+            "after": 0.16417152676525723,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.00037156221176495575,
+            "after": 0.0003669814423527722,
+            "delta": -4.580769412183556e-06
+          },
+          "erl_nm": {
+            "before": 10.183632650283988,
+            "after": 10.058084703070119,
+            "delta": -0.1255479472138692
+          },
+          "split_errors": {
+            "before": 2198,
+            "after": 2161,
+            "delta": -37
+          },
+          "merge_errors": {
+            "before": 1352,
+            "after": 1355,
+            "delta": 3
+          },
+          "omitted_node_fraction": {
+            "before": 0.16417152676525723,
+            "after": 0.16417152676525723,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.01232840495384196,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-011",
+      "suite_sha256": "cfe03f974b0db06010c001da81830d6a5bc4c2c5348c11120e8732c40551d727",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.00109951062993997,
+            "after": 0.001099223261119489,
+            "delta": -2.8736882048095713e-07
+          },
+          "erl_nm": {
+            "before": 35.35710776313045,
+            "after": 35.34786680622032,
+            "delta": -0.009240956910133491
+          },
+          "split_errors": {
+            "before": 1558,
+            "after": 1518,
+            "delta": -40
+          },
+          "merge_errors": {
+            "before": 744,
+            "after": 750,
+            "delta": 6
+          },
+          "omitted_node_fraction": {
+            "before": 0.09682779125948274,
+            "after": 0.09682779125948274,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.00109951062993997,
+            "after": 0.001099223261119489,
+            "delta": -2.8736882048095713e-07
+          },
+          "erl_nm": {
+            "before": 35.35710776313045,
+            "after": 35.34786680622032,
+            "delta": -0.009240956910133491
+          },
+          "split_errors": {
+            "before": 1558,
+            "after": 1518,
+            "delta": -40
+          },
+          "merge_errors": {
+            "before": 744,
+            "after": 750,
+            "delta": 6
+          },
+          "omitted_node_fraction": {
+            "before": 0.09682779125948274,
+            "after": 0.09682779125948274,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.00026136065687391,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-100",
+      "suite_sha256": "6a892b37179e036eada798f22cc5e6fb100057c07319dceba4d55ecd0de3d38e",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0015396702904395196,
+            "after": 0.0015881369785310652,
+            "delta": 4.8466688091545595e-05
+          },
+          "erl_nm": {
+            "before": 13.17570117917076,
+            "after": 13.590454002163785,
+            "delta": 0.41475282299302485
+          },
+          "split_errors": {
+            "before": 1701,
+            "after": 1688,
+            "delta": -13
+          },
+          "merge_errors": {
+            "before": 1008,
+            "after": 1010,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.42909396243343034,
+            "after": 0.42909396243343034,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.001533819726314798,
+            "after": 0.0015881369785310652,
+            "delta": 5.431725221626709e-05
+          },
+          "erl_nm": {
+            "before": 13.125635080529017,
+            "after": 13.590454002163785,
+            "delta": 0.4648189216347678
+          },
+          "split_errors": {
+            "before": 1702,
+            "after": 1688,
+            "delta": -14
+          },
+          "merge_errors": {
+            "before": 1008,
+            "after": 1010,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.42909396243343034,
+            "after": 0.42909396243343034,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": 0.031478614864816366,
+      "direction": "improved"
+    },
+    {
+      "region": "octant-101",
+      "suite_sha256": "b8bec8e96e86138675dedac84eccfd0b61b914a8bb67d5b9feb7468ddecd1239",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0011938842786484566,
+            "after": 0.00118639903954872,
+            "delta": -7.485239099736538e-06
+          },
+          "erl_nm": {
+            "before": 15.167664480318921,
+            "after": 15.072568500540802,
+            "delta": -0.09509597977811879
+          },
+          "split_errors": {
+            "before": 1408,
+            "after": 1393,
+            "delta": -15
+          },
+          "merge_errors": {
+            "before": 722,
+            "after": 724,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.4812482783046712,
+            "after": 0.4812482783046712,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.001191934969077304,
+            "after": 0.00118639903954872,
+            "delta": -5.535929528583967e-06
+          },
+          "erl_nm": {
+            "before": 15.142899539468047,
+            "after": 15.072568500540802,
+            "delta": -0.0703310389272449
+          },
+          "split_errors": {
+            "before": 1408,
+            "after": 1393,
+            "delta": -15
+          },
+          "merge_errors": {
+            "before": 722,
+            "after": 724,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.4812482783046712,
+            "after": 0.4812482783046712,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.006269652120899225,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-110",
+      "suite_sha256": "5f7bfb7a8de310151051ab4568c3f3459c907a4404d239d80004a313ca8239bf",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.001435513314089473,
+            "after": 0.0013869559098448787,
+            "delta": -4.855740424459425e-05
+          },
+          "erl_nm": {
+            "before": 30.1084086486044,
+            "after": 29.08996726212444,
+            "delta": -1.0184413864799602
+          },
+          "split_errors": {
+            "before": 1782,
+            "after": 1757,
+            "delta": -25
+          },
+          "merge_errors": {
+            "before": 881,
+            "after": 883,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.15898259168213516,
+            "after": 0.15898259168213516,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.001435513314089473,
+            "after": 0.0013869559098448787,
+            "delta": -4.855740424459425e-05
+          },
+          "erl_nm": {
+            "before": 30.1084086486044,
+            "after": 29.08996726212444,
+            "delta": -1.0184413864799602
+          },
+          "split_errors": {
+            "before": 1782,
+            "after": 1757,
+            "delta": -25
+          },
+          "merge_errors": {
+            "before": 881,
+            "after": 883,
+            "delta": 2
+          },
+          "omitted_node_fraction": {
+            "before": 0.15898259168213516,
+            "after": 0.15898259168213516,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.03382581252852647,
+      "direction": "worse"
+    },
+    {
+      "region": "octant-111",
+      "suite_sha256": "436f35a25a237b87a1d4310811ee26f500d42e801ffb37bb487a4ac929c704a4",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0017145475653383851,
+            "after": 0.0016808870138165972,
+            "delta": -3.36605515217879e-05
+          },
+          "erl_nm": {
+            "before": 35.26363890473936,
+            "after": 34.5713317572474,
+            "delta": -0.6923071474919595
+          },
+          "split_errors": {
+            "before": 1576,
+            "after": 1546,
+            "delta": -30
+          },
+          "merge_errors": {
+            "before": 742,
+            "after": 756,
+            "delta": 14
+          },
+          "omitted_node_fraction": {
+            "before": 0.12400475341651812,
+            "after": 0.12400475341651812,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.0017145475653383851,
+            "after": 0.0016808870138165972,
+            "delta": -3.36605515217879e-05
+          },
+          "erl_nm": {
+            "before": 35.26363890473936,
+            "after": 34.5713317572474,
+            "delta": -0.6923071474919595
+          },
+          "split_errors": {
+            "before": 1576,
+            "after": 1546,
+            "delta": -30
+          },
+          "merge_errors": {
+            "before": 742,
+            "after": 756,
+            "delta": 14
+          },
+          "omitted_node_fraction": {
+            "before": 0.12400475341651812,
+            "after": 0.12400475341651812,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.01963232295345776,
+      "direction": "worse"
+    }
+  ],
+  "primary": {
+    "region": "full-core",
+    "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+    "baseline_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.0002905351245848011,
+          "after": 0.00028390903775449955,
+          "delta": -6.626086830301549e-06
+        },
+        "erl_nm": {
+          "before": 16.345947046059976,
+          "after": 15.973153344763142,
+          "delta": -0.37279370129683365
+        },
+        "split_errors": {
+          "before": 13238,
+          "after": 13048,
+          "delta": -190
+        },
+        "merge_errors": {
+          "before": 7469,
+          "after": 7472,
+          "delta": 3
+        },
+        "omitted_node_fraction": {
+          "before": 0.3382542154804632,
+          "after": 0.3382542154804632,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "ffn_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.0002902269526264687,
+          "after": 0.00028390903775449955,
+          "delta": -6.3179148719691306e-06
+        },
+        "erl_nm": {
+          "before": 16.328608823980353,
+          "after": 15.973153344763142,
+          "delta": -0.3554554792172109
+        },
+        "split_errors": {
+          "before": 13243,
+          "after": 13048,
+          "delta": -195
+        },
+        "merge_errors": {
+          "before": 7470,
+          "after": 7472,
+          "delta": 2
+        },
+        "omitted_node_fraction": {
+          "before": 0.3382542154804632,
+          "after": 0.3382542154804632,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "relative_nerl_change": -0.02280649143462698,
+    "direction": "worse"
+  },
+  "missing_regions": [],
+  "all_regions_scored": true,
+  "native_public_number_check": {
+    "nerl": 0.5883956420065733,
+    "target": 0.596,
+    "difference": -0.007604357993426625,
+    "investigation_required": false,
+    "scope": "Engineering discrepancy gate, not a confidence interval or equivalence test"
+  },
+  "native_check_independent_of_domain_comparison": true,
+  "statistical_claim": "Descriptive fixed spatial subsets; no independent-sample confidence interval",
+  "direct_pathfinder_paper_gap": null,
+  "global_sota_claim": false,
+  "role": "test",
+  "full_context_reconstruction_verified": true,
+  "reconstruction_coverage": {
+    "full_context_reconstruction_complete": true,
+    "complete_tiles": 21952,
+    "total_tiles": 21952,
+    "assembly_receipt_sha256": "e36d560d6c610582b98a76d3d20f5d4f49fe60c19eee36ab4edcc7b19c1ab9f6",
+    "coverage_sha256": "bcfc22d7e22f159406803beec2fb7bbb3c1a41240d92c7e0866018eebc96a2d2",
+    "segmentation_sha256": "972bfdd918e76744253e0b85d2b4f8ba060359b274c10ae4acd974cfc9f37cd5",
+    "scope": "Complete compute coverage only; does not establish biological accuracy or baseline candidate completeness"
+  },
+  "baseline_candidate_coverage": {
+    "requested_pairs": 52617,
+    "missing_pairs": 0,
+    "incomplete_pairs": 0,
+    "complete": true,
+    "accepted_pairs": 7
+  },
+  "resources": {
+    "jobs": [
+      {
+        "job_id": "90000106",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 5612,
+        "charged_gpu_seconds": 22448,
+        "actual_seconds": 5612,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000107",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 5532,
+        "charged_gpu_seconds": 22128,
+        "actual_seconds": 5532,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000108",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 5545,
+        "charged_gpu_seconds": 22180,
+        "actual_seconds": 5545,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000109",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 5604,
+        "charged_gpu_seconds": 22416,
+        "actual_seconds": 5604,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000111",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3261,
+        "charged_gpu_seconds": 13044,
+        "actual_seconds": 3261,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000112",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3244,
+        "charged_gpu_seconds": 12976,
+        "actual_seconds": 3244,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000113",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3362,
+        "charged_gpu_seconds": 13448,
+        "actual_seconds": 3362,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000114",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3379,
+        "charged_gpu_seconds": 13516,
+        "actual_seconds": 3379,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000110",
+        "roles": [
+          "corrected_refinement"
+        ],
+        "gpus": 4,
+        "charged_seconds": 1048,
+        "charged_gpu_seconds": 4192,
+        "actual_seconds": 1048,
+        "accounting_complete": true
+      }
+    ],
+    "accounting_complete": true,
+    "charged_allocation_hours": 10.163055555555555,
+    "charged_gpu_hours": 40.65222222222222,
+    "resident_bytes_at_ledger_measurement": 195898324827,
+    "measured_peak_disk_bytes": null,
+    "scope": "Each listed GPU allocation charged once; joint-stage jobs are not attributed to individual methods. CPU-only jobs and unlisted historical jobs excluded. Unfinished allocations retain full reservations. Residency is a ledger snapshot, not a measured peak."
+  },
+  "metric_files": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/full-core/ffn/metrics.json": "1ba3300e62e22d84db7b923563500f96c4cba2bea9929c086a38968c9bd7696b",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/full-core/baseline/metrics.json": "49ff785759bee148d73eb7967bc6f9770b3a355846372bc43e15b414f6a744f3",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/full-core/full/metrics.json": "eb59424aa4c5c066ddc7dc33c322b7be525d930dc0e7c5b7490472aadf5e8de6",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-000/ffn/metrics.json": "36fd70dbd66ae223539c74900c6e2bc491ed379756adf15c134f5942a80df8b1",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-000/baseline/metrics.json": "816f2a8b79d953dee95d4bb43a48a8224da93127c0b944779651ba266cda65f1",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-000/full/metrics.json": "3ba60b0ebbcdbe7e4695fa3734dfae85bbf34c508817999ed308317ef2e5d8fa",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-001/ffn/metrics.json": "821cb72d95c0e88269ad06c7ff5aa07b5a196ce3e051122e62383f3cffe87d6e",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-001/baseline/metrics.json": "692baf9a439763dd550b29f1fc26535dc478da6b11a546ed77dd6a90fa53f636",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-001/full/metrics.json": "85a9b30066be39a4251a9d1a7bb2e0020b94809584d7aa6f565d4bc4a13f0632",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-010/ffn/metrics.json": "8a470af428f236c6de9de2e82bebb2eaf8ac6efd156ded65e1f17fa447586b93",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-010/baseline/metrics.json": "6c9167fe08ac08ff35d883e8180f0f364dea0a1a5b3332bfff9f52cf60ab1efa",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-010/full/metrics.json": "d98a4d40afc0c751ea7fb313cdcbb5d72579a1e4ec39227a5c0640c444d1ee15",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-011/ffn/metrics.json": "9ef4543e7d0de3a70ec6a34f97b774e0d2b2369ac359a4a74b8dbd75b64b3735",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-011/baseline/metrics.json": "0349bef8316400eba588d561326ce0dae556081584864b93712b9bc05b279f67",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-011/full/metrics.json": "c4111fdc090610dc0fedfd03720f3be21d13837808e4b77a50c7f6ed2d3d9ae4",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-100/ffn/metrics.json": "ff64557f8f75e4a20334604a9d9a2072b5e672039cc048a95900bc481379a891",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-100/baseline/metrics.json": "2ce9378fc8bd5dc6db31fe3aaaa0f63fe8fa1eb81f900a721fc399e037e4d2c9",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-100/full/metrics.json": "4efa05376a8ba53b4a5731d6b2b3edcc4121e7b68b5f7bae7f7be90b91c1a479",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-101/ffn/metrics.json": "1148fac233cb5ab722e62d99bc7bced1176b05a5e05c54c2e59b8dd89d459e24",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-101/baseline/metrics.json": "194b20f44935cb1f136d6fc7dfb753d643b151f85845a6cf21e4e2848c3b3306",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-101/full/metrics.json": "eb7b0d38e8adb88990357bb5e5d998c6be3ddbf8ae9e10fdc0669b363f5aeba2",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-110/ffn/metrics.json": "94bb7f258a78b785d145d682c97f510e6f372cc1d7fecd0179535ab1572c4ffe",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-110/baseline/metrics.json": "4ef3986719441e3c219b0912e09b20455afeeb262bd7792e8286eeef3024cffa",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-110/full/metrics.json": "391c6a42163eefd0309eddfc55930142b6e99a813b8618ae4a5142430c1403a1",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-111/ffn/metrics.json": "1c13c364fff0287d8bf116950bebb3c3bd3cd5fe85e89bf456413802fec4c9c3",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-111/baseline/metrics.json": "9fa8a031d455d5dbc61418a104620b9b5f8bf4f69947c5f301dc1cab4e0bad83",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/test/comparison/scores/octant-111/full/metrics.json": "9df28bffa132a13e0e022a0e68238a45c04a6baaf1284cfa8dbcdc5a082c0c2b"
+  },
+  "selection_sha256": "79987185f3406e9b202bcd3baea110cb25f4b9ef012fc1b6835ce51b7dd58217",
+  "package_sha256": "7ce745d6f314aafb542df6d3d2bb1af7df7063ab83d7ec3808331c641d94a01c",
+  "original_weights_unchanged": true,
+  "corrective_rerun": true,
+  "test_previously_observed": true,
+  "test_used_for_selection": false,
+  "ledger_sha256": "8d4cbccf28f87bc51bf376075d81e3f15b28d99b7611d3a9ba3ed6ef9af2d080",
+  "native_check_sha256": "a784baedf3f3669ea888c3a0173afd67be45b7745ff95ab90926a03b0155360f",
+  "script_sha256": "ff5f129143e559dde6ddd40a8f886e0884a3e04105ff588d8be5f8904ce666f5",
+  "refinement_coverage": {
+    "scored_full_context_motifs": 7989,
+    "unprocessed_motifs": 0,
+    "motif_enumeration_truncated": false,
+    "remapped_ids": 174,
+    "completion_summary": {
+      "full_context_tiles": 21952,
+      "eligible_candidates": 5606,
+      "processed_candidates": 5606,
+      "scored_motifs": 7989,
+      "execution_complete": true,
+      "scope": "All eligible candidates and enumerated motifs complete; geometric exclusions remain excluded, and biological accuracy is not established"
+    }
+  },
+  "raw_comparison_sha256": "2818ada08fd28e36898146a1bae25368e47533155035711db54756e5cfaef58b",
+  "independent_acceptance_sha256": "8bc33b040a75ec8dd600492252ac04f6582a00286e1ec6ae1411f0860219d455",
+  "receipt_scope": "Compact corrected-run comparison; per-candidate enumeration omitted, original comparison pinned by SHA256",
+  "supersedes": "Pre movement-rule-correction comparison; historical bytes retained in Xtemp"
+}

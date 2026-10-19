@@ -1,0 +1,42 @@
+{
+  "schema": "pathfinder-cost-scope/v1",
+  "selected_ffn_window_jobs": [
+    {
+      "job_id": "90000217",
+      "gpus": 4,
+      "state": "COMPLETED",
+      "actual_seconds": 12274
+    },
+    {
+      "job_id": "90000218",
+      "gpus": 4,
+      "state": "COMPLETED",
+      "actual_seconds": 9231
+    },
+    {
+      "job_id": "90000219",
+      "gpus": 4,
+      "state": "COMPLETED",
+      "actual_seconds": 8554
+    },
+    {
+      "job_id": "90000220",
+      "gpus": 4,
+      "state": "COMPLETED",
+      "actual_seconds": 8930
+    },
+    {
+      "job_id": "90000221",
+      "gpus": 4,
+      "state": "COMPLETED",
+      "actual_seconds": 8455
+    }
+  ],
+  "selected_ffn_window_gpu_hours": 52.715555555555554,
+  "original_downstream_gpu_hours": 32.20444444444445,
+  "downstream_repeat_gpu_hours": 32.66222222222222,
+  "context_cpu_seconds": 2791.62,
+  "all_historical_campaign_gpu_hours": 1305.9383333333333,
+  "full_clean_start_cost_measured": false,
+  "scope": "Selected FFN job charges are a phase subtotal, not total model development. Historical campaign total also includes other protocols/training/failures. Rows overlap with that total; do not add the total to phase subtotals. New formal verifier has no measured full-run cost."
+}

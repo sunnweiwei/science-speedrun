@@ -1,0 +1,47 @@
+{
+  "schema": "nisb-report-era-reproduction/v1",
+  "job_id": "90000068",
+  "state": "COMPLETED",
+  "allocation_seconds": 5545,
+  "gpus": 4,
+  "gpu_hours": 6.161111111111111,
+  "paired": {
+    "primary_report_era": {
+      "nerl": 0.5883956420065733,
+      "pred_erl": 150966.51020989654,
+      "gt_erl": 256573.12772586785,
+      "num_skeletons": 416
+    },
+    "diagnostic_current_default": {
+      "nerl": 0.6296958173986617,
+      "pred_erl": 161563.02538587156,
+      "gt_erl": 256573.12772586785,
+      "num_skeletons": 416
+    },
+    "thresholds": [
+      1,
+      50
+    ],
+    "same_predictions": true,
+    "selection": "Fixed source-version comparison, not threshold tuning"
+  },
+  "gate": {
+    "nerl": 0.5883956420065733,
+    "target": 0.596,
+    "difference": -0.007604357993426625,
+    "investigation_required": false,
+    "scope": "Engineering discrepancy gate, not a confidence interval or equivalence test"
+  },
+  "score_protocol_difference": 0.0413001753920883,
+  "interpretation": "Fixed published-protocol checkpoint evaluation passes predeclared engineering discrepancy gate. Not exact numerical identity, a confidence interval, retraining reproduction, or a PATHFINDER SOTA claim.",
+  "source_evidence": "nisb-evaluator-history.json",
+  "files": {
+    "comparison-v1/report-era-four-protocol/paired-evaluation.json": "690f5f197832bc6fed03b928cb398e00f08d69de3f14a26e8ad6e0194b2d072d",
+    "comparison-v1/report-era-four-protocol/evaluated-graph.npz": "2dc2898d8848061273b0dbb9de7f7448eea2669b384a0e50b6b919dfc770f1e2",
+    "comparison-v1/report-era-four-protocol/node-labels.npz": "aa56e83dc94775d505a533f959b7d956a6bd16782f170dff79ac5594569c5007",
+    "comparison-v1/native-report-era-input/base_banis+_seed42/test_base_banis-_seed42/seed101/metrics-exact.json": "90fcfdf9e09b24ee419f99d7e3a3a55fb31fda492504af56ad0fe0ed9d2edb84",
+    "comparison-v1/native-report-era-input/base_banis+_seed42/test_base_banis-_seed42/seed101/native-reproduction-check.json": "a784baedf3f3669ea888c3a0173afd67be45b7745ff95ab90926a03b0155360f",
+    "comparison-v1/native-report-era-four.yaml": "5c36ea66896275ea1e9fd7b7ee4d0f80e5f54503b7765fff75c50c3111fe3a23",
+    "comparison-v1/run_native_report_era_four.py": "39f2e8987383cbc21ec0074bbec18c8163617da4605c7ed7f069200019fd5470"
+  }
+}

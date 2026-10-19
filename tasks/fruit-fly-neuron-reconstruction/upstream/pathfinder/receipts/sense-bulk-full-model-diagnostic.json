@@ -1,0 +1,78 @@
+{
+  "timestamp_utc": "2026-10-04T13:03:22.174335+00:00",
+  "job_id": "90000197",
+  "state": "COMPLETED",
+  "actual_seconds": 78,
+  "actual_gpu_hours": 0.021666666666666667,
+  "sacct": "90000197|COMPLETED|78|billing=4,cpu=4,gres/gpu:a5000=1,gres/gpu=1,mem=96G,node=1",
+  "previous_ledger_sha256": "9c34606aefb87a2757f80f1e3d4002957cdf28366a7ab0fe18929a5b0c9d44f7",
+  "new_ledger_sha256": "3d0516d5c2fefcdbad725400f5b2dffef9f0f2e909599c7c1b8d8bdc4c1dbe77",
+  "full_pipeline_complete": false,
+  "result": {
+    "complete": true,
+    "full_pipeline_complete": false,
+    "job_id": "90000197",
+    "gpu": "NVIDIA RTX A5000",
+    "scope": "Three repeated batches of eight fixed real eligible centers, full trained SENSE/BF16; includes preparation/model/transfers/candidates, excludes global validation and coverage serialization; no completed reconstruction or production promotion",
+    "seed_ids": [
+      297232,
+      297257,
+      306490,
+      312482,
+      315570,
+      316343,
+      316473,
+      348651
+    ],
+    "results": [
+      {
+        "repeat": 0,
+        "batch": 8,
+        "preparation_seconds": 0.1865160760935396,
+        "model_h2d_d2h_seconds": 0.27619046496693045,
+        "candidate_seconds": {
+          "original": 21.527022592024878,
+          "bulk": 0.38235709199216217
+        },
+        "original_total_seconds": 21.989729133085348,
+        "bulk_total_seconds": 0.8450636330526322,
+        "exact_edges": true,
+        "edges": 0,
+        "probability_max": 0.921875
+      },
+      {
+        "repeat": 1,
+        "batch": 8,
+        "preparation_seconds": 0.15380409907083958,
+        "model_h2d_d2h_seconds": 0.2788152270950377,
+        "candidate_seconds": {
+          "original": 13.092320270952769,
+          "bulk": 0.39568825403694063
+        },
+        "original_total_seconds": 13.524939597118646,
+        "bulk_total_seconds": 0.8283075802028179,
+        "exact_edges": true,
+        "edges": 0,
+        "probability_max": 0.921875
+      },
+      {
+        "repeat": 2,
+        "batch": 8,
+        "preparation_seconds": 0.1496385328937322,
+        "model_h2d_d2h_seconds": 0.2711436190875247,
+        "candidate_seconds": {
+          "original": 12.925536248018034,
+          "bulk": 0.39050237799528986
+        },
+        "original_total_seconds": 13.34631839999929,
+        "bulk_total_seconds": 0.8112845299765468,
+        "exact_edges": true,
+        "edges": 0,
+        "probability_max": 0.921875
+      }
+    ],
+    "pins_sha256": "514849147be1ec1fc4ebd83dac594ad53053fb0612e3af619b4e146bb54990f2"
+  },
+  "result_sha256": "8351df00c488d7df17860337153e4948c9cf6676f9f24b6eaa2ef6d70c0bcd79",
+  "scope": "Bounded same-GPU eight-center SENSE diagnostic, not full production coverage"
+}

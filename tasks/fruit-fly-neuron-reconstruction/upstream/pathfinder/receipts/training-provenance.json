@@ -1,0 +1,31 @@
+{
+  "schema": "pathfinder-training-provenance-audit/v1",
+  "checkpoint_sha256": "df4d0b20f4878244c4a92c5306b5351ecf41adcf57e6d427141779633e5dbf29",
+  "embedded_config_sha256": "d666c90f7d34204f6ed68d2d18d6560440da9a2ac76f0f7ff3369620b9d3bc35",
+  "declared_training_images": [
+    "/projects/weilab/dataset/nisb/base/train/seed0/data.zarr/img",
+    "/projects/weilab/dataset/nisb/base/train/seed1/data.zarr/img",
+    "/projects/weilab/dataset/nisb/base/train/seed2/data.zarr/img",
+    "/projects/weilab/dataset/nisb/base/train/seed3/data.zarr/img",
+    "/projects/weilab/dataset/nisb/base/train/seed4/data.zarr/img"
+  ],
+  "declared_validation_image": "/projects/weilab/dataset/nisb/base/val/seed100/data.zarr/img",
+  "declared_model_initialization": null,
+  "native_test_seed101_in_declared_training": false,
+  "malecns_in_declared_training": false,
+  "verification_scope": "Serialized checkpoint paths; not a full underlying training-corpus content audit",
+  "unresolved": [
+    "Full diffusion-training corpus and underlying files not independently inspected",
+    "Undeclared pretraining or training history cannot be excluded by configuration alone"
+  ],
+  "no_leakage_proven": false,
+  "synthetic_source_audit": {
+    "url": "https://structuralneurobiologylab.github.io/nisb/",
+    "checked_date": "2026-09-28",
+    "html_sha256": "a1d1d9660c6ac966954dfb55ff18223d43957bfeb2e0c21ef9c66ae101263715",
+    "declared_morphology": "Procedural random walks with branches and postprocessing",
+    "declared_image_generation": "Segmentation-conditioned 3D diffusion model",
+    "declared_base_imaging_source": "Zebra finch j0126",
+    "relationship_to_malecns": "Declared source is a different specimen and species; full diffusion-training corpus not independently inspected"
+  }
+}

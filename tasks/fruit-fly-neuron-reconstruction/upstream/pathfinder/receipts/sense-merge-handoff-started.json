@@ -1,0 +1,17 @@
+{
+  "process": {
+    "pid": 1098924,
+    "started_utc": "2026-10-04T13:34:16.474620+00:00",
+    "plan_sha256": "cac6d0e98fd16daeb8af9547a160f2d0b2975df2fabef4259840e20c63c4c8ee",
+    "interval_seconds": 60,
+    "scheduler_queries": false
+  },
+  "live_process_observation": "1098924       00:19 /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-admission-v2/run_when_complete.py",
+  "files": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-admission-v2/plan.json": "cac6d0e98fd16daeb8af9547a160f2d0b2975df2fabef4259840e20c63c4c8ee",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-admission-v2/expected-provenance.json": "3f8ed00180bdb59d8958bb7ccf768644f59057d4ccf9a02aedd2d45de1b5d3ce",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-admission-v2/run_when_complete.py": "e276761a6ebe58769d811522a23aec5ab0667772b8eab5d733579b7ed1c9b3c4"
+  },
+  "scope": "Local waiting CPU handoff started; all16 group completions and40 rank proofs required; merge itself not started",
+  "full_pipeline_complete": false
+}

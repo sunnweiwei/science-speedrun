@@ -1,0 +1,19 @@
+{
+  "synthetic_graph_nodes": 100,
+  "edges": 4950,
+  "motif_limit": 5050,
+  "same_order_and_truncation": true,
+  "measurements": {
+    "original": {
+      "seconds": 3.3307334445416927,
+      "peak_traced_python_bytes": 24488472,
+      "source_sha256": "e2ac623bf489b6b720fdf7f84a4640a8fbc6432a27d750fca698190e98fba281"
+    },
+    "bounded": {
+      "seconds": 3.139775355346501,
+      "peak_traced_python_bytes": 1872256,
+      "source_sha256": "cc195f16ba07e6cd8c33e6ee325f5ae9c6b71e48f12fc3e8c5d84fb6f02866f2"
+    }
+  },
+  "scope": "CPU synthetic graph; traced Python allocation, not whole-process RSS or GPU memory"
+}

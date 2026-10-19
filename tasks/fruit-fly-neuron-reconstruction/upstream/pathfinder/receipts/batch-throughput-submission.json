@@ -1,0 +1,16 @@
+{
+  "job": {
+    "job_id": "90000157",
+    "reserved_seconds": 600,
+    "gpus": 1,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-throughput-v1/benchmark.sbatch",
+    "script_sha256": "079f69434e547a641dbdff7f9e224666b0960f3d417e071dce4f8d36ea8f6370",
+    "gpu_type": "a5000",
+    "state": "SUBMITTED"
+  },
+  "plan": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-throughput-v1/plan.json",
+  "plan_sha256": "1647d2b7eba59ed62897d705b95af78847cbcf6f42c1fc861649c9b892d22c1f",
+  "gpu_hours_reserved": 0.16666666666666666,
+  "full_reconstruction_complete": false,
+  "scope": "Bounded same-checkpoint full-window batch diagnostic, not complete reconstruction evidence"
+}

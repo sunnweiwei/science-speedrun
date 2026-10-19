@@ -1,0 +1,51 @@
+{
+  "full_pipeline_complete": false,
+  "continuation": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v2/replay",
+  "original_members_adopted": [
+    0,
+    1
+  ],
+  "window_recovery_members": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "partial_rejection": {
+    "correctly_rejected": true,
+    "reason": "Missing or duplicate prediction windows",
+    "pipeline_plan_sha256": "713dced2b378319105dc419bb353d4b0a828b25541d2402b885c88de32a53015",
+    "contract_sha256": "9aad9db3f41ebf8e372ec92684cb6f7b509a90608a9fd7bae46065bace1c4a9b",
+    "complete_windows": 25,
+    "expected_windows": 125,
+    "full_member_complete": false
+  },
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v2/replay/resumption.json": "c7576893fb28cb5745d82b35a6fa234f0f5e7f3519a87e6ec406c72c8f0751ce",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v2/replay/replay-plan.json": "73dbc69d7258abbd9312a944f5b8694e90cf58cd4e9e77b7387e75eca11abafe",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v2/replay/prediction/plan.json": "713dced2b378319105dc419bb353d4b0a828b25541d2402b885c88de32a53015",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v2/partial-rejection.json": "77862f275f139659ed58a00a45f53ae6f0e24131eb6a9edc1790359e3ff046bc"
+  },
+  "failed_job": {
+    "job_id": "90000155",
+    "reserved_seconds": 28800,
+    "gpus": 4,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/qualification.sbatch",
+    "script_sha256": "7ce125291c34178d9d7f0fb23ec5fe0a68e9f6ac53fba0fc8888742bb4e6e3a2",
+    "gpu_type": "a5000",
+    "state": "FAILED",
+    "actual_seconds": 23731
+  },
+  "single_gpu_retry": {
+    "job_id": "90000158",
+    "reserved_seconds": 28800,
+    "gpus": 1,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-single-v1/window-31.sbatch",
+    "script_sha256": "0b48b85c0583cfcf28f7783f90825383f56dc380ce9acfab7501c2f6a121b689",
+    "gpu_type": "a5000",
+    "state": "SUBMITTED"
+  },
+  "charged_or_reserved_gpu_hours": 662.37,
+  "charged_or_reserved_allocation_hours": 174.8425,
+  "scope": "Recovery-entry integration and actual bounded resubmission; complete member 2 and downstream acceptance remain pending"
+}

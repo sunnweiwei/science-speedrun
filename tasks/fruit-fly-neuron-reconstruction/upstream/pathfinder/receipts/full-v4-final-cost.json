@@ -1,0 +1,111 @@
+{
+  "recorded_utc": "2026-10-02T10:55:20.718014+00:00",
+  "ledger_sha256": "11a4586dffe4aab454aeff5cde4ef98547a7784b27c3d337ab44d205350c01aa",
+  "all_registered_jobs_settled": true,
+  "total_historical_gpu_hours": 595.9677777777778,
+  "full_v4_attempt_gpu_hours": 123.49888888888889,
+  "prior_history_gpu_hours": 472.4688888888889,
+  "full_v4_jobs": [
+    {
+      "job_id": "90000137",
+      "state": "COMPLETED",
+      "elapsed_seconds": 7272,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000138",
+      "state": "COMPLETED",
+      "elapsed_seconds": 8867,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000139",
+      "state": "CANCELLED",
+      "elapsed_seconds": 1318,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000144",
+      "state": "COMPLETED",
+      "elapsed_seconds": 7262,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000140",
+      "state": "COMPLETED",
+      "elapsed_seconds": 8074,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000141",
+      "state": "COMPLETED",
+      "elapsed_seconds": 7164,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000145",
+      "state": "COMPLETED",
+      "elapsed_seconds": 9216,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000146",
+      "state": "COMPLETED",
+      "elapsed_seconds": 9788,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000147",
+      "state": "COMPLETED",
+      "elapsed_seconds": 7883,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000148",
+      "state": "COMPLETED",
+      "elapsed_seconds": 8762,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000149",
+      "state": "COMPLETED",
+      "elapsed_seconds": 8069,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000150",
+      "state": "FAILED",
+      "elapsed_seconds": 13760,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000151",
+      "state": "FAILED",
+      "elapsed_seconds": 13714,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000152",
+      "state": "CANCELLED",
+      "elapsed_seconds": 0,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000153",
+      "state": "CANCELLED",
+      "elapsed_seconds": 0,
+      "gpus": 4
+    },
+    {
+      "job_id": "90000154",
+      "state": "CANCELLED",
+      "elapsed_seconds": 0,
+      "gpus": 4
+    }
+  ],
+  "complete_pipeline": false,
+  "remaining_active_jobs": [],
+  "starter_peak_disk_bytes": null,
+  "starter_peak_disk_status": "Not measured; no full six-member run",
+  "meaning": "Actual elapsed allocation multiplied by allocated GPUs; includes failures and cancelled attempts. Not compute cost of a completed starter run."
+}

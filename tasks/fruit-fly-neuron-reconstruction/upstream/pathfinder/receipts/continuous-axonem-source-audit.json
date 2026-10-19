@@ -1,0 +1,72 @@
+{
+  "schema": "continuous-axonem-source-audit/v1",
+  "audited_date": "2026-09-26",
+  "source_page": "https://axonem.grand-challenge.org/",
+  "raw_archive": {
+    "url": "https://huggingface.co/datasets/pytc/EM30/resolve/63519706548316c1f00863cbea0ece40358a759a/EM30-M-im-pad.zip",
+    "revision": "63519706548316c1f00863cbea0ece40358a759a",
+    "bytes": 15207108024,
+    "sha256_expected": "93824734ec7c2c09df87f8b01e32a556446c437988618b27b5234df76659eccf",
+    "full_content_hash_verified_in_this_audit": false,
+    "head_status": 200,
+    "range_status": 206,
+    "range_requests_bytes": [
+      65536,
+      131072
+    ],
+    "zip_entries": 791,
+    "png_count": 790,
+    "png_first": "im_pad/im0000.png",
+    "png_last": "im_pad/im0789.png",
+    "extracted_png_bytes": 15205306740,
+    "png_files_under_100000_bytes": 11,
+    "small_png_semantics": "unverified: decode and inspect; not assumed blank or missing",
+    "central_directory_sha256": "76fb69f158d80b90aa990a5a4b1da5e04d6cfaaeabf92baf84d1b9bda0bbee9c",
+    "license_from_repository_metadata": "MIT"
+  },
+  "raw_viewer": {
+    "url": "https://rhoana.rc.fas.harvard.edu/ng/EM30-M/im_pad/info",
+    "axes": "xyz",
+    "shape": [
+      5120,
+      5120,
+      800
+    ],
+    "voxel_size_nm": [
+      8,
+      8,
+      40
+    ],
+    "encoding": "jpeg",
+    "sha256": "781240078a2ec454aba76bca94d9dea80da6ab8878f0670c9eeb304b09530fda",
+    "tls_certificate_verified": false
+  },
+  "sparse_viewer": {
+    "url": "https://rhoana.rc.fas.harvard.edu/ng/EM30-M/gt_axon_sparse/info",
+    "axes": "xyz",
+    "shape": [
+      512,
+      512,
+      375
+    ],
+    "voxel_size_nm": [
+      64,
+      64,
+      80
+    ],
+    "viewer_transform_raw_voxels_xyz": [
+      512,
+      512,
+      20
+    ],
+    "sha256": "9cac6a4d254b3974b8bf183baf16aa590073d35b0f48bc6efb9626e8ad0c86d4",
+    "tls_certificate_verified": false,
+    "ground_truth_coverage": "author labels viewer approximately 1 percent; not full evaluation GT"
+  },
+  "discrepancies": [
+    "paper nominal mouse voxel size 7x7x40 nm versus release metadata 8x8x40 nm",
+    "archive 790 planes versus raw viewer metadata 800 planes; no silent shape equivalence"
+  ],
+  "full_dense_evaluation_ground_truth_download_verified": false,
+  "paper_comparable": false
+}

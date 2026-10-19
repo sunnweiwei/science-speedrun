@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-10-06T09:14:02.703992+00:00",
+  "trusted_model_source_sha256": "318996dd3667eedae25d173509d5a29ac49ef1289cb04c4c8e4e78e1b1bb13ce",
+  "frozen_inference_model_source_sha256": "094f204ba096fb9d84ac3bea459daaa4959bb82806fc5a784a10fc86de7524a8",
+  "candidates": [
+    {
+      "step": 16300,
+      "checkpoint_sha256": "4ffa7b3e879b27946b7fed329a6c0413ed459f2c85e4a20ba11514c5b30a89d9",
+      "identity": {
+        "tensor_sha256": "d707d6eb9c927755acce37682590ac8021a63fef7b87ae1b56ce8b50e9638f8b",
+        "architecture": {
+          "stage": "ffn",
+          "width": 32,
+          "residual_blocks": 20,
+          "factors": null,
+          "input_shape": [
+            33,
+            33,
+            33
+          ],
+          "voxel_size_nm": [
+            16,
+            16,
+            16
+          ],
+          "axes": "zyx",
+          "prompt_radius": 16,
+          "ffn_recurrent_steps": 8,
+          "activation_checkpointing": false,
+          "raw_normalization": [
+            0.519783446107921,
+            0.06233267956911071
+          ]
+        },
+        "step": 16300,
+        "training_manifest_sha256": "bfbc41909b2fa7b069f84c1c858e3214c621a657739c687a695815e185244508"
+      },
+      "weights_only_load": true,
+      "strict_trusted_load": true,
+      "all_state_tensors_finite": true,
+      "full33cube_cpu_forward_exact": true,
+      "raw_normalization_preserved": true,
+      "output_sha256": "38f3e2c5e1d459b2f95b99648baac22c741b1661f3700a143922a25d1c88c2a7"
+    },
+    {
+      "step": 5900,
+      "checkpoint_sha256": "ef4d1ec755c93fe28ad38667eb5b4fe314429ce5c44d43cbf0fa1c5336442a0f",
+      "identity": {
+        "tensor_sha256": "5a218e7c99c3816d0a6787764c437256169d929ecdca38dfc4996fbf2ab71f17",
+        "architecture": {
+          "stage": "ffn",
+          "width": 32,
+          "residual_blocks": 20,
+          "factors": null,
+          "input_shape": [
+            33,
+            33,
+            33
+          ],
+          "voxel_size_nm": [
+            16,
+            16,
+            16
+          ],
+          "axes": "zyx",
+          "prompt_radius": 16,
+          "ffn_recurrent_steps": 8,
+          "activation_checkpointing": false,
+          "raw_normalization": [
+            0.519783446107921,
+            0.06233267956911071
+          ]
+        },
+        "step": 5900,
+        "training_manifest_sha256": "bfbc41909b2fa7b069f84c1c858e3214c621a657739c687a695815e185244508"
+      },
+      "weights_only_load": true,
+      "strict_trusted_load": true,
+      "all_state_tensors_finite": true,
+      "full33cube_cpu_forward_exact": true,
+      "raw_normalization_preserved": true,
+      "output_sha256": "9ea02ac357eb1704770e4ade79d2aed7434380d8724a245cc426cf5d169531b7"
+    }
+  ],
+  "scope": "Actual contender strict loading and full33cube CPU forward parity; not full data-only package, GPU/container or quality acceptance",
+  "input_specification": {
+    "shape": [
+      1,
+      1,
+      33,
+      33,
+      33
+    ],
+    "dtype": "float32",
+    "raw": "torch.rand after torch.manual_seed(125)",
+    "seed_logits_background": -2.9444389791664403,
+    "seed_logits_center": 2.9444389791664403,
+    "torch_num_threads": 2
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "schema": "pathfinder-prepared-starter-replay/v1",
+  "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1",
+  "launch": {
+    "pid": 1986441,
+    "time": 1791205605.779546,
+    "command": [
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python",
+      "-B",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1/source/pathfinder/fast_delivery.py",
+      "execute",
+      "--run",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1"
+    ],
+    "scope": "Complete downstream replay from verified existing FFN/context; new SENSE inference",
+    "cold_start_ffn_replayed": false
+  },
+  "plan_sha256": "79cc763565ab59a529bab257aba1f99dcdc860802fc724b9870b52376b61b6ff",
+  "initialize_resources": "\tCommand being timed: \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B fast_delivery.py initialize-prepared --root /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1 --run /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1 --context /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/context --model-package /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/model --image-manifest /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/image/manifest.json --suite /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/suite --deadline-unix 1791265355.100597 --adaptive-shards\"\n\tUser time (seconds): 45.95\n\tSystem time (seconds): 10.77\n\tPercent of CPU this job got: 182%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:31.16\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 2995472\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 5\n\tMinor (reclaiming a frame) page faults: 275590\n\tVoluntary context switches: 15477\n\tInvoluntary context switches: 3664\n\tSwaps: 0\n\tFile system inputs: 111808\n\tFile system outputs: 123400\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n",
+  "source_fast_delivery_sha256": "eecd5752a7140f7206e59d11dd9b840f1d2a5e372c1f8a3490c449ae27acf45b",
+  "sense_submissions": {
+    "complete": true,
+    "submitted": [
+      {
+        "group": 0,
+        "job_id": "90000231",
+        "ranks": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "group": 1,
+        "job_id": "90000232",
+        "ranks": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "group": 2,
+        "job_id": "90000233",
+        "ranks": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "group": 3,
+        "job_id": "90000234",
+        "ranks": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "group": 4,
+        "job_id": "90000235",
+        "ranks": [
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "group": 5,
+        "job_id": "90000236",
+        "ranks": [
+          20,
+          21,
+          22,
+          23
+        ]
+      },
+      {
+        "group": 6,
+        "job_id": "90000237",
+        "ranks": [
+          24,
+          25,
+          26,
+          27
+        ]
+      }
+    ],
+    "time": 1791205665.25232
+  },
+  "resource_scope": {
+    "paths": [
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/context",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/stitched",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/inference",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/image",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/suite",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1"
+    ],
+    "interval_seconds": 5,
+    "limit_bytes": 200000000000,
+    "scope": "Observed resident assets for prepared-context downstream replay, including reused FFN windows/context, raw images, suite, and Python environment. Excludes historical training and other campaigns. Sampled usage is not an exact instantaneous peak or a cold-start FFN measurement."
+  },
+  "initial_resource_observation": {
+    "time": 1791205763.566864,
+    "logical_bytes": 37728420179,
+    "sampled_peak_bytes": 37728420179,
+    "by_path": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1": 61230798,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/context": 2130644932,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/stitched": 22782050014,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/full-replacement-v2/member-2/inference": 990666345,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/image": 5773877851,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1/multiregion/malecns-transfer-r3/suite": 107812237,
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1": 5882138002
+    },
+    "within_200gb": true,
+    "stage_terminal": false
+  },
+  "tests": {
+    "command": "python -B -m unittest test_fast_ablation test_fast_completion_audit test_ensemble_pipeline",
+    "passed": 23
+  },
+  "complete": false,
+  "cold_start_ffn_replayed": false,
+  "remaining": [
+    "Complete new SENSE and downstream inference",
+    "Verify same-core outputs and independent scores",
+    "Finish resource acceptance"
+  ]
+}

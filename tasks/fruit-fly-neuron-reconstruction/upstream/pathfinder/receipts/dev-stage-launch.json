@@ -1,0 +1,16 @@
+{
+  "cpu_launcher_job_id": "90000005",
+  "dependency": "afterok:90000003",
+  "gpu_job_not_yet_submitted": true,
+  "requested_gpu_allocation_minutes": 65,
+  "gpus": 4,
+  "partition": "gpu",
+  "shape_training_seconds": 1800,
+  "dev_rois": 4,
+  "code_commit": "dd3bb14b3c8a5510c55b6baad2bea864c4ae8b06",
+  "code_snapshot": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-dev-v1/upstream",
+  "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/shape-and-dev.sbatch",
+  "budget_enforced_at_submission": true,
+  "full_pipeline_acceptance_expected": false,
+  "limitation": "strict SHAPE full context unavailable in small development ROIs"
+}

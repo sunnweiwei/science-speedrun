@@ -1,0 +1,101 @@
+{
+  "schema": "pathfinder-public-baseline-reference/v1",
+  "status": "cpu_model_and_config_verified_native_gpu_evaluation_pending",
+  "checked_date": "2026-09-27",
+  "name": "PyTorch Connectomics BANIS+ seed42",
+  "model": {
+    "architecture": "MedNeXt-L",
+    "kernel_size": 3,
+    "dimensions": 3,
+    "input_shape": [
+      128,
+      128,
+      128
+    ],
+    "output_channels": 6,
+    "axes": "xyz",
+    "training_voxel_size_nm": [
+      9,
+      9,
+      20
+    ],
+    "checkpoint_selection": "Published raw state_dict; checkpoint has no saved EMA state",
+    "parameters": 61779399
+  },
+  "source": {
+    "repository": "https://github.com/PytorchConnectomics/pytorch_connectomics",
+    "revision": "53fa46bf25d35966fd4d36a270ce84caf9c631b2",
+    "config": "tutorials/neuron_nisb/base_banis+.yaml",
+    "readme": "tutorials/neuron_nisb/README.md"
+  },
+  "checkpoint": {
+    "repository": "https://huggingface.co/pytc/tutorial",
+    "revision": "3d04574606ca4f2cad48baeb7ec41847a9a4e432",
+    "path": "neuron_nisb/base_banis+_seed42.ckpt",
+    "bytes": 742117621,
+    "sha256": "df4d0b20f4878244c4a92c5306b5351ecf41adcf57e6d427141779633e5dbf29",
+    "license_model_card": "MIT",
+    "local_verification": "SHA256 and exact length verified; CPU job 90000044 completed in 29 seconds"
+  },
+  "reported_reference": {
+    "benchmark": "NISB base synthetic EM",
+    "leaderboard": "https://structuralneurobiologylab.github.io/nisb/",
+    "test_split": "test/seed101",
+    "validation_split": "val/seed100",
+    "mean_nerl": 0.596,
+    "reported_spread": 0.011,
+    "runs": 3,
+    "spread_interpretation": "Unresolved: benchmark page says 95% CI, implementation README says standard deviation",
+    "checkpoint_mask_free_target_approx": 0.596,
+    "checkpoint_volume_specific_mask_target_approx": 0.601,
+    "val_selected_threshold": 0.66,
+    "default_test_threshold": 0.75,
+    "mask_policy": "no test-specific mask in primary reproduction; record distinct variants",
+    "independently_reproduced": false,
+    "native_evaluator_merge_threshold": 50,
+    "our_funlib_protocol_is_identical": false
+  },
+  "scope": {
+    "qualifies_as_global_sota": false,
+    "pathfinder_paper_comparable": false,
+    "malecns_transfer_validated": false,
+    "training_exposure_audited": false
+  },
+  "alternatives": {
+    "google_ffn": "Author code and FIB25 demo exist; not established as current strongest baseline",
+    "lsd": "Author 3D experiment code and published predictions exist; linked pretrained notebook is 2D, not a verified 3D checkpoint"
+  },
+  "dependencies": {
+    "MedNeXt": {
+      "repository": "https://github.com/PytorchConnectomics/MedNeXt",
+      "revision": "ddf7398815d9aa39904e732b8d6fa18b160c9df7"
+    },
+    "em_erl": {
+      "repository": "https://github.com/PytorchConnectomics/em_erl",
+      "revision": "b1504f2c3edbece34efc417c395432692d54e14d"
+    }
+  },
+  "native_reproduction_gate": {
+    "status": "predeclared before native inference results",
+    "target_nerl": 0.596,
+    "absolute_difference_investigation_threshold": 0.03,
+    "purpose": "Engineering discrepancy gate, not a confidence interval or equivalence test",
+    "on_exceed": "Investigate implementation/input/weights before accepting transfer comparison as a verified strong baseline",
+    "always_report": "Exact score, difference from author approximate single-checkpoint target, and evaluation protocol"
+  },
+  "execution_plan": {
+    "status": "Four-GPU full benchmark scored 0.6296958174; exceeds predeclared difference gate. Investigating with author single-GPU batch8 control.",
+    "arm_controller_job": "90000053",
+    "after_profile_submit_controller": "90000047",
+    "gpus": 4,
+    "partition": "gpu",
+    "native_wall_limit_seconds": 21600,
+    "profile_warmup": "Two full-size batch-two forwards per rank before timing",
+    "runtime_estimation": "Superseded by measured 5401s complete inference/decode/scoring. Initial window extrapolation omitted upstream boundary-face windows and overstated profile scaling; do not reuse.",
+    "native_input_manifest_sha256": "d8d67285a76302cc1899c7c7fa163e74e799d16eb3f4e04233d58f861109e621",
+    "conditional_budget_extension": "Preserve historical accounting; use existing 42h allocation/168GPUh cap if sufficient. Otherwise one conditional increase to 46h/184GPUh for this native benchmark only; disk remains 200GB.",
+    "retries": "No automatic duplicate submission or retry; failed/held decisions require investigation",
+    "native_preflight_controller_job": "90000055",
+    "native_gpu_job": "90000056"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "pathfinder-fast-scientific-completion-audit/v1",
+  "complete": true,
+  "source_plan_sha256": "2849bde817506fabb2e8c269084d189b414e648129028785e596eb6d3f9facfb",
+  "checkpoint_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+  "base_segmentation_sha256": "020abd65947774be0d238eeb924dca3c84b67132b83863bc3a6583bec050ac7b",
+  "eligible_sense_centers": 1170770,
+  "shared_candidates": 36,
+  "shape_scored_pairs": 36,
+  "shape_retained_edges": 6,
+  "gpu_jobs": [
+    "90000222",
+    "90000223",
+    "90000224",
+    "90000225",
+    "90000226",
+    "90000227",
+    "90000228",
+    "90000229",
+    "90000230"
+  ],
+  "gpu_execution_receipts": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-0/execution.json": "1236a53467aaadb5c88c0d56290dc01b5dba472458748e1b891e9c3d43ef422c",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-1/execution.json": "cc992bfe862b0ee2f60be818fa18f0e83564f6980a867e484a82325a6f6ba524",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-2/execution.json": "c65d771ca83a2d122cc169b9e61297dc52b7808e2149cbdc42f05fe6807b1c2f",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-3/execution.json": "af114ce197f4629931309d5aac9c95479a98d9bc887b41e1cf66f09a240d24ce",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-4/execution.json": "15a0e5a58f49f4d6e9466398bb03964e0a536d7a407f34c8e4a00458305c5f55",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-5/execution.json": "7853ea733cd1e5ef2c0a0770c6bd7136500e1a86c749221133760679745019bf",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-6/execution.json": "fbb29c884922bf8365b8ee4a36087114efaf39c58aed7c411f37df99325ca142",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/baseline/group-0/execution.json": "1ef2b2242024894bf0fd7c17c406294f28e0a8fa50bc189ea8fccea9662691c2",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/shape/group-0/execution.json": "de4eb091aa1de4f62159b600f06a7ec3e6f45e5abd37a474e5c11ba2349ca3ef"
+  },
+  "comparison_sha256": "f6a404aeb49c431441d0b9e178102ea464795d2392572453fc7983c5e7123e70",
+  "independent_audit_sha256": "a6eec659c86a914f53a6e615c24091498ce10fc5eb91db9fd65e66f77096212a",
+  "prediction_manifest_sha256": "b73d179c00a510055c82a76e0e4f4049761ee209f54214a7efb80d5de011e87d",
+  "paper_comparable": false,
+  "full_deliverable_complete": false,
+  "remaining": [
+    "starter replay and resource acceptance",
+    "final PR reconciliation"
+  ]
+}

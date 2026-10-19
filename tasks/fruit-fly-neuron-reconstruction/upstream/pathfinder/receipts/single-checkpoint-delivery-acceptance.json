@@ -1,0 +1,47 @@
+{
+  "schema": "pathfinder-user-selected-delivery-acceptance/v1",
+  "completed_at_utc": "2026-10-05T14:40:04.879859+00:00",
+  "accepted_scope": "Native single-checkpoint ascending-seed no-consensus ablation, verified reuse of FFN/context, full downstream prepared-context replay, paired scoring, scientific audit, scoped resource review, and reviewable documented PR deliverable.",
+  "scope_complete": true,
+  "paper_comparable": false,
+  "cold_start_ffn_replayed": false,
+  "docker_harbor_verified": false,
+  "requirements": {
+    "one_corrected_ffn_checkpoint": "passed: frozen identity rehashed; original 125 ascending windows verified",
+    "no_consensus": "passed: direct single prediction reused",
+    "documented_simplification": "passed: shared SENSE proposals; two-node SHAPE, fixed threshold and deterministic disjoint merging",
+    "complete_downstream_inference": "passed twice: 1,170,770 centers, 36 candidates in both arms, no truncation",
+    "paired_scoring": "passed: three methods, identical frozen 512-cubed core and 575,913 reference nodes",
+    "independent_audits": "passed: both runs scientifically audited; actual prediction and node-assignment hashes identical",
+    "standard_prepared_entrypoint": "passed: initialize-prepared plus frozen execute, new nine-job campaign",
+    "scoped_resources": "reviewed: 32.662222 GPUh, 5179s controller wall, 71.512GB sampled logical storage; source/resource boundaries explicit",
+    "halfhour_monitoring": "recorded throughout; final scheduler empty, nine jobs completed; owned observers stopped",
+    "documentation_and_review": "current README, baseline results, starter commands, method differences, results and small audit receipts reconciled"
+  },
+  "limitations": [
+    "No positive quality gain: FFN unchanged and SHAPE nERL 0.3837% lower.",
+    "Sparse references, prior historical test exposure and shared-neuron limits remain documented.",
+    "Cold-start training/FFN/context production and isolated Docker/Harbor full-model execution remain unverified.",
+    "Storage sampling is not an exact instantaneous peak; native OS/system software footprint and historical campaign storage are outside the charged working set.",
+    "Historical scientific-only receipts preserve their original incomplete full-deliverable fields; this record supersedes them only within accepted_scope."
+  ],
+  "validation": {
+    "native_replay": "passed",
+    "replay_comparison": "passed",
+    "focused_tests": "23 original relevant tests plus 4 replay/input-integrity tests passed before final docs-only changes",
+    "task_layout": "passed with portable Python3.11; static layout compliance, not full Harbor execution"
+  },
+  "historical_ledger": {
+    "charged_gpu_hours": 1305.9383333333333,
+    "charged_allocation_hours": 387.82055555555553,
+    "history_preserved": true,
+    "settlement_sha256": "36c49cdee30dce72b0082ba6daa591bddbe20f4452b4e6456ace51bcbc1aa0c2"
+  },
+  "evidence": {
+    "single-checkpoint-fast-comparison.json": "f6a404aeb49c431441d0b9e178102ea464795d2392572453fc7983c5e7123e70",
+    "prepared-starter-replay-comparison.json": "897be59fcea719665261848ea3ea447bf983bf8e1dcc8a0beda685592181ee9e",
+    "prepared-starter-replay-resources.json": "3f4bbea5d72b112b9eab1517553bbc9838f83cb5856ad31999841cb6ee742273",
+    "prepared-starter-replay-monitor-completion.json": "ad059a3abd709384b92068b967b677e0b8c1a96a783cdf93ea6e3c2cc72720a7"
+  },
+  "pr": "https://github.com/T0-RSI/ai4sci-tasks/pull/75"
+}

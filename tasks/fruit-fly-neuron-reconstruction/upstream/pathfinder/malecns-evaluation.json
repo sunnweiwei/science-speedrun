@@ -1,0 +1,31 @@
+{
+  "schema": "pathfinder-malecns-evaluation/v1",
+  "dataset": "MaleCNS v1.0",
+  "center_xyz_16nm": [
+    24343,
+    13757,
+    12360
+  ],
+  "core_size_voxels": 256,
+  "selection": "floor(official scene center in 8nm coordinates / 2); fixed before model inference",
+  "em_url": "https://storage.googleapis.com/flyem_cns_z0720_07m_dvidcoords_n5/s1/",
+  "segmentation_url": "https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/",
+  "metadata": {
+    "em_s1": {
+      "url": "https://storage.googleapis.com/flyem_cns_z0720_07m_dvidcoords_n5/s1/attributes.json",
+      "sha256": "8c01f3bbd1bf36696d02ed9d7ad629af9e2641f629e6740931494472164011d0"
+    },
+    "segmentation": {
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/info",
+      "sha256": "dfe0bf785574079b40564ba03a2354ce5b2bd96ed8e830422b428182ade5bdf9"
+    },
+    "official_scene": {
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/male-cns-v1.0.json",
+      "sha256": "390e01b0c78742bb2465f9ec8f89890106c008d6ac1d5b06840b610f532ea754"
+    }
+  },
+  "model_package_manifest_sha256": "c8be29ae8d4d37acc60c03ed8888d024b0c82aa04695a2b4679b8eb5eb6ffdf8",
+  "training": "none; existing mouse-trained v6 weights",
+  "comparison": "paired FFN and full pipeline on same fixed core; no official PATHFINDER score comparison",
+  "paper_comparable": false
+}

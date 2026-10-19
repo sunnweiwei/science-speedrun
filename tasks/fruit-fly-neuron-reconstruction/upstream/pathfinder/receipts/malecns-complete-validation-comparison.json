@@ -1,0 +1,313 @@
+{
+  "schema": "malecns-domain-comparison/v1",
+  "regions": [
+    {
+      "region": "full-core",
+      "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+      "baseline_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.012314919289820335,
+            "after": 0.01189074843617778,
+            "delta": -0.0004241708536425557
+          },
+          "erl_nm": {
+            "before": 143.75626669093037,
+            "after": 138.80477517696136,
+            "delta": -4.951491513969017
+          },
+          "split_errors": {
+            "before": 6858,
+            "after": 6992,
+            "delta": 134
+          },
+          "merge_errors": {
+            "before": 169,
+            "after": 173,
+            "delta": 4
+          },
+          "omitted_node_fraction": {
+            "before": 0.6745373627214772,
+            "after": 0.6745373627214772,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "ffn_to_full": {
+        "metrics": {
+          "nerl": {
+            "before": 0.011898754198658225,
+            "after": 0.01189074843617778,
+            "delta": -8.005762480445267e-06
+          },
+          "erl_nm": {
+            "before": 138.89822918174355,
+            "after": 138.80477517696136,
+            "delta": -0.09345400478218835
+          },
+          "split_errors": {
+            "before": 6994,
+            "after": 6992,
+            "delta": -2
+          },
+          "merge_errors": {
+            "before": 167,
+            "after": 173,
+            "delta": 6
+          },
+          "omitted_node_fraction": {
+            "before": 0.6745373627214772,
+            "after": 0.6745373627214772,
+            "delta": 0.0
+          }
+        },
+        "identical_prediction_bytes": false,
+        "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+      },
+      "relative_nerl_change": -0.03444365680846813,
+      "direction": "worse"
+    }
+  ],
+  "primary": {
+    "region": "full-core",
+    "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+    "baseline_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.012314919289820335,
+          "after": 0.01189074843617778,
+          "delta": -0.0004241708536425557
+        },
+        "erl_nm": {
+          "before": 143.75626669093037,
+          "after": 138.80477517696136,
+          "delta": -4.951491513969017
+        },
+        "split_errors": {
+          "before": 6858,
+          "after": 6992,
+          "delta": 134
+        },
+        "merge_errors": {
+          "before": 169,
+          "after": 173,
+          "delta": 4
+        },
+        "omitted_node_fraction": {
+          "before": 0.6745373627214772,
+          "after": 0.6745373627214772,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "ffn_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.011898754198658225,
+          "after": 0.01189074843617778,
+          "delta": -8.005762480445267e-06
+        },
+        "erl_nm": {
+          "before": 138.89822918174355,
+          "after": 138.80477517696136,
+          "delta": -0.09345400478218835
+        },
+        "split_errors": {
+          "before": 6994,
+          "after": 6992,
+          "delta": -2
+        },
+        "merge_errors": {
+          "before": 167,
+          "after": 173,
+          "delta": 6
+        },
+        "omitted_node_fraction": {
+          "before": 0.6745373627214772,
+          "after": 0.6745373627214772,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "relative_nerl_change": -0.03444365680846813,
+    "direction": "worse"
+  },
+  "missing_regions": [],
+  "all_regions_scored": true,
+  "native_public_number_check": {
+    "nerl": 0.5883956420065733,
+    "target": 0.596,
+    "difference": -0.007604357993426625,
+    "investigation_required": false,
+    "scope": "Engineering discrepancy gate, not a confidence interval or equivalence test"
+  },
+  "native_check_independent_of_domain_comparison": true,
+  "statistical_claim": "Descriptive fixed spatial subsets; no independent-sample confidence interval",
+  "direct_pathfinder_paper_gap": null,
+  "global_sota_claim": false,
+  "role": "validation",
+  "full_context_reconstruction_verified": true,
+  "reconstruction_coverage": {
+    "full_context_reconstruction_complete": true,
+    "complete_tiles": 21952,
+    "total_tiles": 21952,
+    "assembly_receipt_sha256": "c39864d4e1747cd046499b89356f575a1d77354a5ca0905380e8dda11a5949df",
+    "coverage_sha256": "563851fb73aac987adf3912d5975c2b8a9e674df1bb8ceba233ffbfcdc92bc25",
+    "segmentation_sha256": "e774f4bb2ced77c01bcafc47f1c7ee9c0cb10b3deccee7b8fb5cb7c617b73a1e",
+    "scope": "Complete compute coverage only; does not establish biological accuracy or baseline candidate completeness"
+  },
+  "baseline_candidate_coverage": {
+    "requested_pairs": 111920,
+    "missing_pairs": 0,
+    "incomplete_pairs": 0,
+    "complete": true,
+    "accepted_pairs": 235
+  },
+  "resources": {
+    "jobs": [
+      {
+        "job_id": "90000097",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 7407,
+        "charged_gpu_seconds": 29628,
+        "actual_seconds": 7407,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000098",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 7142,
+        "charged_gpu_seconds": 28568,
+        "actual_seconds": 7142,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000099",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 7327,
+        "charged_gpu_seconds": 29308,
+        "actual_seconds": 7327,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000100",
+        "roles": [
+          "corrected_ffn"
+        ],
+        "gpus": 4,
+        "charged_seconds": 7101,
+        "charged_gpu_seconds": 28404,
+        "actual_seconds": 7101,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000102",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3927,
+        "charged_gpu_seconds": 15708,
+        "actual_seconds": 3927,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000103",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3720,
+        "charged_gpu_seconds": 14880,
+        "actual_seconds": 3720,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000104",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3587,
+        "charged_gpu_seconds": 14348,
+        "actual_seconds": 3587,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000105",
+        "roles": [
+          "corrected_baseline"
+        ],
+        "gpus": 4,
+        "charged_seconds": 3713,
+        "charged_gpu_seconds": 14852,
+        "actual_seconds": 3713,
+        "accounting_complete": true
+      },
+      {
+        "job_id": "90000101",
+        "roles": [
+          "corrected_refinement"
+        ],
+        "gpus": 4,
+        "charged_seconds": 1746,
+        "charged_gpu_seconds": 6984,
+        "actual_seconds": 1746,
+        "accounting_complete": true
+      }
+    ],
+    "accounting_complete": true,
+    "charged_allocation_hours": 12.686111111111112,
+    "charged_gpu_hours": 50.74444444444445,
+    "resident_bytes_at_ledger_measurement": 197709987920,
+    "measured_peak_disk_bytes": null,
+    "scope": "Each listed GPU allocation charged once; joint-stage jobs are not attributed to individual methods. CPU-only jobs and unlisted historical jobs excluded. Unfinished allocations retain full reservations. Residency is a ledger snapshot, not a measured peak."
+  },
+  "metric_files": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/validation/comparison/scores/full-core/ffn/metrics.json": "d4b01c5aa14f488571aab0aac6c9d547e015717478c106c5592f6b4c0b24928a",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/validation/comparison/scores/full-core/baseline/metrics.json": "22b5a4723a28083e3d349d5bd886d7ce139da4ea69a1d091bdd5cdfe130f24df",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/validation/comparison/scores/full-core/full/metrics.json": "0b8975140a3603d44aca801ad8a3e13bd039d39d02e72e959b87fe5bf2a477d1"
+  },
+  "selection_sha256": "79987185f3406e9b202bcd3baea110cb25f4b9ef012fc1b6835ce51b7dd58217",
+  "package_sha256": "7ce745d6f314aafb542df6d3d2bb1af7df7063ab83d7ec3808331c641d94a01c",
+  "original_weights_unchanged": true,
+  "corrective_rerun": true,
+  "test_previously_observed": true,
+  "test_used_for_selection": false,
+  "ledger_sha256": "9d968767707dbf50773607ce276be0f91a80796b50aff7a9dc255310d51293f9",
+  "native_check_sha256": "a784baedf3f3669ea888c3a0173afd67be45b7745ff95ab90926a03b0155360f",
+  "script_sha256": "ff5f129143e559dde6ddd40a8f886e0884a3e04105ff588d8be5f8904ce666f5",
+  "refinement_coverage": {
+    "scored_full_context_motifs": 13537,
+    "unprocessed_motifs": 0,
+    "motif_enumeration_truncated": false,
+    "remapped_ids": 25,
+    "completion_summary": {
+      "full_context_tiles": 21952,
+      "eligible_candidates": 15921,
+      "processed_candidates": 15921,
+      "scored_motifs": 13537,
+      "execution_complete": true,
+      "scope": "All eligible candidates and enumerated motifs complete; geometric exclusions remain excluded, and biological accuracy is not established"
+    }
+  },
+  "raw_comparison_sha256": "7e24560af56fb16e07a8eb1063e00e438dc893f055453827b77542c287fc8439",
+  "independent_acceptance_sha256": "aaba490e2f87c14743e2ca1dc31322ca3bf60758302d304c09deb04817114256",
+  "receipt_scope": "Compact corrected-run comparison; per-candidate enumeration omitted, original comparison pinned by SHA256",
+  "supersedes": "Pre movement-rule-correction comparison; historical bytes retained in Xtemp"
+}

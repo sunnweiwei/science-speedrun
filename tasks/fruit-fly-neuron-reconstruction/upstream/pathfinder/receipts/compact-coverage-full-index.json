@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-10-04T12:00:46.941727+00:00",
+  "full_pipeline_complete": false,
+  "production_promoted": false,
+  "result": {
+    "complete": true,
+    "full_pipeline_complete": false,
+    "eligible_count": 23456620,
+    "excluded_count": 426530153,
+    "assigned_count": 5864155,
+    "other_count": 17592465,
+    "selection_seconds": 28.879916980862617,
+    "compact_exclusion_json_bytes": 376,
+    "exact_excluded_id_digest": true,
+    "exact_eligible_id_digest": true,
+    "exact_shard_order": true,
+    "source_sha256": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-worktree/fruit-fly-brain/upstream/pathfinder/index_storage.py": "8066455c21dd03eb95d53c02e61e6251bc874b26a179f23a999e2e66183ef14b",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/compact-coverage-audit-v1/audit.py": "bfa1783329eb147993321742235684b97354bf3d7e669858c0c30afcabdffe87"
+    },
+    "index_sha256": "ee5b59faf60f73896a7006b1673275028d2cf54ef13a1809645119864ec9c673",
+    "scope": "Full449,986,773-instance index, existing geometric predicate and shard ordinal preserved; only exclusion evidence encoding changes, not model/center selection"
+  },
+  "result_sha256": "413c5082fd72fb2f782bebaa3f2d92853f6c37564d283a1e17fae7b7c1bc2c09",
+  "resource_log_sha256": "3bbbee23a55039e4bc2f27be8f23776f251e651e9ef7488b4895b5224b35554f",
+  "wall_seconds": 62.43,
+  "peak_rss_kib": 24646364,
+  "scope": "Complete index selection and independently regenerated identity digests; not full refinement or end-to-end memory"
+}

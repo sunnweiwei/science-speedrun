@@ -1,0 +1,43 @@
+{
+  "schema": "pathfinder-formal-route-engineering-check/v1",
+  "date_utc": "2026-10-05T18:51:13.049767+00:00",
+  "protocol": "single-checkpoint-fast/v1",
+  "native_scientific_results_unchanged": true,
+  "formal_gpu_execution_verified": false,
+  "docker_verified": false,
+  "checks": {
+    "focused_unit_tests": {
+      "run": 57,
+      "passed": 57,
+      "skipped": 0,
+      "log_sha256": "b87203f0093574a690da5b9e778f3345ab303647d3d6e3c1ffcd7ce2cd5dc53d"
+    },
+    "materializer_tests": {
+      "passed": 2
+    },
+    "host_cpu_namespace": "private sentinel invisible; runtime visible; no suite or original submission mount",
+    "real_resource_relocation": {
+      "files": 722,
+      "bytes": 14537257535,
+      "manifest_sha256": "db319f336b8da8dc8f74cb4cd397bae27d743211b612a9b9653c8f8a26408c30"
+    },
+    "real_model_export": "three loaded state dictionaries exactly equal after data-only export",
+    "relocated_runtime": "pinned author source verified and native FPS CPU import passed; no GPU forward",
+    "static_layout": "passed; not end-to-end acceptance",
+    "compose_yaml": "both parse; historical budget-root mount absent"
+  },
+  "source_sha256": {
+    "single_pipeline.py": "9cfb739cdc74069603a016195770477b19d195abcfeb03dd168e0ced6f9ba29b",
+    "verify_single.py": "ed96b6b4f67a58a8b180988e6f222481ab3e63fb0b560cfba7cdc6ef05daa59d",
+    "execution_resources.py": "17eff4dba62c846b2d51e093c5e1fd6d218eda1a5cd0602dd70cc8178776397b",
+    "export_weights.py": "aea675a4784fcb7ac99e06a885c47868778a87aac7afe0f0aefdea2c6cc5bd05",
+    "publish_weights.py": "bea96338fb27c9aaf8751316acc292d70c953a544c797a49384b75babf1b695e"
+  },
+  "remaining": [
+    "Build/run the Docker image with target GPU namespace and FPS ABI",
+    "Complete fresh FFN-to-private-score execution through tests/test.sh",
+    "Measure the complete selected recipe resource envelope",
+    "Independently run training/bootstrap/growth validation/export/formal evaluation",
+    "Publish or otherwise make the hash-pinned resource release accessible to independent reviewers"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "ffn-global-agglomeration/v1",
+  "mapping": {},
+  "accepted_pairs": 0,
+  "requested_pairs": 16,
+  "missing_pairs": 0,
+  "incomplete_pairs": 0,
+  "complete": true,
+  "checkpoint_sha256": "1b26aea7f2e0c874fdf660a4c7c06a0615fae5a71315ea46f5b60a8ca4b70ad6",
+  "raw_sha256": "3d247f80eb90c1c1ce8961c0bc182a0effb2a01734b2c168f872f3907d40534d",
+  "base_sha256": "29d401a7bc6613617b30ce0ae2af80a12d81adb03659ab023abae4cdecdc2cb6",
+  "decisions_sha256": "66dfc92fa689d2e63a3340c3ce51608022b176668a34c91cc14cfa1ff9dfc294",
+  "ground_truth_used": false,
+  "partial_policy": "Unscored or incomplete pairs are not merged; coverage explicitly reported",
+  "shard_files": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/ffn-agglomeration-profile/shard-0.json": "796f7b26fd92c1073ca790c7dfb276c77ed02171d2e0ac3c701e1f3d790ba3c2",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/ffn-agglomeration-profile/shard-1.json": "87d5b3dcd84c5560389074ed19c4ecd247a2da7733cf9183cb51d84be854d62e",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/ffn-agglomeration-profile/shard-2.json": "2f39d87fb0da02a4f1640403102ff9dde291c8e73e1a9ad8fd9d565403327215",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/ffn-agglomeration-profile/shard-3.json": "29064d6b861763bd053de6f7ac843e4b42d4125cb9432fc7467ceb2e9e5dc3b1"
+  },
+  "adapter_sha256": "d8a844d4bd1cc604094e522c6dcf345d99abb53713170170624c56049bd11259",
+  "job_id": "90000067",
+  "state": "COMPLETED",
+  "allocation_seconds": 69,
+  "gpus": 4,
+  "scope": "16 pilot candidates, real four-GPU two-seed FFN execution with new domain checkpoint; no held-out comparison score"
+}

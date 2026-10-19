@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-10-04T06:58:00Z",
+  "scientific_kernels_unchanged": true,
+  "full_pipeline_complete": false,
+  "tests": {
+    "pipeline_passed": 13,
+    "consensus_passed": 4,
+    "pinned_author_oracle_passed": true
+  },
+  "first_pair_full_volume_census_pending": true,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v5/source-admission.json": {
+      "sha256": "e44b281a9edd0cd2be9c5d2a23d20442001f913827c079d0aef9a684ec186732",
+      "text": "{\n  \"changed_files\": [\n    \"pathfinder/ensemble_pipeline.py\"\n  ],\n  \"scientific_kernels_unchanged\": true,\n  \"old_source_sha256\": \"61d743687c02e1db64e50325e966bf012f12686e9fd5c52399286504eaea61b4\",\n  \"new_source_sha256\": \"4ea09d283d39dd5dbc3a16721e78e8dc3e4bd8a939ca7ae999ff39044c5d8486\",\n  \"validation\": \"13 pipeline tests passed; 4 consensus tests passed including pinned Google oracle. Optional consensus_max_pairs only changes consensus command capacity; all other commands exact unchanged.\"\n}\n"
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v5/capacity-admission.json": {
+      "sha256": "c1f4aac364d813542c3000ae1ce356c3233e040576144a38c64235fdc5ac31c9",
+      "text": "{\n  \"complete\": true,\n  \"full_pipeline_complete\": false,\n  \"previous_pipeline_plan\": \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/plan.json\",\n  \"previous_pipeline_plan_sha256\": \"61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f\",\n  \"new_pipeline_plan\": \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v5/replay/prediction/plan.json\",\n  \"new_pipeline_plan_sha256\": \"f339d740ad354a08e317a5485f11a4dcfbafa86e5ec8df8cd48897bf39cd8315\",\n  \"old_limits\": {\n    \"ffn_seconds\": 27000,\n    \"baseline_seconds\": 7200,\n    \"sense_seconds\": 3600,\n    \"shape_seconds\": 3600,\n    \"max_motifs\": 65536,\n    \"window_bytes\": 600000000,\n    \"packed_bytes\": 2000000000,\n    \"memory_gib\": 704,\n    \"max_pairs\": 10000000,\n    \"max_instances\": 64000000,\n    \"min_size\": 0\n  },\n  \"new_limits\": {\n    \"ffn_seconds\": 27000,\n    \"baseline_seconds\": 7200,\n    \"sense_seconds\": 3600,\n    \"shape_seconds\": 3600,\n    \"max_motifs\": 65536,\n    \"window_bytes\": 600000000,\n    \"packed_bytes\": 2000000000,\n    \"memory_gib\": 704,\n    \"max_pairs\": 10000000,\n    \"max_instances\": 64000000,\n    \"min_size\": 0,\n    \"consensus_max_pairs\": 1000000000\n  },\n  \"only_changed_limit\": \"consensus_max_pairs (new optional override)\",\n  \"conservative_consensus_memory_bytes\": 581897490016,\n  \"unchanged_memory_gib\": 704,\n  \"all_six_direct_members_adopted\": true,\n  \"failed_attempt_retained\": \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/consensus\",\n  \"scientific_rules_unchanged\": true\n}\n"
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v5/controller-transition.json": {
+      "sha256": "9d3795ec6ce02d5643e52ea2d1a0d9119694b1cef6fd04edf8460e0987e59281",
+      "text": "{\n  \"timestamp_utc\": \"2026-10-04T06:57:40.290728+00:00\",\n  \"replaces_failed_cpu\": 947266,\n  \"stopped_waiters\": [\n    947267,\n    947269\n  ],\n  \"new_processes\": {\n    \"cpu\": 1001126,\n    \"gpu_submission\": 1001127,\n    \"final_score\": 1001128\n  },\n  \"old_failure_preserved\": true,\n  \"old_gpu_submissions\": [],\n  \"full_pipeline_complete\": false\n}\n"
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/downstream-cpu-failure.json": {
+      "sha256": "d38ccb9ade78c0b199feaca188572425244d64a7662bf10f9bc3f8418101f6d6",
+      "text": "{\n  \"error\": \"CalledProcessError(1, ['/usr/bin/time', '-v', '-o', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/downstream-consensus.resources.txt', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python', '-B', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/trusted-source/pathfinder/ensemble_pipeline.py', 'consensus', '--root', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1', '--run', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/replay/prediction'])\",\n  \"timestamp_utc\": \"2026-10-04T06:27:21.051153+00:00\",\n  \"full_pipeline_complete\": false\n}\n"
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/replay/prediction/consensus-0.log": {
+      "sha256": "3545873a9b08996332cf462ae1688e0dac8fea2a7bbdbe0781a2414c26aaa597",
+      "text": "Traceback (most recent call last):\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/consensus_stitched.py\", line 130, in <module>\n    a=p.parse_args();print(json.dumps(run(a.spec,a.root,a.output,a.min_size,a.memory_gib,a.slab_depth,a.max_pairs,a.model_package),indent=2))\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/consensus_stitched.py\", line 105, in run\n    else:stages.append(intersect_inplace(dest,incoming,min_size,slab_depth,max_pairs,kernel_bytes/2**30))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/global_consensus.py\", line 37, in intersect_inplace\n    if key not in counts and len(counts)>=max_pairs:raise ValueError('Global pair table exceeds declared bound; input unchanged')\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Global pair table exceeds declared bound; input unchanged\n"
+    }
+  }
+}

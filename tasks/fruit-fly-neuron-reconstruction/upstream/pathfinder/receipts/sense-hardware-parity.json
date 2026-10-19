@@ -1,0 +1,53 @@
+{
+  "same_input": true,
+  "shape": [
+    8,
+    128,
+    128,
+    128
+  ],
+  "exact_probabilities": false,
+  "max_abs_difference": 0.01171875,
+  "mean_abs_difference": 1.951825424839626e-06,
+  "different_probability_voxels": 3294359,
+  "threshold_05_mask_differences": 6,
+  "total_voxels": 16777216,
+  "candidate_outputs_equal": true,
+  "reference_bulk_seconds": [
+    0.8515115892514586,
+    0.8119825636968017,
+    0.8234327640384436
+  ],
+  "blackwell_bulk_seconds": [
+    1.7830754730384797,
+    1.7601526509970427,
+    1.7621742730261758
+  ],
+  "scope": "Eight fixed real centers only, mixed hardware and runtime; no production promotion or full-volume equivalence claim",
+  "production_promoted": false,
+  "full_pipeline_complete": false,
+  "settlement": {
+    "jobs": {
+      "90000215": {
+        "state": "COMPLETED",
+        "seconds": 61,
+        "gpu_hours": 0.016944444444444446
+      },
+      "90000216": {
+        "state": "COMPLETED",
+        "seconds": 60,
+        "gpu_hours": 0.016666666666666666
+      }
+    },
+    "all_other_jobs_unchanged": true,
+    "production_promoted": false,
+    "full_pipeline_complete": false
+  },
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hardware-parity-v1/audit.py": "03dc401608032aee53afdd7893ef6affe1ca0e87e90f1692ceef11f97c495119",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hardware-parity-v1/reference/result.json": "f58a3e0f7daa849a58641fc1c4e0efb36facf1e9df63727e50bf269ddce7dfb1",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hardware-parity-v1/blackwell/result.json": "4429765ce76e644d574baa6f15881979efec8acb0227d2c7f1303118086b1816",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hardware-parity-v1/comparison.json": "08fb6ed01307f379b1be3a718cc6239896f17fd040a05075d09d5a4dcfd622f0",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-hardware-parity-v1/settlement.json": "35769c42119aeaa7fe7c08a1fa7c2eb2c99f0558bbfa167a7f00f0c23cf46270"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "pathfinder-cpu-container-check/v1",
+  "job_id": 90000027,
+  "job_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed_seconds": 20,
+  "allocated_cpus": 2,
+  "allocated_gpus": 0,
+  "tests": 87,
+  "test_seconds": 10.129,
+  "image": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/images/pathfinder-native-v1.sif",
+  "image_sha256": "4f2f3d0a9a05be240b37324532a00d5f7ba31f0e3b46e11002350c2554b70756",
+  "source_commit": "77a5b1d217e3ebebd8091c0479e26bd1a877fd50",
+  "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-continuous-evaluate-v3/upstream",
+  "source_mount_readonly": true,
+  "network": "none",
+  "host_home_mounted": false,
+  "log_sha256": "26d3b407ce304dcf41ea2cb367d3f75a490063e5cfc2d8abb7be80ef4677d113",
+  "files": {
+    "common.py": "b0da879bfe1c80eebba4f352e62e80728a1051ae1ae163ec7b506e5559d5bcba",
+    "pathfinder/lazy_search.py": "53ebc12117744a44440dbe4d8fd60f47ef17e24d566989ae489a35610f38bf3f",
+    "pathfinder/reconcile.py": "93a1b4baa6e3617cc64ca3f0ff1911e00f94e3dba67b6fafd7f090cb83c4fb0e",
+    "pathfinder/test_lazy_search.py": "4f5beb3ea8e20abab458b913349a944de67ac1e75d338b34406a662f0c1c4b7f"
+  },
+  "scope": "CPU regression and synthetic CLI delivery; no GPU forward or real learned reconstruction claim"
+}

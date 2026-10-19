@@ -1,0 +1,53 @@
+{
+  "slurm_job_id": "90000019",
+  "image_sha256": "24eb33221d9e5dd8ddc4180ee6ea15385ddf631b03a064ec95d75174f10f6b66",
+  "code_sha256": {
+    "evaluate_erl.py": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+    "prediction_contract.py": "798d9d3844087e17c278a2d023bc4d96616053cc21f66082eaea0fa03be244d0",
+    "probe_prediction_isolation.py": "f1f317d58d919cb3f999ab88c1c6fd1fc2c2246689ef6beb455240650bba5e4f",
+    "topology.py": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819"
+  },
+  "common_sha256": "44e3f12261009e3ebd08e5f73412b13f40330601974faa7fe4fea4ad2d17bc92",
+  "trusted_inputs": {
+    "metadata.json": "b0e4783688707442216c43f72a4b94937b2bd6f63ca1054114e0744b2c406218",
+    "run_length.py": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+    "skeletons.json": "d3d369cac569b16a1f26f9a274223afe5336f9539efc4c853144b4a9304c19dc"
+  },
+  "prediction_manifest_sha256": "aba615d316e3ef0e2671cc4917357f658288b718f2ca4255c15f3bb2ebe14a65",
+  "metrics_sha256": "96ce165d3530ae591bb067dd695e9a3cf1312c2ad2065da1a442e6fedab793d2",
+  "isolation": {
+    "host_paths_hidden": [
+      "/home/researcher",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-container-score-v1/upstream/pathfinder",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1"
+    ],
+    "network_namespace": "net:[4026535906]",
+    "host_network_namespace": "net:[4026531833]",
+    "read_only_mounts": [
+      "/code",
+      "/prediction",
+      "/trusted"
+    ],
+    "gpu_visible": false,
+    "python": "3.11.13",
+    "numpy": "1.26.4",
+    "networkx": "3.6.1"
+  },
+  "gpu_used": false,
+  "model_replayed": false,
+  "scope": "Isolated prediction scoring only; existing image reused, not a new native-task build",
+  "comparison": {
+    "reference": "prediction-contract-relocated-metrics.json",
+    "exactly_equal_fields": [
+      "erl_nm",
+      "maximum_erl_nm",
+      "nerl",
+      "split_errors",
+      "merge_errors",
+      "omitted_nodes",
+      "omitted_node_fraction",
+      "inputs"
+    ],
+    "nerl": 0.5238821980488535
+  }
+}

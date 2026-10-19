@@ -1,0 +1,79 @@
+{
+  "schema": "pathfinder-campaign-cost/v1",
+  "full_pipeline_complete": false,
+  "scope": "Campaign ledger; all historical entries included. Not completed-starter cost or measured running-job consumption.",
+  "group_totals": {
+    "settled": {
+      "jobs": 127,
+      "allocation_seconds": 1100392,
+      "gpu_seconds": 3815109,
+      "allocation_hours": 305.6644444444444,
+      "gpu_hours": 1059.7525
+    },
+    "settled:COMPLETED": {
+      "jobs": 101,
+      "allocation_seconds": 903831,
+      "gpu_seconds": 3075293,
+      "allocation_hours": 251.06416666666667,
+      "gpu_hours": 854.2480555555555
+    },
+    "settled:FAILED": {
+      "jobs": 10,
+      "allocation_seconds": 164359,
+      "gpu_seconds": 611008,
+      "allocation_hours": 45.655277777777776,
+      "gpu_hours": 169.72444444444446
+    },
+    "settled:CANCELLED": {
+      "jobs": 15,
+      "allocation_seconds": 28007,
+      "gpu_seconds": 112028,
+      "allocation_hours": 7.779722222222222,
+      "gpu_hours": 31.11888888888889
+    },
+    "settled:OUT_OF_MEMORY": {
+      "jobs": 1,
+      "allocation_seconds": 4195,
+      "gpu_seconds": 16780,
+      "allocation_hours": 1.1652777777777779,
+      "gpu_hours": 4.661111111111111
+    },
+    "reserved": {
+      "jobs": 1,
+      "allocation_seconds": 600,
+      "gpu_seconds": 600,
+      "allocation_hours": 0.16666666666666666,
+      "gpu_hours": 0.16666666666666666
+    },
+    "reserved:SUBMITTED": {
+      "jobs": 1,
+      "allocation_seconds": 600,
+      "gpu_seconds": 600,
+      "allocation_hours": 0.16666666666666666,
+      "gpu_hours": 0.16666666666666666
+    }
+  },
+  "combined": {
+    "allocation_seconds": 1100992,
+    "gpu_seconds": 3815709,
+    "allocation_hours": 305.8311111111111,
+    "gpu_hours": 1059.9191666666666
+  },
+  "limits_as_recorded": {
+    "bytes": 200000000000,
+    "allocation_seconds": 1620000,
+    "gpu_seconds": 5400000,
+    "concurrent_gpus": 40
+  },
+  "limitations": [
+    "Reserved rows are maximum accounting reservations, not observed running or queued resources.",
+    "Settled failure groups may contain scientifically reusable partial artifacts; their entire cost is retained.",
+    "Successful scheduler state is not proof of successful scientific evaluation.",
+    "Ledger disk field and limits do not establish actual peak or final delivered-starter disk."
+  ],
+  "timestamp_utc": "2026-10-04T12:27:22.904489+00:00",
+  "ledger": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/budget.json",
+  "ledger_sha256": "bc286d3d7192805d8dc956a6c5cdb28091ce6883172bf441a96178adbd5b0ef8",
+  "full_report_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/cost-report-20261004T1228.json",
+  "full_report_sha256": "0d4392a2587c7daf7221577f988e46ab9e1ef728a6efde71c5e93fd2e049a951"
+}

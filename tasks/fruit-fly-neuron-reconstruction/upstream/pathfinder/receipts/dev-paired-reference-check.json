@@ -1,0 +1,56 @@
+{
+  "reference": {
+    "stage": "PATHFINDER",
+    "nerl": 0.942,
+    "split_errors": 2862,
+    "merge_errors": 702
+  },
+  "local": {
+    "nerl": 0.5238821980488535,
+    "split_errors": 12,
+    "merge_errors": 0
+  },
+  "directly_comparable": false,
+  "numeric_gap": null,
+  "reasons": [
+    "Paper dataset bytes, ROI and GT membership not pinned",
+    "Official skeleton/evaluation numerical parity not established"
+  ],
+  "local_protocol": "local-funlib-erl/v1",
+  "local_dataset": null,
+  "local_change": {
+    "metrics": {
+      "nerl": {
+        "before": 0.5238821980488535,
+        "after": 0.5238821980488535,
+        "delta": 0.0
+      },
+      "erl_nm": {
+        "before": 1827.744918583334,
+        "after": 1827.744918583334,
+        "delta": 0.0
+      },
+      "split_errors": {
+        "before": 12,
+        "after": 12,
+        "delta": 0
+      },
+      "merge_errors": {
+        "before": 0,
+        "after": 0,
+        "delta": 0
+      },
+      "omitted_node_fraction": {
+        "before": 0.03786008230452675,
+        "after": 0.03786008230452675,
+        "delta": 0.0
+      }
+    },
+    "identical_prediction_bytes": true,
+    "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+  },
+  "interpretation": "Paper reference only; local numbers are not a measured PATHFINDER gap",
+  "reference_sha256": "6c4449c1116ebfcbb501f21cfb6f98faa6110e8f117598b42ee76fe25b4bad01",
+  "result_sha256": "731de3231898a9e3c1f32080199697e8c2f7b530cb84f6c0c943cfe6c7e25576",
+  "before_sha256": "731de3231898a9e3c1f32080199697e8c2f7b530cb84f6c0c943cfe6c7e25576"
+}

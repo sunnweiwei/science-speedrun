@@ -1,0 +1,248 @@
+{
+  "timestamp_utc": "2026-10-03T23:27:23.393892+00:00",
+  "accepted_windows": [
+    125,
+    125,
+    115,
+    88,
+    125,
+    125
+  ],
+  "total": 703,
+  "full_members": [
+    0,
+    1,
+    4,
+    5
+  ],
+  "running_gpus": 12,
+  "pending_gpus": 4,
+  "new_job_id": "90000195",
+  "remaining_pending_job": "90000188",
+  "settled_gpuh": 977.5608333333333,
+  "settled_allocationh": 265.6119444444444,
+  "reserved_inclusive_gpuh": 1257.5608333333332,
+  "reserved_inclusive_allocationh": 409.6119444444444,
+  "downstream_hold_gpuh": 37,
+  "downstream_hold_allocationh": 9.25,
+  "limits": {
+    "bytes": 200000000000,
+    "allocation_seconds": 1620000,
+    "gpu_seconds": 5400000,
+    "concurrent_gpus": 40
+  },
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/a6000-triple-submitted.json": {
+      "sha256": "1be22485f8ebe7ceb05ebd951f7b144b8f1424725597ce961dd4623ad0b274e9",
+      "content": {
+        "old_job_id": "90000187",
+        "old_base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-09-m3",
+        "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-16-m3-a6000",
+        "member": 3,
+        "indices": [
+          58,
+          60,
+          62,
+          63,
+          65,
+          66,
+          67,
+          68,
+          75,
+          76,
+          77,
+          78
+        ],
+        "gpus": 3,
+        "gpu_type": "a6000",
+        "minutes": 1200,
+        "old_selection_sha256": "ff3ac9a5236ac2bcb85d391c162c0cbc0bfdf97b1053d9cedfcd553a96dc9299",
+        "old_plan_sha256": "270fe614614b29b2eb6c3deb5b255cb24d946cd9241e202c3b86b8affd48c937",
+        "job_id": "90000195",
+        "plan_sha256": "8e5d8dbace7b79feef19a714afee7e7c15684a7f89d7e8d416b3c4b2d43f56c9",
+        "script_sha256": "fd26b439e011f1ef626f956d85d59ae95c939873f3ec844882b23517296cebdc",
+        "previous_ledger_sha256": "0ed87f22861456a3336f217b3b416c9f04d4565dcc6580f1474514013394d46f",
+        "new_ledger_sha256": "7038d624007d7e68bdeb5b06c219d4ea1613eb55f9b0ecbfd945383041b94dfa",
+        "full_pipeline_complete": false
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/a6000-triple-cancellation.json": {
+      "sha256": "fc173e657d9b9f52c950211aa5ef59f194e612b9a3045e5b2e6b4e3e1756cfbf",
+      "content": {
+        "stdout": "90000187|CANCELLED by 1001|0|None|\n",
+        "job_id": "90000187"
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/a6000-triple-controller-transition.json": {
+      "sha256": "e2c34591454284f6134135d7f17ae87fe4c1a7670ab01082f5d56f30016fc46b",
+      "content": {
+        "timestamp_utc": "2026-10-03T23:26:28.726795+00:00",
+        "previous_pids": [
+          455273,
+          455274
+        ],
+        "new_pids": [
+          469668,
+          469669
+        ],
+        "old_no_children_verified": true,
+        "config_sha256": "4226142da90512a67e395516e9d01c30a90bc5f18123269620502afc7f2b0862",
+        "event_source_sha256": "09d9bc86ba39b1a64b7d0e4b7ae8f85c5a301b7389c7470938a13a5064bacfac",
+        "monitor_sha256": "6bda39785f740ebdf5260313d11f675df3dd4247f1ce623486ab4af987971ec1"
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/terminal-window-audit.json": {
+      "sha256": "99f6cb72064983b27973d8822e12c3dbff6a9ce61f879541adcf3c34d16d2845",
+      "content": {
+        "job_id": "90000182",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 22837,
+        "gpu_hours": 19.030833333333334,
+        "member": 2,
+        "verified_windows": 6,
+        "complete_window_indices": [
+          52,
+          53,
+          55,
+          56,
+          57,
+          58
+        ],
+        "excluded_windows": [],
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000052/shard-0/receipt.json": "2673d1b7f0711f7d0ee7183f5d38991b6f6d8e09278a008c641b2fa401d7d605",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000053/shard-0/receipt.json": "eeeea4d8e110de8a0684cb5c7112664f560ac2faf9898cd217894bf6b20ace00",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000055/shard-0/receipt.json": "9c7ffeb4df5c4b7513ce69be89888e6a83df5d51b48e46324be72615a91e285d",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000056/shard-0/receipt.json": "ef65f73626ca4c5b0324fc423dfb29aa70d05fe6f54c8caec79bae17dbca65f8",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000057/shard-0/receipt.json": "68a7f8bc34e84aef6eb36565cfa8f125458acf8caa17e51bcf2b4f9bc476913e",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-04-m2/output/window-0000058/shard-0/receipt.json": "a859c6507f1df5e4533acbb0b82ab1613090e9dfec279782ed2e526e35d90a45"
+        },
+        "timings": [
+          {
+            "index": 52,
+            "seconds": 7224.899882881902,
+            "calls": 1228959
+          },
+          {
+            "index": 53,
+            "seconds": 4700.753575199284,
+            "calls": 799743
+          },
+          {
+            "index": 55,
+            "seconds": 10834.468154401518,
+            "calls": 1836876
+          },
+          {
+            "index": 56,
+            "seconds": 9276.353842901066,
+            "calls": 1564701
+          },
+          {
+            "index": 57,
+            "seconds": 5072.443267157301,
+            "calls": 854651
+          },
+          {
+            "index": 58,
+            "seconds": 11874.682899345644,
+            "calls": 1992680
+          }
+        ],
+        "selection_complete": true,
+        "full_member_complete": false,
+        "full_pipeline_complete": false,
+        "plan_sha256": "737630bb0e6af0135302c83ca0ea0ab74850ccdda95ffecc4549e14932e55191",
+        "start_sha256": "05d9d864ebe398080d3b2f7283adc1a225e9628827cd1592ce4cacea953987cc",
+        "trusted_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+        "auditor_sha256": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+        "cache_validator_sha256": "62d0330142583eac8af535cf0d649f64d662921ca75ff5ea7fd4f0745bafe521",
+        "scope": "Only individually complete verified windows from a terminal original allocation; partial method is never full-member acceptance"
+      }
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/terminal-window-audit.json": {
+      "sha256": "19385518e4f790a1a48be2847d1aa82fba59a8f1ff5fe041315e6b8b490b1713",
+      "content": {
+        "job_id": "90000184",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 19568,
+        "gpu_hours": 21.74222222222222,
+        "member": 2,
+        "verified_windows": 8,
+        "complete_window_indices": [
+          76,
+          77,
+          78,
+          80,
+          81,
+          82,
+          83,
+          85
+        ],
+        "excluded_windows": [],
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000076/shard-0/receipt.json": "89101749e6947e88f481a25691c33f6f53b5e048cadee4680630dd6fa00f7b90",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000077/shard-0/receipt.json": "835f5c6253ea8f44f8309af3599dd025843fe5f5e3cbdd87766df3d455e32d76",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000078/shard-0/receipt.json": "58983ac0f053ae0610bf450c37e3d4cca6f725d96e0e5094459157e285abfdde",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000080/shard-0/receipt.json": "06eafc7e6982c6ebc7c1e2df361cec0ddf8d99e35f305e3ee4f051c23c8409a6",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000081/shard-0/receipt.json": "ca7eaeff4b010d25ea2c8fd70f0b3579c9b926b2798e3c75133ae59e06b86df9",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000082/shard-0/receipt.json": "67b15410fff720a41eb301edbb9f6c1cd8221b69ff2375c2479522422dfe4d5c",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000083/shard-0/receipt.json": "61c0fdca8beb12aa5e55914ffdf3cab82ce0ff0ed2e5d6e68fe0bfcfe27a1d5d",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-06-m2/output/window-0000085/shard-0/receipt.json": "27b4b0ba7a401c7fc4fcfc69fb6a9e7c3ff3d2ff06d24d2cf6fe73bf09b05281"
+        },
+        "timings": [
+          {
+            "index": 76,
+            "seconds": 4037.62345114816,
+            "calls": 574517
+          },
+          {
+            "index": 77,
+            "seconds": 4759.91094424203,
+            "calls": 668599
+          },
+          {
+            "index": 78,
+            "seconds": 5164.8544428329915,
+            "calls": 723559
+          },
+          {
+            "index": 80,
+            "seconds": 10978.396909924224,
+            "calls": 1560646
+          },
+          {
+            "index": 81,
+            "seconds": 7076.100593981333,
+            "calls": 1010955
+          },
+          {
+            "index": 82,
+            "seconds": 5267.874585673213,
+            "calls": 739571
+          },
+          {
+            "index": 83,
+            "seconds": 11453.009990889579,
+            "calls": 1595720
+          },
+          {
+            "index": 85,
+            "seconds": 9349.68983592745,
+            "calls": 1316326
+          }
+        ],
+        "selection_complete": true,
+        "full_member_complete": false,
+        "full_pipeline_complete": false,
+        "plan_sha256": "a804823c918e659ec4e850a2fc02c1d02c2c6e90e626efaefeac4a2be2fdbf24",
+        "start_sha256": "a0633f76beef24d9d64a3432b66f8640656fb911cf9bb02a9e1023847996e1f2",
+        "trusted_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+        "auditor_sha256": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+        "cache_validator_sha256": "62d0330142583eac8af535cf0d649f64d662921ca75ff5ea7fd4f0745bafe521",
+        "scope": "Only individually complete verified windows from a terminal original allocation; partial method is never full-member acceptance"
+      }
+    }
+  },
+  "full_pipeline_complete": false
+}

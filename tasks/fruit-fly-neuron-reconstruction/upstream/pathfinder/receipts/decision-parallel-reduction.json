@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "full_pipeline_complete": false,
+  "production_promoted": false,
+  "seconds": {
+    "serial": 47.2431436739862,
+    "parallel": 6.327177437022328
+  },
+  "workers": 8,
+  "pairs": 38010,
+  "all_partition_results_exact": true,
+  "scope": "10 repetitions of prior real32cube-label/synthetic-distance votes; CPU reduction only, excludes official watershed and vote extraction; not whole-volume throughput",
+  "source_sha256": {
+    "decision_spill.py": "2d4a3ce2416c970eec8cbf1f28869ca53956619bf31f5a3e50fd98b88c9c360c",
+    "decision_centroid.py": "aaa2c8a5911e08a12c9042b08f5685eb344cd37901b8b2126c93e51a0c798f83"
+  },
+  "tests_passed": 5,
+  "evidence_sha256": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/decision-parallel-audit-v1/audit.py": "335e5821b95963a6efebab90e0c5c7ebf0cfc178ce67f0a63247c719ed222141",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/decision-parallel-audit-v1/result.json": "0c6c196f4df4a889dc6f9fa8b23dafaa5f15aa145017274e0c96693ebfbd464b",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/decision-parallel-audit-v1/resources.txt": "b275d3658f9701d852e3a9b780f005efbf324a2c527cc70b72e2a5572d5d576d"
+  },
+  "remaining": [
+    "Parallel vote extraction remains unimplemented",
+    "No change to running frozen recovery source",
+    "New production admission and full-scale resource validation required"
+  ]
+}

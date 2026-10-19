@@ -1,0 +1,11 @@
+{
+  "scope": "Synthetic fully scored chain; correctness/scaling only, not learned-model performance",
+  "nodes": 10000,
+  "eligible_edges": 9999,
+  "motifs": 29994,
+  "elapsed_seconds": 0.6349201519042253,
+  "python_peak_bytes": 7098416,
+  "retained_edges": 9999,
+  "checks": 159969,
+  "check_budget_rejections": 0
+}

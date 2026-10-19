@@ -1,0 +1,18 @@
+{
+  "schema": "pathfinder-model-isolation-cpu-check/v1",
+  "source_commit": "a66fd84",
+  "job_id": 90000030,
+  "state": "COMPLETED",
+  "elapsed_seconds": 55,
+  "allocated_cpus": 2,
+  "allocated_gpus": 0,
+  "test_count": 90,
+  "test_seconds": 45.2,
+  "tests_skipped": 0,
+  "scope": "Host CPU regressions plus actual Apptainer narrow-file-mount probe; sibling GT file invisible, input readable, output writable",
+  "image": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/images/pathfinder-native-v1.sif",
+  "log_sha256": "d9f9715f12a9da6f90f28ec9e977778c2ab40d43dde9df22b61d2a4abe79283a",
+  "gpu_forward_verified": false,
+  "full_model_replay_verified": false,
+  "live_scientific_jobs_changed": false
+}

@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "f06195e07cd867691413c7f41b8366c2b52dcc8db95cc9a5a594aaaf22933d16",
+  "raw_sha256": "579f386f61576424f31d7d44c8add134e33c3a8654cef1e6fe9dc91e78ef02db",
+  "roi": [
+    100,
+    120,
+    192,
+    212,
+    192,
+    212
+  ],
+  "seconds": 1.550289603881538,
+  "calls": 20,
+  "objects": 0,
+  "seed_count": 112,
+  "budget_exhausted": true,
+  "omitted_voxel_fraction": 1.0,
+  "ground_truth_used": false,
+  "consensus": false,
+  "paper_comparable": false
+}

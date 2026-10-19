@@ -1,0 +1,62 @@
+{
+  "schema": "pathfinder-random-start-multiblock/v1",
+  "timestamp": "2026-10-06T07:10:27.975075+00:00",
+  "initialization": "random",
+  "ffn_policy_from_first_update": "production",
+  "legacy_warmup": false,
+  "checkpoint_step": 5800,
+  "checkpoint_sha256": "3751480534b5aa52e824e330cd5f528e6c84097aa8d1793f3376d8468d59f8e4",
+  "evaluation_job_id": "90000241",
+  "complete": true,
+  "untruncated_windows": 8,
+  "inference_ground_truth_used": false,
+  "test_used": false,
+  "same_checkpoint_single_nerl": 0.01719379731410118,
+  "multi_window_zero_nerl": 0.01719379731410118,
+  "candidate_aggregate": {
+    "nerl": 0.007877259621245324,
+    "erl_nm": 91.95394693666408,
+    "omitted_node_fraction": 0.349721706864564,
+    "split_errors": 18272,
+    "merge_errors": 2607,
+    "sampled_nodes": 548702,
+    "maximum_erl_nm": 11673.342172023904
+  },
+  "reference_aggregate": {
+    "nerl": 0.03501705842425371,
+    "erl_nm": 408.76610484406575,
+    "omitted_node_fraction": 0.5226151900302897,
+    "split_errors": 5875,
+    "merge_errors": 549,
+    "sampled_nodes": 548702,
+    "maximum_erl_nm": 11673.342172023904
+  },
+  "baseline_fraction": 0.22495492127886252,
+  "window_nerls": [
+    0.01719379731410118,
+    0.011991076004187275,
+    0.017084586276065204,
+    0.01996801230215481,
+    0.01643917786815626,
+    0.02088534091623428,
+    0.014714753983983538,
+    0.017157974855810137
+  ],
+  "aggregation": "Aggregate is recomputed on the complete original 512-cube reference graph, not averaged block nERL",
+  "wall_seconds": 5396.091651552357,
+  "allocation_gpus": 4,
+  "slurm_elapsed_seconds": 5400,
+  "observed_evaluation_gpu_hours": 6.0,
+  "plan_sha256": "904dcd5af213b1a2ce0bf03952e895e7d9d6a2d860a275d9a53ba2ac497ef618",
+  "result_sha256": "008c4f6a467865a64e7d173ecd8ac6fd9798cfac30f5be5448b15b2e424dc075",
+  "inference_manifest_sha256": "394cbc562f26f2c9575ed237ba81acf3acbcffa63dba97ba4102c6a550af62b1",
+  "shard_receipt_sha256": [
+    "272cbc6c4a62c6f1001e59def82eead936c8b8998ecd608b195bf143bf760e8b",
+    "b8d2a33691a83eb6ec007bf58215c929b7659ee91a5b8a0631b2afada2b7bb9f",
+    "4c7b1990d1a7d1394109705bb3c8f5df4bdb0a92b71543d00bd29c791ee06068",
+    "05970873e0d1f694a979376c66f4cc7368c8d1e52e812b078cb329969f642ed4"
+  ],
+  "audit_script_sha256": "ad87e573a062b5f8fcc1e3870dec4f7a030841f13134adc5ea49dd36b09420c9",
+  "scope": "Fixed visible validation, original512-cube graph; not full125, private test, downstream SENSE/SHAPE or container acceptance",
+  "selection_status": "Complete reconstruction flow verified; substantial quality gap remains. Not final starter selection; stronger late checkpoint and bounded schedules pending."
+}

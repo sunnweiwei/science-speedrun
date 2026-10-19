@@ -1,0 +1,192 @@
+{
+  "scope": "Prepared evaluation references and native input grid only; model quality pending",
+  "regions": [
+    {
+      "region": "malecns-transfer-r1",
+      "preparation_receipt_sha256": "81ad58078e8055f06c6517bef32d13e099c7d841ac325031340f3329cf071a9e",
+      "gt_instances": 10123,
+      "represented_instances": 10080,
+      "nodes": 555127,
+      "edges": 542507,
+      "labels_sha256": "4b16abcf7f49120b39c26a4dd33e5f82d263ddd462d8871c0231821489853445",
+      "suite_sha256": "4992bc4a9d3b092d199f570e998a14212a2e20a8c0a55022c79ebe434bccb360",
+      "missing_instance_count": 43
+    },
+    {
+      "region": "malecns-transfer-r2",
+      "preparation_receipt_sha256": "18e5fa6baee577574f28cd8b1d5edc7228fa8bdc5ac74e2ae6f437e38d47b5d6",
+      "gt_instances": 9579,
+      "represented_instances": 9539,
+      "nodes": 548702,
+      "edges": 536338,
+      "labels_sha256": "8c9cf2a8a96ed87a849eba185726069553be47ca30c0f78b714566016a33a6bb",
+      "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+      "missing_instance_count": 40
+    },
+    {
+      "region": "malecns-transfer-r3",
+      "preparation_receipt_sha256": "26ac68de075db077d1455ac7d7916300e4ebc5f21d7a5375940dd93f9bd7e8e5",
+      "gt_instances": 5576,
+      "represented_instances": 5539,
+      "nodes": 575913,
+      "edges": 565359,
+      "labels_sha256": "18957e1d14e4e05dddec30b262dd7e715650d108c931ce2a50e85488ba779d4f",
+      "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+      "missing_instance_count": 37
+    }
+  ],
+  "self_checks": {
+    "purpose": "Reference integrity checks only; no model inference or quality claim",
+    "regions": [
+      {
+        "region": "malecns-transfer-r1",
+        "core": "512",
+        "status": "passed reference self-check",
+        "nodes": 555127,
+        "maximum_erl_nm": 12278.324565767582,
+        "total_path_length_nm": 12138050.672367096,
+        "nerl": 1.0,
+        "suite_sha256": "4992bc4a9d3b092d199f570e998a14212a2e20a8c0a55022c79ebe434bccb360",
+        "node_assignments_sha256": "306b6ad92c50aa926e83154505ccb77174336dec41ee6709ba5d74a60cfd0f66"
+      },
+      {
+        "region": "malecns-transfer-r1",
+        "core": "256",
+        "status": "passed reference self-check",
+        "nodes": 71350,
+        "maximum_erl_nm": 4762.838073712967,
+        "total_path_length_nm": 1557627.900938034,
+        "nerl": 1.0,
+        "suite_sha256": "841dae3d67b02e79f4ab33f3a16b1a5f6ab36220f3cfeb7decc72e39f77fcfbd",
+        "node_assignments_sha256": "71324fed69f427c6bc43616b8ba732e16ffb6e481660e417a6c741db7688b50e"
+      },
+      {
+        "region": "malecns-transfer-r2",
+        "core": "512",
+        "status": "passed reference self-check",
+        "nodes": 548702,
+        "maximum_erl_nm": 11673.342172023904,
+        "total_path_length_nm": 12007925.692922592,
+        "nerl": 1.0,
+        "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+        "node_assignments_sha256": "9936574016b1cef670a25c81a00e90e718a2ec19577ff93612c128876193f18e"
+      },
+      {
+        "region": "malecns-transfer-r2",
+        "core": "256",
+        "status": "passed reference self-check",
+        "nodes": 71134,
+        "maximum_erl_nm": 4062.0653724136328,
+        "total_path_length_nm": 1562431.7920360565,
+        "nerl": 1.0,
+        "suite_sha256": "9371bc93563251e1756dbb781d94a61780e5306dd676984487b7488dd384a1c5",
+        "node_assignments_sha256": "c2f1eb504f9e168a307946b807d9100621b3ba642010041ba11a50db20b95248"
+      },
+      {
+        "region": "malecns-transfer-r3",
+        "core": "512",
+        "status": "passed reference self-check",
+        "nodes": 575913,
+        "maximum_erl_nm": 56261.517671640206,
+        "total_path_length_nm": 12749613.377595901,
+        "nerl": 1.0,
+        "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+        "node_assignments_sha256": "6259528714ba4521d80015999e2365062dcc605afb00eb9b0bb335f45dad97f2"
+      },
+      {
+        "region": "malecns-transfer-r3",
+        "core": "256",
+        "status": "passed reference self-check",
+        "nodes": 63405,
+        "maximum_erl_nm": 8978.528194844375,
+        "total_path_length_nm": 1417836.4752025604,
+        "nerl": 1.0,
+        "suite_sha256": "d3e3da256fe537b966c4365557df76690ba054d6f964cf725417fe696e539fc4",
+        "node_assignments_sha256": "2554e3e9545bc66f9ce445cf635527cc44447c88513d2f06319e7ca662151f1f"
+      }
+    ]
+  },
+  "overlap_audit": {
+    "regions": [
+      {
+        "region": "malecns-transfer-r1",
+        "status": "ready",
+        "lineage": {
+          "parent_suite_sha256": "4992bc4a9d3b092d199f570e998a14212a2e20a8c0a55022c79ebe434bccb360",
+          "adapter_sha256": "4fc698095dfcdcc1ebbd099866426d0735baeb695e7d47d2ba99387b6e2a9168",
+          "source_nodes": 555127,
+          "retained_nodes": 71350,
+          "source_edges": 542507,
+          "retained_edges": 69183,
+          "policy": "Centered induced subgraph; no reskeletonization; preserve IDs and physical positions"
+        }
+      },
+      {
+        "region": "malecns-transfer-r2",
+        "status": "ready",
+        "lineage": {
+          "parent_suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+          "adapter_sha256": "4fc698095dfcdcc1ebbd099866426d0735baeb695e7d47d2ba99387b6e2a9168",
+          "source_nodes": 548702,
+          "retained_nodes": 71134,
+          "source_edges": 536338,
+          "retained_edges": 69095,
+          "policy": "Centered induced subgraph; no reskeletonization; preserve IDs and physical positions"
+        }
+      },
+      {
+        "region": "malecns-transfer-r3",
+        "status": "ready",
+        "lineage": {
+          "parent_suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+          "adapter_sha256": "4fc698095dfcdcc1ebbd099866426d0735baeb695e7d47d2ba99387b6e2a9168",
+          "source_nodes": 575913,
+          "retained_nodes": 63405,
+          "source_edges": 565359,
+          "retained_edges": 62342,
+          "policy": "Centered induced subgraph; no reskeletonization; preserve IDs and physical positions"
+        }
+      }
+    ],
+    "shared_represented_neuron_ids": [
+      {
+        "first": "malecns-transfer-r1",
+        "second": "malecns-transfer-r2",
+        "shared_count": 21
+      },
+      {
+        "first": "malecns-transfer-r1",
+        "second": "malecns-transfer-r3",
+        "shared_count": 0
+      },
+      {
+        "first": "malecns-transfer-r2",
+        "second": "malecns-transfer-r3",
+        "shared_count": 0
+      }
+    ],
+    "scope": "Published IDs represented in reference paths; no proof of statistical independence; no predictions inspected"
+  },
+  "first_baseline_grid": {
+    "metadata_sha256": "6a6851e565c1d87997c4049efb1e72c32f987b55699eae79af6abe621c6167ae",
+    "axes": "xyz",
+    "shape": [
+      3189,
+      3189,
+      1435
+    ],
+    "voxel_size_nm": [
+      9.0,
+      9.0,
+      20.0
+    ],
+    "native_resolution_restored": false
+  },
+  "cpu_jobs": {
+    "prepare": "90000048",
+    "scales": "90000049",
+    "native_grid": "90000050",
+    "reference_checks": "90000052"
+  },
+  "total_reference_path_mm": 36.89558974288559
+}

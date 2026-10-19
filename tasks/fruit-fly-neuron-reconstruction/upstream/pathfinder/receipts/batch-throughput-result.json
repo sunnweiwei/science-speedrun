@@ -1,0 +1,71 @@
+{
+  "job_id": "90000157",
+  "elapsed_allocation_seconds": 124,
+  "actual_gpu_hours": 0.034444444444444444,
+  "mean_model_windows_per_second": {
+    "1": 127.30851455777326,
+    "2": 135.99239909534734,
+    "4": 138.47967846773219
+  },
+  "batch4_over_batch1": 1.0877487570156934,
+  "trajectory_hashes_identical": true,
+  "partial_segmentation_hashes_identical": true,
+  "full_reconstruction_complete": false,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-throughput-v1/output/result.json": "e3aa9f6374b6801620bcd335b75d2e4b71ee4b41c8f67579604cc0c3e9813091",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-throughput-v1/output/gpu-utilization.csv": "7f823ee7e3af893125a0befff7397d48bc8cc4e62e967b0a4857899c74ae41f7"
+  },
+  "rows": [
+    {
+      "batch": 1,
+      "model_windows_per_second": 125.1165910998465,
+      "wall_seconds": 8.184366205940023,
+      "model_calls": 1024,
+      "predictor_seconds": 6.750875728903338,
+      "gpu_peak_allocated_bytes": 23566336
+    },
+    {
+      "batch": 2,
+      "model_windows_per_second": 136.52504214094637,
+      "wall_seconds": 15.000910952920094,
+      "model_calls": 2048,
+      "predictor_seconds": 12.409003175795078,
+      "gpu_peak_allocated_bytes": 42541056
+    },
+    {
+      "batch": 4,
+      "model_windows_per_second": 138.4740593737829,
+      "wall_seconds": 29.579547378933057,
+      "model_calls": 4096,
+      "predictor_seconds": 24.463037319947034,
+      "gpu_peak_allocated_bytes": 81913856
+    },
+    {
+      "batch": 4,
+      "model_windows_per_second": 138.48529756168145,
+      "wall_seconds": 29.57714697602205,
+      "model_calls": 4096,
+      "predictor_seconds": 24.443727746838704,
+      "gpu_peak_allocated_bytes": 80965120
+    },
+    {
+      "batch": 2,
+      "model_windows_per_second": 135.4597560497483,
+      "wall_seconds": 15.118881501955912,
+      "model_calls": 2048,
+      "predictor_seconds": 12.532910752343014,
+      "gpu_peak_allocated_bytes": 43488768
+    },
+    {
+      "batch": 1,
+      "model_windows_per_second": 129.5004380157,
+      "wall_seconds": 7.907309161964804,
+      "model_calls": 1024,
+      "predictor_seconds": 6.551962561206892,
+      "gpu_peak_allocated_bytes": 24038912
+    }
+  ],
+  "scope": "Six finite partial diagnostic trajectories; identical full window/checkpoint/seeds. No reconstruction output accepted. Calls/s include growth overhead; utilization samples retained.",
+  "trajectory_sha256": "cb11367572f0dffa021dbc35ab74849acdd17726c7b382153e27db4ce71f845d",
+  "partial_segmentation_sha256": "739363dbb02ac29ac6b2cb29249f055126c38f3c0c7a208c3a04db310f4a841e"
+}

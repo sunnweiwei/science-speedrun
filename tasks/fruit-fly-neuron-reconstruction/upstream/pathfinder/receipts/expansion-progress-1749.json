@@ -1,0 +1,232 @@
+{
+  "timestamp_utc": "2026-10-03T17:49:00Z",
+  "accepted_windows": [
+    125,
+    125,
+    93,
+    86,
+    125,
+    125
+  ],
+  "full_members": [
+    0,
+    1,
+    4,
+    5
+  ],
+  "full_pipeline_complete": false,
+  "scheduler": {
+    "timestamp_utc": "2026-10-03T17:49:00.188187+00:00",
+    "jobs": {
+      "90000173": {
+        "state": "FAILED",
+        "elapsed_seconds": 21742,
+        "allocation": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=128G,node=1"
+      },
+      "90000176": {
+        "state": "COMPLETED",
+        "elapsed_seconds": 8396,
+        "allocation": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=128G,node=1"
+      },
+      "90000178": {
+        "state": "RUNNING",
+        "elapsed_seconds": 8034,
+        "allocation": "billing=4,cpu=4,gres/gpu:a5000=1,gres/gpu=1,mem=32G,node=1"
+      },
+      "90000179": {
+        "state": "COMPLETED",
+        "elapsed_seconds": 7795,
+        "allocation": "billing=4,cpu=4,gres/gpu:a5000=1,gres/gpu=1,mem=32G,node=1"
+      },
+      "90000180": {
+        "state": "RUNNING",
+        "elapsed_seconds": 8034,
+        "allocation": "billing=4,cpu=4,gres/gpu:a5000=1,gres/gpu=1,mem=32G,node=1"
+      },
+      "90000181": {
+        "state": "COMPLETED",
+        "elapsed_seconds": 6418,
+        "allocation": "billing=4,cpu=4,gres/gpu:a5000=1,gres/gpu=1,mem=32G,node=1"
+      },
+      "90000182": {
+        "state": "RUNNING",
+        "elapsed_seconds": 3501,
+        "allocation": "billing=12,cpu=12,gres/gpu:a6000=3,gres/gpu=3,mem=96G,node=1"
+      },
+      "90000183": {
+        "state": "RUNNING",
+        "elapsed_seconds": 7644,
+        "allocation": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=128G,node=1"
+      },
+      "90000184": {
+        "state": "RUNNING",
+        "elapsed_seconds": 1564,
+        "allocation": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=128G,node=1"
+      },
+      "90000185": {
+        "state": "PENDING",
+        "elapsed_seconds": 0,
+        "allocation": ""
+      },
+      "90000186": {
+        "state": "PENDING",
+        "elapsed_seconds": 0,
+        "allocation": ""
+      },
+      "90000187": {
+        "state": "PENDING",
+        "elapsed_seconds": 0,
+        "allocation": ""
+      },
+      "90000188": {
+        "state": "PENDING",
+        "elapsed_seconds": 0,
+        "allocation": ""
+      },
+      "90000190": {
+        "state": "PENDING",
+        "elapsed_seconds": 0,
+        "allocation": ""
+      }
+    }
+  },
+  "running_gpus": 13,
+  "pending_gpus": 17,
+  "audits": [
+    {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-01-m3/terminal-window-audit.json",
+      "sha256": "6f7157663e3f688b0084326c75de68842e16c24b45ee73461735e118ca4ff365",
+      "result": {
+        "job_id": "90000179",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 7795,
+        "gpu_hours": 2.165277777777778,
+        "member": 3,
+        "verified_windows": 1,
+        "complete_window_indices": [
+          32
+        ],
+        "excluded_windows": [],
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-01-m3/output/window-0000032/shard-0/receipt.json": "505dbb93ee8a26cccc5da3ca43b25b0176dc54f376de83aaa15e35ddd0a82cb8"
+        },
+        "timings": [
+          {
+            "index": 32,
+            "seconds": 7731.478186395019,
+            "calls": 1082975
+          }
+        ],
+        "selection_complete": true,
+        "full_member_complete": false,
+        "full_pipeline_complete": false,
+        "plan_sha256": "0e81f0f9b9637c0d016ae74eefda81e5697cbf498f9bbd010504dc30b74be794",
+        "start_sha256": "402b6d753d2994a8bb644c7057bab985b5496bb0e9fb7226a556740a254c1d5d",
+        "trusted_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+        "auditor_sha256": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+        "cache_validator_sha256": "62d0330142583eac8af535cf0d649f64d662921ca75ff5ea7fd4f0745bafe521",
+        "scope": "Only individually complete verified windows from a terminal original allocation; partial method is never full-member acceptance"
+      }
+    },
+    {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-03-m3/terminal-window-audit.json",
+      "sha256": "056fbf0f846bc999d9aab8157fbacf288095bbf628dc8d6ca39ad7728c5ac8bd",
+      "result": {
+        "job_id": "90000181",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 6418,
+        "gpu_hours": 1.7827777777777778,
+        "member": 3,
+        "verified_windows": 1,
+        "complete_window_indices": [
+          35
+        ],
+        "excluded_windows": [],
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-03-m3/output/window-0000035/shard-0/receipt.json": "a0e556a1944fbb1fc6432f3781b924e94bc71e9acec9e3a924299e9629f8cc45"
+        },
+        "timings": [
+          {
+            "index": 35,
+            "seconds": 6357.486362229101,
+            "calls": 903157
+          }
+        ],
+        "selection_complete": true,
+        "full_member_complete": false,
+        "full_pipeline_complete": false,
+        "plan_sha256": "f2c356f8465204d641dacdd0b315e4226d772a30b2c3e6440f9f17c6b079818c",
+        "start_sha256": "e8f1a8c16c7e8d39e6f4d76bdd6e072e01b752bc6971c949b63877ae2eb135b9",
+        "trusted_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+        "auditor_sha256": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+        "cache_validator_sha256": "62d0330142583eac8af535cf0d649f64d662921ca75ff5ea7fd4f0745bafe521",
+        "scope": "Only individually complete verified windows from a terminal original allocation; partial method is never full-member acceptance"
+      }
+    },
+    {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave4/terminal-window-audit.json",
+      "sha256": "5990642329a8b599b2e1166f69819253765e31832311c9c6a087991fa44893e9",
+      "result": {
+        "job_id": "90000176",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 8396,
+        "gpu_hours": 9.328888888888889,
+        "member": 2,
+        "verified_windows": 4,
+        "complete_window_indices": [
+          42,
+          43,
+          50,
+          51
+        ],
+        "excluded_windows": [],
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave4/output/window-0000042/shard-0/receipt.json": "af1cbb197dd863cf16c26340d7263aaf15ec8daced505e5a89928f9c6e8b9f87",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave4/output/window-0000043/shard-0/receipt.json": "a112ae02dfa3e0846804ecddd4579af36fe945db1674588cb969eb85ebc00517",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave4/output/window-0000050/shard-0/receipt.json": "b94780215ab283fbf4acdf9805cabe3ed7c1aa8bfc48fe8e98b117fe93898d88",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave4/output/window-0000051/shard-0/receipt.json": "ee9e1d819cbe0422b6a36047a91b7693696be29c7e3351cbf585b30f45df781b"
+        },
+        "timings": [
+          {
+            "index": 42,
+            "seconds": 5509.6057757483795,
+            "calls": 758626
+          },
+          {
+            "index": 43,
+            "seconds": 7274.784815263003,
+            "calls": 1001852
+          },
+          {
+            "index": 50,
+            "seconds": 6460.912553480826,
+            "calls": 894108
+          },
+          {
+            "index": 51,
+            "seconds": 8315.916517717764,
+            "calls": 1162725
+          }
+        ],
+        "selection_complete": true,
+        "full_member_complete": false,
+        "full_pipeline_complete": false,
+        "plan_sha256": "d5ca2e764366b408675b28ff8f7ff9ec5a9bed6c2a74a65125490773bc54aa1d",
+        "start_sha256": "19cdf235a139b9cef50807fa5f52401fd052606024d89c48d3543f7ad38915ba",
+        "trusted_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+        "auditor_sha256": "112c8bfe7f1a1bcefd54366c5c0b479323fe48288cb8a3a19def7153ae7ef0f3",
+        "cache_validator_sha256": "62d0330142583eac8af535cf0d649f64d662921ca75ff5ea7fd4f0745bafe521",
+        "scope": "Only individually complete verified windows from a terminal original allocation; partial method is never full-member acceptance"
+      }
+    }
+  ],
+  "cost": {
+    "settled_gpuh": 912.97,
+    "settled_allocationh": 242.24416666666667,
+    "charged_and_reserved_gpuh": 1360.97,
+    "charged_and_reserved_allocationh": 378.2441666666667,
+    "downstream_hold_gpuh": 37,
+    "downstream_hold_allocationh": 9.25
+  },
+  "ledger_sha256": "9c73e24995333bf45f4b44606ef8fdff19af4a4ab9f163eaced184839458cb7d"
+}

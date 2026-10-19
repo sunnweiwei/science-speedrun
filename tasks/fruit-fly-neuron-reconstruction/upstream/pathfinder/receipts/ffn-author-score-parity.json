@@ -1,0 +1,14 @@
+{
+  "schema": "ffn-author-score-parity/v1",
+  "fixtures": 64,
+  "max_absolute_difference": 0.0,
+  "passed": true,
+  "author_source_sha256": "fe8852c4ecb369b4cedccde3b3cd4c8c1436d971e483bb916da73e0527f023a0",
+  "local_source_sha256": "86768a3ad7f50d32e8e264a0350d8c32a37846829b46844c5bb6e8cfba894cad",
+  "functions": [
+    "compute_iou",
+    "evaluate_segmentation_result"
+  ],
+  "scope": "Exact author numerical function bodies only, loaded via AST because module imports google3; no model execution or inference bit-parity claim",
+  "audit_script_sha256": "938d5529eeb0739b0f86d0a9c564f07bb52f21574581dfb2d3f1b9b1d7cb7117"
+}

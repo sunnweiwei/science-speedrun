@@ -1,0 +1,123 @@
+{
+  "timestamp_utc": "2026-10-04T06:12:45.853535+00:00",
+  "member": 3,
+  "full_member_complete": true,
+  "full_pipeline_complete": false,
+  "pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+  "verified_windows": 125,
+  "phase_receipts": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-3-infer-phase.json": "bfa0a25d5c507f10587a9fb137dea46b2e0dc76bd71acadff530b1b1f69345e6",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-3-pack-phase.json": "b6b1c1889f6e273375033f76a1bc800219b0860a1dac0060ecc44ee21b7bd404",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/member-3-retire-phase.json": "3b37ec552fd8525dbd258b63692ed6d01a9fccec766676988e68c87e2b7e783f"
+  },
+  "verified_file_hashes": 1166,
+  "retained_hashes": 1151,
+  "archive_bytes": 1558757299,
+  "decoded_npy_bytes": 21881531040,
+  "decoded_npy_sha256": "7a0e7e40ea7fa4e2b3410ccb43a3dc1b792a92f58a400b3cbe4592de338cb178",
+  "shape": [
+    1762,
+    1762,
+    1762
+  ],
+  "dtype": "uint32",
+  "released_original_npy_bytes": 21881531040,
+  "resources": {
+    "infer": {
+      "wall": "2:51.87",
+      "max_rss_kib": 525428,
+      "sha256": "8eb1ca603cc6d610db2f9c4a0089bcf4df9a62a9b7742ba2c912589b8b75ea76"
+    },
+    "pack": {
+      "wall": "50:15.06",
+      "max_rss_kib": 24026904,
+      "sha256": "ca297962cd11eaf7c55eac9ee12b4131c9187bad4c44b8d92d7ee913584e34cf"
+    },
+    "retire": {
+      "wall": "3:48.64",
+      "max_rss_kib": 44735456,
+      "sha256": "c07186d27a17206c7aca242a8cc9177c46f680a4ee5c1c3edb364aa8c9b5c8c7"
+    }
+  },
+  "audit_seconds": 88.1550416033715,
+  "auditor_sha256": "92788d837bfd6f41e9cd95f99c4e3cc5f4359604ca53ab58da189a2c47569fef",
+  "scope": "Independent read-only retained-file hashes, exact full packed NPY bytes/header, and three completed trusted CPU phases. No full-six comparison or disk-peak claim.",
+  "capacity_recovery": {
+    "complete": true,
+    "full_pipeline_complete": false,
+    "previous_pipeline_plan": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/plan.json",
+    "previous_pipeline_plan_sha256": "61b3215be5d5157b43134c4a2d288bad751bddfd970bdae1dc81c01efbf5ac9f",
+    "new_pipeline_plan": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v4/replay/prediction/plan.json",
+    "new_pipeline_plan_sha256": "533acbe4c86d56313311ec86ab5f9f49e0c53499218e3e6cb569611dd8f75da0",
+    "old_limits": {
+      "ffn_seconds": 27000,
+      "baseline_seconds": 7200,
+      "sense_seconds": 3600,
+      "shape_seconds": 3600,
+      "max_motifs": 65536,
+      "window_bytes": 600000000,
+      "packed_bytes": 2000000000,
+      "memory_gib": 704,
+      "max_pairs": 10000000,
+      "max_instances": 64000000,
+      "min_size": 0
+    },
+    "new_limits": {
+      "ffn_seconds": 27000,
+      "baseline_seconds": 7200,
+      "sense_seconds": 3600,
+      "shape_seconds": 3600,
+      "max_motifs": 65536,
+      "window_bytes": 600000000,
+      "packed_bytes": 2000000000,
+      "memory_gib": 704,
+      "max_pairs": 48000000,
+      "max_instances": 64000000,
+      "min_size": 0
+    },
+    "only_changed_limit": "max_pairs",
+    "conservative_consensus_memory_bytes": 94473490016,
+    "unchanged_memory_gib": 704,
+    "all_six_direct_members_adopted": true,
+    "failed_attempt_retained": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/consensus",
+    "scientific_rules_unchanged": true
+  },
+  "controller_transition": {
+    "timestamp_utc": "2026-10-04T06:18:55.543326+00:00",
+    "replaces_failed_cpu": 418830,
+    "stopped_waiters": [
+      419459,
+      419804
+    ],
+    "new_processes": {
+      "cpu": 947266,
+      "gpu_submission": 947267,
+      "final_score": 947269
+    },
+    "old_failure_preserved": true,
+    "old_gpu_submissions": [],
+    "full_pipeline_complete": false
+  },
+  "failure_evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/downstream-cpu-failure.json": {
+      "sha256": "d94823ddbe96202c8f9043d16bcaf20623af1a8e1e414926b3d23f4f87d73453",
+      "content": "{\n  \"error\": \"CalledProcessError(1, ['/usr/bin/time', '-v', '-o', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/downstream-consensus.resources.txt', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python', '-B', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/ensemble_pipeline.py', 'consensus', '--root', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1', '--run', '/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction'])\",\n  \"timestamp_utc\": \"2026-10-04T06:11:14.216850+00:00\",\n  \"full_pipeline_complete\": false\n}\n"
+    },
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/replay/prediction/consensus-0.log": {
+      "sha256": "3545873a9b08996332cf462ae1688e0dac8fea2a7bbdbe0781a2414c26aaa597",
+      "content": "Traceback (most recent call last):\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/consensus_stitched.py\", line 130, in <module>\n    a=p.parse_args();print(json.dumps(run(a.spec,a.root,a.output,a.min_size,a.memory_gib,a.slab_depth,a.max_pairs,a.model_package),indent=2))\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/consensus_stitched.py\", line 105, in run\n    else:stages.append(intersect_inplace(dest,incoming,min_size,slab_depth,max_pairs,kernel_bytes/2**30))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/trusted-source/pathfinder/global_consensus.py\", line 37, in intersect_inplace\n    if key not in counts and len(counts)>=max_pairs:raise ValueError('Global pair table exceeds declared bound; input unchanged')\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Global pair table exceeds declared bound; input unchanged\n"
+    }
+  },
+  "initialization_failures": [
+    {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v2",
+      "reason": "1 billion shared pair bound exceeds downstream watershed memory preflight; no consensus launched"
+    },
+    {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/consensus-capacity-v3",
+      "reason": "Missing existing runtime support PYTHONPATH; no consensus launched"
+    }
+  ],
+  "all_windows": 750,
+  "all_members_independently_audited": 6
+}

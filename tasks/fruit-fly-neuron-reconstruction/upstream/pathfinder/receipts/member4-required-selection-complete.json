@@ -1,0 +1,725 @@
+{
+  "full_pipeline_complete": false,
+  "completed_selection": {
+    "job_id": "90000160",
+    "slurm_state": "COMPLETED",
+    "allocation_seconds": 6599,
+    "gpu_hours": 7.332222222222223,
+    "verified_windows": 65,
+    "regular_windows": 4,
+    "thin_windows": 61,
+    "full_member_complete": false,
+    "complete_window_indices": [
+      0,
+      4,
+      9,
+      14,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      29,
+      31,
+      34,
+      36,
+      39,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      54,
+      59,
+      61,
+      64,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      79,
+      84,
+      89,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124
+    ],
+    "plan_sha256": "8984565f85e9e61c608ac061d93b7e9a5802458f58026ce73a55d75119cd7379",
+    "completion_sha256": "34b36f4cc2434aefbac72fc7bdd5e8eac79bcf9bd0e966755e67ebce83b2b894",
+    "receipts": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-0/receipt.json": "43132421662de4cf2663c74d849e1bbf705d63741ae7b45d83833b842dbe8315",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-1/receipt.json": "876569e15c82c4e21bad53477c2ae72a878cd92bfdf55641974eff8d5341de74",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-2/receipt.json": "5cb6c7e16027936158dc54f88f444fa181d14193b6c69d0cfc7f12a8698b024a",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/output/shard-3/receipt.json": "fd8d68b9a15e939dcee541be1086b05ad44d1be10e14f4c62253d6d76699cb2a"
+    },
+    "verification_seconds": 23.126120234839618
+  },
+  "next_job": {
+    "job_id": "90000163",
+    "reserved_seconds": 28800,
+    "gpus": 4,
+    "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/run.sbatch",
+    "script_sha256": "67bf1ecbaab29e50533142cde26a7481ef9baac4811bab5c8d8a886509e20c1f",
+    "gpu_type": "a5000",
+    "state": "SUBMITTED"
+  },
+  "next_member": 4,
+  "next_window_count": 20,
+  "charged_or_reserved_gpu_hours": 789.7022222222222,
+  "charged_or_reserved_allocation_hours": 208.67555555555555,
+  "held_downstream_gpu_hours": 37,
+  "held_downstream_allocation_hours": 9.25,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/integrity-audit.json": "698d9f792e698c77e024757b4e4e8e14644acae16a8c57b2b32deaa98cdcb428",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/plan.json": "54c7701e12c90f973e106418472ded78f0e0fbebe843c1f1186be7517ded478b",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/selection.json": "5ce812d565180206273769957f44fe3c849dd29fd481b2928a373f2417d07202",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/run.sbatch": "67bf1ecbaab29e50533142cde26a7481ef9baac4811bab5c8d8a886509e20c1f"
+  },
+  "later_verified_selections": [
+    {
+      "full_pipeline_complete": false,
+      "completed_selection": {
+        "job_id": "90000163",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 12919,
+        "gpu_hours": 14.354444444444445,
+        "verified_windows": 20,
+        "full_member_complete": false,
+        "complete_window_indices": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          25,
+          26,
+          27,
+          28,
+          30
+        ],
+        "timings": [
+          {
+            "indices": [
+              1,
+              6,
+              16,
+              25,
+              26
+            ],
+            "seconds": 10846.390608301386,
+            "calls": 1421883
+          },
+          {
+            "indices": [
+              2,
+              3,
+              7,
+              17,
+              27
+            ],
+            "seconds": 10102.092449442483,
+            "calls": 1298532
+          },
+          {
+            "indices": [
+              5,
+              11,
+              15,
+              28,
+              30
+            ],
+            "seconds": 12037.055847482756,
+            "calls": 1578740
+          },
+          {
+            "indices": [
+              8,
+              10,
+              12,
+              13,
+              18
+            ],
+            "seconds": 12842.589054958895,
+            "calls": 1715116
+          }
+        ],
+        "plan_sha256": "54c7701e12c90f973e106418472ded78f0e0fbebe843c1f1186be7517ded478b",
+        "completion_sha256": "12a7c423985c6e54b34581f655a3a09031ec81770062ff72e6ac73ef3fe9cf37",
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-0/receipt.json": "229dbfb679b0f905b2d1052aa28aaa44cc43ea20f2ccef868f766071fe48e866",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-1/receipt.json": "f1da83285a32d47c5e183ec690f159d3e4ee96dac08b0b767ed9a0cd4b9e85b7",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-2/receipt.json": "5b6422f4e6efe93e7519a311f3077909f636e56363e34fb84002e7bb126427ac",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/output/shard-3/receipt.json": "c00de08580b5df0165e5c19e42cb66929e000c995c13b1cc45268e3111fd9967"
+        },
+        "auditor_sha256": "65d55d88e41781bc4a265552426880db087e4882533be3a067cb480a25233a66"
+      },
+      "accepted_member_windows": 85,
+      "next_job": {
+        "job_id": "90000167",
+        "reserved_seconds": 28800,
+        "gpus": 4,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/run.sbatch",
+        "script_sha256": "ee21475c56bb44ea29ddb1313a896581e54ac7ec955eb5199ec14c17a88bd7a6",
+        "gpu_type": "a5000",
+        "state": "SUBMITTED"
+      },
+      "next_window_count": 24,
+      "minimum_window_seconds": 7200,
+      "charged_or_reserved_gpu_hours": 830.7575,
+      "charged_or_reserved_allocation_hours": 220.2111111111111,
+      "held_downstream_gpu_hours": 37,
+      "held_downstream_allocation_hours": 9.25,
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/integrity-audit.json": "8328e3e7b442d656e007cdd5311a3d35a70781fd6daf41fb685b9a97d06776ef",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/plan.json": "0f650ab9186d587bd1fe923da9f667838c34d5c3783041c6fffa96b9206268c0",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/selection.json": "b2bba2a37553b40789791edb0958b81f1e1045c5ed9a956a72fa266ca585a5a3",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/run.sbatch": "ee21475c56bb44ea29ddb1313a896581e54ac7ec955eb5199ec14c17a88bd7a6",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/audit_completed_selection.py": "65d55d88e41781bc4a265552426880db087e4882533be3a067cb480a25233a66"
+      }
+    },
+    {
+      "completed_selection": {
+        "job_id": "90000167",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 17215,
+        "gpu_hours": 19.127777777777776,
+        "verified_windows": 24,
+        "full_member_complete": false,
+        "complete_window_indices": [
+          32,
+          33,
+          35,
+          37,
+          38,
+          40,
+          41,
+          42,
+          43,
+          50,
+          51,
+          52,
+          53,
+          55,
+          56,
+          57,
+          58,
+          60,
+          62,
+          63,
+          65,
+          66,
+          67,
+          68
+        ],
+        "timings": [
+          {
+            "indices": [
+              32
+            ],
+            "seconds": 2442.5368492435664,
+            "calls": 320375
+          },
+          {
+            "indices": [
+              33
+            ],
+            "seconds": 2000.2896992973983,
+            "calls": 254271
+          },
+          {
+            "indices": [
+              35
+            ],
+            "seconds": 3414.1379797654226,
+            "calls": 456307
+          },
+          {
+            "indices": [
+              37
+            ],
+            "seconds": 4373.828922732733,
+            "calls": 587840
+          },
+          {
+            "indices": [
+              38
+            ],
+            "seconds": 3026.834164204076,
+            "calls": 394356
+          },
+          {
+            "indices": [
+              40
+            ],
+            "seconds": 2081.6811449425295,
+            "calls": 272084
+          },
+          {
+            "indices": [
+              41
+            ],
+            "seconds": 2814.643887452781,
+            "calls": 370034
+          },
+          {
+            "indices": [
+              42
+            ],
+            "seconds": 2832.110510208644,
+            "calls": 374679
+          },
+          {
+            "indices": [
+              43
+            ],
+            "seconds": 2146.3231923012063,
+            "calls": 278656
+          },
+          {
+            "indices": [
+              50
+            ],
+            "seconds": 2599.4602853134274,
+            "calls": 344841
+          },
+          {
+            "indices": [
+              51
+            ],
+            "seconds": 1772.4347078893334,
+            "calls": 223138
+          },
+          {
+            "indices": [
+              52
+            ],
+            "seconds": 1937.2311353413388,
+            "calls": 247117
+          },
+          {
+            "indices": [
+              53
+            ],
+            "seconds": 1679.548975055106,
+            "calls": 216438
+          },
+          {
+            "indices": [
+              55
+            ],
+            "seconds": 2227.345487648621,
+            "calls": 287052
+          },
+          {
+            "indices": [
+              56
+            ],
+            "seconds": 2708.6512663979083,
+            "calls": 356042
+          },
+          {
+            "indices": [
+              57
+            ],
+            "seconds": 2848.1569745503366,
+            "calls": 377264
+          },
+          {
+            "indices": [
+              58
+            ],
+            "seconds": 2359.931753263809,
+            "calls": 309718
+          },
+          {
+            "indices": [
+              60
+            ],
+            "seconds": 3243.469412377104,
+            "calls": 427556
+          },
+          {
+            "indices": [
+              62
+            ],
+            "seconds": 4440.226674796082,
+            "calls": 588773
+          },
+          {
+            "indices": [
+              63
+            ],
+            "seconds": 3190.8928035385907,
+            "calls": 423772
+          },
+          {
+            "indices": [
+              65
+            ],
+            "seconds": 2326.0827961163595,
+            "calls": 306119
+          },
+          {
+            "indices": [
+              66
+            ],
+            "seconds": 3200.5514953117818,
+            "calls": 418512
+          },
+          {
+            "indices": [
+              67
+            ],
+            "seconds": 3056.1767536774278,
+            "calls": 402675
+          },
+          {
+            "indices": [
+              68
+            ],
+            "seconds": 2276.963474000804,
+            "calls": 298409
+          }
+        ],
+        "plan_sha256": "0f650ab9186d587bd1fe923da9f667838c34d5c3783041c6fffa96b9206268c0",
+        "completion_sha256": "9576b50bf333f9414dedd45f9dc27c6a0131fb9c7db0b367c09a7f61ca9d836a",
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000032/shard-0/receipt.json": "a5c893a860872acab9bba7a505a0d301c7cbb14c554b356a67e12e4e82401124",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000033/shard-0/receipt.json": "90dfc84aff813f1998276945e4288acbe797fdca480ca4049f2a2c330d0415a0",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000035/shard-0/receipt.json": "69f8d4c39ef6fe8ae8f59bc80d0980b303172e3dcf47ba36ed92ef08db014ca1",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000037/shard-0/receipt.json": "63308c3de9ad033e0bd176791403234d42822f6b3337a37189e54d6dff75b274",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000038/shard-0/receipt.json": "5613e91576b839400fdde05ba4500a56e2974159e0736f38a3bc56adfa3891a8",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000040/shard-0/receipt.json": "133014042f8c3a35efe4a446e735eb3c5b07e33347e4f3d4a901c9dd518cd9ef",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000041/shard-0/receipt.json": "3b9d806bc37f0f9927f6be82ad723bdfbd933460fdf771915a1e8571c300fa33",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000042/shard-0/receipt.json": "5b3c607ba9a6515104244a2f0701728836be37d661eadb8d252b451785d6bf2f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000043/shard-0/receipt.json": "15dc51ce9d755e5986a192c69e5085c227fb1b962bdb9c571990504c492dc4be",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000050/shard-0/receipt.json": "16adf3c0a90042754e94b7e6450a9a8a3c06fe7ff8f214bfa3b085697ea92085",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000051/shard-0/receipt.json": "c851a7450d696d3d517e2ef4ce804dfad23208840f603b400a404881c3ce9d55",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000052/shard-0/receipt.json": "72db1dd33523dd588c82d14966d487007ccd896f2cd35cc72deb56e708ec420a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000053/shard-0/receipt.json": "3adb702cca85d2e94c856b389d1739faac515403ef1f8df29b648b845cdaf565",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000055/shard-0/receipt.json": "66f378a83c44655d79a74b28df113a8431a5adeb0e6773cfb3f1c68a18e123b9",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000056/shard-0/receipt.json": "3a1b6b37e276bbacff5b5a7473c267e5592eca7ae048e3b651bd4f012d1dd1ed",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000057/shard-0/receipt.json": "84aeb6e114031cc0d7603f2df7fcd0019619d91cfa27548fd0e74dad63663c4f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000058/shard-0/receipt.json": "fe50caf543edbd46e9acc52f5ce35a6b71f177a188d1be6f4f5576c73b28bf0e",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000060/shard-0/receipt.json": "de54328b023e0b98415dff028d4a65e3aee4587188be41f8aa702a6b54c74229",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000062/shard-0/receipt.json": "e66ea3148744db697f3e818a35070142dd36deb739cf632c9e9038130e6edf30",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000063/shard-0/receipt.json": "5775e33420539df65cee67cfbbf7fd4496577fefc59868cba01ccf78e3f4dad5",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000065/shard-0/receipt.json": "4d4a74bc4f343dd7fc2e6c87570edada8c24fd48be6ece0f29c7a3523ced7ec3",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000066/shard-0/receipt.json": "73dcca5b500896bec5a1ac59bce86f9cbca8795ecb846aa02afe84b3fd98745a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000067/shard-0/receipt.json": "bcd38437370e0f745dec7901adb9dcbe695bb0e285094fc440ff162c04fed244",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/output/window-0000068/shard-0/receipt.json": "f5c319d76584cecdd6f7535aab424b56c27a7e582c10562d0c9c1a1b4bed3950"
+        },
+        "auditor_sha256": "65d55d88e41781bc4a265552426880db087e4882533be3a067cb480a25233a66"
+      },
+      "accepted_member_windows": 109,
+      "full_member_complete": false,
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/integrity-audit.json": "bbda7bf3db19fdb03e297ae81b73f949c81788490134b5609cc7e45a67779a03"
+      }
+    },
+    {
+      "completed_selection": {
+        "job_id": "90000170",
+        "slurm_state": "COMPLETED",
+        "allocation_seconds": 11908,
+        "gpu_hours": 13.231111111111112,
+        "verified_windows": 16,
+        "full_member_complete": false,
+        "complete_window_indices": [
+          75,
+          76,
+          77,
+          78,
+          80,
+          81,
+          82,
+          83,
+          85,
+          86,
+          87,
+          88,
+          90,
+          91,
+          92,
+          93
+        ],
+        "timings": [
+          {
+            "indices": [
+              75
+            ],
+            "seconds": 2446.2566574260127,
+            "calls": 331896
+          },
+          {
+            "indices": [
+              76
+            ],
+            "seconds": 1682.250249507022,
+            "calls": 215873
+          },
+          {
+            "indices": [
+              77
+            ],
+            "seconds": 1849.8192854530644,
+            "calls": 238910
+          },
+          {
+            "indices": [
+              78
+            ],
+            "seconds": 1806.4087823849404,
+            "calls": 233924
+          },
+          {
+            "indices": [
+              80
+            ],
+            "seconds": 2423.862783435965,
+            "calls": 322837
+          },
+          {
+            "indices": [
+              81
+            ],
+            "seconds": 2471.5871893049916,
+            "calls": 322893
+          },
+          {
+            "indices": [
+              82
+            ],
+            "seconds": 2863.1856571619865,
+            "calls": 378648
+          },
+          {
+            "indices": [
+              83
+            ],
+            "seconds": 2485.414765127003,
+            "calls": 324836
+          },
+          {
+            "indices": [
+              85
+            ],
+            "seconds": 2755.4866895009764,
+            "calls": 368751
+          },
+          {
+            "indices": [
+              86
+            ],
+            "seconds": 4176.545855424018,
+            "calls": 557190
+          },
+          {
+            "indices": [
+              87
+            ],
+            "seconds": 4318.0565753090195,
+            "calls": 577165
+          },
+          {
+            "indices": [
+              88
+            ],
+            "seconds": 3064.726152466028,
+            "calls": 403925
+          },
+          {
+            "indices": [
+              90
+            ],
+            "seconds": 2363.81248794205,
+            "calls": 313165
+          },
+          {
+            "indices": [
+              91
+            ],
+            "seconds": 3332.4311359560816,
+            "calls": 443909
+          },
+          {
+            "indices": [
+              92
+            ],
+            "seconds": 3233.425467532943,
+            "calls": 429813
+          },
+          {
+            "indices": [
+              93
+            ],
+            "seconds": 2290.2396790570347,
+            "calls": 300749
+          }
+        ],
+        "plan_sha256": "5d9daabab718daa6328e263c53083b6829d94d873590d56be2ea480ddc7122f6",
+        "completion_sha256": "28f8f664d5636596363cfae427fb7a634619792d38f189f4ea8ea7914abe2a3c",
+        "receipts": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000075/shard-0/receipt.json": "ee577d8b0a5a934771df931897faa30e195902821b3e8ac522db83a5ecfdd47f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000076/shard-0/receipt.json": "345b8093b4dd9d3a23ff141b76a12c9c23a87837ba5b82e16db9b9a5e1c1e2d7",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000077/shard-0/receipt.json": "17f0d4e42d47e4cf3d10207685ee437f4a3b044fe149d6c5264442215e172b17",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000078/shard-0/receipt.json": "d5deb1412ae525a1b8838bfa5ab89e1fa8b5ecf501a11afe9b9eadd1cf94f62f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000080/shard-0/receipt.json": "f7a982e2d9b99de033ff1e70ee4e292cf26022cc72c27d25f7c49774b465c101",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000081/shard-0/receipt.json": "3ad95bfa74b17bf2c544262854665ab7f6c0b8ad59de0f6e36385b251dc15951",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000082/shard-0/receipt.json": "778018fb3c175b95ec7dbea5da7d53854bf23b1d917311c508d6aa75becbd51e",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000083/shard-0/receipt.json": "3a27278fb141f41650e00ef4650c07f8351b5967139faa396dda2f3d0c9fd48b",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000085/shard-0/receipt.json": "eae57d23748d51a3d3581545852567d6ad9398972f52a7d658c0cfc54d07437a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000086/shard-0/receipt.json": "c5dd69f03ea98f504ae3590f4f46d8a2fe53e5471ba8d04dda022afe168b7f26",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000087/shard-0/receipt.json": "ab26e4d29501fed6eb25e7a2f3e4cbfe892f5fcb06d619651ec37bfbce25f18a",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000088/shard-0/receipt.json": "a17cde47afa5916d716b21255be517aac06423a050582b07ade69813d6af6c2d",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000090/shard-0/receipt.json": "9711c4f774e0f65a465c0234389de2572a4c484371c502446fe64cdceaab588e",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000091/shard-0/receipt.json": "a1bec36600c1fb081566b700bb0bfe84a335f457856de3c825087fcd73e39279",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000092/shard-0/receipt.json": "a9b3dd19881464cc33f7673df5c38f1d6be58098e6841329b6609f0488f19c4f",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/output/window-0000093/shard-0/receipt.json": "471417dfb4caa770da041d523f163f51510575c35f25a6eb8b80e2c32f09fd36"
+        },
+        "auditor_sha256": "65d55d88e41781bc4a265552426880db087e4882533be3a067cb480a25233a66"
+      },
+      "accepted_member_windows": 125,
+      "full_member_pipeline_complete": false,
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/integrity-audit.json": "c910ab3350fdd87d9b6770828f6d16e74a69d2598b32acf62f04418bf1dd5331"
+      }
+    }
+  ],
+  "later_submissions": [
+    {
+      "next_job": {
+        "job_id": "90000170",
+        "reserved_seconds": 21600,
+        "gpus": 4,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/run.sbatch",
+        "script_sha256": "bceccaa220d0c41e560b604d015b7e6cb2d9aa03a0c9c8863d5fb7cb649bb268",
+        "gpu_type": "a5000",
+        "state": "SUBMITTED"
+      },
+      "next_window_indices": [
+        75,
+        76,
+        77,
+        78,
+        80,
+        81,
+        82,
+        83,
+        85,
+        86,
+        87,
+        88,
+        90,
+        91,
+        92,
+        93
+      ],
+      "all_member_windows_accepted_or_submitted": true,
+      "full_member_complete": false,
+      "charged_or_reserved_gpu_hours": 893.0061111111111,
+      "charged_or_reserved_allocation_hours": 234.8372222222222,
+      "held_downstream_gpu_hours": 37,
+      "held_downstream_allocation_hours": 9.25,
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/plan.json": "5d9daabab718daa6328e263c53083b6829d94d873590d56be2ea480ddc7122f6",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/selection.json": "b4b7af8883f285f3ea342e544746f1042f9575809ab29c13571f8c89729faced",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/run.sbatch": "bceccaa220d0c41e560b604d015b7e6cb2d9aa03a0c9c8863d5fb7cb649bb268"
+      }
+    }
+  ],
+  "full_member_cpu_acceptance": {
+    "result": {
+      "timestamp_utc": "2026-10-03T11:35:02.054626+00:00",
+      "member": 4,
+      "full_member_complete": true,
+      "full_pipeline_complete": false,
+      "pipeline_plan_sha256": "9feaa5670e53f69c12ca3a6d57744f2e2e4aafcccc9edf581e5f7a1bbd30c48d",
+      "verified_windows": 125,
+      "phase_receipts": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4-infer-phase.json": "02a85219b7686795ea915ff45c46f00337d10488694d5898a499e9f73bcab20e",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4-pack-phase.json": "efea9a13cd233635daafbca7186e1bd4908af86140585fe32e18e6cefe19a815",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4-retire-phase.json": "60b5036b027461c3f9c7447cacdff06e72accb95e77316e35d0b468a663763c2"
+      },
+      "verified_file_hashes": 944,
+      "retained_hashes": 929,
+      "archive_bytes": 564979858,
+      "decoded_npy_bytes": 21881531040,
+      "decoded_npy_sha256": "389b56cd5202d43837f928ad3f2baac701499313f8ed3532c7094c222b1a9d52",
+      "shape": [
+        1762,
+        1762,
+        1762
+      ],
+      "dtype": "uint32",
+      "released_original_npy_bytes": 21881531040,
+      "resources": {
+        "infer": {
+          "wall": "2:36.71",
+          "max_rss_kib": 523184,
+          "sha256": "65e2e16db15a990390d3011eb29a97333e8dc2e7da8addcee897f41bd0a83712"
+        },
+        "pack": {
+          "wall": "38:07.49",
+          "max_rss_kib": 23980836,
+          "sha256": "d4b7bab8e14ada787469f84524e591a89e22d06c1749ab2fef97a6206a092014"
+        },
+        "retire": {
+          "wall": "3:06.95",
+          "max_rss_kib": 43763452,
+          "sha256": "adc5e6ec95dee8d612259e8ec290134fac40bd9d2bca07f82f9a1c1ba1c57ce7"
+        }
+      },
+      "audit_seconds": 83.17237802781165,
+      "auditor_sha256": "761efe0ef187e18ddbb5b2735ec2c400b3040c8a86888cf345131fb299b8c965",
+      "scope": "Independent read-only retained-file hashes, exact full packed NPY bytes/header, and three completed trusted CPU phases. No full-six comparison or disk-peak claim."
+    },
+    "evidence_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-completion-audit-v1/result.json",
+    "evidence_sha256": "3e4e99cf4b86881fc91a3b8257af290ecc1e9b6622a329aeed4cc8d61f15933f",
+    "auditor_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-completion-audit-v1/audit.py",
+    "sampled_resource_observer_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-resource-v3/complete.json",
+    "scope": "Member 4 only; full six-member method remains pending."
+  }
+}

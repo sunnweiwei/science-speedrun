@@ -1,0 +1,52 @@
+{
+  "dataset": "MaleCNS v1.0",
+  "scope": "Preselected 4.096um core; mouse-trained weights; no fine-tuning",
+  "ffn": {
+    "nerl": 0.00025534119307751217,
+    "erl_nm": 3.0698315399920775,
+    "split_errors": 1158,
+    "merge_errors": 1777,
+    "omitted_nodes": 10,
+    "omitted_node_fraction": 0.00012818047811318336
+  },
+  "full_pipeline": {
+    "nerl": 0.0002547279938471096,
+    "erl_nm": 3.0624593713454886,
+    "split_errors": 498,
+    "merge_errors": 1404,
+    "omitted_nodes": 10,
+    "omitted_node_fraction": 0.00012818047811318336
+  },
+  "nerl_change": -6.131992304025773e-07,
+  "paper_comparable": false,
+  "job_id": "90000043",
+  "elapsed_seconds": 22531,
+  "gpus": 4,
+  "gpu_hours": 25.034444444444443,
+  "reference_core_um": 4.096,
+  "model_execution": {
+    "schema": "pathfinder-model-replay-result/v1",
+    "model_replayed": true,
+    "package_manifest_sha256": "c8be29ae8d4d37acc60c03ed8888d024b0c82aa04695a2b4679b8eb5eb6ffdf8",
+    "plan_sha256": "efafe4ae914b18384b6d9ae969b7ba4fbdb1dd0b49b802f4639afc214d16c37f",
+    "reward": 0.0002547279938471096,
+    "phases": {
+      "ffn": "464e6a1af479362cea56551c71a8395fa31e35153afe0577be972ba8743526d6",
+      "assemble": "642063df9ae898e7408bc0259c56c8dda98701eb0baedeab78517ceb5bbc7d0c",
+      "refine": "e4b24b4bacc439b7213201a6b6d780e4749200c4a111e8150f310f2d61e06973",
+      "score": "8cf115ac54afeffd95d98d5814b0b7a91e8b47d4dcdabdc2d8123e8fef4a3268"
+    },
+    "learned_merges_present": true,
+    "all_prediction_tiles_complete": true,
+    "model_stages_containerized": false,
+    "paper_comparable": false,
+    "scope": "Fresh model execution and local sparse score; inspect coverage, training exposure and quality separately"
+  },
+  "evidence_sha256": {
+    "paired-evaluation.json": "9f05a08ba223e2fbc1b07e784f30a4edb7360b36e2eccc810453480302a0dad5",
+    "model-replay.json": "8670bbb099099bd7b9d749d126cc0567bbc942efff31036895e9a3ae306d4b3f",
+    "score/assessment/metrics.json": "ffe4a6dba2a394cd45f5bacbcfe9dd619524b79d7fbe2010d2c48b7d08c46d23",
+    "ffn-metrics.json": "4bb36a9c6b8fd7ca008b91ce487d557efdce921230051cb17cbc5e39d37393e3"
+  },
+  "interpretation": "Completed zero-shot pilot on one preselected small fly core. Full pipeline slightly worsens FFN nERL; no same-data strong-baseline score yet and no direct PATHFINDER comparison."
+}

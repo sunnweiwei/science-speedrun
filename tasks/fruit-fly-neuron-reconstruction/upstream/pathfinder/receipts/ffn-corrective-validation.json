@@ -1,0 +1,96 @@
+{
+  "schema": "ffn-corrective-validation/v1",
+  "date": "2026-10-04",
+  "user_authorized_repair": true,
+  "test_observed_corrective_rerun": true,
+  "selection_split": "validation",
+  "test_used_for_new_weight_selection": false,
+  "candidate_checkpoint_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+  "candidate_train_updates": 1,
+  "warm_start": "6750-step snapshot from original local run",
+  "recipe": {
+    "policy": "production_face_max",
+    "disconnectedness_bias": 0,
+    "recurrent_steps": 8,
+    "positive_weight": 2,
+    "lr": 3e-05
+  },
+  "replacement_members": [
+    {
+      "member": 2,
+      "before_metrics": {
+        "nerl": 0.014569387967059469,
+        "erl_nm": 62.39778257101635,
+        "split_errors": 653,
+        "merge_errors": 40,
+        "omitted_node_fraction": 0.767817915547962
+      },
+      "after_metrics": {
+        "nerl": 0.0472985235588208,
+        "erl_nm": 202.57014197344205,
+        "split_errors": 752,
+        "merge_errors": 72,
+        "omitted_node_fraction": 0.5791585306321699
+      },
+      "before_model_windows": 78876,
+      "after_model_windows": 46165,
+      "all_tiles_complete": true
+    },
+    {
+      "member": 3,
+      "before_metrics": {
+        "nerl": 0.01600364334245348,
+        "erl_nm": 68.5404122592015,
+        "split_errors": 548,
+        "merge_errors": 45,
+        "omitted_node_fraction": 0.7765895777398096
+      },
+      "after_metrics": {
+        "nerl": 0.04105159370944832,
+        "erl_nm": 175.8157874762704,
+        "split_errors": 829,
+        "merge_errors": 83,
+        "omitted_node_fraction": 0.571347937515255
+      },
+      "before_model_windows": 77381,
+      "after_model_windows": 52725,
+      "all_tiles_complete": true
+    }
+  ],
+  "consensus_before": {
+    "nerl": 0.008024705841828473,
+    "erl_nm": 34.36821446768286,
+    "split_errors": 1078,
+    "merge_errors": 17,
+    "omitted_node_fraction": 0.659674762020991
+  },
+  "consensus_after": {
+    "nerl": 0.010949515877311735,
+    "erl_nm": 46.89459245063154,
+    "split_errors": 1134,
+    "merge_errors": 14,
+    "omitted_node_fraction": 0.659674762020991
+  },
+  "admission": {
+    "passed": true,
+    "reasons": [],
+    "minimum_replacement_nerl": 0.03177591080505234,
+    "maximum_replacement_omission": 0.679674762020991,
+    "required_consensus_nerl": 0.00882717642601132,
+    "scope": "Fixed validation reconstruction, not test selection or full-scale throughput proof",
+    "candidate_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+    "validation": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/trial-validation",
+    "comparison_sha256": "dc55de74e1065d59dcd1286affee953e1ffa7f0465f2ad494e097ff9b9f16f9c",
+    "reference_comparison_sha256": "3f54ddb8fcba25162afc2fd6b6b8303935781fc158a924e258e1ebf1b68e49d3",
+    "cpu_host_execution": true,
+    "time": 1791132378.5265057
+  },
+  "tests": {
+    "total": 64,
+    "passed": 60,
+    "skipped": 4,
+    "skip_scope": "GPU-only unit/integration checks; real Slurm candidate inference separately passed"
+  },
+  "full_test_reconstruction_complete": false,
+  "scope": "Fixed validation replacement and six-run consensus improved; full-scale corrected reconstruction and final three-baseline comparison are still pending"
+}

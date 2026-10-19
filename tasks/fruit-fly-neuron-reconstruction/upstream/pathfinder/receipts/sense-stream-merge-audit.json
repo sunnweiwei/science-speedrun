@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "old": {
+    "mode": "old",
+    "shards": 40,
+    "eligible": 100000,
+    "seconds": 0.29626728873699903,
+    "max_rss_kib": 391152,
+    "result_sha256": "e8ff967f82d29010dd5eaa13d441ce4c39890e887ba896b90a0444d2422946d5",
+    "scope": "Synthetic 40-shard merge; not full production memory or time measurement",
+    "proc_vm_hwm_kib": 227544,
+    "measurement_note": "ru_maxrss may retain inherited pre-exec peak; use process VmHWM for comparison"
+  },
+  "new": {
+    "mode": "new",
+    "shards": 40,
+    "eligible": 100000,
+    "seconds": 0.2562626460567117,
+    "max_rss_kib": 391152,
+    "result_sha256": "e8ff967f82d29010dd5eaa13d441ce4c39890e887ba896b90a0444d2422946d5",
+    "scope": "Synthetic 40-shard merge; not full production memory or time measurement",
+    "proc_vm_hwm_kib": 82888,
+    "measurement_note": "ru_maxrss may retain inherited pre-exec peak; use process VmHWM for comparison"
+  },
+  "exact_output_equal": true,
+  "tests": "6 merge tests passed",
+  "sources": {
+    "old_merge.py": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-stream-audit-v1/old_merge.py",
+      "sha256": "521a411baca112e4c5abeb7e677188f376ea9c6fa3ccc4bbbae00547a198a788"
+    },
+    "new_merge.py": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-stream-audit-v1/new_merge.py",
+      "sha256": "9041044d4c7f21129dff2ee9334b58df9057ed75647a66a2159c5a052e065a5d"
+    },
+    "benchmark.py": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/sense-merge-stream-audit-v1/benchmark.py",
+      "sha256": "429c2dc2c96dd821df359ce61fe9112021b61226a27d16968f91d7e0c9947535"
+    }
+  },
+  "limitations": [
+    "Synthetic fixture only; full production merge not executed",
+    "Accumulated output records and edges still scale with final result",
+    "Running SENSE snapshots unchanged; new merge mode opt-in with numeric rank order"
+  ],
+  "full_pipeline_complete": false
+}

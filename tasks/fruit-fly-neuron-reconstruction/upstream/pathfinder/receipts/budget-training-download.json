@@ -1,0 +1,11 @@
+{
+  "repo": "pytc/AxonEM",
+  "revision": "af20076475846ffa8a68d964a29fd4ca23eb66c2",
+  "name": "EM30-M-train-9vol-pad-20-512-512.zip",
+  "bytes": 1940800499,
+  "sha256": "dae06b5dabe388ab7a0ff4e51548174f041a338d0d06bd665586aa7fdd43bac2",
+  "url": "https://huggingface.co/datasets/pytc/AxonEM/resolve/af20076475846ffa8a68d964a29fd4ca23eb66c2/EM30-M-train-9vol-pad-20-512-512.zip",
+  "source": "https://axonem.grand-challenge.org/",
+  "license": "MIT according to pinned author HF metadata",
+  "bytes_on_disk": 4308981462
+}

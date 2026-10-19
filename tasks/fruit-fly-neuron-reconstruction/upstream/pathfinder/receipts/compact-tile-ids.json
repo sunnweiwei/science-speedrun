@@ -1,0 +1,65 @@
+{
+  "purpose": "Lossless instance-ID encoding optimization; no model/segmentation change",
+  "tiles": [
+    {
+      "tile": 0,
+      "source_sha256": "551fa3cf5f1a8c66631e5b82062a429a19129bc270e5f723670a75949377a2d7",
+      "instances": 1,
+      "min_instance_voxels": 262017,
+      "positive_mask_unchanged": true,
+      "reversible_local_ids": true
+    },
+    {
+      "tile": 1,
+      "source_sha256": "a2c3f98b969717497d5849a214b5e115227bb4a0ec0ac018e885fc9eefb84b9c",
+      "instances": 1,
+      "min_instance_voxels": 262144,
+      "positive_mask_unchanged": true,
+      "reversible_local_ids": true
+    },
+    {
+      "tile": 6,
+      "source_sha256": "d7ebdb4327304e56e570bd9e125b7b2fc31657bf028cdb6e375e1d0c2a161737",
+      "instances": 1,
+      "min_instance_voxels": 262144,
+      "positive_mask_unchanged": true,
+      "reversible_local_ids": true
+    },
+    {
+      "tile": 3,
+      "source_sha256": "9649edb999cb8fc09a9394f2cc1bfab0335a0e604f1be971c28ce2f58da710b7",
+      "instances": 1,
+      "min_instance_voxels": 262144,
+      "positive_mask_unchanged": true,
+      "reversible_local_ids": true
+    }
+  ],
+  "model_weights_changed": false,
+  "old_stride": 262145,
+  "new_stride": 26215,
+  "new_region_total_tiles": 21952,
+  "old_dtype": "uint64",
+  "new_dtype": "uint32",
+  "one_dense_array_bytes_before": 43763061824,
+  "one_dense_array_bytes_after": 21881530912,
+  "regression_tests": 116,
+  "skipped": 2,
+  "model_package_v7": {
+    "schema": "pathfinder-package-check/v1",
+    "package_manifest_sha256": "a0dd3fe68cfa1289a0e64bec08fc762be348b764198422b6d4db69cf4baa1335",
+    "parameters": {
+      "ffn": 1110273,
+      "sense": 5019185,
+      "shape": 8189281
+    },
+    "extension_loaded": true,
+    "gpu_forward_verified": false,
+    "task_replay_verified": false,
+    "paper_comparable": false,
+    "weights_identical_to_v6": {
+      "ffn": true,
+      "sense": true,
+      "shape": true
+    }
+  }
+}

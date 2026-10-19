@@ -1,0 +1,17 @@
+{
+  "dispatch_job": "90000012",
+  "depends_on_assembly": "90000011",
+  "gpu_job_not_yet_submitted": true,
+  "code_snapshot": "d60ceb288a6a25de151a64917458b03b7d78373e",
+  "gpu_minutes_limit": 120,
+  "gpus": 4,
+  "sense_seconds": 1800,
+  "shape_seconds": 3600,
+  "max_motifs": 65536,
+  "original_budget_ledger": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/budget.json",
+  "scripts": {
+    "continuous-dispatch.sbatch": "af8698c683420f8d747c9fd27d2235c8126b776e55dc00e53e2be584e389fa64",
+    "continuous-postprocess.sbatch": "0251b740ebcd3c7088258698245b3a16daae1af7a7085182ad0d046a86c3c737",
+    "continuous-evaluate.sbatch": "11f0d778b64b993589117410e33b608e69d2c1d3c960939ed0340317090e80f8"
+  }
+}

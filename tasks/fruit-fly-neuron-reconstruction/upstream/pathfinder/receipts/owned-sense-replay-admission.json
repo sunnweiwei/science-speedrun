@@ -1,0 +1,28 @@
+{
+  "schema": "pathfinder-owned-sense-replay-admission/v1",
+  "time_unix": 1791181824.1125412,
+  "cpu_initialization_passed": true,
+  "source_plan_sha256": "3a056ac8b38fbb6d7e34f092a4aed17f79da11ac60d47c1977d64a2ee929268b",
+  "source_plan_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/owned-fast-replay-init-v1/plan.json",
+  "sense_campaign_mode": "owned-v1",
+  "checkpoint_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+  "same_base_sha256": "020abd65947774be0d238eeb924dca3c84b67132b83863bc3a6583bec050ac7b",
+  "no_new_gpu_jobs_submitted": true,
+  "controller_not_launched": true,
+  "tests": {
+    "count": 17,
+    "passed": true,
+    "seconds": 2.084,
+    "log_sha256": "d800b1b0066b6c2792054e0e18852eb11392d0e1785283090afd7afe8cbcd7d8"
+  },
+  "monitor": {
+    "observations": 2,
+    "last_observation_unix": 1791181507.2644427,
+    "measured_interval_seconds": 1800.061424255371,
+    "running_pid": 1961560,
+    "jobs_at_last_observation": []
+  },
+  "active_campaign_unchanged": "single-checkpoint-delivery-v3",
+  "scope": "Checked-in SENSE replay scaffolding and CPU initialization; real GPU qualification and final results pending",
+  "full_pipeline_complete": false
+}

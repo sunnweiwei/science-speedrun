@@ -1,0 +1,18 @@
+{
+  "source_sha256": "5cab3f44a83d6b045b85923abb43273f90e281d9fa214965f7916ec19e133b57",
+  "voxel_size_nm": [
+    80,
+    64,
+    64
+  ],
+  "radius_um": 10,
+  "points_per_model_input": 8192,
+  "splits": "fixed seed42 shuffle of preview instance IDs; not cross-stage neuron-disjoint proof",
+  "paper_comparable": false,
+  "sparse_preview_only": true,
+  "eligible_instances": {
+    "train": 4,
+    "validation": 3,
+    "test": 3
+  }
+}

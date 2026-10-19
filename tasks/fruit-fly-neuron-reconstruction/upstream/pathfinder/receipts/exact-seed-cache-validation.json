@@ -1,0 +1,27 @@
+{
+  "complete": true,
+  "window": 31,
+  "count": 190117,
+  "cache_miss_seconds": 254.42496796231717,
+  "cache_hit_including_context_hash_seconds": 0.16752803791314363,
+  "reference_sha256": "d764e79ddfaf6962903bc51bc19016be404712cb094a9d0dfefcf4be0922a77c",
+  "manifest_sha256": "869ac578e0e0452b8af2356df41bac7f49a87c4aa2409898edad522408892562",
+  "created": {
+    "hit": false,
+    "key": "cf8d19ffcab6a48cf8bc4d00b4603c0c523d3fec6e9e20cf8abf69b9255c0a02",
+    "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/exact-seed-cache-validation-v1/cache/cf8d19ffcab6a48cf8bc4d00b4603c0c523d3fec6e9e20cf8abf69b9255c0a02/receipt.json",
+    "receipt_sha256": "65a2253288febf6f6429ee11e9f20d40ab489296643becfc08573ce87b9b3fad",
+    "seed_sha256": "37d3b0f5d8306c97b722f200132f4cddc66997c45a5174151d65fd55a1874191"
+  },
+  "hit": {
+    "hit": true,
+    "key": "cf8d19ffcab6a48cf8bc4d00b4603c0c523d3fec6e9e20cf8abf69b9255c0a02",
+    "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/exact-seed-cache-validation-v1/cache/cf8d19ffcab6a48cf8bc4d00b4603c0c523d3fec6e9e20cf8abf69b9255c0a02/receipt.json",
+    "receipt_sha256": "65a2253288febf6f6429ee11e9f20d40ab489296643becfc08573ce87b9b3fad",
+    "seed_sha256": "37d3b0f5d8306c97b722f200132f4cddc66997c45a5174151d65fd55a1874191"
+  },
+  "ascending_equal": true,
+  "descending_equal": true,
+  "scope": "Exact real-window preprocessing equivalence only; no end-to-end throughput claim",
+  "full_evidence_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/exact-seed-cache-validation-v1/comparison.json"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "pathfinder-finalization-container-check/v1",
+  "source_commit": "72f250b",
+  "package": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v5",
+  "package_manifest_sha256": "86f1c17f643616dc058947336a1f053f490c37d00752d09fc2275e961caf982c",
+  "host_cpu_tests": 87,
+  "export_job": {
+    "id": 90000028,
+    "state": "COMPLETED",
+    "seconds": 29,
+    "tests_discovered": 0,
+    "interpretation": "Export and strict checkpoint/FPS loading passed; zero discovered tests is not integration validation"
+  },
+  "integration_job": {
+    "id": 90000029,
+    "state": "COMPLETED",
+    "seconds": 4,
+    "test_count": 1,
+    "test_seconds": 2.491,
+    "scope": "Synthetic model-score fixture: GT-free finalization, tamper rejection, identical paired reconstruction and independent frozen-suite reward"
+  },
+  "runtime": "Exported runtime copied unchanged and hash-checked; two test-only files added to separate read-only fixture directory",
+  "network": "none",
+  "gpus": 0,
+  "gpu_forward_verified": false,
+  "real_pipeline_replay_verified": false,
+  "log_sha256": "bbcda04b15b91be9eeac89a4135bd6574fb0545677ff116b2c7c11ca865cf47c"
+}

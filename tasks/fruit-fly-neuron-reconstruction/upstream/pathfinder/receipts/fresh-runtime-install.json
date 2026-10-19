@@ -1,0 +1,25 @@
+{
+  "job": "90000022",
+  "state": "COMPLETED",
+  "elapsed_seconds": 114,
+  "cpu_tests": 81,
+  "skipped": 0,
+  "gpu_used": false,
+  "installed_environment": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1",
+  "lock_sha256": "fcdd8a1270228af655163d7e5d4289f07d86a51f6e3d2037e43db0c4a722b5a1",
+  "freeze_sha256": "c6faf59499abc4bf2f7497a48db535e1b85a6ee9ad9fe55dd7d24b463fdc89dc",
+  "model_check": {
+    "schema": "pathfinder-package-check/v1",
+    "package_manifest_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+    "parameters": {
+      "ffn": 1110273,
+      "sense": 5019185,
+      "shape": 8189281
+    },
+    "extension_loaded": true,
+    "gpu_forward_verified": false,
+    "task_replay_verified": false,
+    "paper_comparable": false
+  },
+  "scope": "Fresh package environment with existing Python3.11 interpreter; no inherited PYTHONPATH or model forward"
+}

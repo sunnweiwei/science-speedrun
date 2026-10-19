@@ -1,0 +1,9 @@
+{
+  "ordinary": 1.0,
+  "uint64": 1.0,
+  "all_omitted": 0.0,
+  "false_merge": 0.0,
+  "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+  "adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+  "scope": "Synthetic evaluator precision regression, not model quality"
+}

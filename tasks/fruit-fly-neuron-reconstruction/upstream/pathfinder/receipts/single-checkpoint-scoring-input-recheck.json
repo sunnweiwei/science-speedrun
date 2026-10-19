@@ -1,0 +1,13 @@
+{
+  "schema": "pathfinder-scoring-input-recheck/v1",
+  "complete": true,
+  "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4",
+  "audit_script_sha256": "7b7338a4a62db46dc6406ad85d30dfca97554601e93c8014f5b36c8c612e4b9e",
+  "scientific_audit_sha256": "1f8828e4eb7f4debe537829ddad468fa56014420698fe9962e68ac80ef5b4a02",
+  "audit_plan_sha256": "34c83ea3978b36b8d1f0f33ad781261b6e2f4078516d9540d8aee81ead3882d6",
+  "inputs_rehashed": 16,
+  "input_bytes_rehashed": 44411009441,
+  "resources": "\tCommand being timed: \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B audit_fast_delivery.py --run /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4 --output /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/scientific-completion-audit-v2.json\"\n\tUser time (seconds): 98.92\n\tSystem time (seconds): 25.79\n\tPercent of CPU this job got: 113%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 1:50.20\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 5170080\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 1\n\tMinor (reclaiming a frame) page faults: 3204717\n\tVoluntary context switches: 5886\n\tInvoluntary context switches: 21923\n\tSwaps: 0\n\tFile system inputs: 0\n\tFile system outputs: 16\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n",
+  "test_scope": "4 tests passed: changed baseline input, old protocol, replay partition equality, missing arm/nonfinite/changed protocol",
+  "full_deliverable_complete": false
+}

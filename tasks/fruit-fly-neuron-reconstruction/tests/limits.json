@@ -1,0 +1,10 @@
+{
+  "ffn_seconds": 28800,
+  "sense_seconds": 14400,
+  "baseline_seconds": 7200,
+  "shape_seconds": 7200,
+  "memory_gib": 192,
+  "max_instances": 60000000,
+  "numeric_max_label": 60000000,
+  "window_bytes": 600000000
+}

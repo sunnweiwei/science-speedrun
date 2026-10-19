@@ -1,0 +1,386 @@
+{
+  "comparison": {
+    "results": [
+      {
+        "name": "variant-0",
+        "metrics": {
+          "nerl": 0.036469485709362995,
+          "erl_nm": 156.19153288488522,
+          "split_errors": 721,
+          "merge_errors": 44,
+          "omitted_node_fraction": 0.659674762020991
+        },
+        "metric_sha256": "96704b106064a88f0b95ac6d311ef2a38a05ef0b8553ea9e035b79fa3c0de0ae"
+      },
+      {
+        "name": "variant-1",
+        "metrics": {
+          "nerl": 0.03177591080505234,
+          "erl_nm": 136.08988777651734,
+          "split_errors": 800,
+          "merge_errors": 44,
+          "omitted_node_fraction": 0.6523828411032463
+        },
+        "metric_sha256": "a547cb8c07603e8751b51f2be9af2555f04ff1f9b1fbd3b1c7672a0136dcc935"
+      },
+      {
+        "name": "variant-2",
+        "metrics": {
+          "nerl": 0.014569387967059469,
+          "erl_nm": 62.39778257101635,
+          "split_errors": 653,
+          "merge_errors": 40,
+          "omitted_node_fraction": 0.767817915547962
+        },
+        "metric_sha256": "774851e2a058f15fa1ed38a2efd4a6f5ef82f8344154bdc026dcc2bf6b437eb5"
+      },
+      {
+        "name": "variant-3",
+        "metrics": {
+          "nerl": 0.01600364334245348,
+          "erl_nm": 68.5404122592015,
+          "split_errors": 548,
+          "merge_errors": 45,
+          "omitted_node_fraction": 0.7765895777398096
+        },
+        "metric_sha256": "349ff4574b7adf63cfd3dc3dc8ce463aab57d4908d368f5326f0f45beb35d497"
+      },
+      {
+        "name": "variant-4",
+        "metrics": {
+          "nerl": 0.017037871612890512,
+          "erl_nm": 72.96980564850755,
+          "split_errors": 587,
+          "merge_errors": 34,
+          "omitted_node_fraction": 0.7700298999267757
+        },
+        "metric_sha256": "3586fa5aa1e5316c5832e4cdce0325363128ee51c4fdbb413a1e051a4ae95660"
+      },
+      {
+        "name": "variant-5",
+        "metrics": {
+          "nerl": 0.01863095755291699,
+          "erl_nm": 79.79267496377763,
+          "split_errors": 588,
+          "merge_errors": 38,
+          "omitted_node_fraction": 0.7608616060532096
+        },
+        "metric_sha256": "ce901f7c330492ee0c1e7c1a7d0e70dd37b509f97105b81d249e8690e31f8da4"
+      },
+      {
+        "name": "consensus",
+        "metrics": {
+          "nerl": 0.008024705841828473,
+          "erl_nm": 34.36821446768286,
+          "split_errors": 1078,
+          "merge_errors": 17,
+          "omitted_node_fraction": 0.659674762020991
+        },
+        "metric_sha256": "69e728c032ba2e9dc9596f764614e56cf3953fe778a87282147f0219f9de80ea"
+      }
+    ],
+    "scope": "Real six-run integration at a predeclared validation location, unchanged model architecture. Retained checkpoints selected by BCE, not author edge accuracy; no paper-equivalent quality claim or test selection.",
+    "plan_sha256": "3ac0437e308c418ba714dcda0ce37bcfc1e40c9e16d1a07e9887fb1a6960aae8",
+    "script_sha256": "a7e2055dd4f3d7c858e9adfb2e8441be80ea91477b9123d1d666cfef33921d93",
+    "test_used": false
+  },
+  "equivalence": {
+    "complete": true,
+    "job_id": "90000117",
+    "seconds": 262.97936446079984,
+    "byte_identical": true,
+    "partition_equivalent": true,
+    "direct_receipt_sha256": "7b7a5b51de929c4dcca02e9007ab73285b66b3beb865cd407c3d6da1f0a08ea5",
+    "streamed_receipt_sha256": "9cd71215069027806ec20f1da728647b25aba9a13014226d51c25b37971ea5de",
+    "plan_sha256": "d5af6397489c3c82482b672186b60db7d7e55af6a2a7116cfebea2271d84bd3e",
+    "script_sha256": "0e8b030a3d35edfb0612ffaa03939b387877209b5b12081e651620ca5c75e29a",
+    "scope": "Same six real-validation predictions and min_size0 as prior direct consensus; tests I/O and official-function equivalence, not a new model or paper parity"
+  },
+  "audit": {
+    "complete": true,
+    "six_run_comparison_sha256": "3f54ddb8fcba25162afc2fd6b6b8303935781fc158a924e258e1ebf1b68e49d3",
+    "six_variant_coverage": true,
+    "all_metrics_match": true,
+    "archived_equivalence_sha256": "37782023a67b101f5f2ff882048d674bf01bc5ccfec9d42f05144776af284f91",
+    "byte_identical": true,
+    "test_archive_receipt_sha256": "c496fe78af94c0f9308e79f50e505c3d5c512f57dbfa7dd75106f4c410709cd5",
+    "original_arrays_removed": true,
+    "seed_profile_sha256": "de5a5c3bb6be3eea1e51aee73b50b80278f6d3ae4cb6133ff1609605cd9cd731",
+    "scope": "Artifact/provenance integrity audit; no metric arithmetic rerun or paper parity claim",
+    "gpu_job": "90000116",
+    "actual_gpu_hours": 0.9777777777777777,
+    "script_sha256": "6533ed20629f012916cc2dd59192555b85d028a218aea3f3569d690e4b001ece"
+  },
+  "seed_profile": {
+    "complete": true,
+    "job_id": "90000118",
+    "plan_sha256": "387adf145d1237dd37629ecdbe4fa54d74aa02dc04c0f2b7fbd7d20ab370917f",
+    "raw_sha256": "f936e645b3c1e448b2b49763d571cb1936b8b8072d891c46c3e32c0c24e41bbe",
+    "measurements": [
+      {
+        "context_size": 96,
+        "seed_count": 345,
+        "seconds": 0.20228216098621488,
+        "peak_rss_kib": 129192,
+        "crop_sha256": "6417bafeb5195a47f26c00412b6707c0f1baa2e4b61a3b991482835d12a5b459",
+        "seed_sha256": "068581a9a6bdaf25f00841f3442a05180a28598a9bd8cb28ff34496f3fbe0562"
+      },
+      {
+        "context_size": 532,
+        "seed_count": 184407,
+        "seconds": 126.67921708570793,
+        "peak_rss_kib": 6389124,
+        "crop_sha256": "1c54b268de0ad48d6854d864107807f41e7da39d07946b26aafd4c005a95ab90",
+        "seed_sha256": "80469c34ff8278fbea446598806640d14c9a1c65252af86d0f9b7c95b27a3163"
+      }
+    ],
+    "test_used": false,
+    "ground_truth_used": false
+  },
+  "source_artifacts": {
+    "comparison": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/six-run-validation-v1/comparison.json",
+      "sha256": "3f54ddb8fcba25162afc2fd6b6b8303935781fc158a924e258e1ebf1b68e49d3"
+    },
+    "equivalence": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/archived-consensus-validation-v1/equivalence.json",
+      "sha256": "37782023a67b101f5f2ff882048d674bf01bc5ccfec9d42f05144776af284f91"
+    },
+    "audit": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/corrected-v2/six-run-review.json",
+      "sha256": "fae98afb0ff9b8d7556ad58b8908a313661f90b8a2d66ad6620119e99880c918"
+    },
+    "seed_profile": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/overlap-seed-profile-v1/result.json",
+      "sha256": "de5a5c3bb6be3eea1e51aee73b50b80278f6d3ae4cb6133ff1609605cd9cd731"
+    }
+  },
+  "protocol": {
+    "roi": [
+      656,
+      912,
+      656,
+      912,
+      656,
+      912
+    ],
+    "tile_size": 64,
+    "checkpoints": [
+      6750,
+      7250,
+      5750
+    ],
+    "checkpoint_selection": "retained validation BCE, not paper edge accuracy",
+    "seed_orders": [
+      "ascending",
+      "descending"
+    ],
+    "consensus_min_size": 0,
+    "hardware": "4 A6000",
+    "gpu_job": "90000116",
+    "gpu_elapsed_seconds": 880,
+    "test_used": false
+  },
+  "implementation_validations": {
+    "window-compression-profile-v1": {
+      "result_sha256": "f08a32d4fc8ceeccb0cd44946dc5b83458d8853b1591ac40fbecbbc7aca64359",
+      "inputs_sha256": "b3d478c581c981a6e674f9ebbb143c7fa77f325332a464692e33f5bccecaaab2",
+      "job_id": "90000120",
+      "elapsed_seconds": 2,
+      "result": {
+        "complete": true,
+        "job_id": "90000120",
+        "plan_sha256": "e8d66498c04dafa66ed7bdd53f25d440b9540660d9d6d12fafe095301444336e",
+        "source_bytes": 67108992,
+        "compressed_bytes": 3872592,
+        "save_including_verification_seconds": 0.8877024138346314,
+        "verified_read_seconds": 0.3403868321329355,
+        "peak_rss_kib": 252928,
+        "record": {
+          "storage": "npz",
+          "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/window-compression-profile-v1/window.npz",
+          "sha256": "563760f4dc0c241c627f8ad292891a1fedfce3d0a2be1acf9df9985b9c4be0c0",
+          "uncompressed_bytes": 67108992,
+          "archive_sha256": "5d5c9fd2fd49da6b9b7384c78359ef64a291c938f7d895bd5b5d2b0df8f66f1b",
+          "shape": [
+            256,
+            256,
+            256
+          ],
+          "reserved_bytes": 70000000
+        },
+        "scope": "Completed256-cube FFN prediction; not a500-cube throughput estimate",
+        "test_used": false
+      }
+    },
+    "global-consensus-validation-v1": {
+      "result_sha256": "6c6287acd90b4e02e9069985ebb755baf126ab91b3ab78a377d3059e0c63c752",
+      "inputs_sha256": "84b14742f505ef7c3d758efa8fc26f99aa47340838aef10d3ce9c2e95d73ca3b",
+      "job_id": "90000122",
+      "elapsed_seconds": 20,
+      "result": {
+        "complete": true,
+        "job_id": "90000122",
+        "plan_sha256": "5b448efe8aad90ba33ed8f3430914a06da24f38b23cb3067a362b3048ba7dee0",
+        "script_sha256": "81775496f64b2b48797e11bb576c117c698500fefb10dc3f8a9a02184924ab53",
+        "partition_equivalent": true,
+        "zero_mask_equal": true,
+        "positive_components": 238256,
+        "kernel_seconds": 15.135957153048366,
+        "peak_rss_kib": 617380,
+        "output_sha256": "4b776e438c6ec3d3c6b361c69dca82ec1f7964e702fab2dc9deba8fbb33a6818",
+        "stages": [
+          {
+            "global_pairs": 8246,
+            "positive_components": 6483,
+            "slab_depth": 8,
+            "conservative_memory_bytes": 579108864,
+            "partition_equivalent": true,
+            "numeric_ids_preserved": false,
+            "min_size": 0
+          },
+          {
+            "global_pairs": 26324,
+            "positive_components": 23699,
+            "slab_depth": 8,
+            "conservative_memory_bytes": 579108864,
+            "partition_equivalent": true,
+            "numeric_ids_preserved": false,
+            "min_size": 0
+          },
+          {
+            "global_pairs": 64349,
+            "positive_components": 62217,
+            "slab_depth": 8,
+            "conservative_memory_bytes": 579108864,
+            "partition_equivalent": true,
+            "numeric_ids_preserved": false,
+            "min_size": 0
+          },
+          {
+            "global_pairs": 133554,
+            "positive_components": 131533,
+            "slab_depth": 8,
+            "conservative_memory_bytes": 579108864,
+            "partition_equivalent": true,
+            "numeric_ids_preserved": false,
+            "min_size": 0
+          },
+          {
+            "global_pairs": 240408,
+            "positive_components": 238256,
+            "slab_depth": 8,
+            "conservative_memory_bytes": 579108864,
+            "partition_equivalent": true,
+            "numeric_ids_preserved": false,
+            "min_size": 0
+          }
+        ],
+        "scope": "Same complete256-cube real validation predictions as direct author consensus; validates global kernel output/resources, not six real overlapping inference runs or paper parity",
+        "test_used": false
+      }
+    },
+    "review_sha256": "e16e1b8be940df0240bc73ab34032252eb2c4c99b8f9f7544f9f965dc25ff296",
+    "scope": "Same completed 256-cube validation predictions; compression and global consensus implementation checks, not new quality results or full-volume overlap validation.",
+    "future_runtime_package_identity": {
+      "result_sha256": "615638f667927333f9f9b5677cda6f129f7e41cfe5064c1fe5255932839e37d3",
+      "plan_sha256": "f61ac3440df8e960cc5184db9da4fafe3916a36264394839330ab0464e2c6fcf",
+      "inputs_sha256": "7281a75ed3e9fff8173d9170f2242e3ef95a77e45f1e9ed768c1ee6a4e6778fb",
+      "result": {
+        "complete": true,
+        "job_id": "90000124",
+        "plan_sha256": "f61ac3440df8e960cc5184db9da4fafe3916a36264394839330ab0464e2c6fcf",
+        "script_sha256": "85f6cd85b40e78df799e8db3af6cdefba79cf74151ad481ed0f1fdd63398f229",
+        "parent_check": {
+          "schema": "pathfinder-package-check/v1",
+          "package_manifest_sha256": "7ce745d6f314aafb542df6d3d2bb1af7df7063ab83d7ec3808331c641d94a01c",
+          "search_threshold": 0.8,
+          "parameters": {
+            "ffn": 1110273,
+            "sense": 5019185,
+            "shape": 8189281
+          },
+          "extension_loaded": true,
+          "gpu_forward_verified": false,
+          "task_replay_verified": false,
+          "paper_comparable": false
+        },
+        "package_check": {
+          "schema": "pathfinder-package-check/v1",
+          "package_manifest_sha256": "81f79e7f5e2b40f416d29d691aae30fb1c04fca557a6c10d143f90f31dfdaf50",
+          "search_threshold": 0.8,
+          "parameters": {
+            "ffn": 1110273,
+            "sense": 5019185,
+            "shape": 8189281
+          },
+          "extension_loaded": true,
+          "gpu_forward_verified": false,
+          "task_replay_verified": false,
+          "paper_comparable": false
+        },
+        "models": {
+          "ffn": {
+            "tensors": 124,
+            "tensors_identical": true,
+            "parameters": 1110273,
+            "step": 6750,
+            "parent_file_sha256": "1b26aea7f2e0c874fdf660a4c7c06a0615fae5a71315ea46f5b60a8ca4b70ad6",
+            "file_sha256": "1b26aea7f2e0c874fdf660a4c7c06a0615fae5a71315ea46f5b60a8ca4b70ad6"
+          },
+          "sense": {
+            "tensors": 158,
+            "tensors_identical": true,
+            "parameters": 5019185,
+            "step": 6197,
+            "parent_file_sha256": "b5e152ab7d1d1818641504252c10008dbba845017e115e25da935b6387c77c53",
+            "file_sha256": "b5e152ab7d1d1818641504252c10008dbba845017e115e25da935b6387c77c53"
+          },
+          "shape": {
+            "tensors": 90,
+            "tensors_identical": true,
+            "parameters": 8189281,
+            "step": 2600,
+            "parent_file_sha256": "5f305ee26650a133eff307384113d96034cd8f03ee5afd5e78811bb1eae635d9",
+            "file_sha256": "5f305ee26650a133eff307384113d96034cd8f03ee5afd5e78811bb1eae635d9"
+          }
+        },
+        "seconds": 37.225618892814964,
+        "peak_rss_kib": 575848,
+        "scope": "Freeze validated runtime improvements with the same three trained models and threshold; exact tensor/source checks, CPU export/extension load only. Does not validate a new GPU forward or final reconstruction quality."
+      }
+    },
+    "runtime_review_sha256": "2c5c577fb8e8afd00de7c43068bafaf869972bfe6ca4ede34673f863108378d1",
+    "three_checkpoint_model_package": {
+      "job_id": "90000126",
+      "slurm_state": "COMPLETED",
+      "elapsed_seconds": 40,
+      "gpus": 0,
+      "source_commit": "e459724",
+      "package_manifest_sha256": "6660f81367608d3e514f62ccfa6908ce694ac6db2d385221bc6da85c1bed3cf2",
+      "result_sha256": "f5a4a8eb5a94fd7b3b3b05d5a0a797b129ad27ccb098dd1857da36372862d71a",
+      "review_sha256": "e5324c2c73bacf93ac5dd656f397b0bb8ae1c91894854bfb2198a463c03c06fd",
+      "parameters": {
+        "ffn": 1110273,
+        "sense": 5019185,
+        "shape": 8189281
+      },
+      "ffn_steps": [
+        6750,
+        7250,
+        5750
+      ],
+      "ffn_tensor_sha256s": [
+        "93a3b15068997f7a5116e067c065a9c99f07c971c96988d0f7495b27b81deedf",
+        "5022685018670bc474462230e5e02ce6c3494cb51c688d535575d227eb0dffc6",
+        "62a94596893bb6aecfd54a33622e7f950cbdc18d9d74b6516aeaa0e33c102481"
+      ],
+      "primary_weight_files_identical": true,
+      "native_extension_loaded_on_cpu": true,
+      "selection_rule": "validation_bce",
+      "selection_verified": false,
+      "gpu_forward_verified": false,
+      "scope": "Actual retained full FFN6750/7250/5750 asset export/identity/CPU ABI check. Does not establish paper checkpoint selection, full six-run execution or reconstruction quality."
+    }
+  }
+}

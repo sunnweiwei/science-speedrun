@@ -1,0 +1,25 @@
+{
+  "complete_member_prefix_adopted": true,
+  "full_pipeline_complete": false,
+  "new_replay": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v1/replay",
+  "original_replay": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-test-v4/replay",
+  "members": [
+    0,
+    1
+  ],
+  "budget_reset": false,
+  "phase_sha256": {
+    "member-0-infer": "f354ad5e4a802fcc3334eaa6c10c32811d12d10f7d2be4ab5284600bc6e2bad3",
+    "member-0-pack": "b7c1d87784baca77832da0cdffc608aa1aff95e3f62445fa8826da78b064c7a8",
+    "member-0-retire": "97669f73fe91093ea0a88dfbedcfc420d94cd398422062aeecd0e43269f9e2c1",
+    "member-1-infer": "1703a018908cf81147456faec1b6ba79351667f904ae09925ff190e96010f6c2",
+    "member-1-pack": "e47aa3ebaf618fa3eadf2d2f23b1a3aedeb9e0aa2c656ff99ec45ecfb04066ca",
+    "member-1-retire": "948714e695fd6be7d516a1bb9b22d53c697e2b9ca583e6e224173161a8f590af"
+  },
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v1/replay/resumption.json": "5d52cb7b0ab63d3e858dc81eb841a28536cca0d27d9d89e011adc493ba7679fc",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v1/replay/replay-plan.json": "fe7bee650362c87e5e7ee095c04d232996e1d2bfc05aa547b2ef58686cf92bce",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v1/replay/prediction/plan.json": "8a3a49950f37ffe46c07ffe90cb410990c1e7f73ac7751a252d88135388c6896"
+  },
+  "scope": "Verified continuation initialization and original-member reuse only; remaining recovered members and final comparison are pending"
+}

@@ -1,0 +1,20 @@
+{
+  "source_commit": "c806dbd",
+  "full_run": {
+    "tests": 79,
+    "passed": 78,
+    "skipped": 1,
+    "seconds": 8.516
+  },
+  "dependency_enabled_skeleton_run": {
+    "tests": 3,
+    "passed": 3,
+    "seconds": 0.286
+  },
+  "unique_tests_covered": 79,
+  "scope": "CPU regression plus synthetic CLI delivery; not actual GPU pipeline acceptance",
+  "logs": {
+    "cpu-regression-c806dbd.log": "0a5fc1eec53476d483163bb213c2da39f274cd0ac67bfa08a4cc4a392ac17c9c",
+    "cpu-skeleton-regression-c806dbd.log": "4a68241f4831ce1a05e53217e136e453eee7c1482679df692aad94697f41a759"
+  }
+}

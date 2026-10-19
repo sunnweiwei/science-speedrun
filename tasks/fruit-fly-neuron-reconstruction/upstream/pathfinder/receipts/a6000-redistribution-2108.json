@@ -1,0 +1,186 @@
+{
+  "timestamp_utc": "2026-10-03T21:08:00Z",
+  "accepted_windows": [
+    125,
+    125,
+    101,
+    88,
+    125,
+    125
+  ],
+  "running_gpus": 11,
+  "pending_gpus": 13,
+  "full_pipeline_complete": false,
+  "cost": {
+    "settled_gpuh": 936.7877777777778,
+    "settled_allocationh": 253.83277777777778,
+    "charged_reserved_gpuh": 1320.7877777777778,
+    "charged_reserved_allocationh": 421.8327777777778
+  },
+  "ledger_sha256": "77da35d52dc517a9dd0c3efb0b2c3f21cd5d265a9a90f382f982dc0e728b7675",
+  "a6000-redistribution-plan.json": {
+    "old_job_id": "90000186",
+    "old_base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-08-m3",
+    "old_selection_sha256": "a5a7379d768614f500289bcd8bc661f72bee2b93d7e6d9b6e51588a387d785d4",
+    "old_plan_sha256": "e1867d4b561ace887cd62b85040744510c8d88e71e14037b2d76fbf8def15af2",
+    "jobs": [
+      {
+        "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-12-m3-a6000",
+        "member": 3,
+        "indices": [
+          37,
+          42,
+          52,
+          57
+        ],
+        "gpus": 1,
+        "gpu_type": "a6000",
+        "minutes": 1200
+      },
+      {
+        "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-13-m3-a6000",
+        "member": 3,
+        "indices": [
+          38,
+          43,
+          53
+        ],
+        "gpus": 1,
+        "gpu_type": "a6000",
+        "minutes": 1200
+      },
+      {
+        "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-14-m3-a6000",
+        "member": 3,
+        "indices": [
+          40,
+          50,
+          55
+        ],
+        "gpus": 1,
+        "gpu_type": "a6000",
+        "minutes": 1200
+      },
+      {
+        "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-15-m3-a6000",
+        "member": 3,
+        "indices": [
+          41,
+          51,
+          56
+        ],
+        "gpus": 1,
+        "gpu_type": "a6000",
+        "minutes": 1200
+      }
+    ],
+    "submission_requires": "Old job terminal CANCELLED with zero ElapsedRaw and no start/output artifacts",
+    "full_pipeline_complete": false
+  },
+  "a6000-cancelled-old-job.json": {
+    "job_id": "90000186",
+    "stdout": "90000186|CANCELLED by 1001|0|None\n",
+    "timestamp_utc": "2026-10-03T21:07:28.387927+00:00"
+  },
+  "a6000-resource-amendment.json": {
+    "timestamp_utc": "2026-10-03T21:07:28.392128+00:00",
+    "previous_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 1512000,
+      "gpu_seconds": 5400000,
+      "concurrent_gpus": 40
+    },
+    "new_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 1620000,
+      "gpu_seconds": 5400000,
+      "concurrent_gpus": 40
+    },
+    "prior_ledger_sha256": "ab8e341482d9951a7595af0afadf1910028ee852bd40e9539125d85473677bfe",
+    "user_instruction": "Budget is not important; prioritize delivery time and increase GPU parallelism/efficiency.",
+    "reason": "Redistribute13 never-started original windows from one4-GPU20h reservation to four1-GPU20h reservations to use scattered A6000 capacity. Same80GPUh maximum reservation; higher allocation-hour accounting. Preserve downstream37GPUh/9.25allocationh.",
+    "historical_jobs_preserved": true,
+    "scientific_protocol_unchanged": true
+  },
+  "a6000-submitted.json": [
+    {
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-12-m3-a6000",
+      "member": 3,
+      "indices": [
+        37,
+        42,
+        52,
+        57
+      ],
+      "gpus": 1,
+      "gpu_type": "a6000",
+      "minutes": 1200,
+      "job_id": "90000191",
+      "plan_sha256": "15950db1eb5ccb98982f4ae1e53ab95003bf2de64bef77d690604c2f863912d0",
+      "script_sha256": "2f1346889c5613e8cc9b71cff6a48568f91d3e643292114680599ed9f1559a51",
+      "full_pipeline_complete": false
+    },
+    {
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-13-m3-a6000",
+      "member": 3,
+      "indices": [
+        38,
+        43,
+        53
+      ],
+      "gpus": 1,
+      "gpu_type": "a6000",
+      "minutes": 1200,
+      "job_id": "90000192",
+      "plan_sha256": "0cd5295d8c053526a3669cdb99992d33abee79a5d1bde0596648ebad06ca84a4",
+      "script_sha256": "30f8e21b844d83c2aae767b2be2de0d216ac8180e5175ec0dfdda14da0d28c96",
+      "full_pipeline_complete": false
+    },
+    {
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-14-m3-a6000",
+      "member": 3,
+      "indices": [
+        40,
+        50,
+        55
+      ],
+      "gpus": 1,
+      "gpu_type": "a6000",
+      "minutes": 1200,
+      "job_id": "90000193",
+      "plan_sha256": "658fe41780547459d3e0632b5897dd95b38988453409b51069d6a906040df14d",
+      "script_sha256": "63571e3c89998f9426100e6aa90bb8334d1e166fe5449190c3756dd915d2880f",
+      "full_pipeline_complete": false
+    },
+    {
+      "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-15-m3-a6000",
+      "member": 3,
+      "indices": [
+        41,
+        51,
+        56
+      ],
+      "gpus": 1,
+      "gpu_type": "a6000",
+      "minutes": 1200,
+      "job_id": "90000194",
+      "plan_sha256": "32507a0ae83087dd6d933f115c19f2fe9b750e60baa585e8958945b32c8ed04e",
+      "script_sha256": "c80a7a824dbb87c41b0b80333d5a288e213f93f240b4da86ff8139fb891e19a3",
+      "full_pipeline_complete": false
+    }
+  ],
+  "a6000-controller-transition.json": {
+    "old_event_pid": 421127,
+    "new_event_pid": 455273,
+    "old_hourly_pid": 421128,
+    "new_hourly_pid": 455274,
+    "added_jobs": [
+      "90000191",
+      "90000192",
+      "90000193",
+      "90000194"
+    ],
+    "excluded_cancelled_job": "90000186",
+    "scientific_workers_unchanged": true
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "scope": "Descriptive diagnosis on the frozen pilot only; no protocol or model changes",
+  "methods": {
+    "assembled": {
+      "edges": {
+        "merged": 72509,
+        "split": 2428,
+        "correct": 298,
+        "omitted": 15
+      },
+      "length_nm": {
+        "merged": 1603124.1406993866,
+        "split": 57635.18596839905,
+        "correct": 5669.919284820557,
+        "omitted": 380.09441566467285
+      },
+      "path_fraction": {
+        "merged": 0.9617921509518219,
+        "split": 0.034578151545314066,
+        "correct": 0.003401660374406004,
+        "omitted": 0.00022803712845807152
+      },
+      "positive_predicted_labels": 158,
+      "labels_touching_multiple_reference_neurons": 144,
+      "nodes_on_merged_labels": 77688,
+      "sampled_nodes": 78015,
+      "reconstructed_erl_nm": 3.0698313045655974,
+      "reported_erl_nm": 3.0698315399920775,
+      "assignment_sha256": "2b033aa365238c2b8e7ebdf9776434267a1f044279ff8538964370b584351c3b"
+    },
+    "submission": {
+      "edges": {
+        "merged": 73699,
+        "split": 1242,
+        "correct": 294,
+        "omitted": 15
+      },
+      "length_nm": {
+        "merged": 1631322.083070755,
+        "split": 29548.094846725464,
+        "correct": 5559.068035125732,
+        "omitted": 380.09441566467285
+      },
+      "path_fraction": {
+        "merged": 0.9787094681808808,
+        "split": 0.017727339372958516,
+        "correct": 0.0033351553177026786,
+        "omitted": 0.00022803712845807152
+      },
+      "positive_predicted_labels": 59,
+      "labels_touching_multiple_reference_neurons": 48,
+      "nodes_on_merged_labels": 77699,
+      "sampled_nodes": 78015,
+      "reconstructed_erl_nm": 3.062459135919009,
+      "reported_erl_nm": 3.0624593713454886,
+      "assignment_sha256": "6806b870af340ffbdbb6ce0cf68d802ba3a7a238e56d8bf3c2080e589a720034"
+    }
+  },
+  "script_sha256": "95f1c8bf9bc6120e2925ca46d116e014e3206e1a48e4d25c8d9c32ceee5a7fcc",
+  "length_precision": "Same float32 edge coordinates as pinned evaluator; diagnostic regrouping uses float64 sums and matches ERL within 1e-6 relative tolerance."
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "pathfinder-fps-build-audit/v1",
+  "package_manifest_sha256": "0b588228dc737e76ada4198674ae972875fabd1b4402b6aa484f9f1d47b38488",
+  "source_hashes": {
+    "vendor/pointnext/LICENSE": "a1f8843f4c3c76ab9a36e1bfde953d7c02aa29e1f47fcfa697ee7de6a527ff15",
+    "vendor/pointnext/openpoints/LICENSE": "76d8a6f3be50aa4fda8dc251bafd464d636bb13f0521b9417f160cabc842660b",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/cuda_utils.h": "7ace0019cea06178a57b275d3b1086b26cd5d0c83d646e8b8ae70c530e9e7bca",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling.cpp": "847fc019118bf79232e221d0e9d7cb7686187b5ace8fddbc259c6fc0d59cae45",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling_gpu.cu": "5a898832473b159a35e12fa4c639435f37588ffc0a989229694da8d1568f76e5",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling_gpu.h": "a116fef8b7ea61442c52ddc43282de2d7ccc5ba1fe4f432bdcbd1e1a07d7cf2f",
+    "runtime/pathfinder/build_point_ops.py": "f35eec1086e76cdd913852ea91e3ec940781333d0ee7360cb07c8ea5eefdc537"
+  },
+  "slurm_job_id": "90000016",
+  "seconds": 46.15931062400341,
+  "exit_code": 0,
+  "cuda_visible_devices": "",
+  "cuda_arch": "8.6",
+  "gpu_execution": false,
+  "cuda_home": "/auto/pkg/local/cuda-12.9",
+  "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Tue_May_27_02:21:03_PDT_2025\nCuda compilation tools, release 12.9, V12.9.86\nBuild cuda_12.9.r12.9/compiler.36037853_0\n",
+  "build_log_sha256": "742242ced019ec39281cdd1e8f61484adcca03e5040a2880dd3778a2047f0c7a",
+  "kernel_numerical_parity_verified": false,
+  "extension_sha256": "e2d0cb731c450dcbe0b7aa40f02c21f7fa330ed2abb0a42cec5c7226fed43cc6",
+  "compiled_and_loaded": true
+}

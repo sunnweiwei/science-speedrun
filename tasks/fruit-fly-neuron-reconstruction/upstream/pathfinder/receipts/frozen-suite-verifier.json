@@ -1,0 +1,9 @@
+{
+  "scope": "CPU scoring of historical prediction; no model replay",
+  "reward": 0.5238821980488535,
+  "suite_sha256": "988136324c03ec40c394c42a0985853b9a56b326e5e37dabdbba08ab148a8629",
+  "verifier_sha256": "7c8cebd237caf8218dff7ee7aed049cd7e91c8675e34edc7a2a78babc25963d7",
+  "tampered_geometry_rejected": true,
+  "stale_nonzero_reward_reset": true,
+  "gpu_used": false
+}

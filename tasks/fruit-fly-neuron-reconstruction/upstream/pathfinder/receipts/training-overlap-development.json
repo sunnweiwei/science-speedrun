@@ -1,0 +1,128 @@
+{
+  "schema": "pathfinder-training-region-overlap/v1",
+  "manifest_sha256": "a2a96ca90a83141e48367a216852588efa00f08dab4d81ba80f5315207207344",
+  "skeletons_sha256": "37bedb18b67e68a89d5d8257c220d502e6030ea8fef3d9462e29291ffd09845e",
+  "training_runs": {
+    "ffn": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-ffn/run.json",
+      "sha256": "1f20b736cb4a8a5d9dae1c2b36c7f1098941125c762f5f6cc1dc5881c87faff1"
+    },
+    "sense": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-sense/run.json",
+      "sha256": "bd21956aff42fa5c16d832c119929c620f3ea6509c407f342c49c29690915129"
+    }
+  },
+  "audit_code_sha256": "5249b610b31e287159f207929484b58baeb66436f721c90cc2ae759abd0ba4ed",
+  "nodes": 3198,
+  "raw_extent_nodes": 19,
+  "eligible_supervised_nodes": 8,
+  "raw_extent_fraction": 0.0059412132582864294,
+  "eligible_supervised_fraction": 0.0025015634771732333,
+  "raw_extent_node_ids": [
+    260,
+    281,
+    297,
+    311,
+    324,
+    335,
+    344,
+    352,
+    360,
+    366,
+    372,
+    379,
+    392,
+    399,
+    407,
+    413,
+    427,
+    438,
+    1881
+  ],
+  "eligible_supervised_node_ids": [
+    260,
+    281,
+    297,
+    311,
+    324,
+    335,
+    344,
+    352
+  ],
+  "blocks": [
+    {
+      "name": "0-3584-0",
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0,
+      "valid_sha256": "311560e2fb253fb2f63f579352be68499e5406aa248228c22c32041e2f8b063e"
+    },
+    {
+      "name": "350-1792-1792",
+      "raw_extent_nodes": 19,
+      "eligible_supervised_nodes": 8,
+      "valid_sha256": "04b76cb90aa4d317a06ccff7688f7f77e7b88240556d61bedb18586e6ca1c78d"
+    },
+    {
+      "name": "700-0-0",
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0,
+      "valid_sha256": "4addf1cc82c4b7246818b0d9dd7fd2fc9c82cc4f20521af4f83b8f29228e3dfc"
+    },
+    {
+      "name": "700-0-3584",
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0,
+      "valid_sha256": "96f3d47b3268da3122a0650ea49a613a40a6d9d0a06beebd4e4847904adae100"
+    }
+  ],
+  "per_skeleton": [
+    {
+      "skeleton_id": 1,
+      "nodes": 1656,
+      "raw_extent_nodes": 18,
+      "eligible_supervised_nodes": 8
+    },
+    {
+      "skeleton_id": 1102,
+      "nodes": 521,
+      "raw_extent_nodes": 1,
+      "eligible_supervised_nodes": 0
+    },
+    {
+      "skeleton_id": 1902,
+      "nodes": 650,
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0
+    },
+    {
+      "skeleton_id": 2203,
+      "nodes": 198,
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0
+    },
+    {
+      "skeleton_id": 3507,
+      "nodes": 70,
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0
+    },
+    {
+      "skeleton_id": 3813,
+      "nodes": 64,
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0
+    },
+    {
+      "skeleton_id": 4114,
+      "nodes": 39,
+      "raw_extent_nodes": 0,
+      "eligible_supervised_nodes": 0
+    }
+  ],
+  "scope": "Potential training spatial exposure at skeleton nodes only; not actual minibatch exposure or whole-edge overlap",
+  "neuron_disjointness_proven": false,
+  "paper_comparable": false,
+  "splits_modified": false,
+  "predictions_read": false,
+  "interpretation": "SHAPE member holdout does not establish FFN/SENSE spatial or neuron holdout; preserve original evaluation and report this audit alongside it"
+}

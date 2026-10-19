@@ -1,0 +1,45 @@
+{
+  "window": 31,
+  "shape": [
+    532,
+    532,
+    532
+  ],
+  "policy_seconds": 205.8179168254137,
+  "cached_load_seconds": 0.0024832086637616158,
+  "seed_count": 190117,
+  "seed_bytes": 4562808,
+  "seed_sha256": "d764e79ddfaf6962903bc51bc19016be404712cb094a9d0dfefcf4be0922a77c",
+  "raw_sha256": "aeb36e7ae94795b963c9d3a3030c79eb3bf9ef9beefbad804cb6ae4585aa0e17",
+  "geometry": {
+    "start": [
+      420,
+      420,
+      420
+    ],
+    "stop": [
+      920,
+      920,
+      920
+    ],
+    "core_start": [
+      452,
+      452,
+      452
+    ],
+    "core_stop": [
+      888,
+      888,
+      888
+    ]
+  },
+  "policy_sha256": "4074b75590882e06d0f05481dd0a195c271efc9f8fe14c433a29d2b75f396cb6",
+  "dependencies": {
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "scikit-image": "0.26.0",
+    "edt": "3.1.2"
+  },
+  "peak_rss_kib": 6329504,
+  "scope": "One representative original full window; exact cached seed bytes only; no inference share or campaign speedup established"
+}

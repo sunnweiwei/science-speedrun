@@ -1,0 +1,37 @@
+{
+  "timestamp_utc": "2026-10-04T10:39:00Z",
+  "full_pipeline_complete": false,
+  "context": {
+    "complete": true,
+    "max_instances": 512000000,
+    "numeric_max_label": 512000000,
+    "conservative_memory_bytes": 100623457960,
+    "reserved_output_bytes": 20490000296
+  },
+  "context_receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/replay/prediction/context/receipt.json",
+  "context_receipt_sha256": "2a1fa4ec145b809295822bebee157ebf83f2c97feb91157c034d20f156fd91af",
+  "resources": "\tCommand being timed: \"/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/portable-runtime-v1/bin/python -B /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/trusted-source/pathfinder/ensemble_pipeline.py context --root /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1 --run /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/context-capacity-v1/replay/prediction\"\n\tUser time (seconds): 2698.52\n\tSystem time (seconds): 125.05\n\tPercent of CPU this job got: 97%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 48:14.93\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 54947856\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 3\n\tMinor (reclaiming a frame) page faults: 52811656\n\tVoluntary context switches: 723445\n\tInvoluntary context switches: 17866\n\tSwaps: 0\n\tFile system inputs: 35155096\n\tFile system outputs: 35155448\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n",
+  "refine_submission": {
+    "job_id": "90000196",
+    "phase": "refine",
+    "timestamp_utc": "2026-10-04T10:26:40.111023+00:00",
+    "script_sha256": "b288f9d3e664d72aa9765c34bd69b3dd7a7e08c5163b9675792b6f1abd0473e1",
+    "controller_plan_sha256": "a58d9ae347f68aeb15137474f79549b78df2efdc9836b3330336cb0d39e2c0a8",
+    "ready_sha256": "75d2be4f5e49247915b669884b6cffc5869689abeb30a196de63988e520d8d49",
+    "full_pipeline_complete": false
+  },
+  "scheduler_observed": {
+    "job_id": "90000196",
+    "state": "RUNNING",
+    "gpus": 4,
+    "gpu_type": "a5000",
+    "partition": "gpu"
+  },
+  "local_phase": "decisions",
+  "hourly_monitor": {
+    "pid": 1071200,
+    "next_check_utc": "2026-10-04T11:39:00Z",
+    "interval_seconds": 3600,
+    "read_only": true
+  }
+}

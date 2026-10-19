@@ -1,0 +1,13 @@
+{
+  "schema": "pathfinder-package-check/v1",
+  "package_manifest_sha256": "0b588228dc737e76ada4198674ae972875fabd1b4402b6aa484f9f1d47b38488",
+  "parameters": {
+    "ffn": 1110273,
+    "sense": 5019185,
+    "shape": 8189281
+  },
+  "extension_loaded": true,
+  "gpu_forward_verified": false,
+  "task_replay_verified": false,
+  "paper_comparable": false
+}

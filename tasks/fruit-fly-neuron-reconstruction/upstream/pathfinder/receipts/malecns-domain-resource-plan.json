@@ -1,0 +1,28 @@
+{
+  "campaign": "MaleCNS domain comparison v1",
+  "new_campaign_allocation_hours": 24,
+  "max_concurrent_gpus": 4,
+  "proposed_cumulative_allocation_hours": 70,
+  "proposed_cumulative_gpu_hours": 280,
+  "disk_limit_bytes": 200000000000,
+  "training": {
+    "allocation_minutes": 390,
+    "ffn_seconds": 10800,
+    "sense_seconds": 7200,
+    "shape_seconds": 3600,
+    "ffn_batch_per_gpu": 16,
+    "sense_batch_per_gpu": 8,
+    "shape_batch_per_gpu": 2,
+    "from_scratch": true
+  },
+  "remaining_plan": "Validation inference up to6h, frozen-test inference up to8h, traditional agglomeration up to2h; remaining1.5h contingency. Each later job requires measured runtime/storage preflight; no automatic test tuning.",
+  "gate": "Native one-GPU control terminal; crop/geometry manifests verified; existing usage retained; never more than4GPU",
+  "user_authorization": "Complete both goals; earlier explicit instruction that compute allowance is adjustable",
+  "status": "prepared; training controller submits only after successful data preparation and terminal native control",
+  "controller_job": "90000060",
+  "dependencies": {
+    "successful_shape_preparation": "90000059",
+    "terminal_native_control": "90000058"
+  },
+  "training_submitted": false
+}

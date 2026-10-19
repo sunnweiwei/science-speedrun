@@ -1,0 +1,91 @@
+{
+  "schema": "malecns-validation-selection-result/v1",
+  "role": "validation",
+  "test_used": false,
+  "reconstruction": {
+    "full_context_reconstruction_complete": true,
+    "complete_tiles": 21952,
+    "total_tiles": 21952,
+    "assembly_receipt_sha256": "2be3f0e403d1bad67071054b191b22644e262bb75a4f653d8aafef97b06ad854",
+    "coverage_sha256": "563851fb73aac987adf3912d5975c2b8a9e674df1bb8ceba233ffbfcdc92bc25",
+    "segmentation_sha256": "4b2af162acf4230673fa87eec605d5906eddd1a8ffd8ef3887e41cefce9e9f14",
+    "scope": "Complete compute coverage only; does not establish biological accuracy or baseline candidate completeness"
+  },
+  "search_candidates": [
+    {
+      "threshold": 0.2,
+      "nerl": 0.0069379608577381895,
+      "metrics_sha256": "56921098eac2c68f01ad20ccadba6f869af44a53c09e6e014ec1fbd8ffed553c",
+      "global_search_sha256": "78eaa48d6cb484a76823582753d2be432a0be7a6a3b66a82f30c203c5d2de1ef"
+    },
+    {
+      "threshold": 0.5,
+      "nerl": 0.0069379608577381895,
+      "metrics_sha256": "56921098eac2c68f01ad20ccadba6f869af44a53c09e6e014ec1fbd8ffed553c",
+      "global_search_sha256": "78eaa48d6cb484a76823582753d2be432a0be7a6a3b66a82f30c203c5d2de1ef"
+    },
+    {
+      "threshold": 0.8,
+      "nerl": 0.009459745066297463,
+      "metrics_sha256": "1d95636f76ab959e03582907598a5499554dcec79da156d051f873152c9cbd97",
+      "global_search_sha256": "a1becbc40a37b887bdbec012e78e243c0f50abb265f4dcf1c1fa467e08df0bc6"
+    }
+  ],
+  "selected": {
+    "threshold": 0.8,
+    "nerl": 0.009459745066297463,
+    "metrics_sha256": "1d95636f76ab959e03582907598a5499554dcec79da156d051f873152c9cbd97",
+    "global_search_sha256": "a1becbc40a37b887bdbec012e78e243c0f50abb265f4dcf1c1fa467e08df0bc6"
+  },
+  "selected_package": {
+    "schema": "pathfinder-package-check/v1",
+    "package_manifest_sha256": "2974bc8cc78754f9f4e64e1b1d2715bdb1ad84a61245290e521a55ba8d5fd5d1",
+    "search_threshold": 0.8,
+    "parameters": {
+      "ffn": 1110273,
+      "sense": 5019185,
+      "shape": 8189281
+    },
+    "extension_loaded": true,
+    "gpu_forward_verified": false,
+    "task_replay_verified": false,
+    "paper_comparable": false
+  },
+  "sense_coverage": {
+    "processed_count": 12432,
+    "eligible_count": 12432,
+    "eligible_instance_fraction": 1.0,
+    "total_instance_fraction": 0.02148898326618026,
+    "scope": "geometric 10um interior representatives only; not full-volume coverage"
+  },
+  "shape_coverage": {
+    "full_context_scored": 6406,
+    "unprocessed_motifs": 0,
+    "enumeration_truncated": false
+  },
+  "cost": {
+    "recovery_job_id": "90000071",
+    "state": "COMPLETED",
+    "allocation_seconds": 20614,
+    "gpus": 4,
+    "gpu_hours": 22.904444444444444,
+    "earlier_incomplete_job_id": "90000069",
+    "earlier_allocation_seconds": 13088,
+    "scope": "Recovery cost alone excludes earlier incomplete validation, training, profiling and baseline; preserve all ledger charges"
+  },
+  "traditional_baseline": {
+    "job_id": "90000072",
+    "candidate_pairs": 79725,
+    "status": "RUNNING_at_2026-09-29T09:44UTC",
+    "scientific_score_available": false
+  },
+  "inputs": {
+    "malecns-domain-v1/validation-calibration/selection.json": "79987185f3406e9b202bcd3baea110cb25f4b9ef012fc1b6835ce51b7dd58217",
+    "malecns-domain-v1/validation-full-coverage.json": "926e25b429a4eb441369798559bf7b4cacdb2fcf7fee6f3789b4a563fcd54d22",
+    "malecns-domain-v1/selected-model-package/package.json": "2974bc8cc78754f9f4e64e1b1d2715bdb1ad84a61245290e521a55ba8d5fd5d1",
+    "malecns-domain-v1/validation-resume-v1/recovery.json": "b46085a148618e258c5ee9d562dcd240ed7f5427993d31697441dfa73d078926",
+    "malecns-domain-v1/validation-resume-v1/refinement/receipt.json": "3ec9973f8d7cb3f30f22b24462f7f075b336719b8ae395748eb8ccab88e82294",
+    "malecns-domain-v1/validation-decisions.json": "27f8be707be581418391a98bad2b17a020e0379dc2072abdb4bac7ddbf7ad880"
+  },
+  "interpretation": "Validation-only configuration selection. No test score or baseline gain claimed. Full FFN coverage, eligible SENSE coverage and motif coverage are separate quantities."
+}

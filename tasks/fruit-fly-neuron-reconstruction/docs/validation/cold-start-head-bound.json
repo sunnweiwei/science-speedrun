@@ -1,0 +1,29 @@
+{
+  "proof": "Last normalized vector z has squared norm <= C. Drop nonpositive output weights after ReLU. For positive w, w*ReLU(gamma*z+beta) <= w*abs(gamma*z)+w*abs(beta). Cauchy-Schwarz gives delta <= sqrt(C)*norm(w_positive*gamma)+sum(w_positive*abs(beta))+bias. First nonseed logit = -2.944439 + delta. No movement is possible if this upper bound is below 2.197224577.",
+  "rows": [
+    {
+      "name": "failed-control",
+      "step": 4500,
+      "delta_upper_bound": 4.309032684245202,
+      "initial_nonseed_logit_upper_bound": 1.364593684245202,
+      "movement_threshold": 2.197224577,
+      "first_move_mathematically_impossible": true
+    },
+    {
+      "name": "recovery32",
+      "step": 300,
+      "delta_upper_bound": 3.0772929186029705,
+      "initial_nonseed_logit_upper_bound": 0.13285391860297047,
+      "movement_threshold": 2.197224577,
+      "first_move_mathematically_impossible": true
+    },
+    {
+      "name": "historical-corrected",
+      "step": 1,
+      "delta_upper_bound": 6.448863930309751,
+      "initial_nonseed_logit_upper_bound": 3.504424930309751,
+      "movement_threshold": 2.197224577,
+      "first_move_mathematically_impossible": false
+    }
+  ]
+}

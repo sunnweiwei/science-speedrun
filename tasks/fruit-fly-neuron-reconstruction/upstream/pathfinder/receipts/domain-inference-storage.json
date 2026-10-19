@@ -1,0 +1,36 @@
+{
+  "archive": {
+    "schema": "pathfinder-lossless-archive/v1",
+    "root": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1",
+    "entries": [
+      {
+        "source": "continuous24/raw.npy",
+        "source_sha256": "65bfa2dbc6881eac6534d82e19fdd5b2396e3094ea39e41612633e1057554650",
+        "source_bytes": 3375000128,
+        "archive": "archives/65bfa2dbc6881eac6534d82e19fdd5b2396e3094ea39e41612633e1057554650.npy.zst",
+        "archive_sha256": "631c67ef6ccba90e9544df2647656d66c0e97e72423476130b8cad20e309dbb3",
+        "archive_bytes": 3333757843,
+        "verified_decompression": true,
+        "original_removed": true
+      }
+    ],
+    "status": "completed",
+    "source_manifest_sha256": "a00f4a16616b8e9341d01885a4b1da2ccf4fdad2408a1b6a858ea4527150c8d3",
+    "restore": "zstd -d -c <archive> > continuous24/raw.npy; verify source_sha256 before reuse"
+  },
+  "cache_cleanup": {
+    "utc": "2026-09-28T21:57:36.492399+00:00",
+    "command": "uv cache clean --cache-dir /scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/cache/uv-pathfinder",
+    "removed_cache_bytes_before": 5824130629,
+    "removed_files": 19240,
+    "cache_symlinks_in_active_environments": 0,
+    "scope": "Regenerable package cache only; installed environments and data preserved"
+  },
+  "preflight": {
+    "utc": "2026-09-28T21:58:13.251915+00:00",
+    "resident_bytes": 124492323364,
+    "extra_bytes": 69644592736,
+    "projected_bytes": 194136916100,
+    "passes": true
+  }
+}

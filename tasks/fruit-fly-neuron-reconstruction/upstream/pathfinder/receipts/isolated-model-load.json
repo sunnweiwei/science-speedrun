@@ -1,0 +1,30 @@
+{
+  "schema": "pathfinder-package-check/v1",
+  "package_manifest_sha256": "72e588c10d65cee164f22eac3b321b3c1ade77e2e78929d9e5d19852adf2e564",
+  "parameters": {
+    "ffn": 1110273,
+    "sense": 5019185,
+    "shape": 8189281
+  },
+  "extension_loaded": true,
+  "gpu_forward_verified": false,
+  "task_replay_verified": false,
+  "paper_comparable": false,
+  "slurm_job_id": "90000021",
+  "elapsed_seconds": 9,
+  "isolation": {
+    "gpu_visible": false,
+    "host_paths_hidden": true,
+    "network_isolated": true,
+    "readonly_mounts": [
+      "/package",
+      "/audit"
+    ],
+    "python": "3.11.13",
+    "torch": "2.6.0+cu124",
+    "torch_cuda": "12.4"
+  },
+  "image_sha256": "24eb33221d9e5dd8ddc4180ee6ea15385ddf631b03a064ec95d75174f10f6b66",
+  "commands_sha256": "43d6cbcfea356c5e1441dcb7f2ed6fa4950caab3b1e5262bb0b80479d5e19b33",
+  "scope": "Isolated CPU strict state loading and FPS binary import; no model forward"
+}

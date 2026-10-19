@@ -1,0 +1,28 @@
+{
+  "job": "90000026",
+  "state": "COMPLETED",
+  "elapsed_seconds": 7,
+  "baseline": {
+    "status": "old_helper_fails_without_git"
+  },
+  "exported_package_check": {
+    "schema": "pathfinder-package-check/v1",
+    "package_manifest_sha256": "e9b0ecb1702caff75c83100f6740f0d231138ad3e7fd12a1ac146ae964af6ff1",
+    "parameters": {
+      "ffn": 1110273,
+      "sense": 5019185,
+      "shape": 8189281
+    },
+    "extension_loaded": true,
+    "gpu_forward_verified": false,
+    "task_replay_verified": false,
+    "paper_comparable": false
+  },
+  "source": {
+    "commit": "unversioned-copy",
+    "python_tree_sha256": "80550a87752728b586f548fcb29eb68931fdaaf6fe4782af4a2384d2325c6c1d"
+  },
+  "weight_bytes_identical_to_v4": true,
+  "gpu_used": false,
+  "scope": "Read-only fixed trained assets plus patched source mounted into isolated native runtime; full CPU export and strict reload, no model forward"
+}

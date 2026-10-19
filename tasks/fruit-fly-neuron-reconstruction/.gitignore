@@ -1,0 +1,8 @@
+/local/
+/references/
+/results/
+*.h5
+*.hdf5
+*.feather
+*.parquet
+*.partial

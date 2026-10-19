@@ -1,0 +1,65 @@
+{
+  "schema": "malecns-spatial-comparison/v1",
+  "frozen_date": "2026-09-28",
+  "selection": "Assign existing prediction-unseen r1/r2/r3 to train/validation/test in fixed numeric order. Previous GT preparation and identity/self-check audits disclosed. No model performance selected regions.",
+  "regions": [
+    {
+      "split": "train",
+      "region_id": "malecns-transfer-r1",
+      "prepared_relative_path": "comparison-v1/multiregion/malecns-transfer-r1",
+      "center_xyz_16nm": [
+        22295,
+        13757,
+        12360
+      ],
+      "image_manifest_sha256": "0ee3e02ccb07beacda81558308ef4fbc4586899e0c0aa53204f13db1788a7713",
+      "core_labels_sha256": "4b16abcf7f49120b39c26a4dd33e5f82d263ddd462d8871c0231821489853445"
+    },
+    {
+      "split": "validation",
+      "region_id": "malecns-transfer-r2",
+      "prepared_relative_path": "comparison-v1/multiregion/malecns-transfer-r2",
+      "center_xyz_16nm": [
+        26391,
+        13757,
+        12360
+      ],
+      "image_manifest_sha256": "1a0b390b6fb4d8f21bec4fe488a56e307145ac2464d7bb0b728bb7f821336f04",
+      "core_labels_sha256": "8c9cf2a8a96ed87a849eba185726069553be47ca30c0f78b714566016a33a6bb"
+    },
+    {
+      "split": "test",
+      "region_id": "malecns-transfer-r3",
+      "prepared_relative_path": "comparison-v1/multiregion/malecns-transfer-r3",
+      "center_xyz_16nm": [
+        24343,
+        15805,
+        12360
+      ],
+      "image_manifest_sha256": "1b5463e554d1dd23e21d1988f06b8e213ec059da27d94b217f7a98ed8c6b4b56",
+      "core_labels_sha256": "18957e1d14e4e05dddec30b262dd7e715650d108c931ce2a50e85488ba779d4f"
+    }
+  ],
+  "metadata": {
+    "em_s1": {
+      "url": "https://storage.googleapis.com/flyem_cns_z0720_07m_dvidcoords_n5/s1/attributes.json",
+      "sha256": "8c01f3bbd1bf36696d02ed9d7ad629af9e2641f629e6740931494472164011d0"
+    },
+    "segmentation": {
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/info",
+      "sha256": "dfe0bf785574079b40564ba03a2354ce5b2bd96ed8e830422b428182ade5bdf9"
+    },
+    "official_scene": {
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/male-cns-v1.0.json",
+      "sha256": "390e01b0c78742bb2465f9ec8f89890106c008d6ac1d5b06840b610f532ea754"
+    }
+  },
+  "segmentation_url": "https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/",
+  "training": "From scratch all three stages; exclude observed train IDs shared with validation/test; zero/unknown never negative supervision",
+  "context": "Physically disjoint 1794-cube 16nm image boxes; shape geometry from published 32nm labels without shrinking 10um/8192-point model",
+  "test_reporting": "512-cube score plus fixed 256-cube octants; correlated descriptive results, not eight independent samples",
+  "primary_baseline": "shared FFN initial segmentation + two-seed resegmentation with author documented consistency gates",
+  "public_number_check": "Separate native NISB BANIS+; not a numerical target for MaleCNS",
+  "historical_pilot_excluded": true,
+  "paper_comparable": false
+}

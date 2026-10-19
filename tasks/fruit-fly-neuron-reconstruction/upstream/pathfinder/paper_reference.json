@@ -1,0 +1,168 @@
+{
+  "schema": "pathfinder-paper-reference/v1",
+  "paper": {
+    "title": "Accelerating Neuron Reconstruction with PATHFINDER",
+    "doi": "10.1101/2025.05.16.654254",
+    "version": "v1",
+    "posted": "2025-05-21",
+    "url": "https://www.biorxiv.org/content/10.1101/2025.05.16.654254v1",
+    "readable_author_text": "https://www.researchgate.net/publication/391957338_Accelerating_Neuron_Reconstruction_with_PATHFINDER",
+    "source_file_sha256": null,
+    "source_file_status": "Original PDF not retrieved; values transcribed from author text mirror, not a byte-pinned PDF"
+  },
+  "dataset": {
+    "name": "IBEAM-mSEM mouse cortex, paper evaluation cuboid",
+    "raw_voxel_size_nm": [
+      8,
+      8,
+      8
+    ],
+    "reported_extent_um": [
+      80.4,
+      84.8,
+      99.2
+    ],
+    "extent_axis_order_verified": false,
+    "reported_raw_size_tb_approx": 1.32,
+    "evaluation_population": "all unmyelinated axons in the evaluation volume",
+    "evaluation_path_length_mm": 4284,
+    "artifact_urls": null,
+    "raw_sha256": null,
+    "ground_truth_sha256": null,
+    "roi_bounds": null,
+    "split_membership_sha256": null,
+    "status": "paper description fixed; actual data, ROI origin and memberships not acquired"
+  },
+  "table1": [
+    {
+      "stage": "FFN v1.0 (single)",
+      "nerl": 0.685,
+      "split_errors": 44417,
+      "merge_errors": 1282
+    },
+    {
+      "stage": "FFN v1.0 (base)",
+      "nerl": 0.562,
+      "split_errors": 79230,
+      "merge_errors": 200
+    },
+    {
+      "stage": "FFN v1.0 (agglo)",
+      "nerl": 0.766,
+      "split_errors": 33835,
+      "merge_errors": 347
+    },
+    {
+      "stage": "FFN v1.5 (single)",
+      "nerl": 0.785,
+      "split_errors": 28207,
+      "merge_errors": 196
+    },
+    {
+      "stage": "FFN v1.5 (base)",
+      "nerl": 0.661,
+      "split_errors": 50981,
+      "merge_errors": 20
+    },
+    {
+      "stage": "FFN v1.5 (agglo)",
+      "nerl": 0.82,
+      "split_errors": 23085,
+      "merge_errors": 33
+    },
+    {
+      "stage": "PATHFINDER",
+      "nerl": 0.942,
+      "split_errors": 2862,
+      "merge_errors": 702
+    }
+  ],
+  "evaluation": {
+    "source_section": "Supplementary Text / Segmentation evaluation",
+    "skeletonization": "TEASAR",
+    "invalidation_scale": 5,
+    "invalidation_constant": 0,
+    "endpoint_erosion_nm": 100,
+    "average_node_separation_nm": 300,
+    "split_min_nodes": 5,
+    "merge_min_nodes": 10,
+    "split_boundary_margin_pixels": 144,
+    "boundary_margin_resolution_nm": null,
+    "nerl_definition": "ERL divided by maximum possible ERL for the same ground truth",
+    "numerical_parity_verified": false
+  },
+  "sense": {
+    "source_section": "Methods / Medium-context models: SENSE",
+    "variants": [
+      {
+        "fov_voxels": 128,
+        "voxel_size_nm": 16
+      },
+      {
+        "fov_voxels": 128,
+        "voxel_size_nm": 32
+      },
+      {
+        "fov_voxels": 256,
+        "voxel_size_nm": 16
+      }
+    ],
+    "prompt_radius_voxels": 16,
+    "prompt_probabilities": {
+      "foreground": 0.95,
+      "background": 0.05,
+      "unknown": 0.5
+    },
+    "training_axons": 1684,
+    "validation_axons": 320,
+    "validation_path_length_mm": 54,
+    "selected_checkpoints": 7,
+    "prediction_threshold": 0.5,
+    "candidate_overlap_threshold": 0.5,
+    "candidate_min_full_segment_voxels": 500,
+    "reported_validation_recall": 0.97
+  },
+  "shape": {
+    "source_section": "Methods / Large-context models: SHAPE",
+    "backbone_family": "PointNeXt variant",
+    "radius_um": 10,
+    "points": 8192,
+    "training_axons": 1795,
+    "validation_axons": 263,
+    "inference_point_samples": 16,
+    "inference_rotations_per_sample": 16
+  },
+  "search": {
+    "source_section": "Methods / SHAPE: Combinatorial search",
+    "max_motif_order": 4,
+    "pair_prefilter_shape_threshold": 0.5,
+    "figure4_motif_threshold": 0.5,
+    "reported_total_error_minimizing_motif_threshold": 0.2,
+    "table1_exact_configuration_mapping_verified": false
+  },
+  "implementation_identity": "independent paper reconstruction; not author code",
+  "direct_numeric_comparison_ready": false,
+  "ffn_segmentation": {
+    "source_section": "Supplementary Text / FFN segmentation",
+    "text_checked_on": "2026-10-01",
+    "selected_checkpoints": 3,
+    "selection_metric": "Validation segmentation edge accuracy",
+    "seed_orders": [
+      "ascending",
+      "descending"
+    ],
+    "neuronal_runs": 6,
+    "consensus": "Conservative split consensus",
+    "agglomeration_acceptance": "All three checkpoint-specific gates must pass for a candidate pair",
+    "single_checkpoint_gate": "((min(deleted/predicted)<0.02) AND IoU>0.8 AND min(consistency)>0.8) OR (IoU>0.9 AND min(consistency)>0.9)",
+    "additional_processing": "Blood vessel/glia initialization and semantic-class-specific processing",
+    "local_complete_comparison": "Single checkpoint, ascending seeds, manual gate; not this full paper protocol",
+    "source_file_sha256": null,
+    "glia_post_consensus_min_voxels": 10000,
+    "glia_filter_scope": "Astrocyte/microglia stage; also requires dominant semantic classification. Not a universal neuronal consensus threshold.",
+    "neuronal_split_consensus_min_voxels": null,
+    "neuronal_split_consensus_min_voxels_status": "Not explicitly stated in the inspected FFN segmentation methods text; do not infer it from the glia threshold or software defaults.",
+    "semantic_consensus_exemptions": "Soma, nucleus and myelinated-axon supervoxels use class-specific held-back states rather than the full six-way neuronal consensus.",
+    "local_min_size_scope": "Explicit engineering configuration, identical for both downstream methods; zero in existing diagnostic runs is not a confirmed paper parameter."
+  }
+}

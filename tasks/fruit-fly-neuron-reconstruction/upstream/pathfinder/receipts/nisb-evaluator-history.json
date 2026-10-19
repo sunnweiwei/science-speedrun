@@ -1,0 +1,25 @@
+{
+  "schema": "nisb-report-era-protocol/v1",
+  "report_commit": "699477616995c82595ba2597bde6803d7441ad87",
+  "default_change_commit": "5d69206f7aa2806aa928d66f48615f752ecabd94",
+  "source_file_sha256": {
+    "tutorials/neuron_nisb/README.md": "ef7b54822bb1dffb868529cb7773321c595900f424db18137d0b2c6253fa654e",
+    "connectomics/config/schema/evaluation.py": "bc7c6912ee8105b5af7170bf2ec9e87e64e00f5c44a3b51a3ab2e1236a53611d",
+    "connectomics/metrics/nerl.py": "3e23374d56eb98252487bc6fda39de31d5e87d0080046daadf0de09dd73611d8"
+  },
+  "public_target_nerl": 0.596,
+  "decode_threshold": 0.66,
+  "affinity_mask": false,
+  "report_era_nerl_merge_threshold": 1,
+  "current_default_nerl_merge_threshold": 50,
+  "hypothesis": "Later evaluator default tolerates small cross-neuron overlaps; could explain higher scores. Numeric effect not yet measured.",
+  "next_run": "Single GPU batch8, same checkpoint and data, explicit report-era merge threshold1; also compute threshold50 diagnostic on the identical sampled node labels. No threshold search.",
+  "original_failed_checks_preserved": true,
+  "real_source_fixture": {
+    "two_skeletons_share_one_prediction": true,
+    "nerl_at_threshold1": 0.0,
+    "nerl_at_threshold50": 1.0,
+    "purpose": "Verify audited scoring hook and direction of evaluator change; not a dataset result"
+  },
+  "next_run_status": "Prepared only; no GPU submitted while four-GPU domain training runs"
+}

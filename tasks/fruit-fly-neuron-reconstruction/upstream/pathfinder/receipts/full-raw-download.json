@@ -1,0 +1,193 @@
+{
+  "revision": "63519706548316c1f00863cbea0ece40358a759a",
+  "archive_sha256": "93824734ec7c2c09df87f8b01e32a556446c437988618b27b5234df76659eccf",
+  "archive_bytes": 15207108024,
+  "png_count": 790,
+  "png_uncompressed_bytes": 15205306740,
+  "sampled_slices": [
+    {
+      "name": "im_pad/im0000.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 1,
+      "maximum": 255,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0020.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 1,
+      "maximum": 255,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0028.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0160.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0218.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0380.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0419.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0430.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 0,
+      "maximum": 128,
+      "nonzero_voxels": 20391880
+    },
+    {
+      "name": "im_pad/im0431.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 1,
+      "maximum": 255,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0444.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 1,
+      "maximum": 255,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0620.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0668.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 1,
+      "maximum": 255,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0677.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0711.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 0,
+      "maximum": 128,
+      "nonzero_voxels": 20391880
+    },
+    {
+      "name": "im_pad/im0721.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    },
+    {
+      "name": "im_pad/im0782.png",
+      "shape": [
+        5120,
+        5120
+      ],
+      "dtype": "uint8",
+      "minimum": 128,
+      "maximum": 128,
+      "nonzero_voxels": 26214400
+    }
+  ],
+  "raw_download_complete": true,
+  "extracted": false,
+  "ground_truth_downloaded": false,
+  "source": "https://axonem.grand-challenge.org/",
+  "url": "https://huggingface.co/datasets/pytc/EM30/resolve/63519706548316c1f00863cbea0ece40358a759a/EM30-M-im-pad.zip",
+  "paper_comparable": false,
+  "geometry_verified_for_full_pipeline": false,
+  "note": "PNG sample audit only; missing/blank slices and archive-viewer extent difference must be handled by adapter"
+}

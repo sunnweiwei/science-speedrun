@@ -1,0 +1,305 @@
+{
+  "timestamp_utc": "2026-10-02T23:51:46.306359+00:00",
+  "full_pipeline_complete": false,
+  "continuation": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay",
+  "initialization_passed": true,
+  "original_members_adopted": [
+    0,
+    1
+  ],
+  "window_recovery_members": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "member_infer_has_no_cross_member_prerequisite": true,
+  "consensus_required_member_phases": 18,
+  "required_final_phases": 27,
+  "budget_reset": false,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/resumption.json": "35b624f66f57c2912bf39fc4abe0632ef97dd20705e7fda7771e720f356a621e",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/replay-plan.json": "71a3cf506a3300abd5210726b285c930bdfa04b3f21e43557fb841ae4212b748",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/plan.json": "9feaa5670e53f69c12ca3a6d57744f2e2e4aafcccc9edf581e5f7a1bbd30c48d",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/source/pathfinder/ensemble_pipeline.py": "61d743687c02e1db64e50325e966bf012f12686e9fd5c52399286504eaea61b4"
+  },
+  "scope": "Frozen continuation promoted and original complete-member lineage verified; no new complete member or final evaluation claimed",
+  "local_cpu_handoffs": [
+    {
+      "member": 4,
+      "process": {
+        "pid": 370111,
+        "started_utc": "2026-10-03T07:25:42.147626+00:00",
+        "member": 4,
+        "full_pipeline_complete": false,
+        "config_sha256": "5af428afb882ce4f6eb2b834d4de475bc907cb06879b6f2242dd7bed9e9c1a9a"
+      },
+      "waiting": {
+        "timestamp_utc": "2026-10-03T07:25:42.151716+00:00",
+        "required_independent_audits": [
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/integrity-audit.json",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/integrity-audit.json"
+        ],
+        "cpu_pipeline_started": false
+      },
+      "source_sha256": "4f5cdc3a0ddfd24346eec4c2ae3ffafc12c0a4d07b2b3f9ef32d334eeb755128",
+      "source_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v1/controller.py",
+      "config_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v1/config.json",
+      "execution": "Local only, CUDA_VISIBLE_DEVICES empty, no Slurm CPU submission",
+      "acceptance": "Requires all four independently audited selections, exact 125-window union, terminal registered jobs and frozen model/input/source binding; invokes original infer/pack/retire phase CLIs",
+      "pipeline_started": false,
+      "pipeline_outputs_absent_at_readiness_check": true,
+      "full_pipeline_complete": false
+    },
+    {
+      "member": 5,
+      "process": {
+        "pid": 385311,
+        "started_utc": "2026-10-03T10:19:21.880841+00:00",
+        "member": 5,
+        "full_pipeline_complete": false,
+        "config_sha256": "cb4c7246a9b1b70d87a12af3c3772a6dcc7859e1f55b8b7010fe35448e84b4fd"
+      },
+      "waiting": {
+        "timestamp_utc": "2026-10-03T10:21:21.900216+00:00",
+        "required_independent_audits": [
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-queue-wave2/integrity-audit.json",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-queue-wave3/integrity-audit.json"
+        ],
+        "cpu_pipeline_started": false
+      },
+      "source_sha256": "a2390ae5cb4429697223c919665d95e552cf83fa5d90be15626510108786cd8d",
+      "source_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-chain-v1/controller.py",
+      "config_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-chain-v1/config.json",
+      "execution": "Local only, CUDA_VISIBLE_DEVICES empty, no Slurm CPU submission",
+      "acceptance": "All four complete selection audits, exact125 coverage, terminal original jobs and frozen pipeline binding required",
+      "pipeline_started": false,
+      "full_pipeline_complete": false
+    },
+    {
+      "member": 4,
+      "process": {
+        "pid": 387068,
+        "started_utc": "2026-10-03T10:47:13.980304+00:00",
+        "member": 4,
+        "full_pipeline_complete": false,
+        "config_sha256": "13c9182bfd42b3b2844243750f79164fdabd0c3f4ab8cbe649de5ad22269edd1"
+      },
+      "source_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v3/controller.py",
+      "source_sha256": "3d84bd9e59afc71a79f49a257e522fab7e1ad8ead6466675f7a60129a1c56005",
+      "config_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v3/config.json",
+      "config_sha256": "13c9182bfd42b3b2844243750f79164fdabd0c3f4ab8cbe649de5ad22269edd1",
+      "pipeline_started": true,
+      "full_pipeline_complete": false,
+      "started": {
+        "timestamp_utc": "2026-10-03T10:47:19.632377+00:00",
+        "member": 4,
+        "verified_selection_audits": {
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/integrity-audit.json": "698d9f792e698c77e024757b4e4e8e14644acae16a8c57b2b32deaa98cdcb428",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1/integrity-audit.json": "8328e3e7b442d656e007cdd5311a3d35a70781fd6daf41fb685b9a97d06776ef",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2/integrity-audit.json": "bbda7bf3db19fdb03e297ae81b73f949c81788490134b5609cc7e45a67779a03",
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3/integrity-audit.json": "c910ab3350fdd87d9b6770828f6d16e74a69d2598b32acf62f04418bf1dd5331"
+        },
+        "recovery_contract_sha256": "4db59c17c9a7eb3047d29e10898020ed604f51076e5b5ded11b7657168c1351d",
+        "pipeline_complete": false
+      },
+      "recovery_phase_sha256": "02a85219b7686795ea915ff45c46f00337d10488694d5898a499e9f73bcab20e",
+      "recovery_phase": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4-infer-phase.json",
+      "recovery_output_hashes_verified": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4/inference/manifest.json": "d34dcf438d0277ed2325dd174dbdbe15cc0a93dbf746145962dc7c326d073712",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4/inference/recovery-contract.json": "4db59c17c9a7eb3047d29e10898020ed604f51076e5b5ded11b7657168c1351d",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-resumed-v3/replay/prediction/member-4/inference/recovery-audit.json": "83649632e1ebb2130d753447ffee4c56b23bbde744312fb1c9377f4d4a922d50"
+      },
+      "verified_windows": 125,
+      "preflight": {
+        "actual_selections": [
+          {
+            "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4",
+            "checks": {
+              "plan": true,
+              "completion_hash": true,
+              "auditor": true,
+              "count": true,
+              "state": true,
+              "done": true,
+              "job": true,
+              "receipts": true,
+              "coverage": true
+            },
+            "original_job_id": "90000160",
+            "original_allocation_gpus": 4
+          },
+          {
+            "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-regular-wave1",
+            "checks": {
+              "plan": true,
+              "completion_hash": true,
+              "auditor": true,
+              "count": true,
+              "state": true,
+              "done": true,
+              "job": true,
+              "receipts": true,
+              "coverage": true
+            },
+            "original_job_id": "90000163",
+            "original_allocation_gpus": 4
+          },
+          {
+            "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave2",
+            "checks": {
+              "plan": true,
+              "completion_hash": true,
+              "auditor": true,
+              "count": true,
+              "state": true,
+              "done": true,
+              "job": true,
+              "receipts": true,
+              "coverage": true
+            },
+            "original_job_id": "90000167",
+            "original_allocation_gpus": 4
+          },
+          {
+            "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-queue-wave3",
+            "checks": {
+              "plan": true,
+              "completion_hash": true,
+              "auditor": true,
+              "count": true,
+              "state": true,
+              "done": true,
+              "job": true,
+              "receipts": true,
+              "coverage": true
+            },
+            "original_job_id": "90000170",
+            "original_allocation_gpus": 4
+          }
+        ],
+        "exact125_union": true,
+        "negative_completion_checks": 5,
+        "full_pipeline_complete": false
+      },
+      "preserved_preflight_failures": [
+        {
+          "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v1/failure.json",
+          "sha256": "e6c1c21d60f18ed919bab38a6a8a5fc44808c0fba403f610d8f620451fe8730b",
+          "record": {
+            "timestamp_utc": "2026-10-03T10:38:44.364609+00:00",
+            "error": "KeyError('auditor_sha256')",
+            "full_pipeline_complete": false
+          }
+        },
+        {
+          "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v2/failure.json",
+          "sha256": "2072fe8ca5b7b55b374a75294278b51a61716e49db0309605252c70ee22be1de",
+          "record": {
+            "timestamp_utc": "2026-10-03T10:42:28.980761+00:00",
+            "error": "ValueError('Independent selection acceptance differs')",
+            "full_pipeline_complete": false
+          }
+        },
+        {
+          "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v3/preflight-v1-failure.json",
+          "sha256": "fc7e8ac9a19b191bc4d9192f7d47ee0f3aa805918dedf27aeb769ba96d18efb3",
+          "record": {
+            "error": "Legacy selection plan has no gpus field; use original registered allocation",
+            "pipeline_started": false
+          }
+        }
+      ],
+      "resources": {
+        "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-chain-v3/member-4-infer.resources.txt",
+        "sha256": "65e2e16db15a990390d3011eb29a97333e8dc2e7da8addcee897f41bd0a83712",
+        "wall_seconds": 156.71,
+        "user_seconds": 148.82,
+        "system_seconds": 8.13,
+        "max_resident_set_kib": 523184,
+        "scope": "GNU time resource report for completed trusted recovery phase; not full member or starter resource acceptance"
+      }
+    },
+    {
+      "member": 5,
+      "process": {
+        "pid": 386875,
+        "started_utc": "2026-10-03T10:42:28.973424+00:00",
+        "member": 5,
+        "full_pipeline_complete": false,
+        "config_sha256": "4cf865d62633c05519240f5d9d322c001074bbf963b4e261d3fee3741a7d1d67"
+      },
+      "source_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-chain-v2/controller.py",
+      "source_sha256": "d0ad1372aed650913647f30c94adda3c46461f42d148a4b7a3ccb625679e037a",
+      "config_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-chain-v2/config.json",
+      "config_sha256": "4cf865d62633c05519240f5d9d322c001074bbf963b4e261d3fee3741a7d1d67",
+      "pipeline_started": false,
+      "full_pipeline_complete": false,
+      "waiting": {
+        "timestamp_utc": "2026-10-03T10:59:29.130232+00:00",
+        "required_independent_audits": [
+          "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-queue-wave3/integrity-audit.json"
+        ],
+        "cpu_pipeline_started": false
+      }
+    }
+  ],
+  "resource_observers": [
+    {
+      "member": 4,
+      "process": {
+        "pid": 384439,
+        "target_pid": 370111,
+        "target_start_ticks": 702772945,
+        "started_utc": "2026-10-03T10:05:04.920433+00:00",
+        "interval_seconds": 5,
+        "source_sha256": "183922a3e908ebe6ed9008324f41aac677edc6e451fa5293e3a51e4db2050ed9",
+        "scope": "Local /proc samples; no Slurm queries; may miss short-lived processes and inter-sample peaks. Not a complete disk or resource acceptance."
+      },
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-resource-v1/observe.py",
+      "scope": "Read-only /proc descendant observations every5s. Observed RSS/high-water marks and CPU counters, not exact whole-run peaks or starter disk acceptance. Shared pages may be counted repeatedly; short-lived processes and inter-sample peaks may be missed."
+    },
+    {
+      "member": 5,
+      "process": {
+        "pid": 385368,
+        "target_pid": 385311,
+        "target_start_ticks": 703814997,
+        "started_utc": "2026-10-03T10:20:12.896237+00:00",
+        "interval_seconds": 5,
+        "source_sha256": "568f262b71f93c972444a43221ff25c60d93fe180f9b99bf7da3880770584630",
+        "scope": "Local /proc samples; no Slurm queries; may miss short-lived processes and inter-sample peaks. Not a complete disk or resource acceptance."
+      },
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-resource-v1/observe.py",
+      "scope": "Read-only /proc descendant observations every5s. Observed RSS/high-water marks and CPU counters, not exact whole-run peaks or starter disk acceptance. Shared pages may be counted repeatedly; short-lived processes and inter-sample peaks may be missed."
+    },
+    {
+      "member": 4,
+      "process": {
+        "pid": 387069,
+        "target_pid": 387068,
+        "target_start_ticks": 703982155,
+        "started_utc": "2026-10-03T10:47:10.249434+00:00",
+        "interval_seconds": 5,
+        "source_sha256": "15318a6eb231148f519a7157f8e11d6d7716dcf04f674e1df2ee1ad675823b58",
+        "scope": "Local /proc samples; no Slurm queries; may miss short-lived processes and inter-sample peaks. Not a complete disk or resource acceptance."
+      },
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-4-local-resource-v3/observe.py",
+      "scope": "Sampled local descendant resources; complemented by per-phase GNU time reports; not final disk acceptance"
+    },
+    {
+      "member": 5,
+      "process": {
+        "pid": 386877,
+        "target_pid": 386875,
+        "target_start_ticks": 703953664,
+        "started_utc": "2026-10-03T10:42:25.340185+00:00",
+        "interval_seconds": 5,
+        "source_sha256": "c0a0927545efaa138eb547496d3f8579b9981b44efa668eb39e3c41af7e07c5e",
+        "scope": "Local /proc samples; no Slurm queries; may miss short-lived processes and inter-sample peaks. Not a complete disk or resource acceptance."
+      },
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-5-local-resource-v2/observe.py",
+      "scope": "Sampled local descendant resources; complemented by per-phase GNU time reports; not final disk acceptance"
+    }
+  ]
+}

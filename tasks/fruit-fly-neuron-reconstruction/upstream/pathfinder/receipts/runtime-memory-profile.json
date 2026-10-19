@@ -1,0 +1,29 @@
+{
+  "schema": "pathfinder-runtime-memory-evidence/v1",
+  "measured_utc": "2026-10-01",
+  "source": "Slurm sacct completed .batch accounting; native gpu execution",
+  "records": [
+    {
+      "job_id": "90000101",
+      "role": "corrected MaleCNS validation refinement",
+      "state": "COMPLETED",
+      "elapsed_seconds": 1746,
+      "requested_memory": "96G",
+      "max_rss_reported": "90023968K",
+      "max_rss_gib": 85.85354614257812
+    },
+    {
+      "job_id": "90000110",
+      "role": "corrected MaleCNS test refinement",
+      "state": "COMPLETED",
+      "elapsed_seconds": 1048,
+      "requested_memory": "96G",
+      "max_rss_reported": "52895.50M",
+      "max_rss_gib": 51.65576171875
+    }
+  ],
+  "previous_declared_memory_mb": 49152,
+  "declared_memory_mb": 98304,
+  "reason": "The previous 48 GiB declaration was below observed batch MaxRSS. Match the successful native 96 GiB allocation for development and verifier.",
+  "scope": "Observed Slurm batch accounting and allocation envelope, not an OS-isolated Docker memory guarantee or a measured disk peak"
+}

@@ -1,0 +1,131 @@
+{
+  "dispatch_job": "90000017",
+  "replaces_cancelled_pending_dispatch": "90000012",
+  "depends_on_assembly": "90000011",
+  "gpu_job_not_yet_submitted": true,
+  "gpu_minutes_limit": 120,
+  "gpus": 4,
+  "sense_seconds": 1800,
+  "shape_seconds": 3600,
+  "driver_snapshot": "d60ceb288a6a25de151a64917458b03b7d78373e",
+  "model_package_code_commit": "23e3b2f",
+  "model_package_manifest_sha256": "d16c2d9bb49d0fc02439ffb655d847aec02e336a72cceeac4c472a839a2b5884",
+  "scripts": {
+    "continuous-dispatch-v2.sbatch": "d1572440c441877f87d96d238d95334d2300bac8170fe1f079d885daaeb0afe1",
+    "continuous-postprocess-v2.sbatch": "a557ff444474933a4d7f5d6a8ed226232356ff66ebc2adaafbd760d2a0d7e48f",
+    "continuous-evaluate.sbatch": "11f0d778b64b993589117410e33b608e69d2c1d3c960939ed0340317090e80f8"
+  },
+  "scope": "Original dispatch plan retained above; completion below records the actual final scripts and v4 model package.",
+  "completion": {
+    "checked_at_utc": "2026-09-27T06:57:48.032700+00:00",
+    "dispatch": {
+      "status": "submitted",
+      "gpu_job": "90000034",
+      "gpu_script_sha256": "f6f137d2a4de8fc2c61781d726fea885e5aec5d5273e6fb6144bcab0745e4446",
+      "evaluation_script_sha256": "6c453e4c10e5f6fe0118cf8ebcfa87a415e799549f4653872c2ae76e84f7e307",
+      "evaluation_job": "90000035"
+    },
+    "model_package_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+    "jobs": {
+      "assembly": {
+        "id": "90000011",
+        "state": "COMPLETED",
+        "seconds": 947
+      },
+      "gpu_postprocess": {
+        "id": "90000034",
+        "state": "COMPLETED",
+        "seconds": 1027
+      },
+      "evaluation": {
+        "id": "90000035",
+        "state": "COMPLETED",
+        "seconds": 706
+      }
+    },
+    "development_metrics": {
+      "nerl": {
+        "before": 0.0035554983871187358,
+        "after": 0.003559393762668457,
+        "delta": 3.8953755497213825e-06
+      },
+      "erl_nm": {
+        "before": 313.43893964220047,
+        "after": 313.78234083350355,
+        "delta": 0.3434011913030872
+      },
+      "split_errors": {
+        "before": 147,
+        "after": 147,
+        "delta": 0
+      },
+      "merge_errors": {
+        "before": 0,
+        "after": 0,
+        "delta": 0
+      },
+      "omitted_node_fraction": {
+        "before": 0.08911819887429644,
+        "after": 0.08911819887429644,
+        "delta": 0.0
+      }
+    },
+    "indexed_instances": 1078447,
+    "processed_centers": 4315,
+    "center_fraction": 0.004001123838260017,
+    "candidate_edges": 3989,
+    "scored_motifs": 62702,
+    "enumeration_truncated": true,
+    "remapped_ids": 1216,
+    "retained_edges": 1474,
+    "restored_gt_edges": 2,
+    "restored_gt_length_nm": 182.44998779892558,
+    "changed_sampled_nodes": 10,
+    "sense_processed_sampled_nodes": 14,
+    "visible_mixed_segments_before": 2,
+    "visible_mixed_segments_after": 2,
+    "shape_probability": {
+      "min": 0.9741572141647339,
+      "median": 0.9751612544059753,
+      "max": 0.9756935238838196,
+      "stdev": 0.00018931941166447277,
+      "below_half": 0
+    },
+    "gpu_forward_parity": {
+      "status": "passed",
+      "comparisons": {
+        "ffn": {
+          "passed": true,
+          "max_abs_error": 0.0
+        },
+        "sense": {
+          "passed": true,
+          "max_abs_error": 0.0
+        },
+        "shape": {
+          "passed": true,
+          "max_abs_error": 0.0
+        }
+      },
+      "rtol": 1e-05,
+      "atol": 1e-06,
+      "slurm_job_id": "90000034",
+      "package_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+      "probe_sha256": "06f7324dd01318d4bc47d9fd5d33c4c0ab089fc4b686764d859b24f099516059",
+      "synthetic_input": true,
+      "full_pipeline_replay": false
+    },
+    "delivery_sha256": "8d5b606e2188e2d81a0a09769041242e53c3c8e6cc1654985368658d7fac07d2",
+    "delivery_files_verified": true,
+    "source_reports": {
+      "continuous-evaluation-v1/comparison.json": "077edcc876c884f250cb2a1e796aee7cf15af9b507133f6847271d795da80791",
+      "continuous-evaluation-v1/diagnostics.json": "53b48f111c567930d667d9a9366f8b5442501c700f43e3b00a643062772e8464",
+      "postprocess-model-gpu-replay-v1/receipt.json": "cfa86717651c46a7f1aae135be534ed4b05143d08e4c9283ff25fe69ff120c57",
+      "continuous-assembled-v1/receipt.json": "1a3024b74d30683e701f6610c5cc0a6523e835ae1ae35106d816f1107c0df281"
+    },
+    "charged_allocation_seconds": 77690,
+    "charged_gpu_seconds": 310760,
+    "bytes_at_budget_scan": 69454768798,
+    "paper_comparable": false
+  }
+}

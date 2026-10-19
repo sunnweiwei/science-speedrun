@@ -1,0 +1,102 @@
+{
+  "results": [
+    {
+      "batch": 16,
+      "exit_code": 0,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-profile/batch-16/receipt.json",
+      "receipt_sha256": "49dd03f9b4bc1ab76af1abe020e9ed6bfc6408512b81a66405f4eee4a72fc0b2",
+      "seconds": 575.3510966012254,
+      "model_windows": 90067,
+      "tiles": 128,
+      "complete_tiles": 128,
+      "time_exhausted": false,
+      "windows_per_second": 156.54267547598894
+    },
+    {
+      "batch": 32,
+      "exit_code": 0,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-profile/batch-32/receipt.json",
+      "receipt_sha256": "fec74f79f1443ccc2be716d71adfb7480f1647dc60fc1ad47d64120718959546",
+      "seconds": 573.0175297493115,
+      "model_windows": 90067,
+      "tiles": 128,
+      "complete_tiles": 128,
+      "time_exhausted": false,
+      "windows_per_second": 157.18018267155503
+    },
+    {
+      "batch": 64,
+      "exit_code": 0,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-profile/batch-64/receipt.json",
+      "receipt_sha256": "110778a4e80ea6187727ff48304e4352ec2bacb93a021ddab609bd059355ac08",
+      "seconds": 576.985894291196,
+      "model_windows": 90067,
+      "tiles": 128,
+      "complete_tiles": 128,
+      "time_exhausted": false,
+      "windows_per_second": 156.09913672264673
+    },
+    {
+      "batch": 128,
+      "exit_code": 0,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/batch-profile/batch-128/receipt.json",
+      "receipt_sha256": "58f35756da8baabaf999c103d9091dd0415b834a9ebf16ff974b575e0fb5243d",
+      "seconds": 577.0638629728928,
+      "model_windows": 90067,
+      "tiles": 128,
+      "complete_tiles": 128,
+      "time_exhausted": false,
+      "windows_per_second": 156.07804574002728
+    }
+  ],
+  "comparisons": [
+    {
+      "reference_batch": 16,
+      "candidate_batch": 32,
+      "compared_complete_tiles": 128,
+      "compared_voxels": 33554432,
+      "changed_voxels": 0,
+      "exact_on_compared_tiles": true,
+      "scope": "Exact raster agreement only on jointly complete tiles; no ground truth or quality claim"
+    },
+    {
+      "reference_batch": 16,
+      "candidate_batch": 64,
+      "compared_complete_tiles": 128,
+      "compared_voxels": 33554432,
+      "changed_voxels": 0,
+      "exact_on_compared_tiles": true,
+      "scope": "Exact raster agreement only on jointly complete tiles; no ground truth or quality claim"
+    },
+    {
+      "reference_batch": 16,
+      "candidate_batch": 128,
+      "compared_complete_tiles": 128,
+      "compared_voxels": 33554432,
+      "changed_voxels": 0,
+      "exact_on_compared_tiles": true,
+      "scope": "Exact raster agreement only on jointly complete tiles; no ground truth or quality claim"
+    }
+  ],
+  "identical_tile_grid": true,
+  "image_manifest_sha256": "1a0b390b6fb4d8f21bec4fe488a56e307145ac2464d7bb0b728bb7f821336f04",
+  "checkpoint_sha256": "1b26aea7f2e0c874fdf660a4c7c06a0615fae5a71315ea46f5b60a8ca4b70ad6",
+  "roi": [
+    16,
+    144,
+    16,
+    528,
+    16,
+    528
+  ],
+  "ground_truth_used": false,
+  "inference_only": true,
+  "slurm_job_id": "90000070",
+  "automatic_selection": false,
+  "scope": "Inspect throughput, completeness and numerical differences before choosing a batch",
+  "state": "COMPLETED",
+  "allocation_seconds": 667,
+  "gpus": 4,
+  "selected_batch": 16,
+  "decision": "Keep16: throughput156.08\u2013157.18 windows/s shows no material improvement; all128 tiles exactly equal across batches."
+}

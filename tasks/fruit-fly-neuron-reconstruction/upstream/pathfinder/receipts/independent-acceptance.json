@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "unit_tests": 4,
+  "existing_topology_unit_tests": 3,
+  "ddp_world_size": 2,
+  "device": "cpu",
+  "steps": 8,
+  "validation_events": 4,
+  "checkpoint_reload": true,
+  "probability_shape": [
+    8,
+    8,
+    8
+  ],
+  "paper_comparable": false,
+  "gpu_hours": 0,
+  "full_pathfinder_implemented": false,
+  "reference_sha256": "6c4449c1116ebfcbb501f21cfb6f98faa6110e8f117598b42ee76fe25b4bad01",
+  "manifest_sha256": "05a782b780ad586efb05cf68986c708969ba1d66f96665fda16f27a443c85fa8",
+  "checkpoint_sha256": "f9484a748a101a3973e6369a35600e0900efc24691efd91fed3cc187584dc0f0",
+  "source_sha256": {
+    "audit_sources.py": "f56e7f9d575f95340c660c5cdff167af8d9350382b8f1dbfc9b4e6e09f53ec5f",
+    "compare_report.py": "74eeeab05af827d7114c7afa2545e18158f5e768cf04ad8f258c606f92bd1955",
+    "infer_sense.py": "cf5ac0bfe8332db8ac91e083374eb52030b4d406bac4719f9204f8671e604432",
+    "plot_sense.py": "02b5b65ac7ef7c49c4f6a19b4e2e43950c50ef7c19f1b2a42b8fcb954a0dea6e",
+    "search.py": "26537458580f4e0f394fb60f2adcffde47c59b10bf035ec092dc883a27fddb75",
+    "sense.py": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+    "test_reproduction.py": "17091d33905277394cf963fba21500a7bfd7067af06e737cb96b9c65d34d8ba9",
+    "test_topology.py": "6ba0e6c46caffd6700bda2b382e626d112c1bd42ad47b1e3b4bff82a2ec27f86",
+    "topology.py": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+    "train_sense.py": "2b89d52c72ebd369ced9eaf02d0af602f054f8040f2fd7bcbb8428941d4a096e"
+  },
+  "run_directory": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-independent-v1",
+  "scope": "Synthetic engineering validation only; no real reconstruction quality claim"
+}

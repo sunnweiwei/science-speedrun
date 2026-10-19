@@ -1,0 +1,78 @@
+{
+  "qualified_representative_phase_types": [
+    {
+      "before_sha256": "9f1bba4a6e342a90e53900bc26df9df5bfd79112c7007210eb7129a9385e71e8",
+      "after_sha256": "2e5d146d272987e42bb3684c28bbbda5bb724bfbce72f86ec7fda402104f42fe",
+      "changed_files": {
+        "runtime/pathfinder/index_storage.py": {
+          "before": "ffcf2d4a90c17b0dd296ba431b0e97b705b2cc51ce0786cd87994e0ecc777acf",
+          "after": "8066455c21dd03eb95d53c02e61e6251bc874b26a179f23a999e2e66183ef14b"
+        },
+        "runtime/pathfinder/merge_inference_shards.py": {
+          "before": "8287605b1415b57040c3bff64dc58f101e57a42539e2c872a2661172dd800731",
+          "after": "521a411baca112e4c5abeb7e677188f376ea9c6fa3ccc4bbbae00547a198a788"
+        },
+        "runtime/pathfinder/sense.py": {
+          "before": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+          "after": "a5e5ba808e3f0c4bea3b5eeeb123beefc9c063586439f2b74e7b9c65870e48a6"
+        }
+      },
+      "unchanged_assets": 133,
+      "scientific_metadata_exact": true,
+      "phase_adoption_authorized": true,
+      "full_pipeline_complete": false,
+      "scope": "Exact scientific assets and unchanged early-phase model/index APIs; candidate-only changes excluded. Original phase/output/input proofs remain mandatory.",
+      "phase": "member-0-infer"
+    },
+    {
+      "before_sha256": "9f1bba4a6e342a90e53900bc26df9df5bfd79112c7007210eb7129a9385e71e8",
+      "after_sha256": "2e5d146d272987e42bb3684c28bbbda5bb724bfbce72f86ec7fda402104f42fe",
+      "changed_files": {
+        "runtime/pathfinder/index_storage.py": {
+          "before": "ffcf2d4a90c17b0dd296ba431b0e97b705b2cc51ce0786cd87994e0ecc777acf",
+          "after": "8066455c21dd03eb95d53c02e61e6251bc874b26a179f23a999e2e66183ef14b"
+        },
+        "runtime/pathfinder/merge_inference_shards.py": {
+          "before": "8287605b1415b57040c3bff64dc58f101e57a42539e2c872a2661172dd800731",
+          "after": "521a411baca112e4c5abeb7e677188f376ea9c6fa3ccc4bbbae00547a198a788"
+        },
+        "runtime/pathfinder/sense.py": {
+          "before": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+          "after": "a5e5ba808e3f0c4bea3b5eeeb123beefc9c063586439f2b74e7b9c65870e48a6"
+        }
+      },
+      "unchanged_assets": 133,
+      "scientific_metadata_exact": true,
+      "phase_adoption_authorized": true,
+      "full_pipeline_complete": false,
+      "scope": "Exact scientific assets and unchanged early-phase model/index APIs; candidate-only changes excluded. Original phase/output/input proofs remain mandatory.",
+      "phase": "consensus"
+    },
+    {
+      "before_sha256": "9f1bba4a6e342a90e53900bc26df9df5bfd79112c7007210eb7129a9385e71e8",
+      "after_sha256": "2e5d146d272987e42bb3684c28bbbda5bb724bfbce72f86ec7fda402104f42fe",
+      "changed_files": {
+        "runtime/pathfinder/index_storage.py": {
+          "before": "ffcf2d4a90c17b0dd296ba431b0e97b705b2cc51ce0786cd87994e0ecc777acf",
+          "after": "8066455c21dd03eb95d53c02e61e6251bc874b26a179f23a999e2e66183ef14b"
+        },
+        "runtime/pathfinder/merge_inference_shards.py": {
+          "before": "8287605b1415b57040c3bff64dc58f101e57a42539e2c872a2661172dd800731",
+          "after": "521a411baca112e4c5abeb7e677188f376ea9c6fa3ccc4bbbae00547a198a788"
+        },
+        "runtime/pathfinder/sense.py": {
+          "before": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+          "after": "a5e5ba808e3f0c4bea3b5eeeb123beefc9c063586439f2b74e7b9c65870e48a6"
+        }
+      },
+      "unchanged_assets": 133,
+      "scientific_metadata_exact": true,
+      "phase_adoption_authorized": true,
+      "full_pipeline_complete": false,
+      "scope": "Exact scientific assets and unchanged early-phase model/index APIs; candidate-only changes excluded. Original phase/output/input proofs remain mandatory.",
+      "phase": "context"
+    }
+  ],
+  "full_pipeline_complete": false,
+  "scope": "Runtime transition preflight only; existing running plans unmodified; original phase source/input/output proofs remain required"
+}

@@ -1,0 +1,51 @@
+{
+  "tile_results": [
+    {
+      "region": 0,
+      "nerl64": 0.036469485709362995,
+      "nerl128": 0.04615577923426745,
+      "relative_change": 0.26559994846369994,
+      "merge64": 44,
+      "merge128": 50,
+      "omitted64": 0.659674762020991,
+      "omitted128": 0.6347174762020991
+    },
+    {
+      "region": 1,
+      "nerl64": 0.023949027399795014,
+      "nerl128": 0.031574941693770266,
+      "relative_change": 0.31842271365226815,
+      "merge64": 9,
+      "merge128": 14,
+      "omitted64": 0.7240913588831537,
+      "omitted128": 0.7017998983712658
+    }
+  ],
+  "tile_source_sha256": "6d2fa078bc9820532ff4ad67bcfb2c4f98347424d6825c53bd12b9c9c2fbe60c",
+  "tile_gpu_hours": 0.5822222222222222,
+  "tile_scope": "Pilot of tile-size sensitivity, not full-volume repair or paper parity. Tile extent also changes PolicyPeaks context and seed order. Score each region separately: overlapping contexts are not independent replicates. Require every tile complete before paired scores. No GT-based merging.",
+  "gate_result": {
+    "scope": "Same completed single-checkpoint resegmentation scores and single-pass FFN base. Different published gate only; not the three-checkpoint PATHFINDER baseline.",
+    "test_used": false,
+    "manual_accepted_pairs": 235,
+    "paper_gate_accepted_pairs": 200,
+    "metrics": {
+      "nerl": 0.012251560183442775,
+      "erl_nm": 143.01665416247147,
+      "split_errors": 6877,
+      "merge_errors": 168,
+      "omitted_node_fraction": 0.6745373627214772
+    },
+    "plan_sha256": "ac00cd822d0f5acd6b9cb06a39eaf9b5b48c9538a0452f72c4ca099c577980f7",
+    "script_sha256": "14e775f3f89f6dd509fb2e943c55b7640bd2d8a30a4e7a17e9a75663f75884b0",
+    "mapping_sha256": "7afb0b674da97bc7f3ec17e9ae9308748378917153092e53da44c31576f695e3",
+    "metric_sha256": "48ed078d6e73550f52ac05a4277404f2dfffe5ae78977c2f51a75ae1d901cca2",
+    "core_export_receipt_sha256": "3c8ad881a07836e4beaa6f89603d400fed9947f245a1a0af91376193c729f894",
+    "prior_independent_acceptance_sha256": "aaba490e2f87c14743e2ca1dc31322ca3bf60758302d304c09deb04817114256",
+    "policy": "Global union from complete full-context candidate scores, remapped onto retained globally decoded core; no core-local merging. Core ancestry relies on preserved export and previously accepted comparison, not a restored full array."
+  },
+  "gate_source_sha256": "746c17114ac2ee47480c2b79e81d91f5d64ddb4c5d243a15ca9958eccbc484de",
+  "gate_relative_change_vs_manual": -0.005144906343798272,
+  "conclusion": "Tile extent materially affects both pilot regions, including increased merges; paper gate alone does not improve validation nERL. Neither experiment establishes paper parity. Six-run consensus remains pending.",
+  "test_configuration_changed": false
+}

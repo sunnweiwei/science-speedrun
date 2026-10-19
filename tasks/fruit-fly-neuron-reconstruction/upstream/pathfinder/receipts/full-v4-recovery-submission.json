@@ -1,0 +1,41 @@
+{
+  "recorded_utc": "2026-10-02T14:09:53.915939+00:00",
+  "status": "recovery_submitted",
+  "job_id": "90000155",
+  "partition": "gpu",
+  "gpu_type": "a5000",
+  "gpus": 4,
+  "reserved_gpu_hours": 32,
+  "worker_seconds": 27000,
+  "selection": [
+    0,
+    31,
+    36,
+    61
+  ],
+  "window_batch": 1,
+  "full_model": true,
+  "original_delivery_deadline": "2026-10-02T12:42:39Z",
+  "delivery_overdue": true,
+  "execution_deadline": "2026-10-04T14:06:17.532138+00:00",
+  "deadline_is_delivery_promise": false,
+  "completed_members": [
+    0,
+    1
+  ],
+  "completed_member_retained_hashes_reverified": 96,
+  "reusable_member_2_windows": 24,
+  "rejected_exhausted_windows": 26,
+  "missing_member_2_windows": 75,
+  "spent_gpu_hours": 595.9677777777778,
+  "remaining_unreserved_gpu_hours": 372.03222222222223,
+  "held_downstream_gpu_hours": 37,
+  "full_pipeline_complete": false,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/plan.json": "46ddab7a48e454633aee5134f9e3388f3e77eb98dd532af16dd22c3291afb2c5",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/reuse-audit.json": "16326913a0077fab5ed1943acfd91854d06f6a594963e6b870152d86251f55d5",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/completed-members-audit.json": "019a077fb60eaad068576d7390944818e94747f4d2d1878f34fa66947100a7fa",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/original-plan.json": "5410ceb0ee346d9e93daf6d758f073d905c4f0c5b81d213f492d4300bec48eee",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/full-ensemble-recovery-v1/qualification.sbatch": "7ce125291c34178d9d7f0fb23ec5fe0a68e9f6ac53fba0fc8888742bb4e6e3a2"
+  }
+}

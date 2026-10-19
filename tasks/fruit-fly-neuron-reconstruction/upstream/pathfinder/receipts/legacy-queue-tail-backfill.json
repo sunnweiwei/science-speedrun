@@ -1,0 +1,105 @@
+{
+  "timestamp_utc": "2026-10-03T16:29:25.990241+00:00",
+  "full_pipeline_complete": false,
+  "submission": {
+    "job_id": "90000190",
+    "member": 2,
+    "gpus": 1,
+    "gpu_type": "a6000",
+    "indices": [
+      38,
+      40,
+      41
+    ],
+    "base": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail",
+    "plan_sha256": "28b69b999afaafdcc10db4561d188b4325c71e459b7d104c0d1f41189dff5fc5",
+    "script_sha256": "09f1a19fef8946f11eee996c4fca8533dc81029f9c28e168279078a9a103d164",
+    "full_pipeline_complete": false
+  },
+  "proof": {
+    "timestamp_utc": "2026-10-03T16:27:00.152336+00:00",
+    "old_job_id": "90000173",
+    "member": 2,
+    "unstarted_indices": [
+      38,
+      40,
+      41
+    ],
+    "old_start_cutoff_seconds": 9000,
+    "lanes": {
+      "3": {
+        "index": 37,
+        "elapsed_lower_bound": 14328.800925569958,
+        "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000037/shard-0/receipt.json"
+      },
+      "1": {
+        "index": 32,
+        "elapsed_lower_bound": 9544.347362439032,
+        "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000032/shard-0/receipt.json"
+      },
+      "0": {
+        "index": 30,
+        "elapsed_lower_bound": 19499.928111452027,
+        "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000030/shard-0/heartbeat.jsonl"
+      },
+      "2": {
+        "index": 33,
+        "elapsed_lower_bound": 17567.151194787933,
+        "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000033/shard-0/receipt.json"
+      }
+    },
+    "pinned_evidence": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/plan.json": "02f8648ec9136e6b23ca5b38f59d2c3423f851ebe97e710c90b13b505f5ea9dd",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/command-0000035.json": "28ba2cf3d64d2d3c81c4e4bc09371f8eec15ec4db6490f747d4d2cd3fa92e873",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000035/shard-0/receipt.json": "0c13a3b9ff16d9d7ae7d407d3b797c33b58c849ebe8536439d9955c609a8840f",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/command-0000032.json": "db18d3d098cb19bdbba93b53f00e2d49fecce441e1c8c7da6657ca1bd0d1648b",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000032/shard-0/receipt.json": "34f7649402ab32c18fedb0caed798b528fde3d459677a3ecb183743e542a29cb",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/command-0000030.json": "1652313fb6604afb065ce0210b6d2b6afd4a63895f03d1766711d9bb3d8ac4cb",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/command-0000033.json": "d7a40a5d2c36b040cea2776e9f4e173f19585b79df0522cb5a035b68d79a46be",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000033/shard-0/receipt.json": "90cf3533c2fb4f1130f6884f81885639b1536bc1f2c54d321ed7a81299b198ec",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/command-0000037.json": "800f41d02e01c57006a9299060e0ac79d68fca5ac27ed1cc21ca121a4b08c87d",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave3/output/window-0000037/shard-0/receipt.json": "f604465c9ea82e442148fad1ca07ae14a257d63a1c14af0a8683928848564504",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/member-2-queue-wave1/source/launch_recovery_queue.py": "e0ee3420d9cde7e582f59d04f18e64f2775585eddc3f9d6609cda63fedbbf618"
+    },
+    "rule": "Original immutable dispatch never pops another index after remaining<18000; every lane has already run beyond cutoff. No command, selection or directory exists for38/40/41; no old source altered.",
+    "full_pipeline_complete": false
+  },
+  "execution_limit_amendment": {
+    "timestamp_utc": "2026-10-03T16:28:58.347930+00:00",
+    "previous_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 1440000,
+      "gpu_seconds": 5400000,
+      "concurrent_gpus": 40
+    },
+    "new_limits": {
+      "bytes": 200000000000,
+      "allocation_seconds": 1512000,
+      "gpu_seconds": 5400000,
+      "concurrent_gpus": 40
+    },
+    "prior_ledger_sha256": "336ec5a3f5ab3ddd978f2deeab7dff22cc451342e68a6a77858b7dbbf656f7f8",
+    "user_instruction": "Budget is not important; prioritize delivery time and increase GPU parallelism/efficiency.",
+    "reason": "Reserve one12h A6000 job for three provably unstarted legacy-queue tail windows without waiting for old reservations to settle. Keep37GPUh/9.25allocationh downstream hold. Bounded execution choice, not a new user spending ceiling.",
+    "historical_jobs_preserved": true,
+    "scientific_protocol_unchanged": true
+  },
+  "scheduler": {
+    "timestamp_utc": "2026-10-03T16:29:25.990241+00:00",
+    "squeue": "90000184|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000185|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000186|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000187|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000188|PENDING|gres/gpu:a5000:4|(Priority)|0:00\n90000182|PENDING|gres/gpu:a6000:3|(Priority)|0:00\n90000190|PENDING|gres/gpu:a6000:1|(Priority)|0:00\n90000176|RUNNING|gres/gpu:a5000:4|gpu-node-12|1:13:29\n90000183|RUNNING|gres/gpu:a5000:4|gpu-node-05|47:49\n90000173|RUNNING|gres/gpu:a5000:4|gpu-node-01|5:28:53\n90000178|RUNNING|gres/gpu:a5000:1|gpu-node-02|54:19\n90000179|RUNNING|gres/gpu:a5000:1|gpu-node-04|54:19\n90000180|RUNNING|gres/gpu:a5000:1|gpu-node-06|54:19\n90000181|RUNNING|gres/gpu:a5000:1|gpu-node-11|54:19\n"
+  },
+  "running_gpus": 16,
+  "pending_gpus": 24,
+  "settled_plus_full_reservations_gpu_hours": 1395.5352777777778,
+  "settled_plus_full_reservations_allocation_hours": 395.9244444444444,
+  "held_downstream_gpu_hours": 37,
+  "held_downstream_allocation_hours": 9.25,
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/submission.json": "cd954ce2f2843dfdedee3e220ef6178ee6077f298acb1fdf162d9bdc126fc428",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/plan.json": "28b69b999afaafdcc10db4561d188b4325c71e459b7d104c0d1f41189dff5fc5",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/exclusion-proof.json": "9d49e6a5b53cb9e110f609d04c56df89efa285e9b9dc8e0b3da4f73ed15221db",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/run.sbatch": "09f1a19fef8946f11eee996c4fca8533dc81029f9c28e168279078a9a103d164",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/scheduler-observation.json": "fb71290b4d5ed695906a6678d2ceba925c71006130b0351ad768cfea1a9f8db3",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/throughput-expansion-20261003/job-11-m2-tail/execution-limit-amendment.json": "6291c48015c4c73a1bf2bf8933062da10790fd25f86b5ab8cb0eccbf5f10534d"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "jobs": [
+    {
+      "job_id": "90000001",
+      "reserved_seconds": 1800,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/profile.sbatch",
+      "script_sha256": "e93c485d0e2401d2f17917607daa25cabd4ad416ee3ab45d434b63a4224ac730",
+      "state": "COMPLETED",
+      "actual_seconds": 56
+    },
+    {
+      "job_id": "90000002",
+      "reserved_seconds": 900,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/profile2.sbatch",
+      "script_sha256": "3b1b501d7f1a4d43d80ded617c4f4b778b2d4f4027e1419c90cb09cddcf4eccd",
+      "state": "COMPLETED",
+      "actual_seconds": 79
+    },
+    {
+      "job_id": "90000003",
+      "reserved_seconds": 47400,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-ffn-sense.sbatch",
+      "script_sha256": "ec6f8b8591ad728deb07b0b239267fac2c0a41424a0246e984b7635fb0596db8",
+      "state": "RUNNING"
+    }
+  ],
+  "limits": {
+    "bytes": 200000000000,
+    "allocation_seconds": 86400,
+    "gpu_seconds": 345600
+  },
+  "bytes_on_disk": 5438951331,
+  "charged_seconds": 47535,
+  "charged_gpu_seconds": 190140
+}

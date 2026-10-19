@@ -1,0 +1,135 @@
+{
+  "schema": "pathfinder-native-task-cpu-check/v1",
+  "source_commit": "bbaf003b651699510c82e1cc3f7d34d20a5544ba",
+  "job_id": 90000031,
+  "state": "COMPLETED",
+  "elapsed_seconds": 47,
+  "cpus": 2,
+  "gpus": 0,
+  "tests": 95,
+  "test_seconds": 37.407,
+  "tests_skipped": 0,
+  "entrypoint": {
+    "exit_code": 1,
+    "reward_reset_to_zero": true,
+    "unregistered_gpu_execution_rejected": true,
+    "new_replay_created": false,
+    "scope": "Actual native shell in existing runtime with latest source mounted; no full GPU replay or Docker build claim"
+  },
+  "static_checks": [
+    "task.toml parsed with tomllib",
+    "Compose YAML parsed with PyYAML6.0.2 in external temporary uv environment",
+    "Docker COPY sources exist",
+    "bash -n tests/test.sh passed"
+  ],
+  "docker_executable_available": false,
+  "docker_build_verified": false,
+  "harbor_verified": false,
+  "full_gpu_model_replay_verified": false,
+  "log_sha256": "9c199e9343aa93c6a06c5a9cd6992c6f61533971c1e889039567603d272a4200",
+  "native_docker_build_probe": {
+    "checked_at_utc": "2026-09-27T07:37:55.997907+00:00",
+    "cpu_job": "90000039",
+    "state": "FAILED",
+    "seconds": 14,
+    "exit_code": "1:0",
+    "rootlesskit_error": "no subuid ranges found for user researcher",
+    "compute_node_error": "unshare: write failed /proc/self/uid_map: Operation not permitted",
+    "available_container_engines": [],
+    "download_sources": [
+      {
+        "name": "buildkit",
+        "url": "https://github.com/moby/buildkit/releases/download/v0.33.0/buildkit-v0.33.0.linux-amd64.tar.gz",
+        "sha256": "b6242896d343100808dcbe37565caf381e0a444a6a83d7255926bb1519248ead",
+        "bytes": 93184536
+      },
+      {
+        "name": "rootlesskit",
+        "url": "https://github.com/rootless-containers/rootlesskit/releases/download/v3.2.0/rootlesskit-x86_64.tar.gz",
+        "sha256": "ff612d1d35854a52569acc4a4e9152f41504e69dcc13ff4c94cc9040dc28b3d9",
+        "bytes": 23967169
+      }
+    ],
+    "actual_dockerfile_sha256": "b4909d6b18d70ea062fbc7bb28f5b3d07c887a6674530802e89dc09750be3012",
+    "probe_script_sha256": "9b8b7673f76310e7bf732741b91ba00dfd425d39152aa9408b0a9fa3f1bf70d0",
+    "log_sha256": "6b50086233b9e3c0f8f5ac5e8094da06d7a05f1c3be0b88baf49578943392a94",
+    "gpu_used": false,
+    "cluster_security_configuration_modified": false,
+    "official_rootless_requirements": "https://github.com/moby/buildkit/blob/master/docs/rootless.md",
+    "interpretation": "The build did not reach Dockerfile execution; this is a host capability failure, not evidence that the Dockerfile builds or fails."
+  },
+  "final_gpu_ledger_audit": {
+    "jobs": [
+      {
+        "job": "90000001",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 56,
+        "start": "2026-09-25T23:43:22",
+        "end": "2026-09-25T23:44:18",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=80G,node=1"
+      },
+      {
+        "job": "90000002",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 79,
+        "start": "2026-09-25T23:48:22",
+        "end": "2026-09-25T23:49:41",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=80G,node=1"
+      },
+      {
+        "job": "90000003",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 46849,
+        "start": "2026-09-25T23:56:22",
+        "end": "2026-09-26T12:57:11",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=80G,node=1"
+      },
+      {
+        "job": "90000006",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 1863,
+        "start": "2026-09-26T12:57:42",
+        "end": "2026-09-26T13:28:45",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=80G,node=1"
+      },
+      {
+        "job": "90000008",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 174,
+        "start": "2026-09-26T17:30:47",
+        "end": "2026-09-26T17:33:41",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=48G,node=1"
+      },
+      {
+        "job": "90000009",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 27642,
+        "start": "2026-09-26T17:36:47",
+        "end": "2026-09-27T01:17:29",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=48G,node=1"
+      },
+      {
+        "job": "90000034",
+        "partition": "gpu",
+        "state": "COMPLETED",
+        "allocation_seconds": 1027,
+        "start": "2026-09-27T02:24:31",
+        "end": "2026-09-27T02:41:38",
+        "alloc_tres": "billing=16,cpu=16,gres/gpu:a5000=4,gres/gpu=4,mem=48G,node=1"
+      }
+    ],
+    "slurm_timestamp_timezone": "America/New_York",
+    "all_four_gpu_allocations_nonoverlapping": true,
+    "allocation_seconds": 77690,
+    "gpu_seconds": 310760,
+    "remaining_allocation_seconds": 8710,
+    "full_scientific_inference_measured_seconds": 28669,
+    "native_fresh_full_replay_fits_remaining_budget": false
+  }
+}

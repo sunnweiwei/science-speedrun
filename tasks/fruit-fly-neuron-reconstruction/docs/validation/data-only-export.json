@@ -1,0 +1,7 @@
+{
+  "complete": true,
+  "checkpoint_states_equal": true,
+  "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/prepared-starter-replay-v1/model",
+  "output": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/task-resources-v1/data-only-export",
+  "gpu_execution": false
+}

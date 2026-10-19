@@ -1,0 +1,18 @@
+{
+  "schema": "ffn-resume-cli-fixture/v1",
+  "scope": "Blank uint8 CPU integration with real domain checkpoint; no GPU or quality claim",
+  "initial_complete_tiles": 1,
+  "resumed_complete_tiles": 3,
+  "total_tiles": 3,
+  "reused_tiles": 1,
+  "original_record_unchanged": true,
+  "no_duplicate_tile_copy": true,
+  "checkpoint_sha256": "1b26aea7f2e0c874fdf660a4c7c06a0615fae5a71315ea46f5b60a8ca4b70ad6",
+  "resume": {
+    "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/resume-cli-fixture/first/receipt.json",
+    "sha256": "017db77923c9345b7ccf4ad251d53817d07e1cb8be3ffba693bdc16e2511815d",
+    "reused_complete_tiles": 1,
+    "partial_tiles_recomputed": true,
+    "policy": "Reference original verified tile files without copying; retain them until final archive"
+  }
+}

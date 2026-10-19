@@ -1,0 +1,16 @@
+{
+  "contract_valid": true,
+  "dataset_id": "AxonEM-M-author-training-blocks",
+  "counts": {
+    "train": 4,
+    "validation": 1,
+    "test": 1
+  },
+  "arrays_checked": true,
+  "hashes_verified": true,
+  "paper_protocol_verified": false,
+  "neuron_disjointness_verified": false,
+  "manifest_sha256": "a2a96ca90a83141e48367a216852588efa00f08dab4d81ba80f5315207207344",
+  "trainer_wrong_grid_rejection_verified": true,
+  "real_validation_crop_loaded": true
+}

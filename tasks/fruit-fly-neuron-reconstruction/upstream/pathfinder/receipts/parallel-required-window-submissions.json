@@ -1,0 +1,50 @@
+{
+  "full_pipeline_complete": false,
+  "jobs": [
+    {
+      "member": 2,
+      "checkpoint_sha256": "e3e50addd1c6827f79d3efcd8d5180a5bdc8e4b77f5cff526a9f60ad904a6f10",
+      "seed_order": "ascending",
+      "window_count": 41,
+      "job": {
+        "job_id": "90000159",
+        "reserved_seconds": 28800,
+        "gpus": 4,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/run.sbatch",
+        "script_sha256": "c2dc665636803326445dfff25f853829c262bc0705c626271afe4d05b5a6497c",
+        "gpu_type": "a5000",
+        "state": "PENDING"
+      },
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/plan.json": "6efab26f75502f67d58bb8a78766ee11d12befc8066519e4833b9b877819f386",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/selection.json": "52f4d2af10e4813e4644ff58607f89ec5ad4014c8accaf86196eea913a0cbc1d",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-2/run.sbatch": "c2dc665636803326445dfff25f853829c262bc0705c626271afe4d05b5a6497c"
+      }
+    },
+    {
+      "member": 4,
+      "checkpoint_sha256": "be7eed2dc6c6c534e11a2d9627d3cf431104acb2959405a8e7b086316aed3b34",
+      "seed_order": "ascending",
+      "window_count": 65,
+      "job": {
+        "job_id": "90000160",
+        "reserved_seconds": 28800,
+        "gpus": 4,
+        "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/run.sbatch",
+        "script_sha256": "0d6774f6999b115c4be006ad908f698a9a4b45dd08c9afb94a4d26ffab2f046b",
+        "gpu_type": "a5000",
+        "state": "SUBMITTED"
+      },
+      "evidence": {
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/plan.json": "8984565f85e9e61c608ac061d93b7e9a5802458f58026ce73a55d75119cd7379",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/selection.json": "f723d40483c64e09639a2e237038d7ed40ec6cfb38c163473ec9ffc34f06679d",
+        "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/parallel-required-windows-v1/member-4/run.sbatch": "0d6774f6999b115c4be006ad908f698a9a4b45dd08c9afb94a4d26ffab2f046b"
+      }
+    }
+  ],
+  "charged_or_reserved_gpu_hours": 726.37,
+  "charged_or_reserved_allocation_hours": 190.8425,
+  "reserved_concurrent_gpus": 13,
+  "held_downstream_gpu_hours": 37,
+  "scope": "Required frozen-window execution, not scope reduction; all 125 windows in each of six members remain required"
+}

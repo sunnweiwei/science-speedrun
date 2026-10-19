@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "training": {
+    "contract_valid": true,
+    "dataset_id": "malecns-domain-v1",
+    "counts": {
+      "train": 1,
+      "validation": 1
+    },
+    "arrays_checked": true,
+    "hashes_verified": true,
+    "paper_protocol_verified": false,
+    "neuron_disjointness_verified": false
+  },
+  "model": {
+    "submitted_manifest_sha256": "3465a0c3e1189a35157e9ed9d62af003c06dabe6a1994c8a97cc57312cf763c4",
+    "weight_sha256": {
+      "weights/ffn.pt": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+      "weights/sense.pt": "b5e152ab7d1d1818641504252c10008dbba845017e115e25da935b6387c77c53",
+      "weights/shape.pt": "5f305ee26650a133eff307384113d96034cd8f03ee5afd5e78811bb1eae635d9"
+    },
+    "submitted_code_executed": false
+  },
+  "suite_pins": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/task-resources-v1/relocated-private/suite/suite.json": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/task-resources-v1/relocated-private/suite/skeletons.json": "7c73852ad14c1b19b6083a7939729fd3a454250c86d3058199c2d36cfc8835fb",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/task-resources-v1/relocated-private/suite/metadata.json": "a94b1f32818bc2a644389bad3dfdeeb729f119b3226362396b5e3db98a775300",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/task-resources-v1/relocated-private/suite/run_length.py": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c"
+  },
+  "author_segmentation_sha256": "1cb49f669ccef1ccb7a045be9cd22f10c848e0886d4a4ac3cf4955042f3eff32",
+  "fps_cpu_import": true,
+  "gpu_forward": false,
+  "docker_verified": false,
+  "private_test_visible_to_development": false,
+  "release_sha256": "db319f336b8da8dc8f74cb4cd397bae27d743211b612a9b9653c8f8a26408c30"
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "malecns-partial-validation-comparison/v1",
+  "role": "validation",
+  "status": "diagnostic_only_baseline_incomplete",
+  "primary": {
+    "region": "full-core",
+    "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+    "baseline_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.010339556352234375,
+          "after": 0.009459745066297463,
+          "delta": -0.0008798112859369125
+        },
+        "erl_nm": {
+          "before": 120.69717920655518,
+          "after": 110.42684101900524,
+          "delta": -10.270338187549939
+        },
+        "split_errors": {
+          "before": 4793,
+          "after": 4976,
+          "delta": 183
+        },
+        "merge_errors": {
+          "before": 432,
+          "after": 499,
+          "delta": 67
+        },
+        "omitted_node_fraction": {
+          "before": 0.7439593805016201,
+          "after": 0.7439593805016201,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "ffn_to_full": {
+      "metrics": {
+        "nerl": {
+          "before": 0.010082506288235352,
+          "after": 0.009459745066297463,
+          "delta": -0.0006227612219378894
+        },
+        "erl_nm": {
+          "before": 117.69654585415394,
+          "after": 110.42684101900524,
+          "delta": -7.269704835148701
+        },
+        "split_errors": {
+          "before": 4993,
+          "after": 4976,
+          "delta": -17
+        },
+        "merge_errors": {
+          "before": 425,
+          "after": 499,
+          "delta": 74
+        },
+        "omitted_node_fraction": {
+          "before": 0.7439593805016201,
+          "after": 0.7439593805016201,
+          "delta": 0.0
+        }
+      },
+      "identical_prediction_bytes": false,
+      "scope": "Same frozen local skeletons/ROI/evaluator only; not a paper gap"
+    },
+    "relative_nerl_change": -0.08509178304800143,
+    "direction": "worse"
+  },
+  "candidate_coverage": {
+    "requested_pairs": 79725,
+    "missing_pairs": 69947,
+    "incomplete_pairs": 32,
+    "complete": false,
+    "accepted_pairs": 1062
+  },
+  "baseline_completed_candidates": 9746,
+  "baseline_total_candidates": 79725,
+  "completed_fraction": 0.12224521793665725,
+  "baseline_job_id": "90000072",
+  "baseline_allocation_seconds": 3142,
+  "baseline_gpu_hours": 3.491111111111111,
+  "comparison_sha256": "ef2ec3d577e9639cef450164111eaf3c65da79a90d9f47d6f9e220e3c4ffeff6",
+  "next_step": "Continue all unprocessed or incomplete traditional FFN candidates before final validation/test comparison. No test predictions have been generated."
+}

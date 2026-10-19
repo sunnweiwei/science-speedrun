@@ -1,0 +1,120 @@
+{
+  "scope": "one A5000, checkpoint fixed, validation window4 500 cubed, no postprocessing",
+  "baseline_wall_seconds": 3158.33408335899,
+  "optimized_wall_seconds": 2002.9103446146473,
+  "speedup": 1.5768724206008542,
+  "reference_segmentation_exact": true,
+  "reference_calls_equal": true,
+  "calls": 420448,
+  "predict_seconds": 1572.6023694500327,
+  "metrics": {
+    "erl_nm": 469.8197988016207,
+    "maximum_erl_nm": 4876.513257400898,
+    "nerl": 0.09634338594047565,
+    "total_path_length_nm": 1839729.4973049164,
+    "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+    "protocol": "local-funlib-erl/v1",
+    "paper_protocol_verified": false,
+    "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+    "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+    "split_errors": 942,
+    "merge_errors": 111,
+    "omitted_nodes": 36845,
+    "omitted_node_fraction": 0.436821264286053,
+    "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+    "inputs": {
+      "skeletons": "2a77e61d2e37aacbef605584b0f9f1c24298796616e121163f1a2dbd04155504",
+      "metadata": "c6a82d52491f8dc45869858c12c1ad8b1658f63333d2f51b36d12ddcfb18dd5e",
+      "segmentation": "30b2aaaaf258847506d38a568f161ee0bb53fc6ea922e03407e0462bc2d36bff"
+    },
+    "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+    "suite_sha256": "4d1272ccf669a2072d4aaeefabdc8c1d55bbfa9d1abab9ddf4efb874864bdb83",
+    "prediction_grid_sha256": "9e627b999b13a523f8d9c900d3fdbf60cfd8640e127cc22bbb6d93fe55b143d1",
+    "prediction_grid": {
+      "axes": "zyx",
+      "coordinate_convention": "voxel_outer_corner",
+      "origin_nm": [
+        197616,
+        216016,
+        418160
+      ],
+      "voxel_size_nm": [
+        16,
+        16,
+        16
+      ],
+      "shape": [
+        265,
+        247,
+        247
+      ]
+    },
+    "boundary_margin_voxels": [
+      0,
+      0,
+      0
+    ],
+    "sampled_nodes": 84348,
+    "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+    "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+    "node_assignments_sha256": "e591a2cb33ee04c09670ef413c26a525305d10b052b1f8bc20d921cbc06622ad"
+  },
+  "gpu_sample_count": 1898,
+  "gpu_statistics": {
+    "used_MiB": {
+      "median": 321.0,
+      "maximum": 321.0,
+      "mean": 321.0
+    },
+    "total_MiB": {
+      "median": 24564.0,
+      "maximum": 24564.0,
+      "mean": 24564.0
+    },
+    "gpu_busy_percent": {
+      "median": 83.0,
+      "maximum": 87.0,
+      "mean": 76.31981032665963
+    },
+    "memory_controller_busy_percent": {
+      "median": 31.0,
+      "maximum": 33.0,
+      "mean": 28.457323498419388
+    },
+    "power_W": {
+      "median": 228.475,
+      "maximum": 230.15,
+      "mean": 212.27557955742887
+    }
+  },
+  "peak_allocated_MiB": 4.953125,
+  "peak_reserved_MiB": 32.0,
+  "backend_source_sha256": "4dc84e4cfbb15ecf0191b263864eff9aaff79c1310e339b21ac01f5e58bc375c",
+  "training_changed": false,
+  "checkpoint_sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+  "validation": {
+    "cpu_tests": 18,
+    "cpu_skipped_gpu_tests": 1,
+    "allocated_gpu_tests": 3,
+    "gpu_batches": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "full_window_job_id": "13033045",
+    "gpu_tests_job_id": "13033062"
+  },
+  "limitations": [
+    "One checkpoint and one window; not full-volume or postprocessing timing",
+    "A5000 only; H100 unvalidated",
+    "PyTorch peaks reset after graph capture; NVML device memory includes context and graph pools"
+  ],
+  "artifact_root": "/usr/project/xtmp/sc829/fruit-fly-brain/runs/pathfinder-budget-v1/inference-opt-20261016",
+  "source_receipts": {
+    "full-norm-v3/summary.json": "8bb1a92c3c3d0d700e08e50c57494b97b3affc856b5ae02a025665de12c1d164",
+    "full-norm-v3/gpu-samples.json": "5b61b23b36f532161bf4a94860e6151bd989b7dd8d4d75b178dfe4c8b100607c",
+    "gpu-tests.log": "db006aaee6943e6ed5c8b4c62d01d0253a9e73a467268e9713c3c57e4552a092",
+    "cpu-tests.log": "0943e5779f3ad05f9f766de753c0de9a841bcccc33a79512c3e4481100fe03d2"
+  }
+}

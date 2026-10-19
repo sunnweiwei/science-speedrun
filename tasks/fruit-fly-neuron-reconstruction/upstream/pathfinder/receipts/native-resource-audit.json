@@ -1,0 +1,31 @@
+{
+  "schema": "pathfinder-native-resource-audit/v1",
+  "status": "source-audited; GPU profile pending",
+  "volume_shape_xyz": [
+    3000,
+    3000,
+    1350
+  ],
+  "voxels": 12150000000,
+  "model_parameters": 61779399,
+  "full_dense_uint32_bytes": 48600000000,
+  "full_dense_uint64_bytes": 97200000000,
+  "four_rank_fp16_affinity_and_weight_bytes": 388800000000,
+  "rank0_reduction_extra_bytes": 97200000000,
+  "decode_hard_affinity_bytes": 36450000000,
+  "decode_foreground_bytes": 12150000000,
+  "decode_label_upper_bytes": 97200000000,
+  "disk_policy": {
+    "raw_affinity_saved": false,
+    "dense_decoded_segmentation_saved": false,
+    "native_metrics_and_per_skeleton_erl_saved": true
+  },
+  "semantic_changes": false,
+  "notes": [
+    "Native parallel numba CC promotes labels to uint64 when foreground voxel count reaches 2^32; return dtype is not unconditionally uint32 despite decoder docstring.",
+    "Full native benchmark can evaluate decoded arrays in RAM with decoding.save_results=false; upstream test pipeline calls evaluation independently of output writing.",
+    "Nonconvergence warning after 256 sweeps must invalidate the result; never accept silently.",
+    "RAM estimates cover principal arrays only, not an empirically validated peak; profile and finite budget reservation still required.",
+    "Native full-volume benchmark and common MaleCNS paired scoring remain separate protocols."
+  ]
+}

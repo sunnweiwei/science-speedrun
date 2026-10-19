@@ -1,0 +1,46 @@
+{
+  "scope": "Historical64cubed prediction artifact relocation and independent scoring; not model inference replay",
+  "verified_equal_fields": [
+    "nerl",
+    "erl_nm",
+    "maximum_erl_nm",
+    "total_path_length_nm",
+    "split_errors",
+    "merge_errors",
+    "omitted_node_fraction",
+    "evaluator_sha256",
+    "inputs"
+  ],
+  "nerl": 0.5238821980488535,
+  "prediction_contract": {
+    "schema": "pathfinder-prediction-check/v1",
+    "files": {
+      "segmentation.npy": "9789a5050d4efadd47db5cb20ae1c302e9d938ee6032f727d067097e8c69b484",
+      "metadata.json": "de77e5db5395011f048301bc2b51b5048f4f1b7f19414e5c1401912fae53bd49"
+    },
+    "geometry": {
+      "axes": "zyx",
+      "coordinate_convention": "voxel_outer_corner",
+      "shape": [
+        64,
+        64,
+        64
+      ],
+      "origin_nm": [
+        28480.0,
+        29184.0,
+        512.0
+      ],
+      "voxel_size_nm": [
+        16.0,
+        16.0,
+        16.0
+      ]
+    },
+    "manifest_sha256": "aba615d316e3ef0e2671cc4917357f658288b718f2ca4255c15f3bb2ebe14a65",
+    "paper_protocol_verified": false,
+    "scope": "Artifact and independent geometry checks only; quality requires trusted evaluation"
+  },
+  "gpu_used": false,
+  "paper_comparable": false
+}

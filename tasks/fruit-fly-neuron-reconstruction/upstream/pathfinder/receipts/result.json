@@ -1,0 +1,35 @@
+{
+  "split_errors": 1,
+  "merge_errors": 1,
+  "skeletons": 2,
+  "nodes": 26,
+  "omitted_nodes": 1,
+  "omitted_node_fraction": 0.038461538461538464,
+  "split_min_nodes": 5,
+  "merge_min_nodes": 10,
+  "nerl": null,
+  "paper_protocol_verified": false,
+  "author_model_replayed": false,
+  "scope": "Local node-count diagnostic only; zero split/merge counts do not imply complete reconstruction",
+  "protocol": "local-pathfinder-style-node-counts/v1",
+  "boundary_margin_voxels": [
+    0,
+    0,
+    0
+  ],
+  "sampling": "floor",
+  "inputs": {
+    "segmentation": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-audit-v1/smoke/segmentation.npy",
+      "sha256": "dc4b39af2284ff53ec5f8f196421dd28d49d45d5d02861b64331ca0989537639"
+    },
+    "metadata": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-audit-v1/smoke/metadata.json",
+      "sha256": "7a3e667cf8d3948458e3988671b751f3884e73c6b9f74dd02ba58f7da172b749"
+    },
+    "skeletons": {
+      "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-audit-v1/smoke/skeletons.json",
+      "sha256": "d33f81faf4075a82d3f0353b62d4e8e049f802944f221c06b2fc6f0ee206a226"
+    }
+  }
+}

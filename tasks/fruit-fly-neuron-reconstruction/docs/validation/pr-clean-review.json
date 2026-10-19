@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-07",
+  "scope": "merge-readiness review; not full container/GPU acceptance",
+  "comparators": [
+    "probabilistic-global-weather",
+    "hydrogym",
+    "pde-surrogate"
+  ],
+  "layout": "all ten repository audit categories pass for all four tracks",
+  "changes": [
+    "Restore measured legacy-step6750 plus one production-update starter; retain corrected inference",
+    "Align RESULTS and readiness with current selection",
+    "Remove six unreferenced presentation assets; historical copy retained outside Git",
+    "Exclude historical result figures from development image",
+    "Replace stale PR framing with current scope and validation"
+  ],
+  "validation": {
+    "focused_regressions": {
+      "unique_tests_passed": 68,
+      "initial_run": {
+        "run": 68,
+        "passed": 62,
+        "skipped": 6
+      },
+      "resource_configured_rerun": {
+        "run": 8,
+        "passed": 8,
+        "skipped": 0
+      },
+      "scope": "training/checkpoint/normalization/growth, pipeline, verifier, contracts, reconstruction context, native CPU isolation and completion checks"
+    },
+    "materializer_and_hf_unit_tests": {
+      "passed": 5
+    },
+    "python_ast": "passed",
+    "shell_and_documented_command_syntax": "passed",
+    "git_diff_check": "passed",
+    "files_over_5MB": 0,
+    "credential_pattern_scan": "no matches"
+  },
+  "selected_ffn": {
+    "sha256": "ffdaeac9ddcd7eb27ece07d19135b9dfd8186fa50b7493c2327bcab5a2257bf7",
+    "legacy_parent_sha256": "38d90421dce62b1e35d57d730800a872a58efb44c41b80877061e7af825cc53e",
+    "legacy_steps": 6750,
+    "production_updates": 1
+  },
+  "unverified": [
+    "fresh two-stage training replay",
+    "target Docker/NVIDIA/FPS deployment",
+    "complete training-to-formal-score GPU run and total resources"
+  ],
+  "merge_classification": "experimental track; do not promote to verified"
+}

@@ -1,0 +1,78 @@
+{
+  "plan_sha256": "9dc710412b9fd671a6df90b532919daab3582acf7a5791db764bfc6817985370",
+  "adapter_sha256": "ae9ad6345c70a1c138c23e3ba521f187cb663abd11b8dd6cd7f201f53dca1c51",
+  "labels_sha256": "951040aedafa930d0d16ff706a6ae87dcfa9dde455cc57a7ed61b42bb3db3176",
+  "suite_sha256": "e4864c6d467b6e0a2c4be746d2e61adb9c4719f547882f31177f9f1c700887a4",
+  "kimimaro_version": "5.8.4",
+  "tensorstore_version": "0.1.76",
+  "teasar_params": {
+    "scale": 1.5,
+    "const": 300,
+    "pdrf_scale": 100000,
+    "pdrf_exponent": 4,
+    "soma_acceptance_threshold": 3500,
+    "soma_detection_threshold": 750,
+    "soma_invalidation_const": 300,
+    "soma_invalidation_scale": 2
+  },
+  "ground_truth": "Published proofread segmentation; not error-free biological truth",
+  "unknown_policy": "Zero excluded; retain all positive IDs without prediction-dependent filtering",
+  "boundary_policy": "Core-truncated paths retained; no paper endpoint erosion",
+  "gt_instances": 1362,
+  "represented_instances": 1344,
+  "missing_instance_ids": [
+    112507462,
+    174211534,
+    216532031,
+    376739986,
+    441455581,
+    441849305,
+    516219109,
+    582942537,
+    650450379,
+    719800905,
+    735385192,
+    776377643,
+    792585877,
+    833975797,
+    837884950,
+    902303097,
+    906285061,
+    924077377
+  ],
+  "nodes": 78015,
+  "edges": 75250,
+  "paper_comparable": false,
+  "status": "reference_ready_model_evaluation_pending",
+  "cpu_jobs": [
+    {
+      "job_id": "90000041",
+      "state": "FAILED",
+      "seconds": 29,
+      "reason": "TensorStore context argument type; corrected"
+    },
+    {
+      "job_id": "90000042",
+      "state": "COMPLETED",
+      "seconds": 157
+    }
+  ],
+  "reference_self_check": {
+    "erl_nm": 12022.468850375388,
+    "maximum_erl_nm": 12022.468850375388,
+    "nerl": 1.0,
+    "total_path_length_nm": 1666809.3403682709,
+    "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+    "protocol": "local-funlib-erl/v1",
+    "paper_protocol_verified": false,
+    "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+    "adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4"
+  },
+  "reference_self_check_is_model_score": false,
+  "tests": {
+    "run": 99,
+    "skipped": 2,
+    "status": "passed"
+  },
+  "image_manifest_sha256": "98359e65b2da3fbb81d7e03a16d4edc2170abe45dcd948314cbb30e3595ec969"
+}

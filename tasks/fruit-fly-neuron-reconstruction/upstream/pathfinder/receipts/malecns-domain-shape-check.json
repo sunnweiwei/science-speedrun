@@ -1,0 +1,16 @@
+{
+  "eligible_instances": {
+    "train": 256,
+    "validation": 128
+  },
+  "total_vertices": 7563179,
+  "radius_um": 10,
+  "points_per_model_input": 8192,
+  "voxel_size_nm": [
+    32,
+    32,
+    32
+  ],
+  "adaptation": "Published MaleCNS full-context surfaces; synthetic translated distinct-instance false joins; not paper SENSE hard negatives",
+  "training_started": false
+}

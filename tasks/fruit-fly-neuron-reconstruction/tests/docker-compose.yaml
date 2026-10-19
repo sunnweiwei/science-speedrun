@@ -1,0 +1,19 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: verifier
+    # Outer-container settings for the bwrap prediction namespace (verify_single.py), as in the
+    # weather and earth-observation verifiers: bwrap's user namespace needs seccomp/AppArmor relaxed
+    # and an unmasked /proc; tests/test.sh detaches the NVIDIA runtime's /proc/driver/nvidia mounts.
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+      - systempaths=unconfined
+    cap_add: [SYS_ADMIN]
+    volumes:
+      - ${TASK_PRIVATE_DIR:?Set materialized private resources}/image:/benchmark/image:ro
+      - ${TASK_PRIVATE_DIR:?Set materialized private resources}/suite:/benchmark/suite:ro
+      - ${TASK_DATA_DIR:?Set materialized development resources}/runtime:/benchmark/runtime:ro
+      - ${TASK_VERIFIER_SCRATCH:?Set a fresh empty verifier scratch directory}:/workspace/research

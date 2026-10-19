@@ -1,0 +1,24 @@
+{
+  "reference": {
+    "stage": "PATHFINDER",
+    "nerl": 0.942,
+    "split_errors": 2862,
+    "merge_errors": 702
+  },
+  "local": {
+    "nerl": null,
+    "split_errors": 1,
+    "merge_errors": 1
+  },
+  "directly_comparable": false,
+  "numeric_gap": null,
+  "reasons": [
+    "Paper dataset bytes, ROI and GT membership not pinned",
+    "Official skeleton/evaluation numerical parity not established"
+  ],
+  "local_protocol": "local-pathfinder-style-node-counts/v1",
+  "local_dataset": null,
+  "interpretation": "Paper reference only; local numbers are not a measured PATHFINDER gap",
+  "reference_sha256": "6c4449c1116ebfcbb501f21cfb6f98faa6110e8f117598b42ee76fe25b4bad01",
+  "result_sha256": "a4322f0e12bd9bb580f2435b0d95aa48992f3ce58956160a4905d8c742f93578"
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "pathfinder-geometric-center-coverage/v1",
+  "inputs": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/continuous-ffn-v1/plan.json": "ccb8d203c8129829dae3f05cd2c48b6dc11c1859902c1b299cfadd8e9b485e4d",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/continuous24/manifest.json": "a00f4a16616b8e9341d01885a4b1da2ccf4fdad2408a1b6a858ea4527150c8d3",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/manifest.json": "a2a96ca90a83141e48367a216852588efa00f08dab4d81ba80f5315207207344"
+  },
+  "audit_code_sha256": "997c380a6b2ff5e2131aea09973f73f279b6052eaeaeb831c455f750842f5448",
+  "selector_sha256": "3bf7155f590b2b516b152463afd38c08ae581aadc33fa40ac5be1243c78e9b54",
+  "radius_nm": 10000,
+  "roi_shape": [
+    1468,
+    1468,
+    1468
+  ],
+  "roi_origin_nm": [
+    3256,
+    4640,
+    4640
+  ],
+  "roi_extent_nm": [
+    23488,
+    23488,
+    23488
+  ],
+  "eligible_center_index_bounds": [
+    [
+      625,
+      843
+    ],
+    [
+      625,
+      843
+    ],
+    [
+      625,
+      843
+    ]
+  ],
+  "eligible_center_cell_bounds_nm": [
+    [
+      13256,
+      16744
+    ],
+    [
+      14640,
+      18128
+    ],
+    [
+      14640,
+      18128
+    ]
+  ],
+  "eligible_center_grid_shape": [
+    218,
+    218,
+    218
+  ],
+  "eligible_center_grid_voxels": 10360232,
+  "eligible_center_volume_fraction": 0.0032748492576388966,
+  "training_raw_blocks_containing_all_eligible_centers": [
+    "350-1792-1792"
+  ],
+  "coordinate_frame_assumption": "Caller establishes shared physical frame; numeric coordinates alone cannot establish dataset identity",
+  "actual_instance_center_coverage_known": false,
+  "scope": "Geometric maximum of possible center positions, not instance coverage or final reconstruction coverage",
+  "training_interpretation": "Containing training raw extents imply potential spatial exposure, not actual minibatch sampling",
+  "ground_truth_skeletons_read": false,
+  "predictions_read": false,
+  "paper_comparable": false,
+  "figure": {
+    "file": "context-geometry.png",
+    "sha256": "8d526ac8aa6fc9262a6fb16fcdd9f0fe81c9b9b041ad72ad5e75bcd2f00d4019",
+    "training_manifest_sha256": "a2a96ca90a83141e48367a216852588efa00f08dab4d81ba80f5315207207344",
+    "generator": "plot_context_geometry.py",
+    "scope": "Physical geometry and potential training-region exposure; not model quality or measured instance coverage"
+  }
+}

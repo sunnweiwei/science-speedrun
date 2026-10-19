@@ -1,0 +1,46 @@
+{
+  "author_checkpoint": "/scratch/researcher/fruit-fly-brain/vendor/google-ffn/models/fib25/model.ckpt-27465036",
+  "author_model": "depth12/features32/33cube",
+  "tensorflow": "2.15.1",
+  "finite": true,
+  "shape": [
+    1,
+    33,
+    33,
+    33,
+    1
+  ],
+  "logit_min": -3.689528465270996,
+  "logit_max": 5.860648155212402,
+  "device": "CPU only",
+  "segmentation_executed": false,
+  "public_score_reproduced": false,
+  "compatibility_patch": {
+    "source_commit": "b8df2d96d7c8da057fd2702ced19732a08ab6ae4",
+    "file": "ffn/training/tracker.py",
+    "before_sha256": "3b646358c6517dea0e855ff00d326c12bb9dfdef062417ba7ab6ea56ea17b1ef",
+    "after_sha256": "99a4b0a46b7377a7600cdba330f33d9d2ea12e71b6a661c8adb90c8510aa0759",
+    "change": "Restore font initialization in an otherwise empty try block; syntax error prevented importing official inference",
+    "model_or_inference_algorithm_changed": false,
+    "protobuf": "PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python",
+    "additional_patches": [
+      {
+        "file": "ffn/inference/runner.py",
+        "before_sha256": "7e428b59f7ab776d8002e626d6ca60dea9b02ad85d0fbe61d780b04beea93754",
+        "after_sha256": "b8d400043daffd3e8243fddbdf8345c397614fc3b2f9d9e72107492c9e826bc6",
+        "change": "Initialize partial_segment_iters=0 for fresh inference, matching Canvas.segment_all default",
+        "failed_job": "90000061",
+        "failure": "UnboundLocalError before segmentation; executor thread kept allocation alive, explicitly cancelled"
+      }
+    ]
+  },
+  "full_inference_cpu_job": "90000062",
+  "full_inference_status": "resubmitted after recorded upstream fresh-run initialization fix",
+  "fixture_sha256": "95d6d2dbbad2fae6eab39aed4658ff0f64e81bae1d2e69c439dcd842e955a892",
+  "checkpoint_files": {
+    "model.ckpt-27465036.data-00000-of-00001": "a2910768255bbb1dc5be27a947e4107dd29ccd221646b676ec225981af5526f1",
+    "model.ckpt-27465036.index": "6c7b66baa8dae766907f86ca068517fedcfdd85fb7e322d05cd2401ab7b252cc",
+    "model.ckpt-27465036.meta": "0b258a8df481c3b358692aa2683859d7818050fb8c4cdade2a79d7839cedd01a"
+  },
+  "failed_prior_job": "90000061"
+}

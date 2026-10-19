@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-09-29T03:33:56.951282+00:00",
+  "user_instruction": "Prior explicit budget flexibility: \u989d\u5ea6\u4e0d\u662f\u6b7b\u7684; complete verified comparison without shrinking model/context",
+  "interpretation": "Observed full FFN ~9 hours; batch16/32/64/128 showed no material speedup. Finite remaining validation <=10.5h, test <=12.5h, traditional baseline <=2h. Extend cumulative ceiling70 to80 allocation hours, retain all historical charges.",
+  "previous_limits": {
+    "bytes": 200000000000,
+    "allocation_seconds": 252000,
+    "gpu_seconds": 1008000
+  },
+  "new_limits": {
+    "bytes": 200000000000,
+    "allocation_seconds": 288000,
+    "gpu_seconds": 1152000
+  },
+  "prior_ledger_sha256": "5e7508f711395925893ccb1b948729c56ac1b27f60ab186fb06e89039aa92b1e",
+  "historical_jobs_preserved": true
+}

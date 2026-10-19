@@ -1,0 +1,63 @@
+{
+  "schema": "pathfinder-baseline-loading/v1",
+  "model": {
+    "strict_load": true,
+    "parameters": 61779399,
+    "tensors": 517,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "checkpoint_weights": "raw published state_dict; no saved EMA state",
+    "training_step": 200000,
+    "source_revision": "53fa46bf25d35966fd4d36a270ce84caf9c631b2",
+    "mednext_revision": "ddf7398815d9aa39904e732b8d6fa18b160c9df7"
+  },
+  "forward": {
+    "status": "passed_cpu_forward_only",
+    "input_shape": [
+      1,
+      1,
+      128,
+      128,
+      128
+    ],
+    "output_shape": [
+      1,
+      6,
+      128,
+      128,
+      128
+    ],
+    "input_axes": "xyz",
+    "physical_voxel_size_nm": [
+      9,
+      9,
+      20
+    ],
+    "input_sha256": "34ecf38a41d12b597619a42e632689de731e7623b6103c1a964c39188097685d",
+    "parameters": 61779399,
+    "seconds": 19.534964493010193,
+    "logit_min": -27.581510543823242,
+    "logit_max": 17.780054092407227,
+    "short_range_probability_min": 0.011487581767141819,
+    "short_range_probability_max": 0.9722400903701782,
+    "model_quality_verified": false
+  },
+  "environment_versions": {
+    "torch": "2.6.0",
+    "monai": "1.5.1",
+    "pytorch-lightning": "2.6.0",
+    "numpy": "1.26.4",
+    "zarr": "2.18.7",
+    "numba": "0.61.2"
+  },
+  "runtime_package_inventory_sha256": "8453020f5c566dabf50ef63c32abae9ef44da954b8425d0ecd5c24d4a3563e0a",
+  "native_config_sha256": "f91e81e184cd6716c60fa500c308c0b95c513d553bb243c3d65d689303bbc410",
+  "native_effective_config_sha256": "09bde2af2e579724ec1a3444f70ef5b9ba9aea0ee5e84e8f0e5f06184247bcec",
+  "cli_import_passed": true,
+  "native_evaluator_import_passed": true,
+  "full_native_benchmark_verified": false,
+  "native_test_raw_and_skeleton_bytes": 12337552146,
+  "data_download_job": "90000045",
+  "cpu_forward_job": "90000046",
+  "source_artifacts_root": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/comparison-v1"
+}

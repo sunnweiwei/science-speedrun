@@ -1,0 +1,196 @@
+{
+  "timestamp": "2026-10-06T11:47:45.268815+00:00",
+  "selected_checkpoint_sha256": "4ffa7b3e879b27946b7fed329a6c0413ed459f2c85e4a20ba11514c5b30a89d9",
+  "selected_checkpoint": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/cold-start-validation-v1/selected-random-start/checkpoint.pt",
+  "training_job_id": "90000240",
+  "training_completed_steps": 17951,
+  "selected_step": 16300,
+  "initialization": "random",
+  "production_from_first_update": true,
+  "legacy_warmup": false,
+  "training_run_sha256": "e73b2072dea56bf4f711aab73e6cea0162521ba7dbd74be0ea741ef99d79a977",
+  "training_manifest_sha256": "bfbc41909b2fa7b069f84c1c858e3214c621a657739c687a695815e185244508",
+  "training_parameters": {
+    "seed": 42,
+    "world_size": 4,
+    "batch_per_gpu": 4,
+    "lr": 0.0001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "bf16": true,
+    "ffn_positive_weight": 4.0,
+    "ffn_head_init_gain": 3.0,
+    "architecture": {
+      "stage": "ffn",
+      "width": 32,
+      "residual_blocks": 20,
+      "factors": null,
+      "input_shape": [
+        33,
+        33,
+        33
+      ],
+      "voxel_size_nm": [
+        16,
+        16,
+        16
+      ],
+      "axes": "zyx",
+      "prompt_radius": 16,
+      "ffn_recurrent_steps": 8,
+      "activation_checkpointing": false,
+      "raw_normalization": [
+        0.519783446107921,
+        0.06233267956911071
+      ]
+    }
+  },
+  "nonempty_growth": {
+    "tp": 52896,
+    "fp": 3228,
+    "fn": 24147,
+    "calls": 306,
+    "components": 376,
+    "tiny_components": 348,
+    "positive_voxels": 59050,
+    "dice": 0.7944310527382911,
+    "recall": 0.6865776254818737,
+    "precision": 0.9424844986102202,
+    "components_per_positive_voxel": 0.006367485182049111,
+    "calls_per_reference_voxel": 0.003971807951403761,
+    "calls_per_correct_voxel": 0.0057849364791288565,
+    "exhausted_samples": 0
+  },
+  "single": {
+    "job_id": "90000243",
+    "variant": "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long",
+    "step": 16300,
+    "checkpoint_sha256": "4ffa7b3e879b27946b7fed329a6c0413ed459f2c85e4a20ba11514c5b30a89d9",
+    "nerl": 0.0406382664047008,
+    "baseline_fraction": 0.5740737589128994,
+    "omitted_node_fraction": 0.4377448051516962,
+    "split_errors": 539,
+    "merge_errors": 224,
+    "wall_seconds": 5349.051711503416,
+    "complete": true,
+    "passes_multiblock_resource_screen": true
+  },
+  "multi": {
+    "job_id": "90000244",
+    "variant": "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long",
+    "step": 16300,
+    "checkpoint_sha256": "4ffa7b3e879b27946b7fed329a6c0413ed459f2c85e4a20ba11514c5b30a89d9",
+    "aggregate": {
+      "erl_nm": 222.4106189589529,
+      "maximum_erl_nm": 11673.342172023904,
+      "nerl": 0.01905286555310421,
+      "total_path_length_nm": 12007925.692922592,
+      "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+      "protocol": "local-funlib-erl/v1",
+      "paper_protocol_verified": false,
+      "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+      "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+      "split_errors": 6260,
+      "merge_errors": 767,
+      "omitted_nodes": 257368,
+      "omitted_node_fraction": 0.46904877328677497,
+      "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+      "inputs": {
+        "skeletons": "f4de5efad5fd1ee057a298fa51863d7928ff774315e696af4f5e4e9757876d7e",
+        "metadata": "38bb391ebb5cdbb2e7adeb46b9f62b3f489559f4b6c8f940354964764f5ebcb5",
+        "segmentation": "5c320d23fe459d74c427984d2e05ecf5e58fce17d0ff953c965289319a312edc"
+      },
+      "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+      "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+      "prediction_grid_sha256": "304ca416f4e2da5a407de43610313d9398656f95b6d3a551407b61a443a126ab",
+      "prediction_grid": {
+        "axes": "zyx",
+        "coordinate_convention": "voxel_outer_corner",
+        "raw_origin_nm": [
+          183408.0,
+          205760.0,
+          407904.0
+        ],
+        "shape": [
+          872,
+          872,
+          872
+        ],
+        "origin_nm": [
+          190640.0,
+          212992.0,
+          415136.0
+        ],
+        "voxel_size_nm": [
+          16.0,
+          16.0,
+          16.0
+        ]
+      },
+      "boundary_margin_voxels": [
+        0,
+        0,
+        0
+      ],
+      "sampled_nodes": 548702,
+      "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+      "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+      "node_assignments_sha256": "75910da6b29aa8c2819e4d5db5f7a97ce49ae0b8ae44c1fedf47b9deea46ecfe"
+    },
+    "baseline_fraction": 0.5441024006718882,
+    "single_nerl": 0.0406382664047008,
+    "multi_window_zero_nerl": 0.0406382664047008,
+    "wall_seconds": 16306.699728291482,
+    "complete": true
+  },
+  "window_nerl": [
+    0.0406382664047008,
+    0.022691797503602926,
+    0.030181295336834404,
+    0.05732390010825102,
+    0.04989498953243498,
+    0.041534535216153724,
+    0.035406669897549675,
+    0.04082764348585688
+  ],
+  "window_max_min_ratio": 2.5261947670363853,
+  "window_coefficient_of_variation": 0.2540305883048869,
+  "checkpoint_strict_current_model_load": true,
+  "actual_forward_compatibility_evidence": "contender-runtime-compatibility.json",
+  "test_used": false,
+  "selection": "Best completed full-single candidate among this bounded validation-only round; paired eight-window evaluation complete. The step5900 contender was not promoted after lower full-single nERL and higher evaluation cost. No claim of global optimum.",
+  "costs": {
+    "observed_gpu_hours": 281.45666666666665,
+    "charged_including_reservations_gpu_hours": 281.45666666666665,
+    "whole_campaign_charged_gpu_hours": 1587.395,
+    "whole_campaign_limit_gpu_hours": 2500.0,
+    "summary": {
+      "candidate_evaluation": {
+        "jobs": 19,
+        "observed_gpu_hours": 41.28333333333333,
+        "charged_including_reservations_gpu_hours": 41.28333333333333
+      },
+      "candidate_training": {
+        "jobs": 31,
+        "observed_gpu_hours": 216.93444444444444,
+        "charged_including_reservations_gpu_hours": 216.93444444444444
+      },
+      "diagnostic_probe": {
+        "jobs": 30,
+        "observed_gpu_hours": 7.657777777777777,
+        "charged_including_reservations_gpu_hours": 7.657777777777777
+      },
+      "historical_reference_evaluation": {
+        "jobs": 5,
+        "observed_gpu_hours": 15.581111111111111,
+        "charged_including_reservations_gpu_hours": 15.581111111111111
+      }
+    }
+  },
+  "limitations": [
+    "Historical corrected reference remains stronger: single0.0707893 and multi0.0350171",
+    "One training random seed; selected validation checkpoints and correlated spatial windows",
+    "Eight-window validation is not full125/private-test/downstream/container acceptance",
+    "Current starter checkpoint state retention differs from frozen training; actual checkpoint strict load and CPU forward verified, no separate fresh container GPU reproduction"
+  ]
+}

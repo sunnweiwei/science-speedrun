@@ -84,6 +84,9 @@ case "$task" in
        python /task/environment/evaluation/screening.py prepare --data-root /out/prepared --output /out/agent-data/eval --site-fraction 1 && \
        cp -aL /out/prepared/eval/. /out/private/"
     data=$root/agent-data; private=$root/private ;;
+  fruit-fly-neuron-reconstruction)        # prepared MaleCNS release (14.5 GB, public HF, pinned commit), every file size/SHA-256 checked
+    inbox "huggingface_hub==2.1.1" "bash environment/data/materialize.sh --cache $root/cache --data $root/data --private $root/private"
+    data=$root/data; private=$root/private ;;
   fluid-flow-control)                     # HydroGym release (423 GB, 39 cases, pinned HF commit), every file hash-verified
     inbox "huggingface_hub>=1.0,<2" "python environment/data/materialize.py $root --download"
     data=$root; private=$root ;;

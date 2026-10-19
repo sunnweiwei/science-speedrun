@@ -1,0 +1,116 @@
+{
+  "complete": true,
+  "full_pipeline_complete": false,
+  "method": "ffn-only-six-run-consensus",
+  "metrics": {
+    "erl_nm": 5.8294650322293755,
+    "maximum_erl_nm": 56261.517671640206,
+    "nerl": 0.00010361371810572113,
+    "total_path_length_nm": 12749613.377595901,
+    "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+    "protocol": "local-funlib-erl/v1",
+    "paper_protocol_verified": false,
+    "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+    "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+    "split_errors": 6727,
+    "merge_errors": 48,
+    "omitted_nodes": 186062,
+    "omitted_node_fraction": 0.32307310305549625,
+    "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+    "inputs": {
+      "skeletons": "7c73852ad14c1b19b6083a7939729fd3a454250c86d3058199c2d36cfc8835fb",
+      "metadata": "a94b1f32818bc2a644389bad3dfdeeb729f119b3226362396b5e3db98a775300",
+      "segmentation": "bed17a67232d420c3fb5f9df11c8d84cc3ecf06b09a2a9488d038b7e7526463a"
+    },
+    "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+    "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+    "prediction_grid_sha256": "4cf7b36eb67514b677f19c0da30591999c724097964e170ed6a63332bb487195",
+    "prediction_grid": {
+      "axes": "zyx",
+      "coordinate_convention": "voxel_outer_corner",
+      "raw_origin_nm": [
+        183408.0,
+        238528.0,
+        375136.0
+      ],
+      "shape": [
+        1762,
+        1762,
+        1762
+      ],
+      "origin_nm": [
+        183664.0,
+        238784.0,
+        375392.0
+      ],
+      "voxel_size_nm": [
+        16.0,
+        16.0,
+        16.0
+      ]
+    },
+    "boundary_margin_voxels": [
+      0,
+      0,
+      0
+    ],
+    "sampled_nodes": 575913,
+    "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+    "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+    "node_assignments_sha256": "2c09cc1d5e4d0d045bb21b9553afff1e17517df00db2eb878699cfeccf3cb4ca"
+  },
+  "audit_sha256": "fac73231d8562e2dfc96ab87c2ead3acff7fb2af28f34d7922ae7c818c13b0f6",
+  "input_pins_sha256": "0cca3097b8d65ccb0e053613952e97a2710efb0046f871384aa896a851fe8e1b",
+  "scope": "Full frozen scoring core and complete six-run initial segmentation; baseline/refinement comparison pending; no SOTA or gain claim",
+  "evidence": {
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/complete.json": "d4e755e955167048ad937569dff8566c5bcbbd6389807bd8b2d3b2c3dce3a764",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/independent-audit.json": "fac73231d8562e2dfc96ab87c2ead3acff7fb2af28f34d7922ae7c818c13b0f6",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/input-pins.json": "0cca3097b8d65ccb0e053613952e97a2710efb0046f871384aa896a851fe8e1b",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/audit-plan.json": "16cd3edd6d2bcbcf683df6f97257519c6371e1cc48ac0fce8e417fd28718dda1",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/resources.txt": "c0396418ecea5571920e901fa18e37fed013554afbfa97987a19d67f370235ac",
+    "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/full-consensus-score-v1/run.py": "c5d8a36a5b5c6f90f33b750e73073b2fb32ba4974e2b068a131fc241cd92cafd"
+  },
+  "independent_audit": {
+    "complete": true,
+    "job_id": null,
+    "plan_sha256": "16cd3edd6d2bcbcf683df6f97257519c6371e1cc48ac0fce8e417fd28718dda1",
+    "script_sha256": "f7146f56a22d48f7eda0f13ae79d199da7bc5d8d6d68fa52108f452f7591ef21",
+    "controls": 23,
+    "rows": [
+      {
+        "domain": "frozen-full-test-core",
+        "method": "ffn-only-six-run-consensus",
+        "sampled_nodes": 575913,
+        "node_assignments_exact": true,
+        "recomputed": {
+          "erl_nm": 5.8294650174355045,
+          "maximum_erl_nm": 56261.53384795884,
+          "nerl": 0.0001036136880517522,
+          "total_path_length_nm": 12749613.377595901,
+          "split_errors": 6727,
+          "merge_errors": 48,
+          "omitted_nodes": 186062,
+          "omitted_node_fraction": 0.32307310305549625
+        },
+        "difference_from_report": {
+          "erl_nm": -1.479387101710472e-08,
+          "maximum_erl_nm": 0.0161763186333701,
+          "nerl": -3.0053968929949666e-11,
+          "total_path_length_nm": 0.0,
+          "split_errors": 0.0,
+          "merge_errors": 0.0,
+          "omitted_nodes": 0.0,
+          "omitted_node_fraction": 0.0
+        },
+        "reported_metrics_sha256": "04e9133dcb9f3d85618aec813e5821d6e7dd7532b3209856cd7a24f25d8fdff0"
+      }
+    ],
+    "seconds": 43.5368975000456,
+    "peak_rss_kib": 3196920,
+    "relative_tolerance": 1e-06,
+    "absolute_tolerance": 1e-10,
+    "scope": "Independent full frozen core FFN-only sampling and arithmetic; only one arm, NOT completed three-method workflow"
+  },
+  "wall_seconds": 137.74,
+  "peak_rss_kib": 3196920
+}

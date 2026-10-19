@@ -1,0 +1,34 @@
+{
+  "schema": "pathfinder-pr-scope-cleanup/v1",
+  "historical_commit": "b7feae9b87d5a4bb959a7668446f7b333c37bc9d",
+  "removed_historical_files": 340,
+  "removed_historical_lines": 27585,
+  "retained_scope": "PATHFINDER pipeline, native task, regression tests, scientific provenance and documentation",
+  "source_python_tree_sha256": "1ed0f1db8bc7e9e7f629bdd5ef0dfee0afa7cd04cb9ca33ba2530959388e8a4b",
+  "cpu_job": "90000033",
+  "result": {
+    "tests_run": 95,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 27.485783786978573,
+    "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/pr-cleanup-source-v1",
+    "gpu_execution": false
+  },
+  "previous_attempt": {
+    "cpu_job": "90000032",
+    "tests": 95,
+    "skipped": 1,
+    "accepted": false,
+    "reason": "Delivery integration environment variables were absent; corrected and rerun."
+  },
+  "static_checks": [
+    "Python AST",
+    "Docker COPY source existence",
+    "verifier shell syntax",
+    "relative Markdown links",
+    "git diff --check"
+  ],
+  "running_scientific_snapshots_modified": false,
+  "gpu_execution": false
+}

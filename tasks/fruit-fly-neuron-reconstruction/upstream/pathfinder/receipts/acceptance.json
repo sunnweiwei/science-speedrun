@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "unit_tests": 3,
+  "synthetic_cli_counts": [
+    1,
+    1,
+    1
+  ],
+  "replay_gate_exit_code": 2,
+  "author_replay_performed": false,
+  "gpu_hours": 0
+}

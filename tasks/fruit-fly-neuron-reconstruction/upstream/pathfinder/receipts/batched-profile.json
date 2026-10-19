@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "batch": 1,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/batched-profile-v1/batch-1/receipt.json",
+      "seconds": 157.4449503668584,
+      "model_windows": 22865,
+      "tiles": 16,
+      "time_exhausted": false,
+      "windows_per_second": 145.22536255829644
+    },
+    {
+      "batch": 4,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/batched-profile-v1/batch-4/receipt.json",
+      "seconds": 145.3883841021452,
+      "model_windows": 22865,
+      "tiles": 16,
+      "time_exhausted": false,
+      "windows_per_second": 157.26840999853044
+    },
+    {
+      "batch": 8,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/batched-profile-v1/batch-8/receipt.json",
+      "seconds": 144.60915113706142,
+      "model_windows": 22865,
+      "tiles": 16,
+      "time_exhausted": false,
+      "windows_per_second": 158.1158579537502
+    },
+    {
+      "batch": 16,
+      "receipt": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/batched-profile-v1/batch-16/receipt.json",
+      "seconds": 142.89602176798508,
+      "model_windows": 22865,
+      "tiles": 16,
+      "time_exhausted": false,
+      "windows_per_second": 160.0114525030308
+    }
+  ],
+  "identical_tile_grid": true,
+  "ground_truth_used": false,
+  "inference_only": true,
+  "slurm_job_id": "90000008",
+  "output_hash_comparison": [
+    {
+      "batch": 4,
+      "matching_tile_hashes": 16,
+      "total_tiles": 16
+    },
+    {
+      "batch": 8,
+      "matching_tile_hashes": 16,
+      "total_tiles": 16
+    },
+    {
+      "batch": 16,
+      "matching_tile_hashes": 16,
+      "total_tiles": 16
+    }
+  ]
+}

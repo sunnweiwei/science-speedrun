@@ -34,11 +34,13 @@ The budget column is the agent's development budget in `task.toml`, one of two s
 | [fluid-flow-control](tasks/fluid-flow-control) | one shared closed-loop controller for all 39 HydroGym flow-control cases (2D/3D cylinder, pinball, airfoil, gust, sphere, cube, channel, nozzle, Kolmogorov; MAIA / JAX / JAX-Fluids CFD), scored by 26 named physical metrics | 8× H100, 48 h | 25/26 cases valid, near the uncontrolled flows | — (shared starter untrained; per-case specialists in `references/`) | — | HF release, 423 GB (39 CFD environments) |
 | [atomistic-materials](tasks/atomistic-materials) | one universal interatomic potential (energy, forces, stress) from random initialization (UMA-S architecture) for eight suites: stability screening, phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces, Li-migration NEB (Crystal Potential Score v2 / 100) | 8× H100, 48 h | 0.105 | 0.371 (scratch, validation) | 0.50 (pretrained UMA-S mixed replay) | HF release, 89 GB (42.4M-frame DFT pool + eight suites) |
 | [earth-observation-pretraining-transfer](tasks/earth-observation-pretraining-transfer) | one from-scratch geospatial encoder (Sentinel-1/2 time series, OlmoEarth-style) whose frozen features transfer to AWF land-cover classification and live fuel moisture (LFMC) regression; reward = mean of AWF accuracy and LFMC MAE skill | 1× H100, 48 h | 0.406 | — (starter: 77.0% AWF / 21.46 LFMC MAE, validation) | — | pinned public sources, ~148 GB download (agent view 100 GB, private 12 GB) |
+| [fruit-fly-neuron-reconstruction](tasks/fruit-fly-neuron-reconstruction) | FFN, SENSE and SHAPE weights for a fixed PATHFINDER-style pipeline that reconstructs fruit-fly neurons from 16 nm MaleCNS electron microscopy; reward = local sparse nERL of the SHAPE-merged reconstruction | 8× H100, 48 h | 0.00002 | — (starter: 0.035 stitched eight-window nERL, validation) | — | HF release, 14.5 GB |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
 - Baselines were reproduced in this setup. Their numbers, logs and validation outputs are in each task's `environment/baseline/<name>/` (`RESULTS.md`, `reproduction/`). Agents are told not to retrain them.
-- Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry: about 3.5 h on one GPU.
+- Every verifier finishes within about 2 h on the task's verifier resources, except mass-spectrometry (about 3.5 h on one GPU)
+  and fruit-fly-neuron-reconstruction (about 4 h on eight GPUs; FFN time depends on the checkpoint).
 - probabilistic-global-weather was tested on the CMU Babel cluster: a 6 h Codex session on two L40S. The agent checked its
   pipeline and trained a fresh from-scratch candidate on a longer schedule; its package scored 0.108 against the
   starter's 0.674 (13.1 h on four H100s), as expected for the budget. The verifier ran all eight cases and passed in
@@ -58,6 +60,14 @@ Notes on the table:
   only run under Apptainer; ai4sci-tasks#149 fixed four Docker/Harbor failures (grading at start-up, procfs in the
   model namespace, an empty CUDA_VISIBLE_DEVICES, non-numeric reward.json) and added `replay.py --no-namespace` for
   development where the workspace cannot create namespaces.
+- fruit-fly-neuron-reconstruction was tested on an 8×H100 host with the Antigravity CLI (Gemini 3.8 Flash). No weights
+  are supplied, so the agent trained its own package: the baseline FFN recipe (legacy step 6750, then one production
+  update) and SENSE/SHAPE under 30-minute caps. It published that package after about 2 h. The formal verifier had
+  never run end to end; its first Docker run on four H100s found four failures, fixed in ai4sci-tasks#150:
+  windows at the FFN call cap failed their shard, 280 M sub-10-voxel fragments overflowed the context label bound,
+  the prediction namespace lacked /etc/gitconfig, and the frozen suite's common.py pin predated a rename. The package
+  scored nERL 0.00002 (heavy merges, 47% omitted nodes). The run took about 6.9 h on four H100s, about 4 h on eight;
+  #150 also parallelizes the evaluation (seed cache, four FFN workers per GPU under MPS, an exact LayerNorm kernel).
 - atomistic-materials was tested on an 8×H100 host: a Codex session that did not retrain the baseline, published a
   300-update smoke package early, and started mixed-source pretraining (MP + OMat24 + MatPES with source energy
   embeddings) behind a fixed all-suite panel that publishes only improvements without a suite regression; it was

@@ -1,0 +1,34 @@
+{
+  "purpose": "Real reference core-export self-check; not model quality",
+  "sampled_nodes": 10122,
+  "nerl": 1.0,
+  "export_receipt": {
+    "schema": "pathfinder-decoded-core-export/v1",
+    "source_prediction_grid": {
+      "axes": "zyx",
+      "coordinate_convention": "voxel_outer_corner",
+      "origin_nm": [
+        195712,
+        218064,
+        387440
+      ],
+      "shape": [
+        256,
+        256,
+        256
+      ],
+      "voxel_size_nm": [
+        16,
+        16,
+        16
+      ]
+    },
+    "suite_sha256": "d16b0bf34d4502ce8d8985d3e228398fe88f26fe0f05eaf9771d6d1ef5726f54",
+    "segmentation_sha256": "521918add9fa374a09b4dcc2d610d4a24b3bd9882752c8b0d3f890547e29b7ec",
+    "metadata_sha256": "73227e6658de4bbf1b9b6e6170e932a947ecc3109eb732b610e45dfa4425296f",
+    "adapter_sha256": "3ac9ed1c77fc7725684629dc4ff454ed3586fad5f9c53366980784bb2f328821",
+    "policy": "Crop globally decoded labels only; no interpolation, renumbering or core-local decoding"
+  },
+  "node_assignments_sha256": "d9d195bfafc6ae4c028d1e96afc38e31d91013c406352a679153facb19417749",
+  "matches_uncropped_assignments": true
+}

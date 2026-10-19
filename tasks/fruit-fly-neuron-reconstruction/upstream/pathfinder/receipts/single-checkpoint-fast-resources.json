@@ -1,0 +1,112 @@
+{
+  "schema": "pathfinder-fast-results-resources/v1",
+  "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4",
+  "scientific_audit_complete": true,
+  "completed_at_utc": "2026-10-05T07:56:32.508385+00:00",
+  "gpu_jobs": [
+    {
+      "job_id": "90000222",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-0.sbatch",
+      "script_sha256": "2cdd7a5c1a8dfa24889b3bf97da6ef62fb626bdf4c0d404ec89add279fe1e7ad",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4178
+    },
+    {
+      "job_id": "90000223",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-1.sbatch",
+      "script_sha256": "86a42a51280c95e43757c8d17caef2ee1bda2355c14960c27f0346730787306a",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4175
+    },
+    {
+      "job_id": "90000224",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-2.sbatch",
+      "script_sha256": "b297f3a4fac407fc366e65b35adbf13a6c4660b3265de0a0c47146a3c8c27730",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4150
+    },
+    {
+      "job_id": "90000225",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-3.sbatch",
+      "script_sha256": "9d20908fcea1b3ad32631702c1ed428b4a878303388c377f235bd63814e473c0",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4057
+    },
+    {
+      "job_id": "90000226",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-4.sbatch",
+      "script_sha256": "4e6b516ec5d7b35152b2655bd25e43acebd03c021accf7e4ab3ba1438ea8ddba",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4099
+    },
+    {
+      "job_id": "90000227",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-5.sbatch",
+      "script_sha256": "518bbfca51fb066180b0ffa7054026fac061913aa35f07c755adad968dbabb32",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4105
+    },
+    {
+      "job_id": "90000228",
+      "reserved_seconds": 10560,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-no-consensus-v1/sense-campaign/group-6.sbatch",
+      "script_sha256": "3172b6b1b9d4b4d2e89d48aa421b2a0ee4a91725d312d6bbee861c8cc6bba8d5",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 4085
+    },
+    {
+      "job_id": "90000229",
+      "reserved_seconds": 23400,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/baseline/group-0.sbatch",
+      "script_sha256": "21f178ad766f7f3f2099600eacbaaa33ebfa1b00eeda39c50290816e9b09845f",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 76
+    },
+    {
+      "job_id": "90000230",
+      "reserved_seconds": 23400,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/ffn-repair-v1/single-checkpoint-delivery-v4/shape/group-0.sbatch",
+      "script_sha256": "4bd1e371a871f62ef78b29ebfd75992b97e268e3ab21748ba2eea41d7d1b5102",
+      "gpu_type": "a5000",
+      "state": "COMPLETED",
+      "actual_seconds": 59
+    }
+  ],
+  "downstream_gpu_hours": 32.20444444444445,
+  "downstream_allocation_hours": 8.051111111111112,
+  "context_cpu_seconds": 2791.62,
+  "context_peak_rss_gib": 25.59,
+  "scope": "SENSE and two postprocessing branches only; excludes reused FFN reconstruction, training, historical failures and starter replay",
+  "baseline_accepted_pairs": 0,
+  "shared_candidates": 36,
+  "shape_scored_pairs": 36,
+  "shape_retained_pairs": 6,
+  "full_deliverable_complete": false,
+  "remaining": [
+    "prepared-context starter replay and resource acceptance",
+    "final PR reconciliation"
+  ]
+}

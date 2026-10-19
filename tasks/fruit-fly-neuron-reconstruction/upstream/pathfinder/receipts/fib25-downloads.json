@@ -1,0 +1,26 @@
+[
+  {
+    "path": "validation_sample/grayscale_maps.h5",
+    "url": "https://storage.googleapis.com/ffn-flyem-fib25/validation_sample/grayscale_maps.h5",
+    "bytes": 118301389,
+    "sha256": "400ccb2a7268a3880c63656e0d794f8e6252e62031869455cc8caeef245b2a83"
+  },
+  {
+    "path": "validation_sample/groundtruth.h5",
+    "url": "https://storage.googleapis.com/ffn-flyem-fib25/validation_sample/groundtruth.h5",
+    "bytes": 22392831,
+    "sha256": "2c5e31af0af5476bc9669b88d01a4570a26eb020799eaf6131aa75f2f7d92e98"
+  },
+  {
+    "path": "training_sample2/grayscale_maps.h5",
+    "url": "https://storage.googleapis.com/ffn-flyem-fib25/training_sample2/grayscale_maps.h5",
+    "bytes": 13069219,
+    "sha256": "ea031c98ee2de778a9a3a1e6d410df5de73e4ac28022df8e7255d84e3394cafa"
+  },
+  {
+    "path": "training_sample2/groundtruth.h5",
+    "url": "https://storage.googleapis.com/ffn-flyem-fib25/training_sample2/groundtruth.h5",
+    "bytes": 1922717,
+    "sha256": "fd508e7aee1fe51ac9ae0460db4a841d275236f013c1f2552314b4f21b1010ea"
+  }
+]

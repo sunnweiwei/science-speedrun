@@ -1,0 +1,62 @@
+{
+  "schema": "pathfinder-model-replay-preflight/v1",
+  "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/model-replay-preflight-v1",
+  "plan_sha256": "7256fc4092f7d476ebc2a056402b7ea32627e21550e5a4de5041b02e20b64fc7",
+  "suite_sha256": "58fa374a7a7f26a8a6e90b375da372470a68f8215905d2ad0a5f4afff1d448bd",
+  "expected_geometry": {
+    "axes": "zyx",
+    "coordinate_convention": "voxel_outer_corner",
+    "shape": [
+      1468,
+      1468,
+      1468
+    ],
+    "origin_nm": [
+      3256,
+      4640,
+      4640
+    ],
+    "voxel_size_nm": [
+      16,
+      16,
+      16
+    ]
+  },
+  "package_manifest_sha256": "86f1c17f643616dc058947336a1f053f490c37d00752d09fc2275e961caf982c",
+  "input_integrity_checked": true,
+  "models_loaded_on_cpu": true,
+  "gpus_used": 0,
+  "jobs_submitted": 0,
+  "model_replayed": false,
+  "score_produced": false,
+  "scope": "Real model/image/frozen development suite preflight only; all GPU and scoring phases remain unexecuted",
+  "final_v6_preflight": {
+    "run": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/model-replay-v6-preflight-v1",
+    "plan_sha256": "0432957e879b2a23c6cf44efcd4e8eca1dcdc151eec507847d13ab0cef69e6e2",
+    "package_manifest_sha256": "c8be29ae8d4d37acc60c03ed8888d024b0c82aa04695a2b4679b8eb5eb6ffdf8",
+    "expected_geometry": {
+      "axes": "zyx",
+      "coordinate_convention": "voxel_outer_corner",
+      "shape": [
+        1468,
+        1468,
+        1468
+      ],
+      "origin_nm": [
+        3256,
+        4640,
+        4640
+      ],
+      "voxel_size_nm": [
+        16,
+        16,
+        16
+      ]
+    },
+    "input_integrity_checked": true,
+    "gpus_used": 0,
+    "model_replayed": false,
+    "score_produced": false,
+    "scope": "Final v6 package with actual continuous EM and frozen development suite: initialize command completed successfully; no model execution or score."
+  }
+}

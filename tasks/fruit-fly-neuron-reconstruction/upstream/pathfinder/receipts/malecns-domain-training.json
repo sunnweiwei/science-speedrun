@@ -1,0 +1,112 @@
+{
+  "schema": "malecns-domain-training/v1",
+  "job_id": "90000063",
+  "state": "COMPLETED",
+  "allocation_seconds": 21674,
+  "gpus": 4,
+  "gpu_hours": 24.08222222222222,
+  "stages": {
+    "ffn": {
+      "final_step": 9221,
+      "seconds": 10800.373988455045,
+      "selected": {
+        "step": 6750,
+        "seconds": 7901.384593747091,
+        "train_loss": 0.09104021091479808,
+        "validation_bce": 0.06623866463031441,
+        "validation_dice": 0.8334834564342761,
+        "best_validation_bce": 0.06623866463031441,
+        "aggregate_samples_per_second": 54.67396184563072,
+        "max_memory_allocated_gb": 4.82140672,
+        "paper_comparable": false
+      },
+      "progress_sha256": "7bb71ae31aa16245a0d48b9112a8baf5274fe9f35f7a545d243b313f118c2265",
+      "checkpoint_sha256": "4e71a2c3adcecebeeecf270de30bf72fbba74e045695b1ec34e6e4997ba57eec"
+    },
+    "sense": {
+      "final_step": 6197,
+      "seconds": 7201.394153750967,
+      "selected": {
+        "step": 6197,
+        "seconds": 7201.394153750967,
+        "train_loss": 0.02906474913470447,
+        "validation_bce": 0.011694156527580081,
+        "validation_dice": 0.5231134459617155,
+        "best_validation_bce": 0.011694156527580081,
+        "aggregate_samples_per_second": 27.536890172691614,
+        "max_memory_allocated_gb": 11.481527296,
+        "paper_comparable": false
+      },
+      "progress_sha256": "d2f88ab4dd7999ea91b333e248da8eb4577ea6a03bace9bba4bf020c6e93911a",
+      "checkpoint_sha256": "c7a5c37fb9109a9147029981247a3eb0e246b5c83f2f4c22dbc156aced8bfbbc"
+    },
+    "shape": {
+      "final_step": 19367,
+      "seconds": 3602.244533146033,
+      "selected": {
+        "step": 2600,
+        "seconds": 490.2096166280098,
+        "train_loss": 0.823299765586853,
+        "validation_bce": 0.5868918895721436,
+        "validation_accuracy": 0.703125,
+        "validation_positive_recall": 1.0,
+        "validation_negative_recall": 0.40625,
+        "paper_comparable": false
+      },
+      "progress_sha256": "9281a725b5a145d124283694a7f039a24a48c04081abf6966b0cd71c27dd2a45",
+      "checkpoint_sha256": "8d80551948c736dc27634f76efa2e10d1cb5865f4d201ee145d8d5fc39aa702a"
+    }
+  },
+  "scope": "Validation crop metrics only; reconstruction comparison remains pending",
+  "partition": "gpu",
+  "gpu_model": "A5000",
+  "training_complete": true,
+  "method_comparison_complete": false,
+  "submission_evidence": {
+    "schema": "malecns-domain-training/v1",
+    "job": {
+      "job_id": "90000063",
+      "reserved_seconds": 23400,
+      "gpus": 4,
+      "script": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/train.sbatch",
+      "script_sha256": "3f99c93a8d0236fddc5b698f6000f5cdecaeef9f08a3e758f717ea6c0e4844b4",
+      "state": "SUBMITTED"
+    },
+    "observed_utc": "2026-09-28T15:54:00Z",
+    "observed_state": "RUNNING",
+    "partition": "gpu",
+    "gpu_model": "A5000",
+    "first_ffn_step": {
+      "step": 1,
+      "validation_bce": 0.25527789345942997,
+      "validation_dice": 0.0008717148947472367,
+      "max_memory_allocated_gb": 4.807386624
+    },
+    "bytes_on_disk_at_submission": 129235330715,
+    "resource_plan_sha256": "226c84f463512990c8af5e03399629130a14e3015336a86b95481f4f7ea07b90",
+    "training_complete": false,
+    "method_comparison_complete": false,
+    "post_training_controller": {
+      "job_id": "90000066",
+      "dependency": "afterok:90000063",
+      "observed_state": "PENDING (Dependency)",
+      "actions": [
+        "Verify successful Slurm training state, frozen source and training manifest hashes",
+        "Verify each best.pt equals the minimum recorded validation BCE",
+        "Export and verify full model package",
+        "Submit ten-minute four-GPU FFN agglomeration smoke check through original budget ledger"
+      ],
+      "controller_sha256": "7fd13bff1d20467e0410dfd88ceaad4a18f2211ff96827cdc4a79fb42e0b7b83",
+      "automatic_test_submission": false
+    },
+    "progress_at_2026_09_28_1639_utc": {
+      "step": 2250,
+      "seconds": 2637.2112503600074,
+      "validation_bce": 0.10938648161378887,
+      "validation_dice": 0.646738100570208,
+      "aggregate_samples_per_second": 54.603134188500256,
+      "max_memory_allocated_gb": 4.82140672,
+      "scope": "FFN validation crop metrics only, not reconstruction nERL"
+    }
+  }
+}

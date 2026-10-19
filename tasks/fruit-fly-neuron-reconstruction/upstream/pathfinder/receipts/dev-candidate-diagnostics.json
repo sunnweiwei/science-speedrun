@@ -1,0 +1,551 @@
+{
+  "protocol": "local-posthoc-candidate-diagnostics/v1",
+  "ground_truth_used_for": "evaluation lookup only; inference outputs never modified",
+  "label_semantics": "Frozen positive-ID convention; ID1/nonaxon semantics not independently verified. Not an axon-only scientific claim.",
+  "purity_threshold": 0.95,
+  "min_known_voxels": 20,
+  "known_fraction_threshold": 0.95,
+  "target_min_size": 500,
+  "candidate_overlap_threshold": 0.5,
+  "selection": "all four previously frozen dev ROIs; no test access",
+  "manifest_sha256": "a2a96ca90a83141e48367a216852588efa00f08dab4d81ba80f5315207207344",
+  "gt_sha256": "9cda95d1d9a62e3ab17fb4945afd3596e72246b6410913b1415731a7307d05d3",
+  "valid_sha256": "09da01bf7522ee866136c8af1d9f2c8240146bb0600d9020bdd82877605c0106",
+  "diagnostic_code_sha256": "fccca27fde712e6feb9ec91aed26ad0f878ca7c950a15ffc3e6d033b0328efc9",
+  "paper_comparable": false,
+  "results": [
+    {
+      "roi": 0,
+      "roi_zyx": [
+        80,
+        144,
+        96,
+        160,
+        96,
+        160
+      ],
+      "nerl": 0.5238821980488535,
+      "split_errors": 12,
+      "merge_errors": 0,
+      "overlap": {
+        "known_gt_voxels": 262144,
+        "omitted_known_voxels": 18489,
+        "omitted_known_fraction": 0.07052993774414062,
+        "gt_label1_voxels": 0,
+        "gt_label1_fraction": 0.0
+      },
+      "candidates": {
+        "directed_edges": [
+          {
+            "source": 10,
+            "target": 19,
+            "sense": 0.5710306406685237,
+            "status": "different_gt",
+            "source_gt": 74,
+            "target_gt": 82
+          },
+          {
+            "source": 10,
+            "target": 55,
+            "sense": 0.5083440308087291,
+            "status": "ambiguous",
+            "source_gt": 74,
+            "target_gt": 74
+          },
+          {
+            "source": 11,
+            "target": 24,
+            "sense": 0.678391959798995,
+            "status": "different_gt",
+            "source_gt": 56,
+            "target_gt": 109
+          },
+          {
+            "source": 12,
+            "target": 7,
+            "sense": 0.9706477732793523,
+            "status": "same_gt",
+            "source_gt": 26,
+            "target_gt": 26
+          },
+          {
+            "source": 14,
+            "target": 18,
+            "sense": 0.8640796019900497,
+            "status": "same_gt",
+            "source_gt": 82,
+            "target_gt": 82
+          },
+          {
+            "source": 15,
+            "target": 37,
+            "sense": 0.6976,
+            "status": "ambiguous",
+            "source_gt": 44,
+            "target_gt": 44
+          },
+          {
+            "source": 21,
+            "target": 32,
+            "sense": 0.51007326007326,
+            "status": "same_gt",
+            "source_gt": 109,
+            "target_gt": 109
+          }
+        ],
+        "counts": {
+          "different_gt": 2,
+          "ambiguous": 2,
+          "same_gt": 3
+        },
+        "same_gt_precision_excluding_ambiguous": 0.6,
+        "eligible_same_gt_directed_pairs": 144,
+        "eligible_different_gt_directed_pairs": 780,
+        "proposed_eligible_same_gt_pairs": 3,
+        "same_gt_proposal_fraction_within_geometry": 0.020833333333333332,
+        "complete_recall_claim": false,
+        "scope": "Purity-filtered same-instance proxy among size/FOV/processed-center-eligible ordered pairs; no full connectivity recall"
+      },
+      "skeleton": {
+        "edge_counts": {
+          "omitted": 51,
+          "correct": 1060,
+          "split": 35,
+          "merge_contaminated": 53
+        },
+        "edge_length_nm": {
+          "omitted": 1107.442324931686,
+          "correct": 22333.129483086956,
+          "split": 796.4216351744715,
+          "merge_contaminated": 1186.2935766160938
+        },
+        "erl_merging_segment_support": {
+          "16": {
+            "82": 1,
+            "109": 56
+          }
+        },
+        "gt_label1_path_length_nm": 0,
+        "total_path_length_nm": 25423.28701980924,
+        "caveat": "funlib ERL treats even one node from another GT ID as merge contamination; reported merge_errors requires >=10 nodes per GT ID. ERL squares accumulated correct lengths, so few cuts can sharply reduce score."
+      },
+      "reconstruction_unchanged": true,
+      "inputs": {
+        "dev-probe-v1/0/ffn/segmentation.npy": "9789a5050d4efadd47db5cb20ae1c302e9d938ee6032f727d067097e8c69b484",
+        "dev-probe-v1/0/ffn/receipt.json": "6c19db5cb7924edbca60e42ac19c170ed8bf2f3e1f6dce7484b554b01e590451",
+        "dev-probe-v1/0/sense/edges.json": "97bf72f1dd2d7d77c6a0b2b4efe3cf543d55fa2c95b696a2ed61ea309578bec2",
+        "dev-probe-v1/0/sense/receipt.json": "e208385392ab677a58c446b52992b6f8871e191ba2b2bc3da7f62655b42f286d",
+        "dev-skeletons-probe-0/skeletons.json": "d3d369cac569b16a1f26f9a274223afe5336f9539efc4c853144b4a9304c19dc"
+      },
+      "segment_diagnostics_summary": {
+        "count": 61,
+        "unambiguous": 43
+      }
+    },
+    {
+      "roi": 1,
+      "roi_zyx": [
+        80,
+        144,
+        96,
+        160,
+        192,
+        256
+      ],
+      "nerl": 0.5451290750795063,
+      "split_errors": 24,
+      "merge_errors": 0,
+      "overlap": {
+        "known_gt_voxels": 262142,
+        "omitted_known_voxels": 32168,
+        "omitted_known_fraction": 0.12271211785978592,
+        "gt_label1_voxels": 0,
+        "gt_label1_fraction": 0.0
+      },
+      "candidates": {
+        "directed_edges": [
+          {
+            "source": 1,
+            "target": 31,
+            "sense": 0.9437896645512239,
+            "status": "different_gt",
+            "source_gt": 10,
+            "target_gt": 33
+          },
+          {
+            "source": 5,
+            "target": 22,
+            "sense": 0.6996291718170581,
+            "status": "different_gt",
+            "source_gt": 28,
+            "target_gt": 27
+          },
+          {
+            "source": 5,
+            "target": 86,
+            "sense": 0.6402048655569782,
+            "status": "ambiguous",
+            "source_gt": 28,
+            "target_gt": 28
+          },
+          {
+            "source": 5,
+            "target": 30,
+            "sense": 0.5063545150501673,
+            "status": "different_gt",
+            "source_gt": 28,
+            "target_gt": 19
+          },
+          {
+            "source": 15,
+            "target": 16,
+            "sense": 0.5623787976729153,
+            "status": "different_gt",
+            "source_gt": 60,
+            "target_gt": 7
+          },
+          {
+            "source": 25,
+            "target": 21,
+            "sense": 0.9884559884559885,
+            "status": "different_gt",
+            "source_gt": 41,
+            "target_gt": 36
+          },
+          {
+            "source": 25,
+            "target": 61,
+            "sense": 0.7131630648330058,
+            "status": "same_gt",
+            "source_gt": 41,
+            "target_gt": 41
+          },
+          {
+            "source": 25,
+            "target": 26,
+            "sense": 0.6024498886414253,
+            "status": "different_gt",
+            "source_gt": 41,
+            "target_gt": 36
+          },
+          {
+            "source": 28,
+            "target": 9,
+            "sense": 0.7437802907915994,
+            "status": "same_gt",
+            "source_gt": 35,
+            "target_gt": 35
+          },
+          {
+            "source": 37,
+            "target": 45,
+            "sense": 0.9579288025889967,
+            "status": "same_gt",
+            "source_gt": 36,
+            "target_gt": 36
+          },
+          {
+            "source": 38,
+            "target": 34,
+            "sense": 0.8663567693201627,
+            "status": "same_gt",
+            "source_gt": 56,
+            "target_gt": 56
+          },
+          {
+            "source": 67,
+            "target": 44,
+            "sense": 0.6558139534883721,
+            "status": "different_gt",
+            "source_gt": 36,
+            "target_gt": 60
+          }
+        ],
+        "counts": {
+          "different_gt": 7,
+          "ambiguous": 1,
+          "same_gt": 4
+        },
+        "same_gt_precision_excluding_ambiguous": 0.36363636363636365,
+        "eligible_same_gt_directed_pairs": 92,
+        "eligible_different_gt_directed_pairs": 3147,
+        "proposed_eligible_same_gt_pairs": 4,
+        "same_gt_proposal_fraction_within_geometry": 0.043478260869565216,
+        "complete_recall_claim": false,
+        "scope": "Purity-filtered same-instance proxy among size/FOV/processed-center-eligible ordered pairs; no full connectivity recall"
+      },
+      "skeleton": {
+        "edge_counts": {
+          "correct": 1321,
+          "omitted": 116,
+          "split": 42
+        },
+        "edge_length_nm": {
+          "correct": 28693.02757779062,
+          "omitted": 2496.5300490716413,
+          "split": 960.358282782012
+        },
+        "erl_merging_segment_support": {},
+        "gt_label1_path_length_nm": 0,
+        "total_path_length_nm": 32149.915909644285,
+        "caveat": "funlib ERL treats even one node from another GT ID as merge contamination; reported merge_errors requires >=10 nodes per GT ID. ERL squares accumulated correct lengths, so few cuts can sharply reduce score."
+      },
+      "reconstruction_unchanged": true,
+      "inputs": {
+        "dev-probe-v1/1/ffn/segmentation.npy": "d3daecf5c1968b641527feef7e14ba7df6bf5c0c31f6f982e99ed0fc79661fb7",
+        "dev-probe-v1/1/ffn/receipt.json": "18fe9b5af385e10dd63e71708bff281e3b26288b32eaab9574fca4eeb43a230c",
+        "dev-probe-v1/1/sense/edges.json": "6ec0b70439a007422bfeff8f2943b4992a22351f39afb46528e3eecee0252a08",
+        "dev-probe-v1/1/sense/receipt.json": "aaecd0cad819d0025071cf04fdbe11ee0c2dc1632980f11fe260939d5565a549",
+        "dev-skeletons-probe-1/skeletons.json": "a020d6bf4633770936bc87403ecdf3123bf4bbf81acd02dbf354f503d868b7ab"
+      },
+      "segment_diagnostics_summary": {
+        "count": 115,
+        "unambiguous": 80
+      }
+    },
+    {
+      "roi": 2,
+      "roi_zyx": [
+        80,
+        144,
+        192,
+        256,
+        96,
+        160
+      ],
+      "nerl": 0.4901294384101925,
+      "split_errors": 10,
+      "merge_errors": 0,
+      "overlap": {
+        "known_gt_voxels": 262144,
+        "omitted_known_voxels": 12182,
+        "omitted_known_fraction": 0.04647064208984375,
+        "gt_label1_voxels": 0,
+        "gt_label1_fraction": 0.0
+      },
+      "candidates": {
+        "directed_edges": [
+          {
+            "source": 5,
+            "target": 1,
+            "sense": 0.9968354430379747,
+            "status": "same_gt",
+            "source_gt": 49,
+            "target_gt": 49
+          },
+          {
+            "source": 5,
+            "target": 8,
+            "sense": 0.9834881320949432,
+            "status": "same_gt",
+            "source_gt": 49,
+            "target_gt": 49
+          },
+          {
+            "source": 5,
+            "target": 10,
+            "sense": 0.9653944020356234,
+            "status": "same_gt",
+            "source_gt": 49,
+            "target_gt": 49
+          }
+        ],
+        "counts": {
+          "same_gt": 3
+        },
+        "same_gt_precision_excluding_ambiguous": 1.0,
+        "eligible_same_gt_directed_pairs": 42,
+        "eligible_different_gt_directed_pairs": 534,
+        "proposed_eligible_same_gt_pairs": 3,
+        "same_gt_proposal_fraction_within_geometry": 0.07142857142857142,
+        "complete_recall_claim": false,
+        "scope": "Purity-filtered same-instance proxy among size/FOV/processed-center-eligible ordered pairs; no full connectivity recall"
+      },
+      "skeleton": {
+        "edge_counts": {
+          "correct": 552,
+          "split": 38,
+          "omitted": 29,
+          "merge_contaminated": 112
+        },
+        "edge_length_nm": {
+          "correct": 11903.184593775051,
+          "split": 812.8265712594608,
+          "omitted": 670.368592334298,
+          "merge_contaminated": 2409.1044232294366
+        },
+        "erl_merging_segment_support": {
+          "6": {
+            "109": 104,
+            "125": 3,
+            "139": 8
+          }
+        },
+        "gt_label1_path_length_nm": 0,
+        "total_path_length_nm": 15795.484180598227,
+        "caveat": "funlib ERL treats even one node from another GT ID as merge contamination; reported merge_errors requires >=10 nodes per GT ID. ERL squares accumulated correct lengths, so few cuts can sharply reduce score."
+      },
+      "reconstruction_unchanged": true,
+      "inputs": {
+        "dev-probe-v1/2/ffn/segmentation.npy": "8138ae113821ce155c4a09fbc084859e1352bed8a97efa07ab3bba0197d088f9",
+        "dev-probe-v1/2/ffn/receipt.json": "9c9600ffa4c8e2862b07db9ae64f2af6043db500e89d02d1c651c1ccf7e18901",
+        "dev-probe-v1/2/sense/edges.json": "9045ec67813c9d2c16f7e64868979fa4aa335e22a0f0c54b0df80f527c48f528",
+        "dev-probe-v1/2/sense/receipt.json": "8e5c1b99e67e0b4f1bbb7c4ca222748b03cbbd132a56a34d4c8c551c11107420",
+        "dev-skeletons-probe-2/skeletons.json": "780740d79dfc183fcf115cb248fcd25940263b7fc20ee308a882154981dbfc5f"
+      },
+      "segment_diagnostics_summary": {
+        "count": 57,
+        "unambiguous": 37
+      }
+    },
+    {
+      "roi": 3,
+      "roi_zyx": [
+        80,
+        144,
+        192,
+        256,
+        192,
+        256
+      ],
+      "nerl": 0.594509842651579,
+      "split_errors": 9,
+      "merge_errors": 0,
+      "overlap": {
+        "known_gt_voxels": 262144,
+        "omitted_known_voxels": 13014,
+        "omitted_known_fraction": 0.04964447021484375,
+        "gt_label1_voxels": 0,
+        "gt_label1_fraction": 0.0
+      },
+      "candidates": {
+        "directed_edges": [
+          {
+            "source": 1,
+            "target": 6,
+            "sense": 0.9294631710362048,
+            "status": "same_gt",
+            "source_gt": 109,
+            "target_gt": 109
+          },
+          {
+            "source": 1,
+            "target": 23,
+            "sense": 0.6103500761035008,
+            "status": "ambiguous",
+            "source_gt": 109,
+            "target_gt": 109
+          },
+          {
+            "source": 2,
+            "target": 8,
+            "sense": 0.5102853351028533,
+            "status": "ambiguous",
+            "source_gt": 10,
+            "target_gt": 10
+          },
+          {
+            "source": 3,
+            "target": 4,
+            "sense": 0.9612034837688044,
+            "status": "same_gt",
+            "source_gt": 49,
+            "target_gt": 49
+          },
+          {
+            "source": 3,
+            "target": 12,
+            "sense": 0.8582089552238806,
+            "status": "different_gt",
+            "source_gt": 49,
+            "target_gt": 89
+          },
+          {
+            "source": 7,
+            "target": 22,
+            "sense": 0.6817447495961227,
+            "status": "same_gt",
+            "source_gt": 109,
+            "target_gt": 109
+          },
+          {
+            "source": 9,
+            "target": 5,
+            "sense": 0.9227600411946447,
+            "status": "same_gt",
+            "source_gt": 51,
+            "target_gt": 51
+          },
+          {
+            "source": 16,
+            "target": 43,
+            "sense": 0.5915254237288136,
+            "status": "ambiguous",
+            "source_gt": 47,
+            "target_gt": 47
+          },
+          {
+            "source": 20,
+            "target": 11,
+            "sense": 0.6798941798941799,
+            "status": "different_gt",
+            "source_gt": 10,
+            "target_gt": 47
+          }
+        ],
+        "counts": {
+          "same_gt": 4,
+          "ambiguous": 3,
+          "different_gt": 2
+        },
+        "same_gt_precision_excluding_ambiguous": 0.6666666666666666,
+        "eligible_same_gt_directed_pairs": 184,
+        "eligible_different_gt_directed_pairs": 796,
+        "proposed_eligible_same_gt_pairs": 4,
+        "same_gt_proposal_fraction_within_geometry": 0.021739130434782608,
+        "complete_recall_claim": false,
+        "scope": "Purity-filtered same-instance proxy among size/FOV/processed-center-eligible ordered pairs; no full connectivity recall"
+      },
+      "skeleton": {
+        "edge_counts": {
+          "correct": 707,
+          "split": 25,
+          "omitted": 45
+        },
+        "edge_length_nm": {
+          "correct": 15366.010927009691,
+          "split": 578.3169032675831,
+          "omitted": 911.1124045649002
+        },
+        "erl_merging_segment_support": {},
+        "gt_label1_path_length_nm": 0,
+        "total_path_length_nm": 16855.44023484218,
+        "caveat": "funlib ERL treats even one node from another GT ID as merge contamination; reported merge_errors requires >=10 nodes per GT ID. ERL squares accumulated correct lengths, so few cuts can sharply reduce score."
+      },
+      "reconstruction_unchanged": true,
+      "inputs": {
+        "dev-probe-v1/3/ffn/segmentation.npy": "7efcd74975a985d97e3ef0318043ad96399abdeaea265173d5f36c6dc267b8fc",
+        "dev-probe-v1/3/ffn/receipt.json": "eb73a14765fd6e234a603275379f7c4e8e0c95818803d6ac7b19eb870f77cf50",
+        "dev-probe-v1/3/sense/edges.json": "b62ce48ce8427723fd3bfe038180959b0069826fe94848fdbc3ca5912c92a7c7",
+        "dev-probe-v1/3/sense/receipt.json": "7c3a97d489e2c2a9ed943f385024b22d19d27946b26f0bcf237c856e2202ce07",
+        "dev-skeletons-probe-3/skeletons.json": "38b00a8036e73d927bab0391c7b269c76485500a64ab7edf7fdddd43cc38fa1b"
+      },
+      "segment_diagnostics_summary": {
+        "count": 71,
+        "unambiguous": 50
+      }
+    }
+  ],
+  "detail_archive": {
+    "path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/archived-pr-receipts-v1/dev-candidate-diagnostics.json",
+    "sha256": "4f6d2b6dee1fdee393d293847ab390c9425bef2912643a097c83e0884cc35dc0",
+    "bytes": 109477,
+    "git_commit": "78d3b6e82dfa7582999086a3ecbf31193fcd2f0a",
+    "git_path": "fruit-fly-brain/upstream/pathfinder/receipts/dev-candidate-diagnostics.json",
+    "url": "https://github.com/T0-RSI/ai4sci-tasks/blob/78d3b6e82dfa7582999086a3ecbf31193fcd2f0a/fruit-fly-brain/upstream/pathfinder/receipts/dev-candidate-diagnostics.json",
+    "omitted_fields": [
+      "results[].segments"
+    ],
+    "scope": "Only per-instance detail is archived; metrics, candidate edges, skeleton diagnostics, input hashes and protocol remain inline."
+  }
+}

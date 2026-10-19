@@ -1,0 +1,42 @@
+{
+  "stop": {
+    "utc": "2026-09-29T03:12:17.294453+00:00",
+    "job_id": "90000069",
+    "state": "RUNNING",
+    "action": "cancel_incomplete_parent_after_ffn_saved",
+    "reason": "Preserve completed FFN tiles; avoid downstream compute on incomplete full context; batch profile already depends afterany parent",
+    "inputs": {
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/validation-inference/ffn/receipt.json": "91ec2ad678d2933ab86c1cf64ee8cd8b572cf87abf51fd02f49b7a5624c34f84",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/validation-inference/ffn/shard-0/receipt.json": "5c57279dda842a668ad7b1c4d9302c07c2945bef690c2070e29d80db65189eb7",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/validation-inference/ffn/shard-1/receipt.json": "0ef1b4d0882b4e3275f756b566c076ab75bc1a40fa7071d56d567312d2d3e0ca",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/validation-inference/ffn/shard-2/receipt.json": "9912e2ad3760fc8e68a44df4035d8ba6e6b04785686b827f48b6762e78bed8f8",
+      "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/malecns-domain-v1/validation-inference/ffn/shard-3/receipt.json": "7a80ee91c896ef0a63e54090eda2fce33f9099aba4dd49a8f930a135e4694f8b"
+    }
+  },
+  "archive": {
+    "schema": "pathfinder-lossless-archive/v1",
+    "root": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1",
+    "entries": [
+      {
+        "source": "malecns-domain-v1/validation-inference/assembled/segmentation.npy",
+        "source_sha256": "3a08e369fd1068524e0f9dac063fb7502fe9e357f51411aaf7d38ee0ff5b408f",
+        "source_bytes": 21881531040,
+        "archive": "archives/3a08e369fd1068524e0f9dac063fb7502fe9e357f51411aaf7d38ee0ff5b408f.npy.zst",
+        "archive_sha256": "5999c73e5486af25e0840d239410949c5a03130e70658b5185c0f53e72660945",
+        "archive_bytes": 304792246,
+        "verified_decompression": true,
+        "original_removed": true
+      }
+    ],
+    "status": "completed",
+    "source_manifest_sha256": "8b42ecb3ebfdeb5835d3ee36532dda05e5d354b1b8f9f0cf5378c7894cbcb200",
+    "restore": "zstd -d -c <archive> > malecns-domain-v1/validation-inference/assembled/segmentation.npy; verify source_sha256 before reuse"
+  },
+  "complete_tiles_retained": 8741,
+  "partial_tiles_to_recompute": 64,
+  "total_tiles": 21952,
+  "allocation_seconds": 13088,
+  "gpus": 4,
+  "scientific_acceptance": false,
+  "reason": "Full FFN context incomplete; downstream stopped before quality acceptance"
+}

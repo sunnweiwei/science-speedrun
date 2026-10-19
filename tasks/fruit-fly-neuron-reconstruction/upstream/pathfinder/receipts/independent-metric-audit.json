@@ -1,0 +1,72 @@
+{
+  "complete": true,
+  "job_id": "90000143",
+  "plan_sha256": "64b9b5827ef94fd72c1a0a84e7085172217cd43b9a7f3ec3542ca23a98e8ee2d",
+  "script_sha256": "f7146f56a22d48f7eda0f13ae79d199da7bc5d8d6d68fa52108f452f7591ef21",
+  "controls": 23,
+  "rows": [
+    {
+      "domain": "validation-stitching-diagnostic",
+      "method": "unstitched",
+      "sampled_nodes": 548702,
+      "node_assignments_exact": true,
+      "recomputed": {
+        "erl_nm": 219.2564116888608,
+        "maximum_erl_nm": 11673.34344652388,
+        "nerl": 0.01878265748740148,
+        "total_path_length_nm": 12007925.692922592,
+        "split_errors": 6935,
+        "merge_errors": 193,
+        "omitted_nodes": 343075,
+        "omitted_node_fraction": 0.6252483132920966
+      },
+      "difference_from_report": {
+        "erl_nm": -3.854432264915886e-06,
+        "maximum_erl_nm": 0.00127449997671647,
+        "nerl": -2.380888729225372e-09,
+        "total_path_length_nm": 0.0,
+        "split_errors": 0.0,
+        "merge_errors": 0.0,
+        "omitted_nodes": 0.0,
+        "omitted_node_fraction": 0.0
+      },
+      "reported_metrics_sha256": "530fc42f9018abd854783695fd29f8f80771891ad6c02d5803d7e1e69af5a938"
+    },
+    {
+      "domain": "validation-stitching-diagnostic",
+      "method": "stitched",
+      "sampled_nodes": 548702,
+      "node_assignments_exact": true,
+      "recomputed": {
+        "erl_nm": 245.806516494608,
+        "maximum_erl_nm": 11673.34344652388,
+        "nerl": 0.02105707911539302,
+        "total_path_length_nm": 12007925.692922592,
+        "split_errors": 6228,
+        "merge_errors": 205,
+        "omitted_nodes": 343075,
+        "omitted_node_fraction": 0.6252483132920966
+      },
+      "difference_from_report": {
+        "erl_nm": -3.471869518989479e-06,
+        "maximum_erl_nm": 0.00127449997671647,
+        "nerl": -2.596438612723073e-09,
+        "total_path_length_nm": 0.0,
+        "split_errors": 0.0,
+        "merge_errors": 0.0,
+        "omitted_nodes": 0.0,
+        "omitted_node_fraction": 0.0
+      },
+      "reported_metrics_sha256": "65881fec3d4330e76c85242bc1734842c51fd457bdd2ace21c1ef289963acf7c"
+    }
+  ],
+  "seconds": 13.790174237918109,
+  "peak_rss_kib": 956548,
+  "relative_tolerance": 1e-06,
+  "absolute_tolerance": 1e-10,
+  "scope": "Portable independent audit entry validation on existing stitching diagnostic, not completed full-method acceptance",
+  "validation_scope": "Portable CLI independently checked on paired diagnostic only; future full three-method audit remains pending",
+  "raw_result_sha256": "cc64a3fc0801bc5176abbfb7df41895b0955642cba63d205edcbc59ae3eddbf0",
+  "previous_rejected_fixture_job": "90000142",
+  "previous_rejection": "Historical fixture lacked direct metadata.json pin; strict audit rejected it, corrected fixture added pin; arithmetic unchanged"
+}

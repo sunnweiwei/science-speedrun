@@ -1,0 +1,56 @@
+{
+  "timestamp_utc": "2026-10-04T12:03:50.261195+00:00",
+  "production_promoted": false,
+  "full_pipeline_complete": false,
+  "tests_passed": 9,
+  "official_oracle_cases": 6,
+  "official_oracle": "Pinned Google FFN, three sparse random volumes and two tile sizes; full global watershed unchanged",
+  "tested_properties": [
+    "Same pairs, distances and selected centers",
+    "All repeated minimum-distance votes retained",
+    "Original point-group order retained",
+    "Disk bound fails before exceeding declared write capacity",
+    "Pair limit rejects complete result"
+  ],
+  "initial_test_failure": "Splitting a point group into individual votes changed intra-group equal-distance tie behavior; fixed by preserving original group boundaries. Initial memmap cleanup failure fixed with explicit close. Final nine tests pass.",
+  "remaining": [
+    "Production CLI and bounded decision-table reader integration",
+    "Full-volume spill disk and throughput measurement",
+    "Independent final table validation",
+    "Bounded finite full baseline inference plan"
+  ],
+  "source_sha256": {
+    "decision_spill.py": "c297d3b8bafe18f40f75767c03773f380169874be163d7a32934e8c9c3bad14d",
+    "test_decision_spill.py": "946b29edf8529085cf721b2ea4dfd458c185b79082bfd1f6d6f2daede603ee7d",
+    "test_ffn_decisions.py": "33008dc87173748ee8c4c2e57ae3543a49a6aef68409aa50aefd423a51d50184"
+  },
+  "integration_update": {
+    "timestamp_utc": "2026-10-04T12:07:27.486053+00:00",
+    "tests_passed": 27,
+    "changes": [
+      "Optional spill CLI keeps default legacy path unchanged",
+      "Hash-bound NPY table with lazy range slicing for inference shard assignment",
+      "Merge CLI resolves and verifies external table before existing scientific scoring",
+      "Real-label bounded local I/O benchmark launched; not yet claimed complete"
+    ],
+    "limitations": [
+      "Final scoring merge still materializes pair lists and sets",
+      "Production ensemble plan/package admission not yet wired",
+      "No full-volume throughput or disk acceptance",
+      "No production promotion"
+    ],
+    "test_cleanup": "Initial expanded run had NFS temporary-directory cleanup error; switched spill tests to existing bounded NFS cleanup helper; all27 tests then pass"
+  },
+  "pipeline_integration": {
+    "timestamp_utc": "2026-10-04T12:13:41.228490+00:00",
+    "production_promoted": false,
+    "behavior": "Opt-in three explicit spill bounds; legacy plans unchanged. Memory preflight uses bounded per-partition pair count; disk preflight reserves complete final table. decisions.npy is a retained hashed phase output. Non-decision commands unchanged.",
+    "pending": [
+      "New immutable continuation admission and unchanged-result adoption",
+      "Whole-volume capacity and throughput measurement",
+      "Streaming score-result storage",
+      "Complete scientific comparison"
+    ],
+    "initial_test_failure": "Planless legacy output-list test raised KeyError on optional limits access; fixed using absent-limits fallback without altering existing plans."
+  }
+}

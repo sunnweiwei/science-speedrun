@@ -1,0 +1,86 @@
+{
+  "updated_at": "2026-10-06T11:50:43.392537+00:00",
+  "goal_complete": true,
+  "scope": "Random-start corrected-production FFN training with fixed validation single/eight-window evaluation and matched historical comparison; no private-test selection",
+  "requirements": [
+    {
+      "requirement": "Random initialization and production rules from first optimizer update",
+      "status": "verified: frozen measured source/run metadata show random initialization, no init checkpoint, production window function chosen before first update; checkpoint metadata agrees",
+      "evidence": [
+        "training-entry-parity.json",
+        "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long-step16300-single/training-provenance.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Nonempty valid checkpoint from completed bounded training",
+      "status": "verified: completed training90000240, selected16300 strict current-model load/finite state and positive complete seed growth",
+      "evidence": [
+        "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long-step16300-single/checkpoint.pt",
+        "cold-start-normalized-v1--normalized-gain3-positive4-batch4-long-step16300-single/seed-growth.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Complete fixed full-context single validation",
+      "status": "Verified for step16300: nERL0.04063827, 2.36x step5800 and57.4% historical corrected reference",
+      "evidence": [
+        "single-comparison.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Complete same-checkpoint eight-window validation and matched historical comparison",
+      "status": "verified: job90000244 completed, all8 windows untruncated; four hash-checked receipts and matched original graph; nERL0.0190528655531",
+      "evidence": [
+        "multi-comparison.json",
+        "jobs.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Validation-only selection across bounded parallel directions",
+      "status": "verified within bounded round; all comparisons complete, step16300 selected; no private test; step5900 not promoted for lower single nERL/higher cost",
+      "evidence": [
+        "../cold-start-seeded-proxy-v1/candidate-comparison.json",
+        "../cold-start-normalized-v1/plan.json",
+        "../cold-start-seeded-proxy-v1/terminal-finalist-plan.json",
+        "step5900-full-single-decision.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Starter reproduces selected successful recipe",
+      "status": "verified documented arguments match selected measured recipe; explicit steps16300 and time budget caveat; bash syntax passes. No fresh container GPU reproduction claim.",
+      "evidence": [
+        "starter-launch-audit.json",
+        "training-entry-parity.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Failures and costs retained without resetting original ledger",
+      "status": "verified: all85 investigation jobs settled, allattempt Slurm accounting including failures/cancels/retries,281.4566667 GPUh; original ledger retained",
+      "evidence": [
+        "round-cost.json",
+        "../budget.json",
+        "final-random-start-evidence.json"
+      ]
+    },
+    {
+      "requirement": "Locate cold-start failure and verify bounded improvements",
+      "status": "verified checkpoint-specific analytical first-move bound plus actual complete reconstruction from selected improved recipe",
+      "evidence": [
+        "../cold-start-head-gain-v1/head-bound-diagnosis.json",
+        "final-random-start-evidence.json"
+      ]
+    }
+  ],
+  "quality_threshold_note": "No user-specified historical-nERL nonregression threshold. The 0.25 historical single resource screen is a budget heuristic, not a success criterion. Report actual quality and limitations; do not replace complete reconstruction with seed Dice or proxy scores.",
+  "release_scope_note": "Full container GPU verifier, full125 and downstream SENSE/SHAPE are separate unaccepted release scopes; no claim from this FFN development experiment.",
+  "contender_runtime_compatibility": "contender-runtime-compatibility.json: strict current trusted FFN loading and exact full33cube CPU forward for16300 and5900",
+  "starter_retention_note": "PR commit768d213 documents actual last/best/top3 retention, distinguishes seed-growth selection from final reconstruction selection, and updates pending comparisons.",
+  "selected_checkpoint": "selected-random-start/checkpoint.pt",
+  "remaining_required_work": [],
+  "quality_limitation": "Selected model below historical corrected reference:57.4% single,54.4% multi. Success means effective random-start production training and complete matched validation, not baseline nonregression or full release acceptance."
+}

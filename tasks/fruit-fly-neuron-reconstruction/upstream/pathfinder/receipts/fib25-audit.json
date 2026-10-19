@@ -1,0 +1,42 @@
+{
+  "schema": "ffn-example-data-audit/v1",
+  "records": [
+    {
+      "sample": "validation_sample",
+      "shape_zyx": [
+        520,
+        520,
+        520
+      ],
+      "source_supervoxels": 2084,
+      "positive_bodies": 2084,
+      "nonidentity_mapping_rows": 0,
+      "labels_path": "resolved-labels/validation_sample.npy",
+      "labels_sha256": "63766e8c6872393abb991f4aa433153b66a77c1bf5e3f8c2a80122917651c63d",
+      "voxel_size_nm": null,
+      "physical_origin_nm": null,
+      "physical_metadata_status": "not encoded in HDF5; source verification required"
+    },
+    {
+      "sample": "training_sample2",
+      "shape_zyx": [
+        250,
+        250,
+        250
+      ],
+      "source_supervoxels": 21317,
+      "positive_bodies": 525,
+      "nonidentity_mapping_rows": 21316,
+      "labels_path": "resolved-labels/training_sample2.npy",
+      "labels_sha256": "8ce92b46d55d4f92deb3596fa4f65c56a8a1c3c55462267619dd474bbe80d9d6",
+      "voxel_size_nm": null,
+      "physical_origin_nm": null,
+      "physical_metadata_status": "not encoded in HDF5; source verification required"
+    }
+  ],
+  "download_receipt_sha256": "72c4d7a983683b64e8f2956e945f167050d48646e8ffaa323e07bd250eace046",
+  "adapter_sha256": "cc67f30e614cc50600b6790ad6da7fc10a1a5d1d71b8dc41bb65b02badba2003",
+  "paper_comparable": false,
+  "split_frozen": false,
+  "inference_executed": false
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "search-calibration-fixture/v1",
+  "scope": "Synthetic 6 cubed CPU integration, not experimental evidence of model quality",
+  "adapter_sha256": "b1093ba629d75fb49116be278822ab204478330fc3b993365f95b23c895ef08b",
+  "all_tied": {
+    "threshold": 0.8,
+    "nerl": 0.2222222222222222,
+    "metrics_sha256": "0084d2351842b1922390befdef735a7f2b48ad4601aa23d38fce844a5298115b",
+    "global_search_sha256": "30d1bf6448a75514dfa4c7d880f51c2d0fcfb46e024388fa1407597ea6a490a8"
+  },
+  "differential": [
+    {
+      "threshold": 0.2,
+      "nerl": 1.0,
+      "metrics_sha256": "dec779d04e8ac728785ae530d2dcab688ea11c26584ea4a4261a85bd8376fcfd",
+      "global_search_sha256": "775501367e69f0ce79cc0643734849f0ebe0311bf862c3ebf08c2af6311473f3"
+    },
+    {
+      "threshold": 0.5,
+      "nerl": 1.0,
+      "metrics_sha256": "dec779d04e8ac728785ae530d2dcab688ea11c26584ea4a4261a85bd8376fcfd",
+      "global_search_sha256": "775501367e69f0ce79cc0643734849f0ebe0311bf862c3ebf08c2af6311473f3"
+    },
+    {
+      "threshold": 0.8,
+      "nerl": 0.2222222222222222,
+      "metrics_sha256": "0084d2351842b1922390befdef735a7f2b48ad4601aa23d38fce844a5298115b",
+      "global_search_sha256": "a2e347d03e2ac55effee4211fb3897d1344ac4179c447c4457d41648e94d7dc6"
+    }
+  ],
+  "selected": {
+    "threshold": 0.5,
+    "nerl": 1.0,
+    "metrics_sha256": "dec779d04e8ac728785ae530d2dcab688ea11c26584ea4a4261a85bd8376fcfd",
+    "global_search_sha256": "775501367e69f0ce79cc0643734849f0ebe0311bf862c3ebf08c2af6311473f3"
+  },
+  "test_used": false
+}

@@ -1,0 +1,7 @@
+{
+  "image": "docker.io/library/python",
+  "tag": "3.11.13-slim-bookworm",
+  "index_digest": "sha256:86adf8dbadc3d6e82ee5dd2c74bec2e1c2467cdad47886280501df722372d2e1",
+  "linux_amd64_digest": "sha256:cec9aa7aa96eea4fa036e9b82be1e6b325f2e3707f462d885868df51ec0a4b47",
+  "checked_utc": "2026-09-27T00:03:08.335629+00:00"
+}

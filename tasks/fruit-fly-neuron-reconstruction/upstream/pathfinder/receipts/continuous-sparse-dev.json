@@ -1,0 +1,179 @@
+{
+  "protocol": "local-sparse-development-teasar/v1",
+  "source_sha256": "5cab3f44a83d6b045b85923abb43273f90e281d9fa214965f7916ec19e133b57",
+  "split_manifest_sha256": "1e3a5ed236dd2b280c55fc01a642603ab404f7dcf5d8dfbc33c2e79afe0f4621",
+  "selected_validation_ids": [
+    1,
+    1102,
+    1902,
+    2203,
+    3507,
+    3813,
+    4114,
+    4625,
+    5138,
+    5781
+  ],
+  "selected_ids_in_roi": [
+    1,
+    1102,
+    1902,
+    2203,
+    3507,
+    3813,
+    4114
+  ],
+  "represented_ids": [
+    1,
+    1102,
+    1902,
+    2203,
+    3507,
+    3813,
+    4114
+  ],
+  "selected_ids_outside_roi": [
+    4625,
+    5138,
+    5781
+  ],
+  "present_ids_without_skeleton": [],
+  "native_voxel_size_nm": [
+    80.0,
+    64.0,
+    64.0
+  ],
+  "native_source_origin_nm": [
+    0,
+    0,
+    0
+  ],
+  "native_crop_bounds_zyx": [
+    [
+      41,
+      334
+    ],
+    [
+      72,
+      439
+    ],
+    [
+      72,
+      439
+    ]
+  ],
+  "native_crop_origin_nm": [
+    3280.0,
+    4608.0,
+    4608.0
+  ],
+  "prediction_metadata": {
+    "axes": "zyx",
+    "coordinate_convention": "voxel_outer_corner",
+    "origin_nm": [
+      3256.0,
+      4640.0,
+      4640.0
+    ],
+    "voxel_size_nm": [
+      16.0,
+      16.0,
+      16.0
+    ],
+    "shape": [
+      1468,
+      1468,
+      1468
+    ],
+    "physical_roi_nm": [
+      [
+        3256.0,
+        26744.0
+      ],
+      [
+        4640.0,
+        28128.0
+      ],
+      [
+        4640.0,
+        28128.0
+      ]
+    ],
+    "paper_comparable": false
+  },
+  "selected_foreground_voxels": 56911,
+  "nodes": 3198,
+  "edges": 2997,
+  "kimimaro_version": "5.8.4",
+  "osteoid_version": "0.7.3",
+  "teasar_params": {
+    "scale": 1.5,
+    "const": 300,
+    "pdrf_scale": 100000,
+    "pdrf_exponent": 4,
+    "soma_acceptance_threshold": 3500,
+    "soma_detection_threshold": 750,
+    "soma_invalidation_const": 300,
+    "soma_invalidation_scale": 2
+  },
+  "dust_threshold": 0,
+  "fix_borders": true,
+  "fix_branching": true,
+  "fill_holes": false,
+  "parallel": 1,
+  "boundary_policy": "retain ROI-truncated paths at included native centers; no erosion or interpolation of skeletons",
+  "unknown_policy": "zero and all nonvalidation IDs excluded; merges with those objects cannot be detected",
+  "cross_stage_neuron_disjointness_verified": false,
+  "ground_truth_for": "evaluation only, not provided to inference",
+  "source_alignment_assumption": "sparse core outer origin [0,0,0] nm from releaseviewer metadata",
+  "paper_comparable": false,
+  "elapsed_seconds": 1.8008754225447774,
+  "builder_sha256": "dd7103f9e0687cd56a7c829ce90ca510eb2f65780adb9e686a3d1ffef4a48b64",
+  "skeletons_sha256": "37bedb18b67e68a89d5d8257c220d502e6030ea8fef3d9462e29291ffd09845e",
+  "metadata_sha256": "357226e44bd39c854c9194db03c2550283108e644d1fa918ad97f1780701c55b",
+  "engineering_sanity": {
+    "source_gt_sample_roundtrip": true,
+    "prediction_indices_in_bounds": true,
+    "oracle_nerl": 1.0,
+    "zero_nerl": 0.0,
+    "total_path_length_nm": 273030.35290527344,
+    "is_model_quality": false
+  },
+  "paired_evaluation": {
+    "metrics": {
+      "nerl": {
+        "before": 0.0035554983871187358,
+        "after": 0.003559393762668457,
+        "delta": 3.8953755497213825e-06
+      },
+      "erl_nm": {
+        "before": 313.43893964220047,
+        "after": 313.78234083350355,
+        "delta": 0.3434011913030872
+      },
+      "split_errors": {
+        "before": 147,
+        "after": 147,
+        "delta": 0
+      },
+      "merge_errors": {
+        "before": 0,
+        "after": 0,
+        "delta": 0
+      },
+      "omitted_node_fraction": {
+        "before": 0.08911819887429644,
+        "after": 0.08911819887429644,
+        "delta": 0.0
+      }
+    },
+    "report_sha256": {
+      "continuous-evaluation-v1/before.json": "d1f45e191f1a7459092dd9d91154c9143c743ec96f3bb901be2b0bdc2ca93cbb",
+      "continuous-evaluation-v1/after.json": "63075a9a583ee5eca568649ba5b2fddcc3676acbfff2ff27207d5469decca188",
+      "continuous-evaluation-v1/diagnostics.json": "53b48f111c567930d667d9a9366f8b5442501c700f43e3b00a643062772e8464"
+    },
+    "scope": "Completed scientific stage chain; not the fresh final v6 model replay",
+    "gpu_postprocess_job": "90000034",
+    "cpu_evaluation_job": "90000035"
+  }
+}

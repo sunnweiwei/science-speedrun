@@ -1,0 +1,29 @@
+Bootstrap: docker
+From: docker.io/library/python@sha256:cec9aa7aa96eea4fa036e9b82be1e6b325f2e3707f462d885868df51ec0a4b47
+
+%files
+    upstream/pathfinder/runtime/requirements.lock /opt/pathfinder/requirements.lock
+    upstream/common.py /opt/pathfinder/upstream/common.py
+    upstream/pathfinder /opt/pathfinder/upstream/pathfinder
+
+%post
+    set -eu
+    apt-get -o APT::Sandbox::User=root update
+    apt-get -o APT::Sandbox::User=root install -y --no-install-recommends libstdc++6 gcc libc6-dev
+    mkdir -p /opt/build-tmp /workspace
+    export TMPDIR=/opt/build-tmp
+    python -m pip install --no-cache-dir --only-binary=:all: --require-hashes -r /opt/pathfinder/requirements.lock
+    python -m pip freeze > /opt/pathfinder/installed-python.txt
+    dpkg-query -W > /opt/pathfinder/installed-os.txt
+    rm -rf /opt/build-tmp /var/lib/apt/lists/*
+
+%environment
+    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONUNBUFFERED=1
+    export OMP_NUM_THREADS=2
+    export OPENBLAS_NUM_THREADS=2
+    export XDG_CACHE_HOME=/tmp/cache
+    export MPLCONFIGDIR=/tmp/matplotlib
+
+%runscript
+    exec "$@"

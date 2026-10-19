@@ -1,0 +1,39 @@
+{
+  "contract_valid": true,
+  "dataset_id": "malecns-domain-v1",
+  "counts": {
+    "train": 1,
+    "validation": 1,
+    "test": 1
+  },
+  "arrays_checked": true,
+  "hashes_verified": true,
+  "paper_protocol_verified": false,
+  "neuron_disjointness_verified": false,
+  "manifest_sha256": "6d91856143fefe6f192cc5af94c4446f65f8a3292fd981f52a10bbcda23b3058",
+  "supervised_train_vs_heldout_public_ids_disjoint": true,
+  "biological_neuron_disjointness_verified": false,
+  "contexts_physically_disjoint": true,
+  "test_used_for_model_selection": false,
+  "excluded_training_public_ids": 555,
+  "validation_test_shared_context_ids": 48,
+  "split_statistics": {
+    "train": {
+      "center_count": 83182,
+      "eligible_positive_ids": 10029,
+      "ignored_voxel_fraction": 0.2510768696665764
+    },
+    "validation": {
+      "center_count": 104952,
+      "eligible_positive_ids": 9579,
+      "ignored_voxel_fraction": 0.04911532253026962
+    },
+    "test": {
+      "center_count": 109384,
+      "eligible_positive_ids": 5576,
+      "ignored_voxel_fraction": 0.012452907860279083
+    }
+  },
+  "exposure_scope": "Published IDs observed in 32nm contexts plus exact 16nm scored cores; not a complete biological neuron identity audit",
+  "training_executed": false
+}

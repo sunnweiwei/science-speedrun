@@ -1,0 +1,41 @@
+{
+  "timestamp_utc": "2026-10-04T12:53:20.512357+00:00",
+  "production_promoted": false,
+  "full_pipeline_complete": false,
+  "tests_passed": 12,
+  "scope": "Local CPU chunk extraction and independent pair-partition reduction; unchanged whole-volume official watershed is an explicit input prerequisite",
+  "evidence": [
+    "Lexicographic chunk ordinals assigned once via modulo; original anchor ownership retained",
+    "All worker vote files for a pair partition enter one exact global centroid reduction",
+    "Synthetic boundary and tie fixture matches serial output",
+    "Pinned Google global watershed/decision oracle gives identical candidate pairs, distances and positions for sparse random fixture"
+  ],
+  "remaining": [
+    "CLI and memory/disk preflight integration",
+    "Full-scale timing and artifact reuse qualification",
+    "New frozen production admission; current running source untouched"
+  ],
+  "source_sha256": {
+    "parallel_decisions.py": "a36466ebd2378860d4f01e66356dc1c6f2dbeea29ac63096e811941fb815421b",
+    "decision_spill.py": "6b294a6095e5cb5ab1fab7e5d19d130c5b2d4461f56a37a0d9dc5b097abb0c8d",
+    "decision_centroid.py": "2652e4bdc8cab4ae2ad09f6b4af7f4abc678bb360a2a64231498d079a5123c31",
+    "test_parallel_decisions.py": "e0b2a81526096e393fa2701705c3f5b82e5f45f72f127dbb3c51c496e9d8794f",
+    "test_ffn_decisions.py": "b6bb8610c2625c3e3c497b9ce588eeca6155cff236a314978895e49ac26bc35f"
+  },
+  "cli_integration": {
+    "timestamp_utc": "2026-10-04T12:57:33.878610+00:00",
+    "tests_passed": 29,
+    "production_promoted": false,
+    "changes": [
+      "Explicit1\u201332 spill worker option in shared pipeline",
+      "Same full official expansion retained as hashed NPY artifacts before parallel extraction",
+      "Preflight includes parallel memory, expansion disk, descriptor headroom and metadata reserve",
+      "Full CLI tested against official pairs/distances/centers"
+    ],
+    "source_sha256": {
+      "prepare_ffn_decisions.py": "ebfa5dbaaf8c96c01442fb8bc544a9e5eb5accaaeb8f122411120bd455792b72",
+      "parallel_decisions.py": "7e55bd4587c87db0e0a4a0f7cfcc829b8cfc93d76a40e6781676ecad4f3370b1",
+      "ensemble_pipeline.py": "97212cd6ff81e3f6a5194a2d31197c785ef2ff80a24f42d3a46cd59981d97e7e"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.git
+local
+results
+validation
+__pycache__
+.pytest_cache

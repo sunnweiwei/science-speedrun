@@ -1,0 +1,168 @@
+{
+  "jobs": [
+    {
+      "id": 90000001,
+      "seconds": 56,
+      "gpus": 4
+    },
+    {
+      "id": 90000002,
+      "seconds": 79,
+      "gpus": 4
+    }
+  ],
+  "gpu_hours": 0.15,
+  "full_pathfinder_verified": false,
+  "paper_comparable": false,
+  "shape": {
+    "synthetic": true,
+    "quality_claim": false,
+    "steps": 8,
+    "world_size": 4,
+    "points": 8192,
+    "neighbors": 16,
+    "stages": 6,
+    "params": 8189281,
+    "seconds": 2.719795521814376,
+    "max_memory_gb": 0.62463232,
+    "loss": 0.5042352676391602
+  },
+  "ffn": {
+    "step": 12,
+    "seconds": 16.72089409502223,
+    "train_loss": 0.7783612720668316,
+    "validation_bce": 0.7067177167001024,
+    "validation_dice": 0.6882945550491725,
+    "best_validation_bce": 0.7067177167001024,
+    "aggregate_samples_per_second": 45.930548751937245,
+    "max_memory_allocated_gb": 4.817114624,
+    "paper_comparable": false
+  },
+  "sense": {
+    "step": 12,
+    "seconds": 14.463445384986699,
+    "train_loss": 0.5349448621273041,
+    "validation_bce": 0.49161459059795193,
+    "validation_dice": 0.0,
+    "best_validation_bce": 0.49161459059795193,
+    "aggregate_samples_per_second": 26.549685292206224,
+    "max_memory_allocated_gb": 11.480773632,
+    "paper_comparable": false
+  },
+  "completed_training_metrics": {
+    "stages": {
+      "ffn": {
+        "progress_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-ffn/progress.jsonl",
+        "progress_sha256": "f4de4211349463f55808f60d49c2a646f6867553acbe743b5210bf2e9b22ced9",
+        "logged_validations": 64,
+        "first": {
+          "step": 1,
+          "seconds": 3.293846901971847,
+          "train_loss": 0.6067844368517399,
+          "validation_bce": 0.5705780847364998,
+          "validation_dice": 0.00993832486498578,
+          "best_validation_bce": 0.5705780847364998,
+          "aggregate_samples_per_second": 19.430132814492396,
+          "max_memory_allocated_gb": 4.807386624,
+          "paper_comparable": false
+        },
+        "selected_by_minimum_validation_bce": {
+          "step": 14000,
+          "seconds": 16172.629943285137,
+          "train_loss": 0.12913038255646825,
+          "validation_bce": 0.10464019882129261,
+          "validation_dice": 0.9016442615392263,
+          "best_validation_bce": 0.10464019882129261,
+          "aggregate_samples_per_second": 55.40224459086414,
+          "max_memory_allocated_gb": 4.82140672,
+          "paper_comparable": false
+        },
+        "last": {
+          "step": 15583,
+          "seconds": 18001.14127670694,
+          "train_loss": 0.09783544996753335,
+          "validation_bce": 0.1550137296947684,
+          "validation_dice": 0.872322904586839,
+          "best_validation_bce": 0.10464019882129261,
+          "aggregate_samples_per_second": 55.4027094419846,
+          "max_memory_allocated_gb": 4.82140672,
+          "paper_comparable": false
+        }
+      },
+      "sense": {
+        "progress_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-sense/progress.jsonl",
+        "progress_sha256": "2f884a4e828d8cc9130f8866570e38bb3d08aaac2506e8826ce31be2d6f8c1c0",
+        "logged_validations": 107,
+        "first": {
+          "step": 1,
+          "seconds": 3.119502477813512,
+          "train_loss": 0.6218522042036057,
+          "validation_bce": 0.6083650153464415,
+          "validation_dice": 0.0,
+          "best_validation_bce": 0.6083650153464415,
+          "aggregate_samples_per_second": 10.258029969083054,
+          "max_memory_allocated_gb": 11.396518912,
+          "paper_comparable": false
+        },
+        "selected_by_minimum_validation_bce": {
+          "step": 24000,
+          "seconds": 26299.528505233116,
+          "train_loss": 0.009556878940202296,
+          "validation_bce": 0.0270473488071907,
+          "validation_dice": 0.8135429590183837,
+          "best_validation_bce": 0.0270473488071907,
+          "aggregate_samples_per_second": 29.20204442969835,
+          "max_memory_allocated_gb": 11.481527296,
+          "paper_comparable": false
+        },
+        "last": {
+          "step": 26306,
+          "seconds": 28800.818857866805,
+          "train_loss": 0.009222034830600023,
+          "validation_bce": 0.029298502218522454,
+          "validation_dice": 0.8102222128431849,
+          "best_validation_bce": 0.0270473488071907,
+          "aggregate_samples_per_second": 29.22805785668787,
+          "max_memory_allocated_gb": 11.481527296,
+          "paper_comparable": false
+        }
+      },
+      "shape": {
+        "progress_path": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/formal-shape/progress.jsonl",
+        "progress_sha256": "b6c43d3ca80456e0228f02ce437e9d3fe2aca3f8afef46dcc1e900dc77955026",
+        "logged_validations": 129,
+        "first": {
+          "step": 1,
+          "seconds": 7.497065721079707,
+          "train_loss": 0.6989524364471436,
+          "validation_bce": 0.7118427753448486,
+          "validation_accuracy": 0.5,
+          "validation_positive_recall": 0.0,
+          "validation_negative_recall": 1.0,
+          "paper_comparable": false
+        },
+        "selected_by_minimum_validation_bce": {
+          "step": 200,
+          "seconds": 35.90727139194496,
+          "train_loss": 0.5381099581718445,
+          "validation_bce": 0.5770183801651001,
+          "validation_accuracy": 0.65625,
+          "validation_positive_recall": 0.46875,
+          "validation_negative_recall": 0.84375,
+          "paper_comparable": false
+        },
+        "last": {
+          "step": 12724,
+          "seconds": 1801.5198845029809,
+          "train_loss": 0.00021711843146476895,
+          "validation_bce": 2.302640438079834,
+          "validation_accuracy": 0.6875,
+          "validation_positive_recall": 0.59375,
+          "validation_negative_recall": 0.78125,
+          "paper_comparable": false
+        }
+      }
+    },
+    "scope": "Stage-specific development metrics only. Different tasks and crops; not comparable between stages and not final reconstruction quality."
+  }
+}

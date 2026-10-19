@@ -1,0 +1,95 @@
+{
+  "schema": "pathfinder-model-identity-audit/v1",
+  "package": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v5",
+  "package_manifest_sha256": "86f1c17f643616dc058947336a1f053f490c37d00752d09fc2275e961caf982c",
+  "postprocess_package": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v4",
+  "postprocess_manifest_sha256": "ccfe8baefbd5ce6b2a9abc85ee2277ea27481ac0f64a7fd296d3ce196bf4bc93",
+  "models": [
+    {
+      "stage": "ffn",
+      "original_checkpoint_sha256": "778c449b17823fe62bd7bcef26afa61c7d4c33e978f0b32a8ece353573773303",
+      "exported_checkpoint_sha256": "f2d44b9a8189519a03e886ec870f4f91797c64a2d5ec6d2cee4732f227af1180",
+      "model_state_sha256": "06ab8fe1d6ec38beadcae41078a537bda0ceb6d453ac212276d06fd2ecb2c130",
+      "tensors": 124,
+      "state_elements": 1110273,
+      "model_parameters": 1110273,
+      "state_byte_identical": true
+    },
+    {
+      "stage": "sense",
+      "original_checkpoint_sha256": "9d0ec37fc33fe4f17e587461bb344e8810a7cbf088487bf7b9a37ba361aa1584",
+      "exported_checkpoint_sha256": "6195e89c4897c5600729b1968b88d20ec95b16015cdfe9cb809574152aa471ff",
+      "model_state_sha256": "78b7eb435f06f74b66f79c05f1a3b0f3dcf8631989217ec41994e34afe483abb",
+      "tensors": 158,
+      "state_elements": 5019185,
+      "model_parameters": 5019185,
+      "state_byte_identical": true
+    },
+    {
+      "stage": "shape",
+      "original_checkpoint_sha256": "b6fde73d974540d9150c43fb1a9c4b51616fb759e1c8efc9209398a2564468bd",
+      "exported_checkpoint_sha256": "c6572e3c274cce0a486e1ed0414b7578d4640ef6ba3b39df9a40ed18555c2fe2",
+      "model_state_sha256": "783399d6a3267ac6d2391d38ee22e445c250a285e6564b2ff072711a84017110",
+      "tensors": 90,
+      "state_elements": 8201389,
+      "model_parameters": 8189281,
+      "state_byte_identical": true
+    }
+  ],
+  "selected_core_code": {
+    "ffn_source/batched_ffn.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-continuous-v1/upstream/pathfinder/batched_ffn.py",
+      "source_sha256": "c8660732cf020ef096cb795ffa06fa79dd55dacbe8e530c1451bce71626383e5",
+      "package_sha256": "c8660732cf020ef096cb795ffa06fa79dd55dacbe8e530c1451bce71626383e5",
+      "identical": true
+    },
+    "ffn_source/ffn_model.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/code-continuous-v1/upstream/pathfinder/ffn_model.py",
+      "source_sha256": "35faee2bdde0eb7d8b0d1d7dd2d3bf4c89af8b61a0716ef187b84b2e332f5e83",
+      "package_sha256": "35faee2bdde0eb7d8b0d1d7dd2d3bf4c89af8b61a0716ef187b84b2e332f5e83",
+      "identical": true
+    },
+    "postprocess_source/infer_continuous_sense.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v4/runtime/pathfinder/infer_continuous_sense.py",
+      "source_sha256": "3bf7155f590b2b516b152463afd38c08ae581aadc33fa40ac5be1243c78e9b54",
+      "package_sha256": "3bf7155f590b2b516b152463afd38c08ae581aadc33fa40ac5be1243c78e9b54",
+      "identical": true
+    },
+    "postprocess_source/sense.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v4/runtime/pathfinder/sense.py",
+      "source_sha256": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+      "package_sha256": "b09d7fe5a6ae84c85234c6c3521c2c4871e0eeee9ce897152384a20a41ff20c8",
+      "identical": true
+    },
+    "postprocess_source/infer_shape.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v4/runtime/pathfinder/infer_shape.py",
+      "source_sha256": "cc195f16ba07e6cd8c33e6ee325f5ae9c6b71e48f12fc3e8c5d84fb6f02866f2",
+      "package_sha256": "cc195f16ba07e6cd8c33e6ee325f5ae9c6b71e48f12fc3e8c5d84fb6f02866f2",
+      "identical": true
+    },
+    "postprocess_source/shape_model.py": {
+      "source": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v4/runtime/pathfinder/shape_model.py",
+      "source_sha256": "02bcce0011d1f9c8f04da7e9d22c03d510097ddcbd305a0b86a1f2944de3be08",
+      "package_sha256": "02bcce0011d1f9c8f04da7e9d22c03d510097ddcbd305a0b86a1f2944de3be08",
+      "identical": true
+    }
+  },
+  "audit_code_sha256": "07052e2f09437aedb4340bfe5d4228d459ecfcd8b4a0f43c08d2dfa03feac139",
+  "state_digest_algorithm": "SHA256 over sorted keys: compact JSON [key,dtype,shape], NUL, contiguous CPU tensor uint8 bytes",
+  "scope": "Exact state bytes and selected inference modules; not transitive dependency equivalence, GPU parity, or native replay",
+  "gpu_execution_performed": false,
+  "final_starter": {
+    "package": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/relocation/model-package-v6",
+    "package_manifest_sha256": "c8be29ae8d4d37acc60c03ed8888d024b0c82aa04695a2b4679b8eb5eb6ffdf8",
+    "source_commit": "9fcc115e6b2958dd45c0a1cbaf9c060c55682221",
+    "bytes": 58045942,
+    "cpu_job": "90000037",
+    "elapsed_seconds": 34,
+    "full_identity_audit_sha256": "3f379456ee4adceaec7716993d28dc810666013a7aec642f58efb0a7ce18c72f",
+    "all_model_states_identical": true,
+    "selected_core_modules_identical": true,
+    "cpu_strict_load_and_fps_import_passed": true,
+    "includes_current_starter_and_replay_entrypoints": true,
+    "full_native_replay_verified": false
+  }
+}

@@ -1,0 +1,11 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: development
+    volumes:
+      - ${TASK_DATA_DIR:?Set materialized development resources}/training:/workspace/data/training:ro
+      - ${TASK_DATA_DIR:?Set materialized development resources}/validation:/workspace/data/validation:ro
+      - ${TASK_DATA_DIR:?Set materialized development resources}/runtime:/workspace/data/runtime:ro
+      - ${TASK_RESEARCH_DIR:?Set a fresh empty research directory}:/workspace/research

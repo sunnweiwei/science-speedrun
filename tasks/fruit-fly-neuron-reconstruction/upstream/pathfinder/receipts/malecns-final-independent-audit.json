@@ -1,0 +1,209 @@
+{
+  "role": "test",
+  "execution_complete": true,
+  "metric_files_verified": 27,
+  "refinement": {
+    "full_context_tiles": 21952,
+    "eligible_candidates": 5606,
+    "processed_candidates": 5606,
+    "scored_motifs": 7989,
+    "execution_complete": true,
+    "scope": "All eligible candidates and enumerated motifs complete; geometric exclusions remain excluded, and biological accuracy is not established"
+  },
+  "reconstruction": {
+    "full_context_reconstruction_complete": true,
+    "complete_tiles": 21952,
+    "total_tiles": 21952,
+    "assembly_receipt_sha256": "e36d560d6c610582b98a76d3d20f5d4f49fe60c19eee36ab4edcc7b19c1ab9f6",
+    "coverage_sha256": "bcfc22d7e22f159406803beec2fb7bbb3c1a41240d92c7e0866018eebc96a2d2",
+    "segmentation_sha256": "972bfdd918e76744253e0b85d2b4f8ba060359b274c10ae4acd974cfc9f37cd5",
+    "scope": "Complete compute coverage only; does not establish biological accuracy or baseline candidate completeness"
+  },
+  "comparison_sha256": "2818ada08fd28e36898146a1bae25368e47533155035711db54756e5cfaef58b",
+  "script_sha256": "ae7e9169d8605df3c5c4be573d875732e23b1c7cc6e1d27bc48c9fee561e9180",
+  "weights_unchanged": true,
+  "reported_deltas_verified": true,
+  "scope": "Byte identity, complete execution and metric aggregation; no independent rerun of metric arithmetic, biological quality or paper equivalence claim",
+  "subsequent_primary_arithmetic_audit": {
+    "result_sha256": "808fb015cefd9cfb6148acfc507be7c25fddd1de1237b3562ad458f1f3de9fbe",
+    "plan_sha256": "706840573030bdde554ca022a2251bf29257c0724fc49b2b23d714e9e756f0b9",
+    "inputs_sha256": "234a8df6207d7038b426c23a6e5d0119d1ab73466377a42c30b470a868b1974e",
+    "result": {
+      "complete": true,
+      "job_id": "90000125",
+      "plan_sha256": "706840573030bdde554ca022a2251bf29257c0724fc49b2b23d714e9e756f0b9",
+      "script_sha256": "cdee9b96e71c8009b4892a14821f570d9a3accb274b4d5db5d64f6f7a42965b7",
+      "controls": 23,
+      "rows": [
+        {
+          "domain": "validation",
+          "method": "ffn",
+          "sampled_nodes": 548702,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 138.8982241308475,
+            "maximum_erl_nm": 11673.34344652388,
+            "nerl": 0.011898752466861496,
+            "total_path_length_nm": 12007925.692922592,
+            "split_errors": 6994,
+            "merge_errors": 167,
+            "omitted_nodes": 370120,
+            "omitted_node_fraction": 0.6745373627214772
+          },
+          "difference_from_report": {
+            "erl_nm": -5.050896049851872e-06,
+            "maximum_erl_nm": 0.00127449997671647,
+            "nerl": -1.7317967285906954e-09,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "d4b01c5aa14f488571aab0aac6c9d547e015717478c106c5592f6b4c0b24928a"
+        },
+        {
+          "domain": "validation",
+          "method": "baseline",
+          "sampled_nodes": 548702,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 143.75626164503123,
+            "maximum_erl_nm": 11673.34344652388,
+            "nerl": 0.012314917513014608,
+            "total_path_length_nm": 12007925.692922592,
+            "split_errors": 6858,
+            "merge_errors": 169,
+            "omitted_nodes": 370120,
+            "omitted_node_fraction": 0.6745373627214772
+          },
+          "difference_from_report": {
+            "erl_nm": -5.045899143851784e-06,
+            "maximum_erl_nm": 0.00127449997671647,
+            "nerl": -1.776805726855235e-09,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "22b5a4723a28083e3d349d5bd886d7ce139da4ea69a1d091bdd5cdfe130f24df"
+        },
+        {
+          "domain": "validation",
+          "method": "full",
+          "sampled_nodes": 548702,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 138.80477009220084,
+            "maximum_erl_nm": 11673.34344652388,
+            "nerl": 0.011890746702354113,
+            "total_path_length_nm": 12007925.692922592,
+            "split_errors": 6992,
+            "merge_errors": 173,
+            "omitted_nodes": 370120,
+            "omitted_node_fraction": 0.6745373627214772
+          },
+          "difference_from_report": {
+            "erl_nm": -5.084760516638198e-06,
+            "maximum_erl_nm": 0.00127449997671647,
+            "nerl": -1.7338236662362005e-09,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "0b8975140a3603d44aca801ad8a3e13bd039d39d02e72e959b87fe5bf2a477d1"
+        },
+        {
+          "domain": "test",
+          "method": "ffn",
+          "sampled_nodes": 575913,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 16.328608680647534,
+            "maximum_erl_nm": 56261.53384795884,
+            "nerl": 0.00029022686663278613,
+            "total_path_length_nm": 12749613.377595901,
+            "split_errors": 13243,
+            "merge_errors": 7470,
+            "omitted_nodes": 194805,
+            "omitted_node_fraction": 0.3382542154804632
+          },
+          "difference_from_report": {
+            "erl_nm": -1.4333281939116205e-07,
+            "maximum_erl_nm": 0.0161763186333701,
+            "nerl": -8.599368255240297e-11,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "1ba3300e62e22d84db7b923563500f96c4cba2bea9929c086a38968c9bd7696b"
+        },
+        {
+          "domain": "test",
+          "method": "baseline",
+          "sampled_nodes": 575913,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 16.345946901621776,
+            "maximum_erl_nm": 56261.53384795884,
+            "nerl": 0.0002905350384828658,
+            "total_path_length_nm": 12749613.377595901,
+            "split_errors": 13238,
+            "merge_errors": 7469,
+            "omitted_nodes": 194805,
+            "omitted_node_fraction": 0.3382542154804632
+          },
+          "difference_from_report": {
+            "erl_nm": -1.44438200067043e-07,
+            "maximum_erl_nm": 0.0161763186333701,
+            "nerl": -8.610193531462598e-11,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "49ff785759bee148d73eb7967bc6f9770b3a355846372bc43e15b414f6a744f3"
+        },
+        {
+          "domain": "test",
+          "method": "full",
+          "sampled_nodes": 575913,
+          "node_assignments_exact": true,
+          "recomputed": {
+            "erl_nm": 15.973153240751376,
+            "maximum_erl_nm": 56261.53384795884,
+            "nerl": 0.0002839089542762418,
+            "total_path_length_nm": 12749613.377595901,
+            "split_errors": 13048,
+            "merge_errors": 7472,
+            "omitted_nodes": 194805,
+            "omitted_node_fraction": 0.3382542154804632
+          },
+          "difference_from_report": {
+            "erl_nm": -1.0401176631091857e-07,
+            "maximum_erl_nm": 0.0161763186333701,
+            "nerl": -8.347825778071485e-11,
+            "total_path_length_nm": 0.0,
+            "split_errors": 0.0,
+            "merge_errors": 0.0,
+            "omitted_nodes": 0.0,
+            "omitted_node_fraction": 0.0
+          },
+          "reported_metrics_sha256": "eb59424aa4c5c066ddc7dc33c322b7be525d930dc0e7c5b7490472aadf5e8de6"
+        }
+      ],
+      "seconds": 39.611119931098074,
+      "peak_rss_kib": 966780,
+      "relative_tolerance": 1e-06,
+      "absolute_tolerance": 1e-10,
+      "scope": "Independent scalar physical sampling and algebraic ERL/nERL/topology recomputation for six retained full-core corrected results. Same pinned float32 edge-length convention; high-precision reductions may differ at rounding level. No new inference, selection, reference alteration or paper-parity claim."
+    }
+  },
+  "subsequent_review_sha256": "2c5c577fb8e8afd00de7c43068bafaf869972bfe6ca4ede34673f863108378d1"
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "validation-search-grid/v1",
+  "role": "validation",
+  "region": "malecns-transfer-r2",
+  "suite_sha256": "b7bd60196056734f28f52a3cbdf28ba6b1f6a2fd48e552a63f7de505c3d62656",
+  "search_thresholds": [
+    0.2,
+    0.5,
+    0.8
+  ],
+  "selection_metric": "nerl",
+  "tie_break": "largest_threshold",
+  "frozen_before_any_domain_validation_prediction": true,
+  "scope": "Calibrate search using shared full-volume SENSE/SHAPE scores; baseline author gates unchanged; no test tuning"
+}

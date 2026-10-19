@@ -1,0 +1,46 @@
+{
+  "checked_utc": "2026-09-26T23:20:18.676424+00:00",
+  "repository": "https://github.com/google-research/connectomics",
+  "tree_sha": "bf2f6caf083bb5d459ec86f5e859c366857be1ea",
+  "truncated": false,
+  "tree_response_sha256": "cbcf483e966404167b7349b7429943f658faaa68265a50b259cc974c3a047831",
+  "matching_paths": [
+    "connectomics/mogen",
+    "connectomics/mogen/feature_regression",
+    "connectomics/mogen/feature_regression/inference.py",
+    "connectomics/mogen/feature_regression/main.py",
+    "connectomics/mogen/feature_regression/train.py",
+    "connectomics/mogen/flow_matching",
+    "connectomics/mogen/flow_matching/inference.py",
+    "connectomics/mogen/flow_matching/main.py",
+    "connectomics/mogen/flow_matching/schedules.py",
+    "connectomics/mogen/flow_matching/train.py",
+    "connectomics/mogen/flow_matching/utils.py",
+    "connectomics/mogen/flow_matching/utils_test.py",
+    "connectomics/mogen/models",
+    "connectomics/mogen/models/gemma_pointinfinity.py",
+    "connectomics/mogen/models/minimal_network_utils.py",
+    "connectomics/mogen/models/minimal_vit.py",
+    "connectomics/mogen/models/pointinfinity.py",
+    "connectomics/mogen/reorder.py",
+    "connectomics/mogen/reorder_test.py",
+    "connectomics/mogen/utils.py"
+  ],
+  "scope": "Path-name discovery only; does not prove repository or global absence",
+  "primary_pages": [
+    {
+      "url": "https://www.janelia.org/publication/accelerating-neuron-reconstruction-with-pathfinder",
+      "observation": "Still links 2025-05-21 bioRxiv preprint; no dataset or code link on this publication page"
+    },
+    {
+      "url": "https://research.google/blog/ai-generated-synthetic-neurons-speed-up-brain-mapping/",
+      "observation": "2026-04-16 announcement releases MoGen and species models; references PATHFINDER as reconstruction method"
+    }
+  ],
+  "limitations": [
+    "bioRxiv full text could not be opened in this recheck",
+    "bioRxiv API response was not parseable as JSON",
+    "Path-name search is not proof that no release exists elsewhere"
+  ],
+  "decision": "No newly verified PATHFINDER dataset/code/split artifact; retain pinned reference and independent AxonEM evaluation"
+}

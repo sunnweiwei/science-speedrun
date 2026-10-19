@@ -1,0 +1,11 @@
+{
+  "package_manifest_sha256": "72e588c10d65cee164f22eac3b321b3c1ade77e2e78929d9e5d19852adf2e564",
+  "comparison_sha256": "552325d7bfff50c08ac129f2c8e71f3f3bcd87173ac69968ce1fcde7e46e4d6e",
+  "reference_sha256": "6c4449c1116ebfcbb501f21cfb6f98faa6110e8f117598b42ee76fe25b4bad01",
+  "identical_to_worktree_report": true,
+  "working_directory": "/tmp",
+  "pythonpath_unset": true,
+  "user_site_disabled": true,
+  "gpu_used": false,
+  "scope": "Packaged report code and static reference replay only; historical ROI metrics, not a new reconstruction"
+}

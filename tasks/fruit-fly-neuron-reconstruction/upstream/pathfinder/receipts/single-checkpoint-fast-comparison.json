@@ -1,0 +1,172 @@
+{
+  "schema": "pathfinder-fast-ablation-comparison/v1",
+  "methods": {
+    "ffn": {
+      "erl_nm": 2.067465098885429,
+      "maximum_erl_nm": 56261.517671640206,
+      "nerl": 3.6747410742664306e-05,
+      "total_path_length_nm": 12749613.377595901,
+      "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+      "protocol": "local-funlib-erl/v1",
+      "paper_protocol_verified": false,
+      "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+      "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+      "split_errors": 3993,
+      "merge_errors": 5047,
+      "omitted_nodes": 169481,
+      "omitted_node_fraction": 0.2942822961106973,
+      "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+      "inputs": {
+        "skeletons": "7c73852ad14c1b19b6083a7939729fd3a454250c86d3058199c2d36cfc8835fb",
+        "metadata": "a94b1f32818bc2a644389bad3dfdeeb729f119b3226362396b5e3db98a775300",
+        "segmentation": "020abd65947774be0d238eeb924dca3c84b67132b83863bc3a6583bec050ac7b"
+      },
+      "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+      "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+      "prediction_grid_sha256": "4cf7b36eb67514b677f19c0da30591999c724097964e170ed6a63332bb487195",
+      "prediction_grid": {
+        "axes": "zyx",
+        "coordinate_convention": "voxel_outer_corner",
+        "raw_origin_nm": [
+          183408.0,
+          238528.0,
+          375136.0
+        ],
+        "shape": [
+          1762,
+          1762,
+          1762
+        ],
+        "origin_nm": [
+          183664.0,
+          238784.0,
+          375392.0
+        ],
+        "voxel_size_nm": [
+          16.0,
+          16.0,
+          16.0
+        ]
+      },
+      "boundary_margin_voxels": [
+        0,
+        0,
+        0
+      ],
+      "sampled_nodes": 575913,
+      "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+      "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+      "node_assignments_sha256": "d905a33fe5bc9ef324028b4214801a1be6611b89b866d61181b7ffd858b2e491"
+    },
+    "shared-proposal-ffn": {
+      "erl_nm": 2.067465098885429,
+      "maximum_erl_nm": 56261.517671640206,
+      "nerl": 3.6747410742664306e-05,
+      "total_path_length_nm": 12749613.377595901,
+      "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+      "protocol": "local-funlib-erl/v1",
+      "paper_protocol_verified": false,
+      "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+      "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+      "split_errors": 3993,
+      "merge_errors": 5047,
+      "omitted_nodes": 169481,
+      "omitted_node_fraction": 0.2942822961106973,
+      "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+      "inputs": {
+        "skeletons": "7c73852ad14c1b19b6083a7939729fd3a454250c86d3058199c2d36cfc8835fb",
+        "metadata": "a94b1f32818bc2a644389bad3dfdeeb729f119b3226362396b5e3db98a775300",
+        "segmentation": "5585e4fd3b0707bf38d6096d5375d938f4d437213a060224317aa0bd2ea18b9a"
+      },
+      "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+      "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+      "prediction_grid_sha256": "0905d17a787649693017b65b3f44152801d27f7bbe9c9b71803b341ce82b09e9",
+      "prediction_grid": {
+        "axes": "zyx",
+        "coordinate_convention": "voxel_outer_corner",
+        "origin_nm": [
+          193664.0,
+          248784.0,
+          385392.0
+        ],
+        "voxel_size_nm": [
+          16.0,
+          16.0,
+          16.0
+        ],
+        "shape": [
+          512,
+          512,
+          512
+        ]
+      },
+      "boundary_margin_voxels": [
+        0,
+        0,
+        0
+      ],
+      "sampled_nodes": 575913,
+      "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+      "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+      "node_assignments_sha256": "d905a33fe5bc9ef324028b4214801a1be6611b89b866d61181b7ffd858b2e491"
+    },
+    "disjoint-pair-shape": {
+      "erl_nm": 2.05953150135955,
+      "maximum_erl_nm": 56261.517671640206,
+      "nerl": 3.660639788246772e-05,
+      "total_path_length_nm": 12749613.377595901,
+      "evaluator_sha256": "48f03d7c28b77853a431c0f163e9118befd057777a332be13cf500f72feb7f3c",
+      "protocol": "local-funlib-erl/v1",
+      "paper_protocol_verified": false,
+      "id_handling": "Lossless independent positive-ID compaction; prediction0 remains omission",
+      "adapter_sha256": "0a6683465900858a521133a76fafaf99ad82fd0f1b642defb5cc2f511140c51b",
+      "split_errors": 3984,
+      "merge_errors": 5047,
+      "omitted_nodes": 169481,
+      "omitted_node_fraction": 0.2942822961106973,
+      "core_evaluator_adapter_sha256": "4f8846844e2773ccbe639c654f1d474b545da1c5e686efb697d3afe5b4e938e4",
+      "inputs": {
+        "skeletons": "7c73852ad14c1b19b6083a7939729fd3a454250c86d3058199c2d36cfc8835fb",
+        "metadata": "a94b1f32818bc2a644389bad3dfdeeb729f119b3226362396b5e3db98a775300",
+        "segmentation": "b84fc26861ab9f027a1c075b83998b682396d4c3ae32886316b5cf92fc8182a2"
+      },
+      "topology_sha256": "b4095339ecd9a5117dec23e62285ad7101c5e6519bc63406a2c2e5a46f36e819",
+      "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+      "prediction_grid_sha256": "cb43ad6ef6b21ba8df397b173728444872923cdb7f0e4869ca898aa6e25c2684",
+      "prediction_grid": {
+        "axes": "zyx",
+        "coordinate_convention": "voxel_outer_corner",
+        "shape": [
+          1762,
+          1762,
+          1762
+        ],
+        "origin_nm": [
+          183664.0,
+          238784.0,
+          375392.0
+        ],
+        "voxel_size_nm": [
+          16.0,
+          16.0,
+          16.0
+        ]
+      },
+      "boundary_margin_voxels": [
+        0,
+        0,
+        0
+      ],
+      "sampled_nodes": 575913,
+      "sampling": "Native-grid floor at identical physical reference positions; no label interpolation",
+      "scope": "Same frozen physical scoring region and skeletons; not native NISB or PATHFINDER paper parity",
+      "node_assignments_sha256": "74afc74305e403515f1e5a220b615926e09517d743513d75895d2e0551d2ccab"
+    }
+  },
+  "suite_sha256": "e521990b26eeddd7a352700edcd2b213ca38f895ad590c5266add5b00c721e3d",
+  "same_frozen_core": true,
+  "protocol": "single-checkpoint-fast-delivery/v1",
+  "paper_comparable": false,
+  "global_sota_claim": false,
+  "weights_or_threshold_selected_using_test": false
+}

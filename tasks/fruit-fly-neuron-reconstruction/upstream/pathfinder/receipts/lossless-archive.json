@@ -1,0 +1,125 @@
+{
+  "schema": "pathfinder-lossless-archive/v1",
+  "root": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1",
+  "entries": [
+    {
+      "source": "final-model-replay-v1/submission/segmentation.npy",
+      "source_sha256": "d9c08b318828676b612a46eab4833b2fa62d80ccd2312d496c6e4aa54f75affa",
+      "source_bytes": 12654301056,
+      "archive": "archives/d9c08b318828676b612a46eab4833b2fa62d80ccd2312d496c6e4aa54f75affa.npy.zst",
+      "archive_sha256": "2d720977b4474f10232def4e0feb25b9d09e08b3db846fdf90e0c1f1f7a8745d",
+      "archive_bytes": 674061073,
+      "verified_decompression": true,
+      "original_removed": true
+    },
+    {
+      "source": "continuous-evaluation-v1/reconstruction/segmentation.npy",
+      "source_sha256": "d9c08b318828676b612a46eab4833b2fa62d80ccd2312d496c6e4aa54f75affa",
+      "source_bytes": 12654301056,
+      "archive": "archives/d9c08b318828676b612a46eab4833b2fa62d80ccd2312d496c6e4aa54f75affa.npy.zst",
+      "archive_sha256": "2d720977b4474f10232def4e0feb25b9d09e08b3db846fdf90e0c1f1f7a8745d",
+      "archive_bytes": 674061073,
+      "verified_decompression": true,
+      "original_removed": true
+    },
+    {
+      "source": "final-model-replay-v1/assembled/segmentation.npy",
+      "source_sha256": "051c040f17ec88bc8fcb9a6e36eb3e89196f106098258eff6dce6345ffe98742",
+      "source_bytes": 12654301056,
+      "archive": "archives/051c040f17ec88bc8fcb9a6e36eb3e89196f106098258eff6dce6345ffe98742.npy.zst",
+      "archive_sha256": "58f7bbecd1a3eab01dd8413303b1072fe9589fd78abf09e05832796446c48fcc",
+      "archive_bytes": 674157993,
+      "verified_decompression": true,
+      "original_removed": true
+    },
+    {
+      "source": "continuous-assembled-v1/segmentation.npy",
+      "source_sha256": "051c040f17ec88bc8fcb9a6e36eb3e89196f106098258eff6dce6345ffe98742",
+      "source_bytes": 12654301056,
+      "archive": "archives/051c040f17ec88bc8fcb9a6e36eb3e89196f106098258eff6dce6345ffe98742.npy.zst",
+      "archive_sha256": "58f7bbecd1a3eab01dd8413303b1072fe9589fd78abf09e05832796446c48fcc",
+      "archive_bytes": 674157993,
+      "verified_decompression": true,
+      "original_removed": true
+    }
+  ],
+  "status": "completed",
+  "tile_archives": [
+    {
+      "manifest": "archives/final-model-replay-v1-ffn-tiles.tar.json",
+      "manifest_sha256": "2ffb10bbe877af3c70fa0c64f79f3759c33f73975bb539aef05b1dc62da3bb2d",
+      "member_count": 12167,
+      "schema": "pathfinder-tile-archive/v1",
+      "source_job": "90000040",
+      "archive": "archives/final-model-replay-v1-ffn-tiles.tar.zst",
+      "archive_sha256": "4b22a6a332816a4d9a0582299e6b6e0ea62b1ade2d6fda4110478662d8922859",
+      "archive_bytes": 524069433,
+      "original_bytes": 12655858304,
+      "verified_decompression": true,
+      "originals_removed": true
+    },
+    {
+      "manifest": "archives/continuous-ffn-v1-tiles.tar.json",
+      "manifest_sha256": "7eb3c4cf8bc0595e366f9db011d3d61f88c70bc8717899d6eb2762bd6a4d3c0b",
+      "member_count": 12167,
+      "schema": "pathfinder-tile-archive/v1",
+      "source_job": "90000009",
+      "archive": "archives/continuous-ffn-v1-tiles.tar.zst",
+      "archive_sha256": "8d5c3d9ad01a772166dbac74f21016de0aea6680501dcf784466c5d3a54def94",
+      "archive_bytes": 524067316,
+      "original_bytes": 12655858304,
+      "verified_decompression": true,
+      "originals_removed": true
+    }
+  ],
+  "tile_restore_check": {
+    "restored_missing_file": true,
+    "preserved_existing_file": true,
+    "all_hashes_match": true
+  },
+  "malecns_pilot": {
+    "source_job": "90000043",
+    "archive_job": "90000057",
+    "arrays": [
+      {
+        "source": "malecns-v1/inference/assembled/segmentation.npy",
+        "source_sha256": "e213e138a9f940a3a1e227349e755254bd0ba48942673c8935457d4b5d243b37",
+        "source_bytes": 13662648992,
+        "archive": "archives/e213e138a9f940a3a1e227349e755254bd0ba48942673c8935457d4b5d243b37.npy.zst",
+        "archive_sha256": "ad3e6c9f37fc8be86b1c68baa2dc670c2cda770f9f8bbce27267e240b51e2927",
+        "archive_bytes": 60831043,
+        "verified_decompression": true,
+        "original_removed": true
+      },
+      {
+        "source": "malecns-v1/inference/submission/segmentation.npy",
+        "source_sha256": "c90570de3a0018b43cc49a60116541f6a93de0ba44cea30d9729e716f062830a",
+        "source_bytes": 13662648992,
+        "archive": "archives/c90570de3a0018b43cc49a60116541f6a93de0ba44cea30d9729e716f062830a.npy.zst",
+        "archive_sha256": "a9e1c2191e3c34ea9430dc44c0a215a9ac9969a4367759443163116d4efdc289",
+        "archive_bytes": 60813633,
+        "verified_decompression": true,
+        "original_removed": true
+      }
+    ],
+    "tiles": {
+      "schema": "pathfinder-tile-archive/v1",
+      "source_job": "90000043",
+      "archive": "archives/malecns-v1-inference-ffn-tiles.tar.zst",
+      "archive_sha256": "f396f5668929413feaf46bfd8ec3055a5450684038f42bb164e81989e09bb277",
+      "archive_bytes": 32546647,
+      "original_bytes": 13664418336,
+      "verified_decompression": true,
+      "originals_removed": true
+    },
+    "tile_members": 13824,
+    "tile_manifest": "archives/malecns-v1-inference-ffn-tiles.tar.json",
+    "tile_manifest_sha256": "796b18f3917ba8365cb03a1d10266426905f17b0ad53e382c466a9d8d3098e3b",
+    "original_bytes": 40989716320,
+    "archive_bytes": 154191323,
+    "freed_bytes": 40835524997,
+    "core_scores_match": true,
+    "array_restore_command": "portable-runtime-v1/bin/python archives/restore_pilot.py <original-root-relative-path>",
+    "tile_restore_command": "portable-runtime-v1/bin/python archives/restore_tiles.py archives/malecns-v1-inference-ffn-tiles.tar.json"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "schema": "axonem-spatial16/v1",
+  "dataset_id": "AxonEM-M-author-training-blocks",
+  "axes": "zyx",
+  "voxel_size_nm": [
+    16,
+    16,
+    16
+  ],
+  "native_voxel_size_nm": [
+    40,
+    8,
+    8
+  ],
+  "interpolation": "raw linear; instance labels nearest; explicit voxel-center mapping",
+  "excluded_low_label_diversity_blocks": [
+    "0-0-0",
+    "0-0-3584",
+    "0-3584-3584"
+  ],
+  "split_kind": "spatial, not proven neuron-disjoint",
+  "paper_comparable": false,
+  "source_receipt_sha256": "f69535d4b6e6c7a8c1adbba652930e5ba471db1bc61c3dc83b3f6d6ab6d38b56",
+  "splits": {
+    "train": [
+      {
+        "name": "0-3584-0",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/0-3584-0",
+        "origin_nm": [
+          -800,
+          27648,
+          -1024
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "6eecd77c017d956668923e9499d8a0dd4da7fe9aafafc51175d225afbb318fec",
+        "labels_source_sha256": "0d7cb4ec8cd597243949ccb0cc486d24e58d0d09382471ef58babc37116fb205",
+        "files": {
+          "raw.npy": "3a8a16e5a3a9a164c30719181da9b79b0727fcc8c711bbaac2c5f64477ae1df1",
+          "labels.npy": "8b71098f55a6612009ad07df2f9ec6e95ba8f599f145f71e461af882bc9e7e2a",
+          "valid.npy": "311560e2fb253fb2f63f579352be68499e5406aa248228c22c32041e2f8b063e",
+          "centers.npy": "6dc4230fb3a64cd471a295a483dda921f5b82dbc24d95c236757302bb418ed8c"
+        }
+      },
+      {
+        "name": "350-1792-1792",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/350-1792-1792",
+        "origin_nm": [
+          13200,
+          13312,
+          13312
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "6643df841dae5f634718f6c840d52a31f44b8ea33cc034c9e13ca5c91c5f8521",
+        "labels_source_sha256": "055ecb271c2ec721851c0df5dda376d12580c8184390eb2b291fbea71b5c022e",
+        "files": {
+          "raw.npy": "49cc19c59f001355a4796304c38dc701757fb1f6c764add93643bb29e0e2f6bd",
+          "labels.npy": "363b0c65102d88d5a33e885847c6e605ecdee9857e08431e86f6074d5ea7f192",
+          "valid.npy": "04b76cb90aa4d317a06ccff7688f7f77e7b88240556d61bedb18586e6ca1c78d",
+          "centers.npy": "7e42f92d59aa16350ec155b0e1de4a0b4e0acee29780882818ebcdaec12c04b1"
+        }
+      },
+      {
+        "name": "700-0-0",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/700-0-0",
+        "origin_nm": [
+          27200,
+          -1024,
+          -1024
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "90989ec16d28a4c0cca8e76e924326a91ff59976801b8c8be6f223917e7823b0",
+        "labels_source_sha256": "c794ddaaf7f2732ea58e8766db594b21fee071d8e863e678e4de7454b3ae25f4",
+        "files": {
+          "raw.npy": "6fa9cffef2fadfc3fd74dd49f103d1dd6692ac9d0cdeea54bd96e476d7bd4388",
+          "labels.npy": "e322b2233776e0699b0f64586c9537e2a6a80a0758c8efdbebdbe6f1a7891a76",
+          "valid.npy": "4addf1cc82c4b7246818b0d9dd7fd2fc9c82cc4f20521af4f83b8f29228e3dfc",
+          "centers.npy": "4ee2f1c05aa8826e48d273c1f2addcc287a7a9167c68a4565017bb88999db3a5"
+        }
+      },
+      {
+        "name": "700-0-3584",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/700-0-3584",
+        "origin_nm": [
+          27200,
+          -1024,
+          27648
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "755a80d6c5c7151fd8cf056dd7929050de7e801e692d4fc5ca9187e2f0f04b80",
+        "labels_source_sha256": "aedf6c86af33a217c9786d2dfd2a0187f7decdaf619248662266e724acaa909e",
+        "files": {
+          "raw.npy": "4a140e129c4cd9cdb1b917d380f2439c7b21c3767c593233380d9c26042d5027",
+          "labels.npy": "dfe38981d445bf602aedc4b8d5162759c7dc38827a04c3ec303a53131bb9a400",
+          "valid.npy": "96f3d47b3268da3122a0650ea49a613a40a6d9d0a06beebd4e4847904adae100",
+          "centers.npy": "77d938e2b51a5e225648be24c0e83b378954e902154d509e26a703c719888d8f"
+        }
+      }
+    ],
+    "validation": [
+      {
+        "name": "700-3584-0",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/700-3584-0",
+        "origin_nm": [
+          27200,
+          27648,
+          -1024
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "3da6ff665d9f908b66e996424fcc18eafc13abaea0f6f1cc0950d03254da3fcd",
+        "labels_source_sha256": "9525aeccdb56b29e1937276bf5da0d69e81836e8a766e51a5360bf61b5514f8f",
+        "files": {
+          "raw.npy": "579f386f61576424f31d7d44c8add134e33c3a8654cef1e6fe9dc91e78ef02db",
+          "labels.npy": "9cda95d1d9a62e3ab17fb4945afd3596e72246b6410913b1415731a7307d05d3",
+          "valid.npy": "09da01bf7522ee866136c8af1d9f2c8240146bb0600d9020bdd82877605c0106",
+          "centers.npy": "44615dcbbd8f8211d9effcdce6dbb7417e466ba140aeb1910ee3eac641b5d1c4"
+        }
+      }
+    ],
+    "test": [
+      {
+        "name": "700-3584-3584",
+        "folder": "/scratch/researcher/fruit-fly-brain/runs/pathfinder-budget-v1/prepared/700-3584-3584",
+        "origin_nm": [
+          27200,
+          27648,
+          27648
+        ],
+        "shape": [
+          225,
+          384,
+          384
+        ],
+        "dense_core_zyx": [
+          [
+            50,
+            175
+          ],
+          [
+            64,
+            320
+          ],
+          [
+            64,
+            320
+          ]
+        ],
+        "raw_source_sha256": "2e536f5704db8e2ad6bbaf97c378c205ab0dc79a2ad09681396b0e3093ef6e26",
+        "labels_source_sha256": "bfad0d522793700211348eff8c6345638fd5dbea71043bcee9202c2e334e360c",
+        "files": {
+          "raw.npy": "6b7dd93e39bc9baf7ef6c0325e282e610723b6805b826b5807a21d4d781a222a",
+          "labels.npy": "5e1b10bfd6983246b7cbfc360c2746d6e1067f2b763c1ee934df2f2fd5f0251b",
+          "valid.npy": "17ce82d6cc97d9071a2b8183f3e917585934cbcb4145d0e5b25b4904f021006e",
+          "centers.npy": "551d0155564c9f1986530eaabf3db328b1817b5d201fae7f2510477f1d0ddc83"
+        }
+      }
+    ]
+  }
+}

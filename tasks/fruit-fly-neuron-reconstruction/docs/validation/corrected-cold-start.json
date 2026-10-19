@@ -1,0 +1,13 @@
+{
+  "schema": "pathfinder-corrected-cold-start/v1",
+  "initialization": "random",
+  "ffn_policy": "production",
+  "legacy_warmup": false,
+  "required_pretrained_checkpoint": false,
+  "required_growth_reference": false,
+  "checkpoint_selection": "complete nonempty fixed validation seed growth ranked by Dice; full-volume validation separate",
+  "tests_passed": 10,
+  "test_scope": "CPU movement/admission regression plus one optimizer step with toy model and mocked growth evaluator; no full model training claim",
+  "test_log_sha256": "0e8d226ff09e33bf0a96c469d18ec704f171a0d16632c7c454839506dd942ca3",
+  "full_training_validated": false
+}

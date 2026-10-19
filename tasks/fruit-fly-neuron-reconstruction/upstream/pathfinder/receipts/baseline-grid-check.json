@@ -1,0 +1,17 @@
+{
+  "purpose": "Real image adapter check only; no model score",
+  "output_shape": [
+    113,
+    113,
+    51,
+    1
+  ],
+  "source_manifest_sha256": "bfca906d20a71e468b62fbdc93d2e3ba919d1148b9fd95f43ce211486db5af4f",
+  "adapter_sha256": "63dff25ac9836d2286865008a692c43d5f64200384e3722156e6e31cda11f7e9",
+  "native_metadata_sha256": "4a2e759068057d00d6dd7a705e0bda14e08c27b4809d9dc33fafca8eea11ee36",
+  "uint8_range": [
+    81,
+    179
+  ],
+  "ground_truth_used": false
+}

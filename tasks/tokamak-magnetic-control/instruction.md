@@ -28,14 +28,15 @@ reference on every case, under the randomized plant, not only in the nominal sim
 
 | controller | sealed successes | sealed episodes kept |
 | --- | --- | --- |
-| hold-current (`V = R I`) | 0/35 | 0/35 |
-| privileged PID with X-point feedback (not a submission) | 7/34 (one void) | 19/34 |
-| deployable full-shape virtual-circuit controller (`baseline/shape_vc/`) | 17/35 | 27/35 |
+| hold-current (`V = R I`) | 0/105 | 0/105 |
+| deployable full-shape virtual-circuit controller (`baseline/shape_vc/`) | 48/105 | 79/105 |
 
-All on sealed seeds 1001-1005 of the current suite (`tokagym-mastu/v0.3`). `shape_vc` is the classical reference to beat:
+All on the 105 sealed episodes (seven cases, fifteen seeds) of the current suite (`tokagym-mastu/v0.3`,
+`tokamak-shape-metrics/v4`). `shape_vc` is the classical reference to beat:
 a linear magnetic reconstruction, least-squares virtual circuits on the whole boundary and a
 delay-robust vertical loop, NumPy only. The starter trains a residual SAC policy on top of it
-(5 h, 311k steps: 16/34 sealed, the pipeline verified but no gain over the base yet).
+(5 h, 311k steps: 16/34 sealed under the earlier 35-episode metric v3, the pipeline verified but no gain over the base
+yet).
 
 ## Workspace
 

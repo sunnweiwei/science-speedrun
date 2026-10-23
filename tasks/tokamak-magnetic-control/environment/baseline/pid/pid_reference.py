@@ -244,10 +244,9 @@ def main():
         results.append(result)
     rows = []
     for r in results:
-        for e in r["episodes"]:   # supervisor-killed episodes are classified as the verifier does
-            e["outcome"] = e.get("outcome") or ("solver_void" if M.void_candidate(e.get("last_states", []))
-                                                else "solver_failure")
-        scored = [e for e in r["episodes"] if e["outcome"] != "solver_void"]
+        for e in r["episodes"]:   # every episode counts, as in the verifier (tokamak-shape-metrics/v4)
+            e["outcome"] = e.get("outcome") or "solver_failure"
+        scored = r["episodes"]
         feas = [e for e in scored if e.get("feasible")]
 
         def steady(key, scale=100.0):

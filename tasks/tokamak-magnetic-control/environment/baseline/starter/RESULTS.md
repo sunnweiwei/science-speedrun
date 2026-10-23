@@ -1,5 +1,8 @@
 # Starter: results
 
+The sealed numbers below use `tokamak-shape-metrics/v3` (35 sealed episodes, void episodes excluded). The
+published actor was not kept, so the starter was not re-scored under v4.
+
 ## v0.3: residual SAC on `shape_vc` (run 2026-10-05)
 
 Recipe (the README's minimal loop, step 2):

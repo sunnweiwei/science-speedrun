@@ -108,16 +108,20 @@ perturbation draw (profile parameters, plasma resistivity, passive-structure
 resistance, initial coil currents, diagnostic offsets/noise, supply delay and the plant
 mechanisms named in `instruction.md`), lets the plasma evolve under a feedforward hold for
 a few steps (the handover), then runs the closed loop for the case's horizon. The score is
-the fraction of episodes that keep the plasma within the MAST-U steady-state tolerances
-(1 cm shape and gaps, 3% plasma current); per-case physical metrics are reported alongside
+the fraction of all episodes that keep the plasma within the MAST-U steady-state tolerances
+(1 cm shape and gaps, 3% plasma current); a numerical solver failure is retried by the
+evaluator and counts as a failure only if it cannot be recovered. Per-case physical metrics and
+the continuous `tolerance_time_fraction` are reported alongside
 (`evaluation/METRICS.md`). Policy-reported scores are never accepted; native training
 rewards are diagnostics only.
 
 ## Inference limits
 
 - **Latency:** the policy's own computation per step (the protocol round trip minus that of
-  a null policy that answers the same observation next to it, in alternating order, on every step) must have a median of at most one
-  control period, 0.5 ms; otherwise the package scores 0.
+  a null policy that answers the same observation next to it, in alternating order) must have a
+  median of at most one control period, 0.5 ms; otherwise the package scores 0. It is measured after
+  the replay, with no episode running, by sending the package the observations it received in the
+  first 600 steps of one episode per case again (`evaluation/METRICS.md`).
 - **Size:** at most 1,000,000 learned parameters for the actor that runs during scoring
   (Degrave et al.'s deployed actor had 266,280). Declare the count in `README.md`; this is
   checked by review, not by the protocol.

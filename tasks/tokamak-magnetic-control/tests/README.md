@@ -24,9 +24,10 @@ docker run --rm --network none -v "$PWD/tests:/tests:ro" tokamak-verifier \
   python -m unittest discover -s /tests -p 'test_*.py'
 ```
 
-- `test_metrics.py`: shape/X-point metric definitions, windows, the v2 success tolerances,
-  steady-state window, void rule and the verifier's aggregation (reward, void limit,
-  invalid package).
+- `test_metrics.py`: shape/X-point metric definitions, windows, the success tolerances,
+  steady-state window, `tolerance_time_fraction`, the verifier's aggregation (every episode in
+  the denominator, latency gate, invalid package), the bounded rerun policy and the step fallback
+  ladder (scripted supervisor and environment).
 - `test_protocol.py`: protocol failure handling with synthetic policies
   (out-of-bounds, wrong size, NaN, crash, bad observation).
 
@@ -36,6 +37,11 @@ docker run --rm --network none -v "$PWD/tests:/tests:ro" tokamak-verifier \
 docker run --rm --network none --cpus 4 tokamak-verifier \
   python /opt/tokamak-task/evaluation/smoke_env.py --cases mastu_diverted_hold --steps 10
 ```
+
+Fallback ladder end to end (FreeGSNKE, two cases x two seeds): `TOKAGYM_TEST_FAULTS` makes chosen
+steps fail, e.g. `mastu_diverted_hold:1001:30:exception:0` (recovered at level 1, same trajectory as
+an undisturbed run) or `...:timeout:1` (recovered through the linearised step). It is a testing hook
+and is never set by `test.sh`.
 
 Full-horizon sealed replays of the references are recorded in the task README; the v0.1
 tables (seeds 1001-1005, 500-step episodes, sealed-v0.1) are kept there for history.

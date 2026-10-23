@@ -1,15 +1,21 @@
-# Fixed evaluation metrics: `tokamak-shape-metrics/v3`
+# Fixed evaluation metrics: `tokamak-shape-metrics/v4`
 
-Adopted 2026-10-05 (draft), replacing v2 of 2026-10-03 (v1: 2026-09-20). Covers the seven cases of
-`tokagym-mastu/v0.3`. v3 changes two things relative to v2: vertical moves target equilibria the
-machine can hold instead of a rigid shift, and X-point candidates use a psi_N tolerance instead of
-one relative to the drifting boundary flux (both under "Exact computation"). Changing a metric, window, tolerance or direction requires a new version.
+Adopted 2026-10-22, replacing v3 of 2026-10-05 (v2: 2026-10-03, v1: 2026-09-20). Covers the seven
+cases of `tokagym-mastu/v0.3`. v4 makes the score reproducible: every episode is scored (no void
+episodes, one denominator for every package), numerical solver failures are retried before they
+count (below), host-side failures are rerun instead of scored, and the latency gate is measured
+after the replay on an otherwise idle evaluator. It adds the continuous `tolerance_time_fraction`,
+and the sealed suite has 15 seeds per case (105 episodes) instead of 5. v3 changed two things
+relative to v2: vertical moves target equilibria the machine can hold instead of a rigid shift,
+and X-point candidates use a psi_N tolerance instead of one relative to the drifting boundary flux
+(both under "Exact computation"). Changing a metric, window, tolerance or direction requires a new
+version.
 All values are computed by the trusted evaluator from the simulator state; the policy never
 reports them.
 
 ## Score
 
-`reward` (in `/logs/verifier/reward.json`) is the **fraction of scored episodes that succeed**,
+`reward` (in `/logs/verifier/reward.json`) is the **fraction of all episodes that succeed**,
 pooled over every case and sealed seed. An episode succeeds when the plasma is kept for the full
 horizon and its steady-state errors are within the MAST-U controller requirement:
 
@@ -20,9 +26,14 @@ horizon and its steady-state errors are within the MAST-U controller requirement
 | Relative plasma-current error | ≤ 3% | no MAST-U tolerance is published; Degrave et al. (Nature 602, 2022) |
 
 It is a measured quantity (a success rate under operational tolerances), so the task needs no
-exception from the repository's single-reward rule. Episodes voided by solver stalls (below) are
-excluded. An invalid package scores 0: a policy error in any case, or a median per-step
-computation above one control period (below).
+exception from the repository's single-reward rule. Every episode is in the denominator. An
+invalid package scores 0: a policy error in any case, or a median per-step computation above one
+control period (below).
+
+`tolerance_time_fraction` is its continuous companion: per episode, the share of the steady-state
+window (below) whose steps are all within the same tolerances; steps an episode did not reach count
+as outside. It is averaged over all episodes. It moves when a controller improves by millimetres
+that do not yet flip an episode.
 
 ## Steady-state window
 
@@ -43,29 +54,63 @@ does not succeed.
 | `kept` | full horizon, a tolerance missed | yes (not a success) |
 | `plasma_lost` | `Ip < 20%` of target, magnetic axis more than 0.25 m from its reference in R or Z, no closed boundary, or boundary RMS error above 0.20 m | yes |
 | `coil_limit` | an active-coil current left its limit (`tokagym/machine.py`); the episode ends, as machine protection would (Degrave et al. 2022) | yes |
-| `solver_failure` | a FreeGSNKE exception, the 180 s per-step budget, the 600 s no-step silence limit or the episode time limit, with the plasma outside tolerance before the failure | yes |
-| `solver_void` | the same failure while the mean of the last 10 steps had shape RMS ≤ 1 cm and current error ≤ 3% (a numerical stall of a well-controlled plasma, not a control failure) | no |
+| `solver_failure` | a FreeGSNKE exception, a non-finite state or an exhausted work budget that the fallback ladder could not recover, or an episode that stalled again when rerun with doubled budgets | yes (not a success) |
 
-The void test is deliberately conservative: a stall during an announced ramp or shift, where
-even a good controller may be a few cm off, counts as a failure. A looser test would let a
-controller that provokes stalls during transients remove its failures from the denominator.
+`within_tolerance_at_failure` in `results.json` records whether the mean of the last 10 steps before
+a solver failure had shape RMS ≤ 1 cm and current error ≤ 3%. Until v3 such episodes were voided
+and left the denominator; that let host load (a 180 s wall-clock budget per step) change both the
+numerator and the denominator, and it rewarded a controller for stalling the solver.
 
-If more than 20% of all episodes are void, the replay publishes no score (infrastructure error).
+## Numerical failures and reruns
+
+Every retry is bounded and recorded in `results.json`; none changes the plant draw, and none depends
+on the speed of the host.
+
+- **Work budgets.** Each solve may evaluate FreeGSNKE's residuals (dynamic currents and flux, static
+  Grad-Shafranov) a fixed number of times (`tokagym/env.py`): 20,000 per control step, per
+  feedforward-hold step of the handover and per static solve; a normal step takes about 550
+  (p99 about 2,600, about 3 ms each). A wall-clock budget would make the same step pass on an idle
+  host and fail on a loaded one; a work budget gives the same answer everywhere.
+- **Fallback ladder for one step.** When a control step raises, returns a non-finite state or
+  exhausts its work budget, the evaluator resets the episode with the same seed and re-applies the
+  recorded actions without the policy (the single-threaded simulator is deterministic; the replayed
+  observation must equal the one the policy saw, bit for bit, or the run is an infrastructure
+  error). It then retries the step at level 1 (150 instead of 50 Newton-Krylov iterations, four
+  times the work budget) and, if that fails, at level 2 (this step only through FreeGSNKE's
+  linearised model; the next step is nonlinear again). A step that converges within the level-0
+  limits gives the same result at level 1. At most 3 failing steps per episode are retried, and the
+  replays of one episode may total at most four times its horizon (so an episode costs at most about five times
+  its length; on the sealed suite no episode of the classical baseline came close except one sequence episode that
+  failed anyway); the next failure, or a step that fails at every level or finds no replay budget left, ends the episode as
+  `solver_failure`.
+  `fallback_steps` counts the steps that needed level 1 or 2.
+- **Setup.** A static solve over its work budget is a non-converged draw and is redrawn from the
+  seed, as before; a handover step that fails or exceeds its work budget ends the handover (the
+  controller takes over the converged initial plasma), as before.
+- **Host-side guards and reruns.** Wall-clock limits only catch hangs the work budget cannot see:
+  1,800 s per solve, 2,400 s without any message from a worker, 6 h per episode. An episode they
+  stop, a crashed worker or an evaluator error is rerun once in a fresh process with doubled
+  wall-clock limits (`episode_reruns`). If the rerun stalls again, the episode is a
+  `solver_failure`; if it crashes or errs again, the replay publishes no score (infrastructure
+  error). A policy error is the package's fault and is never rerun.
 
 ## Per-case reported values
 
 | Key (`CASE/...`) | Definition | Units | Direction |
 | --- | --- | --- | --- |
-| `success_fraction` | Fraction of scored episodes that succeed | 0..1 | higher |
-| `feasible_fraction` | Fraction of scored episodes that ran the full horizon | 0..1 | higher |
-| `void_episodes` | Number of voided episodes | count | - |
+| `success_fraction` | Fraction of episodes that succeed | 0..1 | higher |
+| `feasible_fraction` | Fraction of episodes that ran the full horizon | 0..1 | higher |
+| `tolerance_time_fraction` | Mean share of the steady-state window within every tolerance | 0..1 | higher |
+| `solver_failure_episodes` | Episodes ended by an unrecovered solver failure | count | - |
 | `shape_rms_cm` | Mean over feasible episodes of the steady-state boundary-shape RMS error | cm | lower |
 | `rin_error_cm`, `rout_error_cm`, `zx_error_cm` | Same for the inner gap, outer gap and lower X-point height | cm | lower |
 | `xpoint_error_cm` | Same for the X-point position error (capped at 50 cm per step) | cm | lower |
 | `ip_error_pct` | Same for the relative plasma-current error | % | lower |
 
-Top level: `reward` and `policy_compute_ms`. A case with no feasible episode publishes only its
-fractions; no error value is invented for it.
+Top level: `reward`, `tolerance_time_fraction`, `policy_compute_ms` (the gate),
+`policy_compute_ms_under_load` (diagnostic, measured during the replay), `episodes`,
+`solver_failure_episodes`, `fallback_steps` and `episode_reruns`. A case with no feasible episode
+publishes only its fractions; no error value is invented for it.
 
 ## Exact computation
 
@@ -94,13 +139,16 @@ fractions; no error value is invented for it.
   nearest the boundary flux below and above the axis within the same tolerance.
 - **Plasma-current error.** `|Ip - Ip_target(t)| / Ip_target(t)` with `Ip` the simulator's total
   plasma current.
-- **Latency gate.** On every step the null policy (`evaluation/null_policy/`, which parses the
-  request and answers zero volts) answers the same observation next to the submission, so both
-  round trips see the same machine load; the order alternates every step, so the wake-up after a
-  solver step is not charged to the submission alone. An episode's computation is the median over its steps of
-  (submission round trip − null round trip). The median over all episodes must not exceed one
-  control period, 0.5 ms. Degrave et al.'s actor ran in 50 µs on TCV; the JSON protocol cannot
-  resolve that, so the gate is one control period.
+- **Latency gate.** Measured after the replay, when no episode is running: for every case, the
+  observations the package received in the first 600 steps of its first-seed episode are sent
+  again, in order, to a fresh package process (reset as in the episode) and to the null policy
+  (`evaluation/null_policy/`, which parses the request and answers zero volts), alternating which
+  answers first. The computation is the median over all these steps of (submission round trip −
+  null round trip) and must not exceed one control period, 0.5 ms. Until v3 the same difference
+  was taken during the replay, where the evaluator's own load moved packages near the limit across
+  it between runs; that value is still reported as `policy_compute_ms_under_load`. Degrave et
+  al.'s actor ran in 50 µs on TCV; the JSON protocol cannot resolve that, so the gate is one
+  control period.
 
 - **Controllable draws only.** A plant draw whose fastest vertical-instability timescale
   (`growth_rate` in the episode setup, in seconds) is below 2 ms, four control periods, is redrawn

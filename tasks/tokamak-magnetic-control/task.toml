@@ -9,13 +9,13 @@ authors = [{ name = "Weiwei Sun" }]
 keywords = ["model-development", "autoresearch", "plasma-control", "tokamak", "reinforcement-learning"]
 
 [metadata]
-readiness = "draft v0.2 (verifier review fixes, docs/FIX_PROPOSAL.md): seven MAST-U-like cases incl. a Degrave-style sequence, success fraction under MAST-U tolerances, coil-limit terminations, FAIR-MAST-grounded ranges, sealed plant mechanisms, latency gate; sealed v0.2 seeds 1001-1002 run locally: privileged PID with X-point feedback 1/13 success, 12/13 kept; hold-current through the verifier 0/14; deployable PID and starter not re-run under v0.2; no formal agent run yet"
+readiness = "v0.3 suite scored with tokamak-shape-metrics/v4 (105 sealed episodes, every episode in the denominator, deterministic solver work budgets, bounded fallback ladder and one rerun, latency gate after the replay); validated with 34 unit tests, fault injection, bitwise cross-run determinism on 28 hard episodes and a Harbor run of shape_vc (48/105); hold-current 0/105; two agent sessions under v3 (35 episodes): 0.667 and 0.636 vs shape_vc 0.486"
 data_status = "no large data in the images; machine description vendored from FreeGSNKE (LGPL-3.0); randomization ranges derived from FAIR-MAST (CC BY-SA 4.0) by environment/data/fair_mast/ (developer-side, kept out of the images by .dockerignore)"
 simulator = "FreeGSNKE 3.1.0 free-boundary evolutive Grad-Shafranov; nonlinear solver is ground truth"
 training_regime = "known-task randomized-plant RL; sealed plant (wider ranges plus named mechanisms) for scoring"
-env_version = "tokagym-mastu/v0.2"
-metric_version = "tokamak-shape-metrics/v2"
-scoring = "reward = fraction of non-void sealed episodes kept with steady-state shape and gaps <= 1 cm and Ip error <= 3% (MAST-U requirement); per-case physical metrics alongside; invalid package or median policy compute > 0.5 ms scores 0"
+env_version = "tokagym-mastu/v0.3"
+metric_version = "tokamak-shape-metrics/v4"
+scoring = "reward = fraction of all 105 sealed episodes (7 cases x 15 seeds) kept with steady-state shape and gaps <= 1 cm and Ip error <= 3% (MAST-U requirement); solver failures retried on a bounded fallback ladder, host-side failures rerun once; tolerance_time_fraction and per-case physical metrics alongside; invalid package or median policy compute > 0.5 ms (measured after the replay) scores 0"
 
 [agent]
 timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
@@ -32,12 +32,13 @@ build_timeout_sec = 7200.0
 [verifier]
 environment_mode = "separate"
 network_mode = "no-network"
-timeout_sec = 36000.0
+timeout_sec = 72000.0           # bound: one wave, bounded replays, one rerun of a stalled episode (typical: see README)
 
 [verifier.environment]
-# One worker per sealed episode (35, tests/test.sh): the suite finishes in one wave, ~53 min measured.
-cpus = 40
-memory_mb = 49152
+# One single-threaded worker per sealed episode (105) plus two CPUs for the supervisor and policy
+# processes, so the suite runs in one wave.
+cpus = 112
+memory_mb = 98304
 storage_mb = 10240
 network_mode = "no-network"
 build_timeout_sec = 7200.0

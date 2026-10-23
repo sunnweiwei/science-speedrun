@@ -65,14 +65,20 @@ traces and loop voltages of 11,052 MAST plasma shots (3 GB, git-ignored; the tas
 
 ## 4. Evaluation
 
-`tests/test.sh` replays the published package on the seven cases with five sealed seeds and the sealed plant
-(`tests/sealed/perturbations.json`, `sealed-v0.2`), with no network, one supervised process per episode. It writes
-`reward`, the fraction of non-void episodes that keep the plasma within the MAST-U steady-state tolerances (shape and
-gaps 1 cm, plasma current 3%), next to `policy_compute_ms` and per-case success/feasible fractions and steady-state
-shape, gap, X-point and current errors in `/logs/verifier/reward.json`. The success fraction is a measured quantity, so
-the task no longer needs the TASK_STANDARD.md exception. An invalid package (policy error, or a median per-step
-computation above 0.5 ms) scores 0; more than 20% void episodes (numerical stalls of a plasma within tolerance)
-withhold the score. A replay is about 27,000 steps; budget 2-5 h at eight workers.
+`tests/test.sh` replays the published package on the seven cases with fifteen sealed seeds (105 episodes) and the
+sealed plant (`tests/sealed/perturbations.json`, `sealed-v0.3`), with no network, one single-threaded supervised process
+per episode and CPU. It writes `reward`, the fraction of all episodes that keep the plasma within the MAST-U
+steady-state tolerances (shape and gaps 1 cm, plasma current 3%), next to `tolerance_time_fraction` (the share of the
+steady-state window within those tolerances), `policy_compute_ms` and per-case success/feasible fractions and
+steady-state shape, gap, X-point and current errors in `/logs/verifier/reward.json`. The success fraction is a measured
+quantity, so the task no longer needs the TASK_STANDARD.md exception. An invalid package (policy error, or a median
+per-step computation above 0.5 ms, measured after the replay) scores 0.
+
+Every episode counts (`tokamak-shape-metrics/v4`). A control step whose solver raises or exceeds its wall-clock budget
+is retried on a bounded fallback ladder after an exact replay of the episode, an episode stopped by a host-side guard
+is rerun once with doubled budgets, and a repeated crash withholds the score (`environment/evaluation/METRICS.md`).
+Until v3, steps that timed out on a loaded host ended or voided episodes, so the score and its denominator depended
+on the machine: one external 35-episode run lost 6 episodes to the 180 s step budget and scored 21/33.
 
 ## 5. Running
 
@@ -111,10 +117,43 @@ CPU-bound: one nonlinear evolutive step takes 0.6-3 s on 2-4 threads on the main
 an otherwise idle 8-core laptop; profile updates of the time-varying sealed plasma add up to 2x; the linear
 re-linearized plant is only 1.3-2x cheaper), so a 700-step episode takes 5-35 minutes and 48 two-thread workers give
 ~2 episodes/minute. The learner needs at most one GPU (the actor is a 3x256 MLP). The verifier replays
-7 cases x 5 sealed seeds (35 episodes, about 27,000 steps) with eight four-thread workers and needs no GPU;
-`task.toml` gives it 32 CPU cores.
+7 cases x 15 sealed seeds (105 episodes, about 81,000 steps) with one single-threaded worker per episode and needs no
+GPU; `task.toml` gives it 112 CPUs and 96 GiB, so the suite runs in one wave. The wave lasts as long as its slowest
+episode: about 1 s per step on a dedicated core, up to five times an episode's length when solver failures are
+retried, and 5.2 h for `shape_vc` on a shared, oversubscribed host (section 6).
 
 ## 6. Results and validation
+
+### v0.3 suite, `tokamak-shape-metrics/v4` (sealed-v0.3, seeds 1001-1015, 105 episodes)
+
+| Controller | Success | Kept | `tolerance_time_fraction` | Solver failures | Policy compute [ms] |
+| --- | --- | --- | --- | --- | --- |
+| hold-current (`V = R I`) | 0/105 | 0/105 | 0.00 | 0 | 0.02 |
+| `shape_vc` (classical reference) | **48/105 = 0.457** | 79/105 | 0.44 | 6 | 0.08 |
+
+`shape_vc` per case (successes of 15): diverted hold 10, 750 kA hold 10, current ramp 9, P4 shape 3, pressure drop 9,
+vertical shift 5, sequence 2. Development suite (visible, seeds 0-2): 16/21 = 0.762 (`baseline/shape_vc/RESULTS.md`).
+
+Validation of the v4 verifier (2026-10-22/23):
+- 34 CPU-only unit tests (metrics, aggregation, bounded reruns, fallback ladder, replay budget, work budgets).
+- Fault injection (`TOKAGYM_TEST_FAULTS`, 2 cases x 2 seeds): a failure recovered at level 1 gives bitwise identical
+  episode metrics; a level-2 recovery changes steady-state errors in the sixth decimal; an unrecoverable step ends the
+  episode as a solver failure.
+- Determinism: the 28 hardest sealed episodes (4 cases x 7 seeds) run once with 30 CPUs at a host load of up to 560
+  and once inside the Harbor run below agree bitwise in every metric and every fallback-ladder retry.
+- Harbor end to end (`run_verify.sh`, separate verifier with the `task.toml` resources: 112 CPUs, 96 GiB, 105
+  single-threaded workers): the `shape_vc` run above. The host was shared and oversubscribed (load 200-360 on 208
+  cores), so a nonlinear step took about 6 s instead of about 1 s on a dedicated core: the median episode took 69 min
+  and the slowest, sequence seed 1014, 5.2 h: it failed at steps 883, 884 and 890, and each retry replayed the
+  episode from its start. The verifier took 5.2 h in total; 48 steps needed the fallback ladder; no episode was rerun.
+- During that run the in-replay latency of `shape_vc` was 0.52 ms, over the 0.5 ms gate that v3 applied to it; the
+  gate now measures after the replay (0.08 ms).
+- The replay budget (four horizons per episode) was added after this run: it changes no completed episode of
+  `shape_vc` or hold-current (largest: 2,881 replayed steps on the 1,200-step sequence) and only shortens the
+  sequence seed-1014 episode, a solver failure either way.
+
+Under `tokamak-shape-metrics/v3` (35 episodes, void episodes excluded) `shape_vc` scored 17/35, and 0.4848 and 0.500 in
+repeated runs, depending on which episodes a loaded host voided.
 
 ### v0.2 (sealed-v0.2, `tokamak-shape-metrics/v2`)
 
@@ -307,9 +346,11 @@ Layout and integration checks: [`docs/VALIDATION.md`](docs/VALIDATION.md).
 - FreeGSNKE's nonlinear stepper occasionally stops converging late in an episode
   (a "solver stall") and raises a `ConstrainPaxisIp ... 'ny'` AttributeError on rare
   steps. In v0.1 all 7 of the privileged PID's failed sealed episodes were stalls (the
-  v0.1 table; an earlier version of this note said 6/18). v0.2 voids a stall of a plasma
-  within tolerance and withholds the score above 20% void episodes; the stepper itself is
-  unchanged.
+  v0.1 table; an earlier version of this note said 6/18). v0.2 and v0.3 voided a stall of a
+  plasma within tolerance, which made the denominator depend on host load. Metric v4 counts
+  every episode, gives each solve a deterministic work budget and retries a failing step on a
+  bounded fallback ladder after an exact replay; the stepper itself is unchanged. Most retried
+  steps are "No O-point in the limiter region" errors of a trial Newton-Krylov iterate.
 - The handover is a feedforward hold (V = R I) for up to 20 steps, not a feedback
   controller handing over as on TCV; the PID lives in `baseline/` and needs virtual
   circuits, which the verifier image does not carry.

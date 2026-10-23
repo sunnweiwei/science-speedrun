@@ -77,8 +77,8 @@ docker build -f earth-observation-pretraining-transfer/environment/Dockerfile -t
 
 `environment/docker-compose.yaml` declares this build context. The development and verifier Compose files wire their separate data mounts.
 Export `TASK_DATA_DIR`, `TASK_PRIVATE_DIR` and `TASK_RESEARCH_DIR` as documented
-in the materialization guide. `task.toml` declares offline operation and a default
-48-hour agent budget; the controller enforces these, allocates GPUs, snapshots
+in the materialization guide. `task.toml` declares offline operation and the
+48-hour agent budget on 8×H100 (64 CPUs, 512 GiB, 1 TiB); the controller enforces these, allocates GPUs, snapshots
 the published submission and collects verifier results. A complete Harbor launch
 has not been exercised on this cluster. No cluster scheduler,
 account or partition configuration is required by the documented workflow.

@@ -53,7 +53,7 @@ SUCCESS_GAP_M = 0.01        # steady-state inner/outer gap and X-point height er
 SUCCESS_IP_REL = 0.03       # steady-state relative plasma-current error
 SETTLE_S = 0.10             # the steady state starts this long after the last target change
 MIN_WINDOW_S = 0.05         # shortest steady-state window if the horizon ends sooner
-VOID_LOOKBACK_STEPS = 10    # steps before a solver failure that decide whether it voids the episode
+VOID_LOOKBACK_STEPS = 10    # steps before a solver failure checked for within_tolerance_at_failure
 STEADY_KEYS = ("shape_rms", "xpoint_error", "ip_error_rel", "rin_error", "rout_error", "zx_error")
 
 
@@ -93,7 +93,19 @@ def summarize_episode(records, horizon, steady_start=None):
     }
     for key in STEADY_KEYS:
         summary[f"{key}_steady"] = strict_mean(key, steady)
+    # Continuous companion of the success flag: the share of the steady-state window (from
+    # ``start`` to the horizon) whose steps are within every success tolerance. Steps an episode
+    # did not reach count as outside, so early termination lowers it.
+    window = max(1, horizon - start)
+    summary["tolerance_time_fraction"] = sum(within_tolerance(r) for r in records[start:horizon]) / window
     return summary
+
+
+def within_tolerance(record):
+    """True if one step's errors are all within the success tolerances."""
+    limits = (("shape_rms", SUCCESS_SHAPE_M), ("rin_error", SUCCESS_GAP_M), ("rout_error", SUCCESS_GAP_M),
+              ("zx_error", SUCCESS_GAP_M), ("ip_error_rel", SUCCESS_IP_REL))
+    return all(math.isfinite(record.get(k, math.inf)) and record.get(k, math.inf) <= v for k, v in limits)
 
 
 def meets_success(summary):
@@ -109,8 +121,8 @@ def void_candidate(states, lookback=VOID_LOOKBACK_STEPS):
     """True if the plasma was within the success tolerances just before a solver failure.
 
     ``states`` are the last per-step records (or heartbeats) before the failure, each with
-    shape_rms and ip_error_rel. A stall in such a state is a numerical artifact rather than
-    a control failure, so the episode is voided instead of counted as lost.
+    shape_rms and ip_error_rel. Reported with the episode (``within_tolerance_at_failure``);
+    from tokamak-shape-metrics/v4 such an episode still counts as a solver failure.
     """
     recent = [s for s in list(states)[-lookback:]
               if math.isfinite(s.get("shape_rms", math.inf)) and math.isfinite(s.get("ip_error_rel", math.inf))]

@@ -4,6 +4,7 @@ import contextlib
 import copy
 import io
 import math
+import os
 import signal
 import sys
 import time
@@ -76,8 +77,27 @@ PROFILE_UPDATE_REL = 2e-3   # smallest relative profile change sent to the solve
 MAX_TRIAL_FAILURES = 40   # see patch_freegsnke
 MIN_GROWTH_TIME_S = 2e-3   # see reset: four 0.5 ms control periods
 MAX_CONTROLLABILITY_REDRAWS = 5
-STEP_TIME_BUDGET_SEC = 180.0  # normal 0.3-2 s; single-threaded workers see multi-second spikes; the external supervisor is the hard guard
-RESET_TIME_BUDGET_SEC = 180.0
+# Work budgets count FreeGSNKE residual evaluations (dynamic currents/flux and static Grad-Shafranov) per
+# solve. Unlike a wall-clock budget they do not depend on the host, so whether a solve fails is a property
+# of the plant, the actions and the seed. A normal step takes ~550 evaluations (p99 ~2,600, ~3 ms each).
+STEP_WORK_LIMIT = 20000
+HANDOVER_WORK_LIMIT = 20000   # a feedforward-hold step over budget ends the handover, as a failed one does
+STATIC_WORK_LIMIT = 20000     # a static solve over budget is a non-converged draw (redrawn from the seed)
+# Wall-clock budgets only guard against hangs that the work budget cannot see (e.g. compiled loops); an
+# expired one is a host-side failure that the evaluator reruns, never a control outcome.
+STEP_TIME_BUDGET_SEC = 1800.0
+RESET_TIME_BUDGET_SEC = 1800.0
+# Numerical fallback ladder for one control step. Level 0 is the normal nonlinear step. When a step raises,
+# returns a non-finite state or exceeds its work budget, the evaluator replays the episode exactly up to that
+# step (the simulator is deterministic) and retries it: level 1 allows more Newton-Krylov iterations and
+# work (a step that converges within the level-0 limits gives the level-0 result), level 2 advances this one
+# step with FreeGSNKE's linearised model (relative observation change ~5e-4 in tests) and the next step
+# returns to the nonlinear solver. Wall-clock budgets are multiplied by ``budget_scale``.
+STEP_NUMERICS = (
+    {"max_solving_iterations": 50, "linear_only": False, "work_limit": STEP_WORK_LIMIT},
+    {"max_solving_iterations": 150, "linear_only": False, "work_limit": 4 * STEP_WORK_LIMIT},
+    {"max_solving_iterations": 50, "linear_only": True, "work_limit": STEP_WORK_LIMIT},
+)
 LOSS_AXIS_M = 0.25          # axis displacement from the reference that counts as plasma loss
 LOSS_SHAPE_RMS_M = 0.20     # boundary RMS error that counts as plasma loss
 REWARD_SCALES = {"alive": 1.0, "shape_m": 0.02, "xpoint_m": 0.05, "ip_rel": 0.05, "voltage": 0.02,
@@ -97,6 +117,14 @@ class StepTimeout(BaseException):
 
     Derives from BaseException on purpose: FreeGSNKE's iteration loops contain broad
     ``except Exception`` handlers that would otherwise swallow the timeout.
+    """
+
+
+class ResetTimeout(RuntimeError):
+    """Setting up the plant exceeded its wall-clock budget at every budget scale.
+
+    Not an EquilibriumError: a slow solve is a property of the host, so it must not redraw the
+    plant (which would make the draw depend on machine load). The evaluator reruns the episode.
     """
 
 
@@ -144,6 +172,9 @@ def patch_freegsnke():
     f_function = GSstaticsolver.NKGSsolver.F_function
     if not getattr(f_function, "_tokagym_retry_patch", False):
         def F_function(self, plasma_psi, *args, **kwargs):
+            if _over_work_budget():
+                return np.full_like(np.asarray(plasma_psi, dtype=float), np.nan)
+            # (plasma_psi is the first parameter of NKGSsolver.F_function, by position or keyword)
             try:
                 out = f_function(self, plasma_psi, *args, **kwargs)
             except BaseException:
@@ -156,6 +187,53 @@ def patch_freegsnke():
             return out
         F_function._tokagym_retry_patch = True
         GSstaticsolver.NKGSsolver.F_function = F_function
+
+    # Count the evolutive solver's residual evaluations against the work budget. Over budget they return
+    # NaN instead of raising: FreeGSNKE's Arnoldi step retries a raising residual in a bare-except loop,
+    # whereas NaN residuals end the solve, which the caller then reports as over budget.
+    from freegsnke import nonlinear_solve
+    for name in ("F_function_curr", "F_function_psi"):
+        fn = getattr(nonlinear_solve.nl_solver, name)
+        if not getattr(fn, "_tokagym_work_patch", False):
+            setattr(nonlinear_solve.nl_solver, name, _counted(fn))
+
+
+_WORK = {"calls": 0, "limit": None, "exceeded": False}
+
+
+def _over_work_budget():
+    _WORK["calls"] += 1
+    if _WORK["limit"] is not None and _WORK["calls"] > _WORK["limit"]:
+        _WORK["exceeded"] = True
+        return True
+    return False
+
+
+def _counted(fn):
+    def wrapper(self, *args, **kwargs):   # FreeGSNKE passes the trial point by position or by keyword
+        if _over_work_budget():
+            x = args[0] if args else next(iter(kwargs.values()))
+            return np.full_like(np.asarray(x, dtype=float), np.nan)
+        return fn(self, *args, **kwargs)
+    wrapper._tokagym_work_patch = True
+    return wrapper
+
+
+class WorkBudgetExceeded(RuntimeError):
+    """A solve used more residual evaluations than its work budget (deterministic)."""
+
+
+@contextlib.contextmanager
+def work_budget(limit):
+    """Count residual evaluations in the block; raise WorkBudgetExceeded at its end if over ``limit``."""
+    _WORK.update(calls=0, limit=limit, exceeded=False)
+    try:
+        yield _WORK
+    finally:
+        exceeded, calls = _WORK["exceeded"], _WORK["calls"]
+        _WORK.update(limit=None, exceeded=False)
+    if exceeded:
+        raise WorkBudgetExceeded(f"{calls} residual evaluations exceed the work budget of {limit}")
 
 
 @contextlib.contextmanager
@@ -189,6 +267,11 @@ class TokamakMagneticEnv(gym.Env if gym else object):
     def __init__(self, case, spec=None, randomization="visible", solver="nonlinear",
                  horizon=None, strict_actions=False, verbose=False, relinearise_threshold=0.05):
         self.case = C.get_case(case) if isinstance(case, str) else case
+        self.numerics_level = 0     # index into STEP_NUMERICS for the next step (set by the evaluator)
+        self.budget_scale = 1.0     # multiplies every wall-clock budget (the evaluator raises it on reruns)
+        self.on_progress = None     # optional callable, called after each setup stage (evaluator heartbeat)
+        self.failure_kind = None    # "exception", "timeout" or "nonfinite" after a failed step, else None
+        self._episode_seed = None
         self.spec = spec or MachineSpec()
         chosen = (VISIBLE_RANDOMIZATION if randomization == "visible"
                   else NO_RANDOMIZATION if randomization in (None, "none")
@@ -233,11 +316,14 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         solver = GSstaticsolver.NKGSsolver(eq)
         sink = io.StringIO()
         try:
-            with wall_clock_budget(RESET_TIME_BUDGET_SEC), contextlib.redirect_stdout(sink):
+            with wall_clock_budget(RESET_TIME_BUDGET_SEC * self.budget_scale), contextlib.redirect_stdout(sink), \
+                    work_budget(STATIC_WORK_LIMIT):
                 solver.solve(eq=eq, profiles=profiles, constrain=None, target_relative_tolerance=tolerance,
                              max_solving_iterations=max_iterations, verbose=False)
         except StepTimeout as error:
-            raise EquilibriumError(f"static solve timed out: {error}") from error
+            raise ResetTimeout(f"static solve timed out: {error}") from error
+        except WorkBudgetExceeded as error:
+            raise EquilibriumError(f"static solve: {error}") from error
         text = sink.getvalue()
         if self.verbose:
             sys.stdout.write(text)
@@ -510,6 +596,7 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         periods; the supply adds up to two steps of delay) cannot be held by any controller - the
         privileged PID loses such plasmas within a few steps - and no programme would operate it.
         """
+        self._episode_seed = seed
         for k in range(MAX_CONTROLLABILITY_REDRAWS + 1):
             sub = seed if (k == 0 or seed is None) else int(
                 np.random.SeedSequence([int(seed), 104729, k]).generate_state(1)[0])
@@ -575,17 +662,22 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         sink = io.StringIO()
 
         def init_stepping():
-            with wall_clock_budget(RESET_TIME_BUDGET_SEC), \
-                    contextlib.redirect_stdout(sys.stdout if self.verbose else sink):
-                self.stepping = nonlinear_solve.nl_solver(
-                    eq=eq, profiles=profiles, GSStaticSolver=solver, full_timestep=C.DT,
-                    plasma_resistivity=resistivity, custom_coil_resist=coil_resist,
-                    max_mode_frequency=10 ** 2.5, n_linearization_workers=1)
-                self.stepping.initialize_from_ICs(eq, profiles)
+            try:
+                with wall_clock_budget(RESET_TIME_BUDGET_SEC * self.budget_scale), \
+                        contextlib.redirect_stdout(sys.stdout if self.verbose else sink):
+                    self.stepping = nonlinear_solve.nl_solver(
+                        eq=eq, profiles=profiles, GSStaticSolver=solver, full_timestep=C.DT,
+                        plasma_resistivity=resistivity, custom_coil_resist=coil_resist,
+                        max_mode_frequency=10 ** 2.5, n_linearization_workers=1)
+                    self.stepping.initialize_from_ICs(eq, profiles)
+            except StepTimeout as error:
+                raise ResetTimeout(f"stepper initialisation timed out: {error}") from error
 
         # The pre-roll steps mutate eq and profiles in place; keep the converged initial state so a
         # failed pre-roll restarts from it, not from the half-stepped objects of the failed solve.
         initial = copy.deepcopy((eq, profiles))
+        if self.on_progress:
+            self.on_progress()
         init_stepping()
         self.growth_rate = float(np.max(np.real(self.stepping.linearised_sol.all_timescales))) \
             if hasattr(self.stepping, "linearised_sol") else None
@@ -595,10 +687,17 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         handover = int(srng.integers(lo, hi + 1)) if hi > 0 else 0
         hold = self._coil_currents() * coil_resist[: self.n_active]
         for k in range(handover):
+            if self.on_progress:
+                self.on_progress()
             try:
-                with wall_clock_budget(STEP_TIME_BUDGET_SEC), contextlib.redirect_stdout(sink):
+                with wall_clock_budget(STEP_TIME_BUDGET_SEC * self.budget_scale), contextlib.redirect_stdout(sink), \
+                        work_budget(HANDOVER_WORK_LIMIT):
                     self.stepping.nlstepper(active_voltage_vec=hold, verbose=False, max_solving_iterations=50)
-            except (Exception, StepTimeout):   # never charge the controller for the pre-roll
+                if not np.all(np.isfinite(self.stepping.trial_currents)):
+                    raise SolverFailure("non-finite state after a handover step")
+            except StepTimeout as error:   # a hang or an overloaded host: the evaluator reruns the episode
+                raise ResetTimeout(f"handover step timed out: {error}") from error
+            except Exception:   # numerical failure or work budget: never charge the controller for the pre-roll
                 eq, profiles = copy.deepcopy(initial)
                 init_stepping()
                 handover = 0
@@ -638,6 +737,7 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         self.records = []
         self.terminated_reason = None
         self.failure_void = False
+        self.failure_kind = None
         self._last_obs = self._observe()
         info = {"setup_time_sec": time.monotonic() - t0, "profile_params": params,
                 "plasma_resistivity": resistivity, "passive_scale": passive_scale,
@@ -716,29 +816,38 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         profile_update = self._profile_update()
         resistivity = (self._resistivity * 10 ** (self._drift["log10_eta"] * self.t)
                        if self._drift["log10_eta"] else None)
+        numerics = STEP_NUMERICS[self.numerics_level]
+        self.failure_kind = None
         t0 = time.monotonic()
         try:
-            with wall_clock_budget(STEP_TIME_BUDGET_SEC), \
-                    contextlib.redirect_stdout(sys.stdout if self.verbose else io.StringIO()):
+            with wall_clock_budget(STEP_TIME_BUDGET_SEC * self.budget_scale), \
+                    contextlib.redirect_stdout(sys.stdout if self.verbose else io.StringIO()), \
+                    work_budget(numerics["work_limit"]):
+                self._raise_test_fault()
                 self.stepping.nlstepper(active_voltage_vec=applied, profiles_parameters=profile_update,
                                         plasma_resistivity=resistivity,
-                                        linear_only=(self.solver == "linear"), verbose=False,
-                                        max_solving_iterations=50,
+                                        linear_only=(self.solver == "linear" or numerics["linear_only"]),
+                                        verbose=False,
+                                        max_solving_iterations=numerics["max_solving_iterations"],
                                         relinearise_threshold=(self.relinearise_threshold
                                                                if self.solver == "linear" else None))
         except (Exception, StepTimeout) as error:  # numerical errors or the wall-clock budget
+            self.failure_kind = ("timeout" if isinstance(error, StepTimeout)
+                                 else "work" if isinstance(error, WorkBudgetExceeded) else "exception")
             self.terminated_reason = f"solver_failure: {type(error).__name__}: {error}"[:200]
-            # A stall while the plasma is within tolerance is a numerical artifact: void, not lost.
+            # Reported only: was the plasma within tolerance when the solver failed?
             self.failure_void = M.void_candidate(self.records)
             rec = {"shape_rms": math.inf, "xpoint_error": math.inf, "ip_error_rel": math.inf,
                    "rin_error": math.inf, "rout_error": math.inf, "zx_error": math.inf,
-                   "coil_violation": 1.0, "step_time_sec": time.monotonic() - t0}
+                   "coil_violation": 1.0, "step_time_sec": time.monotonic() - t0,
+                   "numerics_level": self.numerics_level}
             self.records.append(rec)
             return self._last_obs, -REWARD_SCALES["termination"], True, False, self._info(rec, applied)
         self.t += self.stepping.dt_step
         self.k += 1
         desc = self._descriptors()
         desc["step_time_sec"] = time.monotonic() - t0
+        desc["numerics_level"] = self.numerics_level
         self.records.append(desc)
         terminated = False
         # Plasma-lost criteria (physical, hardware-independent): no closed boundary, current
@@ -757,12 +866,28 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         if not np.all(np.isfinite(obs)):
             terminated = True
             self.terminated_reason = "solver_failure: nonfinite observation"
+            self.failure_kind = "nonfinite"
             self.failure_void = M.void_candidate(self.records[:-1])
             obs = self._last_obs
         truncated = self.k >= self.horizon and not terminated
         reward = self._reward(desc, v, terminated)
         self._last_obs = obs
         return self._last_obs, reward, terminated, truncated, self._info(desc, applied)
+
+    def _raise_test_fault(self):
+        """Testing hook: TOKAGYM_TEST_FAULTS="case:seed:step:kind:max_level[,...]" makes the step that
+        follows ``step`` completed steps of that episode fail ("exception" or "timeout") at numerics
+        levels up to ``max_level``. Unset in every scored run."""
+        spec = os.environ.get("TOKAGYM_TEST_FAULTS")
+        if not spec:
+            return
+        for item in spec.split(","):
+            case, seed, step, kind, max_level = item.split(":")
+            if (case == self.case.name and self._episode_seed is not None and int(seed) == int(self._episode_seed)
+                    and int(step) == self.k and self.numerics_level <= int(max_level)):
+                if kind == "timeout":
+                    raise StepTimeout("injected test timeout")
+                raise SolverFailure("injected test failure")
 
     def _reward(self, d, v, terminated):
         """Training signal only (not a benchmark score): alive bonus minus clipped errors.
@@ -801,7 +926,9 @@ class TokamakMagneticEnv(gym.Env if gym else object):
         if s["feasible"]:
             s["outcome"] = "success" if M.meets_success(s) else "kept"
         elif reason.startswith("solver_failure"):
-            s["outcome"] = "solver_void" if self.failure_void else "solver_failure"
+            # Every episode counts (fixed denominator); the evaluator has already retried the step.
+            s["outcome"] = "solver_failure"
+            s["within_tolerance_at_failure"] = bool(self.failure_void)
         elif reason.startswith("coil_limit"):
             s["outcome"] = "coil_limit"
         else:

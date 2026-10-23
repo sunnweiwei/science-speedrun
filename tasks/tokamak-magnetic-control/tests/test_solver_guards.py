@@ -40,6 +40,28 @@ class SolverGuards(unittest.TestCase):
         self.assertEqual(out.shape, psi.shape)
         self.assertTrue(np.isnan(out).all())
 
+    def test_work_budget_is_counted_in_residual_evaluations(self):
+        from freegsnke import GSstaticsolver, nonlinear_solve
+        fake = types.SimpleNamespace()
+        with self.env.work_budget(5) as work:   # no evaluation: no error
+            pass
+        self.assertEqual(work["calls"], 0)
+        with self.assertRaises(self.env.WorkBudgetExceeded):
+            with self.env.work_budget(0):
+                for f in (GSstaticsolver.NKGSsolver.F_function, nonlinear_solve.nl_solver.F_function_curr,
+                          nonlinear_solve.nl_solver.F_function_psi):
+                    out = f(fake, np.ones(4), None)   # over budget: NaN, the original is never called
+                    self.assertEqual(out.shape, (4,))
+                    self.assertTrue(np.isnan(out).all())
+        with self.assertRaises(self.env.WorkBudgetExceeded):
+            with self.env.work_budget(0):   # FreeGSNKE calls F_function_psi with keywords
+                out = nonlinear_solve.nl_solver.F_function_psi(
+                    fake, trial_plasma_psi=np.ones(3), active_voltage_vec=None, rtol_NK=1e-8)
+                self.assertTrue(np.isnan(out).all())
+        # outside a budget nothing is limited
+        with self.assertRaises(BaseException):
+            nonlinear_solve.nl_solver.F_function_curr(fake, np.ones(4), None)
+
 
 @unittest.skipUnless(HAVE_FREEGSNKE, "FreeGSNKE not installed")
 class ControllabilityRedraw(unittest.TestCase):

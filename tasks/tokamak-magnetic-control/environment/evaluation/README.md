@@ -27,7 +27,8 @@ python /workspace/evaluation/harbor_verify.py --submission /workspace/submission
     --output /workspace/research/check-001 --cases mastu_diverted_hold --seeds 0 --workers 1
 
 # Full visible-randomization suite, 3 seeds: all 21 episodes in parallel when CPUs allow
-# (default workers = available CPUs / OMP_NUM_THREADS; override with --workers or TOKAGYM_WORKERS)
+# (default workers = (CPUs of the container quota - 2) / OMP_NUM_THREADS, at most one per episode;
+#  override with --workers or TOKAGYM_WORKERS)
 python /workspace/evaluation/harbor_verify.py --submission /workspace/submission \
     --output /workspace/research/full-001
 
@@ -39,13 +40,14 @@ Each worker holds one FreeGSNKE simulator, one resident policy process and one e
 (one case and seed). A nonlinear step costs ~0.3-0.5 s on four CPU threads (up to about
 1 s with the time-varying sealed plasma), so one 700-step episode is about four minutes;
 the seven-case, three-seed development suite takes ~20 minutes with eight workers. Use a
-fresh output directory each time.
+fresh output directory each time. The default suite is a starting point: with 21 episodes one episode is about five
+points, so any seeds can be added (`--seeds`) when two candidates are close.
 
 ## Clean-container verification
 
 ```bash
 docker build --target verifier -t tokamak-verifier -f environment/Dockerfile .
-docker run --rm --network none --cpus 24 \
+docker run --rm --network none --cpus 112 \
   --mount type=bind,source=/abs/published-model,target=/workspace/submission,readonly \
   --mount type=bind,source=/abs/output,target=/logs/verifier \
   --entrypoint bash tokamak-verifier /tests/test.sh
@@ -53,40 +55,47 @@ docker run --rm --network none --cpus 24 \
 
 ## Outputs and failure semantics
 
-- `reward.json`: `reward` (success fraction), `policy_compute_ms` and flat numeric
-  `CASE/metric` values with the directions of METRICS.md.
-- `results.json`: every case and episode, per-episode summaries, setup draws,
-  latency diagnostics, randomization name, seeds, versions.
+- `reward.json`: `reward` (success fraction over all episodes), `tolerance_time_fraction`,
+  `policy_compute_ms`, retry counts and flat numeric `CASE/metric` values with the directions of
+  METRICS.md.
+- `results.json`: every case and episode, per-episode summaries (including each fallback-ladder
+  retry and rerun), setup draws, latency measurements, randomization name, seeds, versions.
 - `grading.json`: `scope` (`full-suite` or `development-subset`), case status and
   outcome counts, `aggregate_score` (= `reward`).
-- `error.json`: present only for infrastructure errors (including more than 20% void
-  episodes); then `reward.json` is withheld and the exit code is 2.
+- `error.json`: present only for infrastructure errors (a crash or evaluator error that
+  repeated on the rerun, or a replay that was not deterministic); then `reward.json` is withheld
+  and the exit code is 2.
 
-Each episode runs in a supervised child process (`supervise.py`); an episode that exceeds
-`TOKAGYM_EPISODE_TIMEOUT` (default 5400 s, for the 1200-step sequence case), or a process
-that completes no step for `TOKAGYM_STEP_SILENCE` seconds (default 600 s; the child sends a
-heartbeat with the current shape and current errors after every step), is killed and
-recorded as `solver_timeout`. The heartbeats decide whether it is a `solver_void` (the
-plasma was within tolerance) or a `solver_failure` (METRICS.md). FreeGSNKE can spend unbounded time in a degenerate
-Newton-Krylov solve and swallows in-process timeouts, so this external guard is what
-keeps a bad policy from hanging the verifier. Both limits are generous relative to the
-~0.6-3 s a nonlinear step takes on a lightly loaded machine; on an overloaded host
-(we saw >24 s per step with ~200 busy threads on 208 cores) the silence guard can fire
-on a healthy episode, which is why the reference tables were re-run for episodes killed this way.
-Size workers to the CPUs you actually hold: the default (available CPUs / `OMP_NUM_THREADS`) does.
-`tests/test.sh` runs the 35 sealed episodes with 35 workers on the verifier's 40 CPUs: one wave in
-53 min, no void or silence-guard episodes, the documented 17/35 for `shape_vc`.
+Each episode runs in a supervised child process (`supervise.py`), single-threaded in the verifier
+image (`OMP_NUM_THREADS=1`), one per CPU, so episodes never compete for cores and replays are
+deterministic. METRICS.md ("Numerical failures and reruns") defines the bounded retries:
 
-On every step the child also sends the same observation to the null policy (`null_policy/`),
-next to the submission; the median of the per-step differences of the two round trips is the
-episode's `policy_compute_ms` for the latency gate. Timing the null policy only before the episode,
-on an idle process, charged the submission for the solver's load on the machine: a hold-current
-package (twelve multiplications) measured 0.30-0.63 ms on a loaded 8-worker host. The order of the
-two requests alternates every step: whichever process answers first after a solver step pays the
-wake-up and cold-cache cost (with the submission always first, the hold-current package still
-measured 0.22 ms and a 0.06 ms NumPy controller 0.45 ms).
+- every solve has a work budget (FreeGSNKE residual evaluations, not seconds), so whether it fails
+  does not depend on the host;
+- a step whose solver raises, returns a non-finite state or exhausts its work budget is retried
+  after an exact replay of the episode, with more iterations and work, then once through the
+  linearised model; at most 3 such steps per episode, and replays totalling at most four times the episode's horizon;
+- a worker that exceeds the 1,800 s per-solve hang guard, is silent for `TOKAGYM_STEP_SILENCE`
+  (default 2,400 s; the child sends a heartbeat after every step and setup stage), runs past
+  `TOKAGYM_EPISODE_TIMEOUT` (default 6 h) or crashes is rerun once with doubled wall-clock limits.
+  A repeated stall is a `solver_failure`; a repeated crash withholds the score.
 
-A plasma lost by the policy, a coil-limit termination, a solver failure or timeout during
-a policy-driven episode, or a protocol/bounds violation is a **measured outcome**, not an
-infrastructure error. A `policy_error` in any case, or a median policy computation above
+FreeGSNKE can spend unbounded time in a degenerate Newton-Krylov solve and swallows in-process
+timeouts, so the external guard is what keeps a bad policy from hanging the verifier. Until v3 a
+step that took 180 s ended the episode (or voided it) at once, so an overloaded host changed scores:
+on 35 workers with two threads each on 40 CPUs, six of 35 sealed episodes of one package ended on
+that budget.
+
+The latency gate is measured after the replay (METRICS.md): the first 600 observations of one
+episode per case are replayed through a fresh package process next to the null policy
+(`null_policy/`), which parses the request and answers zero volts, alternating which answers first.
+The per-step difference of the two round trips is the package's computation. During the replay the
+same difference is still taken on every step and reported as `policy_compute_ms_under_load`: there,
+timing the null policy only before the episode, on an idle process, charged the submission for the
+solver's load (a hold-current package, twelve multiplications, measured 0.30-0.63 ms on a loaded
+8-worker host), and whichever process answers first after a solver step pays the wake-up and
+cold-cache cost.
+
+A plasma lost by the policy, a coil-limit termination, a solver failure the ladder could not
+recover, or a protocol/bounds violation is a **measured outcome**, not an infrastructure error. A `policy_error` in any case, or a median policy computation above
 0.5 ms, makes the package invalid: `reward` is 0.

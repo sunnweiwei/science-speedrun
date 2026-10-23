@@ -3,39 +3,61 @@
 ## Development evaluation (visible randomization, seeds 0-2): the comparison for new candidates
 
 This is `harbor_verify.py` with its defaults (all seven cases, visible randomization, seeds 0, 1, 2) on
-`package/`, the protocol `/workspace/evaluation` runs. It has already been run, so compare a candidate
-with these numbers instead of replaying the baseline:
+`package/`, the protocol `/workspace/evaluation` runs, under `tokamak-shape-metrics/v4`. It has already been run, so
+compare a candidate with these numbers instead of replaying the baseline:
 
 ```bash
 python /workspace/evaluation/harbor_verify.py --submission /workspace/baseline/shape_vc/package \
     --output /workspace/research/shape_vc-dev --workers 21
 ```
 
-**Score 15/19 = 0.789**, 19/19 non-void episodes kept, 2 void, policy computation 0.33 ms median.
-Wall time 54 min with 21 workers (one per episode, `OMP_NUM_THREADS=4`, 96 CPUs) on a shared 208-core
-host. A 700-step episode took 23-44 min there, and the 1,200-step sequence 51-54 min. An agent's replay of
-the same suite with 2 workers on 32 CPUs took 3.1 h.
+**Score 16/21 = 0.762**, `tolerance_time_fraction` 0.806, policy computation 0.085 ms median (measured after the
+replay; 0.36 ms during it). Wall time 188 min with 21 workers (one per episode, `OMP_NUM_THREADS=2`, 44 CPUs) on a
+shared, heavily loaded 208-core host.
 
 | Case | seed 0 | seed 1 | seed 2 | shape RMS [cm] | inner gap [cm] | outer gap [cm] | X-point height [cm] | Ip error [%] |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | mastu_diverted_hold | **success** | **success** | **success** | 0.42 | 0.28 | 0.47 | 0.25 | 0.17 |
 | mastu_high_ip_hold | **success** | **success** | **success** | 0.36 | 0.34 | 0.41 | 0.26 | 0.17 |
 | mastu_ip_ramp | **success** | **success** | **success** | 0.42 | 0.36 | 0.45 | 0.27 | 0.07 |
-| mastu_p4_shape_hold | void (solver timeout, step 408) | void (solver timeout, step 492) | kept (Rin 1.06, Zx 1.10) | 0.95 | 1.06 | 0.46 | 1.10 | 0.19 |
+| mastu_p4_shape_hold | solver failure (step 395) | **success** | kept (Rin 1.06, Zx 1.10) | 0.76 | 0.57 | 0.34 | 0.82 | 0.18 |
 | mastu_pressure_drop | **success** | **success** | **success** | 0.44 | 0.29 | 0.42 | 0.23 | 0.12 |
 | mastu_sequence | **success** | kept (Rin 1.05) | **success** | 0.53 | 0.65 | 0.28 | 0.23 | 0.42 |
 | mastu_vertical_shift | kept (Rin 1.23) | kept (Rin 1.39) | **success** | 0.75 | 1.07 | 0.27 | 0.67 | 0.13 |
 
 How to read the table:
 - Kept episodes name the steady-state quantities [cm] that missed the 1 cm tolerance.
-- The physical columns are steady-state means over the non-void episodes.
+- The physical columns are steady-state means over the episodes that ran the full horizon.
 
 Notes:
-- **Voids vary between runs.** Both voids are FreeGSNKE step timeouts (180 s wall-clock) in P4. Void episodes are excluded from the score, and they vary from run to run on a loaded host: the same package scored 0.4848, 0.500 and 0.4857 in the sealed verifier (#117). Compare candidates on the same seeds, and repeat or inspect the per-case table before trusting a difference of one or two episodes.
-- **Dev versus sealed.** The development plant is easier than the sealed one (0.789 here, 0.486 sealed). The remaining misses are the same kind as in the sealed run: inner gap and X-point height in P4, vertical shift and sequence.
-- **Files.** `reproduction/dev-visible-seeds-0-2/` has the run's `results.json` (every episode: outcome, steady-state errors, latencies, setup draws, wall time), `grading.json` and `reward.json`.
+- **Solver failures are retried, not voided.** Seven steps needed the fallback ladder (METRICS.md). In P4 seed 1, three
+  failing steps (430, 467, 494) were recovered and the episode succeeded; in P4 seed 0, three were recovered and the
+  fourth (step 395) ended the episode. Under v3 both P4 episodes were voided by 180 s timeouts and the score was 15/19.
+- **Dev versus sealed.** The development plant is easier than the sealed one (0.762 here, 0.457 sealed). The remaining
+  misses are the same kind as in the sealed run: inner gap and X-point height in P4, vertical shift and sequence.
+- **Files.** `reproduction/dev-visible-seeds-0-2-v4/` has this run's `results.json` (every episode: outcome, steady-state errors, fallback-ladder retries, latencies, setup draws, wall time), `grading.json` and `reward.json`; `reproduction/dev-visible-seeds-0-2/` keeps the earlier v3 run.
 
-## Sealed verifier, v0.3 (`tokagym-mastu/v0.3`, `tokamak-shape-metrics/v3`, seeds 1001-1005)
+## Sealed verifier, `tokamak-shape-metrics/v4` (sealed-v0.3, seeds 1001-1015, 105 episodes)
+
+`tests/test.sh` through Harbor (separate verifier, 112 CPUs, 105 workers), 2026-10-23, on `package/`:
+**score 48/105 = 0.457**, 79/105 episodes kept, `tolerance_time_fraction` 0.44, 6 solver failures, 48 steps
+recovered or retried on the fallback ladder, no rerun; policy computation 0.083 ms after the replay (0.52 ms during it,
+on an oversubscribed host).
+
+| Case | Success | Kept, missed a tolerance | Lost | Coil limit | Solver failure |
+| --- | --- | --- | --- | --- | --- |
+| mastu_diverted_hold | 10 | 3 | 2 | 0 | 0 |
+| mastu_high_ip_hold | 10 | 3 | 2 | 0 | 0 |
+| mastu_ip_ramp | 9 | 4 | 2 | 0 | 0 |
+| mastu_p4_shape_hold | 3 | 6 | 3 | 1 | 2 |
+| mastu_pressure_drop | 9 | 3 | 2 | 0 | 1 |
+| mastu_sequence | 2 | 4 | 5 | 1 | 3 |
+| mastu_vertical_shift | 5 | 8 | 2 | 0 | 0 |
+
+The misses are of the same kind as under v3: the inner gap and the X-point height (P4, vertical shift, sequence), and
+in most cases two seeds whose plasma is lost within the first 140 steps.
+
+## Sealed verifier, v0.3 (`tokagym-mastu/v0.3`, `tokamak-shape-metrics/v3`, seeds 1001-1005), history
 
 `tests/test.sh` on the package in `package/` (`w_x` 4, `k_zt` 150): **score 17/35 = 0.486**, 27/35
 episodes kept, no void, policy computation 0.33 ms median (gate 0.5 ms).

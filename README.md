@@ -26,14 +26,14 @@ The budget column is the agent's development budget in `task.toml`, one of two s
 | [natural-disease-progression](tasks/natural-disease-progression) | next-year disease risk from MIMIC-IV histories | 1× H100, 48 h | 0.243 | 0.236 | 0.268 | credentialed HF release (MIMIC-IV) |
 | [probabilistic-global-weather](tasks/probabilistic-global-weather) | 15-day global ensemble weather forecasting model (WeatherNext2-style) from random initialization | 8× H100, 48 h | 0.108 | 0.674 | — | HF release, ~206 GB |
 | [protein-folding-prediction](tasks/protein-folding-prediction) | one from-scratch biomolecular folding model for all nine FoldBench tracks (monomers, interfaces, ligands) | 8× H100, 48 h | 0.0003 | 0.037 | 0.557 | HF release, 73 GB |
-| [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1× H100 + 64 CPUs, 48 h | 0.529 | 0.486 | — | none (machine description vendored) |
+| [tokamak-magnetic-control](tasks/tokamak-magnetic-control) | one shared magnetic shape/position/current controller for a MAST-U-like tokamak (FreeGSNKE), sealed randomized plant | 1× H100 + 64 CPUs, 48 h | 0.529 (metric v3) | 0.457 | — | none (machine description vendored) |
 | [crystal-structure-generation](tasks/crystal-structure-generation) | unconditional crystal-structure generator trained from scratch on MP-20, maximizing stable/metastable, unique and novel (SUN + MetaSUN) structures under LeMat-GenBench | 8× H100, 48 h | 0.157 | 0.208 | — | MP-20 + scorer assets (~25 GB; gated `facebook/UMA` needs HF_TOKEN) |
 | [molecular-pretraining-transfer](tasks/molecular-pretraining-transfer) | ≤90M molecular encoder pretrained from scratch on the leakage-filtered Uni-Mol2 corpus, transferred to 24 tasks; test MA-RAE QM9 / COMPAS-1D / ExpansionRx / ASAP (lower is better) | 8× H100, 48 h | 0.186 / 0.164 / 0.735 / 0.657 | 0.183 / 0.166 / 0.744 / 0.636 | 0.192 / 0.121 / 0.668 / 0.644 | rebuilt from pinned public sources (179 GiB download, 173 GiB release) |
 | [protein-design](tasks/protein-design) | one all-atom backbone generator for four design tracks; per-track pass rate (designable by LigandMPNN + RoseTTAFold3 refolding and novel vs the fit corpus) enzyme / sm_binder / ppi_binder / unconditional | 8× H100, 48 h | 0.082 / 0.025 / 0 / 0.10 | — | — | development views (RCSB snapshot, HF, ~6 GB); 51-target evaluation view vendored |
 | [protein-sequence-modeling](tasks/protein-sequence-modeling) | one from-scratch protein sequence model with heads for eleven PEER understanding tasks (mean task reward) | 8× H100, 48 h | 0.647 | 0.670 | — | PEER tasks (TAPE/PEER S3, 1.6 GB) + UniRef50 2026_03 decontaminated with MMseqs2 (9.9 GB) |
 | [fluid-flow-control](tasks/fluid-flow-control) | one shared closed-loop controller for all 39 HydroGym flow-control cases (2D/3D cylinder, pinball, airfoil, gust, sphere, cube, channel, nozzle, Kolmogorov; MAIA / JAX / JAX-Fluids CFD), scored by 26 named physical metrics | 8× H100, 48 h | 25/26 cases valid, near the uncontrolled flows | — (shared starter untrained; per-case specialists in `references/`) | — | HF release, 423 GB (39 CFD environments) |
 | [atomistic-materials](tasks/atomistic-materials) | one universal interatomic potential (energy, forces, stress) from random initialization (UMA-S architecture) for eight suites: stability screening, phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces, Li-migration NEB (Crystal Potential Score v2 / 100) | 8× H100, 48 h | 0.105 | 0.371 (scratch, validation) | 0.50 (pretrained UMA-S mixed replay) | HF release, 89 GB (42.4M-frame DFT pool + eight suites) |
-| [earth-observation-pretraining-transfer](tasks/earth-observation-pretraining-transfer) | one from-scratch geospatial encoder (Sentinel-1/2 time series, OlmoEarth-style) whose frozen features transfer to AWF land-cover classification and live fuel moisture (LFMC) regression; reward = mean of AWF accuracy and LFMC MAE skill | 1× H100, 48 h | 0.406 | — (starter: 77.0% AWF / 21.46 LFMC MAE, validation) | — | pinned public sources, ~148 GB download (agent view 100 GB, private 12 GB) |
+| [earth-observation-pretraining-transfer](tasks/earth-observation-pretraining-transfer) | one from-scratch geospatial encoder (Sentinel-1/2 time series, OlmoEarth-style) whose frozen features transfer to AWF land-cover classification and live fuel moisture (LFMC) regression; reward = mean of AWF accuracy and LFMC MAE skill | 8× H100, 48 h | 0.406 | — (starter: 77.0% AWF / 21.46 LFMC MAE, validation) | — | pinned public sources, ~148 GB download (agent view 100 GB, private 12 GB) |
 | [fruit-fly-neuron-reconstruction](tasks/fruit-fly-neuron-reconstruction) | FFN, SENSE and SHAPE weights for a fixed PATHFINDER-style pipeline that reconstructs fruit-fly neurons from 16 nm MaleCNS electron microscopy; reward = local sparse nERL of the SHAPE-merged reconstruction | 8× H100, 48 h | 0.00002 | — (starter: 0.035 stitched eight-window nERL, validation) | — | HF release, 14.5 GB |
 
 Notes on the table:
@@ -101,9 +101,11 @@ Notes on the table:
   the 2,000-epoch starter's 0.208 (5.4 h on six H100s). The verifier relaxes all 2,500 structures with UMA and scores
   them with LeMat-GenBench; with several relaxation workers per GPU it ran in 2 h 9 min on four RTX 6000 Ada.
 - tokamak-magnetic-control was tested on the CMU Babel cluster (Apptainer instead of Docker): an 11 h Codex session on
-  one L40S with 64 CPUs. Its verifier is CPU-bound: 53 min for the `shape_vc` baseline and 90 min for the agent's
-  package on 40 CPUs (35 parallel episodes). Repeated scoring of one package varies by about 0.015 (P4 void
-  episodes), so a one-episode difference from the baseline is within noise.
+  one L40S with 64 CPUs, scored 0.529 with the 35-episode verifier of metric v3. Metric v4 makes the score reproducible:
+  105 sealed episodes, every episode in the denominator, deterministic solver work budgets with a bounded retry ladder,
+  and the latency gate measured after the replay. Its verifier is CPU-bound, one single-threaded worker per episode on
+  112 CPUs; `shape_vc` scores 48/105 = 0.457 and the run took 5.2 h on a shared, oversubscribed host, where one episode
+  with three late solver failures set the wall time.
 
 ## Quick start
 

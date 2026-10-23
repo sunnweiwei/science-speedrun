@@ -1,7 +1,7 @@
 {
-  "name": "sealed-v0.2",
-  "note": "Wider than the visible training randomization and with plant mechanisms the visible plant lacks; seeds unseen in development. Lives only in the verifier image. Data-grounded values: FAIR-MAST double-null flat-tops (environment/data/fair_mast/derived_ranges.json, CC BY-SA 4.0, UKAEA), 5-95% ranges and p75 sensor residuals, mapped through environment/data/fair_mast/profile_calibration.json; drifts span the within-shot interquartile range over one 0.35 s episode. Supply, flux-loop drift, passive-filament and profile-constraint values are organizer choices.",
-  "seeds": [1001, 1002, 1003, 1004, 1005],
+  "name": "sealed-v0.3",
+  "note": "Wider than the visible training randomization and with plant mechanisms the visible plant lacks; seeds unseen in development. Lives only in the verifier image. Data-grounded values: FAIR-MAST double-null flat-tops (environment/data/fair_mast/derived_ranges.json, CC BY-SA 4.0, UKAEA), 5-95% ranges and p75 sensor residuals, mapped through environment/data/fair_mast/profile_calibration.json; drifts span the within-shot interquartile range over one 0.35 s episode. Supply, flux-loop drift, passive-filament and profile-constraint values are organizer choices. v0.3: 15 seeds per case (105 episodes; v0.2 scored seeds 1001-1005 of the same distribution).",
+  "seeds": [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015],
   "randomization": {
     "profile": {"pressure": 0.58, "alpha": 0.5, "ip": 0.05},
     "coil_current_rel": 0.04,

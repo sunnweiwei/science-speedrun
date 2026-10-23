@@ -20,9 +20,9 @@ timeout_sec = 172800.0
 [environment]
 network_mode = "no-network"
 cpus = 64
-memory_mb = 131072
-storage_mb = 524288
-gpus = 1
+memory_mb = 524288
+storage_mb = 1048576
+gpus = 8
 gpu_types = ["H100"]
 build_timeout_sec = 7200.0
 

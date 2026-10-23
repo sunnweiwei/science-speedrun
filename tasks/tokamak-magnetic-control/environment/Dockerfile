@@ -26,6 +26,9 @@ COPY environment/data /opt/tokamak-task/data
 COPY environment/evaluation /opt/tokamak-task/evaluation
 COPY tests /tests
 ENV PYTHONPATH=/opt/tokamak-task TOKAGYM_DATA_DIR=/opt/tokamak-task/data/machine_configs
+# One thread per process: each episode is a single-threaded worker with its own CPU, so replays are
+# bitwise deterministic and never oversubscribe the verifier's CPUs.
+ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMBA_NUM_THREADS=1 MKL_NUM_THREADS=1
 RUN mkdir -p /logs/verifier /workspace/submission
 
 # ---------------------------------------------------------------- development

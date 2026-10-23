@@ -1,5 +1,8 @@
 # PID controllers: results
 
+The tables below use `tokamak-shape-metrics/v3` (35 sealed episodes, void episodes excluded). The privileged
+PID runs through `pid_reference.py`, not the verifier's fallback ladder, so it was not re-scored under v4.
+
 ## v0.3 (`tokamak-shape-metrics/v3`, sealed seeds 1001-1005)
 
 Privileged PID, vertical set-point from the target equilibrium (`env.vertical_target_at`), 2026-10-05:

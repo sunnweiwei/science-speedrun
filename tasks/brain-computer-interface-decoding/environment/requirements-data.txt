@@ -1,0 +1,8 @@
+numpy==1.26.4
+scipy==1.16.2
+scikit-learn==1.9.1
+mne==1.10.2
+lmdb==2.3.0
+einops==0.8.1
+tqdm==4.67.1
+huggingface_hub==2.3.0

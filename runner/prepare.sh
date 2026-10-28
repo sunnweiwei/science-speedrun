@@ -90,6 +90,10 @@ case "$task" in
   fluid-flow-control)                     # HydroGym release (423 GB, 39 cases, pinned HF commit), every file hash-verified
     inbox "huggingface_hub>=1.0,<2" "python environment/data/materialize.py $root --download"
     data=$root; private=$root ;;
+  brain-computer-interface-decoding)      # public AD65/OpenBMI/Longitudinal release + controlled FACED/TUEV release (HF_TOKEN of an
+                                          # approved account) + public braindecode checkpoints; every file SHA-256 checked (~30 GB)
+    inbox "-r environment/requirements-data.txt" "bash environment/data/materialize.sh release $root"
+    data=$root/runtime/development; private=$root/runtime/private ;;
   tokamak-magnetic-control)               # no data: the machine description is vendored into the images
     data=$root; private=$root ;;
   *) echo "No prepare recipe for $task; follow its environment/data/MATERIALIZE.md" >&2; exit 1 ;;

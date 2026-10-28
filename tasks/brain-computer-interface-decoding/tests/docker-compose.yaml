@@ -1,0 +1,12 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    volumes:
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR}
+        target: /private/data
+        read_only: true
+        bind:
+          create_host_path: false

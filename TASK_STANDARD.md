@@ -151,8 +151,8 @@ Task-specific extras (model-gateway settings, scorer assets) are listed in the t
 `tests/test.sh` writes `/logs/verifier/reward.json`. It contains `reward`, a number in [0, 1] and
 higher is better, next to every raw metric. The exceptions are tasks that deliberately report
 several metrics without an aggregate, because no weighted mean of them would be a measured
-quantity (hydrogym, protein-design, atomistic-materials). Invalid
-packages score 0. Infrastructure failures produce no reward.
+quantity (hydrogym, protein-design, atomistic-materials, brain-computer-interface-decoding).
+Invalid packages score 0. Infrastructure failures produce no reward.
 
 ## README.md (developers)
 

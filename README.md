@@ -35,6 +35,7 @@ The budget column is the agent's development budget in `task.toml`, one of two s
 | [atomistic-materials](tasks/atomistic-materials) | one universal interatomic potential (energy, forces, stress) from random initialization (UMA-S architecture) for eight suites: stability screening, phonons, elasticity, thermal conductivity, MOF mechanics, amorphous solids, surfaces, Li-migration NEB (Crystal Potential Score v2 / 100) | 8× H100, 48 h | 0.105 | 0.371 (scratch, validation) | 0.50 (pretrained UMA-S mixed replay) | HF release, 89 GB (42.4M-frame DFT pool + eight suites) |
 | [earth-observation-pretraining-transfer](tasks/earth-observation-pretraining-transfer) | one from-scratch geospatial encoder (Sentinel-1/2 time series, OlmoEarth-style) whose frozen features transfer to AWF land-cover classification and live fuel moisture (LFMC) regression; reward = mean of AWF accuracy and LFMC MAE skill | 8× H100, 48 h | 0.406 | — (starter: 77.0% AWF / 21.46 LFMC MAE, validation) | — | pinned public sources, ~148 GB download (agent view 100 GB, private 12 GB) |
 | [fruit-fly-neuron-reconstruction](tasks/fruit-fly-neuron-reconstruction) | FFN, SENSE and SHAPE weights for a fixed PATHFINDER-style pipeline that reconstructs fruit-fly neurons from 16 nm MaleCNS electron microscopy; reward = local sparse nERL of the SHAPE-merged reconstruction | 8× H100, 48 h | 0.00002 | — (starter: 0.035 stitched eight-window nERL, validation) | — | HF release, 14.5 GB |
+| [brain-computer-interface-decoding](tasks/brain-computer-interface-decoding) | one jointly trained EEG backbone with five classification heads: FACED emotion, TUEV clinical events, AD65 dementia diagnosis, OpenBMI motor imagery, eyes open/closed (Longitudinal); five balanced-accuracy rewards, no aggregate | 1× H100, 48 h | 0.351 / 0.595 / 0.716 / 0.730 / 0.752 | 0.196 / 0.558 / 0.598 / 0.633 / 0.769 | — | public HF release (AD65, OpenBMI, Longitudinal; 9.7 GB) + controlled FACED/TUEV release (provider approval, HF_TOKEN; 19.8 GB) |
 
 Notes on the table:
 - Rewards are raw task metrics; larger is better, except molecular-pretraining-transfer's MA-RAE (lower is better).
@@ -106,6 +107,12 @@ Notes on the table:
   and the latency gate measured after the replay. Its verifier is CPU-bound, one single-threaded worker per episode on
   112 CPUs; `shape_vc` scores 48/105 = 0.457 and the run took 5.2 h on a shared, oversubscribed host, where one episode
   with three late solver failures set the wall time.
+- brain-computer-interface-decoding was tested with a 1 h Codex session (gpt-6.1-sol, medium) on one H100. The agent
+  published a pilot within two minutes, then tried several shared architectures and published 24 versions, selecting
+  on validation with per-track regression guards; the last one, a fused temporal–spectral network, beat the shared
+  CodeBrain baseline on four of five tracks (AD65 has 18 test patients, so one patient is about 5 points). The session
+  found a 64 MB /dev/shm and a relative-path bug in the baseline's inference wrapper, both fixed in ai4sci-tasks#158.
+  Baseline = shared CodeBrain, pretrained, five-seed test mean; the verifier takes about 4 min.
 
 ## Quick start
 

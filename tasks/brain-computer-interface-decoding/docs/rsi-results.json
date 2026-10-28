@@ -1,0 +1,99 @@
+{
+  "schema": "bci-results-v2",
+  "recorded_date": "2026-10-21",
+  "scope": "full private test; author-reported; independent maintainer replay pending",
+  "track_order": [
+    "faced",
+    "tuev",
+    "ad65",
+    "openbmi",
+    "longitudinal"
+  ],
+  "hf_release": {
+    "repo": "AI4Sci-BCI/AI4BCI_model_weights",
+    "repo_type": "model",
+    "revision": "0d18646feb67739f813012db408f8b9fedc67bba",
+    "files": 1267,
+    "bytes": 6670694867
+  },
+  "rsi": [
+    {
+      "kind": "fixed_recipe_replication",
+      "seed": 0,
+      "scores": {
+        "faced": 0.24235104669887278,
+        "tuev": 0.6562268515653327,
+        "ad65": 0.6523809523809524,
+        "openbmi": 0.7784090909090909,
+        "longitudinal": 0.7749199268051528
+      },
+      "package_sha256": "d15397fb724ee881c14ba4cbc6cbd66de2139b85d98d45d13d50db4767231b01",
+      "hf_package_path": "rsi/replication/seed-0"
+    },
+    {
+      "kind": "fixed_recipe_replication",
+      "seed": 1,
+      "scores": {
+        "faced": 0.20450885668276975,
+        "tuev": 0.6076096648380122,
+        "ad65": 0.48095238095238096,
+        "openbmi": 0.735909090909091,
+        "longitudinal": 0.7813683605802084
+      },
+      "package_sha256": "5e3c68209366be0e80cc11d280aa75d140973fd12a4bd6f7ac2e8bcdbdcb73bc",
+      "hf_package_path": "rsi/replication/seed-1"
+    },
+    {
+      "kind": "fixed_recipe_replication",
+      "seed": 2,
+      "scores": {
+        "faced": 0.2486580783682233,
+        "tuev": 0.6415802841051613,
+        "ad65": 0.5936507936507937,
+        "openbmi": 0.7454545454545456,
+        "longitudinal": 0.7861643835728782
+      },
+      "package_sha256": "9b2582da2bbb1242552ef0abea7ed2d84f2d45766ca34d20f2cb32fbd7ff99d7",
+      "hf_package_path": "rsi/replication/seed-2"
+    },
+    {
+      "kind": "fixed_recipe_replication",
+      "seed": 3,
+      "scores": {
+        "faced": 0.22906602254428343,
+        "tuev": 0.610544454517532,
+        "ad65": 0.6603174603174603,
+        "openbmi": 0.7468181818181818,
+        "longitudinal": 0.7662839273293014
+      },
+      "package_sha256": "25c7c71ed14bedbb062c410879929073119cae14281945b0d2a57d12d1c3528d",
+      "hf_package_path": "rsi/replication/seed-3"
+    },
+    {
+      "kind": "fixed_recipe_replication",
+      "seed": 4,
+      "scores": {
+        "faced": 0.22544283413848631,
+        "tuev": 0.6168922481258353,
+        "ad65": 0.5746031746031747,
+        "openbmi": 0.7606818181818181,
+        "longitudinal": 0.7776521170790903
+      },
+      "package_sha256": "aac6c147877870635a39f3e598566c19cc08219e32cf75f8baeb9350d3f31932",
+      "hf_package_path": "rsi/replication/seed-4"
+    },
+    {
+      "kind": "selected_search",
+      "seed": 0,
+      "scores": {
+        "faced": 0.24235104669887278,
+        "tuev": 0.6562268515653327,
+        "ad65": 0.6523809523809524,
+        "openbmi": 0.7784090909090909,
+        "longitudinal": 0.7749199268051528
+      },
+      "package_sha256": "1bf4b07df32c5c62da2418a7b746c8a039541594c3fbf121fa8c48483979b7f9",
+      "hf_package_path": "rsi/selected-seed0"
+    }
+  ]
+}

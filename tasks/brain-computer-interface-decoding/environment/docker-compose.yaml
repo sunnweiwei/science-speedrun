@@ -1,0 +1,15 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    # PyTorch DataLoader workers pass batches through /dev/shm (Docker's default is 64 MB).
+    shm_size: "16gb"
+    volumes:
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/faced:/workspace/data/faced:ro
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/tuev:/workspace/data/tuev:ro
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/ad65:/workspace/data/ad65:ro
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/openbmi:/workspace/data/openbmi:ro
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/longitudinal:/workspace/data/longitudinal:ro
+      - ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/pretrained:/workspace/data/pretrained:ro
+      - ${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR}:/workspace/research

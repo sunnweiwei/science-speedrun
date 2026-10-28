@@ -1,0 +1,34 @@
+schema_version = "1.3"
+artifacts = ["/workspace/submission"]
+[task]
+name = "ai4sci/brain-computer-interface-decoding"
+version = "0.3.0"
+description = "Develop one jointly trained EEG backbone with five independently scored classification heads."
+authors = [{name = "Jingying Ma"}]
+keywords = ["model-development", "eeg", "bci", "cross-subject"]
+[metadata]
+data_status = "AD65/OpenBMI/Longitudinal: public HF release sunweiwei/ai4sci-brain-computer-interface-decoding-data@6b42dfe (rebuilt from pinned public sources); FACED/TUEV: controlled HF release AI4Sci-BCI/AI4BCI_private_dataset@1672c03; pretrained: public braindecode checkpoints pinned by hash"
+initialization = "scratch or task-provided audited pretrained checkpoints"
+score_contract = "five independent track rewards, no scalar aggregate"
+validation_status = "maintainer acceptance 2026-10-28: 15 shared, 25 specialist and the RSI package rescored through the verifier on the released data (largest difference 0.0002); Harbor verify, pilot publish and nop trial pass; see docs/acceptance-2026-10.md"
+[agent]
+timeout_sec = 172800.0
+[environment]
+network_mode = "no-network"
+cpus = 64
+memory_mb = 131072
+storage_mb = 512000
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0
+[verifier]
+environment_mode = "separate"
+timeout_sec = 43200.0
+[verifier.environment]
+network_mode = "no-network"
+cpus = 8
+memory_mb = 65536
+storage_mb = 102400
+gpus = 1
+gpu_types = ["H100"]
+build_timeout_sec = 7200.0

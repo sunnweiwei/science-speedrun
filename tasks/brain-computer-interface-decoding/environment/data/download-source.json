@@ -1,0 +1,21 @@
+{
+  "public": {
+    "repo_id": "sunweiwei/ai4sci-brain-computer-interface-decoding-data",
+    "revision": "6b42dfe12a4fe228d1c3e2f238ff044244ae7aeb",
+    "manifest_sha256": "5cefb0903fde463cd4854f361eaa096b8f26ca7233153a00016230ba2901de7d",
+    "tracks": [
+      "ad65",
+      "openbmi",
+      "longitudinal"
+    ]
+  },
+  "controlled": {
+    "repo_id": "AI4Sci-BCI/AI4BCI_private_dataset",
+    "revision": "1672c0343a719761fea07b2590cfe4214000b957",
+    "manifest_sha256": "ab3f17adfaf6ced401918fb45b327d8771cc22f6c5a1dd0aa463298d6a2703a4",
+    "tracks": [
+      "faced",
+      "tuev"
+    ]
+  }
+}

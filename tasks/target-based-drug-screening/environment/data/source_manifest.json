@@ -1,0 +1,42 @@
+{
+  "schema_version": "drugclip-source-manifest/v1",
+  "drugclip_benchmarks": {
+    "repository": "THU-ATOM/DrugCLIP_data",
+    "revision": "1025437db09a31d956dfede6a9a4bec81131713d",
+    "files": [
+      {
+        "name": "DUD-E.zip",
+        "size": 6148623196,
+        "sha256": "4541689816c4d53fc55fd2e9d7760e0e45815e414439e8d5b9d63596ae44fe37"
+      },
+      {
+        "name": "LIT-PCBA.zip",
+        "size": 2763770704,
+        "sha256": "3ae086998bd295fb40bf6ec1707d68eba9b2e77b2054bde73d90ddee53d38ef0"
+      }
+    ]
+  },
+  "profsadb": {
+    "repository": "THU-ATOM/ProFSADB",
+    "revision": "521bb4c5090284e71b8655b490703d7e6e4c4aaa",
+    "file": {
+      "name": "complex.tar.gz",
+      "size": 33692035704,
+      "sha256": "a4fe2d6d6c0461b7481fa820cf34d4adc2ca4063a0a299e1b0fb8c1bd31663a1"
+    }
+  },
+  "biolip2": {
+    "name": "Q-BioLiP (BioLiP2 successor) protein-small-molecule bundle",
+    "snapshot": "static complete bundle before 2026-01-02",
+    "observed_last_modified": "2026-02-10",
+    "base_url": "https://yanglab.qd.sdu.edu.cn/BioLiP2/DATA",
+    "files": [
+      {"name": "application/PL/redund_rec.tar.gz", "size": 22502369452, "etag": "53d3ee8ac-64a33c957ebe8"},
+      {"name": "application/PL/redund_lig.tar.gz", "size": 378740184, "etag": "16931dd8-64a33c98e2399"},
+      {"name": "application/PL/redund_fasta.tar.gz", "size": 57487252, "etag": "36d2f94-64a6dcc7f2fc1"},
+      {"name": "application/PL/PL_annotation.csv", "size": 45333276, "etag": "2b3bb1c-64a33c9a4e80e"},
+      {"name": "artlist", "size": 1809, "etag": "711-5fed772eb4bc0"}
+    ],
+    "checksum_note": "The official site does not publish SHA256 values. materialize computes SHA256 after download and records it in data/raw/biolip2/download_manifest.json; --biolip-lock can enforce a previously frozen manifest. Size and ETag are pinned here and checked before extraction."
+  }
+}

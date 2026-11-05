@@ -1,0 +1,32 @@
+services:
+  data:
+    build:
+      context: .
+      dockerfile: Materialize.Dockerfile
+    # Run as the host account so NFS output is user-owned rather than being
+    # root-squashed to nobody. Override these on a different host if needed.
+    user: "${TARGET_BASED_DRUG_SCREENING_UID:-1163739}:${TARGET_BASED_DRUG_SCREENING_GID:-1163739}"
+    environment:
+      HOME: "/tmp"
+      HF_HOME: "/tmp/huggingface"
+      TARGET_BASED_DRUG_SCREENING_WORKERS: "${TARGET_BASED_DRUG_SCREENING_WORKERS:-24}"
+      TARGET_BASED_DRUG_SCREENING_RECEPTOR_CACHE_SIZE: "${TARGET_BASED_DRUG_SCREENING_RECEPTOR_CACHE_SIZE:-8}"
+      TARGET_BASED_DRUG_SCREENING_TASK_CHUNK_SIZE: "${TARGET_BASED_DRUG_SCREENING_TASK_CHUNK_SIZE:-16}"
+      TARGET_BASED_DRUG_SCREENING_DATA_SOURCE: "${TARGET_BASED_DRUG_SCREENING_DATA_SOURCE:-huggingface}"
+      TARGET_BASED_DRUG_SCREENING_HF_REPO: "${TARGET_BASED_DRUG_SCREENING_HF_REPO:-}"
+      TARGET_BASED_DRUG_SCREENING_HF_REVISION: "${TARGET_BASED_DRUG_SCREENING_HF_REVISION:-}"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    volumes:
+      - type: bind
+        source: ./data
+        target: /recipe
+        read_only: true
+      - type: bind
+        source: ${TARGET_BASED_DRUG_SCREENING_DATA_DIR:-/home/zifengw2/github/rsi-for-science/.agent-runtime/target-based-drug-screening/materialized}
+        target: /data
+        bind:
+          create_host_path: false
+    command: ["bash", "/recipe/materialize.sh", "/data"]
+

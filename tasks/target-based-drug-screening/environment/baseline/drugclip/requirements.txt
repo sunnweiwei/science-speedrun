@@ -1,0 +1,4 @@
+numpy>=1.26
+torch>=2.4
+lmdb>=1.5
+rdkit>=2024.3

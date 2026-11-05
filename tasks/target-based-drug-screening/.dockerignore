@@ -1,0 +1,7 @@
+data/**
+research/**
+pretrained/**
+**/__pycache__
+**/.pytest_cache
+**/*.pt
+**/*.lmdb

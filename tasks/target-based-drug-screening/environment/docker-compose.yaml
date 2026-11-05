@@ -1,0 +1,27 @@
+# Agent overlay. Downloads run separately through data-compose.yaml/prepare.sh.
+x-data: &data
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+    shm_size: "32gb"
+    volumes:
+      - {<<: *data, source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the staged development view}/processed", target: /workspace/data/processed}
+      - {<<: *data, source: "${TASK_DATA_DIR}/splits", target: /workspace/data/splits}
+      - {<<: *data, source: "${TASK_DATA_DIR}/pretrained", target: /workspace/data/pretrained}
+      - {<<: *data, source: "${TASK_DATA_DIR}/.complete.json", target: /workspace/data/.complete.json}
+      - type: bind
+        source: "${TASK_RESEARCH_DIR:?Set TASK_RESEARCH_DIR to a fresh writable directory}"
+        target: /workspace/research
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /workspace/data/.complete.json && test -s /workspace/data/processed/profsa_pretrain_500k/data.lmdb && test -s /workspace/data/processed/biolip_train/data.lmdb && test -s /workspace/data/processed/biolip_dev/data.lmdb && test -s /workspace/data/pretrained/manifest.json && test ! -e /workspace/data/test"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

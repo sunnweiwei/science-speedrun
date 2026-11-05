@@ -1,0 +1,38 @@
+{
+  "status": "adopted as drugclip-dataset-bedroc/v2; values reaggregated from the recorded original report",
+  "protocol": "equal-dataset mean of within-dataset macro BEDROC(alpha=80.5)",
+  "source_report_sha256": "6b5362198cc693dcf66ca269f2381515f849d33997ba84c5f7df8a0373c759eb",
+  "datasets": {
+    "dude": {
+      "targets": 102,
+      "mean_bedroc": 0.29458759171234256,
+      "median_bedroc": 0.1999767121803448,
+      "expected_random_bedroc": 0.022292507620021728,
+      "targets_ef1_below_random": 22,
+      "targets_ef1_zero": 10
+    },
+    "lit_pcba": {
+      "targets": 15,
+      "mean_bedroc": 0.03818222131848757,
+      "median_bedroc": 0.01820357694129742,
+      "expected_random_bedroc": 0.017351744537937346,
+      "targets_ef1_below_random": 7,
+      "targets_ef1_zero": 4
+    }
+  },
+  "expected_random_reward": 0.019822126078979537,
+  "target_bootstrap_95pct_interval": [
+    0.13813545040959313,
+    0.19590153486138287
+  ],
+  "bootstrap": {
+    "repetitions": 20000,
+    "seed": 20261105,
+    "unit": "targets, resampled separately within each dataset",
+    "scope": "between-target uncertainty; not model-seed or wet-lab uncertainty"
+  },
+  "legacy_reward": 0.9415475887803699,
+  "target_macro_bedroc": 0.26171510832851497,
+  "scoring_protocol": "drugclip-dataset-bedroc/v2",
+  "reward": 0.16638490651541507
+}

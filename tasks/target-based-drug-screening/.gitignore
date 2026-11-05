@@ -1,0 +1,7 @@
+data/
+/data
+/environment/data/prepare_data.sh
+!environment/data/
+*.pyc
+__pycache__/
+.pytest_cache/

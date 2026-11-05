@@ -1,0 +1,108 @@
+{
+  "scoring_protocol": "drugclip-dataset-bedroc/v2",
+  "primary_metric": "equal-dataset mean BEDROC(alpha=80.5)",
+  "method": "reaggregated trusted full-suite reports; no new inference",
+  "aggregation_code_sha256": "e0dc92e38aff581f979bd28bb115d2066f25b7d678f43d0b4655963ef4c9f694",
+  "legacy_record": "independent_replay.json",
+  "replays": {
+    "harbor": {
+      "reward": 0.16638490651541504,
+      "complete_benchmark": true,
+      "benchmarks": {
+        "dude": {
+          "mean_bedroc_80.5": 0.2945875917123425,
+          "mean_ef_0.005": 21.89655424881837,
+          "mean_ef_0.01": 18.055988235981935,
+          "mean_ef_0.02": 12.95850744201888,
+          "mean_ef_0.05": 7.514117201492099,
+          "mean_roc_auc": 0.7686053618037795,
+          "targets": 102
+        },
+        "lit_pcba": {
+          "mean_bedroc_80.5": 0.03818222131848757,
+          "mean_ef_0.005": 3.8929621918593207,
+          "mean_ef_0.01": 2.8611660912128807,
+          "mean_ef_0.02": 2.473012880123863,
+          "mean_ef_0.05": 2.130667640737055,
+          "mean_roc_auc": 0.577487442474823,
+          "targets": 15
+        }
+      },
+      "migration": {
+        "kind": "reaggregation of stored per-target metrics; no new inference",
+        "source_primary_metric": "equal-target mean EF at 1%",
+        "source_report_sha256": "6b5362198cc693dcf66ca269f2381515f849d33997ba84c5f7df8a0373c759eb",
+        "source_reward": 0.9415475887803699,
+        "source_scoring_protocol": "legacy-ef1/(1+ef1)/v1"
+      },
+      "report_sha256": "869084277ff07444a77ae910958430a91d7a05a333612361d58e645cec17951c",
+      "model": "released DrugCLIP epoch-14 reference"
+    },
+    "upstream": {
+      "reward": 0.16638503257592027,
+      "complete_benchmark": true,
+      "benchmarks": {
+        "dude": {
+          "mean_bedroc_80.5": 0.29458758639926186,
+          "mean_ef_0.005": 21.89655424881837,
+          "mean_ef_0.01": 18.055988235981935,
+          "mean_ef_0.02": 12.95850744201888,
+          "mean_ef_0.05": 7.514117201492099,
+          "mean_roc_auc": 0.7686053802166996,
+          "targets": 102
+        },
+        "lit_pcba": {
+          "mean_bedroc_80.5": 0.0381824787525787,
+          "mean_ef_0.005": 3.8929621918593207,
+          "mean_ef_0.01": 2.8611660912128807,
+          "mean_ef_0.02": 2.473012880123863,
+          "mean_ef_0.05": 2.130667640737055,
+          "mean_roc_auc": 0.5774894365345544,
+          "targets": 15
+        }
+      },
+      "migration": {
+        "kind": "reaggregation of stored per-target metrics; no new inference",
+        "source_primary_metric": "equal-target mean EF at 1%",
+        "source_report_sha256": "c38e596844ae66328a60e46dffd9df62d29117a241182e7926002426bf61553f",
+        "source_reward": 0.9415475887803699,
+        "source_scoring_protocol": "legacy-ef1/(1+ef1)/v1"
+      },
+      "report_sha256": "22d6eb8f20361de94a61f5db75ff081d423df7f41bfc93d5670f24c1a30e9c42",
+      "model": "released DrugCLIP epoch-14 reference"
+    },
+    "minimal": {
+      "reward": 0.028706422860991725,
+      "complete_benchmark": true,
+      "benchmarks": {
+        "dude": {
+          "mean_bedroc_80.5": 0.03501873363963994,
+          "mean_ef_0.005": 1.4382574227308038,
+          "mean_ef_0.01": 1.5924313693362417,
+          "mean_ef_0.02": 1.5522711197741865,
+          "mean_ef_0.05": 1.514041816471656,
+          "mean_roc_auc": 0.6172342678735258,
+          "targets": 102
+        },
+        "lit_pcba": {
+          "mean_bedroc_80.5": 0.022394112082343504,
+          "mean_ef_0.005": 1.8117396708707758,
+          "mean_ef_0.01": 1.6688699157350062,
+          "mean_ef_0.02": 1.6034423023709947,
+          "mean_ef_0.05": 1.3239265059859013,
+          "mean_roc_auc": 0.4936577232813235,
+          "targets": 15
+        }
+      },
+      "migration": {
+        "kind": "reaggregation of stored per-target metrics; no new inference",
+        "source_primary_metric": "equal-target mean EF at 1%",
+        "source_report_sha256": "c7f3206dfdacd5ce4f7d7fa2e63517ddaf3d714a360e8e99b6a1196e9e35e236",
+        "source_reward": 0.6157143890436592,
+        "source_scoring_protocol": "legacy-ef1/(1+ef1)/v1"
+      },
+      "report_sha256": "6d8cd8e1ffe0b152cc21b6d56f75173133cca8df11738d276f553e43da8be338",
+      "model": "atom-histogram eight-record wiring package"
+    }
+  }
+}

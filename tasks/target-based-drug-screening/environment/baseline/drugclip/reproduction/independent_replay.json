@@ -1,0 +1,119 @@
+{
+  "model": "DrugCLIP epoch 14, 95,305,418 parameters",
+  "weights": {
+    "repo": "chromeNLP/openssi-target-based-drug-screening",
+    "revision": "1f4e4a2ca0784438c4d69ccea5ffb27fb065f68a",
+    "sha256": "bb108dcec5608b04eee546a0ed57248ab5f956cb61799a8c5611ab9c8da7c772"
+  },
+  "data": {
+    "repo": "zifeng-ai/target-based-drug-screening",
+    "revision": "c8d2febc996e4c96b10f3aecd89fb7375150449f",
+    "development_file_manifest_sha256": "984a54a1f5d49f6534e40b30fc437ff01f12e3560ce4c3e2851bb7edb5f967d2",
+    "private_file_manifest_sha256": "bdcc7dfbc1e4af19148fa437fe2363fc3ef716dec3e586223dd29e3b5d952de3"
+  },
+  "crop_policy": "author_distance_weighted_v1",
+  "inference_crop_seed": 1,
+  "original_training_seed": null,
+  "author_reported_ef1": {
+    "dude": 18.055988235981932,
+    "lit_pcba": 2.861166091212881,
+    "overall": 16.107934114857695
+  },
+  "replays": {
+    "harbor": {
+      "reward": 0.9415475887803699,
+      "metrics": {
+        "dude": {
+          "targets": 102,
+          "ligands": 1433536,
+          "ef_0.005": 21.896554248818372,
+          "ef_0.01": 18.055988235981935,
+          "ef_0.02": 12.95850744201888,
+          "ef_0.05": 7.514117201492098,
+          "roc_auc": 0.7686053618037795,
+          "bedroc_80.5": 0.2945875917123425
+        },
+        "lit_pcba": {
+          "targets": 15,
+          "ligands": 2807612,
+          "ef_0.005": 3.892962191859321,
+          "ef_0.01": 2.8611660912128807,
+          "ef_0.02": 2.473012880123863,
+          "ef_0.05": 2.1306676407370553,
+          "roc_auc": 0.577487442474823,
+          "bedroc_80.5": 0.03818222131848757
+        },
+        "overall": {
+          "targets": 117,
+          "ligands": 4241148,
+          "ef_0.005": 19.58840142100311,
+          "ef_0.01": 16.1079341148577,
+          "ef_0.02": 11.614213267416956,
+          "ef_0.05": 6.823931360369657,
+          "roc_auc": 0.7441030644539133,
+          "bedroc_80.5": 0.26171510832851497
+        }
+      },
+      "raw_report_sha256": "6b5362198cc693dcf66ca269f2381515f849d33997ba84c5f7df8a0373c759eb",
+      "reward_json_sha256": "b9d981c78b4bba2d7485674d8b4e03ab0668d5a5edc8767c91ce536c30502b3c",
+      "permutation_digest": "eee7fd6dd41eb657dffecfcf97208c6dcca2377ffe43e2ccb452ed1b4b937a79",
+      "task_revision": "a8605fe33ea3fa1169c4a7a802b76c78dcc045fc",
+      "runtime": "Harbor 0.23.0, original pinned PyTorch task/verifier images, Python 3.11.13, PyTorch 2.7.1+cu126, one RTX A6000",
+      "report_file": "report.json"
+    },
+    "upstream": {
+      "reward": 0.9415475887803699,
+      "metrics": {
+        "dude": {
+          "targets": 102,
+          "ligands": 1433536,
+          "ef_0.005": 21.896554248818372,
+          "ef_0.01": 18.055988235981935,
+          "ef_0.02": 12.95850744201888,
+          "ef_0.05": 7.514117201492098,
+          "roc_auc": 0.7686053802166994,
+          "bedroc_80.5": 0.2945875863992618
+        },
+        "lit_pcba": {
+          "targets": 15,
+          "ligands": 2807612,
+          "ef_0.005": 3.892962191859321,
+          "ef_0.01": 2.8611660912128807,
+          "ef_0.02": 2.473012880123863,
+          "ef_0.05": 2.1306676407370553,
+          "roc_auc": 0.5774894365345544,
+          "bedroc_80.5": 0.0381824787525787
+        },
+        "overall": {
+          "targets": 117,
+          "ligands": 4241148,
+          "ef_0.005": 19.58840142100311,
+          "ef_0.01": 16.1079341148577,
+          "ef_0.02": 11.614213267416956,
+          "ef_0.05": 6.823931360369657,
+          "roc_auc": 0.744103336154886,
+          "bedroc_80.5": 0.26171513670096913
+        }
+      },
+      "raw_report_sha256": "c38e596844ae66328a60e46dffd9df62d29117a241182e7926002426bf61553f",
+      "reward_json_sha256": "a21b18b973d458167bd5bb91de642f924fc7c43a38980c7385abf42f8a3e0150",
+      "permutation_digest": "860910d760a879a0d1642d9d12fba53d364efd06594c55f6b5f51f54fc2c19d0",
+      "task_revision": "1ddf16992756167aacf8ba647aa17c5ffac0faaa",
+      "runtime": "Offline Ubuntu 22.04, Python 3.12.11, PyTorch 2.7.1+cu126, one RTX A6000, original tests/test.sh",
+      "report_file": "details.json"
+    }
+  },
+  "maximum_per_target_absolute_difference_between_replays": {
+    "ef_0.005": 1.7763568394002505e-15,
+    "ef_0.01": 1.1102230246251565e-16,
+    "ef_0.02": 3.552713678800501e-15,
+    "ef_0.05": 8.881784197001252e-16,
+    "roc_auc": 2.756111677659767e-05,
+    "bedroc_80.5": 4.134414308160084e-06
+  },
+  "harbor_minus_author_mean_ef1": {
+    "dude": 3.552713678800501e-15,
+    "lit_pcba": -4.440892098500626e-16,
+    "overall": 3.552713678800501e-15
+  }
+}

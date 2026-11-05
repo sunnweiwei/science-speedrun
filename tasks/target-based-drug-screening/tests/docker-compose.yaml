@@ -1,0 +1,17 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    volumes:
+      - type: bind
+        source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the staged private view}/test"
+        target: /private/benchmark/test
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test: ["CMD-SHELL", "test -d /private/benchmark/test/dude && test -d /private/benchmark/test/lit_pcba"]
+      interval: 5s
+      timeout: 5s
+      retries: 3

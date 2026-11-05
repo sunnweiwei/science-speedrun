@@ -114,6 +114,23 @@ Notes on the table:
   found a 64 MB /dev/shm and a relative-path bug in the baseline's inference wrapper, both fixed in ai4sci-tasks#158.
   Baseline = shared CodeBrain, pretrained, five-seed test mean; the verifier takes about 4 min.
 
+## Additional task under behavior review
+
+[target-based-drug-screening](tasks/target-based-drug-screening) develops a
+DrugCLIP-style pocket–ligand retrieval model. Its task format, isolated
+verifier and released reference checkpoint have been checked. The baseline
+reward is **0.166385**, the equal-dataset mean BEDROC(alpha=80.5) over 102
+DUD-E and 15 LIT-PCBA targets; EF1% remains a separate diagnostic. The declared
+research budget is 8 H100s for 48 hours. A one-hour CPU-only real-agent behavior
+session is in progress; no result from that session is claimed yet.
+
+The task uses the same `runner/prepare.sh`, `runner/run.sh` and
+`runner/run_verify.sh` entry points as the tasks above. It has no task-local
+controller. The [acceptance record](tasks/target-based-drug-screening/docs/ACCEPTANCE.md)
+separates the released-model replay, small training checks and historical
+results. No datasets, private labels or released baseline weights are
+included in this repository.
+
 ## Quick start
 
 ```bash

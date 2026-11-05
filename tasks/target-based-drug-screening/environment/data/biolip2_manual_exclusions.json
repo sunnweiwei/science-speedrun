@@ -1,0 +1,18 @@
+{
+  "schema_version": "biolip2-manual-exclusions/v1",
+  "source_snapshot": "static complete bundle before 2026-01-02",
+  "decision": "Exclude the 11 uncached records remaining when the 2026-09-22 BioLiP2 preparation stalled; retain all completed cache entries.",
+  "excluded_complexes": [
+    {"complex_id": "9wat_1__9wat_1_HEM_B1", "ligand_id": "HEM", "detail": "Manual stalled-tail exclusion on 2026-09-22; heme, not automatically classified as invalid."},
+    {"complex_id": "9wat_1__9wat_1_HEM_B2", "ligand_id": "HEM", "detail": "Manual stalled-tail exclusion on 2026-09-22; heme, not automatically classified as invalid."},
+    {"complex_id": "9w9d_1__9w9d_1_kmer_1_C", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9w9d_1__9w9d_1_kmer_1_B", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9w9d_1__9w9d_1_kmer_1_D", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9wa9_1__9wa9_1_kmer_1_D", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9wa9_1__9wa9_1_kmer_1_B", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9wa9_1__9wa9_1_kmer_1_C", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9waa_1__9waa_1_kmer_1_B", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9waa_1__9waa_1_kmer_1_C", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."},
+    {"complex_id": "9waa_1__9waa_1_kmer_1_D", "ligand_id": "KMER", "detail": "Manual stalled-tail exclusion on 2026-09-22; k-mer is outside the intended small-molecule scope."}
+  ]
+}

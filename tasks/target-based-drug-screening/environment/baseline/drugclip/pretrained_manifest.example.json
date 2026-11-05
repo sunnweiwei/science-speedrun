@@ -1,0 +1,28 @@
+{
+  "molecule": {
+    "checkpoint_tensor_parameters": 47618915,
+    "path": "mol_pre_no_h_220816.pt",
+    "sha256": "da27196af09a8c6d089e10b7764b6a716bcc33da227fc118f5b45b0e484585e9",
+    "size": 190540187,
+    "source_release": "v0.1",
+    "source_repository": "deepmodeling/Uni-Mol",
+    "source_url": "https://github.com/deepmodeling/Uni-Mol/releases/download/v0.1/mol_pre_no_h_220816.pt"
+  },
+  "molecule_dictionary": {
+    "path": "dict_mol.txt",
+    "sha256": "94135cb9a9198f988de684cb61e2c372882a3bd59b8320effbae704c38057127",
+    "size": 91,
+    "source_path": "unimol/example_data/molecule/dict.txt",
+    "source_repository": "deepmodeling/Uni-Mol",
+    "source_revision": "90f52c41299a1a582da0f9765e9f87aa21faa16a"
+  },
+  "pocket_dictionary": {
+    "path": "dict_pkt.txt",
+    "sha256": "5775af31a33d78c5f5f2555c4506debbd2d47c6b29bf8a889237220b34b2c7d5",
+    "size": 33,
+    "source_path": "dict/dict_pkt.txt",
+    "source_repository": "THU-ATOM/Drug-The-Whole-Genome",
+    "source_revision": "9d0db73915219763b5bcc3b7de86d7c4edb5ed03"
+  },
+  "schema": "drugclip-pretrained-assets/v2"
+}

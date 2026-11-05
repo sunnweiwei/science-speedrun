@@ -1,0 +1,17 @@
+{
+  "schema_version": "drugclip-data-protocol/v1",
+  "seed": 20260910,
+  "pretrain_samples": 500000,
+  "pocket_cutoff_angstrom": 6.0,
+  "protein_identity_threshold_percent": 30.0,
+  "protein_coverage_threshold": 0.8,
+  "mmseqs_cov_mode": 0,
+  "ligand_tanimoto_threshold": 0.60,
+  "morgan_radius": 2,
+  "morgan_nbits": 2048,
+  "max_ligand_conformers": 10,
+  "conformer_prune_rms_angstrom": 0.5,
+  "development_fraction": 0.10,
+  "drugclip_code_revision": "9d0db73915219763b5bcc3b7de86d7c4edb5ed03",
+  "profsa_code_revision": "a056baed91277059acba3836d5fbf3fccfbee605"
+}

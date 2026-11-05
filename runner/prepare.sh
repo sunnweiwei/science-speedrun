@@ -12,7 +12,7 @@ image="${PREPARE_IMAGE:-speedrun-prepare:1}"
 $DOCKER image inspect "$image" >/dev/null 2>&1 || $DOCKER build -q -f "$here/Dockerfile.prepare" -t "$image" "$here"
 inbox() {  # inbox "pip pins" "command"  — run in the prepare image with the task and the data root
   $DOCKER run --rm ${HF_TOKEN:+-e HF_TOKEN} -v "$t:/task:ro" -v "$root:$root" -w /task "$image" bash -c \
-    "uv venv -q /tmp/v && uv pip install -q --python /tmp/v/bin/python $1 && export PATH=/tmp/v/bin:\$PATH && $2"
+    "uv venv -q /tmp/v && uv pip install -q --python /tmp/v/bin/python $1 && export PATH=/tmp/v/bin:\$PATH && $2" -- "${@:3}"
 }
 case "$task" in
   genome-sequence-to-function)            # prepared release from HF, verified; docker-based
@@ -28,6 +28,19 @@ case "$task" in
     inbox "huggingface_hub==0.36.2 h5py==3.16.0 numpy" \
       "python environment/data/materialize.py $root/agent --from-release --subtree train && python environment/data/materialize.py $root/verifier --from-release"
     data=$root/agent; private=$root/verifier ;;
+  target-based-drug-screening)
+    # Run the pinned release recipe and stage just the allowed files in each view.
+    inbox "-r environment/data/requirements.txt" '
+      set -eu
+      export HF_HOME="$1/.hf-cache"
+      bash environment/data/materialize.sh "$1/materialized"
+      python environment/data/prepare_pretrained.py "$1/pretrained"
+      python environment/data/stage_task_data.py --data-root "$1/materialized" \
+        --pretrained-root "$1/pretrained" --development-root "$1/development" --private-root "$1/private"
+      # The staged roots are mode 0700. Keep them accessible to the data-root owner.
+      chown --reference="$1" "$1/development" "$1/private"
+    ' "$root"
+    data=$root/development; private=$root/private ;;
   timeseries-forecasting)                 # GiftEval + pretraining corpus (275 GB), validation cases
     inbox "huggingface_hub numpy pandas pyarrow datasets" \
       "python environment/data/materialize.py $root && python environment/evaluation/make_cases.py --data $root --manifest environment/data/split.json --split valid --input $root/valid/input --truth $root/valid/truth"

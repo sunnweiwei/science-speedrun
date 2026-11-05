@@ -1,0 +1,8 @@
+{
+  "schema": "target-based-drug-screening-model/v1",
+  "method": "atom-histogram-starter",
+  "checkpoint": {"path": "model.pt", "sha256": "filled-by-train.py"},
+  "model_config": "model_config.json",
+  "parameter_count": 0,
+  "training_summary": "training_summary.json"
+}

@@ -1,0 +1,45 @@
+{
+  "scoring_protocol": "drugclip-dataset-bedroc/v2",
+  "model": "eight-record atom-histogram wiring package",
+  "trial_name": "drugclip-bedroc-v2",
+  "task_checksum": "cdc146002ea6acee905cabb09b682857d6df98059c5b6b25c8948513e708d603",
+  "started_at": "2026-11-05T02:15:31.314099Z",
+  "finished_at": "2026-11-05T02:21:44.149470Z",
+  "reward": 0.028706453638179034,
+  "reward_fields": {
+    "reward": 0.028706453638179034,
+    "overall_mean_roc_auc": 0.6013911494221339,
+    "overall_mean_bedroc_80.5": 0.033399276716451404,
+    "overall_mean_ef_0.005": 1.4861397622359283,
+    "overall_mean_ef_0.01": 1.6022311829771092,
+    "overall_mean_ef_0.02": 1.5588315277994182,
+    "overall_mean_ef_0.05": 1.4896680587170719,
+    "dataset_balanced_bedroc": 0.028706453638179034
+  },
+  "targets": 117,
+  "ligands": 4241148,
+  "benchmarks": {
+    "dude": {
+      "mean_bedroc_80.5": 0.035017491571028084,
+      "mean_ef_0.005": 1.4382574227308038,
+      "mean_ef_0.01": 1.5924313693362417,
+      "mean_ef_0.02": 1.5522711197741865,
+      "mean_ef_0.05": 1.514041816471656,
+      "mean_roc_auc": 0.6172342741950014,
+      "targets": 102
+    },
+    "lit_pcba": {
+      "mean_bedroc_80.5": 0.022395415705329984,
+      "mean_ef_0.005": 1.8117396708707758,
+      "mean_ef_0.01": 1.6688699157350062,
+      "mean_ef_0.02": 1.603442302370995,
+      "mean_ef_0.05": 1.3239265059859016,
+      "mean_roc_auc": 0.4936579009666341,
+      "targets": 15
+    }
+  },
+  "raw_report_sha256": "2d47a3023ce687cef09b1e744eeac827ec6f17f0b12f16af169ab1427b1cef70",
+  "reward_difference_from_migrated_prior_run": 3.077718730912227e-08,
+  "mean_ef1_difference_from_prior_run": 0.0,
+  "scope": "full native Harbor agent-copy and separate verifier; one shared RTX A6000; no full baseline retraining"
+}

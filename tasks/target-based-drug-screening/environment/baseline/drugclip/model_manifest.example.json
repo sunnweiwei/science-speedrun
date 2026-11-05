@@ -1,0 +1,11 @@
+{
+  "checkpoint": {
+    "path": "model.pt",
+    "sha256": "filled-by-train.py"
+  },
+  "method": "paper-dual-unimol",
+  "model_config": "model_config.json",
+  "parameter_count": 0,
+  "schema": "target-based-drug-screening-model/v2",
+  "training_summary": "training_summary.json"
+}

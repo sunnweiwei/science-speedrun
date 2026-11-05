@@ -1,0 +1,91 @@
+{
+  "schema": "drugclip-reported-gpu-verification/v1",
+  "recorded_date": "2026-10-15",
+  "provenance": {
+    "source": "Zifeng Wang supplied the GPU training verification and held-out rescore in the PR #131 follow-up conversation.",
+    "related_training_pr": 94,
+    "integration_pr": 131,
+    "evidence_kind": "operator-reported training and held-out metrics",
+    "reexecuted_when_recorded": false
+  },
+  "data": {
+    "repo_id": "zifeng-ai/target-based-drug-screening",
+    "repo_type": "dataset",
+    "revision": "c8d2febc996e4c96b10f3aecd89fb7375150449f"
+  },
+  "environment": {
+    "python": "3.11",
+    "torch": "2.6.0+cu124",
+    "gpu_type": "A100",
+    "gpu_memory_gib": null
+  },
+  "model": {
+    "architecture": "Dual Uni-Mol",
+    "parameter_count": 95305418,
+    "molecule_initialization": "Uni-Mol v0.1 mol_pre_no_h_220816.pt",
+    "pocket_initialization": "random"
+  },
+  "training": {
+    "profsa": {
+      "pairs": 500000,
+      "completed_epochs": 100,
+      "gpus": 8,
+      "per_gpu_batch_size": 48,
+      "learning_rate": 0.0001,
+      "molecule_backbone_frozen": true,
+      "wall_time_hours": 19.0
+    },
+    "biolip": {
+      "completed_epochs": 34,
+      "gpus": 4,
+      "per_gpu_batch_size": 48,
+      "learning_rate": 0.001,
+      "patience_epochs": 20,
+      "stop_reason": "20 epochs without a higher development BEDROC",
+      "wall_time_hours": 19.6,
+      "selection_metric": "development BEDROC",
+      "bedroc_alpha": 80.5,
+      "selected_epoch": 14,
+      "selected_development_bedroc": 0.4288,
+      "development_curve": "development_bedroc.csv"
+    }
+  },
+  "held_out": {
+    "primary_metric": "equal-target mean EF at 1%",
+    "target_count": 117,
+    "selected_epoch": 14,
+    "initial_mean_ef1": 1.83,
+    "initial_score_status": "superseded by corrected inference on the same checkpoint",
+    "final_mean_ef1": 16.108,
+    "inference_corrections": [
+      "pocket atoms use element tokens",
+      "test pocket crop allows 511 atoms",
+      "DUD-E median/MAD normalization then max pooling",
+      "LIT-PCBA max pooling"
+    ],
+    "benchmarks": {
+      "dude": {
+        "targets": 102,
+        "roc_auc": 0.769,
+        "bedroc_80.5": 0.295,
+        "ef1": 18.056
+      },
+      "lit_pcba": {
+        "targets": 15,
+        "roc_auc": 0.577,
+        "bedroc_80.5": 0.038,
+        "ef1": 2.861
+      }
+    },
+    "random_ranking_ef1_anchor": 1.0,
+    "metric_precision": "Reported rounded values; per-target metrics and other EF cutoffs were not supplied."
+  },
+  "artifacts_not_supplied": [
+    "exact training and inference code commits",
+    "checkpoint SHA256 or downloadable checkpoint",
+    "exact execution commands and random seed",
+    "raw training logs and per-target evaluation outputs",
+    "container/image IDs and UID-separated tests/test.sh replay evidence",
+    "inference wall time and peak memory"
+  ]
+}

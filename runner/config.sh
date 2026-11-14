@@ -21,6 +21,7 @@ CODEX_VERSION="${CODEX_VERSION:-0.160.1}"
 # made by `claude setup-token`) or ANTHROPIC_API_KEY, read from the caller's environment.
 CLAUDE_BIN="${CLAUDE_BIN:-$(command -v claude 2>/dev/null || true)}"
 CLAUDE_MODEL="${CLAUDE_MODEL:-anthropic/claude-opus-5-5}"
+CLAUDE_REASONING="${CLAUDE_REASONING:-}"                # reasoning effort (low|medium|high|xhigh|max); empty: Claude Code's default
 # Antigravity CLI (agy, Gemini models): a host binary mounted read-only (install it once with
 # `curl -fsSL https://antigravity.google/cli/install.sh | bash`); auth from GEMINI_API_KEY (or
 # GOOGLE_API_KEY), read from the caller's environment.
@@ -29,6 +30,10 @@ AGY_MODEL="${AGY_MODEL:-google/gemini-4-argon}"
 # Host directories the runner container must see at the same path (space separated), for example
 # the data roots in the env files. EVAL_ROOT, the tasks and this directory are always mounted.
 MOUNT_ROOTS="${MOUNT_ROOTS:-}"
+# Optional, off by default (harbor_ext/trial_options.py): a separate submission-only window of
+# GRACE_SECONDS after the research time (HOURS). The package from the end of research stays the
+# result; a package changed in the window is scored apart.
+GRACE_SECONDS="${GRACE_SECONDS:-0}"
 
 runner_mounts() {
   local d
@@ -47,7 +52,9 @@ agent_args() {
     claude-code)
       printf '%s\n' -a harbor_ext.claude_continue:ContinuingClaudeCode -m "$CLAUDE_MODEL" \
         --mounts "[{\"type\":\"bind\",\"source\":\"$CLAUDE_BIN\",\"target\":\"/usr/local/bin/claude\",\"read_only\":true}]" \
-        --allow-agent-host api.anthropic.com ;;
+        --allow-agent-host api.anthropic.com
+      [ -n "$CLAUDE_REASONING" ] && printf '%s\n' --agent-kwarg "reasoning_effort=$CLAUDE_REASONING"
+      return 0 ;;
     antigravity)
       printf '%s\n' -a harbor_ext.antigravity_continue:ContinuingAntigravity -m "$AGY_MODEL" \
         --mounts "[{\"type\":\"bind\",\"source\":\"$AGY_BIN\",\"target\":\"/usr/local/bin/agy\",\"read_only\":true}]" \

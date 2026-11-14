@@ -1,6 +1,10 @@
 """Build only the pinned PointNeXt FPS kernel, with no GPU execution.
 
 Source and upstream MIT license remain under the budget directory/vendor.
+
+The default architecture list is sm_86 and sm_90. A build for sm_86 alone cannot execute on an
+H100 (sm_90): the extension carries no PTX, so the first FPS call ends with "CUDA kernel failed :
+no kernel image is available for execution on the device". Set TORCH_CUDA_ARCH_LIST to override.
 """
 import argparse
 import os
@@ -19,7 +23,7 @@ def build(root):
     directory=root/'point-ops';directory.mkdir(exist_ok=True)
     binding=directory/'binding.cpp'
     binding.write_text('#include <torch/extension.h>\n#include "sampling_gpu.h"\nPYBIND11_MODULE(TORCH_EXTENSION_NAME,m){m.def("fps", &furthest_point_sampling_wrapper);}\n')
-    os.environ.setdefault('TORCH_CUDA_ARCH_LIST','8.6');os.environ.setdefault('MAX_JOBS','2')
+    os.environ.setdefault('TORCH_CUDA_ARCH_LIST','8.6;9.0');os.environ.setdefault('MAX_JOBS','2')
     return load(name='pathfinder_fps',sources=[str(binding),str(src/'sampling.cpp'),str(src/'sampling_gpu.cu')],
         extra_include_paths=[str(src)],extra_cflags=['-O2'],extra_cuda_cflags=['-O2'],build_directory=str(directory),verbose=True)
 

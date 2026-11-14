@@ -14,11 +14,16 @@ instead uses a host agy binary mounted read-only at /usr/local/bin/agy (the runn
     -a harbor_ext.antigravity_continue:ContinuingAntigravity -m google/<gemini model>
 
 Auth comes from the runner's environment: GEMINI_API_KEY (or GOOGLE_API_KEY).
+
+Optional, off by default (see trial_options.py): a separate submission-only window after the
+research time.
 """
 import re
 import shlex
 
 from harbor.agents.installed.antigravity_cli import AntigravityCli
+
+from harbor_ext import trial_options
 
 CONTINUE_PROMPT = (
     "Continue the research. There is no end point: pick up from your research notes and the latest "
@@ -49,9 +54,24 @@ class ContinuingAntigravity(AntigravityCli):
             return command
         flags = match.group(1)
         err, stream = self._STDERR_LOG_FILENAME, self._STREAM_LOG_FILENAME
-        resume = (f"{flags}--continue --prompt={shlex.quote(CONTINUE_PROMPT)} "
-                  f"2>>/logs/agent/{err} </dev/null | stdbuf -oL tee -a /logs/agent/{stream}")
+        def resumed(prompt):
+            return (f"{flags}--continue --prompt={shlex.quote(prompt)} "
+                    f"2>>/logs/agent/{err} </dev/null | stdbuf -oL tee -a /logs/agent/{stream}")
+        resume = resumed(CONTINUE_PROMPT)
         first = command.rstrip()[: -len("exit $rc")]
+        if trial_options.grace() is not None:
+            script = (
+                f"{first}\n"
+                "quick=0; turn=1\n"
+                f"while {trial_options.loop_guard()}[ $quick -lt {MAX_QUICK_EXITS} ]; do\n"
+                "  turn=$((turn+1)); start=$(date +%s)\n"
+                '  echo "{\\"type\\":\\"harbor.resume\\",\\"turn\\":$turn}" >&2\n'
+                f"  {resume}\n"
+                f"  if [ $(( $(date +%s) - start )) -lt {MIN_TURN_SECONDS} ]; then quick=$((quick+1)); "
+                f"sleep $((quick * {QUICK_EXIT_WAIT_SECONDS})); else quick=0; fi\n"
+                "done\n"
+            )
+            return trial_options.with_grace(script, resumed(trial_options.submit_prompt()))
         return (
             f"{first}\n"
             "quick=0; turn=1\n"

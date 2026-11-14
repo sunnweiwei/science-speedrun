@@ -4,6 +4,8 @@
 # Environment: AGENT_KIND=codex|claude-code; GPUS=task (task.toml, default) or N; GPU_IDS=0,1,...
 # (pool, default all); AGENT_CPUS / AGENT_MEMORY_MB override the task's resources; DATA_ENV_FILE
 # (default $ENVS_DIR/TASK.env). The separate verifier is deferred: score with run_verify.sh.
+# Optional: GRACE_SECONDS, a separate submission-only window after HOURS (see
+# harbor_ext/trial_options.py).
 set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
 name=$1; task=$2; hours=$3
@@ -14,11 +16,20 @@ resources=()
 if [ "${GPUS:-task}" != task ]; then resources+=(--override-gpus "$GPUS"); cap=(-e "HARBOR_GPU_CAP=$GPUS"); else cap=(); fi
 [ -n "${AGENT_CPUS:-}" ] && resources+=(--override-cpus "$AGENT_CPUS")
 [ -n "${AGENT_MEMORY_MB:-}" ] && resources+=(--override-memory-mb "$AGENT_MEMORY_MB")
+research_seconds=$(python3 -c "print(int(float('$hours') * 3600))")
+options=(); agent_timeout=$research_seconds
+if [ "${GRACE_SECONDS%.*}" -gt 0 ] 2>/dev/null; then
+  # The agent's own script ends research after HOURS, waits one snapshot interval so the collector
+  # keeps the package as it stood then, and runs the window; Harbor's timeout is only a backstop.
+  settle=$(( ${SNAPSHOT_INTERVAL:-60} + 15 ))
+  options+=(-e "HARBOR_RESEARCH_SECONDS=$research_seconds" -e "HARBOR_GRACE_SECONDS=${GRACE_SECONDS%.*}" -e "HARBOR_GRACE_SETTLE_SECONDS=$settle")
+  agent_timeout=$(( research_seconds + settle + ${GRACE_SECONDS%.*} + 180 ))
+fi
 mkdir -p "$EVAL_ROOT/trials" "$EVAL_ROOT/research/$name"
 $DOCKER run --rm --name "run-$name" $(runner_mounts) -w "$EVAL_ROOT" \
   -e PYTHONPATH="$HARNESS_DIR" -e HARBOR_GPU_DEVICE_IDS="${GPU_IDS:-}" "${cap[@]}" -e HARBOR_SKIP_VERIFIER=1 -e HARBOR_BUILD_NETWORK="${HARBOR_BUILD_NETWORK:-}" \
-  "${auth[@]}" -e TASK_RESEARCH_DIR="$EVAL_ROOT/research/$name" --env-file "$data_env" \
+  "${auth[@]}" "${options[@]}" -e TASK_RESEARCH_DIR="$EVAL_ROOT/research/$name" --env-file "$data_env" \
   "$RUNNER_IMAGE" harbor trial start -p "$TASKS_DIR/$task" "${agent[@]}" \
   --env harbor_ext.local_gpu_docker:LocalGpuDockerEnvironment "${resources[@]}" \
-  --agent-timeout "$(python3 -c "print(int(float('$hours') * 3600))")" \
+  --agent-timeout "$agent_timeout" \
   --trial-name "$name" --trials-dir "$EVAL_ROOT/trials"

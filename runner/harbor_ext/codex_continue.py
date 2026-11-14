@@ -9,10 +9,15 @@ loop (an auth, quota or CLI error would otherwise spin). Every Codex feature tha
 content is disabled, so the session stays offline apart from the model endpoint.
 
     -a harbor_ext.codex_continue:ContinuingCodex   (same kwargs as `-a codex`)
+
+Optional, off by default (see trial_options.py): a separate submission-only window after the
+research time.
 """
 import shlex
 
 from harbor.agents.installed.codex import Codex
+
+from harbor_ext import trial_options
 
 CONTINUE_PROMPT = (
     "Continue the research. There is no end point: pick up from your research notes and the latest "
@@ -53,19 +58,24 @@ class ContinuingCodex(Codex):
         quoted = getattr(self, "_first_instruction", None)
         if not quoted or quoted not in command or "codex exec resume" in command:
             return command
-        resume = (command.replace("codex exec ", "codex exec resume --last ", 1)
-                  .replace(quoted, shlex.quote(CONTINUE_PROMPT), 1)
-                  .replace("| tee ", "| tee -a ", 1))
-        return (
+        def resumed(prompt):
+            return (command.replace("codex exec ", "codex exec resume --last ", 1)
+                    .replace(quoted, shlex.quote(prompt), 1)
+                    .replace("| tee ", "| tee -a ", 1))
+        resume = resumed(CONTINUE_PROMPT)
+        script = (
             f"{command}\n"
             "quick=0; turn=1\n"
-            f"while [ $quick -lt {MAX_QUICK_EXITS} ]; do\n"
+            f"while {trial_options.loop_guard()}[ $quick -lt {MAX_QUICK_EXITS} ]; do\n"
             "  turn=$((turn+1)); start=$(date +%s)\n"
             '  echo "{\\"type\\":\\"harbor.resume\\",\\"turn\\":$turn}" >&2\n'
             f"  {resume}\n"
             f"  if [ $(( $(date +%s) - start )) -lt {MIN_TURN_SECONDS} ]; then quick=$((quick+1)); else quick=0; fi\n"
             "done\n"
         )
+        if trial_options.grace() is None:
+            return script
+        return trial_options.with_grace(script, resumed(trial_options.submit_prompt()))
 
     async def exec_as_agent(self, environment, command, *args, **kwargs):
         if "--enable unified_exec " in command:  # the `codex exec` call (the resume loop reuses it)

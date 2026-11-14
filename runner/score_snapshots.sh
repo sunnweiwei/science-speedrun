@@ -4,13 +4,17 @@
 # Picks K snapshots (default 6) evenly spaced in time, plus the last one, scores each with
 # run_verify.sh (serialized, the task's verifier resources) and writes
 # $EVAL_ROOT/results/NAME/curve.tsv: hours since start, then one column per reward key.
+# Versions published in a submission window (GRACE_SECONDS) are not research and are left out.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; source "$here/config.sh"
 name=$1; k=${2:-6}; out="$EVAL_ROOT/results/$name"; snaps="$out/snapshots"
 task=$(cat "$out/task"); [ -f "$out/tasks_dir" ] && export TASKS_DIR=$(cat "$out/tasks_dir")
-mapfile -t picks < <(python3 - "$snaps/index.tsv" "$k" <<'PY'
-import csv, sys
-rows = [int(r["seconds"]) for r in csv.DictReader(open(sys.argv[1]), delimiter="\t")]
+mapfile -t picks < <(python3 - "$snaps/index.tsv" "$k" "$out/grace-period.json" <<'PY'
+import calendar, csv, json, os, sys, time
+window = json.load(open(sys.argv[3]))["grace_start_epoch"] if os.path.exists(sys.argv[3]) else None
+def research(row):  # published before the submission window started
+    return window is None or calendar.timegm(time.strptime(row["utc"], "%Y-%m-%dT%H:%M:%SZ")) <= window
+rows = [int(r["seconds"]) for r in csv.DictReader(open(sys.argv[1]), delimiter="\t") if research(r)]
 k = int(sys.argv[2])
 if not rows: sys.exit()
 if len(rows) <= k + 1: chosen = rows

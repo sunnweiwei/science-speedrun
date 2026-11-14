@@ -10,10 +10,15 @@ end within MIN_TURN_SECONDS stop the loop (an auth, quota or CLI error would oth
 
 Auth comes from the runner's environment: CLAUDE_CODE_OAUTH_TOKEN (a subscription login, from
 `claude setup-token`) or ANTHROPIC_API_KEY.
+
+Optional, off by default (see trial_options.py): a separate submission-only window after the
+research time.
 """
 import shlex
 
 from harbor.agents.installed.claude_code import ClaudeCode
+
+from harbor_ext import trial_options
 
 CONTINUE_PROMPT = (
     "Continue the research. There is no end point: pick up from your research notes and the latest "
@@ -38,17 +43,20 @@ class ContinuingClaudeCode(ClaudeCode):
             return command
         resume = (claude.replace(" --print ", " --continue --print ", 1)
                   .replace("| tee ", "| tee -a ", 1))
-        return (
+        script = (
             f"{command}\n"
             'export PATH="$HOME/.local/bin:$PATH"\n'
             "quick=0; turn=1\n"
-            f"while [ $quick -lt {MAX_QUICK_EXITS} ]; do\n"
+            f"while {trial_options.loop_guard()}[ $quick -lt {MAX_QUICK_EXITS} ]; do\n"
             "  turn=$((turn+1)); start=$(date +%s)\n"
             '  echo "{\\"type\\":\\"harbor.resume\\",\\"turn\\":$turn}" >&2\n'
             f"  printf '%s' {shlex.quote(CONTINUE_PROMPT)} | {resume}\n"
             f"  if [ $(( $(date +%s) - start )) -lt {MIN_TURN_SECONDS} ]; then quick=$((quick+1)); else quick=0; fi\n"
             "done\n"
         )
+        if trial_options.grace() is None:
+            return script
+        return trial_options.with_grace(script, f"printf '%s' {trial_options.quoted_submit_prompt()} | {resume}")
 
     async def exec_as_agent(self, environment, command, *args, **kwargs):
         return await super().exec_as_agent(environment, self._with_resume_loop(command), *args, **kwargs)

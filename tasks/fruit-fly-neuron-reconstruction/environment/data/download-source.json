@@ -11,5 +11,19 @@
   "model_weights_included": false,
   "repo_id": "sanxing/ai4sci-fruit-fly-brain",
   "revision": "86286a6b000210eca271a3e376f730319b6406b9",
-  "storage_layout": "blobs/{sha256}"
+  "storage_layout": "blobs/{sha256}",
+  "overlay": {
+    "reason": "point-ops/pathfinder_fps.so rebuilt for sm_86 and sm_90 (H100); the released build is sm_86 only. See upstream/pathfinder/receipts/fps-sm86-sm90-rebuild.json.",
+    "path": "overlay",
+    "files": {
+      "development/runtime/point-ops/pathfinder_fps.so": {
+        "sha256": "34e7c76ca20aed1496697f3707328e76ab7561c6f6ee50f61a28c0c750f575a9",
+        "bytes": 324664
+      },
+      "development/runtime/runtime-manifest.json": {
+        "sha256": "cbf38bcf01b02a5e14d256cd8607e96cf09009218bf42ce3fe40337321821539",
+        "bytes": 36926
+      }
+    }
+  }
 }

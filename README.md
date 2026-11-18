@@ -136,7 +136,6 @@ included in this repository.
 ```bash
 docker build -f runner/Dockerfile.runner -t harbor-runner:0.23.0-bx runner
 export EVAL_ROOT=/persistent/speedrun CODEX_PKG=/opt/codex-0.160.1 MOUNT_ROOTS="/data /opt/codex-0.160.1"
-export SEALED_DIR=/path/to/ai4sci-tasks                         # sealed verifier files (3 tasks), see runner/README.md
 runner/selftest.sh                                              # install check, ~2 min, no GPU
 runner/prepare.sh surface-code-decoding /data/surface-code      # data + $EVAL_ROOT/envs/<task>.env
 AGENT_KIND=codex HOURS=24 runner/run.sh surface-code-decoding   # session, then independent score
@@ -144,11 +143,12 @@ AGENT_KIND=claude-code HOURS=48 runner/run.sh pde-surrogate
 runner/score_snapshots.sh NAME 6                                # reward over time from the run's snapshots
 ```
 
-The reported runs used 48 h, a five-minute submission window and `xhigh` effort for Claude Code:
-`GRACE_SECONDS=300 CLAUDE_REASONING=xhigh AGENT_KIND=claude-code HOURS=48 runner/run.sh TASK` (Codex:
-`GRACE_SECONDS=300 AGENT_KIND=codex HOURS=48`). See [CHANGES.md](CHANGES.md).
+The published runs gave each session one H100 for 48 h (22 CPUs and 224 GiB for the eight-GPU tasks) and a
+five-minute submission window: `HOURS=48 GRACE_SECONDS=300 GPUS=1 GPU_IDS=0 AGENT_CPUS=22 AGENT_MEMORY_MB=229376`.
+The exact settings, models included, are in [CHANGES.md](CHANGES.md).
 
 Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code authentication, resources, two-phase scoring and pitfalls.
+To evaluate another agent or model and send us the results, follow [EVALUATING.md](EVALUATING.md).
 
 ## Layout
 
@@ -159,6 +159,7 @@ harness/             the SSI index computed from the verifiers' receipts, and it
 docs/                the metric documents (SSI benchmark, metric validity, measurement sources)
 TASK_STANDARD.md     the task format: workspace, instruction, verifier, data
 CHANGES.md           what changed, and the settings of the reported runs
+EVALUATING.md        guide for running another agent or model and reporting the results
 ```
 
 ## Data and licenses

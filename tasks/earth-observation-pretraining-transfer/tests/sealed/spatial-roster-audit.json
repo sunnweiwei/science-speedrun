@@ -1,0 +1,77 @@
+{
+  "roster_sha256": "ed0cf3cebf2d417011b367b7616bc8e3df6950a18462ec52a46356b5ba457f86",
+  "seed": 0,
+  "folds": 7,
+  "validation_fold": 1,
+  "test_fold": 3,
+  "paper_target_sizes": {
+    "train": 1066,
+    "valid": 193,
+    "test": 200
+  },
+  "split_sizes": {
+    "train": 1053,
+    "valid": 201,
+    "test": 205
+  },
+  "original_tiles": 834,
+  "connected_blocks": 605,
+  "blocks_per_split": {
+    "train": 431,
+    "valid": 89,
+    "test": 85
+  },
+  "class_counts_application_order": {
+    "train": [
+      106,
+      42,
+      303,
+      39,
+      234,
+      207,
+      39,
+      16,
+      67
+    ],
+    "valid": [
+      33,
+      5,
+      50,
+      4,
+      44,
+      43,
+      11,
+      1,
+      10
+    ],
+    "test": [
+      29,
+      8,
+      59,
+      6,
+      42,
+      38,
+      9,
+      1,
+      13
+    ]
+  },
+  "overlapping_raw_window_pairs": 1546,
+  "pairs_across_splits": 0,
+  "historical_exposure": {
+    "train": {
+      "train": 810,
+      "val": 243
+    },
+    "valid": {
+      "train": 149,
+      "val": 52
+    },
+    "test": {
+      "train": 156,
+      "val": 49
+    }
+  },
+  "selection": "Whole spatial blocks. Require nine classes in each split, minimize total absolute deviation from the paper split sizes then break ties by fold index. No model outputs read.",
+  "scope": "SSI retrospective spatial trial; the original sessions had access to the application train and validation labels."
+}

@@ -2,7 +2,7 @@
 # Score snapshots of a finished run to get reward over time.
 #   score_snapshots.sh NAME [K]
 # Picks K snapshots (default 6) evenly spaced in time, plus the last one, scores each with
-# run_verify.sh (serialized, the task's verifier resources) and writes
+# run_verify.sh (serialized, the task's verifier resources, on VERIFY_GPU_IDS as in run.sh) and writes
 # $EVAL_ROOT/results/NAME/curve.tsv: hours since start, then one column per reward key.
 # Versions published in a submission window (GRACE_SECONDS) are not research and are left out.
 set -euo pipefail
@@ -26,7 +26,7 @@ PY
 for s in "${picks[@]}"; do
   [ -f "$out/snapshot-scores/$s.json" ] && continue
   echo "[curve] scoring snapshot at $(python3 -c "print(round($s/3600, 2))") h"
-  "$here/run_verify.sh" "verify-$name-s$s" "$task" "$snaps/$s" > "$out/verify-s$s.log" 2>&1 || true
+  GPU_IDS="${VERIFY_GPU_IDS-${GPU_IDS:-}}" "$here/run_verify.sh" "verify-$name-s$s" "$task" "$snaps/$s" > "$out/verify-s$s.log" 2>&1 || true
   mkdir -p "$out/snapshot-scores"
   $DOCKER run --rm -v "$EVAL_ROOT:$EVAL_ROOT" --entrypoint bash "$RUNNER_IMAGE" -c \
     "cp '$EVAL_ROOT/trials-verify/verify-$name-s$s/verifier/reward.json' '$out/snapshot-scores/$s.json' 2>/dev/null; chown -R $(id -u):$(id -g) '$out/snapshot-scores'" || true

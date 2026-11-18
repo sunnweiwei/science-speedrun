@@ -39,9 +39,9 @@ task's own verifier. It is the tooling behind the agent-behavior tests of the ta
    - natural-disease-progression is MIMIC-IV derived: its release is credentialed and its terms forbid redistribution.
 
 6. **Sealed verifier files.** tokamak-magnetic-control, fluid-flow-control and earth-observation-pretraining-transfer
-   score against sealed seeds or rosters (`tests/sealed/`, listed by hash in `tests/sealed/SHA256SUMS`). They are not in
-   this public repository: set `SEALED_DIR` to a checkout of the private task repository. `stage_sealed.sh` (run by
-   `run_verify.sh`) copies them in and stops the verification if a file is missing or differs.
+   score against sealed seeds or rosters in `tests/sealed/`, listed by hash in `tests/sealed/SHA256SUMS`. Nothing to set
+   up: `stage_sealed.sh` (run by `run_verify.sh`) checks them and stops the verification if a file is missing or
+   differs.
 
 Then `runner/selftest.sh`.
 
@@ -53,7 +53,15 @@ AGENT_KIND=codex HOURS=24 runner/run.sh genome-sequence-to-function
 AGENT_KIND=claude-code HOURS=48 runner/run.sh single-cell-perturbation-prediction
 ```
 
-- **Resources.** By default a session gets the task's `task.toml` resources: GPUs, CPUs, memory. `GPUS=1 GPU_IDS=3 AGENT_CPUS=24 AGENT_MEMORY_MB=262144` runs a 1-GPU behavior test instead. Sessions on different GPUs can run in parallel. Verifications take a lock and run one at a time with the task's verifier resources.
+- **Resources.** By default a session gets the task's `task.toml` resources: GPUs, CPUs, memory. `GPUS`,
+  `AGENT_CPUS` and `AGENT_MEMORY_MB` override them: `GPUS=1 GPU_IDS=3 AGENT_CPUS=22 AGENT_MEMORY_MB=229376` runs a
+  one-GPU session on GPU 3 (the setting of the published runs). Give each parallel session its own `GPU_IDS`;
+  without it every one-GPU session gets GPU 0.
+  - Scoring always uses the task's verifier resources, up to eight GPUs. They are taken from `VERIFY_GPU_IDS`
+    (default `GPU_IDS`; empty: all GPUs). With `GPU_IDS=3`, a task whose verifier needs eight GPUs fails to
+    score (`task needs 8 GPU(s)` in `verify.log`) unless `VERIFY_GPU_IDS` lists eight.
+  - Verifications take a lock and run one at a time. Point `VERIFY_GPU_IDS` at GPUs that no session is using,
+    or score after the sessions end (`run_verify.sh`, `score_snapshots.sh`).
 - **Results** go to `$EVAL_ROOT/results/NAME/`:
   - `reward.json` (and `report.json` where the task writes one);
   - `submission/` (the published package);

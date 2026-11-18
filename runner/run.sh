@@ -2,7 +2,8 @@
 # One command: an agent session on a task, then an independent score of what it published.
 #   run.sh TASK [NAME]
 # Environment: AGENT_KIND=codex|claude-code (default codex), HOURS (default 24), GPUS=task|N,
-# GPU_IDS, plus everything in config.sh. Results land in $EVAL_ROOT/results/NAME/:
+# GPU_IDS (the session's GPUs), VERIFY_GPU_IDS (the GPUs scoring may use; default GPU_IDS, empty:
+# all), plus everything in config.sh. Results land in $EVAL_ROOT/results/NAME/:
 #   reward.json, report.json   the verifier's scores
 #   submission/                the package the agent published
 #   agent/                     the agent's trajectory and session logs
@@ -40,13 +41,13 @@ if ! published "$out/submission" && ! published "$out/submission-grace"; then
 fi
 if published "$out/submission"; then
   echo "[run] scoring the published package"
-  "$here/run_verify.sh" "verify-$name" "$task" "$out/submission" > "$out/verify.log" 2>&1 || true
+  GPU_IDS="${VERIFY_GPU_IDS-${GPU_IDS:-}}" "$here/run_verify.sh" "verify-$name" "$task" "$out/submission" > "$out/verify.log" 2>&1 || true
 else
   echo "[run] no package from the research time; only the submission window published one"
 fi
 if published "$out/submission-grace"; then
   echo "[run] scoring the package from the submission window separately"
-  "$here/run_verify.sh" "verify-$name-grace" "$task" "$out/submission-grace" > "$out/verify-grace.log" 2>&1 || true
+  GPU_IDS="${VERIFY_GPU_IDS-${GPU_IDS:-}}" "$here/run_verify.sh" "verify-$name-grace" "$task" "$out/submission-grace" > "$out/verify-grace.log" 2>&1 || true
 fi
 $DOCKER run --rm -v "$EVAL_ROOT:$EVAL_ROOT" --entrypoint bash "$RUNNER_IMAGE" -c "
   for f in reward report; do

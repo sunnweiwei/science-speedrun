@@ -8,24 +8,31 @@ It merges the `grace_period` branch (`4cf8206`) and brings the tasks to the metr
 | Change | Where | Default |
 | --- | --- | --- |
 | Metric-V4 verifiers for the 20 tasks | `tasks/*` | always |
-| Sealed verifier files, supplied at scoring time | `runner/stage_sealed.sh`, `SEALED_DIR` | needed by 3 tasks |
+| Sealed verifier files, published and hash-checked at scoring time | `runner/stage_sealed.sh`, `tests/sealed/SHA256SUMS` | 3 tasks |
 | Submission-only window after the research time | `GRACE_SECONDS` | `0` (no window) |
 | Claude Code reasoning effort | `CLAUDE_REASONING` | empty (Claude Code's default) |
+| GPUs for scoring, apart from the session's (one-GPU sessions, eight-GPU verifiers) | `VERIFY_GPU_IDS` | `GPU_IDS` |
 | Fruit-fly point-sampling library for H100 | `tasks/fruit-fly-neuron-reconstruction` | always |
 | SSI index code, its tests and the metric documents | `harness/`, `docs/` | |
 
 ### Reproducing the reported runs
 
-The runs of the `grace_period` branch used a five-minute window for every trial and `xhigh` effort for
-Claude Code:
+The published results (42 histories in the HF dataset `s42chen/sci-run`) gave every session one H100 for 48 hours,
+then a submission-only window of at most five minutes. 16 tasks declare eight GPUs; they ran with 22 CPUs and
+224 GiB. brain-computer-interface-decoding, natural-disease-progression, tokamak-magnetic-control and
+earth-observation-pretraining-transfer ran with 64 CPUs and 128 GiB. Codex ran `gpt-6-astra` at xhigh reasoning;
+Claude Code 2.1.319 ran `claude-fable-5-2` at xhigh effort. The runs were on Beaker with adapted isolation, and some
+were interrupted and resumed (see the dataset's README).
 
 ```bash
 export EVAL_ROOT=/persistent/speedrun CODEX_PKG=/opt/codex-0.160.1 MOUNT_ROOTS="/data /opt/codex-0.160.1"
-export SEALED_DIR=/path/to/ai4sci-tasks        # private task repository, see section 2
-GRACE_SECONDS=300 AGENT_KIND=codex HOURS=48 runner/run.sh TASK
-GRACE_SECONDS=300 CLAUDE_REASONING=xhigh AGENT_KIND=claude-code HOURS=48 runner/run.sh TASK
+export HOURS=48 GRACE_SECONDS=300 GPUS=1 GPU_IDS=0 AGENT_CPUS=22 AGENT_MEMORY_MB=229376 VERIFY_GPU_IDS=
+CODEX_MODEL=openai/gpt-6-astra CODEX_REASONING=xhigh AGENT_KIND=codex runner/run.sh TASK
+CLAUDE_MODEL=anthropic/claude-fable-5-2 CLAUDE_REASONING=xhigh AGENT_KIND=claude-code runner/run.sh TASK
 ```
 
+`GPU_IDS` picks the session's GPU (one per parallel session). `VERIFY_GPU_IDS` picks the GPUs scoring may use;
+empty means any. [EVALUATING.md](EVALUATING.md) is the guide for running another agent or model.
 `runner/selftest.sh` checks an installation in about two minutes (see Validation below).
 
 ## 1. Metric V4
@@ -64,18 +71,18 @@ Task tests that use the index code now find `harness/` from either repository la
 
 ## 2. Sealed verifier files
 
-Three verifiers score against held-out seeds or rosters that must not be public:
+Three verifiers score against held-out seeds or rosters:
 
 | Task | Sealed file |
 | --- | --- |
 | earth-observation-pretraining-transfer | `tests/sealed/spatial-roster.json`, `tests/sealed/spatial-roster-audit.json` |
 | fluid-flow-control | `tests/sealed/blind_flow_seeds.json` |
-| tokamak-magnetic-control | `tests/sealed/perturbations.json` (V4 seeds; the V3 file published earlier is removed) |
+| tokamak-magnetic-control | `tests/sealed/perturbations.json` (V4 seeds; the V3 seeds moved to a legacy test fixture) |
 
-This repository carries only `tests/sealed/SHA256SUMS` and a README for each. Set `SEALED_DIR` to a checkout of
-the private task repository: `run_verify.sh` calls `stage_sealed.sh`, which copies the files in and stops the
-verification if a file is missing or differs from its hash. Each task's `tests/test.sh` checks the hashes again
-inside the verifier, and the unit tests that need the files skip without them.
+They are published with the tasks. The agent's development image never contains `tests/`, and sessions run offline,
+so the agent cannot read them. `tests/sealed/SHA256SUMS` lists them by hash. `run_verify.sh` calls `stage_sealed.sh`,
+which stops the verification if a file is missing or differs; it can fill a missing file from `SEALED_DIR`. Each
+task's `tests/test.sh` checks the hashes again inside the verifier.
 
 ## 3. Submission-only window after the research time ("grace period")
 
@@ -132,11 +139,11 @@ H100 failed.
 `upstream/pathfinder/receipts/fps-sm86-sm90-rebuild.json`. It holds sm_86 and sm_90 code; on an RTX A6000 its FPS
 indices equal the released library's in 120 cases. It has not yet run on an H100.
 
-The rebuilt library and the runtime manifest that lists it reach operators as an overlay of the release:
-`download_hf.py` reads an optional `overlay` entry in `environment/data/download-source.json` (a second HF
-repository at a pinned commit) and replaces those two files of the verified release, checked by size and SHA-256.
-**Not pinned yet:** the overlay repository is still to be published, and until `download-source.json` carries it,
-`prepare.sh` installs the released sm_86-only library.
+The rebuilt library and the runtime manifest that lists it ship with the task as an overlay of the release
+(`environment/data/overlay/`, 360 KB). `download-source.json` pins them by hash, and `download_hf.py` replaces those
+two files of the verified release, checked by size and SHA-256. Checked against the real release manifest: the
+new runtime manifest lists exactly the overlaid runtime files, as the verifier requires. Re-run
+`prepare.sh fruit-fly-neuron-reconstruction` on data prepared earlier to install it.
 
 ## Validation
 

@@ -13,9 +13,10 @@ def run(args):
         raise ValueError('Immutable full HF commit required')
     if not re.fullmatch(r'[0-9a-f]{64}',source['manifest_sha256']):
         raise ValueError('Manifest SHA-256 required')
-    # Optional overlay: files of the release replaced by a pinned rebuild hosted in another repository.
+    # Optional overlay: files of the release replaced by a pinned rebuild, shipped next to this file
+    # (`path`, blobs/{sha256}) or hosted in another HF repository (`repo_id` at a full `revision`).
     overlay=source.get('overlay') or {}
-    if overlay and not re.fullmatch(r'[0-9a-f]{40}',overlay['revision']):
+    if overlay and 'path' not in overlay and not re.fullmatch(r'[0-9a-f]{40}',overlay['revision']):
         raise ValueError('Immutable full HF commit required for the overlay')
     overlay_blobs={entry['sha256'] for entry in overlay.get('files',{}).values()}
     roots=[p.resolve() for p in (args.cache,args.data,args.private)]
@@ -34,11 +35,13 @@ def run(args):
         def blob(sha):
             if not re.fullmatch(r'[0-9a-f]{64}',sha):raise ValueError('Invalid blob SHA-256')
             print(json.dumps({'downloading':sha}),flush=True)
+            if sha in overlay_blobs and 'path' in overlay:return args.source.parent/overlay['path']/'blobs'/sha
             return fetch('blobs/'+sha,overlay if sha in overlay_blobs else source)
         result=materialize(manifest,source['manifest_sha256'],'',args.data,args.private,
                            args.verify_only,fetch=blob,overrides=overlay.get('files'))
         result.update(repo_id=source['repo_id'],revision=source['revision'],anonymous=True)
-        if overlay:result.update(overlay_repo_id=overlay['repo_id'],overlay_revision=overlay['revision'])
+        if 'path' in overlay:result.update(overlay_path=overlay['path'])
+        elif overlay:result.update(overlay_repo_id=overlay['repo_id'],overlay_revision=overlay['revision'])
         (args.cache/'receipt.json').write_text(json.dumps(result,indent=2)+'\n')
         print(json.dumps(result),flush=True)
         return result

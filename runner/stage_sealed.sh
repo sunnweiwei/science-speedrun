@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Put a task's sealed verifier files in place before verification and check them.
 #   stage_sealed.sh TASK_DIR
-# A task lists its sealed files in tests/sealed/SHA256SUMS. A public checkout carries only that list
-# and a README; the files come from SEALED_DIR, either a checkout of the private task repository
-# (SEALED_DIR/TASK/tests/sealed/FILE) or a flat copy (SEALED_DIR/TASK/FILE). Verification stops when
-# a file is missing or differs, so a verifier never runs on substitute seeds or rosters.
+# A task lists its sealed files in tests/sealed/SHA256SUMS. A file missing from the checkout is taken
+# from SEALED_DIR when set, either another checkout (SEALED_DIR/TASK/tests/sealed/FILE) or a flat copy
+# (SEALED_DIR/TASK/FILE). Verification stops when a file is missing or differs, so a verifier never
+# runs on substitute seeds or rosters.
 set -euo pipefail
 dir=$1; task=$(basename "$dir"); sealed="$dir/tests/sealed"
 [[ -f "$sealed/SHA256SUMS" ]] || exit 0

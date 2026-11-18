@@ -66,6 +66,27 @@ class DownloadTests(unittest.TestCase):
                 overlay['files']={'development/runtime/new.so':overlay['files']['development/runtime/lib.so']};write(overlay)
                 with self.assertRaisesRegex(ValueError,'outside the release'):run(args)
 
+    def test_overlay_shipped_with_the_task_is_hash_checked(self):
+        with tempfile.TemporaryDirectory() as d:
+            r=Path(d);base=r/'base';(base/'blobs').mkdir(parents=True)
+            name='development/runtime/lib.so';value=b'released';sha=hashlib.sha256(value).hexdigest()
+            (base/'blobs'/sha).write_bytes(value)
+            m=base/'release.json';m.write_text(json.dumps({'schema':'pathfinder-resources/v1','files':{name:{'bytes':len(value),'sha256':sha}}}))
+            rebuilt=b'rebuilt';new=hashlib.sha256(rebuilt).hexdigest()
+            shipped=r/'task'/'overlay'/'blobs';shipped.mkdir(parents=True);(shipped/new).write_bytes(rebuilt)
+            config=r/'task'/'source.json'
+            config.write_text(json.dumps({'repo_id':'owner/data','revision':'a'*40,'manifest_sha256':hashlib.sha256(m.read_bytes()).hexdigest(),
+                                          'overlay':{'path':'overlay','files':{name:{'bytes':len(rebuilt),'sha256':new}}}}))
+            args=argparse.Namespace(source=config,cache=r/'cache',data=r/'dev',private=r/'private',verify_only=False)
+            calls=[]
+            def fetch(**kw):calls.append(kw['filename']);return base/kw['filename']
+            with patch.dict('sys.modules',{'huggingface_hub':types.SimpleNamespace(hf_hub_download=fetch)}):
+                self.assertEqual(run(args)['overlay_path'],'overlay')
+                self.assertEqual((args.data/'runtime/lib.so').read_bytes(),rebuilt)
+                self.assertNotIn('blobs/'+new,calls)
+                (shipped/new).write_bytes(b'Rebuilt');(args.data/'runtime/lib.so').unlink()
+                with self.assertRaisesRegex(ValueError,'integrity'):run(args)
+
     def test_mutable_revision_rejected(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'source.json';p.write_text(json.dumps({'revision':'main'}))

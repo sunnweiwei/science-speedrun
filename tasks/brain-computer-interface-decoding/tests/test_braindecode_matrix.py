@@ -1,14 +1,25 @@
-"""All Braindecode model/track combinations must train one update from scratch."""
+"""All authorized Braindecode model/track combinations must train one update from scratch."""
 import json
 import sys
+import unittest
 from pathlib import Path
 
-import torch
+try:
+    import torch
+except ModuleNotFoundError as exc:
+    if __name__ == '__main__':
+        raise
+    raise unittest.SkipTest(f'Requires PyTorch container runtime: {exc}')
 
 local_baseline = Path(__file__).resolve().parents[1] / 'environment' / 'baseline' / 'braindecode'
 container_baseline = Path('/workspace/baseline/braindecode')
 sys.path.insert(0, str(local_baseline if local_baseline.exists() else container_baseline))
-from model import MODELS, SPECS, Model
+try:
+    from model import MODELS, SPECS, Model
+except ModuleNotFoundError as exc:
+    if __name__ == '__main__':
+        raise
+    raise unittest.SkipTest(f'Requires braindecode container runtime: {exc}')
 
 
 def main():

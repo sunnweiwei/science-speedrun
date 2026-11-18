@@ -7,6 +7,7 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
 name=$1; task=$2; pkg=$(cd "$3" && pwd)
 data_env="${DATA_ENV_FILE:-$ENVS_DIR/$task.env}"
+"$HARNESS_DIR/stage_sealed.sh" "$TASKS_DIR/$task"   # sealed verifier files (SEALED_DIR), checked by hash
 mkdir -p "$EVAL_ROOT/trials-verify" "$EVAL_ROOT/research/$name"
 exec 9>"$EVAL_ROOT/.verify.lock"; flock 9
 $DOCKER run --rm --name "verify-$name" $(runner_mounts) -v "$pkg:$pkg" -w "$EVAL_ROOT" \

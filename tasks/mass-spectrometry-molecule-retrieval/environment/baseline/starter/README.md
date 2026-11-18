@@ -104,5 +104,7 @@ The starter deliberately leaves substantial room:
 - multi-spectrum aggregation without leaking across official folds;
 - permitted, disjoint pretraining with fully documented provenance.
 
-Keep the frozen `infer.sh INPUT_ROOT OUTPUT_ROOT` ranking contract even if the
-architecture and training pipeline are replaced completely.
+Keep the single-query streaming `serve.sh` (`predict_server.py`) and/or batch
+`infer.sh INPUT_ROOT OUTPUT_ROOT` ranking contract (`{"query_id": ..., "ranking": [...]}`
+with deterministic tie-breaking and no extra fields) even if the architecture and
+training pipeline are replaced completely.

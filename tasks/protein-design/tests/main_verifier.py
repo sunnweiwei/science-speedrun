@@ -30,8 +30,9 @@ def invalid_submission(output, sealed, error):
     reason = f"{type(error).__name__}: {error}"
     output.mkdir(parents=True, exist_ok=True)
     (output / "report.json").write_text(json.dumps(
-        {"status": "invalid_submission", "error": reason[:4000], "reward": 0.0}, indent=2) + "\n")
-    (output / "reward.json").write_text(json.dumps({"reward": 0.0, "invalid_submission": 1.0}, indent=2) + "\n")
+        {"status": "invalid_submission", "error": reason[:4000], "score": 0.0, "reward": 0.0}, indent=2) + "\n")
+    (output / "reward.json").write_text(json.dumps(
+        {"score": 0.0, "reward": 0.0, "invalid_submission": 1.0}, indent=2) + "\n")
     sealed.parent.mkdir(parents=True, exist_ok=True)
     (sealed.parent / "INVALID").write_text(reason + "\n")
     print(f"invalid submission: {reason}")

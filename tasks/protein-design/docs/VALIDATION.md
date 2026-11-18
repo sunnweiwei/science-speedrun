@@ -77,10 +77,11 @@ records only what was checked on the integration host, and what was fixed there.
    without the ~100 GB corpus download; `/workspace/research` is now a
    `TASK_RESEARCH_DIR` bind mount; GPU reservations are out of the development compose
    and `network_mode = "no-network"` is declared in `task.toml` for both environments.
-5. **`reward.json` has no composite, and that is now declared.** The task reports four
-   per-track `pass_rate`s and no aggregate, on the grounds that the tracks carry different
-   published criteria and `unconditional` is synthetic to this task. `TASK_STANDARD.md`
-   names its exceptions explicitly, so `protein-design` was added to that list.
+5. **`reward.json` reports the V3 target-weighted combined `score` (and `reward`).** Across
+   the 51-target suite (`1` synthetic `unconditional` target + `50` conditioned RFdiffusion3
+   targets), `tests/grader.py` computes
+   `score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)` alongside
+   all four per-track `pass_rate` and `diversity` metrics.
 
 ### Not checked
 

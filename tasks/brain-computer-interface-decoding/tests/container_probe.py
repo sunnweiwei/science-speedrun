@@ -46,7 +46,8 @@ for r in reversed(rows):
             subprocess.run(cmd,check=True)
             result=json.loads((out/'report.json').read_text())['tracks']['tuev']
             reward=json.loads((out/'reward.json').read_text())
-            assert reward=={'tuev':result['reward']},reward
+            track_only={k:v for k,v in reward.items() if k not in ('score','reward','signed_score')}
+            assert track_only=={'tuev':result['reward']},reward
             assert result['reward']==(1.0 if mode=='valid' else 0.0),result
             assert result['status']==('ok' if mode=='valid' else 'invalid_submission'),result
             outputs.append({'case':mode,'status':result['status'],'reward':result['reward']})

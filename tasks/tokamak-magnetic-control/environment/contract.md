@@ -54,7 +54,10 @@ limited to 64 MiB. The process serves many episodes and many cases.
 
    Reply `{"request_id":"r-1","ready":true}`. `context.environment` names the
    control task; it is not a lookup key for memorized action sequences, and future
-   suites may add names.
+   suites may add names. `context.seed` is a deterministic public policy RNG seed
+   (`100000 + episode_index`), completely uncorrelated with the evaluator's private
+   physical perturbation seed, so a policy may initialize reproducible internal RNG
+   without ever learning the hidden plant draw.
 2. `act` sends one flat observation and expects one flat action of 12 coil
    voltages **in volts**, inside the supplied bounds. The evaluator rejects
    out-of-bounds or non-finite actions as a policy error; it never clips.
@@ -107,9 +110,11 @@ The evaluator builds the case's reference equilibrium, applies the sealed
 perturbation draw (profile parameters, plasma resistivity, passive-structure
 resistance, initial coil currents, diagnostic offsets/noise, supply delay and the plant
 mechanisms named in `instruction.md`), lets the plasma evolve under a feedforward hold for
-a few steps (the handover), then runs the closed loop for the case's horizon. The score is
-the fraction of all episodes that keep the plasma within the MAST-U steady-state tolerances
-(1 cm shape and gaps, 3% plasma current); a numerical solver failure is retried by the
+a few steps (the handover), then runs the closed loop for the case's horizon. The score (`score` and `reward` in `/logs/verifier/reward.json`) is `successful_episodes / 105`:
+the fraction of all **7 scenarios × 15 blind perturbation seeds = 105 scheduled episodes** that keep the plasma
+within the MAST-U steady-state tolerances (1 cm shape and gaps, 3% plasma current). Every scheduled episode
+(including plasma loss, coil-limit termination, unrecovered solver failure, or any void episode) counts in the `105`
+denominator. A numerical solver failure is retried by the
 evaluator and counts as a failure only if it cannot be recovered. Per-case physical metrics and
 the continuous `tolerance_time_fraction` are reported alongside
 (`evaluation/METRICS.md`). Policy-reported scores are never accepted; native training

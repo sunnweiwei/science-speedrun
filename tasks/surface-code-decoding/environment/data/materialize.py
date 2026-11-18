@@ -99,8 +99,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if args.from_sources:
         if not args.source or not args.reference_results:
             raise ValueError("--from-sources requires --source and --reference-results")
-        subprocess.run([sys.executable, str(HERE / "build_release.py"), "--source", str(args.source),
-                        "--reference-results", str(args.reference_results), "--output", str(args.output)], check=True)
+        cmd = [sys.executable, str(HERE / "build_release.py"), "--source", str(args.source),
+               "--reference-results", str(args.reference_results), "--output", str(args.output)]
+        if getattr(args, "hmac_key_file", None):
+            cmd.extend(["--hmac-key-file", str(args.hmac_key_file)])
+        subprocess.run(cmd, check=True)
         return {"status": "rebuilt_from_sources", "directory": str(args.output / "materialized")}
     lock = json.loads(args.lock.read_text())
     if lock.get("schema") != "surface-code-decoding-hf-release/v1":
@@ -150,6 +153,7 @@ def main() -> None:
     parser.add_argument("--from-sources", action="store_true")
     parser.add_argument("--source", type=Path)
     parser.add_argument("--reference-results", type=Path)
+    parser.add_argument("--hmac-key-file", type=Path, help="Operator HMAC key file forwarded to build_release.py")
     args = parser.parse_args()
     print(json.dumps(run(args), indent=2))
 

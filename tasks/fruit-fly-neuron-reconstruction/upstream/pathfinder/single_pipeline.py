@@ -116,12 +116,16 @@ def run(root, runtime, limits, ffn_inference_backend="norm32"):
 
     meta = json.loads(image.read_text())
     roi = [v for n in meta['shape'] for v in (16, n-16)]
+    # Shared only between trusted replays of this image. get_seeds rechecks the
+    # source image bytes, window coordinates, algorithm and dependency hashes.
+    seed_cache=root/'operator-seed-cache' if (root/'operator-seed-cache').is_dir() else out/'seed-cache'
     # Checkpoint-independent seeds for every window, computed in parallel on all CPUs.
-    execute('seeds', command('precompute_seeds.py', root=root, image_manifest=image, cache=out/'seed-cache',
-        receipt=out/'seed-cache.json', roi=roi, core_size=436, margin=32, clip_boundary_to_image=True))
+    execute('seeds', command('precompute_seeds.py', root=root, image_manifest=image, cache=seed_cache,
+        receipt=out/'seed-cache.json', roi=roi, core_size=436, margin=32, clip_boundary_to_image=True,
+        workers=min(8,len(os.sched_getaffinity(0)))))
     stop_mps = start_mps(logs)
     execute('ffn', command('launch_overlap.py', root=root, output=out/'inference',
-        workers_per_gpu=FFN_WORKERS_PER_GPU, seed_cache=out/'seed-cache', assignment_policy='voxel-balanced-v1',
+        workers_per_gpu=FFN_WORKERS_PER_GPU, seed_cache=seed_cache, assignment_policy='voxel-balanced-v1',
         inference_backend=ffn_inference_backend,
         image_manifest=image, checkpoint=package/'weights/ffn.pt', roi=roi, core_size=436,
         margin=32, batch=4, seconds=limits['ffn_seconds'], max_calls=1000000,

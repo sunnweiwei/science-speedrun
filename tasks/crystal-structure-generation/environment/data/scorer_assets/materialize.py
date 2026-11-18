@@ -72,6 +72,9 @@ def main() -> None:
     parser.add_argument("--warm-mlips", action="store_true")
     parser.add_argument("--token-file", type=lambda value: Path(value).resolve())
     args = parser.parse_args()
+    import sys
+    sys.path[:0] = [str(Path(__file__).resolve().parents[2]), "/opt/crystalgen"]
+    from scoring.mace_assets import CHECKPOINTS, validate_mace_assets
     if not args.acknowledge_hull_license_review:
         parser.error("the unlicensed hull snapshot requires explicit operator review")
 
@@ -149,10 +152,12 @@ def main() -> None:
         huggingface_hub.constants.HF_HUB_OFFLINE = True
         reset_sessions()
         warm_mlips()
+        validate_mace_assets(args.output_root)
 
     digest, file_count, byte_count = tree_digest(args.output_root)
     document = {
-        "schema": "crystalgen-scorer-assets/v0",
+        "schema": "crystalgen-scorer-assets/v1",
+        "mace_sha256": CHECKPOINTS,
         "assets": {
             name: {"repo_type": kind, "repo_id": repo, "revision": revision}
             for name, (kind, repo, revision) in ASSETS.items()

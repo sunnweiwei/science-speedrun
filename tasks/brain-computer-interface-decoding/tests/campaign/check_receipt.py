@@ -1,7 +1,10 @@
-"""Validate the verifier's flat Harbor reward against its detailed report."""
+"""Validate the verifier's Harbor reward receipt against its detailed report."""
 import json
 import math
 from pathlib import Path
+
+SUMMARY_KEYS = frozenset({'score', 'reward', 'signed_score'})
+FULL_TRACKS = frozenset({'tuev', 'ad65', 'openbmi', 'longitudinal'})
 
 
 def checked_reward(directory: Path, track: str) -> float:
@@ -24,12 +27,21 @@ def checked_reward(directory: Path, track: str) -> float:
 
 
 def checked_rewards(directory, tracks):
-    """Require exactly the expected tracks in both producer files."""
+    """Require exactly the expected tracks in both producer files (plus composite keys on full 4-track runs)."""
     directory = Path(directory)
     reward = json.loads((directory / 'reward.json').read_text())
     report = json.loads((directory / 'report.json').read_text())
-    if set(reward) != set(tracks) or set(report.get('tracks', {})) != set(tracks):
+    track_keys = set(reward) - SUMMARY_KEYS
+    if track_keys != set(tracks) or set(report.get('tracks', {})) != set(tracks):
         raise ValueError('unexpected or missing track in verifier receipt')
+    if report.get('scope') == 'full' and set(tracks) == FULL_TRACKS and 'score' in reward:
+        agg = report.get('aggregate') or {}
+        if (not isinstance(reward.get('score'), (int, float)) or isinstance(reward.get('score'), bool)
+                or not math.isfinite(reward['score'])
+                or not math.isclose(reward['score'], reward.get('reward', float('nan')), abs_tol=1e-12)
+                or (agg.get('score') is not None
+                    and not math.isclose(reward['score'], agg['score'], abs_tol=1e-12))):
+            raise ValueError('composite V3/V4 score mismatch between reward.json and report.json')
     return {track: checked_reward(directory, track) for track in tracks}
 
 

@@ -20,10 +20,15 @@ from scipy.stats import spearmanr
 from sklearn.metrics import average_precision_score, roc_auc_score
 
 AUROC, AUPRC = roc_auc_score, average_precision_score
+PURE_SEQUENCE_TRAITGYM_ANCHORS = ("Borzoi_L2_L2.plus.all", "Enformer_L2_L2.plus.all")
 
 
 def spearman(y, p):
-    return spearmanr(y, p)[0]
+    y_arr = np.asarray(y, np.float64)
+    p_arr = np.asarray(p, np.float64)
+    if len(y_arr) >= 2 and np.ptp(y_arr) > 0 and np.ptp(p_arr) == 0:
+        return 0.0
+    return spearmanr(y_arr, p_arr)[0]
 
 
 def tissue_weighted(frame: pd.DataFrame, metric, prediction="prediction", target="target") -> float:
@@ -207,8 +212,14 @@ def score_perturbations(perturbation_root: Path, labels_root: Path) -> dict:
         entry = {"rows": len(frame), "perturbations": int(frame.perturbation_id.nunique()),
                  "metric": METRICS[name][0], "model": metric(name, frame)}
         if name.startswith("traitgym"):
-            entry["anchors"] = {c[len("anchor_"):]: metric(name, frame, prediction=c)
-                                for c in frame.columns if c.startswith("anchor_")}
+            # Only pure single-genome sequence-to-function models (Borzoi, Enformer) are eligible
+            # anchors under the DNA-only contract; multi-species conservation scores (e.g. CADD,
+            # GPN-MSA) use evolutionary alignments prohibited to pure-sequence submissions.
+            entry["anchors"] = {
+                a: metric(name, frame, prediction=f"anchor_{a}")
+                for a in PURE_SEQUENCE_TRAITGYM_ANCHORS
+                if f"anchor_{a}" in frame.columns
+            }
         else:
             entry["anchors"] = {"AlphaGenome": metric(name, frame, prediction="alphagenome_prediction")}
         report[name] = entry

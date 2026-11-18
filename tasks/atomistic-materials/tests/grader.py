@@ -3,8 +3,9 @@
 
 It never imports submission code. Physical suites use environment/evaluation/score.py in the
 pinned MP2020 scoring runtime (/opt/scoring-venv); the other suites use score_extra.py.
-All 15 raw metrics remain available; reward.json also includes the fixed eight-suite
-Crystal Potential Score v2 (0–100) and reward = score / 100.
+All 15 raw metrics remain available; reward.json outputs the primary SSI V4 eight-suite
+equal arithmetic mean in [0, 1] (`score` and `reward`), `signed_score`, and the retained
+historical Crystal Potential Score v2 diagnostic (`crystal_potential_score`).
 """
 from __future__ import annotations
 
@@ -20,7 +21,7 @@ from verifier_common import sha256, tree_sha256, write_json
 EVALUATION = Path("/evaluation") if Path("/evaluation").is_dir() else Path(__file__).resolve().parents[1] / "environment/evaluation"
 sys.path.insert(0, str(EVALUATION))
 from score_extra import SCORERS, score as score_extra  # noqa: E402
-from aggregate import expanded_score  # noqa: E402
+from aggregate import expanded_score, ssi_v4_score  # noqa: E402
 
 SCHEMA = "atomistic-materials-prediction-snapshot/v2"
 SCORING_PYTHON = "/opt/scoring-venv/bin/python"
@@ -108,11 +109,13 @@ def main():
         except (ValueError, KeyError, OSError, SystemExit) as error:
             report[suite] = {"valid": False, "error": f"{type(error).__name__}: {error}"[:2000]}
     reward = flatten(report)
-    report["aggregate"] = expanded_score(
-        reward, valid=not any(r.get("valid") is False for r in report.values() if isinstance(r, dict))
-    )
+    is_valid = not any(r.get("valid") is False for r in report.values() if isinstance(r, dict))
+    report["ssi_v4"] = ssi_v4_score(reward, valid=is_valid)
+    report["aggregate"] = expanded_score(reward, valid=is_valid)
+    reward["score"] = report["ssi_v4"]["score"]
+    reward["reward"] = report["ssi_v4"]["score"]
+    reward["signed_score"] = report["ssi_v4"]["signed_score"]
     reward["crystal_potential_score"] = report["aggregate"]["score"]
-    reward["reward"] = report["aggregate"]["score"] / 100
     write_json(a.output / "report.json", report)
     write_json(a.output / "reward.json", harbor_reward(reward))
 

@@ -3,7 +3,7 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/crystal-structure-generation"
-version = "0.3.0"
+version = "0.4.0"
 description = "Develop one from-scratch MP-20 crystal generator, scored on leaderboard-compatible unconditional generation."
 authors = [{ name = "junlin-star" }]
 keywords = ["model-development", "materials", "crystal-generation", "offline"]
@@ -13,7 +13,11 @@ data_status = "MP-20 is public; full evaluation requires operator-prepared LeMat
 mp20_source_revision = "f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea"
 omg_source_revision = "ed80cb86fd69d4f4d14164c6635b0a8d4939b34f"
 lemat_genbench_revision = "58e6eae3e4a6c87c22171cf069123ecc4e2fa7e6"
-evaluation_protocol = "crystalgen-evaluation/v2-uma200"
+evaluation_protocol = "crystalgen-evaluation/v4-uma200-hull-aligned"
+as_submitted_diagnostic = "crystalgen-evaluation/v3-submitted-geometry"
+mace_energy_checkpoint = "medium-0b3"
+mace_embedding_checkpoint = "medium-mpa-0"
+mlip_hull_revision = "70d505bb294c16658a9551e2b81ace69a28d9790"
 
 [agent]
 timeout_sec = 172800.0          # external development budget (48 h); the agent is not told

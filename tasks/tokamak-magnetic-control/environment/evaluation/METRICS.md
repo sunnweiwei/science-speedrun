@@ -15,8 +15,12 @@ reports them.
 
 ## Score
 
-`reward` (in `/logs/verifier/reward.json`) is the **fraction of all episodes that succeed**,
-pooled over every case and sealed seed. An episode succeeds when the plasma is kept for the full
+`score` and `reward` (in `/logs/verifier/reward.json`) both equal `successful_episodes / 105`, the
+**fraction of all scheduled episodes that succeed** across the **7 scenarios × 15 blind perturbation seeds = 105 scheduled episodes**
+(`sealed-v0.4`). Every scheduled episode—including `plasma_lost`, `coil_limit`, `solver_failure`, `kept`, or any `void`
+episode—is included in the `105` denominator (`ssi_index_v3.tokamak(..., expected_episodes=105)`). During evaluation,
+the physics simulator `env.reset(seed=secret_seed)` uses the private perturbation seed while `reset_context(...)` passes
+an independent deterministic public seed (`100000 + episode_index`) to `policy.reset(...)`. An episode succeeds when the plasma is kept for the full
 horizon and its steady-state errors are within the MAST-U controller requirement:
 
 | Quantity (steady-state mean) | Tolerance | Source |
@@ -107,7 +111,8 @@ on the speed of the host.
 | `xpoint_error_cm` | Same for the X-point position error (capped at 50 cm per step) | cm | lower |
 | `ip_error_pct` | Same for the relative plasma-current error | % | lower |
 
-Top level: `reward`, `tolerance_time_fraction`, `policy_compute_ms` (the gate),
+Top level: `score`, `reward`, `successful_episodes`, `scheduled_episodes`, `void_episodes`,
+`tolerance_time_fraction`, `policy_compute_ms` (the gate),
 `policy_compute_ms_under_load` (diagnostic, measured during the replay), `episodes`,
 `solver_failure_episodes`, `fallback_steps` and `episode_reruns`. A case with no feasible episode
 publishes only its fractions; no error value is invented for it.

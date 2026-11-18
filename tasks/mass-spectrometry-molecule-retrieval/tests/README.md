@@ -1,26 +1,49 @@
 # Isolated verifier
 
 The `main` container receives the relocated submission and the public verifier
-view: spectra, metadata, candidate IDs, and candidate SMILES. It validates the
-package, runs `infer.sh` as UID 10001 with cleared supplementary groups and
-`no_new_privs`, without network access, kills remaining
-UID-10001 processes, and seals the ranking file with content hashes.
+view: spectra, metadata, candidate IDs, and candidate SMILES, below the root-only
+`/verifier-input`. It validates the package and executes one of two replay
+protocols:
+
+1. **Persistent Single-Spectrum Streaming (`massspecgym-retrieval-stream/v2`, default when `serve.sh` or `predict_server.py` is present)**:
+   Launches **1** persistent unprivileged (`UID 10001`, cleared supplementary
+   groups, `no_new_privs`, `network_mode: none`) worker via `subprocess.Popen`
+   (never `os.fork()` after CUDA initialization). Dispatches **1 anonymized
+   spectrum + its 1 shuffled candidate SMILES pool at a time**, blocking until a
+   valid full `ranking` permutation (`{"query_id", "ranking"}` only) is returned
+   before sending the next query. Immediately after Pass 1 finishes, all
+   `UID 10001` processes are `SIGKILL`ed and `/tmp` + System V IPC state is
+   purged; up to 128 queries (`min(128, N)`), stratified to prioritize later
+   occurrences in repeated/shared/isomeric candidate pools and shuffled with a
+   private seed, are re-evaluated on a fresh cold-start worker to verify **exact
+   full `ranking` list equality** (`StatefulQueryLeakageError` -> `reward: 0.0`,
+   `score: 0.0` on any mismatch).
+2. **Legacy Per-Pool Batch Fallback (`massspecgym-per-spectrum-batches/v2`, when `serve.sh` / `predict_server.py` is absent)**:
+   Splits queries into batches with at most one spectrum per candidate pool
+   (373 invocations on the full frozen test), writing a fresh input root per
+   batch, running `infer.sh` as `UID 10001` with a fresh output and home
+   directory, and killing `UID 10001` processes and purging `/tmp` + System V
+   IPC state between batches.
+
+`main` seals the merged `rankings.jsonl` with content hashes (`main/stream.json`
+or `main/batches.json` records protocol metadata and timings; inference logs are
+kept root-only in `main/logs/`).
 
 The `grader` sidecar receives the same public input, the sealed snapshot, and a
 separate private-label directory. It never mounts, imports, or executes the
 submission. Named volumes carry only the immutable ranking snapshot and final
 reports between services.
 
-`reward.json` contains only the canonical normalized `score`. `report.json`
-retains raw Hit@1/5/20 and MCES@1, metric directions, score bounds/version,
-unclipped score and saturation. The score is a linear transform of Hit@1
-between the fixed DeepSets and GLACIER/MIST reference anchors, clipped to
-[0, 1]; it is not a weighted combination of the scientific metrics. Missing rankings
-retain the full official test denominator. A malformed/unknown/duplicate row
-invalidates the ranking file, and missing queries receive misses and MCES 100.
+`reward.json` contains the raw per-spectrum Hit@1 under both `reward` and
+`score`. `report.json` provides `score`, `reward`, Hit@1/5/20, MCES@1,
+`protocol_mode` (`evaluation_protocol`), `statelessness_spot_check` (in streaming
+mode), and batch metadata (in legacy fallback mode), plus the historical
+reference-normalized score as a diagnostic. Missing rankings retain the full
+official test denominator. A malformed/unknown/duplicate row or stateful leakage
+invalidates the output (`reward: 0.0`, `score: 0.0`).
 
 Invalid packages, inference timeouts and model-process failures produce a
-numeric failure reward (`score: 0`; report metrics: zero hit rates, MCES 100) and a typed `report.json` with
+numeric failure reward (`reward: 0`; report metrics: zero hit rates, MCES 100) and a typed `report.json` with
 `model_quality_measured: false`. Input/setup/grader faults produce an
 `infrastructure_error` report without a reward. The grader publishes JSON
 atomically and signals errors to the waiting main service. The trusted log
@@ -58,7 +81,7 @@ Run a full replay after materializing data and training a package:
 This command requires Docker with NVIDIA Container Toolkit and an H100. The
 main service requests one GPU, 16 CPUs and 64 GiB RAM; the CPU-only grader has
 its own 16 CPU / 16 GiB ceiling. Enforce the 50 GiB writable replay quota and
-six-hour overall deadline in the deployment. Compose declares GPU counts but
+overall deadline from `task.toml` in the deployment. Compose declares GPU counts but
 does not check GPU models or enforce disk quotas. Start every independent
 attempt with fresh named volumes (use a distinct Compose project name).
 
@@ -116,3 +139,27 @@ MAGMa view using `baseline/starter/glacier/prepare.py --limit-train 64
 It compares continuous and resumed four-step training, including parameter
 tensors, data order, RNG, optimizer-step count and the native MAGMa schedule.
 These small checks validate the workflow and do not create a scientific score.
+
+## Scientific & Literature Justification of Verifier Design
+
+### 1. Primary Metric & Upstream Paper Provenance
+
+- **Upstream Benchmark**: *MassSpecGym: A benchmark for the discovery and identification of molecules from mass spectra* (Bushuiev et al., NeurIPS 2024 Datasets and Benchmarks Track, MassSpecGym v1.5).
+- **Primary Metric (`score` / `reward`)**: Mean per-spectrum top-1 retrieval accuracy (`Hit@1`, bounded in `[0, 1]`) across the full held-out test denominator of 17,556 experimental MS/MS spectra, matching `ssi_index_v3.massspec(hit_at_1)` identically (`score = Hit@1`).
+- **Evaluation Unit**: Following Bushuiev et al. (2024), molecular retrieval from tandem mass spectrometry is defined strictly as a **single-spectrum, independent query-conditional** ranking task: given one experimental MS/MS fragmentation spectrum $(m/z, I)$, its measured precursor ion mass-to-charge ratio (`precursor_mz`), ionization adduct, instrument metadata, and a candidate pool of up to 256 constitutional/mass-window isomers, the model ranks the candidates for that spectrum alone without access to future spectra or cross-query test pool statistics.
+
+### 2. Why Additional Ad-Hoc Constraints Are Intentionally Omitted
+
+- **Byte-Identical Preservation of `precursor_mz` (Zero Synthetic Noise)**: In real high-resolution Orbitrap and Q-TOF tandem mass spectrometry, precursor $m/z$ is an intrinsic physical measurement used to compute neutral-loss channels ($\Delta m/z = \text{precursor\_mz} - m/z_i$), precursor mass error, and subformula assignments in chemically grounded forward simulators and fragmentation models (including MIST and GLACIER). Injecting synthetic jitter into `precursor_mz` would corrupt genuine physical neutral-loss features and deviate from the upstream MassSpecGym v1.5 specification. All experimental spectra, `precursor_mz` values, metadata, and candidate SMILES are therefore preserved 100% untouched.
+- **Protocol Enforcement Instead of Metric Distortion**: Rather than altering inputs or inventing non-standard composite penalties, transductive multi-query shortcuts are addressed structurally at the execution boundary via `massspecgym-retrieval-stream/v2` (with legacy 373-batch isolation fallback `massspecgym-per-spectrum-batches/v2` when `serve.sh` is absent):
+  1. **Blocking 1-at-a-Time Dispatch**: The worker sees strictly one anonymized spectrum and one shuffled candidate SMILES pool (`candidate_pool_id` stripped) per step and cannot observe query $i+1$ before committing a valid full permutation `{"query_id", "ranking"}` for query $i$ (eliminating lookahead while amortizing model load to a single persistent worker instead of 373 cold restarts).
+  2. **128-Query Repeated-Pool Cold-Start Full-`ranking` Verification**: After Pass 1, all `UID 10001` processes, `/tmp` files, and System V IPC objects are destroyed, and up to 128 queries—stratified to prioritize later occurrences in shared/repeated/isomeric candidate pools and shuffled under a private seed—are re-evaluated on a fresh cold-start worker. Exact full `ranking` list equality (`ranking_pass2 == ranking_pass1`) is required (`StatefulQueryLeakageError` -> `score = 0.0`). Accurately scoped, this guarantee **blocks all future-query lookahead and verifies targeted state-independence across arrival order, candidate permutation, and repeated-pool history** using only the contracted `{"query_id", "ranking"}` output (no `scores` field required).
+
+### 3. Diagnostic Signals Retained in report.json
+
+While `reward.json` locks `score` and `reward` strictly to raw `Hit@1`, `report.json` retains full scientific and operational diagnostics:
+- `metrics.hit_rate_at_5` (`Hit@5`) and `metrics.hit_rate_at_20` (`Hit@20`): top-$k$ candidate recall over the 17,556 test queries.
+- `metrics.mces_at_1` (`MCES@1`): mean MyopicMCES molecular graph-edit distance between the top-1 predicted molecule and ground-truth structure (with fixed-denominator penalty 100.0 on missing/invalid predictions).
+- `protocol_mode` (`evaluation_protocol`): records whether replay ran under `"massspecgym-retrieval-stream/v2"` or `"massspecgym-per-spectrum-batches/v2"`.
+- `statelessness_spot_check`: records `checked_queries`, `repeated_pool_queries`, `mismatched_queries`, and `passed` for streaming verification.
+- `reference_comparison` and `benchmark_score`: comparison against the frozen `0.4939052175894281` reference anchor and historical normalized diagnostic.

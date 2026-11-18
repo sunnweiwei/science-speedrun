@@ -323,7 +323,7 @@ def main():
             scope='Unified paper-subset independent inference and all metric endpoints; training eligibility and baseline comparison audited separately')
         (a.output/'status.json').write_text(json.dumps(status,indent=2)+'\n')
     except Exception as exc:
-        (a.output/'reward.json').write_text('{"reward":0.0}\n')
+        (a.output/'reward.json').write_text('{"score":0.0,"reward":0.0}\n')
         (a.output/'status.json').write_text(json.dumps(dict(status='failed',error=repr(exc),measured_accounted_peak_bytes=disk_budget.peak if disk_budget else None))+'\n')
         raise
 

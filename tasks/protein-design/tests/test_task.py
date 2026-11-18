@@ -11,6 +11,7 @@ import shutil
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 import zlib
 from pathlib import Path
 
@@ -397,6 +398,18 @@ class ProteinDesignTaskTest(unittest.TestCase):
         shutil.rmtree(self.directory, ignore_errors=True)
 
     # ---- input contract -------------------------------------------------
+    def test_grader_rejects_contexts_from_a_different_input_view(self):
+        sealed = Path(self.directory) / "sealed"
+        sealed.mkdir()
+        snapshot = sealed / "snapshot.json"
+        write_json(snapshot, {"schema": grader.SNAPSHOT_SCHEMA, "input_manifest_sha256": "0" * 64,
+                              "files": {}, "structures": 0})
+        (sealed.parent / "READY").write_text(sha256(snapshot) + "\n")
+        argv = ["grader", "--sealed", str(sealed), "--contexts", str(self.fixture.input),
+                "--output", str(sealed.parent / "result")]
+        with patch("sys.argv", argv), self.assertRaisesRegex(ValueError, "context manifests differ"):
+            grader.main(scorer=StubScorer())
+
     def test_valid_input_view_parses(self):
         manifest, requests = validate_input(self.fixture.input)
         self.assertEqual(set(requests), set(TRACKS))

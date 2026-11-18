@@ -13,17 +13,28 @@ For every configuration, two metrics are computed and each is taken relative to 
 - GIFT-Eval's MASE of the median forecast;
 - the weighted quantile loss (the leaderboard's CRPS column).
 
-Each is combined as a geometric mean over the 97 configurations. The reward is
-`clip(1 − sqrt(rel MASE × rel WQL), 0, 1)`, the geometric skill over Seasonal Naive. Higher is
-better.
+Each relative error `(rel_mase, rel_wql)` is clipped to `[0.001, 10.0]` (with single-application
+log-space partial-coverage blending toward `10.0` if inference timed out part way). To prevent
+multi-frequency or multi-horizon sources from over-weighting the score, the primary SSI V3/V4
+metric aggregates hierarchically across `7 domains -> 23 sources -> horizon`:
 
-| system | reward |
-| --- | ---: |
-| Seasonal Naive | 0.0075 |
-| the 6.4M starter (minutes of training) | 0.161 |
-| the TimesFM-3 architecture at 50.9M, trained from scratch here (`baseline/timesfm3-50m`) | 0.275 |
-| Chronos-2 (119M, pretrained) | 0.418 |
-| **TimesFM-3** (331M, the best released zero-shot model) | **0.447** |
+1. Average `0.5 * (log(rel_mase) + log(rel_wql))` within each `(domain, source, horizon)` cell across frequencies;
+2. Average across horizons within each of the `23` sources;
+3. Average across sources within each of the `7` domains (`mean_domain`);
+4. `signed_score = 1 - exp(mean_domain)` and `score = reward = clip(signed_score, 0, 1)`.
+
+Higher is better. The legacy flat 97-configuration geometric skill is retained in `report.json`
+as `flat_97_skill_diagnostic`.
+
+| system | parameters | hierarchical `score` (`reward`) | `flat_97_skill_diagnostic` |
+| --- | ---: | ---: | ---: |
+| Trivial context-decile control (`trivial_control.json`) | 0 | 0.0000 (`signed = -0.3894`) | -0.3099 |
+| Seasonal Naive (`baseline/seasonal_naive`, contract replay) | 0 | 0.0037 | 0.0075 |
+| Official task starter (`baseline/starter`, `starter-patch-transformer-v3`) | 6.4M | 0.1935 | 0.1530 |
+| Scaled starter control (`baseline/starter-41m`, `starter-patch-transformer-41m`) | 41.8M | 0.2464 | 0.2071 |
+| TimesFM-3 architecture trained from scratch (`baseline/timesfm3-50m`, summary receipt) | 50.9M | *(replay pending; summary-only)* | 0.2745 |
+| Chronos-2 (pretrained zero-shot, local 16,384-obs targets-only replay) | 119M | 0.4161 | 0.4180 |
+| **TimesFM-3** (pretrained zero-shot, local 16,384-obs targets-only replay) | 331M | **0.4400** | **0.4465** |
 
 The released models were pretrained for days on multi-GPU clusters, on corpora of about 10^11
 observations. Matching them from scratch is the research problem. A small model trained on this
@@ -44,13 +55,10 @@ ones, which dominate the reward.
     97 configurations), staged in the contract's format with labels. Each window ends before
     any held-out region.
 - `/workspace/baseline/`: verified reference implementations with the results we reproduced:
-  - `timesfm3-50m/`: the main baseline. The TimesFM-3 architecture (its released Apache-2.0
-    code, random init) at 50.9M parameters, data-parallel training with source-balanced sampling,
-    and the package that runs the released TimesFM-3 forecaster on the trained weights; reward
-    0.275;
-  - `starter-41m/`: the starter's patched transformer at 41.8M parameters; reward 0.207;
-  - `starter/`: the 6.4M starter, the quickest end-to-end pipeline; reward 0.161;
-  - `seasonal_naive/`: the normalizer; reward 0.0075.
+  - `starter/`: the official 6.4M task starter (`6,404,864` parameters, `starter-patch-transformer-v3`), quickest end-to-end pipeline; hierarchical `score` `0.1935` (`flat_97_skill_diagnostic` `0.1530`);
+  - `starter-41m/`: the starter's patched transformer scaled to 41.8M parameters (`41,815,296` parameters); hierarchical `score` `0.2464` (`flat_97_skill_diagnostic` `0.2071`);
+  - `timesfm3-50m/`: the TimesFM-3 architecture (released Apache-2.0 code, random init) at 50.9M parameters (`50,918,592` parameters), data-parallel training with source-balanced sampling (`flat_97_skill_diagnostic` `0.2745`);
+  - `seasonal_naive/`: the normalizer; hierarchical `score` `0.0037` (`flat_97_skill_diagnostic` `0.0075`).
 - `/workspace/references/`: the leaderboard and the replays of released models, not verified here.
 - `/workspace/evaluation/`: the verifier's scorer (`score.py` reproduces gluonts to 1.9e-7).
 - `/workspace/research/`: writable space for the packed corpus, checkpoints and notes.

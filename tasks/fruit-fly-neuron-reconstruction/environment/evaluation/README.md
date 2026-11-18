@@ -12,8 +12,7 @@ model package. It does not take a reference suite as input. Its container work
 root is `/workspace/research/run`; use a fresh root for each evaluation.
 
 The independent private verifier runs the same prediction stages in a separate
-namespace, then scores all three methods. Its primary reward is SHAPE nERL;
-FFN-only and shared-proposal FFN remain controls. Runtime/partial-execution
+namespace, then scores all three methods. The primary reward is SHAPE nERL. The development scorer can optionally compute the cube-grid comparison using `--grid-control`. The raw reconstruction score is available independently of that diagnostic. FFN-only and shared-proposal FFN remain controls. Runtime/partial-execution
 failures are not evidence of low biological quality.
 
 ## Runtime of a full development evaluation

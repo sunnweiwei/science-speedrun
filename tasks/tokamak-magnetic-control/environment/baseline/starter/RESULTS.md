@@ -23,7 +23,7 @@ Inference:
 - The actor runs in float32 on 1-D vectors, about 0.06 ms; the whole package takes about 0.11 ms in process.
 - Parameters: actor 285k, plus the base estimator's solved weights (106k).
 
-`tests/test.sh`, all sealed seeds 1001-1005, v0.3:
+`tests/test.sh`, historical 5-seed sealed suite (35 episodes), v0.3:
 
 | Case | Outcomes | Shape RMS [cm] | Inner gap [cm] | Outer gap [cm] | X-point height [cm] | Ip error [%] |
 | --- | --- | --- | --- | --- | --- | --- |

@@ -257,10 +257,13 @@ done >> "$2/scores.csv"
     result = grader.grade(package, root, tmp_path / "logs", timeout=0.1 if behavior == "timeout" else 30)
     if behavior == "complete":
         assert result["valid"]
+        assert result["score"] == pytest.approx(RANDOM_FIXTURE_BEDROC)
         assert result["reward"] == pytest.approx(RANDOM_FIXTURE_BEDROC)
         assert len(result["per_target"]) == 117
+        assert result["swapped_pocket_counterfactual"]["status"] == "ok"
     else:
         assert not result["valid"]
+        assert result["score"] == 0
         assert result["reward"] == 0
 
 
@@ -307,16 +310,21 @@ done >> "$2/scores.csv"
     output = tmp_path / "logs"
     result = grader.grade(package, root, output, timeout=0.1 if behavior == "timeout" else 30)
     assert result["valid"] == (behavior == "complete")
+    assert result["score"] == pytest.approx(RANDOM_FIXTURE_BEDROC if behavior == "complete" else 0)
     assert result["reward"] == pytest.approx(RANDOM_FIXTURE_BEDROC if behavior == "complete" else 0)
     scores = json.loads((output / "reward.json").read_text())
     if result["valid"]:
         assert scores["overall_mean_ef_0.01"] == pytest.approx(1)
         assert scores["overall_mean_roc_auc"] == pytest.approx(0.5)
         assert scores["dataset_balanced_bedroc"] == result["reward"]
+        assert scores["score"] == result["score"]
         assert result["scoring_protocol"] == "drugclip-dataset-bedroc/v2"
-        assert len(scores) == 8
+        assert result["swapped_pocket_counterfactual"]["status"] == "ok"
+        assert result["swapped_pocket_counterfactual"]["pocket_specificity_delta"] == pytest.approx(0)
+        assert len(scores) == 9
     else:
-        assert scores == {"reward": 0}
+        assert scores == {"score": 0, "reward": 0}
+    assert scores["score"] == result["score"]
     assert scores["reward"] == result["reward"]
     assert json.loads((output / "report.json").read_text()) == result
     assert json.loads((output / "details.json").read_text()) == result

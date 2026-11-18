@@ -209,11 +209,18 @@ class Policy:
         self.stderr.close()
 
 
-def replay_episode(env, policy, case, seed):
-    """Only the trusted environment supplies returns; the policy supplies actions."""
+def replay_episode(env, policy, case, seed, episode_index=0):
+    """Only the trusted environment supplies returns; the policy supplies actions.
+
+    The simulator receives the true perturbation seed `seed`, while `policy.reset(...)`
+    receives only the public `episode_index` (never the secret perturbation seed).
+    """
+    if type(episode_index) is not int or episode_index < 0:
+        raise InfrastructureError("Invalid public episode_index")
     started = time.monotonic()
     observation, _ = env.reset(seed=seed)
-    policy.reset({"environment": case["environment"], "family": case["family"], "seed": seed},
+    policy.reset({"environment": case["environment"], "family": case["family"],
+                  "seed": episode_index, "episode_index": episode_index},
                  env.observation_space.shape, env.action_space.shape,
                  unpack(env.action_space.low), unpack(env.action_space.high))
     reward_sum = 0.0
@@ -244,7 +251,7 @@ def replay_episode(env, policy, case, seed):
         raise InfrastructureError("Native episode did not finish within its reviewed horizon")
     diagnostics = {k: float(v) for k, v in info.items()
                    if type(v) in (int, float) and math.isfinite(v)}
-    result = {"seed": seed, "return": reward_sum, "steps": step + 1,
+    result = {"seed": seed, "episode_index": episode_index, "return": reward_sum, "steps": step + 1,
             "terminated": bool(terminated), "truncated": bool(truncated),
             "wall_time_sec": time.monotonic() - started, "diagnostics": diagnostics}
     if 'primary_metric' in case:

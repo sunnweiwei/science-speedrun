@@ -1,4 +1,4 @@
-"""Fixed pre-scoring relaxation shared by development and trusted final tests."""
+"""Fixed UMA-200 relaxation shared by development and the trusted grader."""
 
 import csv
 import hashlib

@@ -96,22 +96,25 @@ A track's pass rate is the **mean of its per-target rates**, not pooled over des
 A target's rate is passing designs / 100 **requested** — designs lost to a parse error
 count as failures, which is the conservative convention.
 
-**No composite number is quoted here, and the grader no longer computes one either.**
-The three tracks above the line are RFdiffusion3's benchmark, each judged by its own
-published `success.txt`; averaging them is not a choice this task makes.
-*unconditional* is italicised because it is **not part of the benchmark** — there is no
-published unconditional criterion to compare a number against. The `uncond_L100` row is
-a synthetic length invented by this task, so mixing it into a mean with the other three
-would inflate the result with the one track nobody publishes. It is nonetheless a
-**graded** track: since 2026-09-28 `ingest_targets.py` synthesises the same target into
-the evaluation view (51 targets: 41 enzyme, 4 sm_binder, 5 ppi_binder, 1 unconditional),
+**Target-weighted combined score (`score` and `reward`).** The three tracks above the line are
+RFdiffusion3's benchmark, each judged by its own published `success.txt`. *unconditional* is
+italicised because it is **not part of the upstream benchmark** — `uncond_L100` is a single
+synthetic length-100 target (`1` of the `51` evaluation targets). Accordingly, rather than an
+equal `1/4` track mean that would let `unconditional` dominate, `tests/grader.py` computes the
+target-weighted V3 combined score:
+
+```text
+score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)
+```
+
+giving `unconditional` weight `1/51` and each of the three conditioned tracks weight `50/153`
+(`1/51 + 3 * 50/153 = 1.0`). Since 2026-09-28 `ingest_targets.py` synthesises `uncond_L100`
+into the evaluation view (51 targets: 41 enzyme, 4 sm_binder, 5 ppi_binder, 1 unconditional),
 so this row and the graded one measure the same thing.
 
-`tests/grader.py` reports the same quantity - per-track `pass_rate`, with `diversity`
-beside it, and no composite - into `reward.json`, at the same sample size: the graded
-evaluation view requests 100 designs per target too, as of 2026-09-26. Both definitions
-agree exactly, not merely in spirit: a mean over per-target rates and a pooled count over
-requested designs are the same number when every target requests the same 100.
+`tests/grader.py` reports `score`, `reward`, per-track `pass_rate`, and `diversity` into
+`reward.json`. At uniform sample size per target, a mean over per-target rates and a pooled
+count over requested designs are the same number.
 
 The enzyme distribution, over all 41 targets — 220 passing designs of 4,100:
 

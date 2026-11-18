@@ -42,6 +42,7 @@ class VerifierFailureTests(unittest.TestCase):
             ('invalid_submission', ValueError('bad hash')),
             ('inference_timeout', subprocess.TimeoutExpired('infer.sh', 1)),
             ('inference_failed', subprocess.CalledProcessError(7, 'infer.sh')),
+            ('invalid_output', main_verifier.InvalidBatchOutput('query outside its batch')),
         ]
         for status, error in failures:
             with self.subTest(status=status), tempfile.TemporaryDirectory() as directory:
@@ -49,14 +50,14 @@ class VerifierFailureTests(unittest.TestCase):
                 args = argparse.Namespace(output=root / 'logs', sealed=root / 'sealed/run',
                                           input=root / 'input', submission=root / 'package',
                                           timeout=1, no_wait=True)
-                with mock.patch.object(main_verifier, 'validate_input', return_value=({}, {'q': {}}, {})), \
+                with mock.patch.object(main_verifier, 'validate_input', return_value=({}, {'q': {'candidate_pool_id': 'p'}}, {})), \
                      mock.patch.object(main_verifier, 'validate_submission',
                                        side_effect=error if status == 'invalid_submission' else None), \
-                     mock.patch.object(main_verifier, 'run_submission', side_effect=error):
+                     mock.patch.object(main_verifier, 'run_batches', side_effect=error):
                     main_verifier.evaluate(args)
                 reward = json.loads((args.output / 'reward.json').read_text())
                 report = json.loads((args.output / 'report.json').read_text())
-                self.assertEqual(reward, {'reward': 0.0})
+                self.assertEqual(reward, {'reward': 0.0, 'score': 0.0})
                 self.assertEqual(report['metrics']['hit_rate_at_1'], 0)
                 self.assertEqual(report['metrics']['mces_at_1'], 100)
                 self.assertEqual(report['status'], status)
@@ -96,9 +97,9 @@ class VerifierFailureTests(unittest.TestCase):
                 result = root / 'sealed/results'
                 result.mkdir()
                 (result / 'error.json').write_text('{"error":"CBC unavailable"}')
-            with mock.patch.object(main_verifier, 'validate_input', return_value=({}, {'q': {}}, {})), \
+            with mock.patch.object(main_verifier, 'validate_input', return_value=({}, {'q': {'candidate_pool_id': 'p'}}, {})), \
                  mock.patch.object(main_verifier, 'validate_submission'), \
-                 mock.patch.object(main_verifier, 'run_submission', return_value=root / 'predictions'), \
+                 mock.patch.object(main_verifier, 'run_batches', return_value=root / 'predictions'), \
                  mock.patch.object(main_verifier, 'seal_output', side_effect=publish_error):
                 with self.assertRaisesRegex(RuntimeError, 'CBC unavailable'):
                     main_verifier.evaluate(args)

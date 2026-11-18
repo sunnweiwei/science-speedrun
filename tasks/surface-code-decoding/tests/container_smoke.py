@@ -224,14 +224,16 @@ def case_run(case: str, fixture: Path, output: Path, image: str) -> dict[str, An
             assert report["performance"] == 0.75 and report["balanced_logical_failure"] == 0.25
             expected = max(0.0, (0.75 - config["lower_bound"]) / (config["upper_bound"] - config["lower_bound"]))
             assert math.isclose(report["score"], expected, rel_tol=0, abs_tol=1e-12)
-            assert json.loads(reward_path.read_text())["reward"] == report["performance"]
+            reward_payload = json.loads(reward_path.read_text())
+            assert math.isclose(reward_payload["score"], report["performance"], rel_tol=0, abs_tol=1e-12)
+            assert reward_payload["score"] == reward_payload["reward"]
             inference_log = (case_output / "inference/inference.log").read_text()
             probes = [json.loads(line) for line in inference_log.splitlines() if line.startswith('{"container_security_probe"')]
             assert len(probes) == 1 and probes[0]["container_security_probe"] == "passed"
         elif case == "invalid-submission":
             assert run.returncode == 0 and report["status"] == "invalid_submission"
             assert report["model_quality_measured"] is False and report["performance"] is None
-            assert json.loads(reward_path.read_text()) == {"reward": 0.0}
+            assert json.loads(reward_path.read_text()) == {"score": 0.0, "reward": 0.0}
         else:
             assert run.returncode != 0 and report["status"] == "infrastructure_error"
             assert report["model_quality_measured"] is False and not reward_path.exists()

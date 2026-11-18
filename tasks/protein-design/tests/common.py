@@ -14,6 +14,7 @@ INPUT_SCHEMA = "protein-design-input/v1"
 HARNESS_SCHEMA = "protein-design-harness/v1"
 SNAPSHOT_SCHEMA = "protein-design-design-snapshot/v1"
 REPORT_SCHEMA = "protein-design-report/v1"
+PPI_SEQUENCE_PROTOCOL = "proteinmpnn-fixed-target/v2"
 
 # Structures use the atom14 layout: [L, 14, 3] with an [L, 14] occupancy mask and
 # backbone N/CA/C/O pinned to slots 0-3. See residues.py.

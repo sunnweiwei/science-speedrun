@@ -36,29 +36,11 @@ import isolation  # noqa: E402
 LOG_CAP = 2 * 1024 * 1024   # bytes of one call's stdout/stderr kept in infer.log
 
 
-# the bounds travel with the grader modules: /tests/evaluation in the verifier image, environment/evaluation in a checkout
-BOUNDS = _EVAL / "score_bounds.json"
-
-
 def harbor_reward(values):
     """Harbor parses reward.json as a flat object of finite numbers; strings, None and nested details
     belong in report.json / status.json."""
     import math as _math
     return {k: v for k, v in values.items() if isinstance(v, (int, float)) and _math.isfinite(v)}
-
-
-def normalised(reward):
-    """Map the raw reward onto 0-1 between this track's reference floor and ceiling.
-
-    Returns None when no bounds file is present, so a checkout without one still scores.
-    """
-    if not BOUNDS.exists():
-        return None
-    b = json.loads(BOUNDS.read_text())
-    lo, hi = b["lower"]["reward"], b["upper"]["reward"]
-    if not hi > lo:
-        raise ValueError(f"{BOUNDS}: upper bound {hi} must exceed lower bound {lo}")
-    return {"normalised_score": min(1.0, max(0.0, (reward - lo) / (hi - lo))), "lower": lo, "upper": hi}
 
 
 def write(path, obj):
@@ -274,18 +256,18 @@ def main():
             if violation is None and not (sub / "infer.sh").exists():
                 violation = "infer.sh missing"
             if violation is not None:
-                status.update({"stage": "done", "reward": 0.0, "rule_violation": violation})
-                write(out / "status.json", status); write(out / "reward.json", {"reward": 0.0})
+                status.update({"stage": "done", "score": 0.0, "reward": 0.0, "rule_violation": violation})
+                write(out / "status.json", status); write(out / "reward.json", {"score": 0.0, "reward": 0.0})
                 (out / "reward.txt").write_text("0.0\n")
-                print(json.dumps({"reward": 0.0, "rule_violation": violation}))
+                print(json.dumps({"score": 0.0, "reward": 0.0, "rule_violation": violation}))
                 return
             status["model_manifest"] = {k: _scalar(manifest.get(k)) for k in ("name", "parameters", "pretrained_assets", "sources_used")}
             if violation is None and manifest.get("pretrained_assets"):
                 violation = "model_manifest.json declares pretrained assets; the task forbids them (instruction.md)"
-                status.update({"stage": "done", "reward": 0.0, "rule_violation": violation})
-                write(out / "status.json", status); write(out / "reward.json", {"reward": 0.0})
+                status.update({"stage": "done", "score": 0.0, "reward": 0.0, "rule_violation": violation})
+                write(out / "status.json", status); write(out / "reward.json", {"score": 0.0, "reward": 0.0})
                 (out / "reward.txt").write_text("0.0\n")
-                print(json.dumps({"reward": 0.0, "rule_violation": status["rule_violation"]}))
+                print(json.dumps({"score": 0.0, "reward": 0.0, "rule_violation": status["rule_violation"]}))
                 return
         if args.phase == "all" and work.exists():
             isolation._rm_rf(work)                   # a fresh run: no stale input, truth, seal or output
@@ -293,10 +275,10 @@ def main():
             work.mkdir(parents=True, exist_ok=True)
             violation = seal_package(sub, sealed)   # before the labels are staged: a package is never copied beside them
             if violation is not None:
-                status.update({"stage": "done", "reward": 0.0, "rule_violation": violation})
-                write(out / "status.json", status); write(out / "reward.json", {"reward": 0.0})
+                status.update({"stage": "done", "score": 0.0, "reward": 0.0, "rule_violation": violation})
+                write(out / "status.json", status); write(out / "reward.json", {"score": 0.0, "reward": 0.0})
                 (out / "reward.txt").write_text("0.0\n")
-                print(json.dumps({"reward": 0.0, "rule_violation": violation}))
+                print(json.dumps({"score": 0.0, "reward": 0.0, "rule_violation": violation}))
                 return
         if args.phase in ("all", "stage"):
             from make_cases import main as make_cases_main  # noqa: E402
@@ -414,23 +396,21 @@ def main():
         coverage = json.loads((work / "coverage.json").read_text()) if (work / "coverage.json").exists() else {}
         report = score(truth, outp, baseline, coverage=coverage)
         write(out / "report.json", report)
-        reward = report["reward"]
-        payload = {"reward": reward, "isolation": status.get("isolation")}
-        bounds = normalised(reward)
-        if bounds is not None:
-            payload["normalised_score"] = bounds["normalised_score"]
-            payload["bounds"] = {"lower": bounds["lower"], "upper": bounds["upper"]}
+        primary = report["score"]
+        payload = {"score": primary, "reward": primary}
         write(out / "reward.json", harbor_reward(payload))
-        (out / "reward.txt").write_text(f"{report['reward']}\n")
+        (out / "reward.txt").write_text(f"{primary}\n")
         write_results_csv(report, out / "results.csv", status.get("model_manifest", {}).get("name") or "submission")
-        status.update({"stage": "done", "reward": report["reward"], "skill_score": report["skill_score"],
+        status.update({"stage": "done", "score": primary, "reward": primary,
+                       "signed_score": report["signed_score"], "skill_score": report["skill_score"],
+                       "flat_97_skill_diagnostic": report["flat_97_skill_diagnostic"],
                        "rel_mase_gmean": report["rel_mase_gmean"], "rel_wql_gmean": report["rel_wql_gmean"],
                        "n_failed": report["n_failed"], "n_partial": report["n_partial"],
                        "n_instances_scored": report["n_instances_scored"],
                        "failure_reasons": sorted({f["reason"] for f in report["failures"]}),
                        "groups": report["groups"]})
         write(out / "status.json", status)
-        print(json.dumps({k: status[k] for k in ("reward", "skill_score", "rel_mase_gmean", "rel_wql_gmean", "n_configs", "n_failed", "inference") if k in status}))
+        print(json.dumps({k: status[k] for k in ("score", "reward", "signed_score", "skill_score", "flat_97_skill_diagnostic", "rel_mase_gmean", "rel_wql_gmean", "n_configs", "n_failed", "inference") if k in status}))
     except Exception as exc:  # noqa: BLE001 - setup/scorer failure, distinguishable from model failure
         status.update({"error": f"{type(exc).__name__}: {str(exc)[:1000]}"})
         try:

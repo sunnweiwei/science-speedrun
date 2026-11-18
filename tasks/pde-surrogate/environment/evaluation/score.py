@@ -139,7 +139,7 @@ def score(input_dir: Path, truth_dir: Path, output_dir: Path):
         datasets[ds] = d
     groups = {}
     for ds, d in datasets.items():
-        g = "ape2d" if ds.startswith("ape2d/") else ds
+        g = "ape2d" if ds.startswith("ape2d/") else ("pdearena" if ds.startswith("pdearena/") else ds)
         groups.setdefault(g, []).append(d["vrmse"])
     groups = {g: {"n_datasets": len(v), "vrmse": float(np.mean(v)), "reward": reward_from_vrmse(float(np.mean(v)))}
               for g, v in groups.items()}
@@ -147,19 +147,19 @@ def score(input_dir: Path, truth_dir: Path, output_dir: Path):
     reward = float(np.mean([g["reward"] for g in groups.values()])) if groups else 0.0
     return {"contract": CONTRACT, "n_cases": len(cases), "n_failed": len(failures),
             "failures": failures, "datasets": datasets, "groups": groups, "mean_vrmse": mean_vrmse,
-            "reward": reward, "cases": cases}
+            "score": reward, "reward": reward, "cases": cases}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True); ap.add_argument("--truth", required=True)
     ap.add_argument("--output", required=True); ap.add_argument("--report", required=True)
-    ap.add_argument("--reward-json", help="also write {'reward': x} here")
+    ap.add_argument("--reward-json", help="also write {'score': x, 'reward': x} here")
     args = ap.parse_args()
     report = score(Path(args.input), Path(args.truth), Path(args.output))
     Path(args.report).write_text(json.dumps(report, indent=1) + "\n")
     if args.reward_json:
-        Path(args.reward_json).write_text(json.dumps({"reward": report["reward"]}) + "\n")
+        Path(args.reward_json).write_text(json.dumps({"score": report["reward"], "reward": report["reward"]}) + "\n")
     print(json.dumps({k: report[k] for k in ("n_cases", "n_failed", "mean_vrmse", "reward")}), file=sys.stderr)
     for ds, d in report["datasets"].items():
         print(f"  {ds:40s} cases={d['n_cases']:4d} failed={d['n_failed']:3d} K={d['n_steps']:3d} VRMSE={d['vrmse']:.4f}", file=sys.stderr)

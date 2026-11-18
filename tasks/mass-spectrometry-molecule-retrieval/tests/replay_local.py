@@ -16,19 +16,14 @@ import subprocess
 import time
 
 from common import validate_input, write_json
-from main_verifier import seal_output, validate_submission
+from main_verifier import execute_batches, seal_output, validate_submission
 
 
-def replay(args):
-    validate_input(args.input)
-    manifest = validate_submission(args.submission)
-    args.output.mkdir(parents=True, exist_ok=False)
-    output = args.output / 'untrusted-output'
+def invoke_isolated(args, python, base, input_directory, current, remaining):
+    output = current / 'untrusted-output'
     output.mkdir()
     # Only the chosen venv and its actual CPython installation are visible.
     # In particular, never bind /usr: a cluster may store private data below it.
-    python = args.runtime / 'bin/python'
-    base = Path(subprocess.check_output([str(python), '-c', 'import sys; print(sys.base_prefix)'], text=True).strip()).resolve()
     command = ['bwrap', '--unshare-all', '--die-with-parent', '--new-session',
                '--uid', '0', '--gid', '0', '--cap-drop', 'ALL', '--clearenv']
     for path in ['/usr/bin', '/usr/lib', '/usr/lib64', '/usr/share', '/bin', '/lib', '/lib64']:
@@ -40,7 +35,7 @@ def replay(args):
     command += ['--ro-bind', str(base), str(base),
                 '--ro-bind', str(args.runtime), str(args.runtime),
                 '--ro-bind', str(args.submission), '/submission',
-                '--ro-bind', str(args.input), '/input',
+                '--ro-bind', str(input_directory), '/input',
                 '--bind', str(output), '/output', '--tmpfs', '/tmp',
                 '--dir', '/home/agent', '--proc', '/proc', '--dev', '/dev']
     if args.gpu:
@@ -57,18 +52,36 @@ def replay(args):
     }.items():
         command += ['--setenv', key, value]
     command += ['--chdir', '/submission', '/bin/bash', '/submission/infer.sh', '/input', '/output']
-    started = time.monotonic()
-    with (args.output / 'inference.log').open('wb') as log:
+    with (current / 'inference.log').open('wb') as log:
         process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         try:
-            code = process.wait(timeout=args.timeout)
+            code = process.wait(timeout=remaining)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             process.wait()
             raise
     if code:
         raise subprocess.CalledProcessError(code, command)
-    seal_output(output, args.output / 'sealed/run', args.input / 'manifest.json')
+    return output
+
+
+def replay(args):
+    input_manifest, queries, _ = validate_input(args.input)
+    manifest = validate_submission(args.submission)
+    args.output.mkdir(parents=True, exist_ok=False)
+    python = args.runtime / 'bin/python'
+    base = Path(subprocess.check_output(
+        [str(python), '-c', 'import sys; print(sys.base_prefix)'], text=True).strip()).resolve()
+    started = time.monotonic()
+    def invoke(input_directory, current, remaining):
+        return invoke_isolated(args, python, base, input_directory, current, remaining)
+    output = execute_batches(args.input, input_manifest, queries, args.output, args.timeout, invoke)
+    seal_output(output, args.output / 'sealed/run', args.input / 'manifest.json', args.output / 'batches.json')
+    # Preserve the aggregate local log used by earlier operator probes.
+    with (args.output / 'inference.log').open('wb') as target:
+        for source in sorted((args.output / 'logs').glob('*.log')):
+            with source.open('rb') as stream:
+                shutil.copyfileobj(stream, target)
     report = {'isolation': 'rootless user/PID/network/mount namespaces; all capabilities dropped',
               'host_uid': os.getuid(), 'namespace_uid': 0, 'elapsed_seconds': time.monotonic() - started,
               'checkpoint_sha256': manifest['checkpoint']['sha256'], 'gpu_enabled': args.gpu,

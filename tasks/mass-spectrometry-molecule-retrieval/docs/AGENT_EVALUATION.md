@@ -96,8 +96,9 @@ The default task allows 48 hours, up to 8 H100s, 32 CPU cores, 256 GiB RAM and
 200 GiB writable storage. These are ceilings, not an obligation to use all GPUs.
 The verifier's model-execution container has 1 H100, 16 CPUs, 64 GiB RAM and
 50 GiB storage. The trusted CPU-only grader has a separate ceiling of 16 CPUs
-and 16 GiB RAM, and no GPU. The complete replay has 6 hours: at most 5 hours
-for inference, with setup, sealing and grading sharing the remaining time.
+and 16 GiB RAM, and no GPU. Inference has five hours of compute plus a fixed startup allowance for each
+invocation. The current full verifier deadline is in `task.toml`; the budget
+formula and the canonical 373-batch split are in `environment/contract.md`.
 The prompt explicitly
 states the budget. Any experiment hiding the budget needs a separately recorded
 prompt condition applied equally to all compared agents.

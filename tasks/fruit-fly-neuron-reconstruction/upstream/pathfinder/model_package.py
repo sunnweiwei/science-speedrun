@@ -244,7 +244,7 @@ def export(root,out,checkpoints,search_threshold=.2,ffn_ensemble=None,ffn_select
         inference=dict(search_threshold=search_threshold),
         files={str(p.relative_to(out)):sha256(p) for p in sorted(out.rglob('*')) if p.is_file()},
         runtime=dict(python=platform.python_version(),platform=platform.platform(),packages=versions,
-            torch_cuda=torch.version.cuda,compiled_cuda_arch='8.6',
+            torch_cuda=torch.version.cuda,compiled_cuda_arch='8.6;9.0',
             binary_portability='Same Python/PyTorch/CUDA ABI only; rebuild bundled FPS source for another compatible runtime'),
         paper_comparable=False,task_submission_verified=False,ground_truth_included=False)
     if ensemble is not None:manifest['ffn_ensemble']=ensemble

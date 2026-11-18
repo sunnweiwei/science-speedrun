@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 
 from .errors import ContractError
+from .manifests import check_input_window_isolation
 from .quantize import CONTACT_ENCODING, DENSE_ENCODING
 from .protocol import (
     CONTACT_BINS,
@@ -142,6 +143,7 @@ def validate_release_metadata(data_dir: Path, *, splits: list[str]) -> dict[str,
     ):
         raise ContractError("public junction track mapping differs from source metadata")
     reports = {}
+    windows = {}
     for split in splits:
         public_path = data_dir / "public" / f"{split}.parquet"
         labels_path = data_dir / "labels" / f"{split}.parquet"
@@ -154,6 +156,7 @@ def validate_release_metadata(data_dir: Path, *, splits: list[str]) -> dict[str,
             raise ContractError(f"{split} manifest hashes/count differ from release.json")
         if tuple(public.columns) != PUBLIC_COLUMNS:
             raise ContractError(f"{split} public manifest violates the field whitelist")
+        windows[split] = public[["chromosome", "input_start", "input_end"]]
         if tuple(labels.columns) != LABEL_COLUMNS:
             raise ContractError(f"{split} labels manifest has unexpected fields")
         public_ids = public.example_id.astype(str).tolist()
@@ -212,7 +215,8 @@ def validate_release_metadata(data_dir: Path, *, splits: list[str]) -> dict[str,
             "nonzero_junction_targets": nonzero_targets,
             "junction_tracks_with_target_variance": tracks_with_variance,
         }
-    return {"status": "PASS", "schema": release["schema"], "splits": reports}
+    return {"status": "PASS", "schema": release["schema"], "splits": reports,
+            "full_window_overlaps": check_input_window_isolation(windows)}
 
 
 def validate_release(

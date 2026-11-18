@@ -1,0 +1,23 @@
+{
+  "schema": "atomistic-materials-zero-force-anchors/v4",
+  "discovery_positive_prevalence": 0.1648,
+  "discovery_f1_base": 0.28296703296703296,
+  "atom_zero_force_anchors": {
+    "phonon_avg_freq_MAE_K": 419.2277237301322,
+    "bulk_modulus_MAE_GPa": 107.020216,
+    "shear_modulus_MAE_GPa": 54.186936,
+    "kappa_SRME": 2.0,
+    "mof_bulk_modulus_MAPE_pct": 100.0,
+    "amorphous_energy_RelRMSE_pct": 100.0,
+    "amorphous_force_RelRMSE_pct": 100.0,
+    "cleavage_relMAE_pct": 100.0,
+    "neb_barrier_MAE_eV": 0.6803895877435844
+  },
+  "mof_d3_dispersion_config": {
+    "calculator": "TorchDFTD3Calculator",
+    "xc": "pbe",
+    "damping": "bj",
+    "cutoff_bohr": 40.0,
+    "status": "pending_gpu_measurement_60_test_mofs"
+  }
+}

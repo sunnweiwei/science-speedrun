@@ -37,7 +37,7 @@ Notes:
   misses are the same kind as in the sealed run: inner gap and X-point height in P4, vertical shift and sequence.
 - **Files.** `reproduction/dev-visible-seeds-0-2-v4/` has this run's `results.json` (every episode: outcome, steady-state errors, fallback-ladder retries, latencies, setup draws, wall time), `grading.json` and `reward.json`; `reproduction/dev-visible-seeds-0-2/` keeps the earlier v3 run.
 
-## Sealed verifier, `tokamak-shape-metrics/v4` (sealed-v0.3, seeds 1001-1015, 105 episodes)
+## Sealed verifier, `tokamak-shape-metrics/v4` (15 blind perturbation seeds, 105 episodes; historical `sealed-v0.3` calibration)
 
 `tests/test.sh` through Harbor (separate verifier, 112 CPUs, 105 workers), 2026-10-23, on `package/`:
 **score 48/105 = 0.457**, 79/105 episodes kept, `tolerance_time_fraction` 0.44, 6 solver failures, 48 steps
@@ -55,49 +55,37 @@ on an oversubscribed host).
 | mastu_vertical_shift | 5 | 8 | 2 | 0 | 0 |
 
 The misses are of the same kind as under v3: the inner gap and the X-point height (P4, vertical shift, sequence), and
-in most cases two seeds whose plasma is lost within the first 140 steps.
+in most cases two severe perturbation draws whose plasma is lost within the first 140 steps.
 
-## Sealed verifier, v0.3 (`tokagym-mastu/v0.3`, `tokamak-shape-metrics/v3`, seeds 1001-1005), history
+## Historical 5-seed sealed suite (`tokagym-mastu/v0.3`, `tokamak-shape-metrics/v3`, 35 episodes)
 
 `tests/test.sh` on the package in `package/` (`w_x` 4, `k_zt` 150): **score 17/35 = 0.486**, 27/35
-episodes kept, no void, policy computation 0.33 ms median (gate 0.5 ms).
+episodes kept, no void, policy computation 0.33 ms median (gate 0.5 ms). Aggregate per-case steady-state
+means over the feasible episodes (per-seed breakdown omitted to preserve blind perturbation isolation):
 
-| Case | 1001 | 1002 | 1003 | 1004 | 1005 |
-| --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | **success** | **success** | **success** | lost (step 132) | **success** |
-| mastu_high_ip_hold | kept (Rin 1.25) | **success** | **success** | lost (step 138) | **success** |
-| mastu_ip_ramp | kept (Rin 1.53) | **success** | **success** | lost (step 133) | **success** |
-| mastu_p4_shape_hold | kept (Rin 1.06) | kept (RMS 1.28, Rin 1.20, X-pt 1.97) | **success** | lost (step 122) | **success** |
-| mastu_pressure_drop | kept (Rin 1.10) | **success** | **success** | lost (step 132) | **success** |
-| mastu_vertical_shift | kept (RMS 1.03, Rin 2.18) | **success** | kept (Rin 1.24) | lost (step 132) | kept (Rin 1.70) |
-| mastu_sequence | solver failure (step 511) | **success** | kept (Rin 1.64, X-pt 50) | lost (step 132) | kept (Rin 1.18, X-pt 1.38) |
-
-Kept episodes name the steady-state quantities [cm] (Ip [%]) that missed the tolerance. Steady-state
-means over the feasible episodes:
-
-| Case | Shape RMS [cm] | Inner gap [cm] | Outer gap [cm] | X-point height [cm] | Ip error [%] |
-| --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | 0.60 | 0.47 | 0.53 | 0.63 | 0.19 |
-| mastu_high_ip_hold | 0.62 | 0.64 | 0.54 | 0.60 | 0.19 |
-| mastu_ip_ramp | 0.64 | 0.73 | 0.50 | 0.61 | 0.08 |
-| mastu_p4_shape_hold | 0.83 | 0.66 | 0.55 | 1.15 | 0.19 |
-| mastu_pressure_drop | 0.60 | 0.53 | 0.44 | 0.61 | 0.13 |
-| mastu_vertical_shift | 0.81 | 1.41 | 0.41 | 0.27 | 0.15 |
-| mastu_sequence | 0.83 | 1.04 | 0.52 | 17.3 | 0.43 |
+| Case | Success / Kept (of 5) | Shape RMS [cm] | Inner gap [cm] | Outer gap [cm] | X-point height [cm] | Ip error [%] |
+| --- | --- | --- | --- | --- | --- | --- |
+| mastu_diverted_hold | 4 / 4 | 0.60 | 0.47 | 0.53 | 0.63 | 0.19 |
+| mastu_high_ip_hold | 3 / 4 | 0.62 | 0.64 | 0.54 | 0.60 | 0.19 |
+| mastu_ip_ramp | 3 / 4 | 0.64 | 0.73 | 0.50 | 0.61 | 0.08 |
+| mastu_p4_shape_hold | 2 / 4 | 0.83 | 0.66 | 0.55 | 1.15 | 0.19 |
+| mastu_pressure_drop | 3 / 4 | 0.60 | 0.53 | 0.44 | 0.61 | 0.13 |
+| mastu_vertical_shift | 1 / 4 | 0.81 | 1.41 | 0.41 | 0.27 | 0.15 |
+| mastu_sequence | 1 / 3 | 0.83 | 1.04 | 0.52 | 17.3 | 0.43 |
 
 Reading:
 - The remaining misses are mostly the inner gap (1.1-2.2 cm). The flux-loop integrator drift
   grows through the episode and the linear reconstruction does not model it, so the estimated
-  inner separatrix drifts in seeds 1001 and 1003.
-- Seed 1004 is lost in every case after 122-138 steps; the privileged PID loses it too.
+  inner separatrix drifts on stronger integrator-drift draws.
+- One severe low-pressure draw is lost in every case after 122-138 steps; the privileged PID loses it too.
 - Since v0.3 the vertical moves target equilibria the machine can hold, and the controller moves
   its vertical set-point from the P6 part of the least-squares correction. The vertical shift and the
   sequence each have a success. Under v0.2 (rigidly shifted targets) no controller could meet the
   X-point tolerance there.
 
-Comparison on the same sealed seeds (v0.3): hold-current 0/35 (all lost); privileged PID (simulator
+Comparison on the same historical 5-seed suite (v0.3): hold-current 0/35 (all lost); privileged PID (simulator
 descriptors, FreeGSNKE PCS gains) 7/34 success (one void), 19/34 kept; its holds miss on the 1.2-1.4 cm
-shape RMS and it loses seeds 1004/1005 (vertical loop under supply delay).
+shape RMS and it loses two supply-delayed draws (vertical loop under supply delay).
 
 ## Development plant (dev randomization, seeds 5001-5007, not the sealed seeds)
 

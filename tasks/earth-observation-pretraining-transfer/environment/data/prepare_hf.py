@@ -79,7 +79,15 @@ def prepare_pretraining(archives, selection, output):
     return len(seen)
 
 
-def prepare_windows(archive, output, expected):
+def load_awf_dev_splits():
+    payload = json.loads(Path(__file__).with_name("awf_spatial_dev_splits.json").read_text())
+    return {
+        **{window_id: "train" for window_id in payload["train"]},
+        **{window_id: "val" for window_id in payload["val"]},
+    }
+
+
+def prepare_windows(archive, output, expected, allowed_splits=None):
     decisions = {}
     counts = {"train": 0, "val": 0, "test": 0}
     with tarfile.open(archive, "r:") as tar:
@@ -94,7 +102,12 @@ def prepare_windows(archive, output, expected):
             with tar.extractfile(member) as f:
                 meta = json.load(f)
             key = "/".join(parts[i + 1 : i + 3])
-            split = meta["options"]["split"]
+            window_id = parts[i + 2]
+            split = (
+                allowed_splits.get(window_id, "test")
+                if allowed_splits is not None
+                else meta["options"]["split"]
+            )
             if key in decisions or split not in counts:
                 raise ValueError("Duplicate window or invalid split")
             decisions[key] = split
@@ -111,6 +124,7 @@ def prepare_windows(archive, output, expected):
                 raise ValueError("Archive links are not allowed")
             if not member.isfile():
                 continue
+            is_window_metadata = False
             if "windows" in parts:
                 i = parts.index("windows")
                 key = "/".join(parts[i + 1 : i + 3])
@@ -118,13 +132,22 @@ def prepare_windows(archive, output, expected):
                     raise ValueError("Payload without window metadata")
                 if decisions[key] == "test":
                     continue
+                is_window_metadata = parts[i + 3 :] == ("metadata.json",)
                 relative = Path(*parts[i:])
             elif parts[-1] == "config.json" and len(parts) == 2:
                 relative = Path("config.json")
             else:
                 continue
             with tar.extractfile(member) as source:
-                copy_stream(source, output / relative)
+                if allowed_splits is not None and is_window_metadata:
+                    import io
+
+                    meta = json.load(source)
+                    meta.setdefault("options", {})["split"] = decisions[key]
+                    encoded = (json.dumps(meta, indent=2) + "\n").encode()
+                    copy_stream(io.BytesIO(encoded), output / relative)
+                else:
+                    copy_stream(source, output / relative)
             files += 1
             size += member.size
     if not (output / "config.json").exists():
@@ -228,14 +251,16 @@ def main():
                     with src.open("rb") as f:
                         copy_stream(f, a.output / name)
         if "downstream" in a.components:
-            for task, expected in [
-                ("awf", {"train": 1115, "val": 344, "test": 0}),
-                ("lfmc", {"train": 31175, "val": 8262, "test": 4585}),
+            awf_allowed = load_awf_dev_splits()
+            for task, expected, allowed in [
+                ("awf", {"train": 1053, "val": 201, "test": 205}, awf_allowed),
+                ("lfmc", {"train": 31175, "val": 8262, "test": 4585}, None),
             ]:
                 prepare_windows(
                     files[f"archives/{task}.tar"],
                     a.output / f"{task}-downstream-trainval",
                     expected,
+                    allowed_splits=allowed,
                 )
             # Native LFMC trainer consumes this exact indexed window layout.
             import sys

@@ -8,10 +8,13 @@ From: python:3.12.11-slim-bookworm
     {{ EARTH_RUNTIME_ROOT }}/olmoearth-upstream/.venv/lib/python3.12/site-packages /opt/pinned-packages
     earth-observation-pretraining-transfer/tests/test.sh /tests/test.sh
     earth-observation-pretraining-transfer/tests/grade.py /tests/grade.py
+    earth-observation-pretraining-transfer/tests/grade_awf_knn.py /tests/grade_awf_knn.py
+    earth-observation-pretraining-transfer/tests/sealed /tests/sealed
     earth-observation-pretraining-transfer/tests/replay.py /tests/replay.py
     earth-observation-pretraining-transfer/tests/namespace.py /tests/namespace.py
     earth-observation-pretraining-transfer/environment/evaluation/probes.py /evaluation/probes.py
     earth-observation-pretraining-transfer/environment/evaluation/package_contract.py /evaluation/package_contract.py
+    earth-observation-pretraining-transfer/environment/data/awf_spatial_dev_splits.json /evaluation/awf_spatial_dev_splits.json
 
 %post
     cp -a /opt/pinned-packages/. /usr/local/lib/python3.12/site-packages/

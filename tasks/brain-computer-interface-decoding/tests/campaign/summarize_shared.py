@@ -5,7 +5,7 @@ import math
 import statistics
 from pathlib import Path
 
-from summarize_full import MODELS, SEEDS, TRACKS, TEST_COUNTS, package_hash
+from summarize_full import MODELS, SEEDS, SUMMARY_KEYS, TRACKS, TEST_COUNTS, package_hash
 
 
 def checked_run(root, campaign, family, seed, expected_epochs=50):
@@ -31,7 +31,7 @@ def checked_run(root, campaign, family, seed, expected_epochs=50):
             or receipt.get('best_validation_mean') != training.get('best_validation_mean')
             or training.get('data_identity') != campaign.get('development_identity')
             or report.get('scope') != 'full' or set(report.get('tracks', {})) != set(TRACKS)
-            or set(reward) != set(TRACKS)
+            or (set(reward) - SUMMARY_KEYS) != set(TRACKS)
             or (run / 'score.exit').read_text().strip() != '0'):
         raise ValueError(f'{key}: incomplete or mismatched full run')
     if (set(receipt.get('training_coverage', {})) != set(TRACKS)

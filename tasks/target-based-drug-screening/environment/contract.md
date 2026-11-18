@@ -70,13 +70,21 @@ targets are evaluated. Coverage comes from the frozen LMDBs.
 
 Scoring protocol: drugclip-dataset-bedroc/v2. For each target, calculate
 BEDROC(alpha=80.5). Average the 102 DUD-E values and the 15 LIT-PCBA values
-separately, then average those two numbers with equal weight. This is the
-Harbor reward in [0, 1], higher is better. Both datasets must be complete.
+separately, then average those two numbers with equal weight:
+
+    score = reward = 0.5 * mean_DUDE(BEDROC_80.5) + 0.5 * mean_LIT_PCBA(BEDROC_80.5)
+
+Both `score` and `reward` are written identically in `reward.json` in [0, 1],
+higher is better. Both datasets must be complete.
 There is no further nonlinear mapping. Random BEDROC depends on class
 prevalence; it is not universally 0 or 0.5. ROC-AUC, BEDROC(80.5), EF at
 0.5%, 1%, 2%, and 5%, per-target values, and benchmark means are retained.
 The six overall_mean_* diagnostics remain equal-target means and are not
-the primary dataset-balanced score. Reports include the scoring protocol.
+the primary dataset-balanced score. The verifier may also invoke `infer.sh` on
+additional label-free staged views (such as pocket-swapped counterfactual
+views) with a fresh empty `<output-root>` strictly for operator diagnostics in
+`report.json` without changing `score` / `reward`. Reports include the scoring
+protocol.
 Exactly tied scores receive the expected metric over all orders within each
 tied block; a constant score cannot exploit actives-first input order.
 

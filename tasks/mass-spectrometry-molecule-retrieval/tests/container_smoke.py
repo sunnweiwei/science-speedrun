@@ -30,7 +30,13 @@ except PermissionError:
     pass
 else:
     raise AssertionError("inference can access the sealed volume")
-for name in ("/tests/grader.py", "/tests/score_bounds.json", "/benchmark/manifest.json",
+try:
+    Path("/verifier-input/benchmark/queries.jsonl").read_bytes()
+except PermissionError:
+    pass
+else:
+    raise AssertionError("inference can read the full test input")
+for name in ("/tests/grader.py", "/tests/score_bounds.json",
              "/workspace/submission/model_manifest.json", "/logs/verifier/reward.json"):
     try:
         with open(name, "ab"):
@@ -159,7 +165,7 @@ def case_run(case: str, fixture: Path, output: Path, image: str) -> dict[str, An
                                    "MASSSPECGYM_INFERENCE_TIMEOUT_SECONDS=60", "main", "/tests/test.sh"],
                          env=env, timeout=300, check=False)
         (evidence / "supervisor.log").write_text(result.stdout)
-        for relative in ("report.json", "reward.json", "main/inference.log"):
+        for relative in ("report.json", "reward.json", "main/batches.json", "main/logs/0000.log"):
             target = evidence / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             copied = command(["docker", "cp", f"{container}:/logs/verifier/{relative}", str(target)], check=False)
@@ -178,8 +184,13 @@ def case_run(case: str, fixture: Path, output: Path, image: str) -> dict[str, An
             assert math.isclose(json.loads(reward.read_text())["reward"], expected, rel_tol=0, abs_tol=1e-12)
             assert report["model_quality_measured"] == (case == "valid")
             if case == "valid":
+                assert report["evaluation_protocol"] == "massspecgym-per-spectrum-batches/v2"
+                assert report["batch_count"] == 4
+                assert report["batch_record_sha256"] == digest(evidence / "main/batches.json")
+                assert report["batch_plan_sha256"] == json.loads((evidence / "main/batches.json").read_text())["batch_plan_sha256"]
+                assert report["input_manifest_sha256"] == digest(fixture / "data/verifier/manifest.json")
                 assert report["metrics"]["hit_rate_at_5"] == 1.0 and math.isfinite(report["metrics"]["mces_at_1"])
-                assert '"container_security_probe": "passed"' in (evidence / "main/inference.log").read_text()
+                assert '"container_security_probe": "passed"' in (evidence / "main/logs/0000.log").read_text()
         return {"case": case, "status": "passed", "verifier_status": report["status"]}
     finally:
         command(["docker", "rm", "-f", container], check=False)

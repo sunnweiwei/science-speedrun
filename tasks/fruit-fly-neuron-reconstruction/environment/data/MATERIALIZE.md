@@ -23,6 +23,11 @@ not restricted access on HF. The downloader requests anonymous access, resumes
 incomplete HF downloads, validates the pinned manifest, and checks the size and
 SHA-256 of every materialized file. Existing correct files are retained.
 `--verify-only` validates local resources offline using the cached manifest.
+An `overlay` entry in `download-source.json` pins a second immutable HF commit
+whose files replace listed files of the release, never add or remove one: the
+H100 rebuild of `runtime/point-ops/pathfinder_fps.so` and the
+`runtime/runtime-manifest.json` that lists it. They are checked by size and
+SHA-256 like every other file.
 The cache can require another 14.54GB; a passed receipt is written to
 `TASK_DOWNLOAD_CACHE/receipt.json`. New runs recheck files rather than trusting
 a previous receipt. Only a zero exit status establishes successful completion.

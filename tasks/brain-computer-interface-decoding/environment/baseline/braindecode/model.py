@@ -1,12 +1,12 @@
-"""Braindecode 1.8.1 classifiers trained exclusively from random weights."""
+"""Braindecode 1.8.1 classifiers for the 4-track V4 BCI benchmark."""
 import torch
 from torch import nn
-from braindecode.models import EEGNet, ContraWR, CBraMod, BIOT, CodeBrain
+from braindecode.models import EEGNet, ContraWR, CBraMod, CodeBrain
 
-SPECS = {'faced': (32, 10, 9), 'tuev': (16, 5, 6), 'ad65': (19, 10, 3),
+SPECS = {'tuev': (16, 5, 6), 'ad65': (19, 10, 3),
          'openbmi': (62, 4, 2), 'longitudinal': (58, 2, 2)}
 MODELS = {'eegnet': EEGNet, 'contrawr': ContraWR, 'cbramod': CBraMod,
-          'biot': BIOT, 'codebrain': CodeBrain}
+          'codebrain': CodeBrain}
 
 
 def replace_batchnorm(module):

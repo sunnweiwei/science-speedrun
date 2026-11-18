@@ -246,7 +246,10 @@ Docker/HF deployment acceptance remains separate. Historical scores, model
 weights, data, routing and normalization anchors are unchanged.
 
 The continuously usable artifact is `/workspace/submission`. The verifier moves
-it into a fresh, offline environment and invokes:
+it into a fresh, offline environment and invokes it once per batch of test
+spectra, with at most one spectrum per candidate pool in a batch. The full
+test uses 373 invocations and adds one fixed startup allowance per call
+to the original compute budget ([resource contract](environment/contract.md)).
 
 ```bash
 bash infer.sh INPUT_ROOT OUTPUT_ROOT
@@ -316,6 +319,11 @@ Exact metrics, data/weight/ranking hashes and the execution scope are recorded
 in [task_trained_baseline.json](environment/references/task_trained_baseline.json).
 The paper-score comparison does not change the task target or authorize
 pretrained weights for agents.
+
+The November 2026 [reference audit](environment/references/SOTA_AUDIT.md)
+also gives a full-test comparison using released GLACIER and MIST weights in
+both routing branches, 8,375/17,556 Hit@1 (47.7045%). It documents the
+canonicalization change between GLMR's older published mass score and v1.5.
 
 Integrator reproductions: `environment/baseline/starter/RESULTS.md`. Readiness checklist and release acceptance:
 [`docs/VALIDATION.md`](docs/VALIDATION.md), [`docs/BENCHMARK_READINESS.md`](docs/BENCHMARK_READINESS.md).

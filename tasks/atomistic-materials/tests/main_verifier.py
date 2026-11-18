@@ -225,11 +225,13 @@ def main():
         validate_input(a.input)
     except (FileNotFoundError, ValueError) as error:
         # The package, not the verifier, failed: every metric is unavailable and the run scores 0.
-        from grader import expanded_score, flatten
+        from grader import expanded_score, flatten, ssi_v4_score
         aggregate = expanded_score({}, valid=False)
+        v4 = ssi_v4_score({}, valid=False)
         write_json(a.output / "report.json", {"status": "invalid_submission", "error": str(error)[:2000],
-                                              "aggregate": aggregate})
-        write_json(a.output / "reward.json", harbor_reward({"reward": 0.0, "crystal_potential_score": 0.0,
+                                              "ssi_v4": v4, "aggregate": aggregate})
+        write_json(a.output / "reward.json", harbor_reward({"score": 0.0, "reward": 0.0, "signed_score": 0.0,
+                                                            "crystal_potential_score": 0.0,
                                                             "invalid_submission": True, **flatten({})}))
         return
     work = a.output / "main"

@@ -61,8 +61,10 @@ def validate_snapshot(sealed: Path, input_root: Path) -> None:
 
 
 def validate_assets(asset_root: Path) -> None:
+    from scoring.mace_assets import validate_mace_assets
+    validate_mace_assets(asset_root)
     ready = json.loads((asset_root / "READY.json").read_text())
-    if (ready.get("schema") != "crystalgen-scorer-assets/v0"
+    if (ready.get("schema") != "crystalgen-scorer-assets/v1"
             or not ready.get("hull_license_review_acknowledged")
             or not ready.get("mlips_warmed")):
         raise ValueError("scorer assets are absent or not approved/warmed")
@@ -82,33 +84,54 @@ def main() -> None:
     parser.add_argument("--assets", required=True, type=lambda value: Path(value).resolve())
     parser.add_argument("--output", required=True, type=lambda value: Path(value).resolve())
     parser.add_argument("--scorer-root", type=lambda value: Path(value).resolve(), default=Path("/opt/lemat"))
-    parser.add_argument("--scorer-python", type=lambda value: Path(value).resolve(), default=Path("/opt/lemat/.venv/bin/python"))
+    parser.add_argument("--scorer-python", type=lambda value: Path(value).absolute(), default=Path("/opt/lemat/.venv/bin/python"))
     parser.add_argument("--fixture-results", type=lambda value: Path(value).resolve())
+    parser.add_argument("--as-submitted", action="store_true",
+                        help="Run the separately identified raw-geometry sensitivity evaluation")
     parser.add_argument("--allow-small-suite", action="store_true")
     parser.add_argument("--wait-seconds", type=int, default=172800)
     args = parser.parse_args()
     deadline = time.monotonic() + args.wait_seconds
     while not (args.sealed.parent / "READY").is_file():
+        if (args.sealed.parent / "GENERATION_ERROR").exists():
+            raise RuntimeError("Main verifier reported an infrastructure failure during generation")
         if (args.sealed.parent / "INVALID").is_file():
             print("main verifier rejected the submission; nothing to score")
             return
         if time.monotonic() >= deadline:
             raise TimeoutError("sealed output was not published")
         time.sleep(1)
-    validate_final_suite(args.input, args.allow_small_suite)
-    validate_snapshot(args.sealed, args.input)
-    if args.fixture_results is None:
-        validate_assets(args.assets)
-    rewards, report = evaluate(
-        args.input,
-        args.sealed,
-        args.scorer_root,
-        args.scorer_python,
-        fixture_results=args.fixture_results,
-        artifact_root=args.output,
-    )
-    report["evaluation_mode"] = "sealed_replay_uma200_then_exact_lemat"
-    write_results(args.output, rewards, report)
+    try:
+        validate_final_suite(args.input, args.allow_small_suite)
+        validate_snapshot(args.sealed, args.input)
+        if args.fixture_results is None:
+            validate_assets(args.assets)
+        rewards, report = evaluate(
+            args.input,
+            args.sealed,
+            args.scorer_root,
+            args.scorer_python,
+            fixture_results=args.fixture_results,
+            artifact_root=args.output,
+            skip_relaxation=args.as_submitted,
+        )
+        if args.fixture_results is not None:
+            report["evaluation_mode"] = "fixture"
+        elif args.as_submitted:
+            report["evaluation_mode"] = "sealed_replay_submitted_geometry_exact_lemat"
+        else:
+            report["evaluation_mode"] = "sealed_replay_uma200_hull_aligned_exact_lemat"
+        report["requests_sha256"] = sha256(args.input / "requests.jsonl")
+        report["sealed_snapshot_sha256"] = sha256(args.sealed / "snapshot.json")
+        if args.fixture_results is None:
+            report["assets_tree_sha256"] = json.loads((args.assets / "READY.json").read_text())["tree_sha256"]
+        write_results(args.output, rewards, report)
+    except Exception as error:
+        args.output.mkdir(parents=True, exist_ok=True)
+        (args.output / "error.json").write_text(json.dumps(
+            {"status": "infrastructure_error", "error": f"{type(error).__name__}: {error}"[:4000]}) + "\n")
+        raise
+
 
 
 if __name__ == "__main__":

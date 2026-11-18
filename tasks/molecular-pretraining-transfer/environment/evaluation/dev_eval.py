@@ -23,7 +23,7 @@ import lmdb
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "protocol"))
-from tasks import GROUPS, NUM_TARGETS, TASKS, group_summary, task_metrics  # noqa: E402
+from tasks import GROUPS, NUM_TARGETS, TASKS, group_summary, ssi_v4_molecule_score, task_metrics  # noqa: E402
 
 DATA = Path("/workspace/data/downstream")
 
@@ -68,6 +68,23 @@ def main() -> None:
     report = {"encoder": a.encoder, "split": "valid", "epochs": a.epochs, "tasks": per_task}
     if set(a.tasks) == set(TASKS):
         report["groups"] = group_summary(per_task)
+        v4 = ssi_v4_molecule_score(report["groups"])
+        report["score"] = v4["score"]
+        report["reward"] = v4["reward"]
+        report["mean_ma_rae"] = v4["mean_ma_rae"]
+        report["ssi_v4"] = v4
+        (a.out / "reward.json").write_text(
+            json.dumps(
+                {
+                    "score": v4["score"],
+                    "reward": v4["reward"],
+                    "mean_ma_rae": v4["mean_ma_rae"],
+                    **report["groups"],
+                },
+                indent=1,
+            )
+            + "\n"
+        )
     (a.out / "report.json").write_text(json.dumps(report, indent=1) + "\n")
     print(f"{'task':36s}{'MAE':>10s}{'RAE':>8s}{'Spearman':>10s}")
     for g, ts in GROUPS.items():
@@ -76,6 +93,9 @@ def main() -> None:
             print(f"{t:36s}{m['mae']:10.4g}{m['rae']:8.3f}{m['spearman']:10.3f}")
     for k, v in report.get("groups", {}).items():
         print(f"{k:36s}{v:10.4f}")
+    if "score" in report:
+        print(f"{'mean_4_groups_ma_rae':36s}{report['mean_ma_rae']:10.4f}")
+        print(f"{'score (1 / (1 + mean_ma_rae))':36s}{report['score']:10.4f}")
 
 
 if __name__ == "__main__":

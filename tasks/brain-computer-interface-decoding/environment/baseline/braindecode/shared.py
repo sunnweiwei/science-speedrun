@@ -1,4 +1,4 @@
-"""One trainable Braindecode backbone with five input adapters and heads."""
+"""One trainable Braindecode backbone with four input adapters and heads."""
 import math
 
 import torch
@@ -9,11 +9,11 @@ from model import MODELS, SPECS
 
 TRACKS = tuple(SPECS)
 CORE_CHANNELS = {'eegnet': 18, 'contrawr': 18, 'cbramod': 18,
-                 'biot': 18, 'codebrain': 19}
+                 'codebrain': 19}
 CHUNK_SAMPLES = 400
 PIPELINE_VERSION = 'shared-v2.1-channel-preserving'
 FEATURES = {'eegnet': 192, 'contrawr': 256, 'cbramod': 200,
-            'biot': 256, 'codebrain': 200}
+            'codebrain': 200}
 
 
 def chunk_signal(signal):

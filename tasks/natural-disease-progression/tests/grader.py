@@ -82,16 +82,16 @@ def grade(args: argparse.Namespace, ready: dict) -> None:
                 raise ValueError(f"Primary {PRIMARY} is unavailable")
             report.update({"schema": "natural-disease-progression-report/v3",
                            "status": "scored", "model_quality_measured": True,
-                           "run_id": run_id, "reward": reward})
+                           "run_id": run_id, "score": reward, "reward": reward})
             write_json(target / "report.json", report)
-            write_json(target / "reward.json", {"reward": reward})
+            write_json(target / "reward.json", {"score": reward, "reward": reward})
         except ValueError as error:
             write_json(target / "report.json", {
                 "schema": "natural-disease-progression-report/v3",
                 "status": "invalid_prediction", "model_quality_measured": False,
                 "run_id": run_id, "error": str(error),
             })
-            write_json(target / "reward.json", {"reward": 0.0})
+            write_json(target / "reward.json", {"score": 0.0, "reward": 0.0})
     except Exception as error:
         write_json(target / "report.json", {
             "schema": "natural-disease-progression-report/v3",

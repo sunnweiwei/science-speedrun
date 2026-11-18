@@ -34,12 +34,13 @@ entire point. Re-drawing is a deliberate act that starts a new benchmark version
 **Numbers from the two definitions are different target sets, never a delta.** Only the
 enzyme track differs between them (0.054 full vs 0.048 sampled); nothing improved.
 
-This benchmark reports **per-track pass rates and no composite**. Averaging the tracks
-would mix RFdiffusion3's three published tracks with this task's synthetic
-`unconditional` one, which has no published criterion, no target in the evaluation view,
-and a pass rate an order of magnitude higher than the rest - so the mean would be
-dominated by the one track nobody publishes. It would also be read as the graded reward,
-which `tests/grader.py` computes differently and writes to `reward.json`.
+This operator benchmark script prints **per-track pass rates** directly; for the graded
+51-target evaluation view (`1` synthetic `unconditional` target + `50` conditioned
+RFdiffusion3 targets), `tests/grader.py` and `environment/evaluation/score.py` additionally
+compute the V3 target-weighted combined score
+`score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)` (assigning
+weight `1/51` to `uncond_L100` so the synthetic monomer track cannot dominate the `50/51`
+conditioned share).
 
 ## Running it
 

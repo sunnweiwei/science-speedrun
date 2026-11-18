@@ -64,12 +64,16 @@ def main():
         novelty = FitNovelty(arguments.reference)
 
     predictions = arguments.designs / "predictions"
-    # Per-track pass rates only, exactly as the trusted grader reports them. There is no
-    # composite here either: see tests/grader.py's docstring.
+    # Per-track pass rates plus the exact V3 target-weighted combined score when all four
+    # tracks are evaluated, matching `tests/grader.py` and `harness/ssi_index_v3.py::design()`.
     report = {}
     for track in arguments.tracks:
         report[track] = grader.score_track(track, predictions / f"{track}.jsonl",
                                            requests[track], arguments.input, scorer, novelty)
+    if set(arguments.tracks) == set(TRACKS):
+        combined = grader.combined_score({track: report[track]["pass_rate"] for track in TRACKS})
+        report["score"] = combined
+        report["reward"] = combined
     print(json.dumps(report, indent=2, sort_keys=True, default=float))
 
 

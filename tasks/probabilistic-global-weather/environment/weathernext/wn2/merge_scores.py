@@ -8,7 +8,24 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 
-from evaluate import sha256,summarize
+try:
+    from evaluate import sha256,summarize
+except ModuleNotFoundError:
+    from training_data import sha256
+    def summarize(rows):
+        groups={}
+        for row in rows:
+            key=(row['variable'],row['level_hpa'],row['lead_hours'],row['pool_cells'])
+            groups.setdefault(key,[]).append(row)
+        result=[]
+        for (name,level,lead,factor),cases in groups.items():
+            mse=float(np.mean([r['mse'] for r in cases]))
+            variance=float(np.mean([r['ensemble_variance'] for r in cases]))
+            result.append(dict(variable=name,level_hpa=level,lead_hours=lead,pool_cells=factor,
+                               cases=len(cases),crps=float(np.mean([r['crps'] for r in cases])),
+                               rmse=float(np.sqrt(mse)),spread=float(np.sqrt(variance)),
+                               spread_skill=float(np.sqrt(variance/mse)) if mse>0 else None))
+        return result
 
 
 def merge(reports,protocol,protocol_hash):
@@ -52,7 +69,8 @@ def reward(report,scales):
     if not groups:raise ValueError('No primary metric panels')
     per_variable={name:float(np.mean(values)) for name,values in groups.items()}
     normalized=float(np.mean(list(per_variable.values())))
-    return dict(reward=1/(1+normalized),normalized_crps=normalized,normalized_crps_by_variable=per_variable,
+    score=1.0/(1.0+normalized)
+    return dict(score=score,reward=score,normalized_crps=normalized,normalized_crps_by_variable=per_variable,
                 definition='1/(1+mean normalized CRPS); equal variables, then equal pressure levels and leads; native cells only; scales frozen from training data; larger reward is better')
 
 

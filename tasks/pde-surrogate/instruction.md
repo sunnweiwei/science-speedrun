@@ -11,9 +11,10 @@ conditions differ. Any architecture is allowed.
 
 Each held-out rollout is scored with The Well's variance-normalized RMSE (VRMSE), per channel and
 step, clamped at 10. Rollouts are 26 steps for the corpus, 30 for The Well and 10 for PDEArena.
-Datasets form four groups (the corpus as one group, each transfer dataset as its own). The reward is
-the mean over groups of a log-band map of each group's mean VRMSE: 0.01 → 1.0, 0.1 → 0.667,
-1.0 → 0.333, 10 or more → 0. Higher is better. For scale:
+Datasets form four equal-weighted groups (`ape2d`, `pdearena`, `well/active_matter`, and
+`well/turbulent_radiative_layer_2D`). The score (`reward`) is the unweighted mean over the four
+groups of `R(v) = (1 - log10(clip(v, 0.01, 10))) / 3`, where `v` is the group's mean VRMSE:
+0.01 → 1.0, 0.1 → 0.667, 1.0 → 0.333, 10 or more → 0. Higher is better. For scale:
 
 | predictor | reward |
 | --- | ---: |

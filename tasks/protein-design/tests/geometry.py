@@ -92,19 +92,26 @@ def parse_allatom_pdb(path, expected_length):
 
 def write_allatom_pdb(path, coordinates, mask, restypes, chain="A"):
     """Write an atom14 structure in canonical PDB columns."""
+    write_allatom_chains(path, [(chain, coordinates, mask, restypes)])
+
+
+def write_allatom_chains(path, chains):
+    """Write protein chains in the same coordinate frame with unique atom serials."""
     lines, serial = [], 1
-    for index, residue_name in enumerate(restypes):
-        for slot, atom in enumerate(ATOM14[residue_name]):
-            if not mask[index, slot]:
-                continue
-            x, y, z = coordinates[index, slot]
-            # Four-character atom field: one-character elements start at column 14.
-            field = f" {atom:<3s}" if len(atom) < 4 else atom
-            lines.append(
-                f"ATOM  {serial:>5d} {field} {residue_name:<3s} {chain}{index + 1:>4d}    "
-                f"{x:>8.3f}{y:>8.3f}{z:>8.3f}  1.00  0.00" + " " * 10 + f"{atom[0]:>2s}")
-            serial += 1
-    path.write_text("\n".join(lines + ["TER", "END"]) + "\n")
+    for chain, coordinates, mask, restypes in chains:
+        for index, residue_name in enumerate(restypes):
+            for slot, atom in enumerate(ATOM14[residue_name]):
+                if not mask[index, slot]:
+                    continue
+                x, y, z = coordinates[index, slot]
+                # Four-character atom field: one-character elements start at column 14.
+                field = f" {atom:<3s}" if len(atom) < 4 else atom
+                lines.append(
+                    f"ATOM  {serial:>5d} {field} {residue_name:<3s} {chain}{index + 1:>4d}    "
+                    f"{x:>8.3f}{y:>8.3f}{z:>8.3f}  1.00  0.00" + " " * 10 + f"{atom[0]:>2s}")
+                serial += 1
+        lines.append("TER")
+    path.write_text("\n".join(lines + ["END"]) + "\n")
 
 
 def present_atoms(coordinates, mask):

@@ -17,16 +17,25 @@ training molecules):
 - **ASAP antiviral-ADMET-2025**: 5 ADMET endpoints.
 
 For every task the verifier reports MAE, RAE, R², Spearman and Kendall on the complete test set. For every group it
-reports MA-RAE (mean RAE, lower is better) and mean Spearman. The details are in `/workspace/contract.md`. Current
-test MA-RAE:
+reports MA-RAE (mean RAE, lower is better) and mean Spearman. The primary benchmark score (`score` and `reward` in
+`reward.json`) weights all four project groups equally (`1/4` each):
 
-| encoder | QM9 | COMPAS-1D | ExpansionRx | ASAP |
-|---|---:|---:|---:|---:|
-| no pretraining (same architecture, random init) | 0.413 | 0.662 | 1.078 | 1.315 |
-| baseline: Uni-Mol2 84M, paper recipe, 30k updates | 0.183 | 0.166 | 0.744 | 0.636 |
-| released Uni-Mol2 84M (full-length pretraining; not available here) | 0.192 | 0.121 | 0.668 | 0.644 |
+`mean_ma_rae = 0.25 * (qm9_ma_rae + compas1d_ma_rae + expansionrx_ma_rae + asap_ma_rae)`
 
-Aim to improve every group over the baseline, and to reach or pass the released model.
+`score = reward = 1 / (1 + mean_4_groups(MA_RAE))`
+
+A trivial mean predictor (`MA-RAE = 1.0` on every group) scores `0.500`, zero error approaches `1.000`, and invalid
+submissions score `0.000`. The details are in `/workspace/contract.md`. Current test MA-RAE and primary score:
+
+| encoder | QM9 | COMPAS-1D | ExpansionRx | ASAP | Mean MA-RAE | Score |
+|---|---:|---:|---:|---:|---:|---:|
+| trivial mean predictor (chance anchor) | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.500 |
+| no pretraining (same architecture, random init) | 0.413 | 0.662 | 1.078 | 1.315 | 0.867 | 0.536 |
+| baseline: Uni-Mol2 84M, paper recipe, 30k updates | 0.183 | 0.166 | 0.744 | 0.636 | 0.432 | 0.698 |
+| released Uni-Mol2 84M (full-length pretraining; not available here) | 0.192 | 0.121 | 0.668 | 0.644 | 0.406 | 0.711 |
+
+Aim to improve every group over the baseline, maximize `1 / (1 + mean_4_groups(MA_RAE))`, and reach or pass the
+released model.
 
 ## Workspace
 

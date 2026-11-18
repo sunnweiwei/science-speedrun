@@ -109,10 +109,11 @@ after the model's process namespace has exited. The verifier, rather than the
 submission, computes scores from the predictions.
 
 Report empirical WeatherBench-X CRPS (`fair=False`), ensemble-mean RMSE, spread
-and pooled diagnostics by variable, level and lead. The weather reward is
-`1/(1+normalized_CRPS)`, where each CRPS is divided by its frozen training-only
-HRES standard deviation. Average equally across pressure levels and leads
-within each variable, then equally across the ten weather variables. Use only
+and pooled diagnostics by variable, level and lead. The primary weather score
+(`score` and `reward` in `reward.json`) is `1.0 / (1.0 + mean_10_variables(normalized_crps))`,
+where each CRPS is divided by its frozen training-only HRES standard deviation.
+Average equally across initialization dates, pressure levels and leads within
+each variable, then equally across the ten weather variables. Use only
 native-cell scores in the primary reward; larger is better. This is a
 dimensionless quality measure, not a mixture of raw physical units.
 

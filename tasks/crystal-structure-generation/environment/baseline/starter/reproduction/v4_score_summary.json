@@ -1,0 +1,31 @@
+{
+  "schema": "crystalgen-reviewed-baseline/v1",
+  "protocol": "crystalgen-evaluation/v4-uma200-hull-aligned",
+  "request_seed": 20260919,
+  "reward": 0.1752,
+  "counts": {
+    "expected": 2500,
+    "loaded": 2500,
+    "valid": 2388,
+    "stable": 84,
+    "metastable": 1078,
+    "sun": 8,
+    "metasun": 430,
+    "novel": 1543,
+    "unique": 2320
+  },
+  "number_with_three_hull_energies": 2388,
+  "novelty_total_structures_evaluated": 2388,
+  "archive_sha256": {
+    "requests.jsonl": "eb8eb57980c6a207699f045446939679310345ca92d2085666f85b90f5df6724",
+    "generated_2500.tgz": "006ef98bac7b30fc506d46589207feb9a39ead0f6e486bf48cfe117cc046c576",
+    "relaxed_2500.tgz": "47e283b83a56a02a0131aa394845962862b98caf860d5cea2920116f2813c8ad"
+  },
+  "raw_ordered_cifs_sha256": "1d3142e46acf44c67f00ed65ebf7d0beedf212c253966083b7086478688962ce",
+  "relaxed_ordered_cifs_sha256": "1d36a8dce8c7cc2fc54354f427e1d6b0e7ce737319600b1b9de8189918a84685",
+  "scorer_revision": "58e6eae3e4a6c87c22171cf069123ecc4e2fa7e6",
+  "matcher_source_sha256": "5ea2db165c9da140876e4c1974bbbaac3b205bde17bc4fd271e3e4dfee05c7e1",
+  "hull_revision": "70d505bb294c16658a9551e2b81ace69a28d9790",
+  "mace_energy_checkpoint": "medium-0b3",
+  "mace_energy_sha256": "2f2be696351ac9e94fbe01cdfb6f017679acdbd2db7645209ef55fec9826b012"
+}

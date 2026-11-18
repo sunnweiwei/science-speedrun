@@ -29,7 +29,8 @@ def worker(case, data, submission, output):
             pass
         else:
             write_json(output / 'policy-process.json', {'pid': pid, 'start_ticks': ticks})
-        episodes = [replay_episode(adapter, policy, case, seed) for seed in case['seeds']]
+        episodes = [replay_episode(adapter, policy, case, seed, episode_index=idx)
+                    for idx, seed in enumerate(case['seeds'])]
         policy.close()
         policy = None
         result = {'status': 'ok', 'episodes': episodes, 'submission_sha256': before}
@@ -67,14 +68,25 @@ def main():
         if not args.worker:
             # Enumerate in a fresh child: CUDA visibility is fixed at first init.
             import json
+            from maia_gpu_rank import allow_shared_gpu
             helper = Path(__file__).with_name('maia_gpu_rank.py')
             devices = json.loads(subprocess.check_output([sys.executable, str(helper), '--list-gpus'], text=True))
             required = case['solver_processes']
+            shared_gpu = False
             if len(devices) < required:
-                raise RuntimeError(f'{case["id"]} requires {required} distinct GPUs; allocated {len(devices)}')
-            selected = devices[:required]
+                if case['backend'] == 'maia' and len(devices) >= 1 and allow_shared_gpu():
+                    selected = list(devices)
+                    shared_gpu = True
+                else:
+                    raise RuntimeError(f'{case["id"]} requires {required} distinct GPUs; allocated {len(devices)}')
+            else:
+                selected = devices[:required]
             os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(selected)
-            write_json(args.output / 'gpu-allocation.json', {'cuda_device_uuids': selected})
+            write_json(args.output / 'gpu-allocation.json', {
+                'cuda_device_uuids': selected,
+                'required_solver_gpus': required,
+                'shared_gpu': shared_gpu,
+            })
         if case['backend'] != 'maia' or args.worker:
             worker(case, args.data, args.submission, args.output)
             return
@@ -83,12 +95,19 @@ def main():
             work_dir=str(args.output / 'cfd'), use_clean_cache=False,
             local_fallback_dir=str(args.data / 'environments'))
         solver = [sys.executable, str(Path(__file__).with_name('maia_gpu_rank.py'))]
-        command = ['mpirun', '--bind-to', 'none', '-np', '1', sys.executable, str(Path(__file__).resolve()),
-            '--worker', '--case', case['id'], '--data', str(args.data), '--output', str(args.output),
-            '--submission', str(args.submission), ':', '-np', str(case['solver_processes']),
-            *solver, props, '--silent']
-        environment = dict(os.environ, OMPI_ALLOW_RUN_AS_ROOT='1', OMPI_ALLOW_RUN_AS_ROOT_CONFIRM='1',
-                           OMPI_MCA_coll_hcoll_enable='0')
+        command = ['mpirun', '--oversubscribe', '--bind-to', 'none', '-np', '1', sys.executable,
+            str(Path(__file__).resolve()), '--worker', '--case', case['id'], '--data', str(args.data),
+            '--output', str(args.output), '--submission', str(args.submission), ':',
+            '-np', str(case['solver_processes']), *solver, props, '--silent']
+        environment = dict(
+            os.environ,
+            OMPI_ALLOW_RUN_AS_ROOT='1',
+            OMPI_ALLOW_RUN_AS_ROOT_CONFIRM='1',
+            OMPI_MCA_coll_hcoll_enable=os.environ.get('OMPI_MCA_coll_hcoll_enable', '0'),
+            OMPI_MCA_btl=os.environ.get('OMPI_MCA_btl', 'self,vader,tcp'),
+            OMPI_MCA_btl_vader_single_copy_mechanism=os.environ.get(
+                'OMPI_MCA_btl_vader_single_copy_mechanism', 'none'),
+        )
         subprocess.run(command, cwd=work, env=environment, check=True)
     except BaseException as error:
         write_json(args.output / ('worker-error.json' if args.worker else 'launcher-error.json'),

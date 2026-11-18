@@ -59,6 +59,9 @@ class PipelineTests(unittest.TestCase):
                     self.assertFalse(result['consensus']);self.assertEqual(result['checkpoint_count'],1)
             for cmd in calls:
                 self.assertNotIn('--suite',cmd)
+                if any(str(x).endswith('/precompute_seeds.py') for x in cmd):
+                    self.assertGreaterEqual(int(cmd[cmd.index('--workers')+1]),1)
+                    self.assertLessEqual(int(cmd[cmd.index('--workers')+1]),8)
                 if any(str(x).endswith('/infer_shape.py') for x in cmd):
                     self.assertEqual(cmd[cmd.index('--max-nodes')+1],'2')
                 if any(str(x).endswith('/launch_overlap.py') for x in cmd):

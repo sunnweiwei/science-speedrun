@@ -27,7 +27,7 @@ def main() -> None:
     primary = report["panel"][PRIMARY]
     reward = primary if primary is not None else 0.0
     (args.output / "reward.json").write_text(
-        json.dumps({"reward": reward}, indent=2) + "\n")
+        json.dumps({"score": reward, "reward": reward}, indent=2) + "\n")
 
 
 if __name__ == "__main__":

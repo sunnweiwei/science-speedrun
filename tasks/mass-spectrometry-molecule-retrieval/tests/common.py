@@ -14,6 +14,18 @@ QUERY_FIELDS = {
 }
 
 
+# Persistent 1-spectrum-at-a-time streaming protocol (V4 default when serve.sh is present)
+# and legacy per-pool isolated batch fallback. In both modes the score is raw Hit@1.
+STREAM_PROTOCOL = "massspecgym-retrieval-stream/v2"
+REPLAY_PROTOCOL = "massspecgym-per-spectrum-batches/v2"
+SPOT_CHECK_MAX_QUERIES = 128
+# One launch per largest true-molecule pool on the frozen release.
+FULL_TEST_INVOCATIONS = 373
+VERIFIER_BASE_SECONDS = 21600
+STARTUP_SECONDS_PER_INVOCATION = 40
+FULL_TEST_VERIFIER_SECONDS = VERIFIER_BASE_SECONDS + FULL_TEST_INVOCATIONS * STARTUP_SECONDS_PER_INVOCATION
+
+
 def compact_json(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 

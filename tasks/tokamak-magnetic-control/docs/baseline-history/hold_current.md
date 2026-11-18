@@ -7,7 +7,7 @@ image: they were scored on an earlier plant and score and are not comparable wit
 
 ## v0.2 (sealed-v0.2, `tokamak-shape-metrics/v2`)
 
-Full `harbor_verify.py` replay of this package on all seven cases, sealed seeds 1001-1002, nonlinear plant
+Full `harbor_verify.py` replay of this package on all seven cases, 2 blind sealed seeds, nonlinear plant
 (the verifier's review, 2026-10-03, local FreeGSNKE 3.1.0 with two workers, 777 s):
 
 | case | outcome | plasma lost after |
@@ -20,12 +20,12 @@ sticking supplies and the handover pre-roll.
 
 ## v0.1 history
 
-Sealed verifier, seeds 1001–1003, nonlinear plant (the task author's run; artifacts checked by the
+Sealed verifier, 3 blind seeds, nonlinear plant (the task author's run; artifacts checked by the
 integrator, not re-run).
 
 | case | feasible | plasma lost after |
 | --- | --- | --- |
-| all six cases | 0/3 each, 0/18 in total | 48–362 steps (24–181 ms); the seed-1001 draws survive longest |
+| all six cases | 0/3 each, 0/18 in total | 48–362 steps (24–181 ms) |
 
 A randomly initialized actor (`starter/init_random.py`) loses the plasma after 15–52 steps and
 also scores feasible fraction 0 on every case; the 2026-09-27 layout check reproduced 0 on all six

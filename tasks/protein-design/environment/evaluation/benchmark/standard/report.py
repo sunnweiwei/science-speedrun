@@ -60,23 +60,25 @@ def main():
         print(f"{track:<14} {len(rows):>7} {designs:>8} {passed:>7} "
               f"{mean:>10.3f}   {detail}")
 
+    combined = None
+    if set(table) >= {"unconditional", "sm_binder", "ppi_binder", "enzyme"}:
+        combined = (table["unconditional"]["track_pass_rate"] / 51.0
+                    + (50.0 / 153.0) * (table["sm_binder"]["track_pass_rate"]
+                                        + table["ppi_binder"]["track_pass_rate"]
+                                        + table["enzyme"]["track_pass_rate"]))
+        print(f"\nscore (V3 target-weighted): {combined:.6f}")
     if table:
-        # No composite "primary" is printed, deliberately. Averaging the tracks would
-        # mix RFdiffusion3's three published tracks with this task's synthetic
-        # `unconditional` one, which has no published criterion to be compared against
-        # - and unconditional scores an order of magnitude higher, so the mean is
-        # dominated by the one track nobody publishes. It would also be
-        # mistaken for the graded reward, which grader.py computes differently and
-        # writes to reward.json. Report the per-track pass rates.
         print(f"\ncriterion: {', '.join(sorted(modes))}")
     if missing:
         print(f"\nMISSING (not scored yet): {', '.join(missing)}")
 
     if arguments.out:
-        arguments.out.write_text(json.dumps(
-            {"label": arguments.label, "criterion": sorted(modes),
-             "tracks": table,
-             "missing": missing}, indent=1) + "\n")
+        payload = {"label": arguments.label, "criterion": sorted(modes),
+                   "tracks": table, "missing": missing}
+        if combined is not None:
+            payload["score"] = combined
+            payload["reward"] = combined
+        arguments.out.write_text(json.dumps(payload, indent=1) + "\n")
         print(f"\nwrote {arguments.out}")
 
 

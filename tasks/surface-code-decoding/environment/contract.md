@@ -80,14 +80,21 @@ official result. A scorer copy inside a submission or the development release
 is non-authoritative and is never imported by the trusted grader.
 
 `score_config.json` fixes the anchors and version. P is one minus equal-distance,
-equal-group, equal-duration failure, with a decision threshold of 0.5. Normalized
+equal-group, equal-duration failure (`P = 1 - 0.5 * (fail_d3 + fail_d5)`), with a decision threshold of 0.5. Normalized
 score = max((P-L)/(U-L),0) with no upper clip, L=0.7160463461538461 (MWPM), U=0.7615159615384615
 (released TN rescored on identical shots). This upper anchor is not a newly
 reimplemented TN decoder and is not an assertion of current literature SOTA.
 Raw P, raw failure, unclipped score, fit-based scientific metrics and calibration
-remain in `report.json`; `reward.json` contains only `{"reward": P}` (raw P; the normalized score is a
+remain in `report.json`; `reward.json` emits `{"score": P, "reward": P, "failure_by_distance": {"d3": ..., "d5": ...}}` (and `{"score": 0.0, "reward": 0.0}` on invalid submissions/predictions; the anchor-normalized score stays a
 report diagnostic). Poor valid
 models can lack a valid log-fidelity LER fit without losing their primary score.
+
+Test-split `sample_ids` in `verifier/` are keyed HMAC-SHA256 digests derived from an
+operator secret (`hmac.new(secret_key, f"{folder}:{index}", sha256).hexdigest()[:32]`
+projected to `uint64`), and test shot rows are deterministically permuted per condition
+using a keyed PRNG seeded from `secret_key` so row order never leaks temporal shot
+sequence. The reverse `(sample_id -> folder, source_shot_index)` mapping exists only in
+the private `grader/` role (`TASK_PRIVATE_DIR`).
 
 The public historical Sycamore source prevents strong secrecy claims. Runtime
 role isolation protects this run from direct answer access; it does not eliminate

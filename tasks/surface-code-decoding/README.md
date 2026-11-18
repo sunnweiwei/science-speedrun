@@ -70,7 +70,7 @@ Scientific LER, error suppression and probability calibration remain diagnostic
 outputs, separate from the reward.
 
 The verifier replays the relocated package as UID 10001 on one GPU with no network, within one hour. A trusted CPU grader
-writes `/logs/verifier/reward.json` (`reward`, the raw P) and `report.json` (P, the normalized score, per-distance failures,
+writes `/logs/verifier/reward.json` (`score` and `reward`, both equal to the raw balanced logical success `P = 1 - 0.5 * (fail_d3 + fail_d5)`) and `report.json` (P, the normalized score, per-distance failures,
 scientific diagnostics). See [tests/README.md](tests/README.md).
 
 ## 5. Running

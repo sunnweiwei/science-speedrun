@@ -8,8 +8,8 @@ HARBOR_GRACE_SECONDS (run_trial.sh: GRACE_SECONDS, with HARBOR_RESEARCH_SECONDS 
 
       1. Research runs as before, but its end is enforced inside the container after
          HARBOR_RESEARCH_SECONDS, because the window must start in the same session.
-      2. Every process of the agent user is stopped, so nothing started during research keeps
-         running into the window.
+      2. Every process of the agent user that the session started is stopped, so nothing started
+         during research keeps running into the window.
       3. The package is left untouched for HARBOR_GRACE_SETTLE_SECONDS, so the snapshot collector
          keeps a copy of the package as it stood when research ended.
       4. The same session is continued once with SUBMIT_PROMPT, for at most HARBOR_GRACE_SECONDS.
@@ -45,8 +45,13 @@ SUBMIT_PROMPT = (
 _PREAMBLE = r'''
 __harbor_over=/tmp/.harbor-research-over.$$
 rm -f "$__harbor_over"
+__harbor_started() { sed -e 's/^.*) //' "/proc/$1/stat" 2>/dev/null | cut -d' ' -f20; }
+__harbor_since=$(__harbor_started $$)
 __harbor_stop_all() {
-  # Stop every process of this user except PID 1, this shell, its ancestors and the pids given.
+  # Stop every process of this user that started after this shell, except this shell, its
+  # ancestors and the pids given. Processes that were already running stay: the container's
+  # keep-alive process runs as the same user (root in most tasks), and stopping it ends the
+  # container.
   __keep=" 1 $$ $* "; __p=$$
   while [ "${__p:-0}" -gt 1 ] 2>/dev/null; do
     __p=$(sed -e 's/^.*) //' "/proc/$__p/stat" 2>/dev/null | cut -d' ' -f2)
@@ -57,6 +62,7 @@ __harbor_stop_all() {
       __q=${__d#/proc/}
       case "$__keep" in *" $__q "*) continue ;; esac
       [ "$(stat -c %u "$__d" 2>/dev/null)" = "$(id -u)" ] || continue
+      __s=$(__harbor_started "$__q"); [ -n "$__s" ] && [ "$__s" -ge "$__harbor_since" ] || continue
       kill -$__sig "$__q" 2>/dev/null
     done
     [ $__sig = TERM ] && sleep 5

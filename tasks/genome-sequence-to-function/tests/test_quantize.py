@@ -36,6 +36,7 @@ def test_constant_track_and_contact_maps_round_trip():
 def test_training_reader_decodes_like_the_encoder():
     import pytest
     pytest.importorskip("torch")
+    pytest.importorskip("pysam")
     from reference.alphagenome_50m.dataset import AlphaGenomeDataset
     counts = np.random.default_rng(2).gamma(0.5, 10.0, size=(1536, 8))
     codes, lo, hi = encode(counts, asinh=True)

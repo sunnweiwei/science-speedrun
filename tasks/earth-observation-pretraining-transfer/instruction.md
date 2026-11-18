@@ -5,12 +5,27 @@ reduced public pretraining dataset. The same frozen encoder must serve African
 Wildlife Foundation (AWF) land-cover classification and live fuel moisture
 content (LFMC) regression.
 
-The final reward is
-`0.5 * (AWF_validation_accuracy + max(0, 1 - LFMC_test_MAE / max(constant_test_MAE, 1e-12)))`.
-Accuracy is a fraction, and `constant_test_MAE` is the test MAE of the LFMC
-training-label mean predictor. During development, use AWF validation accuracy
-and LFMC validation MAE; LFMC test scoring is reserved for final evaluation.
-AWF has no independent test split in this release.
+The final score (`reward.json["score"]` and `reward.json["reward"]`) is the
+top-level clipped equal-weight mean of majority-calibrated AWF spatial blind-test
+classification skill and constant-calibrated LFMC test **MAE** regression skill:
+
+```text
+awf_skill = (awf_test_accuracy - 59/205) / (1 - 59/205)
+lfmc_skill = 1.0 - lfmc_test_mae / 24.435180349813233
+signed_score = 0.5 * awf_skill + 0.5 * lfmc_skill
+score = clip(signed_score, 0.0, 1.0)
+```
+
+where `awf_test_accuracy` (a fraction in `[0, 1]`) is evaluated on the held-out
+205-window spatially disjoint AWF blind test set using the frozen cosine `20-NN`
+probe (`temperature = 0.07`) fitted on the 1,053 spatial training windows (`59/205`
+is the test majority-class baseline), and `lfmc_test_mae` is the test **Mean
+Absolute Error (MAE, NOT RMSE)** of the validation-selected frozen ridge probe
+normalized by the frozen training-mean constant predictor test MAE
+(`24.435180349813233`). During development, `/workspace/data/eval/awf/` provides
+only the spatially disjoint 1,053 training and 201 validation windows (all 205
+spatial test windows and overlapping raw windows are excluded); both AWF and
+LFMC test splits are reserved strictly for sealed final evaluation.
 
 ## Workspace
 

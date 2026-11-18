@@ -211,8 +211,12 @@ def main() -> None:
     except (OSError, ValueError, json.JSONDecodeError, subprocess.SubprocessError) as error:
         kill_agent_processes()
         reason = f"{type(error).__name__}: {error}"
-        (a.output / "reward.json").write_text(json.dumps({"valid": 0.0, "invalid_submission": 1.0}, indent=1) + "\n")
-        (a.output / "report.json").write_text(json.dumps({"status": "invalid_submission", "error": reason[:4000]}, indent=1) + "\n")
+        (a.output / "reward.json").write_text(
+            json.dumps({"score": 0.0, "reward": 0.0, "valid": 0.0, "invalid_submission": 1.0}, indent=1) + "\n"
+        )
+        (a.output / "report.json").write_text(
+            json.dumps({"status": "invalid_submission", "score": 0.0, "error": reason[:4000]}, indent=1) + "\n"
+        )
         (a.sealed.parent / "INVALID").write_text(reason + "\n")
         print(f"invalid submission: {reason}")
         return

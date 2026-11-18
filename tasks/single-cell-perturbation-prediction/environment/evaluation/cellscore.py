@@ -30,6 +30,7 @@ import numpy as np
 import pandas as pd
 import polars as pl
 from scipy import sparse
+from prediction_safety import validate_prediction_storage
 
 CONTROL = "non-targeting"
 PERT_COL = "target_gene"
@@ -217,6 +218,7 @@ def score_context(predictions: Path, basal: Path, responses: Path, requests_path
     threads = threads or max(1, len(os.sched_getaffinity(0)) - 1)
     outdir = Path(outdir); outdir.mkdir(parents=True, exist_ok=True)
     requests = read_requests(requests_path)
+    validate_prediction_storage(predictions)
     pred = ad.read_h5ad(predictions); bas = ad.read_h5ad(basal); resp = ad.read_h5ad(responses)
     target_of = {r["request_id"]: r["perturbation"]["target"] for r in requests}
     base_pred = noeffect_prediction(bas, requests)

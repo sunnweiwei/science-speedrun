@@ -124,8 +124,8 @@ def main():
         _lock_snapshot(temporary)
     except (FileNotFoundError,ValueError,KeyError,subprocess.CalledProcessError,subprocess.TimeoutExpired) as error:
         # The submission failed, not the verifier: it scores 0 and nothing is sealed.
-        write_json(a.output/"report.json",{"schema":"genome-sequence-to-function-report/v4","split":"test","status":"invalid_submission","error":f"{type(error).__name__}: {error}"[:2000],"overall_mean_family_pearson":0.0})
-        write_json(a.output/"reward.json",{"reward":0.0,"overall_mean_family_pearson":0.0})
+        write_json(a.output/"report.json",{"schema":"genome-sequence-to-function-report/v4","split":"test","status":"invalid_submission","error":f"{type(error).__name__}: {error}"[:2000],"score":0.0,"overall_mean_family_pearson":0.0})
+        write_json(a.output/"reward.json",{"score":0.0,"reward":0.0,"invalid_submission":1.0,"overall_mean_family_pearson":0.0})
         return
     snapshot={"schema":"genome-sequence-to-function-prediction-snapshot/v4","input_manifest_sha256":sha256(a.input/"public/test.parquet"),"prediction_tree_sha256":tree_sha256(predictions),
               "perturbation_manifest_sha256":sha256(a.input/"public/perturbations.parquet"),"perturbation_tree_sha256":tree_sha256(perturbations)}

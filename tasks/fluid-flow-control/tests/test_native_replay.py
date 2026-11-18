@@ -43,17 +43,34 @@ class NativeProfilesTests(unittest.TestCase):
             with self.assertRaises((InfrastructureError, OSError)):
                 case_spec.verify_resources(Path(directory), case_spec.select_cases(['all'])[1])
 
-    def test_missing_second_gpu_fails_before_native_solver_import(self):
+    def test_missing_second_gpu_fails_in_strict_mode_and_shares_by_default(self):
+        import os
         import run_native
         with tempfile.TemporaryDirectory() as directory:
             args = ['run_native.py', '--case', 'Cube_3D_Re3700', '--data', directory,
                     '--submission', directory, '--output', directory]
-            with patch.object(sys, 'argv', args), patch.object(run_native, 'verify_resources'), \
+            with patch.dict(os.environ, {'HYDROGYM_ALLOW_SHARED_GPU': '0'}), \
+                    patch.object(sys, 'argv', args), patch.object(run_native, 'verify_resources'), \
                     patch.object(run_native, 'local_only'), \
                     patch.object(run_native.subprocess, 'check_output', return_value='["GPU-test"]'):
                 with self.assertRaisesRegex(RuntimeError, 'requires 2 distinct GPUs'):
                     run_native.main()
             self.assertTrue((Path(directory) / 'launcher-error.json').exists())
+
+        with tempfile.TemporaryDirectory() as directory:
+            args = ['run_native.py', '--case', 'Cube_3D_Re3700', '--data', directory,
+                    '--submission', directory, '--output', directory]
+            with patch.dict(os.environ, {'HYDROGYM_ALLOW_SHARED_GPU': '1'}), \
+                    patch.object(sys, 'argv', args), patch.object(run_native, 'verify_resources'), \
+                    patch.object(run_native, 'local_only'), \
+                    patch.object(run_native.subprocess, 'check_output', return_value='["GPU-test"]'), \
+                    patch.object(run_native, 'worker'):
+                # Patch case backend check via ImportError before hydrogym.maia workspace import
+                with self.assertRaises((ImportError, ModuleNotFoundError)):
+                    run_native.main()
+            alloc = json.loads((Path(directory) / 'gpu-allocation.json').read_text())
+            self.assertEqual(alloc['cuda_device_uuids'], ['GPU-test'])
+            self.assertTrue(alloc['shared_gpu'])
 
 
 class NativeReplayTests(unittest.TestCase):
@@ -71,6 +88,7 @@ class NativeReplayTests(unittest.TestCase):
         self.output = self.root / 'results'
         self.verify = patch.object(replay, 'verify_resources').start()
         self.addCleanup(patch.stopall)
+        patch.object(replay, 'visible_gpus', return_value=[]).start()
         self.snapshots = []
 
     def runner(self, case, data, package, output):
@@ -150,6 +168,8 @@ class NativeReplayTests(unittest.TestCase):
     def test_snapshot_mutation_rejects_entire_run(self):
         def runner(case, data, package, output):
             row = self.runner(case, data, package, output)
+            # Simulate a compromised worker changing the frozen snapshot even on a non-root test host.
+            (package / 'README.md').chmod(0o644)
             (package / 'README.md').write_text('Changed during replay')
             return row
         with self.assertRaisesRegex(InfrastructureError, 'snapshot mutated'):

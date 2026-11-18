@@ -28,7 +28,7 @@ def invalid(output: Path, status: str, error: Exception) -> None:
         "model_quality_measured": False,
         "error": f"{type(error).__name__}: {error}",
     })
-    write_json(output / "reward.json", {"reward": 0.0})
+    write_json(output / "reward.json", {"score": 0.0, "reward": 0.0})
 
 
 def kill_uid_processes(uid: int) -> None:

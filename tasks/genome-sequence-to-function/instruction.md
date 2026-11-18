@@ -11,20 +11,33 @@ functional genomics readout across eleven output families and 5,930 tracks:
 This is the AlphaGenome problem, on AlphaGenome's own public training data and fold split
 (`FOLD_0`). Training uses every eligible interval of the training folds.
 
-The same model is judged on what such models are for: predicting the effect of genetic variation.
-- **Track prediction** (the reward): per-track Pearson on 1,000 held-out test intervals, averaged
-  within each family and then equally across families.
-- **Variant and perturbation effects** (reported next to the reward, with published anchors):
-  expression QTL sign, causality and effect size; splicing QTLs; ClinVar non-coding, splice-region
-  and missense variants; MFASS splicing variants; chromatin-accessibility and SPI1-binding QTLs;
-  CRISPRi enhancer–gene links; and TraitGym causal variants for Mendelian diseases and complex
-  traits. Each comes with AlphaGenome's, or Borzoi's, Enformer's and CADD's, score on the same
-  variants.
+The same model is judged equally on two axes (`score = reward = clip(0.5 * tracks_axis + 0.5 * variants_axis, 0, 1)`):
+- **Axis 1 (`0.5` weight) — Functional genomic tracks (`tracks_axis`)**: per-track Pearson $r$ in
+  `asinh` space on 1,000 held-out test intervals, averaged within each of the eleven output
+  families, then averaged within each of **5 biological modalities** (`Open chromatin`: `atac, dnase`;
+  `Transcription`: `procap, cage, rna_seq`; `Protein binding and histones`: `chip_tf, chip_histone`;
+  `Splicing`: `splice_sites, splice_usage, junctions`; `Chromatin contacts`: `contact_maps`), and
+  averaged equally across the 5 modalities.
+- **Axis 2 (`0.5` weight) — Variant and perturbation effects (`variants_axis`)**: 12 non-redundant
+  variant/perturbation evaluations calibrated against frozen constant-predictor chance anchors
+  $v_k = (m_k - b_k) / (1 - b_k)$ (`eqtl_sign` is retained in `report.json` as a diagnostic only
+  and excluded from the reward because signed rank correlation `eqtl_coefficient` already subsumes
+  directionality), averaged equally across **5 biological branches**:
+  1. `eQTL`: equal mean of `eqtl_causality` and `eqtl_coefficient`;
+  2. `Other molecular QTL`: equal mean of `sqtl_causality`, `caqtl`, and `bqtl_spi1`;
+  3. `CRISPRi enhancer–gene`: `enhancer_gene`;
+  4. `Clinical and functional assays`: equal mean of the 3-set ClinVar mean (`clinvar_noncoding`,
+     `clinvar_splice_region`, `clinvar_missense`) and `mfass`;
+  5. `Human traits`: equal mean of `traitgym_mendelian` and `traitgym_complex`.
+  Pure single-genome sequence-to-function anchors (`AlphaGenome` on the first 4 branches / 10 of 12
+  calibrated evaluations, and `Borzoi` / `Enformer` on `TraitGym`) are reported on the same rows;
+  multi-species evolutionary conservation tools are excluded from pure-sequence reference comparisons
+  because cross-species alignments are outside the single-genome DNA-only contract.
 
 Track Pearson is where most models do reasonably well. The variant evaluations are where current
-models, including much larger ones, are still far from solved. For example, on TraitGym's Mendelian
-variants, sequence-to-function models trail conservation-based scores by a wide margin. Progress
-there is the scientifically interesting outcome.
+sequence-only models, including much larger ones, remain far from solved—especially on splicing
+pathogenicity and `TraitGym` Mendelian causal variants. Both axes carry equal `0.5` weight in the
+reward.
 
 ## Workspace
 
@@ -73,8 +86,9 @@ early on. It must contain:
 - a `README.md` covering the architecture, parameter count, training provenance and compute,
   validation results, and limitations.
 
-Replace the package atomically: build it elsewhere, check it with `score.py` on validation, then
-swap it in, as the baseline's `publish.sh` does. Keep checkpoints and experiments under `/workspace/research`.
+Replace the package atomically: build it elsewhere, check both axes with `score.py --perturbations`
+(and `score_variants.py`) on validation, then swap it in, as the baseline's `publish.sh` does. Keep
+checkpoints and experiments under `/workspace/research`.
 
 ## Continuous research
 

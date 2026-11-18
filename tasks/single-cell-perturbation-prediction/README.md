@@ -13,12 +13,12 @@ non-cancer line, and a far pluripotent line on the 10x Flex assay VCC 2026 uses.
 are withheld from every training context so that never-seen targets are measurable. Each test
 context has 300 requests, split into a leaderboard subset (100) and a final subset (200).
 
-- **Reward:** the mean over the three test contexts of the final-subset score; a context score is
-  the pinned `cell-eval` 0.8.2 Generalist panel normalised against the no-effect baseline.
-  Strata (effect pattern across training contexts, seen vs. withheld targets) are reported
-  separately, so the three scientific sub-questions (does a knockdown act here, which part of the
-  response transfers, what about unseen genes) are each visible.
-- **Status:** verified. B1 (cross-context mean delta) scores 0.103, B2 (STATE zero-shot) 0.046.
+- **Reward.** V2 averages three calibrated WMSE skills on held-out targets. Gene weights come
+  from independently sampled measured cells, with the direct knockdown readout excluded.
+  Neutral and repeat-measurement anchors calibrate each context. The report also contains the
+  seven legacy cell-eval diagnostics and stratum breakdowns.
+- **Baseline.** B1 cross-context mean delta scores **0.11594** under v2. See section 6 for the
+  archived v1 results.
 
 ## 2. Data
 
@@ -82,13 +82,13 @@ with README and reproduced RESULTS:
 - `main` mounts only the public test inputs and SE-600M, copies the package, runs `infer.sh` once
   per context as uid 10001 on one GPU (60 minutes per context), validates each
   `predictions.h5ad`, and seals the predictions with their hashes;
-- `grader` mounts the public inputs and the private responses, checks provenance, and scores every
-  context with `cellscore.py` on the leaderboard and final subsets and by stratum.
+- `grader` checks the sealed predictions and all three expected contexts, then scores the
+  frozen final roster with calibrated WMSE. It also runs cell-eval on the legacy subsets.
 
-`reward.json` has `reward` (mean final-subset score), `leaderboard_reward` and per-context values.
-A context whose inference fails scores 0 without hiding the others; scorer failures leave no
-reward. `agent_feedback.json` (leaderboard subset only) exists for runners that return feedback;
-under TASK_STANDARD.md nothing is returned to the agent.
+`reward.json` holds the v2 overall and per-context rewards, raw skill for valid predictions,
+and the legacy metrics prefixed `v1_`. Failed inference counts as zero for that context.
+Infrastructure errors withhold the score. `agent_feedback.json` contains only the legacy
+leaderboard diagnostics if a runner supports feedback.
 
 ## 5. Running
 
@@ -107,7 +107,7 @@ Unit tests (need `cell-eval`, so they run in the verifier image):
 
 ## 6. Results and validation
 
-Release v1, cell-eval 0.8.2; isolated verifier for the test contexts, `run_loco.py` for the folds:
+Historical release v1, cell-eval 0.8.2; isolated verifier for the test contexts, `run_loco.py` for the folds:
 
 | Baseline | reward (final) | leaderboard | near | mid | far | LOCO k562 | jurkat | hct116 | hek293t |
 |---|---|---|---|---|---|---|---|---|---|

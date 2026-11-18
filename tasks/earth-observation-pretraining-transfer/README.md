@@ -56,10 +56,19 @@ normalization, missingness handling, pooling and search grids remain fixed.
 The supplied commands also compare matched random and raw-feature controls.
 
 The [independent verifier](tests/README.md) replays the delivered package with
-only unlabeled inputs visible to inference. It fits probes outside model
-execution and reports the existing reward:
+only unlabeled inputs visible to inference. It evaluates AWF on the 205-window
+spatially disjoint blind test split (`pairs_across_splits == 0`) with the frozen
+cosine `20-NN` probe (`temperature = 0.07`) fitted on the 1,053 spatial training
+windows, evaluates LFMC test **MAE** (not RMSE) with the validation-selected
+frozen ridge probe, and outputs the V3/V4 score (`score` and `reward` in
+`reward.json`):
 
-`0.5 * (AWF_validation_accuracy + max(0, 1 - LFMC_test_MAE / max(constant_test_MAE, 1e-12)))`.
+```text
+awf_skill = (awf_test_accuracy - 59/205) / (1 - 59/205)
+lfmc_skill = 1.0 - lfmc_test_mae / 24.435180349813233
+signed_score = 0.5 * awf_skill + 0.5 * lfmc_skill
+score = clip(signed_score, 0.0, 1.0)
+```
 
 The constant predictor is fitted from LFMC training labels. Development uses
 LFMC validation; final test scoring follows candidate selection. The recorded

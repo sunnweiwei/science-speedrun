@@ -16,7 +16,7 @@ python /workspace/evaluation/score.py --input /data/tune --designs /tmp/designs 
 
 `lib/` contains the exact `common.py`, `geometry.py`, `pipeline.py`, `grader.py`, and
 `residues.py` the verifier uses, copied in at image build time, so a development score
-and a verifier score differ only by the input split and the machine.
+and a verifier score differ only by the input split and the machine. For PPI the inverse-folding input contains both proteins, keeps the target sequence fixed and exports the designed binder chain to RF3.
 
 ## What lives here
 
@@ -125,17 +125,24 @@ at a 2.0 A RMSD radius. It matters most on `unconditional`, where there is no co
 to satisfy and a generator emitting one designable fold over and over reaches a pass rate
 of 1.0 - the pass rate cannot see that, and diversity can.
 
-**There is no composite score.** The four tracks apply different published criteria and
-are not commensurable, and `unconditional` is synthetic to this task rather than part of
-RFdiffusion3's benchmark, so averaging them would produce a number this task invented
-rather than one it measured - dominated, moreover, by the one track nobody publishes.
-`reward.json` carries the per-track pass rates, diversity, and design counts.
+**Target-weighted combined score (`score` and `reward`).** Across the 51-target evaluation
+view (`1` synthetic `unconditional` target + `50` conditioned RFdiffusion3 benchmark targets:
+`4` `sm_binder`, `5` `ppi_binder`, and `41` `enzyme`), `tests/grader.py` and `score.py`
+compute the primary combined score:
 
-This also removed a real defect: while a composite existed, it was an equal-weight mean
-over four tracks while the evaluation view supplied targets for only three, so an empty
-`unconditional` track scored 0.0 and capped the headline at 0.75. Nothing is capped now,
-because nothing is aggregated - and since 2026-09-28 the view populates that track too
-(`uncond_L100`, synthesised at length 100), so the count no longer disagrees either.
+```text
+score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)
+```
+
+giving the single synthetic `unconditional` target weight `1/51` (preventing a synthetic
+monomer length from dominating a naive `1/4` equal-track average) and splitting the `50/51`
+conditioned-target weight equally (`50/153` each) across the three conditioned tracks
+(`1/51 + 3 * 50/153 = 1.0`). `reward.json` carries `score`, `reward`, per-track pass rates,
+diversity, `backbone_sc_rmsd_mean`, and design counts.
+
+Since 2026-09-28 the evaluation view populates all four tracks (`uncond_L100` synthesised at
+length 100 alongside the 50 conditioned targets), so all four terms in `score` are always
+measured over non-empty target sets.
 
 The per-track spec sheets are `environment/data/targets/{enzyme,sm,ppi}/success.txt`,
 and every threshold above lives in one place: `lib/common.py`.

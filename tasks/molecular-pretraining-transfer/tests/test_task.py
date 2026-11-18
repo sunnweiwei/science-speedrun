@@ -19,7 +19,15 @@ TESTS = TASK / "tests"
 sys.path.insert(0, str(TESTS)); sys.path.insert(0, str(TESTS / "protocol"))
 import grader  # noqa: E402
 import main_verifier  # noqa: E402
-from tasks import GROUPS, NUM_TARGETS, TASKS, group_summary, target_metrics, task_metrics  # noqa: E402
+from tasks import (  # noqa: E402
+    GROUPS,
+    NUM_TARGETS,
+    TASKS,
+    group_summary,
+    ssi_v4_molecule_score,
+    target_metrics,
+    task_metrics,
+)
 
 
 class Layout(unittest.TestCase):
@@ -152,12 +160,94 @@ class Grading(unittest.TestCase):
         (self.sealed.parent / "READY").write_text(grader.sha256(self.sealed / "snapshot.json"))
 
     def test_scores(self):
+        import importlib.util
+        import subprocess
+
+        harness_path = next(p for p in Path(__file__).resolve().parents if (p / "harness" / "ssi_index_v3.py").is_file()) / "harness" / "ssi_index_v3.py"
+        spec = importlib.util.spec_from_file_location("ssi_index_v3", harness_path)
+        v3 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(v3)
+
         grader.validate_snapshot(self.sealed)
         reward, report = grader.score(self.sealed, self.labels)
         self.assertEqual(reward["valid"], 1.0)
         self.assertAlmostEqual(reward["qm9dft_v2_mae"], 0.1)
         self.assertEqual(len([k for k in reward if k.endswith("_rae") and not k.endswith("ma_rae")]), 24)
         self.assertTrue(all(isinstance(v, float) for v in reward.values()))
+        v3_res = v3.molecule(reward)
+        self.assertLess(abs(reward["score"] - v3_res["score"]), 1e-12)
+        self.assertLess(abs(reward["reward"] - v3_res["score"]), 1e-12)
+        self.assertLess(abs(report["score"] - v3_res["score"]), 1e-12)
+
+        out_dir = self.tmp / "graded_cli"
+        subprocess.run(
+            [
+                sys.executable,
+                str(TESTS / "grader.py"),
+                "--sealed", str(self.sealed),
+                "--labels", str(self.labels),
+                "--output", str(out_dir),
+                "--wait-seconds", "5",
+            ],
+            check=True,
+            capture_output=True,
+        )
+        cli_rew = json.loads((out_dir / "reward.json").read_text())
+        self.assertLess(abs(cli_rew["score"] - v3_res["score"]), 1e-12)
+        self.assertLess(abs(cli_rew["reward"] - v3_res["score"]), 1e-12)
+
+    def test_ssi_v3_molecule_parity_across_fixtures_and_visibility_boundary(self):
+        import importlib.util
+
+        harness_path = next(p for p in Path(__file__).resolve().parents if (p / "harness" / "ssi_index_v3.py").is_file()) / "harness" / "ssi_index_v3.py"
+        spec = importlib.util.spec_from_file_location("ssi_index_v3", harness_path)
+        v3 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(v3)
+
+        fixtures = [
+            ("trivial_mean", {"qm9_ma_rae": 1.0, "compas1d_ma_rae": 1.0, "expansionrx_ma_rae": 1.0, "asap_ma_rae": 1.0}, 0.5),
+            ("zero_error", {"qm9_ma_rae": 0.0, "compas1d_ma_rae": 0.0, "expansionrx_ma_rae": 0.0, "asap_ma_rae": 0.0}, 1.0),
+            ("no_pretrain", {"qm9_ma_rae": 0.413, "compas1d_ma_rae": 0.662, "expansionrx_ma_rae": 1.078, "asap_ma_rae": 1.315}, None),
+            ("starter_30k", {"qm9_ma_rae": 0.183, "compas1d_ma_rae": 0.166, "expansionrx_ma_rae": 0.744, "asap_ma_rae": 0.636}, None),
+            ("released_84m", {"qm9_ma_rae": 0.192, "compas1d_ma_rae": 0.121, "expansionrx_ma_rae": 0.668, "asap_ma_rae": 0.644}, None),
+            ("high_error", {"qm9_ma_rae": 9.0, "compas1d_ma_rae": 9.0, "expansionrx_ma_rae": 9.0, "asap_ma_rae": 9.0}, 0.1),
+        ]
+        for name, grp, exact in fixtures:
+            with self.subTest(fixture=name):
+                got = ssi_v4_molecule_score(grp)
+                expected = v3.molecule(grp)
+                self.assertLess(abs(got["score"] - expected["score"]), 1e-12)
+                self.assertLess(abs(got["reward"] - expected["score"]), 1e-12)
+                if exact is not None:
+                    self.assertLess(abs(got["score"] - exact), 1e-15)
+
+        for bad_val in (float("nan"), float("inf"), -0.01):
+            with self.assertRaises(ValueError):
+                ssi_v4_molecule_score({
+                    "qm9_ma_rae": bad_val,
+                    "compas1d_ma_rae": 0.5,
+                    "expansionrx_ma_rae": 0.5,
+                    "asap_ma_rae": 0.5,
+                })
+
+        for rel in ("instruction.md", "environment/contract.md"):
+            doc = (TASK / rel).read_text()
+            self.assertNotIn("no single aggregate score", doc.lower())
+            self.assertIn("0.25 * (qm9_ma_rae + compas1d_ma_rae + expansionrx_ma_rae + asap_ma_rae)", doc)
+
+        tests_readme = (TESTS / "README.md").read_text()
+        for heading in (
+            "## Scientific & Literature Justification of Verifier Design",
+            "### 1. Primary Metric & Upstream Paper Provenance",
+            "### 2. Why Additional Ad-Hoc Constraints Are Intentionally Omitted",
+            "### 3. Diagnostic Signals Retained in report.json",
+        ):
+            self.assertIn(heading, tests_readme)
+
+        dev_dockerfile = (TASK / "environment/Dockerfile").read_text()
+        dev_compose = (TASK / "environment/docker-compose.yaml").read_text()
+        self.assertNotIn("COPY tests", dev_dockerfile)
+        self.assertNotIn("/tests", dev_compose)
 
     def test_tampered_snapshot(self):
         with open(self.sealed / "exrx_logd.csv", "a") as f:

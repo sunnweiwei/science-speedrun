@@ -108,7 +108,8 @@ def test_package_defects_score_zero_rather_than_erroring(tmp_path, broken):
         (sub / "model_manifest.json").write_text(json.dumps(manifest))
     proc = _run_verifier(tmp_path, sub)
     assert proc.returncode == 0, proc.stderr[-400:]
-    assert json.loads((tmp_path / "out" / "reward.json").read_text())["reward"] == 0.0
+    rew = json.loads((tmp_path / "out" / "reward.json").read_text())
+    assert rew["score"] == 0.0 and rew["reward"] == 0.0
     assert (tmp_path / "out" / "reward.txt").read_text().strip() == "0.0"
     assert json.loads((tmp_path / "out" / "status.json").read_text())["rule_violation"]
 
@@ -191,7 +192,8 @@ def test_symlink_out_of_the_package_is_a_rule_violation(tmp_path, kind):
     assert proc.returncode == 0, proc.stderr[-400:]
     status = json.loads((tmp_path / "out" / "status.json").read_text())
     assert "symlink" in status["rule_violation"]
-    assert json.loads((tmp_path / "out" / "reward.json").read_text())["reward"] == 0.0
+    rew = json.loads((tmp_path / "out" / "reward.json").read_text())
+    assert rew["score"] == 0.0 and rew["reward"] == 0.0
     assert not (tmp_path / "work" / "sealed" / "assets").exists()
 
 

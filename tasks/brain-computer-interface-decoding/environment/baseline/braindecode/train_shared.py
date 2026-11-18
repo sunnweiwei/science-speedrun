@@ -1,4 +1,4 @@
-"""Balanced five-track supervised training of one shared EEG backbone."""
+"""Balanced four-track supervised training of one shared EEG backbone."""
 import argparse
 import hashlib
 import json
@@ -20,13 +20,12 @@ from pretrained import load_backbone
 from shared import SharedModel, TRACKS, PIPELINE_VERSION
 from sampling import CyclingBatchSampler
 
-CLASS_NAMES = {'faced': [str(i) for i in range(9)],
-               'tuev': ['SPSW', 'GPED', 'PLED', 'EYEM', 'ARTF', 'BCKG'],
+CLASS_NAMES = {'tuev': ['SPSW', 'GPED', 'PLED', 'EYEM', 'ARTF', 'BCKG'],
                'ad65': ['Alzheimer', 'frontotemporal_dementia', 'healthy'],
                'openbmi': ['left', 'right'], 'longitudinal': ['closed', 'open']}
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'evaluation'))
-from bci_score import score
+from bci_score import aggregate, score
 from data_identity import split_identity
 
 
@@ -68,7 +67,10 @@ def validate(model, datasets, loaders, device):
             if not math.isfinite(value) or not 0 <= value <= 1:
                 raise ValueError(f'{track}: non-finite validation reward')
             metrics[track] = result
-    return metrics, sum(metrics[t]['reward'] for t in TRACKS) / len(TRACKS)
+    selection = aggregate({t: metrics[t]['reward'] for t in TRACKS})
+    if selection is None:
+        raise ValueError('incomplete validation tracks')
+    return metrics, selection
 
 
 def main():
@@ -90,10 +92,10 @@ def main():
     parser.add_argument('--extend-from', type=Path,
                         help='Completed resume checkpoint; extend at its final LR in a new output directory')
     args = parser.parse_args()
-    if (args.epochs < 1 or args.steps_per_epoch < 5 or args.steps_per_epoch % 5
+    if (args.epochs < 1 or args.steps_per_epoch < len(TRACKS) or args.steps_per_epoch % len(TRACKS)
             or args.batch_size < 1 or args.num_workers < 0):
         raise ValueError('invalid epoch, step, or batch configuration')
-    if args.model in ('cbramod', 'biot', 'codebrain') and args.checkpoint_dir is None:
+    if args.model in ('cbramod', 'codebrain') and args.checkpoint_dir is None:
         raise ValueError('pinned pretrained checkpoint directory required')
     random.seed(args.seed); np.random.seed(args.seed); torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed); torch.backends.cudnn.deterministic = True
@@ -103,7 +105,7 @@ def main():
     initialization = load_backbone(model, args.model, args.checkpoint_dir)
     model.to(device)
     train = {t: Dataset(args.data / t / 'train', args.train_limit or None, cache=args.cache_data) for t in TRACKS}
-    val = {t: Dataset(args.data / t / 'val', args.val_limit if t in ('faced', 'tuev') else None, cache=args.cache_data)
+    val = {t: Dataset(args.data / t / 'val', args.val_limit if t == 'tuev' else None, cache=args.cache_data)
            for t in TRACKS}
     if any(not train[t] or not val[t] for t in TRACKS):
         raise ValueError('empty training or validation split')

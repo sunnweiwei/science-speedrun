@@ -148,7 +148,7 @@ class CrystalGenTaskTests(unittest.TestCase):
         self.assertIn("58e6eae3e4a6c87c22171cf069123ecc4e2fa7e6", development)
         for directory in ("environment/scoring", "tests/scoring"):
             self.assertFalse((TASK / directory / "conditions.py").exists())
-        for name in ("__init__.py", "contract.py", "evaluate.py", "upstream.py", "relaxation.py", "relax_worker.py"):
+        for name in ("__init__.py", "contract.py", "evaluate.py", "upstream.py", "relaxation.py", "relax_worker.py", "mace_assets.py", "displacement.py"):
             self.assertEqual(
                 (TASK / "tests/scoring" / name).read_bytes(),
                 (TASK / "environment/scoring" / name).read_bytes(),
@@ -172,10 +172,18 @@ class CrystalGenTaskTests(unittest.TestCase):
             (TASK / "environment/runtime/lemat-substitution-novelty.patch").read_bytes(),
             (TASK / "tests/runtime/lemat-substitution-novelty.patch").read_bytes(),
         )
+        for patch in ("lemat-submitted-geometry.patch", "lemat-mace-reference-checkpoints.patch"):
+            self.assertEqual((TASK / "environment/runtime" / patch).read_bytes(),
+                             (TASK / "tests/runtime" / patch).read_bytes())
+        model_patch = (TASK / "environment/runtime/lemat-mace-reference-checkpoints.patch").read_text()
+        self.assertIn('MACE_MP_ENERGY_MODEL = "medium-0b3"', model_patch)
+        self.assertIn('MACE_MP_EMBEDDING_MODEL = "medium-mpa-0"', model_patch)
         substitution_patch = (TASK / "environment/runtime/lemat-substitution-novelty.patch").read_text()
+        # MatterGen equivalence and the element-substitution guard are installed in both scorers.
+        self.assertIn("class DisorderedStructureMatcher(StructureMatcher):", substitution_patch)
+        self.assertIn("self.disordered_matcher.fit(first, second)", substitution_patch)
+        self.assertEqual(substitution_patch.count("DisorderAwareMatcher(self.fingerprinter)"), 2)
         self.assertIn("DILUTE_FRACTION = 0.25", substitution_patch)
-        self.assertIn("known(variant) for variant in dilute_variants(structure)", substitution_patch)
-        self.assertIn("DisorderAwareMatcher(self.fingerprinter)", substitution_patch)
         lemat_patch = (TASK / "environment/runtime/lemat-eight-gpu.patch").read_text()
         # Workers must bind GPUs by index; rewriting CUDA_VISIBLE_DEVICES after
         # CUDA initialisation leaves every worker on physical device 0.
@@ -221,6 +229,43 @@ class CrystalGenTaskTests(unittest.TestCase):
         self.assertIn("COPY instruction.md /workspace/instruction.md", dockerfile)
         self.assertNotIn("materialize", dockerfile.split("# END SHARED GENERATOR RUNTIME")[1])
 
+    def test_operator_failures_cannot_be_published_as_model_zeroes(self):
+        from main_verifier import InvalidSubmission, check_exit, validate_package
+        with mock.patch("main_verifier.oom_kills", return_value=7):
+            for code in (-9, 137, 1):
+                with self.subTest(code=code), self.assertRaisesRegex(RuntimeError,"OOM kill"):
+                    check_exit(code, 6, self.root)
+            with self.assertRaisesRegex(RuntimeError,"unattributed SIGKILL"):
+                check_exit(-9, 7, self.root)
+            with self.assertRaises(InvalidSubmission):
+                check_exit(2, 7, self.root)
+        with mock.patch("main_verifier.validate_submission", side_effect=OSError("disk I/O failure")):
+            with self.assertRaises(OSError):
+                validate_package(self.root)
+
+    def test_missing_trusted_launcher_yields_no_reward_and_notifies_grader(self):
+        import main_verifier
+        suite = self.build_suite("launcher-input")
+        model = self.root / "model"
+        output = self.root / "launcher-output"
+        sealed = self.root / "launcher-phase" / "run"
+        argv = ["main_verifier", "--input", str(suite), "--submission", str(model),
+                "--output", str(output), "--sealed", str(sealed), "--allow-small-suite", "--no-wait"]
+        with mock.patch.object(sys, "argv", argv), mock.patch.object(main_verifier, "validate_package"), \
+             mock.patch.object(main_verifier, "freeze_submission", return_value=model), \
+             mock.patch.object(main_verifier, "run_submission", side_effect=FileNotFoundError("trusted shell missing")):
+            with self.assertRaises(FileNotFoundError):
+                main_verifier.main()
+        self.assertFalse((output / "reward.json").exists())
+        self.assertEqual(json.loads((output / "error.json").read_text())["status"], "infrastructure_error")
+        self.assertTrue((sealed.parent / "GENERATION_ERROR").is_file())
+
+    def test_null_structure_counts_are_scorer_errors(self):
+        for loaded, valid in [(1,None), (None,0), (1,2), (1,False), (1,-1)]:
+            doc = {"run_info":{"n_structures":loaded},"validity_filtering":{"valid_structures":valid},"results":{}}
+            with self.subTest(loaded=loaded,valid=valid), self.assertRaisesRegex(RuntimeError,"structure counts"):
+                normalize_result(doc,expected=2)
+
     def test_invalid_submission_scores_zero(self) -> None:
         suite = self.build_suite("suite")
         submission = self.root / "submission"
@@ -235,8 +280,13 @@ class CrystalGenTaskTests(unittest.TestCase):
             check=True, capture_output=True,
         )
         reward = json.loads((output / "reward.json").read_text())
+        self.assertEqual(reward["score"], 0.0)
         self.assertEqual(reward["reward"], 0.0)
         self.assertEqual(reward["invalid_submission"], 1.0)
+        report = json.loads((output / "report.json").read_text())
+        self.assertEqual(report["protocol"], "crystalgen-evaluation/v4-uma200-hull-aligned")
+        self.assertEqual(report["evaluation_mode"], "sealed_replay_invalid_submission")
+        self.assertEqual(report["requests_sha256"], hashlib.sha256((suite / "requests.jsonl").read_bytes()).hexdigest())
         self.assertIn("generate.sh", json.loads((output / "report.json").read_text())["error"])
         self.assertTrue((sealed.parent / "INVALID").is_file())
         graded = subprocess.run(
@@ -402,6 +452,22 @@ class CrystalGenTaskTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "tensor shapes"):
             validate_submission(submission)
 
+    def test_partial_hull_ensemble_is_not_a_scientific_zero(self):
+        from scoring.upstream import check_hull_ensemble
+        row = {"value":0.04, "value_orb":0.05, "value_mace":0.03, "value_uma":0.04}
+        def document():
+            result = {"evaluator_results":{"mean_e_above_hull":{"metric_results":{"mean_e_above_hull":{"individual_values":[row]}}}}}
+            return {"results":{"stability":repr(result)}}
+        check_hull_ensemble(document(), 1)
+        row["value_uma"] = None
+        with self.assertRaisesRegex(RuntimeError, "MLIP hull energy"):
+            check_hull_ensemble(document(), 1)
+
+    def test_wrong_scorer_cannot_publish_the_hull_aligned_protocol(self):
+        from scoring.upstream import verify_scorer
+        with tempfile.TemporaryDirectory() as path, self.assertRaisesRegex(RuntimeError, "Unexpected submitted-geometry scorer"):
+            verify_scorer(Path(path))
+
     def test_leaderboard_normalization_uses_sun_plus_metasun(self) -> None:
         serialized = (
             "BenchmarkResult(final_scores={'stable_count': 4, 'metastable_count': 3, "
@@ -421,11 +487,13 @@ class CrystalGenTaskTests(unittest.TestCase):
         self.assertEqual(rates["sun"], 0.2)
         self.assertEqual(rates["metasun"], 0.3)
         self.assertEqual(rates["sun_metasun"], 0.5)
+        self.assertAlmostEqual(rates["ssi_score"], 0.35, places=12)
         self.assertEqual(rates["validity"], 0.7)
         self.assertEqual(details["counts"]["expected"], 10)
 
     def test_upstream_embedded_asset_failures_cannot_be_zero_scores(self) -> None:
         base = {
+            "run_info": {"n_structures": 1},
             "validity_filtering": {"valid_structures": 1},
             "results": {
                 "sun": "BenchmarkResult(final_scores={'sun_count': 0, 'msun_count': 0})",
@@ -536,12 +604,17 @@ class CrystalGenTaskTests(unittest.TestCase):
         fixture = self.root / "fixture.json"
         result = {
             "run_info": {"n_structures": 2},
-            "validity_filtering": {"valid_structures": 1},
+            "validity_filtering": {"valid_structures": 2},
             "results": {
                 "sun": "BenchmarkResult(final_scores={'stable_count': 1, "
-                       "'metastable_count': 1, 'sun_count': 1, 'msun_count': 0})",
-                "novelty": "BenchmarkResult(final_scores={'novel_structures_count': 1})",
-                "uniqueness": "BenchmarkResult(final_scores={'unique_structures_count': 1})",
+                       "'metastable_count': 1, 'sun_count': 1, 'msun_count': 1, "
+                       "'total_structures_evaluated': 2, 'metasun_count': 2, 'metasun_structure_indices': [0, 1]})",
+                "novelty": "BenchmarkResult(final_scores={'novel_structures_count': 2})",
+                "uniqueness": "BenchmarkResult(final_scores={'unique_structures_count': 2})",
+                # Positive formation energy: low-energy by the hull window, but less stable than its elements.
+                # Retained as diagnostic ONLY; never gates primary score = (SUN + 0.5 * MetaSUN) / expected.
+                "stability": "BenchmarkResult(evaluator_results={'formation_energy': {'metric_results': "
+                             "{'formation_energy': MetricResult(individual_values=[{'value': 0.05}, {'value': 0.02}])}}})",
             },
         }
         fixture.write_text(json.dumps({"unconditional": result}))
@@ -556,20 +629,111 @@ class CrystalGenTaskTests(unittest.TestCase):
                 check=True,
             )
             reward = json.loads((output / "reward.json").read_text())
-            self.assertEqual(reward["unconditional_sun_metasun"], 0.5)
-            self.assertEqual(reward["reward"], 0.5)
-            self.assertTrue(all(key.startswith("unconditional_") for key in reward if key != "reward"))
+            self.assertEqual(reward["unconditional_sun"], 0.5)
+            self.assertEqual(reward["unconditional_metasun"], 0.5)
+            self.assertEqual(reward["unconditional_sun_metasun"], 1.0)
+            self.assertAlmostEqual(reward["unconditional_ssi_score"], 0.75, places=12)
+            self.assertEqual(reward["unconditional_negative_formation_unique_novel"], 0.0)
+            self.assertAlmostEqual(reward["score"], 0.75, places=12)
+            self.assertAlmostEqual(reward["reward"], 0.75, places=12)
+            self.assertTrue(
+                all(key.startswith("unconditional_") for key in reward if key not in {"reward", "score"})
+            )
             report = json.loads((output / "report.json").read_text())
-            self.assertEqual(report["schema"], "crystalgen-report/v2")
-            self.assertEqual(report["relaxation"]["status"], "fixture_not_run")
+            self.assertEqual(report["schema"], "crystalgen-report/v4-uma200-hull-aligned")
+            self.assertTrue(report["pre_scoring_relaxation"])
             self.assertEqual(set(report["tracks"]), {"unconditional"})
             self.assertNotIn("conditional", report)
+            self.assertEqual(report["diagnostics"]["gating_policy"], "diagnostics_only_no_adhoc_gates")
+            self.assertEqual(report["diagnostics"]["strict_sun_yield"], 0.5)
+            self.assertEqual(report["diagnostics"]["sun_plus_metasun_yield"], 1.0)
+            self.assertEqual(report["diagnostics"]["negative_formation_energy_fraction"], 0.0)
+            self.assertIn("n_elements", report["diagnostics"])
+            self.assertIn("as_submitted", report["diagnostics"])
+            self.assertIn("relaxation_rmsd", report["diagnostics"])
         finally:
             for path in sorted(
                 (item for item in sealed.rglob("*") if item.is_dir()), reverse=True
             ):
                 path.chmod(0o755)
             sealed.chmod(0o755)
+
+    def test_ssi_v3_crystal_parity_and_visibility_boundary(self) -> None:
+        from scoring.evaluate import evaluate
+
+        harness_path = next(p for p in Path(__file__).resolve().parents if (p / "harness" / "ssi_index_v3.py").is_file()) / "harness" / "ssi_index_v3.py"
+        spec = importlib.util.spec_from_file_location("ssi_index_v3", harness_path)
+        ssi_v3 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ssi_v3)
+
+        suite = self.build_suite("parity-suite")
+        generated = self.root / "parity-gen"
+        generated.mkdir()
+        (generated / "manifest.csv").write_text("request_id,sample_index,structure_path\n")
+
+        fixtures = [
+            (0, 0, 0),
+            (100, 0, 100),
+            (0, 100, 100),
+            (8, 430, 2400),
+            (2500, 0, 2500),
+            (0, 2500, 2500),
+        ]
+        for sun_c, msun_c, valid_c in fixtures:
+            with self.subTest(sun=sun_c, metasun=msun_c, valid=valid_c):
+                fixture_doc = {
+                    "unconditional": {
+                        "run_info": {"n_structures": valid_c},
+                        "validity_filtering": {"valid_structures": valid_c},
+                        "results": {
+                            "sun": (
+                                f"BenchmarkResult(final_scores={{'stable_count': {sun_c}, "
+                                f"'metastable_count': {msun_c}, 'sun_count': {sun_c}, "
+                                f"'msun_count': {msun_c}, 'total_structures_evaluated': {valid_c}, "
+                                f"'metasun_count': {sun_c + msun_c}, "
+                                f"'metasun_structure_indices': list(range({sun_c + msun_c}))}})"
+                                .replace(f"list(range({sun_c + msun_c}))", str(list(range(sun_c + msun_c))))
+                            ),
+                            "novelty": f"BenchmarkResult(final_scores={{'novel_structures_count': {sun_c + msun_c}}})",
+                            "uniqueness": f"BenchmarkResult(final_scores={{'unique_structures_count': {sun_c + msun_c}}})",
+                            "stability": (
+                                "BenchmarkResult(evaluator_results={'formation_energy': {'metric_results': "
+                                "{'formation_energy': MetricResult(individual_values="
+                                + repr([{"value": -0.1}] * valid_c)
+                                + ")}}})"
+                            ),
+                        },
+                    }
+                }
+                fixture_file = self.root / f"fixture_{sun_c}_{msun_c}.json"
+                fixture_file.write_text(json.dumps(fixture_doc))
+                rewards, _ = evaluate(
+                    suite,
+                    generated,
+                    Path("unused-scorer"),
+                    Path("unused-python"),
+                    fixture_results=fixture_file,
+                )
+                v3_res = ssi_v3.crystal({"expected": 2500, "sun": sun_c, "metasun": msun_c})
+                self.assertLess(abs(rewards["score"] - v3_res["score"]), 1e-12)
+                self.assertLess(abs(rewards["reward"] - v3_res["score"]), 1e-12)
+
+        tests_readme = (TESTS / "README.md").read_text()
+        for heading in (
+            "## Scientific & Literature Justification of Verifier Design",
+            "### 1. Primary Metric & Upstream Paper Provenance",
+            "### 2. Why Additional Ad-Hoc Constraints Are Intentionally Omitted",
+            "### 3. Diagnostic Signals Retained in report.json",
+        ):
+            self.assertIn(heading, tests_readme)
+        for doc_rel in ("instruction.md", "environment/contract.md"):
+            doc_text = (TASK / doc_rel).read_text()
+            self.assertIn("0.5 * MetaSUN", doc_text)
+
+        dev_dockerfile = (TASK / "environment/Dockerfile").read_text()
+        dev_compose = (TASK / "environment/docker-compose.yaml").read_text()
+        self.assertNotIn("COPY tests", dev_dockerfile)
+        self.assertNotIn("/tests", dev_compose)
 
 
 if __name__ == "__main__":

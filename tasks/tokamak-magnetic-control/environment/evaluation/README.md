@@ -55,9 +55,10 @@ docker run --rm --network none --cpus 112 \
 
 ## Outputs and failure semantics
 
-- `reward.json`: `reward` (success fraction over all episodes), `tolerance_time_fraction`,
+- `reward.json`: `score` and `reward` (both equal `successful_episodes / scheduled_episodes`, i.e., `successful_episodes / 105` on the 7-case × 15-seed full suite), `successful_episodes`, `scheduled_episodes`, `void_episodes`, `tolerance_time_fraction`,
   `policy_compute_ms`, retry counts and flat numeric `CASE/metric` values with the directions of
   METRICS.md.
+- `report.json`: structured verifier diagnostic summary (outcomes, fallback steps, reruns, latency gate, and per-case fractions without private seed identifiers).
 - `results.json`: every case and episode, per-episode summaries (including each fallback-ladder
   retry and rerun), setup draws, latency measurements, randomization name, seeds, versions.
 - `grading.json`: `scope` (`full-suite` or `development-subset`), case status and

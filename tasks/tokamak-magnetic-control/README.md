@@ -124,18 +124,19 @@ retried, and 5.2 h for `shape_vc` on a shared, oversubscribed host (section 6).
 
 ## 6. Results and validation
 
-### v0.3 suite, `tokamak-shape-metrics/v4` (sealed-v0.3, seeds 1001-1015, 105 episodes)
+### v0.3/v0.4 suite, `tokamak-shape-metrics/v4` (15 blind perturbation seeds, 105 scheduled episodes)
 
 | Controller | Success | Kept | `tolerance_time_fraction` | Solver failures | Policy compute [ms] |
 | --- | --- | --- | --- | --- | --- |
 | hold-current (`V = R I`) | 0/105 | 0/105 | 0.00 | 0 | 0.02 |
-| `shape_vc` (classical reference) | **48/105 = 0.457** | 79/105 | 0.44 | 6 | 0.08 |
+| `shape_vc` (classical reference, historical `sealed-v0.3` draw) | **48/105 = 0.457** | 79/105 | 0.44 | 6 | 0.08 |
 
 `shape_vc` per case (successes of 15): diverted hold 10, 750 kA hold 10, current ramp 9, P4 shape 3, pressure drop 9,
 vertical shift 5, sequence 2. Development suite (visible, seeds 0-2): 16/21 = 0.762 (`baseline/shape_vc/RESULTS.md`).
+(`sealed-v0.4` retains the exact FAIR-MAST perturbation physics with 15 fresh cryptographic 31-bit perturbation seeds and `reset_context` public seed masking.)
 
 Validation of the v4 verifier (2026-10-22/23):
-- 34 CPU-only unit tests (metrics, aggregation, bounded reruns, fallback ladder, replay budget, work budgets).
+- 34+ CPU-only unit tests (metrics, aggregation, bounded reruns, fallback ladder, replay budget, work budgets, sealed seed isolation).
 - Fault injection (`TOKAGYM_TEST_FAULTS`, 2 cases x 2 seeds): a failure recovered at level 1 gives bitwise identical
   episode metrics; a level-2 recovery changes steady-state errors in the sixth decimal; an unrecoverable step ends the
   episode as a solver failure.
@@ -144,18 +145,18 @@ Validation of the v4 verifier (2026-10-22/23):
 - Harbor end to end (`run_verify.sh`, separate verifier with the `task.toml` resources: 112 CPUs, 96 GiB, 105
   single-threaded workers): the `shape_vc` run above. The host was shared and oversubscribed (load 200-360 on 208
   cores), so a nonlinear step took about 6 s instead of about 1 s on a dedicated core: the median episode took 69 min
-  and the slowest, sequence seed 1014, 5.2 h: it failed at steps 883, 884 and 890, and each retry replayed the
+  and the slowest sequence episode 5.2 h: it failed at steps 883, 884 and 890, and each retry replayed the
   episode from its start. The verifier took 5.2 h in total; 48 steps needed the fallback ladder; no episode was rerun.
 - During that run the in-replay latency of `shape_vc` was 0.52 ms, over the 0.5 ms gate that v3 applied to it; the
   gate now measures after the replay (0.08 ms).
 - The replay budget (four horizons per episode) was added after this run: it changes no completed episode of
   `shape_vc` or hold-current (largest: 2,881 replayed steps on the 1,200-step sequence) and only shortens the
-  sequence seed-1014 episode, a solver failure either way.
+  slowest sequence episode, a solver failure either way.
 
 Under `tokamak-shape-metrics/v3` (35 episodes, void episodes excluded) `shape_vc` scored 17/35, and 0.4848 and 0.500 in
 repeated runs, depending on which episodes a loaded host voided.
 
-### v0.2 (sealed-v0.2, `tokamak-shape-metrics/v2`)
+### v0.2 (historical 2-seed check, `tokamak-shape-metrics/v2`)
 
 | Item | State |
 | --- | --- |
@@ -165,24 +166,24 @@ repeated runs, depending on which episodes a loaded host voided.
 | Deployable PID package, RL starter | not re-run under v0.2 (their v0.1 numbers below are for the old metrics and plant) |
 | Formal agent session | not run |
 
-Privileged PID with X-point-height feedback, sealed-v0.2 seeds 1001-1002 (local run; details in
+Privileged PID with X-point-height feedback, historical 2-seed check (local run; details in
 `environment/baseline/pid/RESULTS.md`):
 
-| Case | Outcomes (1001, 1002) | Shape RMS [cm] | Inner gap [cm] | Outer gap [cm] | X-point height [cm] | Ip error [%] |
+| Case | Aggregate outcomes (2 episodes) | Shape RMS [cm] | Inner gap [cm] | Outer gap [cm] | X-point height [cm] | Ip error [%] |
 | --- | --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | kept, kept | 1.40, 1.84 | 0.26, 0.49 | 0.32, 0.47 | 0.18, 0.22 | 0.14, 0.21 |
-| mastu_high_ip_hold | kept, kept | 1.40, 1.84 | 0.26, 0.49 | 0.32, 0.47 | 0.18, 0.22 | 0.14, 0.21 |
-| mastu_ip_ramp | kept, kept | 1.64, 2.11 | 0.32, 0.61 | 0.29, 0.61 | 0.22, 0.29 | 0.03, 0.13 |
-| mastu_p4_shape_hold | void (stall at step 47), **success** | -, 0.91 | -, 0.35 | -, 0.55 | -, 0.39 | -, 0.22 |
-| mastu_pressure_drop | kept, kept | 1.74, 2.02 | 0.21, 0.52 | 0.23, 0.51 | 0.14, 0.24 | 0.09, 0.16 |
-| mastu_vertical_shift | kept, kept | 2.60, 1.80 | 0.25, 0.53 | 0.33, 0.52 | 7.50, 9.54 | 0.11, 0.18 |
-| mastu_sequence | solver_failure ('ny' bug, step 461), kept | -, 6.29 | -, 0.77 | -, 0.78 | -, 0.48 | -, 0.18 |
+| mastu_diverted_hold | 2 kept | 1.62 | 0.38 | 0.40 | 0.20 | 0.18 |
+| mastu_high_ip_hold | 2 kept | 1.62 | 0.38 | 0.40 | 0.20 | 0.18 |
+| mastu_ip_ramp | 2 kept | 1.88 | 0.47 | 0.45 | 0.26 | 0.08 |
+| mastu_p4_shape_hold | 1 **success**, 1 void | 0.91 | 0.35 | 0.55 | 0.39 | 0.22 |
+| mastu_pressure_drop | 2 kept | 1.88 | 0.37 | 0.37 | 0.19 | 0.13 |
+| mastu_vertical_shift | 2 kept | 2.20 | 0.39 | 0.43 | 8.52 | 0.15 |
+| mastu_sequence | 1 kept, 1 solver_failure | 6.29 | 0.77 | 0.78 | 0.48 | 0.18 |
 
 Steady-state means; success needs every column within tolerance (1 cm, 3%). Success fraction 1/13
 (one void), kept 12/13. In the holds, the current ramp and the pressure drop the gaps, X-point height
 and current are all within the MAST-U tolerances and only the 32-point RMS (1.4-2.1 cm) misses 1 cm.
 The vertical shift misses on the X-point height and the sequence on the RMS (the PID controls four
-boundary quantities, not the whole shape change). The sequence's seed-1001 failure is the FreeGSNKE
+boundary quantities, not the whole shape change). The sequence solver failure is the FreeGSNKE
 `ny` bug that `tokagym.env.patch_freegsnke` now fixes; that job started before the patch.
 Local run, 2026-10-03, four workers, profile updates throttled, X-point height metric as in METRICS.md.
 
@@ -195,29 +196,27 @@ run of the 14 PID episodes took 1.5 h with four workers here, so a five-seed rep
 The tables below are the task author's v0.1 runs. They use the old feasibility and last-half metrics, the
 ±10 kA solenoid limit as a measured (not terminating) limit and the old plant, so they are not comparable with v0.2.
 
-#### Sealed table, no-training references (seeds 1001-1003, nonlinear plant, last-half window)
+#### Sealed table, no-training references (historical 3-seed check, nonlinear plant, last-half window)
 
 Privileged PID / virtual circuits (simulator-side descriptors; not a submission):
 
 | Case | Feasible | Shape RMS [cm] | X-point [cm] | Ip error [%] | Notes |
 | --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | 2/3 | 1.66 | 2.39 | 0.11 | seed 1002: solver stall |
+| mastu_diverted_hold | 2/3 | 1.66 | 2.39 | 0.11 | 1 solver stall |
 | mastu_high_ip_hold | 2/3 | 1.66 | 2.39 | 0.11 | identical to the base case: it is a similarity-scaled copy (same boundary, currents x1.21) |
-| mastu_ip_ramp | 0/3 | - | - | - | solver stall in every seed during/after the current ramp |
+| mastu_ip_ramp | 0/3 | - | - | - | solver stall in every episode during/after the current ramp |
 | mastu_p4_shape_hold | 3/3 | 0.62 | 1.49 | 1.04 | |
-| mastu_pressure_drop | 2/3 | 0.68 | 0.88 | 0.13 | seed 1002: solver stall |
-| mastu_vertical_shift | 2/3 | 1.38 | 4.82 | 0.12 | seed 1002: solver stall |
+| mastu_pressure_drop | 2/3 | 0.68 | 0.88 | 0.13 | 1 solver stall |
+| mastu_vertical_shift | 2/3 | 1.38 | 4.82 | 0.12 | 1 solver stall |
 
 "Solver stall": FreeGSNKE's nonlinear stepper stopped converging after a few hundred
 steps (the episode exceeded 60 min and was killed; re-runs at low host load stalled
-again). The first 80 steps of the seed-1002 base draw and 220 steps of the ip_ramp
-draw are unremarkable (shape error 0.9-5 cm), so this is a late-episode solver
+again). The early steps of the stalled draws are unremarkable (shape error 0.9-5 cm), so this is a late-episode solver
 limitation interacting with the PID's slow drift, not a plant that cannot be
 simulated. By the task rules a stall is an infeasible episode for whoever is evaluated.
 
 Anchors (protocol submissions): hold-current (`V = R I`) loses the plasma in every
-episode (18/18; plasma lost after 48-362 steps, i.e. 24-181 ms; the seed-1001 draws
-survive longest). Random-init loses it in every episode after 15-52 steps. Both score
+episode (18/18; plasma lost after 48-362 steps, i.e. 24-181 ms). Random-init loses it in every episode after 15-52 steps. Both score
 feasible fraction 0 on all cases.
 
 Deployable PID package (estimator + PID/virtual circuits from the observation only;
@@ -225,12 +224,12 @@ v5 = per-shape virtual circuits, set-point ramp, controller rebuilt per episode)
 
 | Case | Feasible | Shape RMS [cm] | X-point [cm] | Ip error [%] | Notes |
 | --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | 2/3 | 4.76 | 4.43 | 0.68 | seed 1003: solver stall |
-| mastu_high_ip_hold | 0/3 | - | - | - | solver stall in every seed |
-| mastu_ip_ramp | 0/3 | - | - | - | two stalls; seed 1002 hit the 180 s step budget at step 249 |
-| mastu_p4_shape_hold | 0/3 | - | - | - | two stalls; seed 1003 plasma lost at step 82 |
-| mastu_pressure_drop | 2/3 | 3.53 | 2.53 | 0.76 | seed 1003: solver stall |
-| mastu_vertical_shift | 2/3 | 4.42 | 9.79 | 0.72 | seed 1003: solver stall |
+| mastu_diverted_hold | 2/3 | 4.76 | 4.43 | 0.68 | 1 solver stall |
+| mastu_high_ip_hold | 0/3 | - | - | - | solver stall in every episode |
+| mastu_ip_ramp | 0/3 | - | - | - | 3 solver stalls / step-budget timeouts |
+| mastu_p4_shape_hold | 0/3 | - | - | - | 2 stalls; 1 plasma lost at step 82 |
+| mastu_pressure_drop | 2/3 | 3.53 | 2.53 | 0.76 | 1 solver stall |
+| mastu_vertical_shift | 2/3 | 4.42 | 9.79 | 0.72 | 1 solver stall |
 
 Completed episodes sit at 2.5-5.7 cm shape error, i.e. 2-4x the privileged
 controller, with 17-18% of steps outside the provisional coil-current limits. Eleven
@@ -269,7 +268,7 @@ demonstrator's, and exports snapshots for `evaluation/curve.py`. Run 012 (residu
 the v3 package, nonlinear plant) was stopped because the base controller itself lost
 most visible-draw episodes. Run 015 (direct mode: 32 privileged demonstrations, 6000 BC steps, then SAC with the
 fixed objective; nonlinear plant, 36 workers) is the run behind the sealed learning
-curve below (`evaluation/curve.py`, seeds 1001-1003, every second snapshot; each
+curve below (`evaluation/curve.py`, historical 3-seed check, every second snapshot; each
 point is an independent replay of the exported snapshot through the verifier).
 
 | Snapshot (episodes / env steps / SAC updates) | Mean feasible | Mean shape RMS [cm] | Per case: feasible / shape cm |
@@ -292,21 +291,21 @@ despite the normalized objective. The publish-if-better rule kept the BC actor a
 the published package. The published BC package was also run through the trusted verifier entry
 (`tests/test.sh`, all five sealed seeds, verifier image):
 
-| Case | Feasible | Shape RMS [cm] | X-point [cm] | Ip error [%] | Seeds 1004 / 1005 |
+| Case | Feasible | Shape RMS [cm] | X-point [cm] | Ip error [%] | Aggregate failure modes |
 | --- | --- | --- | --- | --- | --- |
-| mastu_diverted_hold | 3/5 | 2.36 | 3.18 | 0.93 | solver stall / plasma lost at step 47 |
-| mastu_high_ip_hold | 3/5 | 1.95 | 3.17 | 7.48 | solver stall / plasma lost at step 55 |
-| mastu_ip_ramp | 2/5 | 0.98 | 1.35 | 12.43 | solver stall / plasma lost at step 47 (1002 also stalled) |
-| mastu_p4_shape_hold | 1/5 | 2.90 | 4.30 | 5.11 | solver stall / solver stall (1001 stalled, 1003 `ny` exception) |
-| mastu_pressure_drop | 3/5 | 2.11 | 2.47 | 1.14 | solver stall / plasma lost at step 47 |
-| mastu_vertical_shift | 3/5 | 2.82 | 4.55 | 1.12 | solver stall / plasma lost at step 47 |
+| mastu_diverted_hold | 3/5 | 2.36 | 3.18 | 0.93 | 1 solver stall, 1 plasma lost at step 47 |
+| mastu_high_ip_hold | 3/5 | 1.95 | 3.17 | 7.48 | 1 solver stall, 1 plasma lost at step 55 |
+| mastu_ip_ramp | 2/5 | 0.98 | 1.35 | 12.43 | 2 solver stalls, 1 plasma lost at step 47 |
+| mastu_p4_shape_hold | 1/5 | 2.90 | 4.30 | 5.11 | 3 solver stalls, 1 `ny` exception |
+| mastu_pressure_drop | 3/5 | 2.11 | 2.47 | 1.14 | 1 solver stall, 1 plasma lost at step 47 |
+| mastu_vertical_shift | 3/5 | 2.82 | 4.55 | 1.12 | 1 solver stall, 1 plasma lost at step 47 |
 
-Seeds 1001-1003 reproduce the curve point exactly (the replay is deterministic). Seed
-1004 stalls the solver in all six cases and seed 1005 loses the plasma within 25 ms in
-five of them; both are low-pressure draws (axis pressure about 60% of nominal, seed
-1004 also with +20% passive resistance and a one-step supply delay), a regime the 32
-demonstrations barely covered. Three seeds are a thin estimate; the verifier's five
-are the number that counts.
+The first three draws reproduce the curve point exactly (the replay is deterministic). Two
+harder draws fail across the board: one stalls the solver in all six cases and one loses the plasma within 25 ms in
+five of them; both are low-pressure draws (axis pressure about 60% of nominal, with
+elevated passive resistance and supply delay), a regime the 32
+demonstrations barely covered. Three draws are a thin estimate; the full sealed suite
+is the number that counts.
 
 The ep 600 row above records the degradation on the sealed seeds: the
 SAC-updated actor loses the plasma within 20-45 ms in every episode. The run ended at

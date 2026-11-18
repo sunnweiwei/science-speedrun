@@ -33,7 +33,8 @@ def main():
             raise SystemExit("user_dir must be a directory inside the package with an __init__.py")
         os.environ["UNIMOL2X_SUBMISSION_USER_DIR"] = str(ud)
     os.environ["UNIMOL2X_METAINFO"] = str(data / "task_metainfo.json")
-    import torch
+    from encoder_checkpoint import load_model_weights
+    weights = load_model_weights(pkg / "checkpoint.pt")
     from unicore import options, tasks, utils
     sys.argv = [sys.argv[0], str(data), "--user-dir", str(here / "unimol2x"), "--task", "mol_finetune",
                 "--loss", "finetune_smooth_mae", "--arch", arch, "--task-name", "qm9dft_v2_alpha",
@@ -42,10 +43,6 @@ def main():
     utils.import_user_module(args)
     model = tasks.setup_task(args).build_model(args)
     n_params = sum(p.numel() for k, p in model.named_parameters() if not k.startswith(HEADS))
-    state = torch.load(pkg / "checkpoint.pt", map_location="cpu", weights_only=False)
-    weights = state.get("model") if isinstance(state, dict) else None
-    if not isinstance(weights, dict):
-        raise SystemExit('checkpoint.pt must be a dict with a "model" state dict')
     expected = {k: tuple(v.shape) for k, v in model.state_dict().items() if not k.startswith(HEADS)}
     missing = sorted(k for k in expected if k not in weights)
     shape = sorted(k for k in expected if k in weights and tuple(weights[k].shape) != expected[k])

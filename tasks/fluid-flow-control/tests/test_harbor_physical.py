@@ -70,13 +70,22 @@ class PhysicalHarborTests(unittest.TestCase):
             reward=verify('/unused-data','/unused-submission',folder,evaluator=fake)
             self.assertEqual(json.loads((Path(folder)/'reward.json').read_text()),reward)
             self.assertEqual(json.loads((Path(folder)/'grading.json').read_text())['scope'],'verifier-suite')
-            self.assertEqual(len(reward),26+1)
+            self.assertEqual(len(reward),26+3)
+            from aggregate import task_score
+            _, cases=select_cases(['verifier'])
+            expected=task_score(reward,sorted(c['id'] for c in cases))
+            self.assertAlmostEqual(expected['score'],reward['reward'],places=12)
+            self.assertAlmostEqual(expected['score'],reward['score'],places=12)
+            summary=json.loads((Path(folder)/'grading.json').read_text())['signed_improvement']
+            self.assertEqual(set(summary['per_case']),{c['id'] for c in cases})
+            self.assertEqual(summary['families'],10)
 
     def test_complete_suite_is_still_gradable(self):
         with TemporaryDirectory() as folder:
             reward=verify('/unused','/unused2',folder,['all'],evaluator=lambda *a:self.fixture())
             self.assertEqual(json.loads((Path(folder)/'grading.json').read_text())['scope'],'full-39')
-            self.assertEqual(len(reward),39+1)
+            self.assertEqual(len(reward),39+3)
+            self.assertEqual(json.loads((Path(folder)/'grading.json').read_text())['signed_improvement']['cases'],26)
 
     def test_policy_error_preserves_diagnostic_and_marks_invalid(self):
         with TemporaryDirectory() as folder:
@@ -84,9 +93,10 @@ class PhysicalHarborTests(unittest.TestCase):
                 result=self.fixture(names)
                 for name in result['cases']:result['cases'][name]={'status':'policy_error'}
                 return result
-            self.assertEqual(verify('/unused','/unused2',folder,evaluator=fake),{'invalid_submission':1})
+            expected={'invalid_submission':1,'score':0.0,'reward':0.0}
+            self.assertEqual(verify('/unused','/unused2',folder,evaluator=fake),expected)
             # Harbor needs a numeric reward.json; an invalid package has no physical metrics.
-            self.assertEqual(json.loads((Path(folder)/'reward.json').read_text()),{'invalid_submission':1})
+            self.assertEqual(json.loads((Path(folder)/'reward.json').read_text()),expected)
             self.assertEqual(json.loads((Path(folder)/'grading-error.json').read_text())['status'],'policy_error')
 
 

@@ -1,5 +1,5 @@
 {
-  "schema": "bci-pretrained-allowlist-v1",
+  "schema": "bci-pretrained-allowlist-v2",
   "models": {
     "cbramod": {
       "repo": "braindecode/cbramod-pretrained",
@@ -9,14 +9,6 @@
       "license": "BSD-3-Clause",
       "source_braindecode": "1.3.1"
     },
-    "biot": {
-      "repo": "braindecode/biot-pretrained-six-datasets-18chs",
-      "revision": "7e9aabf302870012f73773276803aab97993951c",
-      "file": "model.safetensors",
-      "sha256": "a218f4054ae29962c6fd9d23d94c446d354c4f53e805a6771c85749ccc20baaa",
-      "license": "BSD-3-Clause",
-      "source_braindecode": "1.3.0"
-    },
     "codebrain": {
       "repo": "braindecode/codebrain-pretrained",
       "revision": "1ba45893685e6d5d2d51967cb48b1992c61668ef",
@@ -24,6 +16,14 @@
       "sha256": "eeba68250b8ea61efbf3e91cf4f90242faf90dcee8eba4d1b8a6e50907a46d18",
       "license": "BSD-3-Clause",
       "source_braindecode": "1.3.2"
+    }
+  },
+  "disallowed_models": {
+    "biot": {
+      "repo": "braindecode/biot-pretrained-six-datasets-18chs",
+      "revision": "7e9aabf302870012f73773276803aab97993951c",
+      "sha256": "a218f4054ae29962c6fd9d23d94c446d354c4f53e805a6771c85749ccc20baaa",
+      "reason": "Removed in V4 due to direct TUEV pretraining corpus overlap."
     }
   }
 }

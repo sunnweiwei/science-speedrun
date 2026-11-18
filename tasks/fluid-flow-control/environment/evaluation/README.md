@@ -66,11 +66,13 @@ Development-visible evaluator changes do not alter that separate image.
 
 - `reward.json`: flat labeled numeric physical values, e.g.
   `{"Cylinder_2D_Re200/drag_cd": 1.1395}` for an **illustrative subset**.
-  Verifier grading has 26 keys (39 with `--case all`). The value is CD, **not** training return.
+  Verifier grading exports 26 case outcomes (39 with `--case all`), a failure count, and both
+  `score` and `reward` (10-family prefix equal-weight mean of clipped signed relative improvements
+  over paired zero control, clipped to `[0, 1]`) when the full scored panel was replayed.
 - `results.json`: same values with units/directions/windows, every case outcome,
   complete episode records, package/data/profile/metric/evaluator identities.
-- `grading.json`: `scope=verifier-suite`, `full-39` or `development-subset`, case count and
-  `aggregate_score=null`. There is deliberately no mixed-unit total.
+- `grading.json` / `report.json`: `scope=verifier-suite`, `full-39` or `development-subset`, case count,
+  `score` / `aggregate_score`, `signed_score`, per-family means (`by_family`) and per-case improvements over zero control. The score is null on partial development panels.
 - `partial-results.json`, per-case logs/progress: durable diagnostics.
 - `grading-error.json` / `error.json`: explicit policy versus infrastructure errors.
 

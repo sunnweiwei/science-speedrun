@@ -18,21 +18,27 @@ seven cases:
 Every target is an equilibrium this machine can hold: a vertical move targets the plasma held higher
 by the vertical coil P6 (the shaping coils are up-down symmetric pairs, so it is not a rigid shift).
 
-The score is the fraction of episodes that succeed: the plasma is kept for the whole horizon
-without hitting a coil-current limit, and after a 100 ms settling time the boundary shape, the
-inner and outer gaps and the X-point height stay within 1 cm and the plasma current within 3%.
-These are the MAST-U team's controller requirements. `/workspace/evaluation/METRICS.md` defines
+The primary benchmark score (`score` and `reward` in `reward.json`) is `successful_episodes / 105`:
+the fraction of scheduled episodes across **7 scenarios × 15 blind perturbation seeds = 105 scheduled episodes**
+that succeed. Every scheduled episode—including plasma losses, coil-current limit trips, unrecovered solver
+failures, or any void/aborted episode—is counted in the `105` denominator (`ssi_index_v3.tokamak`). An episode
+succeeds when the plasma is kept for the whole horizon without hitting a coil-current limit, and after a 100 ms
+settling time the boundary shape, the inner and outer gaps and the X-point height stay within 1 cm and the plasma
+current within 3%. These are the MAST-U team's controller requirements. `/workspace/evaluation/METRICS.md` defines
 them exactly and lists the per-case physical metrics reported alongside. Native rewards are
 training signals, not benchmark scores. Aim to outperform the classical `shape_vc`
 reference on every case, under the randomized plant, not only in the nominal simulator.
 
-| controller | sealed successes | sealed episodes kept |
+| controller | historical 105-episode sealed successes | historical 105-episode kept |
 | --- | --- | --- |
 | hold-current (`V = R I`) | 0/105 | 0/105 |
 | deployable full-shape virtual-circuit controller (`baseline/shape_vc/`) | 48/105 | 79/105 |
 
-All on the 105 sealed episodes (seven cases, fifteen seeds) of the current suite (`tokagym-mastu/v0.3`,
-`tokamak-shape-metrics/v4`). `shape_vc` is the classical reference to beat:
+All on the 105 scheduled episodes (seven cases, fifteen blind perturbation seeds) of the sealed suite
+(`tokagym-mastu/v0.3`, `tokamak-shape-metrics/v4`; reference counts above are from the historical `sealed-v0.3`
+draw, while final V4 grading uses a fresh 15-seed `sealed-v0.4` draw of the same FAIR-MAST distribution). During
+verification, `context.seed` in `policy.reset(...)` is a deterministic public policy RNG seed (`100000 + episode_index`),
+uncorrelated with the private simulator perturbation seed. `shape_vc` is the classical reference to beat:
 a linear magnetic reconstruction, least-squares virtual circuits on the whole boundary and a
 delay-robust vertical loop, NumPy only. The starter trains a residual SAC policy on top of it
 (5 h, 311k steps: 16/34 sealed under the earlier 35-episode metric v3, the pipeline verified but no gain over the base

@@ -1,15 +1,63 @@
+# Label-isolated two-container FoldBench verifier (Harbor separate mode).
+# `main` runs untrusted setup.sh + infer.sh (`--phase infer`) WITHOUT ground_truths
+# and seals validated regular-file mmCIF predictions into `sealed`.
+# `grader` mounts `sealed` read-only (`:ro`) plus private `ground_truths` (`:ro`)
+# and runs `--phase score` without ever mounting or executing submission code.
+volumes:
+  sealed:
+  grader_results:
+  verifier_logs:
+
+x-ro-bind: &ro-bind
+  type: bind
+  read_only: true
+  bind:
+    create_host_path: false
+
 services:
   main:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
     shm_size: "32gb"
     volumes:
-      - type: bind
-        source: ${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data directory}/foldbench-test
-        target: /benchmark
-        read_only: true
-        bind:
-          create_host_path: false
+      - {<<: *ro-bind, source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data directory}/foldbench-test/suite", target: /benchmark/suite}
+      - {<<: *ro-bind, source: "${TASK_PRIVATE_DIR}/foldbench-test/features.esmc6b_final_int8.jsonl", target: /benchmark/features.esmc6b_final_int8.jsonl}
+      # Exposes frozen ESMC-6B INT8 safetensors payloads (including features/esmc6b-final-int8
+      # and features/esmc6b-final-ln-int8-g64-45b0fa5d-ptsdpa-v1) read-only; excludes ground_truths.
+      - {<<: *ro-bind, source: "${TASK_PRIVATE_DIR}/foldbench-test/features", target: /benchmark/features}
+      - sealed:/sealed
+      - grader_results:/results:ro
+      - verifier_logs:/logs/verifier
+    gpus: all
     healthcheck:
-      test: ["CMD-SHELL", "test -s /benchmark/suite/suite_manifest.json && test -s /benchmark/features.esmc6b_final_int8.jsonl && test -d /benchmark/ground_truths"]
+      test: ["CMD-SHELL", "test -s /benchmark/suite/suite_manifest.json && test -s /benchmark/features.esmc6b_final_int8.jsonl && test -d /benchmark/features && test ! -e /benchmark/ground_truths"]
       interval: 5s
       timeout: 5s
       retries: 3
+
+  grader:
+    build:
+      context: ..
+      dockerfile: tests/Dockerfile
+    network_mode: none
+    shm_size: "16gb"
+    command:
+      - python
+      - /tests/grade.py
+      - --phase
+      - score
+      - --suite
+      - /benchmark/suite
+      - --ground-truth
+      - /benchmark/ground_truths
+      - --sealed
+      - /sealed/run
+      - --output
+      - /results
+    volumes:
+      - {<<: *ro-bind, source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR to the materialized data directory}/foldbench-test/suite", target: /benchmark/suite}
+      - {<<: *ro-bind, source: "${TASK_PRIVATE_DIR}/foldbench-test/ground_truths", target: /benchmark/ground_truths}
+      - sealed:/sealed:ro
+      - grader_results:/results

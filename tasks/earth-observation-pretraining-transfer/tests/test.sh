@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 OLMO_TEST_DIR=$(cd "$(dirname "$0")" && pwd)
+(cd "$OLMO_TEST_DIR/sealed" && sha256sum --quiet -c SHA256SUMS) || { echo "sealed verifier files are missing or differ from SHA256SUMS; see tests/sealed/README.md" >&2; exit 1; }
 # As in the weather verifier: the NVIDIA container runtime bind-mounts entries under
 # /proc/driver/nvidia, and the kernel then refuses the fresh procfs of the model's user namespace
 # ("Can't mount proc on /newroot/proc"). Detach them; the GPUs stay usable through /dev/nvidia*.
@@ -14,4 +15,8 @@ if [[ -z ${CUDA_VISIBLE_DEVICES:-} ]] && command -v nvidia-smi >/dev/null; then
 fi
 OLMO_PROBES=${OLMO_PROBES:-$OLMO_TEST_DIR/../environment/evaluation/probes.py}
 [[ -f "$OLMO_PROBES" ]] || OLMO_PROBES=/evaluation/probes.py
-python "$OLMO_TEST_DIR/grade.py" --model "${OLMO_MODEL:-/workspace/submission}" --data "${OLMO_EVAL_DATA:-/data/eval}" --output "${OLMO_VERIFIER_OUTPUT:-/logs/verifier}" --probes "$OLMO_PROBES"
+OLMO_AWF_KNN_ROSTER=${OLMO_AWF_KNN_ROSTER:-$OLMO_TEST_DIR/sealed/spatial-roster.json}
+args=(--model "${OLMO_MODEL:-/workspace/submission}" --data "${OLMO_EVAL_DATA:-/data/eval}"
+      --output "${OLMO_VERIFIER_OUTPUT:-/logs/verifier}" --probes "$OLMO_PROBES"
+      --roster "$OLMO_AWF_KNN_ROSTER")
+exec python "$OLMO_TEST_DIR/grade.py" "${args[@]}"

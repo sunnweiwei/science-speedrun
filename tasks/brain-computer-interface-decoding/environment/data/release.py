@@ -22,6 +22,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LOCK = HERE.parent / 'baseline' / 'braindecode' / 'pretrained.lock.json'
+ACTIVE_TRACKS = frozenset({'tuev', 'ad65', 'openbmi', 'longitudinal'})
 
 
 def sha256(path):
@@ -85,7 +86,8 @@ def install(root):
         print(name, json.dumps(subset(download, 'runtime/')), flush=True)
         for split in ('development', 'private'):
             for track in pin['tracks']:
-                move_tree(download / 'runtime' / split / track, runtime / split / track)
+                if track in ACTIVE_TRACKS:
+                    move_tree(download / 'runtime' / split / track, runtime / split / track)
     pretrained = runtime / 'development' / 'pretrained'
     pretrained.mkdir(parents=True, exist_ok=True)
     for family, entry in json.loads(LOCK.read_text())['models'].items():

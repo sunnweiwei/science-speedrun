@@ -7,6 +7,7 @@ challenges' scoring space (log10(clip(y, 0) + 1), LogD unchanged), so every metr
 from __future__ import annotations
 
 import math
+from statistics import mean
 
 GROUPS = {
     "qm9": ["qm9dft_v2", "qm9dft_v2_alpha", "qm9dft_v2_cv", "qm9dft_v2_mu", "qm9dft_v2_r2", "qm9dft_v2_zpve"],
@@ -97,3 +98,22 @@ def group_summary(per_task: dict[str, dict]) -> dict:
     """Per group: MA-RAE (mean RAE over the group's tasks, the ExpansionRx/ASAP leaderboard metric) and mean Spearman."""
     return {f"{g}_{name}": sum(per_task[t][key] for t in ts) / len(ts)
             for g, ts in GROUPS.items() for name, key in (("ma_rae", "rae"), ("mean_spearman", "spearman"))}
+
+
+def ssi_v4_molecule_score(groups: dict[str, float]) -> dict:
+    """Exact SSI V4 / V3 primary score: 1 / (1 + mean_4_groups(MA_RAE)) across qm9, compas1d, expansionrx, asap."""
+    group_ma_rae: dict[str, float] = {}
+    for g in ("qm9", "compas1d", "expansionrx", "asap"):
+        val = float(groups[f"{g}_ma_rae"])
+        if not math.isfinite(val) or val < 0.0:
+            raise ValueError(f"Invalid {g}_ma_rae: {val}")
+        group_ma_rae[g] = val
+    mean_ma_rae = mean(group_ma_rae.values())
+    raw = 1.0 / (1.0 + mean_ma_rae)
+    clipped = max(0.0, min(1.0, raw))
+    return {
+        "score": clipped,
+        "reward": clipped,
+        "mean_ma_rae": mean_ma_rae,
+        "components": {f"{g} MA-RAE": v for g, v in group_ma_rae.items()},
+    }

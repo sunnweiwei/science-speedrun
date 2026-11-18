@@ -9,32 +9,38 @@ systems, density targets or conditional rewards.
 
 This matches the scope of the [public LeMat-GenBench benchmark](https://huggingface.co/spaces/LeMaterial/LeMat-GenBench)
 and its [unconditional evaluation protocol](https://arxiv.org/html/2512.04562v1#S3.SS1).
-Scoring-protocol compatibility does not imply identical training recipes or generation-time
-postprocessing to a leaderboard submission. The task evaluates **generator + fixed UMA-200
-postprocessing**, not raw-generator quality alone; the public benchmark permits already-relaxed
-submitted structures (see its [pre/post-relaxation discussion](https://arxiv.org/html/2512.04562v1#S5.SS3)).
+The grader first relaxes a separate copy of each submitted crystal with the frozen UMA
+`uma-s-1` (`omat`), BFGSLineSearch and FrechetCellFilter, up to 200 steps at 0.02 eV/Å and
+300 seconds per crystal. It retains finite unconverged iterates and uses the original
+candidate when refinement fails. It then scores the resulting geometry with ORB-v3, MACE-MP
+and UMA. Mean energy above hull defines stable (≤0 eV/atom) and metastable (0–0.1 eV/atom)
+bins, with stable structures excluded from the metastable bin. The reward is the fraction of all
+requested slots that are unique within a bin and novel relative to LeMat-Bulk.
 
-The agent uses the exact final evaluation stack during development, which gives it useful research
-feedback. Final replay is still isolated: the submission generates structures without network or
-scorer access, its output is sealed, and a trusted grader relaxes a copy before scoring it.
+For equal compositions, CrystalGen applies MatterGen's v1.0.3 ordered-disordered matcher.
+The additional dilute-parent guard identifies a known lattice decorated with a substituent
+occupying ≤25% of the host-plus-guest sites. It requires relative radius difference ≤0.3 and
+electronegativity difference ≤1.0. Supercells, symmetry copies and dilute variants of a known
+compound such as GdDy7Cu8 from DyCu are covered by these comparisons. A cross-element substitution requires both the measured radii and the electronegativities. Ordinary same-species geometric matches still apply to materials such as XeF₂ when a radius is unavailable.
 
-- **Reward:** `unconditional_sun_metasun`, the fraction of the 2,500 requested structures that are
-  stable-unique-novel or metastable-unique-novel after the fixed relaxation (section 4).
-- **Status:** verified. The OMatG starter trained from scratch reaches **0.208**; the no-learning
-  smoke generator reaches 0.106 (section 6).
+The optional `--as-submitted` evaluation scores the raw lattice and coordinates. It also
+measures displacement from the raw geometry under all three potentials on 250 prespecified
+slots (50 steps, 0.02 eV/Å), with coverage and a 95% structure-bootstrap interval.
+This result is recorded separately from the primary UMA-200 reward.
 
-Terminology:
+The generation package runs offline on the sealed request and has no access to scoring assets.
 
-- **Final scoring ensemble**: the fixed ORB + MACE + UMA evaluator. It scores candidates; it is not
-  part of the submitted generator.
-- **Restricted scoring checkpoint**: UMA `uma-s-1`, whose files require an approved Hugging Face
-  account. "Restricted" describes download access, not a different scientific role.
-- **Pre-scoring relaxation**: optimizing atom positions and the cell with frozen UMA weights, not
-  training a neural network. It is a fixed grader step: BFGSLineSearch + FrechetCellFilter,
-  `fmax=0.02` eV/Å, at most 200 steps and 300 seconds per structure. Development uses the identical
-  helper.
-- There is no "oracle" or query allowance: during development the agent can run the exact final
-  scorer as often as its compute budget permits; during final generation it cannot access it.
+The MACE energy and RMSD checkpoint is `medium-0b3`; the MACE distribution embedding checkpoint
+is `medium-mpa-0`. The former matches the energy scale of `mace_mp_energy` in the published
+reference hull. ORB uses `orb_v3_conservative_inf_omat` and UMA uses `uma-s-1` with its `omat` head.
+The upstream authors document a small unresolved discrepancy for the UMA reference energies.
+[LeMat checkpoint correction](https://github.com/LeMaterial/lemat-genbench/blob/fbf1ba4855934acb8fe87135315504899064080d/README.md) · [LeMat Appendix S2.1](https://arxiv.org/html/2512.04562v3)
+
+For an existing validated asset tree, the operator may hardlink a separate revision on the same
+filesystem with `environment/data/scorer_assets/upgrade_mace.py OLD_ASSETS NEW_ASSETS CHECKPOINT`.
+Use the [official MACE-MP-0b3-medium file](https://github.com/ACEsuit/mace-mp/releases/download/mace_mp_0b3/mace-mp-0b3-medium.model).
+The helper verifies the prior manifest and the new release hash and preserves the v1 tree.
+Fresh materializations warm and check both MACE models.
 
 ## 2. Data
 
@@ -44,7 +50,7 @@ Terminology:
 | LeMat-Bulk `compatible_pbe` | `0dc17eea904b860ad7288141e9870f67f8e6bb2c` | part of 52.5 GB assets | CC BY 4.0 |
 | LeMat-Bulk MLIP hull | `70d505bb294c16658a9551e2b81ace69a28d9790` | | no license tag; operator review |
 | UMA `uma-s-1` (`omat`) | `facebook/UMA` `f611b917d9c68566bbbeccbb0aa0f7cad1696cb2` | | FAIR Chemistry License, gated |
-| ORB `orb_v3_conservative_inf_omat`, MACE `mace_mp()` (`mace-torch==0.3.13`) | cache digest in `READY.json` | | Apache-2.0 / MIT |
+| ORB `orb_v3_conservative_inf_omat`, MACE `medium-0b3` (energy), `medium-mpa-0` (embedding) (`mace-torch==0.3.13`) | cache digest in `READY.json` | | Apache-2.0 / MIT |
 
 The task validates the measured MP-20 counts (27,136 / 9,047 / 9,046 = 45,229) and source-file
 SHA-256 values rather than the stale 45,231-row claim in the upstream README.
@@ -128,10 +134,7 @@ does not claim to reproduce the public OMatG training recipe. A separate statist
 included only for fast interface smoke tests. Submissions hold one parameter set trained from
 random initialization during the task, with at most 70 million trained parameters.
 
-| baseline | reproduced SUN + MetaSUN |
-| --- | ---: |
-| smoke generator (no learning) | 0.106 |
-| OMatG starter, 2,000 epochs | 0.208 |
+OMatG is the trained baseline; the statistical generator is a separate control. Results under the archived UMA-200 protocol are listed in section 6.
 
 The shared generator image applies `omatg-generator-runtime.patch` to OMatG's packaging and import
 wiring. The pinned OMatG release supports Python 3.11, but its optional energy path declares
@@ -141,43 +144,7 @@ called. No model architecture, training math or sampling code is changed.
 
 ### Development evaluation
 
-The development image includes the same pinned LeMat-GenBench source and configuration as the
-final tests, with the prepared scorer assets mounted read-only. The agent may score generated
-batches and inspect the reports as often as its budget allows. The evaluator uses:
-
-- LeMat-GenBench commit `58e6eae3...`;
-- the task's scheduling-only eight-GPU worker patch, parity-checked against a one-worker run;
-- fixed UMA pre-scoring variable-cell relaxation, `fmax=0.02`, at most 200 steps;
-- the unchanged scorer's additional 50-step ensemble relaxation diagnostics;
-- a small-batch guard: Fréchet distance is unavailable with fewer than two valid structures,
-  avoiding a NaN-covariance hang; SUN/MetaSUN and well-posed metrics are unchanged;
-- ORB `orb_v3_conservative_inf_omat` with the `orb_conserv_inf` hull;
-- MACE `mp` with the `mace_mp` hull;
-- UMA `uma-s-1`, task `omat`, with the `uma` hull;
-- LeMat-Bulk `compatible_pbe` at revision `0dc17eea...` and the MLIP hull snapshot at `70d505bb...`;
-- structure-matcher novelty and uniqueness, made disorder-aware by `lemat-substitution-novelty.patch`
-  (`lemat_genbench/fingerprinting/substitution.py`): a structure is not novel when merging a dilute
-  substituent into its host gives a known LeMat-Bulk structure, and two dilute variants of the same
-  parent are one structure. Substitutable pairs follow MatterGen's modified Hume-Rothery rule
-  (relative atomic-radius difference ≤ 0.3, electronegativity difference ≤ 1.0); dilute means the
-  substituent holds at most a quarter of the pair's sites. Why: an agent session reached SUN +
-  MetaSUN 0.78 (baseline 0.21) by placing one similar element on a site of known compounds (for
-  example GdDy₇Cu₈ from DyCu); those ordered solid-solution approximants were 81 % of its
-  structures. Of MP-20 test materials, 8 % are such a variant of another LeMat-Bulk entry (23 %
-  at a one-third share, 43 % at one half); of the OMatG starter's structures, 1.2 %;
-- stable threshold 0.0 and metastable threshold 0.1 eV/atom.
-
-One upstream subtlety matters: the pinned SUN implementation thresholds the ensemble
-`e_above_hull_mean` of the geometry **entering LeMat**, not the geometry from its internal
-relaxation diagnostics. CrystalGen first relaxes the sealed candidate with UMA-200, then passes
-that geometry into the unchanged LeMat scorer. The headline therefore measures the relaxed
-structures without changing the leaderboard's metric implementation.
-
-`bash /workspace/evaluation/score.sh INPUT RAW_OUTPUT SCORE_DIR` runs the complete pipeline;
-`relax.sh` runs the relaxation alone. See the
-[development guide](environment/evaluation/README.md). The visible example requests 100
-structures; the final batch has 2,500, so small-batch scores are noisier and batch-level uniqueness
-can differ. Agents may run 2,500-sample development batches too.
+Run `/workspace/evaluation/score.sh INPUT GENERATED SCORE_DIR` to perform the fixed UMA-200 relaxation and score its output. See the [development guide](environment/evaluation/README.md).
 
 ## 4. Evaluation
 
@@ -200,26 +167,13 @@ fails validation, exits nonzero or exceeds the 24-hour inference limit gets
 ### Trusted grading
 
 The grader receives the sealed output, the requests, the pinned scorer and the prepared assets. It
-never imports or executes submission code. It preserves the original snapshot, relaxes a separate
-copy, then runs one global LeMat batch. Neither a submission report nor a flag can skip or change the
-relaxation. Failed refinements retain the original bytes; finite unconverged iterates are kept and
-reported. Missing outputs remain missing.
-
-| Final track | Inputs | Evaluation |
-| --- | --- | --- |
-| Unconditional | One verifier-chosen request totaling 2,500 structures with a fresh seed | UMA-200 pre-relaxation, then exact pinned comprehensive multi-MLIP hull scoring |
-
-`reward.json` holds `reward` = `unconditional_sun_metasun` = (SUN count + MetaSUN count) / 2,500,
-already in [0, 1]. This matches the public leaderboard's primary ordering after normalizing its
-count by the submitted set size. The other official funnel metrics are separate keys; there is no
-task-invented weighted aggregate. `report.json` (`crystalgen-report/v2`) records the relaxation
-recipe, convergence and fallback counts and stage runtimes; relaxed CIFs and per-sample logs stay in
-the grader's results directory.
+never imports or executes submission code. The grader records hashes of the raw and relaxed CIFs and stages the latter in stable request/sample order. `reward.json` holds the SUN+MetaSUN fraction; `report.json` records per-structure diagnostics. The primary schema is `crystalgen-report/v4-uma200-hull-aligned`.
 
 ### Metrics
 
-- `unconditional_sun_metasun` (= `reward`): fraction of all 2,500 requested structures that are
-  either SUN or MetaSUN. The headline leaderboard-comparison metric.
+- `score` (= `reward` = `unconditional_ssi_score`): `(SUN + 0.5 * MetaSUN) / 2,500`, the equal mean of strict SUN yield `a = SUN / 2,500` and stable-or-metastable SUN yield `b = (SUN + MetaSUN) / 2,500`.
+- `unconditional_sun_metasun`: fraction of all 2,500 requested structures that are
+  either SUN or MetaSUN (`SUN + MetaSUN` yield, retained for upstream leaderboard comparison).
 - `unconditional_sun`: fraction passing strict stability, uniqueness and novelty.
 - `unconditional_metasun`: fraction passing metastability (excluding the strict stable bucket),
   uniqueness and novelty.
@@ -243,7 +197,7 @@ harbor trial start -p crystal-structure-generation -a <agent> -m <model> --allow
 
 **Resources (external budget, in `task.toml`).** The agent container has eight H100s, 64 CPU cores,
 512 GiB of memory and a 48-hour agent timeout; the verifier also uses eight H100s. For scale: the
-2,000-epoch starter took 5.4 h on six H100s. Scoring 2,500 structures took about 1.2 h of
+2,000-epoch starter took 5.4 h on six H100s. Under the archived UMA-200 protocol, scoring 2,500 structures took about 1.2 h of
 relaxation plus 1.5–1.7 h of LeMat scoring on eight H100s with one relaxation worker per GPU; with
 several CPU-bound workers per GPU (the default now, 64 verifier CPUs) a full verifier run took 2 h 9 min
 end to end on four RTX 6000 Ada: 27 min relaxation, 61 min multi-MLIP preprocessing, 14 min novelty,
@@ -277,7 +231,11 @@ Smoke ladder, cheapest first:
 4. **Verifier**: `docker compose -f crystal-structure-generation/tests/docker-compose.yaml up` with a package bound at
    `/workspace/submission` of `main`, then `bash /tests/test.sh` in `main`.
 
-## 6. Results and validation
+## 6. Baseline results and validation
+
+The corrected v4 primary yielded **0.1752** for the released 2,000-epoch starter on its original 2,500 generated CIFs and fixed UMA-200 endpoints, with 8 SUN and 430 MetaSUN. All 2,388 valid candidates had three finite hull energies and a novelty decision. [Baseline measurement](environment/baseline/starter/reproduction/v4_score_summary.json)
+
+### Earlier scorer versions
 
 Reproduced by the task reviewers on one 8×H100 host (details in
 [`environment/baseline/starter/RESULTS.md`](environment/baseline/starter/RESULTS.md)); 2,500
@@ -296,7 +254,7 @@ one and eight workers, the asset-tree audit) is recorded in [`docs/VALIDATION.md
 
 ## 7. Limitations
 
-- About half of the starter's reward is reached by the no-learning smoke generator: the fixed UMA
+- Under the archived UMA-200 protocol, about half of the starter's reward was reached by the no-learning smoke generator: the fixed UMA
   relaxation moves many plausible compositions onto the metastable side of the hull. Strict SUN is
   below 1 % for both.
 - Evaluation is expensive: about two hours for one 2,500-structure score (2 h 9 min measured on

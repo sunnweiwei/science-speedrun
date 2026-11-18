@@ -1,0 +1,388 @@
+{
+  "protocol": "massspecgym-per-spectrum-batches/v2",
+  "split": "MassSpecGym v1.5 frozen test",
+  "agents": {
+    "astra": {
+      "package": "S085",
+      "score_source": "batched",
+      "package_fingerprint": "cf1ed9f1cf527b68f192c0280e1c95b66e1de26dd0a5a4f7cd29d12bb1153451",
+      "historical_v1_hits": 11325,
+      "current_hardware_single_hits": 11328,
+      "historical_v1_hit_count_reproduced": false,
+      "new_hits": 11327,
+      "paired_old_single_seconds": 9159.58916504099,
+      "new_actual_call_count": 373,
+      "new_sum_invocation_seconds": 50699.72943299217,
+      "new_harness_wall_seconds": 42879.87421751022,
+      "new_replay_slots": [
+        [
+          "pitt",
+          "4",
+          "0-15"
+        ],
+        [
+          "sf",
+          "2",
+          "48-63"
+        ],
+        [
+          "pitt",
+          "5",
+          "16-31"
+        ]
+      ],
+      "paired_hit1_cluster_diagnostic": {
+        "estimand": "V2 minus current-hardware single-call exact-ID Hit@1, spectrum-weighted",
+        "estimate": -5.696058327637275e-05,
+        "interval": [
+          -0.00017956840923164313,
+          0.0
+        ],
+        "confidence": 0.95,
+        "resamples": 20000,
+        "seed": 20261115,
+        "method": "Paired percentile bootstrap over 2,997 RDKit 2023.09.6 target 2D-connectivity clusters, retaining every spectrum in each sampled cluster. Diagnostic conditional on these fixed model packages."
+      },
+      "same_pool_top_choice_agreement": {
+        "current_hardware_single_call": {
+          "multi_spectrum_pools": 2777,
+          "pools_with_one_shared_top_choice": 2025,
+          "same_pool_query_pairs": 274655,
+          "pairs_with_the_same_top_choice": 114355,
+          "pair_weighted_agreement": 0.4163587045566256
+        },
+        "current_hardware_v2": {
+          "multi_spectrum_pools": 2777,
+          "pools_with_one_shared_top_choice": 2025,
+          "same_pool_query_pairs": 274655,
+          "pairs_with_the_same_top_choice": 109634,
+          "pair_weighted_agreement": 0.3991698676521454
+        }
+      },
+      "by_exact_target_multiplicity_single_vs_batched_same_hardware": {
+        "11+": {
+          "queries": 8883,
+          "current_hardware_single_hits": 4158,
+          "current_hardware_v2_hits": 4158,
+          "gained": 0,
+          "lost": 0
+        },
+        "all": {
+          "queries": 17556,
+          "current_hardware_single_hits": 11328,
+          "current_hardware_v2_hits": 11327,
+          "gained": 0,
+          "lost": 1
+        },
+        "5–10": {
+          "queries": 1873,
+          "current_hardware_single_hits": 1293,
+          "current_hardware_v2_hits": 1293,
+          "gained": 0,
+          "lost": 0
+        },
+        "2–4": {
+          "queries": 6407,
+          "current_hardware_single_hits": 5588,
+          "current_hardware_v2_hits": 5587,
+          "gained": 0,
+          "lost": 1
+        },
+        "1": {
+          "queries": 393,
+          "current_hardware_single_hits": 289,
+          "current_hardware_v2_hits": 289,
+          "gained": 0,
+          "lost": 0
+        }
+      },
+      "canonical_batch_digest": "3ec000e7f11cfd915be9f29b3bbaa371adf43cbdde87f48fa4a622f3d497712b",
+      "measured_hardware": "NVIDIA RTX A6000; see physical worker host, device and logical CPU set in new_replay_slots. Original single-call replay used pitt. Timings include launch, execution and cleanup.",
+      "sum_of_373_calls_within_proposed_serial_inference_budget": false
+    },
+    "claude": {
+      "package": "S046",
+      "score_source": "batched",
+      "package_fingerprint": "15f73932ffb733ea5da62a3e86eeddb9fa43e56262c2d3a2caedb6ec2420acb8",
+      "historical_v1_hits": 14410,
+      "current_hardware_single_hits": 14409,
+      "historical_v1_hit_count_reproduced": false,
+      "new_hits": 12124,
+      "paired_old_single_seconds": 17444.686700431863,
+      "new_actual_call_count": 373,
+      "new_sum_invocation_seconds": 46956.41638612491,
+      "new_harness_wall_seconds": 29851.172575235367,
+      "new_replay_slots": [
+        [
+          "pitt",
+          "5",
+          "16-31"
+        ],
+        [
+          "sf",
+          "2",
+          "48-63"
+        ]
+      ],
+      "paired_hit1_cluster_diagnostic": {
+        "estimand": "V2 minus current-hardware single-call exact-ID Hit@1, spectrum-weighted",
+        "estimate": -0.13015493278651175,
+        "interval": [
+          -0.17548694402847015,
+          -0.09428573809910026
+        ],
+        "confidence": 0.95,
+        "resamples": 20000,
+        "seed": 20261115,
+        "method": "Paired percentile bootstrap over 2,997 RDKit 2023.09.6 target 2D-connectivity clusters, retaining every spectrum in each sampled cluster. Diagnostic conditional on these fixed model packages."
+      },
+      "same_pool_top_choice_agreement": {
+        "current_hardware_single_call": {
+          "multi_spectrum_pools": 2777,
+          "pools_with_one_shared_top_choice": 2777,
+          "same_pool_query_pairs": 274655,
+          "pairs_with_the_same_top_choice": 274655,
+          "pair_weighted_agreement": 1.0
+        },
+        "current_hardware_v2": {
+          "multi_spectrum_pools": 2777,
+          "pools_with_one_shared_top_choice": 2154,
+          "same_pool_query_pairs": 274655,
+          "pairs_with_the_same_top_choice": 155339,
+          "pair_weighted_agreement": 0.5655786350148369
+        }
+      },
+      "by_exact_target_multiplicity_single_vs_batched_same_hardware": {
+        "11+": {
+          "queries": 8883,
+          "current_hardware_single_hits": 6530,
+          "current_hardware_v2_hits": 4610,
+          "gained": 174,
+          "lost": 2094
+        },
+        "all": {
+          "queries": 17556,
+          "current_hardware_single_hits": 14409,
+          "current_hardware_v2_hits": 12124,
+          "gained": 292,
+          "lost": 2577
+        },
+        "5–10": {
+          "queries": 1873,
+          "current_hardware_single_hits": 1562,
+          "current_hardware_v2_hits": 1420,
+          "gained": 52,
+          "lost": 194
+        },
+        "2–4": {
+          "queries": 6407,
+          "current_hardware_single_hits": 6004,
+          "current_hardware_v2_hits": 5784,
+          "gained": 65,
+          "lost": 285
+        },
+        "1": {
+          "queries": 393,
+          "current_hardware_single_hits": 313,
+          "current_hardware_v2_hits": 310,
+          "gained": 1,
+          "lost": 4
+        }
+      },
+      "canonical_batch_digest": "3ec000e7f11cfd915be9f29b3bbaa371adf43cbdde87f48fa4a622f3d497712b",
+      "measured_hardware": "NVIDIA RTX A6000; see physical worker host, device and logical CPU set in new_replay_slots. Original single-call replay used pitt. Timings include launch, execution and cleanup.",
+      "sum_of_373_calls_within_proposed_serial_inference_budget": false
+    }
+  },
+  "connectivity_audit": {
+    "protocol": "diagnostic only: RDKit first 14 InChIKey characters",
+    "rdkit_version": "2023.09.6",
+    "exact_target_smiles": 3170,
+    "unique_target_connectivities": 2997,
+    "connectivities_with_multiple_target_pools": 132,
+    "distinct_candidate_ids": 782695,
+    "failed_candidate_connectivities": 0,
+    "pools_with_multiple_accepted_2d_answers": 0,
+    "queries_with_multiple_accepted_2d_answers": 0,
+    "per_pool_2d_answer_set_sizes": {
+      "1": 3170
+    },
+    "v2_batches_with_shared_connectivity": 75,
+    "v2_shared_connectivity": {
+      "query_exposures": 1620,
+      "pairs": 1039
+    },
+    "label_digest": "45e3ddc9927d0fed7f2786750706b09da335b5e5755b768d432e239517d383f0",
+    "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d",
+    "mapping_sha256": "e33d248a1e1364162daa62904eb4113e1aa37e239e24f6ba5007f57e652153d7",
+    "scientific_source": "https://arxiv.org/html/2606.19624v2#A1.SS6"
+  },
+  "external_official_weight_routing": {
+    "label": "Official GLACIER no-CF + MIST 4M-aug",
+    "queries": 17556,
+    "glacier_rows": 9954,
+    "mist_rows": 7602,
+    "metrics": {
+      "hit_at_1": {
+        "glacier_hits": 6718,
+        "mist_fallback_hits": 1657,
+        "hits": 8375,
+        "rate": 0.47704488493962177
+      },
+      "hit_at_5": {
+        "glacier_hits": 8407,
+        "mist_fallback_hits": 2664,
+        "hits": 11071,
+        "rate": 0.6306106174527227
+      },
+      "hit_at_20": {
+        "glacier_hits": 9126,
+        "mist_fallback_hits": 3753,
+        "hits": 12879,
+        "rate": 0.7335953520164047
+      }
+    },
+    "protocol": "Use GLACIER iff [M+H]+, finite collision energy, and Orbitrap or QTOF. Use MIST on every remaining spectrum.",
+    "evidence": "GLACIER branch uses the original integrator replay counts on its released domain. MIST counts and complete candidate permutations were independently checked against frozen SSI labels. MIST uses released MIST-CF weights and a validation-calibrated bit threshold. The constituent models are externally trained. Full routed-system inference was not rerun for all 373 v2 invocations.",
+    "archive": {
+      "glacier_ranking_sha256": "09ddb70f64b1a3da65e6e99a66eefd1bef3b8ebcebf301332fd003fd8954f195",
+      "glacier_report_sha256": "5142eb170e3af033d42ae8abc32e98eb89bdf464bf0cf830fbbdc219b982f9d2",
+      "mist_ranking_sha256": "be25bd20a62f32e2411397c144ed123d64a425f8a77f34c7888c21597deb3dfb",
+      "mist_weight_sha256": "9f251d772f68315ba6fe2dc75a3b2e1ec477d3f41ffbeaf5143749157b67b177",
+      "private_labels_sha256": "45e3ddc9927d0fed7f2786750706b09da335b5e5755b768d432e239517d383f0",
+      "input_manifest_sha256": "6d88d2767a1324269385bd0bd51b70e2e87c2aa10914ca27688c29f6b15f819d"
+    },
+    "literature": [
+      "https://arxiv.org/html/2606.29161v1#S4.T1",
+      "https://arxiv.org/html/2606.19624v2#A1.SS2",
+      "https://zenodo.org/records/23303289",
+      "https://github.com/coleygroup/MIST/tree/48e339be6535546c87ba4f6b81a0f787c2e4ac40"
+    ]
+  },
+  "per_model_startup_measurements": {
+    "astra": {
+      "invocations": 373,
+      "singleton_calls": 179,
+      "all_invocation_seconds": 50699.72943299217,
+      "wall_seconds": 42879.87421751022,
+      "seconds_per_query_slope": 1.1684187911473536,
+      "regression_intercept_seconds": 80.93021215981025,
+      "singleton_median_seconds": 76.28995566209778,
+      "singleton_p95_seconds": 80.60998682491481,
+      "startup_allowance_seconds": 85
+    },
+    "claude": {
+      "invocations": 373,
+      "singleton_calls": 179,
+      "all_invocation_seconds": 46956.41638612491,
+      "wall_seconds": 29851.172575235367,
+      "seconds_per_query_slope": 1.8422201292239744,
+      "regression_intercept_seconds": 39.1806965079593,
+      "singleton_median_seconds": 25.723738044966012,
+      "singleton_p95_seconds": 26.67257127701305,
+      "startup_allowance_seconds": 40
+    }
+  },
+  "timing": {
+    "invocations": 373,
+    "singleton_calls": 179,
+    "all_invocation_seconds": 46956.41638612491,
+    "wall_seconds": 29851.172575235367,
+    "seconds_per_query_slope": 1.8422201292239744,
+    "regression_intercept_seconds": 39.1806965079593,
+    "singleton_median_seconds": 25.723738044966012,
+    "singleton_p95_seconds": 26.67257127701305,
+    "startup_allowance_seconds": 40,
+    "hardware": "RTX A6000, 16 logical CPUs per invocation, one submission invocation per GPU. See individual worker slots and per-model measurements.",
+    "inference_budget_seconds": 32920,
+    "full_test_verifier_seconds": 36520,
+    "selection": "Round up to five seconds the larger of the ordinary least-squares seconds/size zero-query intercept and the observed 95th percentile runtime for singleton invocations. Includes launch overhead and one spectrum for the latter."
+  },
+  "source": {
+    "full_runtime_image": "sha256:b735dc553641357357206822b741099b81c192dd31b8b9fd8115e942af723b16",
+    "dgl_source_commit": "743e65fa3ba9781bef443bfdbca7d87983e1071f",
+    "pygmtools_source_commit": "5b7b3f84a34528e455a6df6404822c306aa45dc1"
+  },
+  "scope": "Final packages only, including snapshots with identical archived payloads; group context may still affect ranking across distinct pools in the same invocation.",
+  "external_corrected_glmr_sample": {
+    "model": "MassSpecGym audit authors corrected two-stage GLMR",
+    "status": "completed on prespecified 512-query SSI sample",
+    "estimate": 0.01171875,
+    "hit1_count": 6,
+    "sample_size": 512,
+    "frozen_test_size": 17556,
+    "sampled_candidate_pools": 396,
+    "sampled_2d_connectivities": 375,
+    "independent_native_model_calls": 7,
+    "score_type": "Externally trained, independently released implementation; new CPU FP32 measurement on SSI mass candidates. Not Zhang et al.'s original checkpoint and not a full-test result.",
+    "metrics": {
+      "hit_rate_at_1": 0.01171875,
+      "hit_rate_at_5": 0.05078125,
+      "hit_rate_at_20": 0.17578125,
+      "mces_at_1": 26.8203125
+    },
+    "wilson_95_spectrum_interval": [
+      0.00538157169683981,
+      0.025328365532537866
+    ],
+    "molecule_cluster_percentile_95_diagnostic": [
+      0.0038022813688212928,
+      0.021783258683011064
+    ],
+    "uncertainty_scope": "Sample of the fixed spectrum roster; extrapolating to all 17,556 assumes comparable effects of a different numeric batch composition. Intervals do not include hardware, training seed or model selection.",
+    "query_sample_sha256": "280952d98cfd12ec700b9a6efdb874591af8d738704d7010f13c007a58982f66",
+    "merged_rankings_sha256": "9a54bd3b94acee20772a64339fe55b9468a539d7e454390ef11564092ac4dfd8",
+    "queries_per_call": [
+      396,
+      80,
+      24,
+      7,
+      2,
+      2,
+      1
+    ],
+    "model_seconds_total": 7815.036775229266,
+    "assets": {
+      "source": "https://huggingface.co/harrylau/msms-models",
+      "revision": "a0ca4315c2cea14f819376181c21a164452251c5",
+      "files": [
+        {
+          "file": "checkpoints/chemformer/step=1000000.ckpt",
+          "sha256": "6863bdbed84e22d4f1a33f237116f6b80f74482fcbb0dd683a0ba3a9d83ea0cb",
+          "bytes": 223946149
+        },
+        {
+          "file": "checkpoints/chemformer_two_stage/corrected/pre_retrieval.pt",
+          "sha256": "35ed098523b8041185ab5755c393168dab40357331b416c490786c9b3bedf8a7",
+          "bytes": 227096302
+        },
+        {
+          "file": "checkpoints/chemformer_two_stage/corrected/generative.pt",
+          "sha256": "5922ba4a74132d93437cdbe1a5913f168e4cb86c04ff14f6acd34808e2221366",
+          "bytes": 320808976
+        }
+      ],
+      "model_attribution": "Independently trained and publicly released by the MassSpecGym audit authors, corrected variant."
+    },
+    "source_commit": "5f41fe9a47e64fd7eef3d7e7a3d755602320a462",
+    "api_cli_parity": {
+      "queries": 4,
+      "complete_candidate_rankings_verified_against_author_cli": 4,
+      "target_smiles_supplied": false,
+      "ground_truth_formula_supplied": false,
+      "weights_retrained": false,
+      "precision": "CPU fp32",
+      "status": "passed"
+    },
+    "individual_receipts": [
+      "runs/cpu/0000/receipt.json",
+      "runs/cpu/0001/receipt.json",
+      "runs/cpu/0002/receipt.json",
+      "runs/cpu/0003/receipt.json",
+      "runs/cpu/0004/receipt.json",
+      "runs/cpu/0005/receipt.json",
+      "runs/cpu/0006/receipt.json"
+    ],
+    "source": "https://github.com/harrylaucngd/msms-models/blob/5f41fe9a47e64fd7eef3d7e7a3d755602320a462/paper/table3/chemformer_two_stage/README.md"
+  }
+}

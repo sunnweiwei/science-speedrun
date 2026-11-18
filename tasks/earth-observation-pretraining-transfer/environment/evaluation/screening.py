@@ -52,6 +52,79 @@ def json_objects(path):
         raise ValueError("Malformed release rows")
 
 
+def default_awf_dev_splits_path():
+    for candidate in (
+        Path(__file__).resolve().parents[1] / "data" / "awf_spatial_dev_splits.json",
+        Path("/workspace/data/awf_spatial_dev_splits.json"),
+        Path(__file__).resolve().parent / "awf_spatial_dev_splits.json",
+    ):
+        if candidate.is_file():
+            return candidate
+    return Path(__file__).resolve().parents[1] / "data" / "awf_spatial_dev_splits.json"
+
+
+def load_awf_dev_splits(spec=None):
+    if spec is False:
+        return None, None
+    if spec is None:
+        spec = default_awf_dev_splits_path()
+    digest = None
+    if isinstance(spec, (str, Path)):
+        path = Path(spec)
+        digest = sha256(path)
+        payload = json.loads(path.read_text())
+    elif isinstance(spec, dict):
+        payload = spec
+    else:
+        raise ValueError("Unsupported AWF dev split specification")
+    train_ids = payload.get("train")
+    val_ids = payload.get("val", payload.get("valid"))
+    if (
+        not isinstance(train_ids, list)
+        or not isinstance(val_ids, list)
+        or not train_ids
+        or not val_ids
+        or any(not isinstance(k, str) or not k for k in [*train_ids, *val_ids])
+    ):
+        raise ValueError("AWF dev splits require non-empty train and val ID lists")
+    if len(set(train_ids)) != len(train_ids) or len(set(val_ids)) != len(val_ids):
+        raise ValueError("Duplicate window ID in AWF dev splits")
+    if set(train_ids) & set(val_ids):
+        raise ValueError("Overlapping train and val IDs in AWF dev splits")
+    mapping = {
+        **{window_id: "train" for window_id in train_ids},
+        **{window_id: "val" for window_id in val_ids},
+    }
+    return mapping, digest
+
+
+def awf_trainval_rows(path, dev_splits):
+    """Filter AWF rows to spatially isolated dev splits without deserializing excluded test rows."""
+    rows = []
+    excluded = 0
+    for index, raw in enumerate(json_objects(path)):
+        id_match = re.search(r'"id"\s*:\s*"([^"\\]+)"', raw)
+        split = re.search(r'"split"\s*:\s*"(train|val|test)"', raw)
+        if id_match is None or split is None:
+            raise ValueError("Missing official window ID or split")
+        window_id = id_match[1]
+        if window_id not in dev_splits:
+            excluded += 1
+            continue
+        row = json.loads(raw)
+        if row.get("id") != window_id or row.get("index") != index:
+            raise ValueError("Unexpected release row order or ID")
+        if row.get("split") not in ("train", "val"):
+            raise ValueError("Unexpected source split in allowed AWF dev row")
+        updated = dict(row)
+        updated["split"] = dev_splits[window_id]
+        rows.append(updated)
+    seen = {row["id"] for row in rows}
+    if len(seen) != len(rows) or seen != set(dev_splits):
+        raise ValueError("Source AWF rows do not cover the declared spatial dev splits")
+    return rows, excluded
+
+
 def trainval_rows(path):
     rows = []
     for index, raw in enumerate(json_objects(path)):
@@ -124,28 +197,40 @@ def copy_inputs(source_path, destination, rows, task):
                 target[start : start + 64] = values[indices[start : start + 64]]
 
 
-def prepare(data_root, output, seed=20260930, fraction=0.125):
+def prepare(data_root, output, seed=20260930, fraction=0.125, awf_dev_splits=None):
     source_root = (Path(data_root) / "eval").resolve()
     output = Path(output).resolve()
     if output == source_root or source_root in output.parents:
         raise ValueError("Screening view must be outside canonical evaluation data")
     if output.exists():
         raise FileExistsError("Refusing to overwrite a fixed screening population")
+    awf_mapping, awf_splits_sha = load_awf_dev_splits(awf_dev_splits)
     selections = {}
+    awf_excluded = 0
     for task in ("awf", "lfmc"):
-        rows = trainval_rows(source_root / task / "labels.json")
-        if task == "lfmc":
-            rows, sites, total_sites = sample_lfmc(rows, seed, fraction)
-        else:
+        if task == "awf" and awf_mapping is not None:
+            rows, awf_excluded = awf_trainval_rows(
+                source_root / task / "labels.json", awf_mapping
+            )
             sites, total_sites = None, None
+        else:
+            rows = trainval_rows(source_root / task / "labels.json")
+            if task == "lfmc":
+                rows, sites, total_sites = sample_lfmc(rows, seed, fraction)
+            else:
+                sites, total_sites = None, None
         selections[task] = (rows, sites, total_sites)
     output.mkdir(parents=True)
     manifest = {
         "kind": "fixed_validation_view" if fraction == 1 else "fixed_screening_view",
         "schema_version": 1,
         "population": (
-            "full AWF and LFMC train/val"
+            "spatially isolated AWF train/val and full LFMC train/val"
+            if fraction == 1 and awf_mapping is not None
+            else "full AWF and LFMC train/val"
             if fraction == 1
+            else "spatially isolated AWF train/val; LFMC site-sampled train/val"
+            if awf_mapping is not None
             else "full AWF train/val; LFMC site-sampled train/val"
         ),
         "selection_seed": seed,
@@ -155,6 +240,8 @@ def prepare(data_root, output, seed=20260930, fraction=0.125):
         "canonical_data_immutable": True,
         "test_rows_in_view": 0,
         "test_labels_deserialized": False,
+        "awf_spatial_dev_splits_sha256": awf_splits_sha,
+        "awf_excluded_spatial_test_rows": awf_excluded,
         "inference": {"batch_size": 16, "python_hash_seed": 0},
         "probe_protocol": "unchanged environment/evaluation/probes.py grids",
         "tasks": {},
@@ -277,6 +364,12 @@ def main():
     build.add_argument("--output", type=Path, required=True)
     build.add_argument("--seed", type=int, default=20260930)
     build.add_argument("--site-fraction", type=float, default=0.125)
+    build.add_argument(
+        "--awf-dev-splits",
+        type=Path,
+        default=None,
+        help="Label-free AWF spatial dev allowlist (defaults to awf_spatial_dev_splits.json)",
+    )
     cache = commands.add_parser("check-cache")
     cache.add_argument("--random-package", type=Path, required=True)
     cache.add_argument("--candidate-package", type=Path, required=True)
@@ -303,7 +396,13 @@ def main():
     )
     args = parser.parse_args()
     if args.command == "prepare":
-        manifest = prepare(args.data_root, args.output, args.seed, args.site_fraction)
+        manifest = prepare(
+            args.data_root,
+            args.output,
+            args.seed,
+            args.site_fraction,
+            awf_dev_splits=args.awf_dev_splits,
+        )
         print(
             json.dumps(
                 {

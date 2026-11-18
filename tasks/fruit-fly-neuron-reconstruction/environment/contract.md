@@ -34,8 +34,7 @@ the submission. Predictions run in a namespace with no private suite, original
 submission directory, experiment history or network. Scoring occurs afterward
 against the private suite.
 
-Reward is the disjoint-pair SHAPE prediction's local sparse nERL in [0,1], higher
-is better. `/logs/verifier/reward.json` includes reward and all three methods'
+The reward is the disjoint-pair SHAPE prediction's local sparse nERL in [0,1], higher is better. The image-free cube grid is a comparison on the same reference nodes. `/logs/verifier/reward.json` includes reward and all three methods'
 raw metrics; `comparison.json` retains FFN-only and shared-proposal FFN controls.
 Missing or incomplete stages do not receive a diagnostic partial reward.
 Invalid submissions score zero. Infrastructure, namespace, resource and runtime

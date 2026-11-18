@@ -84,13 +84,20 @@ def main():
     local_only(args.data,case,args.output)
     try:
         if not args.worker:
+            from maia_gpu_rank import allow_shared_gpu
             helper=EVALUATION/'maia_gpu_rank.py'
             devices=json.loads(subprocess.check_output([sys.executable,str(helper),'--list-gpus'],text=True))
+            shared_gpu=False
             if len(devices) < case['solver_processes']:
-                raise RuntimeError('Insufficient distinct GPUs for frozen solver profile')
-            devices=devices[:case['solver_processes']]
+                if case['backend']=='maia' and len(devices) >= 1 and allow_shared_gpu():
+                    shared_gpu=True
+                else:
+                    raise RuntimeError('Insufficient distinct GPUs for frozen solver profile')
+            else:
+                devices=devices[:case['solver_processes']]
             os.environ['CUDA_VISIBLE_DEVICES']=','.join(devices)
             write_json(args.output/'launch.json',dict(case=case['id'],cuda_device_uuids=devices,
+                required_solver_gpus=case['solver_processes'],shared_gpu=shared_gpu,
                 profiles_sha256=digest(spec),seed=args.seed))
         if case['backend']!='maia' or args.worker:
             worker(args,spec,case)
@@ -98,11 +105,14 @@ def main():
         from hydrogym.maia.workspace import prepare_maia_workspace
         work,props=prepare_maia_workspace(case['id'],work_dir=str(args.output/'cfd'),
             use_clean_cache=False,local_fallback_dir=str(args.data/'environments'))
-        cmd=['mpirun','--bind-to','none','-np','1',sys.executable,str(Path(__file__).resolve()),
+        cmd=['mpirun','--oversubscribe','--bind-to','none','-np','1',sys.executable,str(Path(__file__).resolve()),
              *sys.argv[1:],'--worker',':','-np',str(case['solver_processes']),sys.executable,
              str(EVALUATION/'maia_gpu_rank.py'),props,'--silent']
         env=dict(os.environ,OMPI_ALLOW_RUN_AS_ROOT='1',OMPI_ALLOW_RUN_AS_ROOT_CONFIRM='1',
-                 OMPI_MCA_coll_hcoll_enable='0')
+                 OMPI_MCA_coll_hcoll_enable=os.environ.get('OMPI_MCA_coll_hcoll_enable','0'),
+                 OMPI_MCA_btl=os.environ.get('OMPI_MCA_btl','self,vader,tcp'),
+                 OMPI_MCA_btl_vader_single_copy_mechanism=os.environ.get(
+                     'OMPI_MCA_btl_vader_single_copy_mechanism','none'))
         subprocess.run(cmd,cwd=work,env=env,check=True)
     except BaseException as error:
         write_json(args.output/'error.json',{'status':'training_error','error':str(error)})

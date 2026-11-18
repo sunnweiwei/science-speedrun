@@ -10,7 +10,7 @@ encoder with one fixed recipe on each of 24 downstream tasks and scores the test
 | file | content |
 |---|---|
 | `encoder.json` | `{"arch": "<Uni-Core architecture name>", "user_dir": "<optional sub-directory>", "description": "<optional>"}`. `arch` defaults to `unimol2_84M`. |
-| `checkpoint.pt` | `torch.save({"model": state_dict})`; the weights of that architecture. Extra entries such as pretraining heads are ignored. |
+| `checkpoint.pt` | `torch.save({"model": state_dict})`; the weights of that architecture. The evaluator uses the restricted PyTorch weights loader and passes the model state to fine-tuning. Extra checkpoint metadata is ignored after safe decoding. |
 | `user_dir/` (optional) | A Python package (`__init__.py`) that registers your own architecture with Uni-Core (`register_model`, `register_model_architecture`). It is imported before the model is built. |
 | `README.md` (optional) | Notes. |
 
@@ -73,4 +73,14 @@ Per task, the verifier reports MAE, RAE = MAE / mean|y − mean(y)|, R², Spearm
 the 3-target QM9 task these are averaged over the targets. A constant prediction gets correlation 0.
 Per group, it reports **MA-RAE** (the mean RAE over the group's tasks; this is the ExpansionRx/ASAP
 leaderboard metric) and the mean Spearman. MAE, RAE and MA-RAE are better when lower; R², Spearman and
-Kendall are better when higher. There is no single aggregate score.
+Kendall are better when higher.
+
+**Primary Score (`reward.json["score"]` and `reward.json["reward"]`).** The four project groups
+(`qm9`, `compas1d`, `expansionrx`, `asap`) are weighted equally (`1/4` each):
+
+`mean_ma_rae = 0.25 * (qm9_ma_rae + compas1d_ma_rae + expansionrx_ma_rae + asap_ma_rae)`
+
+`score = reward = 1.0 / (1.0 + mean_ma_rae)`
+
+A trivial mean predictor (`MA-RAE = 1.0` on all four groups) yields `score = 0.5`, zero error yields
+`score = 1.0`, and an invalid package or failed fine-tune receives `score = reward = 0.0` (`valid = 0.0`).

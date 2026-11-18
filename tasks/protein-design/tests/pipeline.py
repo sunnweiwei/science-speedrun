@@ -14,7 +14,8 @@ rate; these are conservative against the published numbers, never flattering.
                 all-atom RMSD <= 1.5 A.
     sm_binder   4 LigandMPNN sequences. backbone RMSD <= 1.5 A AND backbone-aligned
                 ligand RMSD <= 5 A AND interface min PAE <= 1.5 AND ipTM >= 0.8.
-    ppi_binder  4 ProteinMPNN sequences. min inter-chain PAE <= 1.5, plus binder
+    ppi_binder  4 ProteinMPNN sequences designed against the fixed target chain.
+                min inter-chain PAE <= 1.5, plus binder
                 backbone RMSD <= 2 A.
     unconditional
                 4 ProteinMPNN sequences. backbone RMSD <= 1.5 A.
@@ -76,7 +77,7 @@ import numpy as np
 from common import (IPTM_MIN, INTERFACE_PAE_MAX, LIGAND_RMSD_MAX, MODELS_PER_SEQUENCE,
                     MOTIF_RMSD_MAX, PPI_RMSD_MAX, SAMPLING_TEMPERATURE, SC_RMSD_MAX,
                     SEQUENCES_PER_BACKBONE, sha256)
-from geometry import kabsch_rotation, superposed_rmsd, write_allatom_pdb
+from geometry import kabsch_rotation, superposed_rmsd, write_allatom_chains, write_allatom_pdb
 from residues import THREE_TO_ONE
 
 LIGANDMPNN_COMMIT = "26ec57ac976ade5379920dbd43c7f97a91cf82de"
@@ -218,13 +219,21 @@ class DesignabilityScorer:
 
     # ---- inverse folding ------------------------------------------------
     def design_sequences(self, track, structure, context, motif_map):
-        """LigandMPNN sequences for one backbone, with the ligand in context."""
+        """Design binder sequences, conditioning on the ligand or fixed PPI partner."""
         coordinates, mask, restypes = structure
         count = SEQUENCES_PER_BACKBONE[track]
         with tempfile.TemporaryDirectory() as scratch:
             scratch = Path(scratch)
             target = scratch / "design.pdb"
-            write_allatom_pdb(target, coordinates, mask, restypes)
+            chains = [(BINDER_CHAIN, coordinates, mask, restypes)]
+            ppi = track == "ppi_binder"
+            if ppi:
+                partner = context.get("target_coords")
+                if (partner is None or not np.size(partner) or "target_mask" not in context
+                        or "target_restypes" not in context):
+                    raise ScorerUnavailable("PPI inverse folding requires the target structure and sequence")
+                chains.append((TARGET_CHAIN, partner, context["target_mask"], context["target_restypes"]))
+            write_allatom_chains(target, chains)
             # LigandMPNN reads het atoms from the same file, so append the ligand.
             ligand = context.get("ligand_coords")
             has_ligand = ligand is not None and np.size(ligand) > 0
@@ -272,6 +281,10 @@ class DesignabilityScorer:
                 "--temperature", str(SAMPLING_TEMPERATURE),
                 "--seed", "37",
             ]
+            if ppi:
+                # The pinned MPNN writes every parsed chain to FASTA in sorted chain-ID order.
+                command += ["--chains_to_design", BINDER_CHAIN]
+            command += ["--fasta_seq_separation", "/"]
             if motif_map:
                 # Motif residues keep their declared identities; only the scaffold is
                 # redesigned, which is what the enzyme criterion measures.
@@ -282,14 +295,19 @@ class DesignabilityScorer:
             if result.returncode:
                 raise ScorerUnavailable(f"LigandMPNN failed: {result.stderr[-500:]}")
             fasta = list((scratch / "seqs").glob("*.fa"))
-            if not fasta:
-                raise ScorerUnavailable("LigandMPNN produced no sequences")
-            sequences = []
-            for line in fasta[0].read_text().splitlines():
-                if line and not line.startswith(">"):
-                    sequences.append(line.strip().split("/")[0])
-            # The first record is the input sequence echoed back.
-            return (sequences[1:] or sequences)[:count]
+            if len(fasta) != 1:
+                raise ScorerUnavailable("Expected exactly one MPNN FASTA output")
+            records = [line.strip().split("/") for line in fasta[0].read_text().splitlines()
+                       if line.strip() and not line.startswith(">")]
+            # The first record echoes the input. Only the four sampled sequences go to RF3.
+            if len(records) != count + 1 or any(len(row) != len(chains) for row in records):
+                raise ScorerUnavailable("Incomplete MPNN sequence or chain output")
+            if any(len(row[0]) != len(restypes) for row in records):
+                raise ScorerUnavailable("MPNN returned an incomplete binder chain")
+            if ppi and (not records[0][1] or any(row[1] != records[0][1] for row in records[1:])):
+                raise ScorerUnavailable("MPNN changed the fixed PPI target chain")
+            return [row[0] for row in records[1:]]
+
 
     # ---- complex prediction ---------------------------------------------
     def _components(self, sequence, context, scratch):
@@ -345,12 +363,13 @@ class DesignabilityScorer:
             # One seed; RF3 draws `diffusion_batch_size` diffusion samples from it, so
             # that is what carries MODELS_PER_SEQUENCE. `seeds` is the caller's
             # statement of how many models the criterion asks for.
+            sample_count = max(1, len(list(seeds)))
             command = [
                 sys.executable, "-c", "from rf3.cli import app; app()", "fold",
                 f"inputs={scratch / 'input.json'}",
                 f"out_dir={scratch / 'out'}",
                 f"ckpt_path={self.paths['rf3_ckpt']}",
-                f"diffusion_batch_size={max(1, len(list(seeds)))}",
+                f"diffusion_batch_size={sample_count}",
                 "seed=37",
             ]
             result = subprocess.run(command, capture_output=True, text=True,
@@ -369,6 +388,9 @@ class DesignabilityScorer:
                 samples = sorted(directory.rglob("seed-*_sample-*/*model.cif"))
                 if not samples:
                     samples = sorted(directory.rglob("*_model.cif"))
+                if len(samples) != sample_count:
+                    raise ScorerUnavailable(
+                        f"RF3 produced {len(samples)} of {sample_count} samples for {job_name}")
                 out[job_name] = [self._read_model(path) for path in samples]
             return [out[job_name] for job_name in names]
 
@@ -502,6 +524,10 @@ class DesignabilityScorer:
             best["sequences_tried"] = number + 1
             for model in models:
                 rmsd, transform = self._backbone_rmsd_and_transform(model, design_ca)
+                if track == "ppi_binder":
+                    pae = model["interface_pae"]
+                    if rmsd is None or not np.isfinite(rmsd) or pae is None or not np.isfinite(pae):
+                        raise ScorerUnavailable("Incomplete binder geometry or interface confidence from RF3")
                 if rmsd is None:
                     continue
                 record = {"sc_rmsd": rmsd, "iptm": model["iptm"],

@@ -12,7 +12,7 @@
    TRUTH_DIR (tests/isolation.py: a Bubblewrap namespace, else an unprivileged
    uid); the determinism rerun goes through the same isolation.
 4. Score every staged case with the trusted grader; write report.json,
-   reward.json (raw reward, normalised score, isolation mode) and status.json.
+   reward.json (score and reward) and status.json.
 Model failures (bad or missing predictions, non-zero exit, timeout) are scored,
 listed and never abort the run; a malformed package (wrong contract, no
 infer.sh, declared pretrained assets, escaping symlinks) scores 0 with the
@@ -38,29 +38,12 @@ CONTRACT = "pde-surrogate-rollout/v1"
 sys.path.insert(0, str(HERE))
 import isolation  # noqa: E402
 
-# the bounds travel with the grader modules: /tests/evaluation in the verifier image, environment/evaluation in a checkout
-BOUNDS = _EVAL / "score_bounds.json"
-
 
 def harbor_reward(values):
     """Harbor parses reward.json as a flat object of finite numbers; strings, None and nested details
     belong in report.json / status.json."""
     import math as _math
-    return {k: v for k, v in values.items() if isinstance(v, (int, float)) and _math.isfinite(v)}
-
-
-def normalised(reward):
-    """Map the raw reward onto 0-1 between this track's reference floor and ceiling.
-
-    Returns None when no bounds file is present, so a checkout without one still scores.
-    """
-    if not BOUNDS.exists():
-        return None
-    b = json.loads(BOUNDS.read_text())
-    lo, hi = b["lower"]["reward"], b["upper"]["reward"]
-    if not hi > lo:
-        raise ValueError(f"{BOUNDS}: upper bound {hi} must exceed lower bound {lo}")
-    return {"normalised_score": min(1.0, max(0.0, (reward - lo) / (hi - lo))), "lower": lo, "upper": hi}
+    return {k: v for k, v in values.items() if isinstance(v, (int, float)) and not isinstance(v, bool) and _math.isfinite(v)}
 
 
 def _json_safe(obj):
@@ -100,11 +83,11 @@ def _private_log(path: Path):
 
 def refuse(out, status, violation):
     """A malformed package is the package's fault: reward 0 with the violation named, exit 0."""
-    status.update({"stage": "done", "reward": 0.0, "rule_violation": violation})
+    status.update({"stage": "done", "score": 0.0, "reward": 0.0, "rule_violation": violation})
     write(out / "status.json", status)
-    write(out / "reward.json", {"reward": 0.0, "rule_violation": 1.0})
+    write(out / "reward.json", {"score": 0.0, "reward": 0.0, "rule_violation": 1.0})
     (out / "reward.txt").write_text("0.0\n")
-    print(json.dumps({"reward": 0.0, "rule_violation": violation}))
+    print(json.dumps({"score": 0.0, "reward": 0.0, "rule_violation": violation}))
 
 
 def seal_package(sub: Path, sealed: Path):
@@ -271,6 +254,7 @@ def main():
             with _private_log(out / "infer.log") as log:
                 rc, seconds, mode = run_call(sealed, inp, outp, work, env, args.timeout, log, mode, "inference")
             status["inference"] = {"exit_code": rc, "timed_out": rc is None, "isolation": mode, "seconds": round(seconds, 1),
+                                   "wall_seconds": round(float(seconds), 4),
                                    "isolation_detail": isolation.bwrap_detail() if mode == "bwrap" else
                                    ("package ran as uid %d; /private/data, /tests and the truth are root-only" % isolation.RUNNER_UID if mode == "uid" else "none")}
             if mode == "subprocess":
@@ -289,20 +273,19 @@ def main():
         status["stage"] = "scoring"
         from score import score  # noqa: E402
         report = score(inp, truth, outp)
+        inf_info = status.get("inference", {})
+        report["inference_wall_seconds"] = inf_info.get("wall_seconds", inf_info.get("seconds"))
+        report["score"] = report["reward"]
         write(out / "report.json", report)
         reward = report["reward"]
-        payload = {"reward": reward, "isolation": status.get("inference", {}).get("isolation")}
-        bounds = normalised(reward)
-        if bounds is not None:
-            payload["normalised_score"] = bounds["normalised_score"]
-            payload["bounds"] = {"lower": bounds["lower"], "upper": bounds["upper"]}
+        payload = {"score": reward, "reward": reward}
         write(out / "reward.json", harbor_reward(payload))
         (out / "reward.txt").write_text(f"{reward}\n")
-        status.update({"stage": "done", "reward": report["reward"], "mean_vrmse": report["mean_vrmse"],
+        status.update({"stage": "done", "score": reward, "reward": reward, "mean_vrmse": report["mean_vrmse"],
                        "n_failed": report["n_failed"], "failure_reasons": sorted({f["reason"] for f in report["failures"]}),
                        "groups": report["groups"]})
         write(out / "status.json", status)
-        print(json.dumps({k: status[k] for k in ("reward", "mean_vrmse", "n_cases", "n_failed", "inference")}))
+        print(json.dumps({k: status[k] for k in ("score", "reward", "mean_vrmse", "n_cases", "n_failed", "inference")}))
     except Exception as exc:  # noqa: BLE001 - setup/scorer failure, distinguishable from model failure
         status.update({"error": f"{type(exc).__name__}: {str(exc)[:1000]}"})
         try:

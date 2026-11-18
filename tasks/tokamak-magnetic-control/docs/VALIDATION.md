@@ -30,10 +30,10 @@ images were not rebuilt):
   window, void rule, verifier aggregation, protocol); `scripts/audit_tasks.py tokamak-magnetic-control`
   conforms.
 - All seven cases build (including `mastu_sequence` and its second shape) and 21 sealed resets
-  (seeds 1001-1003) succeed at the first attempt, with no fallback to nominal parameters.
+  (3 blind seeds) succeed at the first attempt, with no fallback to nominal parameters.
 - Every plant mechanism was stepped with extreme settings (`STRUCTURAL_DEFAULTS` on), and the
   beta_p-constrained profile, crashes, drifts, dead channels and pre-roll were seen to act.
-- `harbor_verify.py` replayed the hold-current package on all seven cases, sealed seeds 1001-1002:
+- `harbor_verify.py` replayed the hold-current package on all seven cases, 2 blind sealed seeds:
   14/14 `plasma_lost`, `reward` 0.0, `policy_compute_ms` 0.13 (`baseline/hold_current/RESULTS.md`).
 - The privileged PID was run on the sealed plant three times while fixing the task:
   - with the ±10 kA solenoid limit, every episode ended at `coil_limit` after about 0.13 s, which led
@@ -41,8 +41,8 @@ images were not rebuilt):
   - without X-point-height feedback it kept the plasma but missed 1 cm on the X-point height
     (several cm) and the 32-point RMS; on visible seed 0 of `mastu_diverted_hold` adding the
     feedback took the shape error from 5.63 to 0.61 cm (a success);
-  - with that feedback, seeds 1001-1002 of all cases: `baseline/pid/RESULTS.md`.
-- A seed-1002 diagnosis showed the earlier silent kills were control failures: the plasma drifted
+  - with that feedback, 2 blind sealed seeds of all cases: `baseline/pid/RESULTS.md`.
+- A single-episode diagnosis showed the earlier silent kills were control failures: the plasma drifted
   away (6.5 cm by 280 ms) until the solver slowed and stalled, not a reset or reuse problem.
 - FreeGSNKE's "object has no attribute 'ny'" failures come from `Jtor_universal.copy` dropping `ny`;
   `tokagym.env.patch_freegsnke` adds it.

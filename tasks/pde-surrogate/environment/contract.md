@@ -98,12 +98,15 @@ VRMSE_c(t) = sqrt( mean_{x,y} (pred - target)^2 / ( var_{x,y}(target) + eps ) ),
 ```
 
 clamped at `VRMSE_max = 10`. The case score is the mean over channels and
-steps; the dataset score is the mean over its cases; datasets form groups (the
-pretraining corpus `ape2d/*` is one group, every other dataset is its own
-group); the reward is the unweighted mean over groups of
+steps; the dataset score is the mean over its cases; datasets form four groups
+(`ape2d` for the 16-family pretraining corpus `ape2d/*`, `pdearena` for
+`pdearena/navier_stokes_2d`, `well/active_matter`, and
+`well/turbulent_radiative_layer_2D`); the score (`reward`) is the unweighted
+mean over the four groups of
 
 ```text
-R(v) = clip( (log10(10) - log10(max(v, 0.01))) / (log10(10) - log10(0.01)), 0, 1 )
+R(v) = (1 - log10(clip(v, 0.01, 10))) / 3
+     = clip( (log10(10) - log10(max(v, 0.01))) / (log10(10) - log10(0.01)), 0, 1 )
 ```
 
 so a group VRMSE of 0.01 gives 1.0, 0.1 gives 0.667, 1.0 (the spatial-mean

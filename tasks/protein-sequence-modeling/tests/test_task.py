@@ -46,14 +46,14 @@ class MetricTests(unittest.TestCase):
         self.assertEqual(result["reward"], 1.0)
         uniform = {k: {"scores": [1, 1]} for k in truth}
         result = metrics.score_task("solubility", truth, uniform)
-        self.assertLessEqual(result["reward"], 0.6)
+        self.assertAlmostEqual(result["reward"], 0.0, places=12)
 
-    def test_spearman_reward_clamps_at_zero(self):
+    def test_spearman_signed_v3_skill(self):
         truth = {f"e{i}": float(i) for i in range(20)}
         forward = {k: {"value": v * 2 + 1} for k, v in truth.items()}
         self.assertAlmostEqual(metrics.score_task("fluorescence", truth, forward)["reward"], 1.0)
         reverse = {k: {"value": -v} for k, v in truth.items()}
-        self.assertEqual(metrics.score_task("fluorescence", truth, reverse)["reward"], 0.0)
+        self.assertAlmostEqual(metrics.score_task("fluorescence", truth, reverse)["reward"], -1.0)
 
     def test_ppi_affinity_rmse_reward(self):
         truth = {f"e{i}": float(i) for i in range(5)}
@@ -62,7 +62,7 @@ class MetricTests(unittest.TestCase):
         self.assertAlmostEqual(result["reward"], 1.0)
         off = {k: {"value": v + 2.0} for k, v in truth.items()}
         result = metrics.score_task("ppi_affinity", truth, off, ppi_affinity_std=2.0)
-        self.assertAlmostEqual(result["reward"], math.exp(-1.0))
+        self.assertAlmostEqual(result["reward"], 1.0 - 2.0 / metrics.PPI_AFFINITY_ANCHOR_RMSE, places=12)
 
     def test_ssp_masked_accuracy(self):
         truth = {"a": {"ss3": [0, 1, 2, 1], "valid_mask": [1, 1, 0, 1]}}

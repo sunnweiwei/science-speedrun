@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 
 EXPECTED = {
-    'faced': (6720, 1680, 1932),
     'tuev': (68445, 15487, 29421),
     'ad65': (3774, 1343, 1376),
     'openbmi': (12800, 4400, 4400),

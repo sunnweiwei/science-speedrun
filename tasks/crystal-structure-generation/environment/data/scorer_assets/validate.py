@@ -44,7 +44,7 @@ def main() -> None:
         raise SystemExit("usage: validate.py ASSET_DIR")
     root = Path(sys.argv[1]).resolve()
     document = json.loads((root / "READY.json").read_text())
-    if document.get("schema") != "crystalgen-scorer-assets/v0":
+    if document.get("schema") != "crystalgen-scorer-assets/v1":
         raise ValueError("invalid scorer asset schema")
     if not document.get("hull_license_review_acknowledged"):
         raise ValueError("hull license review was not acknowledged")
@@ -57,8 +57,11 @@ def main() -> None:
         or fairchem_cache.resolve() != (root / "huggingface" / "hub").resolve()
     ):
         raise ValueError("FairChem cache is not bound to the sealed hub cache")
-    if not (home_cache / "mace" / "macempa0mediummodel").is_file():
-        raise ValueError("warmed MACE checkpoint is missing")
+    # The asset materializer image installs the task scorer in /opt/crystalgen.
+    # The source checkout is also supported for operator-side validation.
+    sys.path[:0] = [str(Path(__file__).resolve().parents[2]), "/opt/crystalgen"]
+    from scoring.mace_assets import validate_mace_assets
+    validate_mace_assets(root)
     orb_cache = home_cache / "cached_path"
     if not any(path.is_file() and path.stat().st_size > 50_000_000 for path in orb_cache.glob("*")):
         raise ValueError("warmed ORB checkpoint is missing")

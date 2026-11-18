@@ -1,9 +1,15 @@
-# Starter: reproduced results
+# Starter results
+
+## Corrected headline on the original frozen geometries
+
+The 2,000-epoch OMatG baseline scores **0.1752** on the archived 2,500-structure request, seed 20260919. The fixed UMA-200 endpoints yielded 2,388 valid structures, 2,320 unique structures and 1,543 novel structures. All 2,388 valid structures had three finite hull energies and an evaluated novelty outcome. Strict SUN contributed 8 and MetaSUN contributed 430. The scorer uses MACE-MP-0b3-medium for the energy hull and the MatterGen ordered–disordered matcher with the task’s dilute-parent rule. [Measured counts and input hashes](reproduction/v4_score_summary.json)
+
+## Historical UMA-200 scores, before the matched MACE checkpoint and MatterGen equivalence repair
 
 Reproduced in this setup on eight H100s (2026-09-19/20) with the task's development
 image, the pinned MP-20 materialization and prepared scorer assets. Each row is one unconditional
 request of 2,500 structures (seed 20260919), relaxed with the fixed UMA-200 recipe and scored by
-the unchanged LeMat ensemble, exactly as `/workspace/evaluation/score.sh` does.
+the unchanged LeMat ensemble, under the historical UMA-200 protocol. The corrected primary uses the same UMA-200 endpoints, matched MACE-0b3 hull energies and the MatterGen plus dilute-parent equivalence check.
 
 | generator | SUN + MetaSUN (reward) | SUN | MetaSUN | validity | uniqueness | novelty |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

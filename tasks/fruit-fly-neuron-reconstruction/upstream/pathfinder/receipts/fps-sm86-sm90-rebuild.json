@@ -1,0 +1,43 @@
+{
+  "schema": "pathfinder-fps-build-audit/v1",
+  "purpose": "point-ops/pathfinder_fps.so for sm_86 and sm_90 (H100); the released library was sm_86 only, without PTX",
+  "replaces": {
+    "release": "sanxing/ai4sci-fruit-fly-brain@86286a6b000210eca271a3e376f730319b6406b9",
+    "development/runtime/point-ops/pathfinder_fps.so": "355e441bd55f64e3f408a5affe7a39ae9bc3ccd45136c0ac3eb67a3759a3c069",
+    "development/runtime/runtime-manifest.json": "e15772167a74d226c800622a3caa9be2e93c43945ae6bda7b3436f0294803b48"
+  },
+  "source_hashes": {
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/cuda_utils.h": "7ace0019cea06178a57b275d3b1086b26cd5d0c83d646e8b8ae70c530e9e7bca",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling.cpp": "847fc019118bf79232e221d0e9d7cb7686187b5ace8fddbc259c6fc0d59cae45",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling_gpu.cu": "5a898832473b159a35e12fa4c639435f37588ffc0a989229694da8d1568f76e5",
+    "vendor/pointnext/openpoints/cpp/pointnet2_batch/src/sampling_gpu.h": "a116fef8b7ea61442c52ddc43282de2d7ccc5ba1fe4f432bdcbd1e1a07d7cf2f"
+  },
+  "build_point_ops_sha256": "13208c57dca7c13f57011a3ebcc7ec46df13847b4d6c28c7d9eae29314785d2e",
+  "requirements_lock_sha256": "9cc394d7d7a835cb6713530f3c513d812881e9debf11e26bd5fdc43da90b099c",
+  "recipe": "upstream/pathfinder/runtime/fps-build.Dockerfile",
+  "toolchain": {
+    "cuda": "12.4 (nvidia/cuda:12.4.1-devel-ubuntu22.04, Build cuda_12.4.r12.4/compiler.34097967_0)",
+    "cxx": "g++ 12.2.0 (Debian bookworm)",
+    "python": "3.11.13",
+    "torch": "2.6.0+cu124",
+    "torch_cxx11_abi": false
+  },
+  "cuda_arch": "8.6;9.0",
+  "cubins": [
+    "sm_86",
+    "sm_90"
+  ],
+  "ptx": false,
+  "gpu_execution_during_build": false,
+  "build_log_sha256": "729f53ad6af319ece2b0033a07fc0f094e2662cdde839807615452460f3ddce2",
+  "extension_sha256": "34e7c76ca20aed1496697f3707328e76ab7561c6f6ee50f61a28c0c750f575a9",
+  "extension_bytes": 324664,
+  "runtime_manifest_sha256": "cbf38bcf01b02a5e14d256cd8607e96cf09009218bf42ce3fe40337321821539",
+  "bit_reproducible": false,
+  "parity": {
+    "device": "NVIDIA RTX A6000 (sm_86)",
+    "cases": 120,
+    "result": "fps indices identical to the released library (40 seeds, batch 1-4, 512-8192 points, three sample counts)"
+  },
+  "h100_execution_verified": false
+}

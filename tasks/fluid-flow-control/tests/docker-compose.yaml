@@ -7,6 +7,11 @@ services:
     # The replayed policy needs no network; the verifier is offline end to end.
     network_mode: none
     shm_size: "32gb"
+    environment:
+      OMPI_MCA_btl: "self,vader,tcp"
+      OMPI_MCA_btl_vader_single_copy_mechanism: "none"
+      OMPI_MCA_coll_hcoll_enable: "0"
+      HYDROGYM_ALLOW_SHARED_GPU: "${HYDROGYM_ALLOW_SHARED_GPU:-1}"
     volumes:
       - type: bind
         source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR to the prepared release}

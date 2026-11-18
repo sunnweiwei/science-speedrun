@@ -37,7 +37,13 @@ docker run --rm $TASKDATA crystalgen-dev bash /task-data/materialize.sh "$ROOT/m
 ## 2. Scorer assets
 
 CrystalGen uses the exact three-potential LeMat-GenBench evaluation during development and final
-grading. The pre-scoring relaxation reuses the same UMA checkpoint and cache.
+grading. The submitted-geometry evaluator uses MACE-MP-0b3-medium for energy and displacement and
+MACE-MPA-0-medium for embeddings. The source of each MACE tensor is checked by SHA-256.
+
+To retain an approved historical MPA-only tree, run the `scorer_assets/upgrade_mace.py` helper
+with the old tree, a new destination on the same filesystem and the official
+`mace-mp-0b3-medium.model`. It validates the complete old tree, hardlinks the immutable files
+and publishes a new `READY.json` after verifying the separate MACE energy checkpoint.
 
 | Asset | Revision/model identifier | License position |
 | --- | --- | --- |

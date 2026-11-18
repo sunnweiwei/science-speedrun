@@ -3,4 +3,5 @@
 set -euo pipefail
 task=$(cd "$(dirname "$0")/.." && pwd)
 image=${1:-vcz-verifier:latest}
-${VCZ_DOCKER:-docker} run --rm -v "$task:/task:ro" -w /task --entrypoint python "$image" -m pytest -q /task/tests/test_task.py
+${VCZ_DOCKER:-docker} run --rm -v "$task:/task:ro" -w /task --entrypoint python "$image" -m pytest -q /task/tests/test_task.py /task/tests/test_prediction_safety.py \
+  /task/tests/test_query_independence.py /task/tests/test_calibrated_reward_v2.py /task/tests/test_wmse_v2_grader.py

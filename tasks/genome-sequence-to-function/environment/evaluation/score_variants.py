@@ -7,8 +7,9 @@
         --labels /workspace/data/variant_evals/valid --output REPORT_DIR
 
 The development split (`variant_evals/valid`) covers the same 13 evaluations as the hidden test
-split, at about 40 % of its size, on disjoint variants. Each metric is reported next to the
-published anchors on the same rows.
+split, at about 40 % of its size, on disjoint variants. The 12 non-redundant evaluations
+(excluding diagnostic `eqtl_sign`) are chance-calibrated and averaged across 5 branches to form
+`variants_axis` (weight 0.5 in the SSI V4 reward alongside `tracks_axis`).
 """
 import argparse
 import json
@@ -16,6 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scoring import variants_axis_score  # noqa: E402
 from variant_scoring import score_perturbations, validate_perturbations  # noqa: E402
 
 
@@ -26,12 +28,25 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     import pandas as pd
+
     validate_perturbations(args.perturbations, pd.read_parquet(args.labels / "public/perturbations.parquet"))
     report = score_perturbations(args.perturbations, args.labels)
+    axis_summary = variants_axis_score(report)
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps({name: {"model": item["model"], **item["anchors"]} for name, item in report.items()},
-                     indent=2))
+    (args.output / "variants_axis.json").write_text(json.dumps(axis_summary, indent=2) + "\n")
+    print(
+        json.dumps(
+            {
+                "variants_axis": axis_summary["variants_axis"],
+                "branches": axis_summary["branches"],
+                "evaluations": {
+                    name: {"model": item["model"], **item["anchors"]} for name, item in report.items()
+                },
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

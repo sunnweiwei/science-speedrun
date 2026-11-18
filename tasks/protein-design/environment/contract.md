@@ -146,7 +146,9 @@ One line per requested `example_id`:
 
    A design passes if **any** sequence satisfies its criterion, and for `enzyme` any of
    the 5 predictor models. LigandMPNN is used where the context carries a ligand, ProteinMPNN
-   otherwise. Aligning the motif on its backbone alone is deliberate: aligning on
+   otherwise. For PPI, ProteinMPNN reads the submitted binder and the complete fixed
+   target together and redesigns only the binder chain. RF3 receives the resulting binder
+   sequence with the same target template. Aligning the motif on its backbone alone is deliberate: aligning on
    sidechains too would let a design trade sidechain error against backbone error.
 
    The interface PAE and ipTM terms need a complex-capable predictor. Both come from
@@ -182,11 +184,21 @@ fraction of 20. Alongside it each track
 reports **diversity**, the fraction of passing designs in distinct within-target clusters
 at 2.0 A; rotated or translated duplicates do not count as distinct.
 
-**There is no composite score.** The four tracks are judged by different published
-criteria and are not commensurable, and `unconditional` is synthetic to this task rather
-than part of RFdiffusion3's benchmark, so any weighted mean would be a number this task
-invented rather than one it measured. `reward.json` carries the per-track pass rates,
-diversity, and the design counts behind them; compare tracks, not totals.
+**Target-weighted combined score (`score` and `reward`).** Across the 51-target evaluation
+suite (`1` synthetic `unconditional` target + `50` conditioned RFdiffusion3 benchmark targets:
+`4` `sm_binder`, `5` `ppi_binder`, and `41` `enzyme`), `reward.json` and `report.json` report
+the primary combined score:
+
+```text
+score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)
+```
+
+where `unconditional`, `sm_binder`, `ppi_binder`, and `enzyme` denote each track's
+`pass_rate` in `[0, 1]`. The single synthetic `unconditional` target receives weight `1/51`,
+and the `50/51` conditioned-target weight is split equally (`50/153` each) across the three
+conditioned design tracks (`1/51 + 3 * 50/153 = 1.0`). `reward.json` carries `score`,
+`reward`, the per-track pass rates, diversity, diagnostic `backbone_sc_rmsd_mean`, and the
+design counts behind them.
 
 Diversity is reported, not folded into the pass rate. Mode collapse is invisible in a
 pass rate - a single designable fold emitted repeatedly passes every time - so on

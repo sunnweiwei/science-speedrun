@@ -293,17 +293,34 @@ def predict_split(model, rows, task, device, token_budget=16384):
 
 
 def evaluate(model, tune, device, std):
-    rewards = {}
+    details = {}
     for task in TASKS:
         rows = tune[task]
         truth = {r["example_id"]: r["label"] for r in rows}
         found = predict_split(model, rows, task, device)
+        found_swapped = None
+        if task in metrics.PPI_SYMMETRIC_TASKS:
+            swapped_rows = [
+                {
+                    "example_id": r["example_id"],
+                    "task": task,
+                    "features": {
+                        "sequence_a": r["features"]["sequence_b"],
+                        "sequence_b": r["features"]["sequence_a"],
+                    },
+                }
+                for r in rows
+            ]
+            found_swapped = predict_split(model, swapped_rows, task, device)
         try:
-            rewards[task] = metrics.score_task(task, truth, found, std)["reward"]
+            details[task] = metrics.score_task(
+                task, truth, found, std, found_swapped=found_swapped
+            ) | {"invalid_reason": None}
         except (ValueError, TypeError, KeyError) as error:
             log(f"    {task} scoring failed: {error}")
-            rewards[task] = 0.0
-    return sum(rewards.values()) / len(TASKS), rewards
+            details[task] = {"reward": 0.0, "skill": 0.0, "invalid_reason": str(error)}
+    agg = metrics.aggregate_pillars(details)
+    return agg["score"], {task: details[task]["reward"] for task in TASKS}
 
 
 def finetune(model, data, tune, device, peak_lr, std, max_hours,

@@ -10,7 +10,7 @@ keywords = ["model-development", "materials", "interatomic-potential", "uma", "d
 
 [metadata]
 data_status = "Public DFT training pool (MPtrj, sAlex, MatPES-PBE, OMat24 sample); evaluation compositions/parents excluded except common AM26 compositions; eight suites with agent-visible validation and held-out test splits"
-evaluation_status = "Crystal Potential Score v2: eight equally weighted suites, plus 15 raw metrics; 1M-frame, 10-epoch scratch trial validation score 37.08; full test replay 2 h 10 min on 8xH100 with all suites concurrent (mixed-replay, Docker)"
+evaluation_status = "SSI V4 eight-suite equal arithmetic mean (1/8 per suite, zero-force anchored, score in [0, 1]), plus retained Crystal Potential Score v2 diagnostic and 15 raw metrics; full test replay 2 h 10 min on 8xH100 with all suites concurrent (mixed-replay, Docker)"
 
 [agent]
 timeout_sec = 172800.0          # external development budget (48 h); the agent is not told

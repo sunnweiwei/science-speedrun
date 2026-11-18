@@ -71,6 +71,7 @@ def test_historical_reaggregation_uses_targets_and_preserves_source(tmp_path):
     original = copy.deepcopy(old)
     result = module.reaggregate(old, "source-digest")
     assert old == original
+    assert result["score"] == pytest.approx(.5)
     assert result["reward"] == pytest.approx(.5)
     assert result["migration"]["source_reward"] == 8/9
     assert result["migration"]["source_report_sha256"] == "source-digest"

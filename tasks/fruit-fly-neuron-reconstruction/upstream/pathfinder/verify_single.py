@@ -120,12 +120,13 @@ def score(root,suite,logs):
     methods={name:physical_score(suite,path,logs/name) for name,path in [
         ('ffn',prediction/'stitched'),('shared-proposal-ffn',prediction/'baseline-core'),
         ('disjoint-pair-shape',prediction/'submission')]}
-    reward=methods['disjoint-pair-shape']['nerl']
-    if not math.isfinite(reward) or not 0<=reward<=1:raise RuntimeError('Invalid metric')
+    raw=methods['disjoint-pair-shape']['nerl']
+    if not math.isfinite(raw) or not 0<=raw<=1:raise RuntimeError('Invalid metric')
     if suite_pins(suite,geometry)!=pins:raise RuntimeError('Private suite changed during scoring')
-    write_json(logs/'comparison.json',dict(protocol='single-checkpoint-fast/v1',primary_metric='nerl',methods=methods,
+    write_json(logs/'comparison.json',dict(protocol='single-checkpoint-local-nerl/v2',primary_metric='disjoint_pair_shape_nerl',
+        raw_nerl=raw,methods=methods,
         same_frozen_core=True,model_execution_verified=True,paper_comparable=False))
-    write_json(logs/'reward.json',reward_metrics(reward,methods))
+    write_json(logs/'reward.json',dict(reward_metrics(raw,methods),raw_nerl=raw))
 
 
 # Raw metrics copied into reward.json; Harbor reads it as a flat object of numbers.
@@ -133,7 +134,7 @@ METRICS=('nerl','erl_nm','maximum_erl_nm','split_errors','merge_errors','omitted
 
 
 def reward_metrics(reward,methods):
-    """reward (disjoint-pair SHAPE nERL) next to every method's raw metrics, all numbers."""
+    """Export the native SHAPE reward and raw measurements for each method."""
     result=dict(reward=reward)
     for name,metrics in methods.items():
         for key in METRICS:result[name.replace('-','_')+'_'+key]=metrics[key]

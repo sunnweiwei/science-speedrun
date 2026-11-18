@@ -13,6 +13,11 @@ def run(args):
         raise ValueError('Immutable full HF commit required')
     if not re.fullmatch(r'[0-9a-f]{64}',source['manifest_sha256']):
         raise ValueError('Manifest SHA-256 required')
+    # Optional overlay: files of the release replaced by a pinned rebuild hosted in another repository.
+    overlay=source.get('overlay') or {}
+    if overlay and not re.fullmatch(r'[0-9a-f]{40}',overlay['revision']):
+        raise ValueError('Immutable full HF commit required for the overlay')
+    overlay_blobs={entry['sha256'] for entry in overlay.get('files',{}).values()}
     roots=[p.resolve() for p in (args.cache,args.data,args.private)]
     if any(a==b or a in b.parents or b in a.parents for i,a in enumerate(roots) for b in roots[i+1:]):
         raise ValueError('Cache, development and private roots must be disjoint')
@@ -20,19 +25,20 @@ def run(args):
     with (args.cache/'materialize.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         (args.cache/'receipt.json').unlink(missing_ok=True)
-        def fetch(name):
+        def fetch(name,origin=source):
             from huggingface_hub import hf_hub_download
-            return Path(hf_hub_download(repo_id=source['repo_id'],repo_type='dataset',
-                        revision=source['revision'],filename=name,cache_dir=args.cache/'hub',
+            return Path(hf_hub_download(repo_id=origin['repo_id'],repo_type='dataset',
+                        revision=origin['revision'],filename=name,cache_dir=args.cache/'hub',
                         token=False,local_files_only=args.verify_only))
         manifest=fetch('release.json')
         def blob(sha):
             if not re.fullmatch(r'[0-9a-f]{64}',sha):raise ValueError('Invalid blob SHA-256')
             print(json.dumps({'downloading':sha}),flush=True)
-            return fetch('blobs/'+sha)
+            return fetch('blobs/'+sha,overlay if sha in overlay_blobs else source)
         result=materialize(manifest,source['manifest_sha256'],'',args.data,args.private,
-                           args.verify_only,fetch=blob)
+                           args.verify_only,fetch=blob,overrides=overlay.get('files'))
         result.update(repo_id=source['repo_id'],revision=source['revision'],anonymous=True)
+        if overlay:result.update(overlay_repo_id=overlay['repo_id'],overlay_revision=overlay['revision'])
         (args.cache/'receipt.json').write_text(json.dumps(result,indent=2)+'\n')
         print(json.dumps(result),flush=True)
         return result

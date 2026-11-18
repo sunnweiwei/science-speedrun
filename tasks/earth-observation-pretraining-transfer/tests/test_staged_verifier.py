@@ -38,6 +38,28 @@ class StagedVerifierTest(unittest.TestCase):
             rng = np.random.default_rng(17)
             x = rng.normal(size=(110, 8)).astype(np.float32)
             ids = np.array([f"id-{i}" for i in range(len(x))])
+            roster = root / "roster.json"
+            roster.write_text(
+                json.dumps(
+                    {
+                        "protocol": "ssi-spatial-awf",
+                        "source": "synthetic-fixture",
+                        "rows": [
+                            {
+                                "id": id_,
+                                "split": (
+                                    "train"
+                                    if i < 70
+                                    else "valid"
+                                    if i < 90
+                                    else "test"
+                                ),
+                            }
+                            for i, id_ in enumerate(ids)
+                        ],
+                    }
+                )
+            )
             command = [
                 "grade.py",
                 "--model",
@@ -48,6 +70,8 @@ class StagedVerifierTest(unittest.TestCase):
                 str(output),
                 "--probes",
                 str(probes),
+                "--roster",
+                str(roster),
             ]
 
             def fake_replay(cmd, **kwargs):
@@ -124,11 +148,17 @@ class StagedVerifierTest(unittest.TestCase):
                 json.loads((output / "report.json").read_text())["inference_manifest_sha256"],
                 grade.digest(output / "inference-manifest.json"),
             )
-            self.assertEqual(
-                result["reward"],
-                0.5
-                * (result["awf_validation_accuracy"] + result["lfmc_test_mae_skill"]),
+            expected_awf_skill = (result["awf_test_accuracy"] - 59.0 / 205.0) / (
+                1.0 - 59.0 / 205.0
             )
+            expected_lfmc_skill = (
+                1.0 - result["lfmc_test_mae"] / 24.435180349813233
+            )
+            expected_score = max(
+                0.0, min(1.0, 0.5 * (expected_awf_skill + expected_lfmc_skill))
+            )
+            self.assertAlmostEqual(result["score"], expected_score, places=12)
+            self.assertAlmostEqual(result["reward"], expected_score, places=12)
             with patch.object(sys, "argv", command + ["--score-existing"]):
                 with self.assertRaisesRegex(ValueError, "Scoring already completed"):
                     grade.main()
@@ -156,10 +186,12 @@ class StagedVerifierTest(unittest.TestCase):
                 grade.main()
             full_result = json.loads((full_output / "reward.json").read_text())
             for key in [
+                "score",
                 "reward",
+                "awf_test_accuracy",
                 "awf_validation_accuracy",
                 "lfmc_test_mae",
-                "lfmc_test_mae_skill",
+                "lfmc_skill",
             ]:
                 self.assertAlmostEqual(result[key], full_result[key], places=12)
             for provenance, message in [

@@ -6,7 +6,7 @@ WN2_LOG=${WEATHER_VERIFIER_LOG_DIR:-/logs/verifier}
 WN2_BENCHMARK=${WEATHER_WN2_BENCHMARK:-/benchmark}
 WN2_EVAL_PYTHON=${WEATHER_EVAL_PYTHON:-/opt/wn2-eval/bin/python}
 mkdir -p "${WN2_LOG}"
-trap 'printf "{\"reward\": 0.0}\n" > "${WN2_LOG}/reward.json"; printf "{\"status\":\"failed\",\"failure_stage\":\"verifier_setup_or_execution\"}\n" > "${WN2_LOG}/status.json"' ERR
+trap 'printf "{\"score\": 0.0, \"reward\": 0.0}\n" > "${WN2_LOG}/reward.json"; printf "{\"status\":\"failed\",\"failure_stage\":\"verifier_setup_or_execution\"}\n" > "${WN2_LOG}/status.json"' ERR
 export PYTHONPATH=${WEATHER_WBX_SOURCE:-/opt/weatherbenchX}
 export WEATHER_MODEL_PYTHON=${WEATHER_MODEL_PYTHON:-/opt/weather-python/bin/python}
 export OPENBLAS_NUM_THREADS=2

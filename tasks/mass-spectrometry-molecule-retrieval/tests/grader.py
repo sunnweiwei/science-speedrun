@@ -14,7 +14,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "environment/evaluation"))
 from benchmark_score import normalize
 
-from common import jsonl, sha256, validate_input, write_json
+from common import FULL_TEST_VERIFIER_SECONDS, jsonl, sha256, validate_input, write_json
 
 
 REFERENCE_BASELINE = "GLACIER no-CF with strict-clean MIST fallback"
@@ -166,9 +166,21 @@ def run(args, compute_mces=True):
         workers=args.mces_workers,
     )
     args.output.mkdir(parents=True, exist_ok=True)
+    protocol_mode = snapshot.get(
+        "protocol_mode",
+        snapshot.get("evaluation_protocol", "massspecgym-single-invocation/v1"),
+    )
     report = {
         "schema": "massspecgym-retrieval-report/v1",
         "evaluation_mode": "isolated_model_replay",
+        "evaluation_protocol": snapshot.get("evaluation_protocol", protocol_mode),
+        "protocol_mode": protocol_mode,
+        "batch_count": snapshot.get("batch_count"),
+        "batch_record_sha256": snapshot.get("batch_record_sha256"),
+        "batch_plan_sha256": snapshot.get("batch_plan_sha256"),
+        "stream_record_sha256": snapshot.get("stream_record_sha256"),
+        "statelessness_spot_check": snapshot.get("statelessness_spot_check"),
+        "input_manifest_sha256": snapshot["input_manifest_sha256"],
         "status": ("invalid_output" if global_error else
                    "complete" if len(rankings) == len(queries) else "missing_predictions"),
         "model_quality_measured": global_error is None,
@@ -184,10 +196,15 @@ def run(args, compute_mces=True):
         },
         "reference_comparison": reference_comparison(metrics, input_manifest),
         "metrics": metrics,
+        "score": metrics["hit_rate_at_1"],
+        "reward": metrics["hit_rate_at_1"],
         "benchmark_score": normalize(metrics["hit_rate_at_1"]),
     }
     write_json(args.output / "report.json", report)
-    write_json(args.output / "reward.json", {"reward": metrics["hit_rate_at_1"]})
+    write_json(args.output / "reward.json", {
+        "reward": metrics["hit_rate_at_1"],
+        "score": metrics["hit_rate_at_1"],
+    })
     return report
 
 
@@ -197,7 +214,7 @@ def main():
     parser.add_argument("--input", required=True, type=lambda x: Path(x).resolve())
     parser.add_argument("--labels", required=True, type=lambda x: Path(x).resolve())
     parser.add_argument("--output", required=True, type=lambda x: Path(x).resolve())
-    parser.add_argument("--wait-seconds", type=int, default=21600)
+    parser.add_argument("--wait-seconds", type=int, default=FULL_TEST_VERIFIER_SECONDS)
     parser.add_argument("--mces-workers", type=int, default=16)
     args = parser.parse_args()
     try:

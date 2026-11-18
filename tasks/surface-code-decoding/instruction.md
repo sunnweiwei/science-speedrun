@@ -8,13 +8,13 @@ stabilizer-measurement rounds, the ideal circuit geometry and an opaque sample I
 the official logical-path observable flip, a binary variable. Better decoding lowers the logical
 error rate, helping quantum processors preserve encoded information despite physical noise.
 
-The primary performance P is `1 - balanced_logical_failure`, computed in three steps:
+The primary performance P is `1 - balanced_logical_failure = 1 - 0.5 * (fail_d3 + fail_d5)`, computed in three steps:
 
 1. average the 13 round-count error fractions within each geometry/basis group;
-2. average the groups within each distance;
-3. give d3 and d5 equal weight.
+2. average the groups within each distance (`fail_d3` over 8 groups, `fail_d5` over 2 groups);
+3. give d3 and d5 equal weight: `score = reward = 1 - 0.5 * (fail_d3 + fail_d5)`.
 
-The reward is P itself.
+The primary benchmark score (`reward.json["score"]` and `reward.json["reward"]`) is P itself.
 
 | decoder | P (reward) |
 | --- | ---: |

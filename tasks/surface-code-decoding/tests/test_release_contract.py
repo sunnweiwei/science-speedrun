@@ -238,7 +238,7 @@ def test_infrastructure_failure_emits_no_reward(tmp_path):
 
 def test_invalid_submission_has_zero_not_missing_reward(tmp_path):
     supervisor.invalid(tmp_path, "invalid_submission", ValueError("fixture"))
-    assert json.loads((tmp_path / "reward.json").read_text()) == {"reward": 0.0}
+    assert json.loads((tmp_path / "reward.json").read_text()) == {"score": 0.0, "reward": 0.0}
     assert json.loads((tmp_path / "report.json").read_text())["model_quality_measured"] is False
 
 

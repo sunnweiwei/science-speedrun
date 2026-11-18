@@ -7,13 +7,14 @@ import math
 import statistics
 from pathlib import Path
 
-MODELS = ('eegnet', 'contrawr', 'cbramod', 'biot', 'codebrain')
-TRACKS = ('faced', 'tuev', 'ad65', 'openbmi', 'longitudinal')
+MODELS = ('eegnet', 'contrawr', 'cbramod', 'codebrain')
+TRACKS = ('tuev', 'ad65', 'openbmi', 'longitudinal')
 SEEDS = range(5)
+SUMMARY_KEYS = frozenset({'score', 'reward', 'signed_score'})
 # TUEV uses one official-test metadata group; this is not a patient count.
-TEST_SUBJECT_COUNTS = {'faced': 23, 'tuev': 1, 'ad65': 18,
+TEST_SUBJECT_COUNTS = {'tuev': 1, 'ad65': 18,
                        'openbmi': 11, 'longitudinal': 9}
-TEST_COUNTS = {'faced': 1932, 'tuev': 29421, 'ad65': 1376,
+TEST_COUNTS = {'tuev': 29421, 'ad65': 1376,
                'openbmi': 4400, 'longitudinal': 10028}
 
 
@@ -54,7 +55,7 @@ def checked_score(root, jobs, model, track, seed):
     reward = json.loads((run / 'score' / 'reward.json').read_text())
     report = json.loads((run / 'score' / 'report.json').read_text())
     if (report.get('scope') != 'full'
-            or set(reward) != {track} or set(report.get('tracks', {})) != {track}):
+            or (set(reward) - SUMMARY_KEYS) != {track} or set(report.get('tracks', {})) != {track}):
         raise ValueError(f'{key}: smoke/subset score is not a full result')
     score = reward.get(track)
     detail = report.get('tracks', {}).get(track, {})

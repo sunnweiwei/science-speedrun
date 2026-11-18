@@ -12,16 +12,27 @@ bash /workspace/evaluation/score.sh \
   /workspace/research/score
 ```
 
-The command first relaxes each candidate with frozen UMA `uma-s-1` (`omat`),
-then runs the unchanged ORB + MACE + UMA LeMat scorer on the relaxed geometry.
-It writes `reward.json`, `report.json` (`crystalgen-report/v2`), and a
-`relaxation/` directory containing the exported CIFs and per-sample diagnostics.
-Use a fresh score directory for each attempt; existing relaxation output is never
-silently overwritten or reused. The headline key is
-`unconditional_sun_metasun`, the same SUN + MetaSUN ordering used by the public
-leaderboard. Only unconditional quality metrics are emitted. The supplied
-example requests 100 unconditional structures; agents can also create a
-2,500-sample development request for a final-sized comparison.
+The grader first relaxes a separate copy of each submitted crystal with the frozen UMA
+`uma-s-1` (`omat`), BFGSLineSearch and FrechetCellFilter, up to 200 steps at 0.02 eV/Å and
+300 seconds per crystal. It retains finite unconverged iterates and uses the original
+candidate when refinement fails. It then scores the resulting geometry with ORB-v3, MACE-MP
+and UMA. Mean energy above hull defines stable (≤0 eV/atom) and metastable (0–0.1 eV/atom)
+bins, with stable structures excluded from the metastable bin. The primary score (`score` and `reward`)
+is `(SUN + 0.5 * MetaSUN) / N_expected`, the equal mean of strict SUN yield `SUN / N_expected` and
+stable-or-metastable SUN yield `(SUN + MetaSUN) / N_expected` relative to LeMat-Bulk.
+
+For equal compositions, CrystalGen applies MatterGen's v1.0.3 ordered-disordered matcher.
+The additional dilute-parent guard identifies a known lattice decorated with a substituent
+occupying ≤25% of the host-plus-guest sites. It requires relative radius difference ≤0.3 and
+electronegativity difference ≤1.0. Supercells, symmetry copies and dilute variants of a known
+compound such as GdDy7Cu8 from DyCu are covered by these comparisons.
+
+The optional `--as-submitted` evaluation scores the raw lattice and coordinates. It also
+measures displacement from the raw geometry under all three potentials on 250 prespecified
+slots (50 steps, 0.02 eV/Å), with coverage and a 95% structure-bootstrap interval.
+This result is recorded separately from the primary UMA-200 reward.
+
+The official report uses `crystalgen-report/v4-uma200-hull-aligned`. The as-submitted sensitivity uses `crystalgen-report/v3-submitted-geometry`.
 
 The evaluator reads the prepared scorer assets at `/workspace/data/scorer-assets` (also reachable
 as `/scorer-assets`), read-only. Those files are tools
@@ -69,13 +80,13 @@ For an explicit development diagnostic on **already-relaxed** outputs:
   --input /workspace/evaluation/examples/input \
   --generated /workspace/research/relaxation/generated \
   --output /workspace/research/relaxed-score \
-  --skip-relaxation
+  --as-submitted
 ```
 
-This flag skips only the task-side pre-relaxation and labels the report as a
-development diagnostic. It is not exposed by the final grader. Normal `score.sh`
-always performs relaxation, so pass it raw generated outputs. The unchanged
-LeMat scorer also computes its separate 50-step relaxation diagnostics; those
+This flag scores the supplied coordinates directly under an explicitly identified sensitivity
+protocol. On raw inputs it measures displacement in up to 250 prespecified slots. The trusted
+grader supports the same option for archived comparisons. Normal `score.sh` takes raw generated
+outputs and performs the fixed UMA-200 relaxation. Optional 50-step displacements
 do not replace the incoming-geometry energies used for headline SUN/MetaSUN.
 
 In final tests the grader owns this fixed step. Agents may optimize the generator

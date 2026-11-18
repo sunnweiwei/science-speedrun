@@ -81,8 +81,19 @@ def open_null_policy(case_name, env, out, tag, timeout):
     return null
 
 
-def reset_context(case_name, env, seed):
-    return {"environment": case_name, "family": CASES[case_name].family, "seed": seed,
+PUBLIC_POLICY_SEED_BASE = 100_000
+
+
+def public_policy_seed(episode_index: int) -> int:
+    """Deterministic public RNG seed for policy.reset(), uncorrelated with the simulator perturbation seed."""
+    idx = int(episode_index)
+    if idx < 0:
+        raise ValueError(f"episode_index must be non-negative, got {idx}")
+    return PUBLIC_POLICY_SEED_BASE + idx
+
+
+def reset_context(case_name, env, episode_index: int = 0):
+    return {"environment": case_name, "family": CASES[case_name].family, "seed": public_policy_seed(episode_index),
             "machine": env.spec.name, "env_version": ENV_VERSION, "control_dt": 5e-4, "horizon": env.horizon}
 
 
@@ -141,10 +152,14 @@ def recover_step(env, seed, actions, levels, obs_before, queue, failed, budget):
 
 def run_case_stream(args, seeds, queue):
     """Child process: replay the given seeds of one case, streaming one message per episode."""
-    case_name, submission, out_dir, randomization, timeout, attempt, timing_seed = args
+    if len(args) >= 8:
+        case_name, submission, out_dir, randomization, timeout, attempt, timing_seed, episode_index_map = args[:8]
+    else:
+        case_name, submission, out_dir, randomization, timeout, attempt, timing_seed = args
+        episode_index_map = {s: idx for idx, s in enumerate(seeds)}
     out = Path(out_dir) / case_name
     out.mkdir(parents=True, exist_ok=True)
-    tag = "-".join(str(s) for s in seeds)
+    tag = "-".join(f"ep{int(episode_index_map.get(s, idx)):03d}" for idx, s in enumerate(seeds))
     policy = null = None
     try:
         env = TokamakMagneticEnv(case_name, randomization=randomization, solver="nonlinear",
@@ -154,10 +169,11 @@ def run_case_stream(args, seeds, queue):
         policy = protocol.Policy(submission, out / f"policy-{tag}.stderr", timeout=timeout)
         low = (-env.vmax).tolist()
         high = env.vmax.tolist()
-        for seed in seeds:
+        for local_idx, seed in enumerate(seeds):
+            ep_idx = int(episode_index_map.get(seed, local_idx))
             started = time.monotonic()
             obs, info = env.reset(seed=seed)
-            policy.reset(reset_context(case_name, env, seed), [env.n_obs], [env.n_active], low, high)
+            policy.reset(reset_context(case_name, env, ep_idx), [env.n_obs], [env.n_active], low, high)
             n0 = len(policy.latencies)
             # Diagnostic latency under the replay's load: the null policy answers the same observation
             # next to the submission on every step (the gate itself is measured after the replay). The
@@ -207,7 +223,8 @@ def run_case_stream(args, seeds, queue):
             n = min(len(lat), len(null_lat))
             null_ms = float(np.median(null_lat) * 1e3) if len(null_lat) else None
             summary.update({
-                "kind": "episode", "seed": seed, "return_diagnostic": ret, "attempt": attempt,
+                "kind": "episode", "seed": seed, "episode_index": ep_idx,
+                "public_policy_seed": public_policy_seed(ep_idx), "return_diagnostic": ret, "attempt": attempt,
                 "fallback_steps": sum(1 for level in levels if level > 0),
                 "recoveries": recoveries,
                 "policy_latency_ms_median": float(np.median(lat) * 1e3) if len(lat) else None,
@@ -225,7 +242,7 @@ def run_case_stream(args, seeds, queue):
             if timing:
                 np.save(out / "timing-observations.npy", np.stack(timing))
                 (out / "timing-context.json").write_text(json.dumps(
-                    {"context": reset_context(case_name, env, seed), "n_obs": env.n_obs,
+                    {"context": reset_context(case_name, env, ep_idx), "n_obs": env.n_obs,
                      "n_active": env.n_active, "low": low, "high": high}))
             (out / f"episode-{seed}.json").write_text(json.dumps(summary, indent=1))
             queue.put(summary)
@@ -253,8 +270,11 @@ def run_all(jobs, seeds, workers, timing_seed):
     budgets. If the rerun fails the same way, a stall is scored as a solver failure (it reproduced
     with twice the time) and anything else is an infrastructure error that withholds the score.
     """
-    pending = [(job, seed) for job in jobs for seed in seeds]
-    merged = {job[0]: {"case": job[0], "family": CASES[job[0]].family, "episodes": [], "status": "ok",
+    pending = [(job, seed, case_idx * len(seeds) + seed_idx)
+               for case_idx, job in enumerate(jobs)
+               for seed_idx, seed in enumerate(seeds)]
+    merged = {job[0]: {"case": job[0], "family": CASES[job[0]].family, "episodes": [],
+                       "n_scheduled": len(seeds), "status": "ok",
                        "error": None, "supervisor_notes": [], "reruns": 0} for job in jobs}
     rank = {"ok": 0, "policy_error": 1, "infrastructure_error": 2}
 
@@ -267,10 +287,12 @@ def run_all(jobs, seeds, workers, timing_seed):
             break
         last = attempt == len(BUDGET_SCALES) - 1
         raw = supervise.run_supervised(
-            run_case_stream, [job + (attempt, timing_seed) for job, _ in pending], [[seed] for _, seed in pending],
+            run_case_stream,
+            [job + (attempt, timing_seed, {seed: ep_idx}) for job, seed, ep_idx in pending],
+            [[seed] for _, seed, _ in pending],
             EPISODE_TIMEOUT_SEC * scale, workers, silence_timeout=STEP_SILENCE_SEC * scale)
         retry = []
-        for i, (job, seed) in enumerate(pending):
+        for i, (job, seed, ep_idx) in enumerate(pending):
             r, name = raw[i], job[0]
             entry = merged[name]
             done = [e for e in r["episodes"] if "outcome" in e]
@@ -284,9 +306,11 @@ def run_all(jobs, seeds, workers, timing_seed):
             elif not last:
                 entry["reruns"] += 1
                 entry["supervisor_notes"].append(f"attempt {attempt}: seed {seed} rerun ({error[:300]})")
-                retry.append((job, seed))
+                retry.append((job, seed, ep_idx))
             elif any(e.get("termination") == "solver_timeout" for e in r["episodes"]):
-                entry["episodes"].append({"seed": seed, "outcome": "solver_failure", "feasible": False,
+                entry["episodes"].append({"seed": seed, "episode_index": ep_idx,
+                                          "public_policy_seed": public_policy_seed(ep_idx),
+                                          "outcome": "solver_failure", "feasible": False,
                                           "complete": False, "steps": None, "tolerance_time_fraction": 0.0,
                                           "attempt": attempt, "termination": "solver_timeout: the episode "
                                           "stalled again with doubled wall-clock budgets"})
@@ -345,10 +369,10 @@ def measure_latency(cases, submission, out, timeout):
 
 
 def aggregate(case_results, policy_compute_ms=None):
-    """Per-case physical metrics plus `reward`, the success fraction over every episode.
+    """Per-case physical metrics plus `score`/`reward`, the success fraction over every scheduled episode.
 
-    Every episode of the suite is in the denominator (tokamak-shape-metrics/v4); solver failures
-    that the fallback ladder could not recover count as failures. Returns (reward dict, grading).
+    Every scheduled episode of the suite is in the denominator (tokamak-shape-metrics/v4); solver
+    failures and any void/aborted episodes count as failures in the denominator. Returns (reward dict, grading).
     An invalid package (policy error in any case, or a median per-step computation above
     LATENCY_LIMIT_MS) scores 0.
     """
@@ -357,18 +381,21 @@ def aggregate(case_results, policy_compute_ms=None):
     for r in case_results:
         name = r["case"]
         eps = r["episodes"]
+        n_sched = max(len(eps), int(r.get("n_scheduled", len(eps))))
         feasible = [e for e in eps if e.get("feasible")]
         n_success = sum(e["outcome"] == "success" for e in eps)
-        entry = {"status": r["status"], "n_episodes": len(eps), "n_feasible": len(feasible), "n_success": n_success,
+        n_void = sum(e["outcome"] == "void" for e in eps)
+        entry = {"status": r["status"], "n_scheduled": n_sched, "n_episodes": len(eps),
+                 "n_feasible": len(feasible), "n_success": n_success, "n_void": n_void,
                  "outcomes": {o: sum(e["outcome"] == o for e in eps) for o in sorted({e["outcome"] for e in eps})},
                  "fallback_steps": sum(e.get("fallback_steps", 0) for e in eps), "reruns": r.get("reruns", 0)}
         invalid = invalid or r["status"] == "policy_error"
         if r["status"] == "ok" and eps:
             all_eps += eps
-            reward[f"{name}/success_fraction"] = n_success / len(eps)
-            reward[f"{name}/feasible_fraction"] = len(feasible) / len(eps)
-            reward[f"{name}/tolerance_time_fraction"] = float(np.mean(
-                [e.get("tolerance_time_fraction") or 0.0 for e in eps]))
+            reward[f"{name}/success_fraction"] = n_success / n_sched
+            reward[f"{name}/feasible_fraction"] = len(feasible) / n_sched
+            reward[f"{name}/tolerance_time_fraction"] = float(
+                sum((e.get("tolerance_time_fraction") or 0.0) for e in eps) / n_sched)
             reward[f"{name}/solver_failure_episodes"] = sum(e["outcome"] == "solver_failure" for e in eps)
             if feasible:
                 for key, unit, scale in (("shape_rms", "cm", 100.0), ("xpoint_error", "cm", 100.0),
@@ -390,16 +417,22 @@ def aggregate(case_results, policy_compute_ms=None):
             invalid = True
             grading_cases["_latency"] = {"note": f"median policy computation {policy_compute_ms:.3f} ms "
                                                  f"exceeds the {LATENCY_LIMIT_MS:.1f} ms control period"}
-    if all_eps:
-        reward["tolerance_time_fraction"] = float(np.mean([e.get("tolerance_time_fraction") or 0.0 for e in all_eps]))
+    total_scheduled = sum(max(len(r["episodes"]), int(r.get("n_scheduled", len(r["episodes"])))) for r in case_results)
+    if all_eps and total_scheduled > 0:
+        reward["tolerance_time_fraction"] = float(
+            sum((e.get("tolerance_time_fraction") or 0.0) for e in all_eps) / total_scheduled)
     reward["solver_failure_episodes"] = sum(e["outcome"] == "solver_failure" for e in all_eps)
+    reward["void_episodes"] = sum(e["outcome"] == "void" for e in all_eps)
     reward["fallback_steps"] = sum(e.get("fallback_steps", 0) for e in all_eps)
     reward["episode_reruns"] = sum(r.get("reruns", 0) for r in case_results)
     reward["episodes"] = len(all_eps)
-    if invalid:
-        reward["reward"] = 0.0
-    else:
-        reward["reward"] = sum(e["outcome"] == "success" for e in all_eps) / len(all_eps) if all_eps else 0.0
+    reward["scheduled_episodes"] = total_scheduled
+    raw_succ = sum(e["outcome"] == "success" for e in all_eps)
+    effective_succ = 0 if invalid else raw_succ
+    reward["successful_episodes"] = effective_succ
+    score = (effective_succ / total_scheduled) if (not invalid and total_scheduled > 0) else 0.0
+    reward["reward"] = score
+    reward["score"] = score
     return reward, grading_cases
 
 
@@ -483,10 +516,32 @@ def main():
     }
     (out / "results.json").write_text(json.dumps(results, indent=1))
     grading = {"scope": scope, "randomization": rz_name, "n_cases": len(cases), "n_seeds": len(seeds),
-               "aggregate_score": None if infra else reward["reward"], "cases": grading_cases,
-               "note": "reward = fraction of all episodes that keep the plasma within the MAST-U steady-state "
-                       "tolerances (METRICS.md); per-case physical metrics alongside."}
+               "aggregate_score": None if infra else reward["score"], "cases": grading_cases,
+               "note": "score = reward = fraction of all scheduled episodes that keep the plasma within the MAST-U "
+                       "steady-state tolerances (METRICS.md); per-case physical metrics alongside."}
     (out / "grading.json").write_text(json.dumps(grading, indent=1))
+    report = {
+        "env_version": ENV_VERSION,
+        "metric_version": METRIC_VERSION,
+        "protocol": protocol.PROTOCOL,
+        "randomization": rz_name,
+        "scope": scope,
+        "n_cases": len(cases),
+        "n_seeds": len(seeds),
+        "scheduled_episodes": reward["scheduled_episodes"],
+        "successful_episodes": None if infra else reward["successful_episodes"],
+        "void_episodes": reward["void_episodes"],
+        "solver_failure_episodes": reward["solver_failure_episodes"],
+        "fallback_steps": reward["fallback_steps"],
+        "episode_reruns": reward["episode_reruns"],
+        "score": None if infra else reward["score"],
+        "reward": None if infra else reward["reward"],
+        "tolerance_time_fraction": reward.get("tolerance_time_fraction"),
+        "latency": results["latency"],
+        "cases": grading_cases,
+        "wall_time_sec": results["wall_time_sec"],
+    }
+    (out / "report.json").write_text(json.dumps(report, indent=1))
     if infra:
         (out / "error.json").write_text(json.dumps(
             {"infrastructure_errors": {r["case"]: r["error"] for r in infra}}, indent=1))

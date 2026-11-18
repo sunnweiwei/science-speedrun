@@ -39,7 +39,7 @@ def main():
     for name,report in results.items():
         (args.output/f'{name}-scores.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
     metrics={name:r['reward_metrics']['reward'] for name,r in results.items()}
-    (args.output/'reward.json').write_text(json.dumps(dict(reward=metrics['weather'],precipitation_reward=metrics['precipitation']),indent=2)+'\n')
+    (args.output/'reward.json').write_text(json.dumps(dict(score=metrics['weather'],reward=metrics['weather'],precipitation_reward=metrics['precipitation']),indent=2)+'\n')
     (args.output/'status.json').write_text(json.dumps(dict(status='passed',cases=len(selected),
         package_files_sha256=identity,scope='Complete independent reference replay and requested score panels'),indent=2)+'\n')
 

@@ -8,9 +8,7 @@ nervous system (MaleCNS). Automated segmentation errors (splits, merges and
 omissions) are the main cost of building connectomes. The pipeline grows
 segments with one FFN, proposes merges with SENSE and accepts them with SHAPE;
 its architectures and inference protocol are fixed, so progress comes from
-training. The package is judged by local sparse normalized expected run length
-(nERL, higher is better) of the SHAPE-merged reconstruction of a held-out
-region. Report split/merge errors, omissions and model coverage alongside nERL.
+training. The reward is the local sparse normalized expected run length (nERL, higher is better) of the SHAPE-merged reconstruction in the held-out region. Report split and merge errors, omissions and model coverage alongside nERL.
 
 ## Workspace
 

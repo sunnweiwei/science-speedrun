@@ -5,7 +5,7 @@ The same fine-tune code as the verifier: `protocol/` is byte-identical to the ve
 | script | use |
 |---|---|
 | `check_submission.py [PKG]` | the verifier's package check: files, `encoder.json`, the 90 M parameter budget, and that every encoder weight is in `checkpoint.pt` |
-| `dev_eval.py --encoder PKG\|none --out DIR [--tasks ...] [--gpus ...]` | runs the fixed fine-tune protocol on every task (train split, 15 epochs, best-validation epoch). It predicts the **validation** split, the development stand-in for the held-out test split, and reports the verifier's metrics. |
+| `dev_eval.py --encoder PKG\|none --out DIR [--tasks ...] [--gpus ...]` | runs the fixed fine-tune protocol on every task (train split, 15 epochs, best-validation epoch). It predicts the **validation** split, the development stand-in for the held-out test split, and reports the verifier's per-task/per-group metrics plus (when all 24 tasks are run) `score = reward = 1 / (1 + mean_4_groups(MA_RAE))`. |
 | `protocol/finetune.sh`, `predict.py`, `run_suite.py`, `check_encoder.py`, `tasks.py`, `unimol2x/` | the verifier's protocol: one fine-tune, test prediction, GPU scheduling, the package check, metrics, and the Uni-Core user-dir |
 
 A full `dev_eval.py` run is 24 fine-tunes. It takes about 30 minutes on 8 H100 with three fine-tunes per GPU,

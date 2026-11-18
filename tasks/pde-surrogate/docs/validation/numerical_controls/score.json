@@ -1,0 +1,154 @@
+{
+  "schema": "ssi-pde-numerical-control/v1",
+  "ape2d": {
+    "label": "Observation-grid Exponax from final public frame",
+    "cases": 850,
+    "datasets": 16,
+    "vrmse": 0.17927592024188435,
+    "reward": 0.5821593465139745,
+    "failed": 3,
+    "per_dataset": {
+      "ape2d/burgers": {
+        "cases": 100,
+        "vrmse": 0.39883866441897187,
+        "reward": 0.4664009155749398,
+        "failures": [
+          "ape2d-full-burgers-0512",
+          "ape2d-full-burgers-0520",
+          "ape2d-full-burgers-0554"
+        ]
+      },
+      "ape2d/decay_turb": {
+        "cases": 50,
+        "vrmse": 0.0003670088422771865,
+        "reward": 1.0,
+        "failures": []
+      },
+      "ape2d/diff": {
+        "cases": 100,
+        "vrmse": 2.7485986481376234e-06,
+        "reward": 1.0,
+        "failures": []
+      },
+      "ape2d/fisher": {
+        "cases": 100,
+        "vrmse": 3.670361259817917e-05,
+        "reward": 1.0,
+        "failures": []
+      },
+      "ape2d/gs_alpha": {
+        "cases": 30,
+        "vrmse": 0.13922494006799177,
+        "reward": 0.6187609867961451,
+        "failures": []
+      },
+      "ape2d/gs_beta": {
+        "cases": 30,
+        "vrmse": 0.012931401969963644,
+        "reward": 0.9627847960423868,
+        "failures": []
+      },
+      "ape2d/gs_delta": {
+        "cases": 20,
+        "vrmse": 0.5389624645011006,
+        "reward": 0.42281382658752725,
+        "failures": []
+      },
+      "ape2d/gs_epsilon": {
+        "cases": 30,
+        "vrmse": 0.03669466780683173,
+        "reward": 0.8117990131903969,
+        "failures": []
+      },
+      "ape2d/gs_gamma": {
+        "cases": 30,
+        "vrmse": 0.28947889675034916,
+        "reward": 0.5127943637358251,
+        "failures": []
+      },
+      "ape2d/gs_iota": {
+        "cases": 20,
+        "vrmse": 0.23328834686634956,
+        "reward": 0.544035651460861,
+        "failures": []
+      },
+      "ape2d/gs_kappa": {
+        "cases": 20,
+        "vrmse": 0.40596742656820445,
+        "reward": 0.46383627044077275,
+        "failures": []
+      },
+      "ape2d/gs_theta": {
+        "cases": 20,
+        "vrmse": 0.4596128541921238,
+        "reward": 0.4458692779038938,
+        "failures": []
+      },
+      "ape2d/kdv": {
+        "cases": 100,
+        "vrmse": 0.0010929748057264938,
+        "reward": 1.0,
+        "failures": []
+      },
+      "ape2d/kolm_flow": {
+        "cases": 50,
+        "vrmse": 0.30583765871065405,
+        "reward": 0.5048363465485002,
+        "failures": []
+      },
+      "ape2d/ks": {
+        "cases": 50,
+        "vrmse": 0.04422503698646927,
+        "reward": 0.7847772650690321,
+        "failures": []
+      },
+      "ape2d/sh": {
+        "cases": 100,
+        "vrmse": 0.0018529291718899377,
+        "reward": 1.0,
+        "failures": []
+      }
+    },
+    "case_seconds": 6708.858392843045
+  },
+  "pdearena": {
+    "label": "Original PhiFlow 2.1, 128\u00b2 staggered-grid continuation",
+    "cases": 200,
+    "expected": 200,
+    "vrmse": 0.0,
+    "reward": 1.0,
+    "max_abs": 0.0,
+    "case_seconds": 2586.178089255467
+  },
+  "overall": 0.5358837024130851,
+  "group_rewards": {
+    "ape2d": 0.5821593465139745,
+    "pdearena/navier_stokes_2d": 1.0,
+    "well/active_matter": 0.27238781994648203,
+    "well/turbulent_radiative_layer_2D": 0.28898764319188414
+  },
+  "well_source": "results/trivial/pde-surrogate.json",
+  "well_sha256": "8630a546e904ce9ed061c208d32848ac0e29eb213209675d18c22b8f324ab249",
+  "id": "observation-grid-equations-and-persistence/v1",
+  "category": "mechanistic_numerical_control",
+  "counts": {
+    "ape2d-full": 850,
+    "well-turbulent_radiative_layer_2D": 9,
+    "well-active_matter": 26,
+    "pdearena-ns": 200
+  },
+  "method": "Same four equal group weights as the agents. Apply published equations on APE2D and PDEArena, repeat the last public frame on The Well groups. All failures remain in the native denominator.",
+  "well_per_case_sha256": "5337363ea297f6056ca502baf85e1a307293c6ea24ba5f6331472b5fc35c1204",
+  "split_sha256": "00ffcf0501876f3e971f4252a71113ef252e7d80f2ee0f252f5440af4a548ea6",
+  "grader_sha256": "e50708c179f59be5e6d386772656615a824b9cd410ca3a1b9032af8dbf9a1759",
+  "sources": {
+    "ape2d_data": "https://huggingface.co/datasets/thuerey-group/pde-transformer-ape2d-full/tree/fa711d56a1a58705c3d8e889830b459fd92733f0",
+    "ape2d_code": "https://github.com/tum-pbs/pde-transformer/blob/850e09d352487922e4a853ee90a2624717769cc7/pdetransformer/data/simulations_apebench/simulation.py",
+    "pdearena_data": "https://huggingface.co/datasets/pdearena/NavierStokes-2D/tree/cd99556a883a20acb9102c1f4bfdfae66ae33495",
+    "pdearena_code": "https://github.com/pdearena/pdearena/blob/78a8b03d50115d8bb24ce9f04efa5b920fcd4369/pdedatagen/navier_stokes.py",
+    "DPOT_weights": "https://huggingface.co/hzk17/DPOT/tree/2adec1cf9a55942f1456aa7463cd7ade908398d0",
+    "matched_grid_policy": "https://doi.org/10.1073/pnas.2101784118",
+    "solver_comparison": "https://doi.org/10.1038/s42256-024-00897-5",
+    "APEBench": "https://arxiv.org/abs/2411.00180"
+  }
+}

@@ -3,8 +3,7 @@
 ## Overview
 
 Develop a trained neuron-reconstruction model from public electron microscopy.
-The primary metric is local sparse normalized expected run length (nERL, higher
-is better). The selected track uses one FFN checkpoint, ascending seeds, no
+The reward is local sparse normalized expected run length (nERL) of the SHAPE reconstruction. A separately measured image-free cube grid provides a comparison on the same frozen nodes. The selected track uses one FFN checkpoint, ascending seeds, no
 consensus, shared SENSE proposals and disjoint two-node SHAPE merging.
 
 Native GPU training, reconstruction and scoring have completed, including
@@ -67,7 +66,7 @@ Scoring runs afterward on the frozen reference. There is no unsafe fallback.
 Each FFN window grows until its seeds are used or it reaches 1,000,000 calls
 (segments grown before the cap are kept); stitching splits objects into
 face-connected pieces and clears pieces under 10 voxels, the same minimum FFN
-growth applies. `reward.json` reports SHAPE nERL and raw metrics for all three arms. Invalid
+growth applies. `reward.json` reports native SHAPE nERL and raw metrics for all three arms. Invalid
 submissions score zero; infrastructure/timeout failures produce status without
 a reward. [Contract](environment/contract.md), [verifier details](tests/README.md).
 

@@ -7,12 +7,16 @@ frames. It delivers 56 ensemble members at 12-hour leads through 15 days on the 
 grid. Probabilistic medium-range forecasts with calibrated uncertainty are the basis of early
 warnings for extreme weather.
 
-The reward is `1/(1 + normalized CRPS)`: empirical ensemble CRPS for ten weather variables,
-including all 13 pressure levels of the six atmospheric fields, each divided by its frozen
-training-only HRES standard deviation, averaged equally over levels and leads within a variable and
-then over variables. Larger is better. Precipitation has a separate ERA5-verified score; derived
+The primary task score (`score` and `reward` in `reward.json`) is
+`1.0 / (1.0 + mean_10_variables(normalized_crps))`: empirical ensemble CRPS (`fair=False`) for ten
+weather variables (`geopotential`, `temperature`, `specific_humidity`, `u_component_of_wind`,
+`v_component_of_wind`, and `vertical_velocity` across all 13 pressure levels, plus
+`2m_temperature`, `mean_sea_level_pressure`, `10m_u_component_of_wind`, and
+`10m_v_component_of_wind`), each divided by its frozen training-only HRES standard deviation,
+averaged equally over initialization dates, pressure levels and 12-hour leads within each variable,
+and then averaged equally over the ten variables. Larger is better. Precipitation has a separate ERA5-verified score; derived
 fields, spatial pooling, precipitation SEEPS, extreme-event value, spectra and cyclone tracks are
-reported separately. The task author's 580-update starter reached reward 0.680651 (normalized CRPS
+reported separately. The task author's 580-update starter reached score/reward 0.680651 (normalized CRPS
 0.469183) on the eight-date 2022 test panel. Aim above it.
 
 ## Workspace

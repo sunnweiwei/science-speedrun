@@ -25,10 +25,21 @@ Optimize each case's frozen primary metric in `/workspace/evaluation/METRICS.md`
 - TKE;
 - wall shear.
 
-Each case is reported on its own; there is no mixed-unit aggregate. Native rewards are training
-signals, not interchangeable benchmark scores. Preserve action bounds, and keep the stability and
-control-cost diagnostics. Aim to outperform the reproduced reference controllers on every case, not
-just the easiest cases.
+The task score (`score` and `reward` in `reward.json`) aggregates the 26 verifier cases by their
+**10 flow families** (`case.split("_")[0]`: `Channel`, `Cube`, `Cylinder`, `Kolmogorov`, `NACA0012`,
+`NACA0012Gust`, `Nozzle2D`, `Pinball`, `Sphere`, `SquareCylinder`), each weighted equally (`1/10`):
+
+- When multiple evaluation seeds are scheduled per case, the case's physical metric `val` is the
+  equal-weight mean across seeds; any diverged, failed, or invalid-operating-regime episode fails
+  the case (`gain = -1.0`).
+- Per case against its paired zero-control anchor `z`:
+  `gain = clip(((val - z) / |z|) * (-1 if lower_is_better else +1), -1.0, 1.0)` (failed or
+  nonfinite case -> `-1.0`).
+- Family mean: `family_gain = mean(gain for case in family)`.
+- Overall `signed_score = (1/10) * sum_{f=1}^{10} family_gain`, and final task
+  `score = clip(signed_score, 0.0, 1.0)`.
+- It also reports `signed_score`, per-family means, per-case gains, and each original physical
+  measurement. Preserve action bounds and report stability and control cost alongside performance.
 
 ## Workspace
 
@@ -63,8 +74,20 @@ just the easiest cases.
   handles well.
 - The Channel 3D runtime is `channel-72cube-local-actuator-clock-v1`, in
   `/workspace/evaluation/native_channel.py`. Use this frozen adapter: the upstream class alone has
-  a documented actuator-clock defect. Follow each case's frozen solver GPU requirement; three
-  configurations need two GPUs per simulation.
+  a documented actuator-clock defect.
+- Three 3D MAIA configurations (`Cube_3D_Re3700` in the 26-case verifier suite, plus
+  `Cylinder_3D_Re3900` and `NACA0012Gust_3D_Re50000_AOA12` in the 39-case development suite) launch
+  two MPI solver ranks (`solver_processes = 2`). When two or more GPUs are visible,
+  `maia_gpu_rank.py` binds each MAIA solver rank to a distinct GPU (`devices[rank - 1]`). On a
+  single 80 GB H100 (`HYDROGYM_ALLOW_SHARED_GPU=1`, enabled by default; set `"0"` to enforce strict
+  distinct-GPU binding), both MAIA solver ranks cleanly share the single GPU
+  (`devices[(rank - 1) % len(devices)]`) under `mpirun --oversubscribe --bind-to none` (compatible
+  with CUDA MPS) and container-safe OpenMPI BTL settings (`OMPI_MCA_btl=self,vader,tcp`,
+  `OMPI_MCA_btl_vader_single_copy_mechanism=none`).
+- Development replay (`case_spec.py`) uses `seeds=[123]` by default, whereas sealed blind
+  evaluation replays multiple private perturbation seeds per case and masks the secret simulator
+  seed in `policy.reset(...)` (passing only the public `episode_index`, e.g. `0, 1, 2`). Controllers
+  must rely on closed-loop observation feedback rather than open-loop step memorization.
 - Preserve the evaluator's:
   - geometry, solver fidelity, observation locations and actuators;
   - physical action bounds, control interval, reward and episode horizon.

@@ -20,7 +20,9 @@ while the metric reads only hidden positions. v4 bounds an example at about 53 M
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
+from statistics import mean
 
 import numpy as np
 import pandas as pd
@@ -28,6 +30,30 @@ import zarr
 
 DENSE_TRACKS = {"atac": 167, "dnase": 305, "procap": 12, "cage": 546, "rna_seq": 667,
                 "chip_tf": 1617, "chip_histone": 1116}
+TRACK_GROUPS: dict[str, tuple[str, ...]] = {
+    "Open chromatin": ("atac", "dnase"),
+    "Transcription": ("procap", "cage", "rna_seq"),
+    "Protein binding and histones": ("chip_tf", "chip_histone"),
+    "Splicing": ("splice_sites", "splice_usage", "junctions"),
+    "Chromatin contacts": ("contact_maps",),
+}
+# Exact frozen constant-predictor / chance anchors on the test variant evaluations
+# (synced with harness/ssi_index_v3_inputs.json["genome_constant"]).
+GENOME_CONSTANT: dict[str, float] = {
+    "bqtl_spi1": 0.20040485829959515,
+    "caqtl": 0.20125786163522014,
+    "clinvar_missense": 0.20366598778004075,
+    "clinvar_noncoding": 0.20040080160320642,
+    "clinvar_splice_region": 0.20040899795501022,
+    "enhancer_gene": 0.2,
+    "eqtl_causality": 0.5,
+    "eqtl_coefficient": 0.0,
+    "eqtl_sign": 0.5,
+    "mfass": 0.19936708860759494,
+    "sqtl_causality": 0.5693860386879731,
+    "traitgym_complex": 0.10012674271229405,
+    "traitgym_mendelian": 0.10182767624020887,
+}
 PREDICTION_SCHEMA = "genome-sequence-to-function-predictions/v4"
 REPORT_SCHEMA = "genome-sequence-to-function-report/v4"
 TARGET_BP = 196_608
@@ -207,5 +233,102 @@ def score(prediction_root: Path, labels: Path, split: str = "test") -> dict:
             store.close()
     families = {k: v.report() for k, v in metrics.items()}
     overall = float(np.mean([x["mean_pearson"] for x in families.values()]))
-    return {"schema": REPORT_SCHEMA, "split": split, "examples": len(rows), "families": families,
-            "overall_mean_family_pearson": overall, "invalid_reason": None}
+    track_summary = tracks_axis_score(families)
+    return {
+        "schema": REPORT_SCHEMA,
+        "split": split,
+        "examples": len(rows),
+        "families": families,
+        "track_modalities": track_summary["modalities"],
+        "tracks_axis": track_summary["tracks_axis"],
+        "overall_mean_family_pearson": overall,
+        "invalid_reason": None,
+    }
+
+
+def _finite(x: float) -> float:
+    val = float(x)
+    if not math.isfinite(val):
+        raise ValueError("Nonfinite genome V4 score input")
+    return val
+
+
+def tracks_axis_score(families: dict) -> dict:
+    """Compute Axis 1 (Functional genomic tracks): equal mean across 5 biological modalities."""
+    fam_vals = {
+        k: _finite(families[k]["mean_pearson"] if isinstance(families[k], dict) else families[k])
+        for names in TRACK_GROUPS.values()
+        for k in names
+    }
+    modalities = {
+        group: mean(fam_vals[k] for k in names)
+        for group, names in TRACK_GROUPS.items()
+    }
+    return {
+        "tracks_axis": mean(modalities.values()),
+        "modalities": modalities,
+        "families": fam_vals,
+    }
+
+
+def variants_axis_score(
+    variants: dict, constants: dict[str, float] = GENOME_CONSTANT
+) -> dict:
+    """Compute Axis 2 (Variant and perturbation effects): 5 equal-weight branches calibrated
+    against frozen constant-predictor anchors, explicitly excluding redundant `eqtl_sign`."""
+    raw_vals: dict[str, float] = {}
+    calibrated: dict[str, float] = {}
+    for k, b in constants.items():
+        if k == "eqtl_sign":
+            continue
+        entry = variants[k]
+        val = _finite(entry["model"] if isinstance(entry, dict) else entry)
+        raw_vals[k] = val
+        calibrated[k] = (val - b) / (1.0 - b)
+    branches = {
+        "eQTL": mean((calibrated["eqtl_causality"], calibrated["eqtl_coefficient"])),
+        "Other molecular QTL": mean(calibrated[k] for k in ("sqtl_causality", "caqtl", "bqtl_spi1")),
+        "CRISPRi enhancer–gene": calibrated["enhancer_gene"],
+        "Clinical and functional assays": mean((
+            mean(calibrated[k] for k in ("clinvar_noncoding", "clinvar_splice_region", "clinvar_missense")),
+            calibrated["mfass"],
+        )),
+        "Human traits": mean((calibrated["traitgym_mendelian"], calibrated["traitgym_complex"])),
+    }
+    return {
+        "variants_axis": mean(branches.values()),
+        "branches": branches,
+        "calibrated_variants": calibrated,
+        "raw_variants": raw_vals,
+    }
+
+
+def ssi_v4_genome_score(
+    families: dict,
+    variants: dict,
+    constants: dict[str, float] = GENOME_CONSTANT,
+) -> dict:
+    """Exact SSI V4 / V3 genome score: clip(0.5 * tracks_axis + 0.5 * variants_axis, 0.0, 1.0)."""
+    t = tracks_axis_score(families)
+    v = variants_axis_score(variants, constants=constants)
+    axes = {
+        "Functional genomic tracks": t["tracks_axis"],
+        "Variant and perturbation effects": v["variants_axis"],
+    }
+    signed = mean(axes.values())
+    clipped = max(0.0, min(1.0, signed))
+    return {
+        "score": clipped,
+        "reward": clipped,
+        "signed_score": signed,
+        "tracks_axis": t["tracks_axis"],
+        "variants_axis": v["variants_axis"],
+        "components": {**axes, **t["modalities"], **v["branches"]},
+        "modalities": t["modalities"],
+        "branches": v["branches"],
+        "calibrated_variants": v["calibrated_variants"],
+        "diagnostics": {
+            **{f"Pearson / {k}": val for k, val in t["families"].items()},
+            **{f"Variant / {k}": val for k, val in v["raw_variants"].items()},
+        },
+    }

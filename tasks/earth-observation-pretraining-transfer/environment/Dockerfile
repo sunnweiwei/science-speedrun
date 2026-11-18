@@ -10,7 +10,7 @@ WORKDIR /workspace
 # Build context: the earth-observation-pretraining-transfer task directory, as declared in docker-compose.yaml.
 COPY instruction.md /workspace/instruction.md
 COPY environment/contract.md /workspace/contract.md
-COPY environment/data/README.md environment/data/MATERIALIZE.md environment/data/sources.json /workspace/data/
+COPY environment/data/README.md environment/data/MATERIALIZE.md environment/data/sources.json environment/data/awf_spatial_dev_splits.json /workspace/data/
 COPY environment/baseline /workspace/baseline
 COPY docs/LICENSE-OlmoEarth /workspace/baseline/starter/LICENSE-OlmoEarth
 COPY environment/evaluation /workspace/evaluation

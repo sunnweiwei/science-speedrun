@@ -13,11 +13,38 @@ from tqdm import tqdm
 
 from .config import load_protocol, load_sources
 from .io import download_resumable, extract_tar, write_immutable_text
-from .mmseqs import search as mmseqs_search
+from .mmseqs import alignment_coverage, search as mmseqs_search
 from .structure import parse_pdb_atoms, pdb_sequences, read_fasta
 
 
 _PROFSA_WORKER: dict = {}
+
+
+def apply_profsa_protein_decontamination(
+    frame: pd.DataFrame,
+    hits: dict[str, dict],
+    target_table: pd.DataFrame,
+    protocol: dict,
+) -> pd.DataFrame:
+    cov_mode = int(protocol["mmseqs_cov_mode"])
+    coverage_threshold = float(protocol["protein_coverage_threshold"])
+    identity_threshold = float(protocol["protein_identity_threshold_percent"])
+    valid = frame.exclusion_reason.eq("")
+    for index in frame.index[valid]:
+        query = f"{frame.at[index, 'source_pdb_id']}_{frame.at[index, 'source_chain']}"
+        hit = hits.get(query)
+        if hit:
+            cov = alignment_coverage(hit, cov_mode)
+            if cov < coverage_threshold:
+                continue
+            target = hit["target"].split("|", 2)[1] if "|" in hit["target"] else hit["target"]
+            frame.at[index, "max_test_sequence_identity"] = hit["pident"]
+            frame.at[index, "test_alignment_coverage"] = cov
+            frame.at[index, "nearest_test_target"] = target
+            frame.at[index, "nearest_test_benchmark"] = target_table.loc[target, "benchmark"]
+            if hit["pident"] > identity_threshold:
+                frame.at[index, "exclusion_reason"] = "test_protein_similarity"
+    return frame
 
 
 def _download(data_root: Path) -> Path:
@@ -232,17 +259,7 @@ def prepare_profsadb(data_root: Path, source_fasta: Path | None = None,
                          protocol["protein_identity_threshold_percent"],
                          protocol["protein_coverage_threshold"], protocol["mmseqs_cov_mode"])
     target_table = pd.read_parquet(data_root / "test" / "test_targets.parquet").set_index("target_id")
-    for index in frame.index[valid]:
-        query = f"{frame.at[index, 'source_pdb_id']}_{frame.at[index, 'source_chain']}"
-        hit = hits.get(query)
-        if hit:
-            target = hit["target"].split("|", 2)[1]
-            frame.at[index, "max_test_sequence_identity"] = hit["pident"]
-            frame.at[index, "test_alignment_coverage"] = min(hit["qcov"], hit["tcov"])
-            frame.at[index, "nearest_test_target"] = target
-            frame.at[index, "nearest_test_benchmark"] = target_table.loc[target, "benchmark"]
-            if hit["pident"] > protocol["protein_identity_threshold_percent"]:
-                frame.at[index, "exclusion_reason"] = "test_protein_similarity"
+    apply_profsa_protein_decontamination(frame, hits, target_table, protocol)
     clean_ids = sorted(frame.loc[frame.exclusion_reason.eq(""), "sample_id"])
     required = smoke_count if smoke_count is not None else protocol["pretrain_samples"]
     if len(clean_ids) < required:

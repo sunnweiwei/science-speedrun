@@ -20,7 +20,7 @@ then applies that distance to every matching spectrum; this is exactly
 equivalent to per-spectrum solving and only removes duplicate computation.
 
 The paper reports hit rates as percentages; raw Hit@k metrics use fractions.
-The canonical verifier reward is the separate normalized `reward` in [0, 1] (`reward.json`).
+The canonical verifier reward is the raw Hit@1 fraction under the `reward` key in `reward.json`. The historical normalized score is a diagnostic in `report.json`.
 
 ## Reference comparison
 
@@ -108,10 +108,11 @@ requires the reported lower interval endpoint to be above zero. This utility is
 operator-side because neither test labels nor reference predictions are exposed
 to the agent.
 
-## Normalized benchmark score
+## Historical normalized score
 
-The canonical Harbor reward is `{"reward": S}`, using fixed, versioned empirical
-reference anchors for full-test Hit@1 (`P`):
+The grader writes raw full-test Hit@1 (`P`) to Harbor as `{"reward": P}`.
+For comparisons with archived reports, it also writes `benchmark_score.score`
+(`S`) in `report.json`, using the original reference anchors.
 
 ```text
 L = 0.04004329004329004  # repaired Fourier-DeepSets acceptance replay
@@ -130,6 +131,4 @@ Bounds are frozen in `environment/evaluation/score_bounds.json`; changing them
 requires a new score version, never per-run or candidate-dependent calibration.
 Validation reports apply the same transform only as a development diagnostic;
 they cannot establish improvement over a test-fold reference.
-Invalid submissions receive score 0. Infrastructure/setup/scorer failures do
-not produce a reward. This scales reference-relative performance, not task
-scientific importance or equal research difficulty.
+Invalid submissions receive reward zero. Infrastructure, setup and scorer failures produce an error report.

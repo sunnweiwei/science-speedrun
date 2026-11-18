@@ -176,22 +176,22 @@ comparable but no longer directly comparable with the published table.
   /pretrained/           declared pretrained assets, same path here and in verification
 ```
 
-| baseline | pass rate: enzyme / sm_binder / ppi_binder / unconditional | cost |
+| historical baseline | archived pass rate: enzyme / sm_binder / ppi_binder / unconditional | cost |
 |---|---|---|
 | `rfd3-small` (RFdiffusion3, 12.4M params, `epoch-0100.ckpt`) | 0.0624 / 0.0275 / 0.002 / 0.420 | graded pass 9 h 33 min on 8× L40S |
 | trivial generator (extended backbone, reduced view) | 0.000 / 0.000 / 0.000 / 0.000 | minutes |
 
-Per-baseline detail: [`environment/baseline/rfd3-small/RESULTS.md`](environment/baseline/rfd3-small/RESULTS.md).
+The table used binder-only inverse folding. The 20-design author receipt and the status of the fixed-target PPI rescore are in the [RFD3-small results](environment/baseline/rfd3-small/RESULTS.md).
 
 ## 4. Evaluation
 
 The main verifier validates `harness.json`, runs `infer.sh` unprivileged and
 networkless, then seals the design index and structures into a hash-manifested
 read-only snapshot. The trusted grader scores that snapshot and never imports the
-submission. Per-track pass rates and diversity land in `/logs/verifier/reward.json`.
-There is **no composite score**: the four tracks apply different published criteria and
-`unconditional` is synthetic to this task, so they are reported and compared
-individually. See [the verifier README](tests/README.md).
+submission. `/logs/verifier/reward.json` carries the target-weighted combined `score`
+(and `reward` alias),
+`score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)`,
+alongside the per-track pass rates and diversity. See [the verifier README](tests/README.md).
 
 Sizing: 51 evaluation targets x **20 designs** = **1,020 designs** at 80-180 residues
 (RFdiffusion3's published protocol is 100 per target; the pass rate is a per-target fraction, so 20

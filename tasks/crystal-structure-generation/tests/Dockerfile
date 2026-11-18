@@ -33,6 +33,8 @@ FROM generator-runtime AS scorer-runtime
 COPY runtime/lemat-eight-gpu.patch /tmp/lemat-eight-gpu.patch
 COPY runtime/lemat-small-batch.patch /tmp/lemat-small-batch.patch
 COPY runtime/lemat-substitution-novelty.patch /tmp/lemat-substitution-novelty.patch
+COPY runtime/lemat-submitted-geometry.patch /tmp/lemat-submitted-geometry.patch
+COPY runtime/lemat-mace-reference-checkpoints.patch /tmp/lemat-mace-reference-checkpoints.patch
 RUN git init /opt/lemat && \
     git -C /opt/lemat remote add origin https://github.com/LeMaterial/lemat-genbench.git && \
     git -C /opt/lemat fetch --depth 1 origin "${LEMAT_REVISION}" && \
@@ -42,7 +44,11 @@ RUN git init /opt/lemat && \
     git -C /opt/lemat apply --check /tmp/lemat-small-batch.patch && \
     git -C /opt/lemat apply /tmp/lemat-small-batch.patch && \
     git -C /opt/lemat apply --check /tmp/lemat-substitution-novelty.patch && \
+    git -C /opt/lemat apply --check /tmp/lemat-submitted-geometry.patch && \
+    git -C /opt/lemat apply --check /tmp/lemat-mace-reference-checkpoints.patch && \
     git -C /opt/lemat apply /tmp/lemat-substitution-novelty.patch && \
+    git -C /opt/lemat apply /tmp/lemat-submitted-geometry.patch && \
+    git -C /opt/lemat apply /tmp/lemat-mace-reference-checkpoints.patch && \
     uv sync --project /opt/lemat --frozen --no-dev && \
     mkdir -p /opt/lemat/results_final && \
     chmod 1777 /opt/lemat/results_final && \

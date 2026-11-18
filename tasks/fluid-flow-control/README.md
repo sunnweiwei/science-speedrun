@@ -15,7 +15,7 @@ multi-task RL, not a held-out-task or zero-shot generalization benchmark.
 - Delivery: [contract](environment/contract.md), one portable checkpoint/code
   package at `/workspace/submission`, resident JSONL `infer.sh`.
 - Metrics: [one fixed physical primary metric per case](environment/evaluation/METRICS.md).
-  Harbor emits 39 named physical values, not a mixed-unit total or training return.
+  Harbor emits the original physical results and the v2 task reward based on 26 paired zero-control comparisons.
 - Reference results: [39/39 verified specialist baselines](environment/references/specialists/verified/README.md).
   Several trained specialists do not beat the uncontrolled flow (for example
   Cylinder_3D_Re3900: 1.2067 vs 1.1114); they are reported as measured.

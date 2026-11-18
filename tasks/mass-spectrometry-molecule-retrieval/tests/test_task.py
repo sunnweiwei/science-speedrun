@@ -111,6 +111,8 @@ class TaskTests(unittest.TestCase):
         self.assertGreaterEqual(config["environment"]["memory_mb"], 524288)  # a floor; more is fine
         self.assertEqual(config["environment"]["network_mode"], "no-network")
         self.assertEqual(config["verifier"]["environment_mode"], "separate")
+        self.assertEqual(config["verifier"]["timeout_sec"], common.FULL_TEST_VERIFIER_SECONDS)
+        self.assertEqual(config["metadata"]["evaluation_protocol"], common.REPLAY_PROTOCOL)
         self.assertEqual(
             config["verifier"]["environment"]["network_mode"], "no-network"
         )
@@ -262,7 +264,10 @@ class TaskTests(unittest.TestCase):
         args = argparse.Namespace(sealed=sealed, input=public / "verifier", labels=private,
                                   output=self.root / "score", wait_seconds=1, mces_workers=1)
         report = grader.run(args, compute_mces=False)
-        self.assertEqual(json.loads((args.output / "reward.json").read_text()), {"reward": 1.0})
+        self.assertEqual(
+            json.loads((args.output / "reward.json").read_text()),
+            {"reward": 1.0, "score": 1.0},
+        )
         self.assertEqual(report["metrics"]["hit_rate_at_1"], 1.0)
         self.assertGreater(report["benchmark_score"]["unclipped_score"], 1.0)
         self.assertEqual(report["benchmark_score"]["saturation"], "upper")

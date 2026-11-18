@@ -82,6 +82,37 @@ def reference_graph(truth):
     return graph
 
 
+# Image-free control: the public halo grid (core +/- 32 voxels) tiled into cubes, one label per cube.
+# At low reconstruction quality sparse nERL rewards fragmentation, and such a grid can beat trained models.
+HALO_VOXELS=32
+GRID_CONTROL_VOXELS=tuple(range(4,33))
+
+
+def grid_skill(raw_nerl, control_nerl):
+    if not (0 <= raw_nerl <= 1 and 0 <= control_nerl < 1):
+        raise ValueError('Expected valid nERL values and positive headroom over the grid')
+    return (raw_nerl - control_nerl) / (1. - control_nerl)
+
+
+def grid_control(suite,sizes=GRID_CONTROL_VOXELS):
+    """Best nERL of the cube-grid control over the fixed size family, on the frozen nodes."""
+    suite=Path(suite);truth=json.loads((suite/'skeletons.json').read_text())
+    meta=json.loads((suite/'metadata.json').read_text())
+    graph=reference_graph(truth);nodes=truth['nodes']
+    _,spacing,_,_=grid(meta);low,_=reference_bounds(meta);halo=low-HALO_VOXELS*spacing
+    positions=np.asarray([n['position_nm'] for n in nodes],dtype=float)
+    results={}
+    for size in sizes:
+        cells=np.floor((positions-halo)/(spacing*size)).astype(np.int64)
+        _,labels=np.unique(cells,axis=0,return_inverse=True)
+        lookup={n['id']:int(label)+1 for n,label in zip(nodes,labels.ravel())}
+        results[size]=evaluate(graph,lookup,suite/'run_length.py')['nerl']
+    best=max(results,key=results.get)
+    return dict(nerl=float(results[best]),cube_voxels=int(best),family=[int(x) for x in sizes],
+                nerl_by_size={str(k):float(v) for k,v in results.items()},
+                construction='public halo grid tiled from its origin into cubes; no EM image or labels used')
+
+
 def score(suite,prediction,output):
     suite=Path(suite);prediction=Path(prediction);output=external(output)
     frozen=json.loads((suite/'suite.json').read_text())
@@ -120,6 +151,14 @@ def score(suite,prediction,output):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for key in ('suite','prediction','output'):p.add_argument('--'+key,type=Path,required=True)
-    a=p.parse_args();print(json.dumps(score(a.suite,a.prediction,a.output),indent=2))
+    p.add_argument('--grid-control',action='store_true',help='Also evaluate the image-free cube family as a diagnostic')
+    a=p.parse_args()
+    measured=score(a.suite,a.prediction,a.output)
+    measured.update(raw_nerl=measured['nerl'],reward=measured['nerl'])
+    if a.grid_control:
+        control=grid_control(a.suite)
+        measured.update(grid_control_nerl=control['nerl'],signed_grid_skill=grid_skill(measured['nerl'],control['nerl']))
+    write_json(a.output/'metrics.json',measured)
+    print(json.dumps(measured,indent=2))
 
 if __name__=='__main__':main()

@@ -4,6 +4,28 @@ Checked on **2026-09-13**. This note separates current publication status,
 evaluation protocol, and locally reproduced scores. No new model was trained
 or selected during this literature check.
 
+## Update on 2026-11-15
+
+On the frozen SSI mass track, a fixed routing rule using external weights for
+both branches yields 8,375/17,556 Hit@1 (47.7045%). The operator's released
+GLACIER no-CF replay supplies 6,718 hits among 9,954 spectra with supported
+metadata. On the other 7,602 spectra, we independently counted 1,657 hits in
+the complete ranking file from the author-released MIST 4M-aug and MIST-CF
+models. The combined Hit@5 and Hit@20 are 11,071/17,556 and 12,879/17,556.
+The 49.3905% historical task comparison below uses a separately trained MIST
+fallback. [MIST release](https://zenodo.org/records/23303289) ·
+[GLACIER branch counts](../../docs/baseline_score.json)
+
+Zhang et al. reported GLMR at 64.172% on an earlier mass-based track. The
+MassSpecGym audit authors studied their own GLMR implementation on the
+formula-known track and measured 63.89% before and 7.60% after correcting
+candidate SMILES canonicalization. This makes transfer of the older mass-track
+number to v1.5 uncertain. The audit authors' corrected weights are available
+for independent evaluation. A current SSI mass-track score for those weights
+requires the complete frozen mass candidate pools. [GLMR paper, Table 1](https://arxiv.org/html/2511.06259v1#S4.T1) ·
+[v1.5 audit, Table 3](https://arxiv.org/html/2606.19624v2#S5.T3) ·
+[Audit code and model provenance](https://github.com/harrylaucngd/msms-models/blob/5f41fe9a47e64fd7eef3d7e7a3d755602320a462/paper/table3/chemformer_two_stage/README.md)
+
 ## Conclusion
 
 **GLACIER with contrastive finetuning is the strongest published forward-model

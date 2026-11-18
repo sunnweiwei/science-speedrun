@@ -12,14 +12,9 @@ The model also predicts the effects of DNA variants and perturbations. This is t
 problem on AlphaGenome's public training data and fold split (`FOLD_0`), using every eligible
 training interval.
 
-**Reward.** `overall_mean_family_pearson` on 1,000 held-out test intervals: per-track Pearson in
-`asinh` space, averaged within families, then equally across the eleven families.
-
-**Reported next to it** (`report.json` → `variant_effects`, raw metrics, not in the reward), each
-with published anchors on the same rows:
-- AlphaGenome's own evaluations: eQTL sign, causality and effect size; sQTL; ClinVar non-coding,
-  splice-region and missense; MFASS; caQTL; SPI1 bQTL; CRISPRi enhancer–gene linking;
-- TraitGym Mendelian and complex-trait causal variants, with Borzoi, Enformer, CADD and GPN-MSA.
+**Reward (`score` / `reward`).** `clip(0.5 * tracks_axis + 0.5 * variants_axis, 0, 1)`:
+- **Axis 1 (`0.5` weight) — `tracks_axis`**: per-track Pearson $r$ in `asinh` space on 1,000 held-out test intervals, averaged within each of the eleven output families, then averaged within each of **5 biological modalities** (`Open chromatin`, `Transcription`, `Protein binding and histones`, `Splicing`, `Chromatin contacts`) and equally across those 5 modalities (the ungrouped 11-family mean `overall_mean_family_pearson` is retained as a diagnostic).
+- **Axis 2 (`0.5` weight) — `variants_axis`**: 12 non-redundant variant/perturbation evaluations chance-calibrated against frozen `GENOME_CONSTANT` anchors $v_k = (m_k - b_k)/(1 - b_k)$ (**excluding redundant `eqtl_sign`**, which is retained in `report.json` as a diagnostic), averaged equally across **5 biological branches** (`eQTL`, `Other molecular QTL`, `CRISPRi enhancer–gene`, `Clinical and functional assays`, `Human traits`). Pure single-genome sequence-to-function anchors (`AlphaGenome` on 4 of 5 branches; `Borzoi` and `Enformer` on `TraitGym`) are reported on the same rows, whereas multi-species conservation tools are excluded from pure-sequence reference comparisons.
 
 **Status.** Integrated and verified on 2026-10-01; see section 6. The integration rebuilt the data,
 evaluation and baselines; `docs/VALIDATION.md` records what changed and why.
@@ -97,11 +92,11 @@ Resources (`task.toml`):
 
 ## 6. Results and validation
 
-| system | params | training | validation reward | test reward | variant evaluations |
-|---|---:|---|---:|---:|---|
-| AlphaGenome (published scores) | — | — | — | — | anchors per evaluation |
-| tiny reference (author's recipe) | 0.23M | 3 epochs, 3,200 intervals, 1 GPU | 0.114–0.160 (5 runs) | 0.1285 | near chance |
-| large reference ([baseline](environment/baseline/alphagenome-reference/)) | 215M | 14 epochs, all 41,020 intervals, 8 H100, 4 h 9 min | 0.302 | **0.3106** | near chance except sQTL (0.73) and enhancer–gene (0.39 vs 0.20 chance); [RESULTS.md](environment/baseline/alphagenome-reference/RESULTS.md) |
+| system | params | training | validation V4 score (`tracks` / `variants`) | test V4 score (`tracks` / `variants`) | legacy 11-family Pearson (valid / test) |
+|---|---:|---|---:|---:|---:|
+| AlphaGenome (published variant tables) | — | — | — | — | partial pure-sequence anchors (4/5 variant branches; no TraitGym) |
+| tiny reference (author's recipe) | 0.23M | 3 epochs, 3,200 intervals, 1 GPU | — | — | 0.114–0.160 / 0.1285 |
+| large reference ([baseline](environment/baseline/alphagenome-reference/)) | 215M | 14 epochs, all 41,020 intervals, 8 H100, 4 h 9 min | **0.2124** (`0.318` / `0.106`) | **~0.2117** (`0.332` / `0.091`) | 0.302 / 0.3106 ([RESULTS.md](environment/baseline/alphagenome-reference/RESULTS.md)) |
 
 Details, timings and the evaluation design are in [docs/VALIDATION.md](docs/VALIDATION.md).
 

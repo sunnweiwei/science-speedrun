@@ -10,7 +10,7 @@ keywords = ["model-development", "genomics", "sequence-to-function", "alphagenom
 
 [metadata]
 data_status = "AlphaGenome public training data (FOLD_0), all 41,020 eligible train intervals; train targets 8-bit; ~360 GB materialized"
-evaluation_status = "reward: track Pearson on 1,000 test intervals; 13 variant/perturbation evaluations reported with AlphaGenome / Borzoi / Enformer / CADD anchors"
+evaluation_status = "reward (score): clip(0.5 * tracks_axis [5 modalities] + 0.5 * variants_axis [5 chance-calibrated branches, excluding eqtl_sign], 0, 1); pure-sequence AlphaGenome / Borzoi / Enformer anchors"
 
 [agent]
 timeout_sec = 172800.0         # external development budget (48 h, as in the other tasks); the 215M baseline trains in 4 h 9 min

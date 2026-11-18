@@ -180,29 +180,53 @@ class RelaxationTests(unittest.TestCase):
         self.assertEqual((summary["requested"], summary["relaxed"], summary["fallback_original"],
                           summary["missing_or_invalid_manifest"]), (3, 1, 1, 1))
 
-    def test_relaxation_runs_before_metrics_by_default(self):
+    def test_raw_sealed_structures_are_scored_and_rmsd_cannot_change_reward(self):
+        from scoring.displacement import sample_slots, summarize
         requests = {"u": {"mode": "unconditional", "n_samples": 2500}}
-        raw, refined = {("u", 0): self.source / "0.cif"}, {("u", 0): self.output / "0.cif"}
+        raw = {("u", 0): self.source / "0.cif"}
+        slots = sample_slots(requests)
+        self.assertEqual(len(set(slots)), 250)
+        self.assertEqual(slots, sample_slots(requests))
+        rmsd = summarize(slots, {slots[0]: {"mace": 1.5, "orb": 0.5, "uma": 1.0}})
+        result = (
+            {"sun": 0.04, "metasun": 0.12, "sun_metasun": 0.16, "ssi_score": 0.10},
+            {"counts": {"expected": 2500}, "displacement": rmsd},
+        )
         with patch("scoring.evaluate.load_requests", return_value=requests), \
              patch("scoring.evaluate.load_output", return_value=(raw, ["missing"])), \
-             patch("scoring.evaluate.relax_records", return_value=(refined, {"requested": 2500})) as relax, \
-             patch("scoring.evaluate.run_lemat", return_value=({"sun": 0.1}, {"counts": {"expected": 2500}})) as score:
-            rewards, report = evaluate(self.root, self.source, Path("scorer"), Path("python"))
-        relax.assert_called_once()
-        self.assertIs(score.call_args.args[0], refined)
-        self.assertEqual(score.call_args.args[2], 2500)
+             patch("scoring.evaluate.run_lemat", return_value=result) as score:
+            rewards, report = evaluate(self.root, self.source, Path("scorer"), Path("python"), skip_relaxation=True)
+        self.assertIs(score.call_args.args[0], raw)
+        self.assertEqual(score.call_args.kwargs["rmsd_slots"], slots)
         self.assertEqual(report["output_errors"], ["missing"])
-        self.assertEqual(rewards["unconditional_sun"], 0.1)
+        self.assertFalse(report["pre_scoring_relaxation"])
+        self.assertAlmostEqual(rewards["score"], 0.10, places=12)
+        self.assertAlmostEqual(rewards["reward"], 0.10, places=12)
+        self.assertEqual(rewards["unconditional_relaxation_rmsd_A"], 1.0)
+        self.assertEqual(report["diagnostics"]["gating_policy"], "diagnostics_only_no_adhoc_gates")
+        self.assertTrue(report["diagnostics"]["as_submitted"]["evaluated_directly"])
 
-    def test_dev_diagnostic_can_skip_but_final_has_no_bypass(self):
-        with patch("scoring.evaluate.load_requests", return_value={"u": {"mode": "unconditional", "n_samples": 2}}), \
-             patch("scoring.evaluate.load_output", return_value=({}, [])), \
-             patch("scoring.evaluate.relax_records") as relax, \
-             patch("scoring.evaluate.run_lemat", return_value=({}, {})):
-            _, report = evaluate(self.root, self.source, Path("scorer"), Path("python"), skip_relaxation=True)
-        relax.assert_not_called()
-        self.assertEqual(report["relaxation"]["status"], "skipped_development_diagnostic")
-        self.assertNotIn("skip_relaxation", Path(__file__).with_name("grader.py").read_text())
+    def test_primary_scores_fixed_uma_endpoint_and_keeps_all_attempts(self):
+        req = {"u": {"mode": "unconditional", "n_samples": 2500}}
+        raw = {("u", 0): self.source / "0.cif"}
+        endpoint = {("u", 0): self.root / "relaxed.cif"}
+        result = (
+            {"sun": 1 / 2500, "metasun": 2 / 2500, "sun_metasun": 3 / 2500, "ssi_score": 2 / 2500},
+            {"counts": {"expected": 2500}},
+        )
+        with patch("scoring.evaluate.load_requests", return_value=req), \
+             patch("scoring.evaluate.load_output", return_value=(raw, [])), \
+             patch("scoring.evaluate.relax_records", return_value=(endpoint, {"recipe": protocol.RECIPE})) as relax, \
+             patch("scoring.evaluate.run_lemat", return_value=result) as score:
+            rewards, report = evaluate(self.root, self.source, Path("scorer"), Path("python"))
+        self.assertIs(relax.call_args.args[0], raw)
+        self.assertEqual(relax.call_args.args[1], 2500)
+        self.assertIs(score.call_args.args[0], endpoint)
+        self.assertEqual(score.call_args.kwargs["rmsd_slots"], [])
+        self.assertAlmostEqual(rewards["score"], 2 / 2500, places=12)
+        self.assertAlmostEqual(rewards["reward"], 2 / 2500, places=12)
+        self.assertEqual(report["protocol"], "crystalgen-evaluation/v4-uma200-hull-aligned")
+        self.assertEqual(report["relaxation"]["recipe"], protocol.RECIPE)
 
     def test_gpu_mapping_handles_explicit_and_implicit_masks(self):
         with patch.object(protocol.subprocess, "check_output", return_value="2\n"), \

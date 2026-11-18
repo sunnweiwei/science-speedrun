@@ -3,7 +3,7 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/mass-spectrometry-molecule-retrieval"
-version = "1.3.0"
+version = "2.0.0"
 description = "Develop a model that retrieves molecular structures from experimental MS/MS spectra."
 authors = [{ name = "T0-RSI contributors" }]
 keywords = ["model-development", "mass-spectrometry", "chemistry", "retrieval"]
@@ -19,6 +19,9 @@ upstream_code_commit = "f259fe3780d5bd227fc6ece36ce6f397c2eef716"
 upstream_data_revision = "d2e86d0c3bd905a6d578c0dd6053ed2bd41f9c2a"
 glacier_source_commit = "ed8311f22958cb37f055b663b5f56c5c77a2ee33"
 primary_metric = "hit_rate_at_1"
+reward_key = "reward"
+evaluation_protocol = "massspecgym-per-spectrum-batches/v2"
+# Historical reference-normalized diagnostic in report.json.
 benchmark_score = "score"
 score_version = "massspecgym-retrieval-score/v1"
 score_lower_reference = 0.04004329004329004
@@ -44,7 +47,7 @@ build_timeout_sec = 7200.0
 
 [verifier]
 environment_mode = "separate"
-timeout_sec = 21600.0
+timeout_sec = 36520.0
 
 [verifier.environment]
 network_mode = "no-network"

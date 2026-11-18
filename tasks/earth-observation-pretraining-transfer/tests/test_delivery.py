@@ -102,7 +102,7 @@ np.savez(a.output,ids=ids.astype(str),features=np.ones((len(ids),2),dtype=np.flo
             with patch.object(sys,'argv',command), patch.object(grade.subprocess,'run',return_value=subprocess.CompletedProcess([],42)):
                 grade.main()
             self.assertEqual(json.loads((output/'report.json').read_text())['status'],'invalid_submission')
-            self.assertEqual(json.loads((output/'reward.json').read_text()),{'reward':0.0,'invalid_submission':1})
+            self.assertEqual(json.loads((output/'reward.json').read_text()),{'score':0.0,'reward':0.0,'invalid_submission':1})
 
 
 if __name__ == '__main__': unittest.main()

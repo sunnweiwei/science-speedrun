@@ -19,6 +19,7 @@ from tqdm import tqdm
 
 from .config import PACKAGE_PARENT, load_protocol, load_sources
 from .io import download_resumable, extract_tar, sha256_file, write_immutable_text, write_json
+from .mmseqs import alignment_coverage
 from .mmseqs import cluster as mmseqs_cluster
 from .mmseqs import search as mmseqs_search
 from .structure import (AA3, crystal_coordinates, generate_conformers, ligand_identity,
@@ -369,6 +370,43 @@ def materialize_biolip_table(data_root: Path) -> pd.DataFrame:
     return frame
 
 
+def apply_biolip_protein_decontamination(
+    frame: pd.DataFrame,
+    sequence_to_query: dict[str, str],
+    hits: dict[str, dict],
+    target_index: pd.DataFrame,
+    protocol: dict,
+) -> pd.DataFrame:
+    cov_mode = int(protocol["mmseqs_cov_mode"])
+    coverage_threshold = float(protocol["protein_coverage_threshold"])
+    identity_threshold = float(protocol["protein_identity_threshold_percent"])
+    valid = frame.exclusion_reason.eq("")
+    sequence_metrics = {}
+    for sequence, query in sequence_to_query.items():
+        hit = hits.get(query)
+        if hit:
+            cov = alignment_coverage(hit, cov_mode)
+            if cov < coverage_threshold:
+                continue
+            raw_target = hit["target"].split("|", 2)[1] if "|" in hit["target"] else hit["target"]
+            info = target_index.loc[raw_target]
+            sequence_metrics[sequence] = (hit["pident"], cov,
+                                          raw_target, info["benchmark"])
+    for index in frame.index[valid]:
+        metrics = [sequence_metrics[sequence]
+                   for sequence in json.loads(frame.at[index, "protein_sequences_json"]).values()
+                   if sequence in sequence_metrics]
+        metric = max(metrics, default=None, key=lambda item: (item[0], item[1]))
+        if metric:
+            (frame.at[index, "max_test_sequence_identity"],
+             frame.at[index, "test_alignment_coverage"],
+             frame.at[index, "nearest_test_target"],
+             frame.at[index, "nearest_test_benchmark"]) = metric
+            if metric[0] > identity_threshold:
+                frame.at[index, "exclusion_reason"] = "test_protein_similarity"
+    return frame
+
+
 def filter_biolip_contamination(data_root: Path) -> None:
     protocol = load_protocol()
     frame = pd.read_parquet(data_root / "canonical" / "biolip2.parquet")
@@ -383,26 +421,7 @@ def filter_biolip_contamination(data_root: Path) -> None:
                          protocol["protein_identity_threshold_percent"],
                          protocol["protein_coverage_threshold"], protocol["mmseqs_cov_mode"])
     target_index = pd.read_parquet(data_root / "test" / "test_targets.parquet").set_index("target_id")
-    sequence_metrics = {}
-    for sequence, query in sequence_to_query.items():
-        hit = hits.get(query)
-        if hit:
-            raw_target = hit["target"].split("|", 2)[1]
-            info = target_index.loc[raw_target]
-            sequence_metrics[sequence] = (hit["pident"], min(hit["qcov"], hit["tcov"]),
-                                          raw_target, info["benchmark"])
-    for index in frame.index[valid]:
-        metrics = [sequence_metrics[sequence]
-                   for sequence in json.loads(frame.at[index, "protein_sequences_json"]).values()
-                   if sequence in sequence_metrics]
-        metric = max(metrics, default=None, key=lambda item: (item[0], item[1]))
-        if metric:
-            (frame.at[index, "max_test_sequence_identity"],
-             frame.at[index, "test_alignment_coverage"],
-             frame.at[index, "nearest_test_target"],
-             frame.at[index, "nearest_test_benchmark"]) = metric
-            if metric[0] > protocol["protein_identity_threshold_percent"]:
-                frame.at[index, "exclusion_reason"] = "test_protein_similarity"
+    apply_biolip_protein_decontamination(frame, sequence_to_query, hits, target_index, protocol)
 
     actives = pd.read_parquet(data_root / "test" / "test_ligands.parquet",
                               filters=[("label", "==", 1)]).drop_duplicates("inchikey")

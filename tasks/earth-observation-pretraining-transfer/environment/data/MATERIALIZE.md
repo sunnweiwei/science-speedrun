@@ -53,10 +53,12 @@ CUDA_VISIBLE_DEVICES='' "$OLMO_PY" earth-observation-pretraining-transfer/enviro
 cp -aL "$OLMO_PREPARED/eval/." "$TASK_PRIVATE_DIR/"
 ```
 
-The development evaluation view has 1,115 AWF training / 344 validation rows and
-31,175 LFMC training / 8,262 validation rows, with zero test rows. Its manifest
-records membership and source hashes. Do not prepare this already-filtered view
-again; its `index` fields retain the canonical source-row indices.
+The development evaluation view has 1,053 spatially isolated AWF training / 201
+validation rows (excluding all 205 blind spatial test windows and any
+overlapping raw windows via `awf_spatial_dev_splits.json`) and 31,175 LFMC
+training / 8,262 validation rows, with zero test rows. Its manifest records
+membership and source hashes. Do not prepare this already-filtered view again;
+its `index` fields retain the canonical source-row indices.
 
 Use an empty research directory for each agent run. Supply these mounts through
 the execution provider:

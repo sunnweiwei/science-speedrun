@@ -29,9 +29,18 @@ Splicing outputs are sparse. Usage at a hidden site the model did not list count
 prediction. A hidden junction whose (strand, donor, acceptor) pair was not listed also counts as
 zero. Both stay in the metric. Predictions must be finite; the tree may not exceed 80 GiB.
 
-**Score.** Pearson per track in `asinh` space over valid targets, averaged within each of the
-eleven families, then equally across families: `overall_mean_family_pearson`. Usage is gathered
-at hidden positions and junctions at hidden query pairs. This is `reward`.
+**Axis 1 (`tracks_axis`, weight `0.5` in `score` / `reward`).** Pearson $r$ per track in `asinh`
+space over valid targets (constant prediction on a varying target = `0.0`), averaged within each of
+the eleven output families, then averaged within each of the **5 `TRACK_GROUPS` modalities**:
+- `Open chromatin`: `atac`, `dnase`
+- `Transcription`: `procap`, `cage`, `rna_seq`
+- `Protein binding and histones`: `chip_tf`, `chip_histone`
+- `Splicing`: `splice_sites`, `splice_usage`, `junctions`
+- `Chromatin contacts`: `contact_maps`
+
+`tracks_axis` is the equal arithmetic mean across those 5 modalities. Usage is gathered at hidden
+positions and junctions at hidden query pairs. The ungrouped 11-family mean
+`overall_mean_family_pearson` is retained in `report.json` and `reward.json` as a diagnostic.
 
 ## 2. Variant and perturbation effects: `perturb.sh INPUT_ROOT OUTPUT_ROOT`
 
@@ -52,13 +61,38 @@ Output: `perturbations.zarr`. Its `perturbation_ids` attribute lists the manifes
 The values are the same quantities as in `predictions.zarr`, as float32. float16 is accepted but
 rounds away most single-variant effects (its resolution is about 0.004 at `asinh` values of 4–8).
 
-**Score.** The verifier turns A/B into the published variant scorers and reports each evaluation
-next to anchors computed on the same rows. The evaluations are AlphaGenome's eQTL sign, causality
-and effect size, sQTL, ClinVar (non-coding, splice region and missense), MFASS splicing, caQTL,
-SPI1 bQTL and CRISPRi enhancer–gene linking, plus TraitGym Mendelian and complex-trait causal
-variants. Definitions are in `/workspace/evaluation/variant_scoring.py`. A development split with labels
-(`/workspace/data/variant_evals/valid`) is scored the same way by `score_variants.py`. These metrics are reported
-in `report.json` under `variant_effects`; they are not part of `reward`.
+**Axis 2 (`variants_axis`, weight `0.5` in `score` / `reward`).** The verifier turns A/B into the
+published variant scorers (`/workspace/evaluation/variant_scoring.py`) across 13 evaluations:
+AlphaGenome's `eqtl_sign`, `eqtl_causality`, `eqtl_coefficient`, `sqtl_causality`,
+`clinvar_noncoding`, `clinvar_splice_region`, `clinvar_missense`, `mfass`, `caqtl`, `bqtl_spi1`,
+and `enhancer_gene`, plus TraitGym's `traitgym_mendelian` and `traitgym_complex`. A development
+split with labels (`/workspace/data/variant_evals/valid`) is scored identically by
+`score_variants.py` (or `score.py --perturbations`).
+
+To form `variants_axis`, each of the 12 non-redundant evaluations (**explicitly excluding
+`eqtl_sign`**, which is retained in `report.json` as a diagnostic because signed Spearman
+`eqtl_coefficient` already measures directional effect size) is chance-calibrated as
+$v_k = (m_k - b_k) / (1 - b_k)$ using the frozen constant-predictor anchors `GENOME_CONSTANT` in
+`/workspace/evaluation/scoring.py`:
+- `eqtl_causality`: `0.5`, `eqtl_coefficient`: `0.0`
+- `sqtl_causality`: `0.5693860386879731`, `caqtl`: `0.20125786163522014`, `bqtl_spi1`: `0.20040485829959515`
+- `enhancer_gene`: `0.2`
+- `clinvar_noncoding`: `0.20040080160320642`, `clinvar_splice_region`: `0.20040899795501022`, `clinvar_missense`: `0.20366598778004075`, `mfass`: `0.19936708860759494`
+- `traitgym_mendelian`: `0.10182767624020887`, `traitgym_complex`: `0.10012674271229405`
+
+The 12 calibrated scores are aggregated into **5 equal-weight biological branches**:
+1. `eQTL` = `mean(v["eqtl_causality"], v["eqtl_coefficient"])`
+2. `Other molecular QTL` = `mean(v["sqtl_causality"], v["caqtl"], v["bqtl_spi1"])`
+3. `CRISPRi enhancer–gene` = `v["enhancer_gene"]`
+4. `Clinical and functional assays` = `0.5 * mean(v["clinvar_noncoding"], v["clinvar_splice_region"], v["clinvar_missense"]) + 0.5 * v["mfass"]`
+5. `Human traits` = `mean(v["traitgym_mendelian"], v["traitgym_complex"])`
+
+`variants_axis` is the equal mean of those 5 branches.
+
+**Combined Primary Score (`reward.json["score"]` and `reward.json["reward"]`).**
+`signed_score = 0.5 * tracks_axis + 0.5 * variants_axis`, and
+`score = reward = clip(signed_score, 0.0, 1.0)`. A trivial constant predictor achieves exact
+`tracks_axis = 0.0`, `variants_axis = 0.0`, and `score = 0.0`.
 
 ## Rules
 

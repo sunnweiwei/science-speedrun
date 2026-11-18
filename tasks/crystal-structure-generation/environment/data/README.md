@@ -40,7 +40,7 @@ The prepared inputs of the pinned LeMat-GenBench scorer and of the fixed UMA rel
 | --- | --- | --- |
 | LeMat-Bulk `compatible_pbe` | `0dc17eea904b860ad7288141e9870f67f8e6bb2c` | novelty reference set |
 | LeMat-Bulk MLIP hull | `70d505bb294c16658a9551e2b81ace69a28d9790` | stability hulls for ORB, MACE and UMA |
-| UMA | `facebook/UMA` `f611b917…`, model `uma-s-1`, task `omat` | pre-scoring relaxation and scoring |
+| UMA | `facebook/UMA` `f611b917…`, model `uma-s-1`, task `omat` | submitted-geometry energy and sampled displacement |
 | ORB | `orb_v3_conservative_inf_omat` | scoring |
 | MACE | `mace_mp()` from `mace-torch==0.3.13` | scoring |
 

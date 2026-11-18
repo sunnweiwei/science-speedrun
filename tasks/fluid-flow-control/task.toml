@@ -10,13 +10,13 @@ keywords = ["model-development", "autoresearch", "fluid-control", "reinforcement
 
 [metadata]
 readiness = "39-case frozen data and physical metrics; 38 specialist baselines independently verified, final case ongoing; portable shared PPO starter and multi-metric Harbor verifier; not a full-paper or shared-model SOTA claim"
-research_cost_scope = "4000 controls per case is a planning reference, not validated convergence: 30 single-H100 cases within 50 hours, 5 borderline cases, one expensive single-GPU case, and 3 explicit two-H100 exceptions"
+research_cost_scope = "4000 controls per case is a planning reference, not validated convergence: 30 single-H100 cases within 50 hours, 5 borderline cases, one expensive single-GPU case, and 3 dual-rank MAIA cases (distinct 2xH100 binding when >=2 GPUs are visible, or shared 1x80GB H100 binding via HYDROGYM_ALLOW_SHARED_GPU=1)"
 data_release = "hydrogym-public-research-v2"
 data_budget_bytes = 500000000000
 training_regime = "known-task multi-task RL; not held-out-task or zero-shot evaluation"
 data_env_var = "TASK_DATA_DIR"
 metric_version = "hydrogym-physical-metrics/v1"
-scoring = "39 named physical metrics, with documented directions; no mixed-unit scalar aggregate"
+scoring = "10-family equal-weight mean (grouped by case.split('_')[0]) of clipped [-1, 1] signed relative improvement over paired zero control on 26 frozen cases (failed case = -1), clipped to [0, 1]; raw physical metrics and failures also reported"
 
 [agent]
 timeout_sec = 172800.0          # external development budget (TASK_STANDARD default); the agent is not told
@@ -33,9 +33,9 @@ build_timeout_sec = 14400.0
 [verifier]
 environment_mode = "separate"
 network_mode = "no-network"
-# Replay budget only. Research duration is chosen by the runner. The 26-case suite runs side by side on
-# eight GPUs: 2 h 21 min on 8xH100 for an agent package (2026-10-16), set by Cube_3D_Re3700 (two GPUs,
-# 2.3 h); 3.9 h when other jobs shared the host's GPUs.
+# Replay budget only. Research duration is chosen by the runner. Supports multi-GPU distinct rank binding
+# (e.g. 8xH100 / 2xH100) as well as 1x80GB H100 shared-GPU execution (HYDROGYM_ALLOW_SHARED_GPU=1,
+# mpirun --oversubscribe) across the 26-case blind multi-seed verifier suite.
 timeout_sec = 43200.0
 
 [verifier.environment]

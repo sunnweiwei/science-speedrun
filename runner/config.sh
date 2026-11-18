@@ -34,6 +34,10 @@ MOUNT_ROOTS="${MOUNT_ROOTS:-}"
 # GRACE_SECONDS after the research time (HOURS). The package from the end of research stays the
 # result; a package changed in the window is scored apart.
 GRACE_SECONDS="${GRACE_SECONDS:-0}"
+# Sealed verifier files (tests/sealed/SHA256SUMS) are not in public checkouts: point SEALED_DIR at a
+# checkout of the private task repository. stage_sealed.sh copies and checks them before scoring.
+SEALED_DIR="${SEALED_DIR:-}"
+export SEALED_DIR
 
 runner_mounts() {
   local d

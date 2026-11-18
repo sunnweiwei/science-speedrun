@@ -43,7 +43,8 @@ mkdir -p "$OLMO_EVAL"
 ln -sT /workspace/data/eval "$OLMO_EVAL/eval"
 ```
 
-The complete view has 1,115 training / 344 validation AWF rows and
+The complete development view has 1,053 spatially isolated training / 201
+validation AWF rows (with all 205 blind spatial test rows excluded) and
 31,175 / 8,262 LFMC rows, with no test rows. Reuse this same population across
 the trained encoder, random encoder and raw-feature baseline. A reduced view
 is a diagnostic, not a comparable full-validation result.
@@ -142,18 +143,22 @@ alongside AWF balanced accuracy and LFMC RMSE/R². The starter's reported
 adaptively selected recipe and training seed. They are not a final verifier
 reward or evidence of untouched-test generalization.
 
-The separate verifier independently replays the delivered package and uses the
-existing reward:
+The separate verifier independently replays the delivered package and scores AWF
+on the 205-window spatially disjoint blind test split using the frozen cosine
+`20-NN` probe (`temperature = 0.07`, fitted on the 1,053 spatial training
+windows) and LFMC on the held-out test split by **MAE** (NOT RMSE) using the
+validation-selected frozen ridge probe:
 
 ```text
-LFMC test skill = max(0, 1 - LFMC test MAE / max(constant_test_MAE, 1e-12))
-reward = 0.5 * (AWF validation accuracy + LFMC test skill)
+awf_skill = (awf_test_accuracy - 59/205) / (1 - 59/205)
+lfmc_skill = 1.0 - lfmc_test_mae / 24.435180349813233
+signed_score = 0.5 * awf_skill + 0.5 * lfmc_skill
+score = clip(signed_score, 0.0, 1.0)
 ```
 
-Accuracy is a fraction in this formula. LFMC probe settings are selected on
-validation before final-test scoring; the constant predictor is fitted on
-training labels; `constant_test_MAE` is its test MAE. Final-test labels remain outside the agent workspace, and
-final scoring follows checkpoint and hyperparameter selection. None of the
+`awf_test_accuracy` is a fraction in `[0, 1]`, `59/205` is the spatial test
+majority-class fraction, and `24.435180349813233` is the frozen test MAE of the
+LFMC training-label mean constant predictor. Final-test imagery/labels for the
+205 AWF test windows and LFMC test labels remain outside the agent workspace,
+and final scoring follows checkpoint and hyperparameter selection. None of the
 development commands above requests `--final-test` or invokes the final grader.
-Independent replay checks the delivered artifact; it does not turn earlier
-public validation development into a blind holdout study.

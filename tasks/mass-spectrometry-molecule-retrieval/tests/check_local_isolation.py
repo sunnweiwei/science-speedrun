@@ -59,8 +59,10 @@ assert os.getuid() == 0  # mapped root only, with all capabilities dropped
 status = pathlib.Path('/proc/self/status').read_text()
 assert 'CapEff:\\t0000000000000000' in status
 pools = {r['candidate_pool_id']: [c['candidate_id'] for c in r['candidates']] for r in map(json.loads, (input_root/'candidate_pools.jsonl').read_text().splitlines())}
+queries = list(map(json.loads, (input_root/'queries.jsonl').read_text().splitlines()))
+assert len({r['candidate_pool_id'] for r in queries}) == len(queries), 'a same-pool pair reached an invocation'
 with (output_root/'rankings.jsonl').open('w') as f:
-    for row in map(json.loads, (input_root/'queries.jsonl').read_text().splitlines()):
+    for row in queries:
         f.write(json.dumps({'query_id': row['query_id'], 'ranking': pools[row['candidate_pool_id']]})+'\\n')
 print('private paths absent; mounts read-only; external route unavailable; effective capabilities empty')
 '''

@@ -55,33 +55,45 @@ count toward metrics.
 
 ## Development and final scoring
 
-Development evaluation uses the complete downstream train/validation data.
-Frozen probes fit only downstream training labels, including training-only
-standardization; probe parameters are selected using validation scores. AWF
-uses logistic regression with C in `[0.001, 0.01, 0.1, 1, 10, 100]`; LFMC uses
-ridge regression with alpha in `[0.01, 0.1, 1, 10, 100, 1000, 10000]`. Keep these
-searches, declared splits, preprocessing, missingness handling and spatial
-pooling unchanged. Use AWF validation accuracy and LFMC validation MAE to guide
-development, together with the reported secondary metrics and controls.
+Development evaluation uses the spatially isolated downstream train/validation
+views (`/workspace/data/eval/awf`: 1,053 training and 201 validation windows,
+with all 205 spatial blind-test windows and any spatially overlapping raw
+windows excluded; `/workspace/data/eval/lfmc`: 31,175 training and 8,262
+validation rows). Frozen probes fit only downstream training labels: during
+development `probes.py` reports both standardized logistic regression (`C` in
+`[0.001, 0.01, 0.1, 1, 10, 100]`) and cosine `20-NN` (`temperature = 0.07` on
+unstandardized features) on AWF validation, and standardized ridge regression
+(`alpha` in `[0.01, 0.1, 1, 10, 100, 1000, 10000]`) on LFMC validation. Keep
+these searches, declared splits, preprocessing, missingness handling and spatial
+pooling unchanged. Use AWF validation accuracy (`20-NN` and logistic) and LFMC
+validation **MAE** to guide development, together with the reported secondary
+metrics and controls.
 
 Final evaluation replays the submitted package with only the installed runtime,
 model and unlabeled HDF5 input mounted into a network-isolated process. Labels
-never enter inference. Probe fitting and scoring run separately. LFMC test
-scoring follows checkpoint and hyperparameter selection; AWF scores remain
-validation scores because its public release has no independent test split.
+never enter inference. Probe fitting and scoring run separately. AWF is scored
+on the sealed 205-window spatially disjoint blind test split (`pairs_across_splits == 0`)
+using the frozen cosine `20-NN` classifier (`temperature = 0.07`) fitted on the
+1,053 spatial training windows (with the 201 spatial validation windows retained
+as a diagnostic). LFMC is scored on the held-out test split by **Mean Absolute
+Error (MAE, NOT RMSE)** using the validation-selected frozen ridge probe.
 
-The final reward, with higher values better, is:
+The final score (`reward.json["score"]` and `reward.json["reward"]`), with
+higher values better, is:
 
 ```text
-lfmc_skill = max(0, 1 - LFMC_test_MAE / max(constant_test_MAE, 1e-12))
-reward = 0.5 * (AWF_validation_accuracy + lfmc_skill)
+awf_skill = (awf_test_accuracy - 59/205) / (1 - 59/205)
+lfmc_skill = 1.0 - lfmc_test_mae / 24.435180349813233
+signed_score = 0.5 * awf_skill + 0.5 * lfmc_skill
+score = clip(signed_score, 0.0, 1.0)
 ```
 
-Accuracy is a fraction in `[0,1]`. `constant_test_MAE` is the LFMC test MAE of
-the constant predictor whose value is the downstream training-label mean.
-LFMC validation MAE is a development metric and is not substituted into this
-final reward. The starter's reported validation pair therefore does not
-establish a final reward or an untouched-test result.
+`awf_test_accuracy` is a fraction in `[0, 1]`, `59/205` is the majority-class
+fraction on the 205-window AWF spatial test split, and `24.435180349813233` is
+the frozen LFMC test **MAE** of the constant predictor equal to the downstream
+training-label mean. Both signed skills are averaged before top-level `[0, 1]`
+clipping. Validation metrics are development diagnostics and are never
+substituted into the final score.
 
 
 ## Delivery and failure behavior

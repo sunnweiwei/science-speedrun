@@ -10,6 +10,7 @@ ENV OLMO_INFERENCE_HASHSEED=0
 WORKDIR /workspace
 COPY tests /tests
 COPY environment/evaluation /evaluation
+COPY environment/data/awf_spatial_dev_splits.json /evaluation/awf_spatial_dev_splits.json
 COPY environment/baseline/starter /starter
 RUN mkdir -p /data/eval/awf /data/eval/lfmc && touch /data/eval/awf/inputs.h5 /data/eval/lfmc/inputs.h5
 # Harbor starts the verifier with its own command and then runs /tests/test.sh; an entrypoint that

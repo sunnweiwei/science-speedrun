@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import hmac
 import json
 import os
 from pathlib import Path
@@ -86,8 +87,83 @@ def replay(package: Path, inputs: Path, output: Path, scratch: Path,
             raise ValueError(f"inference exited with status {code}; see inference.log")
 
 
+def _run_swapped_pocket_diagnostic(
+    package: Path,
+    data_root: Path,
+    runtime: Path,
+    output: Path,
+    primary_metrics: dict,
+    primary_seed: bytes,
+    timeout: float,
+) -> dict:
+    """Replay inference on pocket-swapped targets as a strictly diagnostic check."""
+    swapped_mapping = output / "private-order-swapped"
+    if swapped_mapping.exists():
+        shutil.rmtree(swapped_mapping)
+    swapped_inputs = runtime / "swapped_inputs"
+    swapped_seed = hmac.digest(primary_seed, b"swapped-pocket-counterfactual/v1", "sha256")
+    stage_inputs(
+        data_root,
+        swapped_inputs,
+        swapped_mapping,
+        full_suite=True,
+        seed=swapped_seed,
+        swap_pockets=True,
+    )
+    readonly_tree(swapped_inputs)
+    swapped_predictions = runtime / "swapped_predictions"
+    swapped_predictions.mkdir()
+    os.chown(swapped_predictions, INFERENCE_UID, INFERENCE_UID)
+    swapped_predictions.chmod(0o700)
+    swapped_scratch = runtime / "swapped_scratch"
+    swapped_scratch.mkdir()
+    os.chown(swapped_scratch, INFERENCE_UID, INFERENCE_UID)
+    swapped_scratch.chmod(0o700)
+    try:
+        replay(
+            package,
+            swapped_inputs,
+            swapped_predictions,
+            swapped_scratch,
+            output / "swapped_inference.log",
+            timeout,
+        )
+        swapped_csv = swapped_predictions / "scores.csv"
+        if swapped_csv.is_symlink() or not swapped_csv.is_file():
+            raise ValueError("swapped-pocket inference did not produce a regular scores.csv")
+        swapped_metrics = evaluate(
+            data_root, swapped_csv, swapped_mapping, require_full_suite=True
+        )
+        swapped_dude = swapped_metrics["benchmarks"]["dude"]["mean_bedroc_80.5"]
+        swapped_lit = swapped_metrics["benchmarks"]["lit_pcba"]["mean_bedroc_80.5"]
+        swapped_score = swapped_metrics["dataset_balanced_bedroc"]
+        primary_dude = primary_metrics["benchmarks"]["dude"]["mean_bedroc_80.5"]
+        primary_lit = primary_metrics["benchmarks"]["lit_pcba"]["mean_bedroc_80.5"]
+        primary_score = primary_metrics["dataset_balanced_bedroc"]
+        return {
+            "status": "ok",
+            "dude_bedroc_80.5": swapped_dude,
+            "lit_pcba_bedroc_80.5": swapped_lit,
+            "dataset_balanced_bedroc": swapped_score,
+            "pocket_specificity_delta": primary_score - swapped_score,
+            "dude_pocket_specificity_delta": primary_dude - swapped_dude,
+            "lit_pcba_pocket_specificity_delta": primary_lit - swapped_lit,
+            "overall_mean_roc_auc": swapped_metrics["overall_mean_roc_auc"],
+            "overall_mean_ef_0.01": swapped_metrics["overall_mean_ef_0.01"],
+            "permutation_manifest_sha256": hashlib.sha256(
+                (swapped_mapping / "manifest.json").read_bytes()
+            ).hexdigest(),
+        }
+    except (ValueError, KeyError, TypeError, OSError) as cf_error:
+        return {
+            "status": "diagnostic_error",
+            "error": str(cf_error),
+        }
+
+
 def grade(submission: Path, data_root: Path, output: Path, timeout: float = 79200.0,
-          *, permutation_seed_file: Path | None = None) -> dict:
+          *, permutation_seed_file: Path | None = None,
+          run_swapped_pocket_diagnostic: bool = True) -> dict:
     output.mkdir(parents=True, exist_ok=True)
     output.chmod(0o700)
     reward_path = output / "reward.json"
@@ -133,11 +209,17 @@ def grade(submission: Path, data_root: Path, output: Path, timeout: float = 7920
             if csv_path.is_symlink() or not csv_path.is_file():
                 raise ValueError("inference did not produce a regular scores.csv")
             metrics = evaluate(data_root, csv_path, mapping, require_full_suite=True)
-            metrics["permutation_manifest_sha256"] = hashlib.sha256(
-                (mapping / "manifest.json").read_bytes()).hexdigest()
-            result = {"reward": metrics["dataset_balanced_bedroc"], "valid": True, **metrics}
+            manifest_bytes = (mapping / "manifest.json").read_bytes()
+            metrics["permutation_manifest_sha256"] = hashlib.sha256(manifest_bytes).hexdigest()
+            if run_swapped_pocket_diagnostic:
+                primary_seed = bytes.fromhex(json.loads(manifest_bytes)["seed_hex"])
+                metrics["swapped_pocket_counterfactual"] = _run_swapped_pocket_diagnostic(
+                    package, data_root, runtime, output, metrics, primary_seed, timeout
+                )
+            primary_score = metrics["dataset_balanced_bedroc"]
+            result = {"score": primary_score, "reward": primary_score, "valid": True, **metrics}
         except (ValueError, KeyError, TypeError, OSError) as error:
-            result = {"reward": 0.0, "valid": False, "error": str(error),
+            result = {"score": 0.0, "reward": 0.0, "valid": False, "error": str(error),
                       "schema": REPORT_SCHEMA, "scoring_protocol": SCORING_PROTOCOL}
         # The shared runner collects report.json. Keep details.json for existing readers.
         report = json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n"
@@ -145,7 +227,7 @@ def grade(submission: Path, data_root: Path, output: Path, timeout: float = 7920
             temporary = path.with_suffix(".json.tmp")
             temporary.write_text(report)
             temporary.replace(path)
-        scores = {"reward": result["reward"]}
+        scores = {"score": result["score"], "reward": result["reward"]}
         if result["valid"]:
             scores.update((k, v) for k, v in result.items() if k.startswith("overall_mean_") or k == "dataset_balanced_bedroc")
         reward_temporary = reward_path.with_suffix(".json.tmp")

@@ -243,6 +243,8 @@ has passed +0.45.*
 The readiness record, the review findings and their fixes are in
 [`docs/BENCHMARK_READINESS.md`](docs/BENCHMARK_READINESS.md) and `docs/release_validation.json`.
 
+The observation-grid equation control scores **0.53588** on the 1,085-case split. Its APE2D VRMSE is **0.17928** (group reward **0.58216**, with three failed Burgers trajectories). On PDEArena, the released PhiFlow stepper reconstructs all ten target frames of all 200 trajectories exactly from the final public frame. On The Well datasets the same control uses persistence. This diagnostic uses CPU scientific solvers and has a different inference cost from the learned models. [Runnable control and measured groups](docs/validation/numerical_controls/README.md).
+
 ## 7. Limitations
 
 - The frozen score uses the four pinned sources and this task's split.

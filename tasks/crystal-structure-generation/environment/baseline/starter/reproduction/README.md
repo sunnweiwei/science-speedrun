@@ -17,3 +17,5 @@ reward 0.208 (SUN + MetaSUN). The verifier's request uses a different, private s
 | `score_report.json` | the LeMat-GenBench report on the relaxed set: the counts (valid, unique, novel, stable, metastable, SUN, MetaSUN) and every upstream benchmark result (validity, distribution, diversity, novelty, uniqueness, HHI, SUN, stability) |
 
 Extract the archives under `/workspace/research` with `tar xzf`.
+
+The corrected v4 score of 0.1752 on these same fixed structures has a separate [summary with hashes and counts](v4_score_summary.json). `score_report.json` preserves the original acceptance run.

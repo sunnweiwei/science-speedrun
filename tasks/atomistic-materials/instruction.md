@@ -25,8 +25,22 @@ near- and off-equilibrium structures. Improvements in stability screening can wo
 Data selection, mixtures, energy referencing, losses and optimization are part of the task; the
 four training sources have different DFT settings and incompatible absolute energy scales.
 
-The headline objective is **Crystal Potential Score v2**, a fixed 0–100 score with equal weight
-for all eight suites. All 15 raw metrics remain visible. See the contract for normalization.
+The headline objective (`score` and `reward` in `reward.json`, in `[0, 1]`, higher is better) is the
+**SSI V4 eight-suite equal arithmetic mean** (`1/8` weight per suite), calibrated against frozen
+zero-force anchors (`ZeroForce + D3(BJ)` for MOF mechanics) in `/workspace/evaluation/atom_zero_force_anchors.json`:
+
+- `Discovery`: `(discovery_F1 - base) / (1 - base)`, where `base = 2 * 0.1648 / (1 + 0.1648)`
+- `Phonons`: `1 - phonon_avg_freq_MAE_K / 419.2277237301322`
+- `Elasticity`: `0.5 * ((1 - bulk_modulus_MAE_GPa / 107.020216) + (1 - shear_modulus_MAE_GPa / 54.186936))`
+- `Thermal conductivity`: `1 - kappa_SRME / 2.0`
+- `Metal–organic frameworks`: `1 - mof_bulk_modulus_MAPE_pct / d_mof` (`d_mof` from `atom_zero_force_anchors.json`)
+- `Amorphous materials`: `0.5 * ((1 - amorphous_energy_RelRMSE_pct / 100.0) + (1 - amorphous_force_RelRMSE_pct / 100.0))`
+- `Cleavage`: `1 - cleavage_relMAE_pct / 100.0`
+- `Migration barriers`: `1 - neb_barrier_MAE_eV / 0.6803895877435844`
+
+The eight unclipped suite terms are averaged equally (`signed_score = mean(terms)`), and clipped at
+the top level: `score = reward = clip(signed_score, 0, 1)`. All 15 raw metrics and the historical
+`Crystal Potential Score v2` (0–100 diagnostic) remain visible. See `/workspace/contract.md` for full details.
 
 ## Workspace
 

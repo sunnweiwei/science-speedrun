@@ -136,12 +136,17 @@ included in this repository.
 ```bash
 docker build -f runner/Dockerfile.runner -t harbor-runner:0.23.0-bx runner
 export EVAL_ROOT=/persistent/speedrun CODEX_PKG=/opt/codex-0.160.1 MOUNT_ROOTS="/data /opt/codex-0.160.1"
+export SEALED_DIR=/path/to/ai4sci-tasks                         # sealed verifier files (3 tasks), see runner/README.md
 runner/selftest.sh                                              # install check, ~2 min, no GPU
 runner/prepare.sh surface-code-decoding /data/surface-code      # data + $EVAL_ROOT/envs/<task>.env
 AGENT_KIND=codex HOURS=24 runner/run.sh surface-code-decoding   # session, then independent score
 AGENT_KIND=claude-code HOURS=48 runner/run.sh pde-surrogate
 runner/score_snapshots.sh NAME 6                                # reward over time from the run's snapshots
 ```
+
+The reported runs used 48 h, a five-minute submission window and `xhigh` effort for Claude Code:
+`GRACE_SECONDS=300 CLAUDE_REASONING=xhigh AGENT_KIND=claude-code HOURS=48 runner/run.sh TASK` (Codex:
+`GRACE_SECONDS=300 AGENT_KIND=codex HOURS=48`). See [CHANGES.md](CHANGES.md).
 
 Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code authentication, resources, two-phase scoring and pitfalls.
 
@@ -150,7 +155,10 @@ Setup details are in [runner/README.md](runner/README.md): Codex and Claude Code
 ```text
 tasks/<task>/        Harbor tasks (instruction, environment, tests, docs); see TASK_STANDARD.md
 runner/              one-command sessions, snapshots and scoring (Harbor 0.23; Codex, Claude Code or Antigravity/Gemini)
+harness/             the SSI index computed from the verifiers' receipts, and its tests
+docs/                the metric documents (SSI benchmark, metric validity, measurement sources)
 TASK_STANDARD.md     the task format: workspace, instruction, verifier, data
+CHANGES.md           what changed, and the settings of the reported runs
 ```
 
 ## Data and licenses

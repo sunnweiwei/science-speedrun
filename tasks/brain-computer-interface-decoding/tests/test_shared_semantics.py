@@ -4,10 +4,16 @@ import sys
 import unittest
 from pathlib import Path
 
-import torch
+try:
+    import torch
+except ModuleNotFoundError as exc:
+    raise unittest.SkipTest(f'Requires PyTorch container runtime: {exc}')
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'environment/baseline/braindecode'))
-from shared import chunk_signal
+try:
+    from shared import chunk_signal
+except ModuleNotFoundError as exc:
+    raise unittest.SkipTest(f'Requires braindecode container runtime: {exc}')
 from sampling import CyclingBatchSampler
 
 

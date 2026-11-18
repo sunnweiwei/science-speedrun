@@ -4,12 +4,16 @@
 
 Develop a learned model that ranks candidate small molecules for a protein
 binding pocket. Better early retrieval helps prioritize compounds for
-experimental screening. The primary reward is BEDROC(alpha=80.5), averaged
-across targets within DUD-E and LIT-PCBA, then averaged equally between the
-two datasets. It emphasizes early retrieval and ranges from 0 to 1; higher
-is better. Both datasets must be complete (102 DUD-E and 15 LIT-PCBA targets).
-ROC-AUC and EF at 0.5%, 1%, 2%, and 5% are reported separately for diagnosis.
-This is a ranking score, not accuracy or the fraction of the task solved.
+experimental screening. The primary score (`score` / `reward` in `reward.json`)
+is BEDROC(alpha=80.5), averaged across targets within DUD-E and LIT-PCBA, then
+averaged equally between the two datasets:
+
+    score = 0.5 * mean_DUDE(BEDROC_80.5) + 0.5 * mean_LIT_PCBA(BEDROC_80.5)
+
+It emphasizes early retrieval and ranges from 0 to 1; higher is better. Both
+datasets must be complete (102 DUD-E and 15 LIT-PCBA targets). ROC-AUC and EF
+at 0.5%, 1%, 2%, and 5% are reported separately for diagnosis. This is a
+ranking score, not accuracy or the fraction of the task solved.
 
 Keep one shared model package and one fixed learned parameter set for both
 benchmarks and all targets. The supplied DrugCLIP reference has 95,305,418

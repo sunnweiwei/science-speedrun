@@ -11,13 +11,15 @@ same reason) and the manifest, replays `bash infer.sh INPUT_DIR OUTPUT_DIR` from
 submission under a wall-clock limit, scores every case with
 `environment/evaluation/score.py`, and writes
 `/logs/verifier/{reward.json, report.json, status.json, infer.log}`.
-`reward.json` carries the raw `reward`, the `normalised_score` between the
-track's floor and ceiling (`evaluation/score_bounds.json`, baked into the image
-beside the grader) and the `isolation` mode. After scoring it reruns the package
-on three staged cases under the same isolation and records the maximum absolute
-difference in `status.json` (`determinism`); a nonzero difference is reported,
-not penalized, since the contract requires deterministic inference. Inference
-and the rerun share the one time budget. Each call gets an empty `HOME`/`TMPDIR` that is removed
+`reward.json` carries the unified scalar `score` and `reward` matching
+`ssi_index_v3.pde()` (the legacy `normalised_score` field has been removed in V4),
+while `report.json` additionally records `inference_wall_seconds` as an
+unpenalized runtime diagnostic and `status.json` records the `isolation` mode.
+After scoring it reruns the package on three staged cases under the same
+isolation and records the maximum absolute difference in `status.json`
+(`determinism`); a nonzero difference is reported, not penalized, since the
+contract requires deterministic inference. Inference and the rerun share the one
+time budget. Each call gets an empty `HOME`/`TMPDIR` that is removed
 afterwards. In uid mode every call then ends with `isolation.after_uid_call`:
 every process of the runner uid is killed (a detached child would otherwise
 outlive the call), the call's output and home go back to root with mode 0700,
@@ -54,7 +56,7 @@ a JSON object is a rule violation (reward 0).
   `isolation_detail`). Where no namespace works and the verifier is root, the
   package runs as uid 10001 while the truth, `/private` and `/tests` stay
   root-only (the boundary protein-sequence-modeling's verifier uses; the integrator
-  ran it under Docker). `reward.json` says which (`"bwrap"` or `"uid"`). With neither
+  ran it under Docker). `status.json` says which (`"bwrap"` or `"uid"`). With neither
   available the verifier refuses to score unless the operator sets
   `PDE_SURROGATE_ALLOW_NO_ISOLATION=1`, and then marks the run untrusted,
   because an unsandboxed replay proves much less than it looks like it does.
@@ -89,5 +91,31 @@ The verifier image (`Dockerfile`) has not been built on the contributor's
 machine, which has no Docker; it bakes the same files the local driver uses
 (`main_verifier.py`, `isolation.py`, the grader modules, both manifests,
 `score_bounds.json`), installs bubblewrap and the runner uid, and its pins were
-checked to resolve. A test imports `main_verifier.py` from a copy of that layout
-so the bounds file is found where the image puts it.
+checked to resolve.
+
+---
+
+## Scientific & Literature Justification of Verifier Design
+
+### 1. Primary Metric & Upstream Paper Provenance
+
+- **Metric Definition**: On each of the `1,085` held-out test rollouts (`850` across 16 deduplicated `ape2d/*` PDE families at $K = 26$ steps, `200` on `pdearena/navier_stokes_2d` at $K = 10$ steps, `26` on `well/active_matter` at $K = 30$ steps, and `9` on `well/turbulent_radiative_layer_2D` at $K = 30$ steps), rollout accuracy per predicted step $t \in \{1,\dots,K\}$ and channel $c \in \{1,\dots,C\}$ is measured using variance-normalized root-mean-square error with unbiased spatial variance (`ddof=1`, $\varepsilon = 10^{-7}$), clamped to $10.0$:
+  $$\text{VRMSE}_c(t) = \min\!\left(10.0,\; \sqrt{\frac{\operatorname{mean}_{x,y}\!\bigl(\hat{u}_{t,c}(x,y) - u_{t,c}(x,y)\bigr)^2}{\operatorname{var}_{x,y}\!\bigl(u_{t,c}(x,y)\bigr) + 10^{-7}}}\right)$$
+  Averaging equally over channels and rollout steps yields each case's VRMSE, averaging over cases yields each dataset's VRMSE, and datasets aggregate into four equal-weighted benchmark groups $g \in \{\texttt{ape2d}, \texttt{pdearena}, \texttt{well/active\_matter}, \texttt{well/turbulent\_radiative\_layer\_2D}\}$:
+  $$S_{11} = \frac{1}{4} \sum_{g} \frac{1 - \log_{10}\!\bigl(\operatorname{clip}(\bar{v}_g,\, 0.01,\, 10.0)\bigr)}{3} \in [0, 1]$$
+  Every scheduled case stays in the denominator (failed/missing predictions receive `VRMSE = 10.0`, mapping to `0.0`).
+- **Upstream Literature Provenance**:
+  - **Per-channel spatial VRMSE**: Adopted directly from *The Well* (Ohana et al., *NeurIPS* 2024 Datasets & Benchmarks, arXiv:`2412.00568`, commit `ad50de0e`), where normalizing by instantaneous per-channel spatial variance prevents high-magnitude background density/pressure channels from masking small-scale vorticity or concentration errors across multi-physics fields.
+  - **Equation-conditioned corpus & multi-family metadata**: Inherited directly from *APEBench* (Koehler et al., *NeurIPS* 2024, arXiv:`2411.00180`) and *PDE-Transformer* (Koehler et al.), alongside *PDEArena* (Gupta & Brandstetter, *ICLR* 2023 / *TMLR*), where physical metadata (`pde`, `fields`, `field_scheme`, `dt`, `domain_extent`, `boundary_conditions`, `constants`) are part of the canonical operator-conditioning problem definition.
+
+### 2. Why Additional Ad-Hoc Constraints Are Intentionally Omitted
+
+- **No Ad-Hoc Inference Speed Penalty Mixed into the Scalar Score**: McGreivy & Hakim (*Nature Machine Intelligence* 2024, DOI: `10.1038/s42256-024-00897-5`) rightly demonstrate that accuracy-vs-cost Pareto comparisons against coarse numerical solvers are essential when claiming neural PDE speedups. However, inside a containerized 48-hour benchmark evaluation on shared single-GPU hardware, wall-clock inference latency conflates Python/HDF5 I/O batching overheads with intrinsic operator complexity, and none of the upstream multi-equation surrogate benchmarks (*APEBench*, *PDEArena*, *The Well*) fold arbitrary seconds-per-step multipliers into rollout VRMSE. Instead, V4 enforces a uniform 4-hour hard inference budget (`14,400 s`), records `inference_wall_seconds` directly in `report.json`, and publishes an explicit **Observation-grid Coarse Numerical Solver** mechanistic control (`docs/validation/numerical_controls/score.json`, overall `0.5359`: Exponax spectral/ETDRK stepping on `ape2d` `0.5822`, PhiFlow 2.1 staggered-grid continuation on `pdearena` `1.0000`, and persistence on the partially observed/subgrid *Well* transfer suites where governing Observation-grid closures are underdetermined from 4 frames alone) alongside all neural surrogate results.
+- **No Stripping of Upstream Equation Metadata**: Stripping `pde`, `constants`, `dt`, or `boundary_conditions` attributes from `cases/<case_id>.h5` would turn well-posed operator learning into an ill-posed system-identification puzzle from 4 frames—contradicting *PDE-Transformer*, *Poseidon*, and *DPOT* conditioning protocols—while `contract.md` already forbids switching between separately trained per-dataset checkpoints by name.
+
+### 3. Diagnostic Signals Retained in `report.json`
+
+While `reward.json` exports the pure 4-group rollout score (`score` and `reward`), `report.json` (and `status.json`) retains rich physical and operational diagnostics:
+- **Runtime & Determinism Audits**: `inference_wall_seconds` in `report.json`, plus `status.json["inference"]` (`exit_code`, `timed_out`, `isolation`, `wall_seconds`) and `status.json["determinism"]` (`max_abs_difference` across a 3-case isolated cold rerun).
+- **PDE-Transformer Joint-Channel nRMSE**: `nrmse_joint` per case and per dataset (`sqrt(mean_{c,x,y}(pred - target)^2 / (mean_{c,x,y} target^2 + 1e-7))`), allowing direct cross-paper comparison with *PDE-Transformer* tables.
+- **Short / Medium / Long Rollout Horizon Windows**: `vrmse_steps_1_5`, `vrmse_steps_6_12`, and `vrmse_steps_13_30` per case and per dataset (matching *The Well*'s temporal error-accumulation breakdown), plus full `vrmse_by_step` and `vrmse_by_channel` curves.

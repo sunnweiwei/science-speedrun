@@ -14,8 +14,8 @@ def main() -> None:
     parser.add_argument("--input", required=True, type=lambda value: Path(value).resolve())
     parser.add_argument("--generated", required=True, type=lambda value: Path(value).resolve())
     parser.add_argument("--output", required=True, type=lambda value: Path(value).resolve())
-    parser.add_argument("--skip-relaxation", action="store_true",
-                        help="Development diagnostic only: score the supplied geometry without pre-relaxing")
+    parser.add_argument("--as-submitted", "--skip-relaxation", dest="as_submitted", action="store_true",
+                        help="Score the separate submitted-geometry sensitivity protocol")
     args = parser.parse_args()
     rewards, report = evaluate(
         args.input,
@@ -23,7 +23,7 @@ def main() -> None:
         Path("/opt/lemat"),
         Path("/opt/lemat/.venv/bin/python"),
         artifact_root=args.output,
-        skip_relaxation=args.skip_relaxation,
+        skip_relaxation=args.as_submitted,
     )
     write_results(args.output, rewards, report)
 

@@ -7,9 +7,10 @@ under `/workspace/research`. Runtime dependencies are installed in the image.
 | Path | Contents and allowed use |
 |---|---|
 | `/workspace/data/19837/` | 19,837 geographically filtered public pretraining samples; use these for encoder training and derived WorldCover/NDMI supervision. |
-| `/workspace/data/eval/awf/` | `inputs.h5` and `labels.json`: 1,115 training and 344 validation rows. Labels are for frozen probe fitting and model/probe selection. |
+| `/workspace/data/eval/awf/` | `inputs.h5` and `labels.json`: 1,053 spatial training and 201 spatial validation rows (`intersecting_raw_window_pairs == 0` against the 205 excluded blind test windows). Labels are for frozen probe fitting and model/probe selection only. |
 | `/workspace/data/eval/lfmc/` | `inputs.h5` and `labels.json`: 31,175 training and 8,262 validation rows; no test rows or test labels. |
 | `/workspace/data/eval/manifest.json` | Full development-view membership, source hashes and split counts. |
+| `/workspace/data/awf_spatial_dev_splits.json` | Label-free window-ID allowlist for the 1,053 AWF `train` and 201 `val` windows (no test IDs or labels). |
 | `/workspace/data/sources.json` | Pinned public sources, download sizes, hashes and licenses. |
 
 The pretraining pool combines public shards 0000 and 0001, then applies the

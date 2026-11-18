@@ -47,7 +47,7 @@ class Policy:
         self.latencies = []
         self.stderr = Path(stderr_path).open("wb")
         env = {k: v for k, v in os.environ.items()
-               if not k.startswith(("OMPI_", "PMI_", "PMIX_", "MPI_"))}
+               if not k.startswith(("OMPI_", "PMI_", "PMIX_", "MPI_", "SSI_", "TOKAMAK_SEALED"))}
         try:
             self.process = subprocess.Popen(
                 ["bash", str(Path(package).resolve() / "infer.sh")], cwd="/tmp",

@@ -21,6 +21,14 @@ from stitch_ffn import windows
 _raw = _root = _cache = _raw_hash = None
 
 
+def default_workers():
+    # os.cpu_count() reports the host on many container runtimes. One full
+    # window's distance/seed arrays are memory-heavy; bound concurrency without
+    # changing any window, seed or ordering computation.
+    available=len(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else (os.cpu_count() or 1)
+    return max(1,min(8,available))
+
+
 def _init(root, cache, raw_path, raw_hash):
     global _raw, _root, _cache, _raw_hash
     _root, _cache, _raw_hash = root, cache, raw_hash
@@ -42,7 +50,7 @@ def main():
     p.add_argument('--roi', required=True, type=int, nargs=6)
     p.add_argument('--core-size', type=int, default=436); p.add_argument('--margin', type=int, default=32)
     p.add_argument('--clip-boundary-to-image', action='store_true')
-    p.add_argument('--workers', type=int, default=os.cpu_count())
+    p.add_argument('--workers', type=int, default=default_workers())
     a = p.parse_args()
     root, cache, image_path = external(a.root), external(a.cache), external(a.image_manifest)
     if root not in cache.parents or root not in image_path.parents:

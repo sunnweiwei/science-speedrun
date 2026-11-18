@@ -21,10 +21,14 @@ def relative(name):
     return p
 
 
-def materialize(manifest,expected,source,data,private,verify_only=False,fetch=None):
+def materialize(manifest,expected,source,data,private,verify_only=False,fetch=None,overrides=None):
     if digest(manifest)!=expected:raise ValueError('Release manifest hash mismatch')
     release=json.loads(manifest.read_text())
     if release.get('schema')!='pathfinder-resources/v1':raise ValueError('Unknown release schema')
+    # A pinned overlay replaces listed files of the verified release (never adds or removes one).
+    for name,entry in (overrides or {}).items():
+        if name not in release['files']:raise ValueError('Overlay names a file outside the release: '+name)
+        release['files'][name]=dict(sha256=entry['sha256'],bytes=entry['bytes'])
     data=data.resolve();private=private.resolve()
     if data==private or data in private.parents or private in data.parents:
         raise ValueError('Development and private resources must be disjoint')
@@ -74,7 +78,7 @@ def materialize(manifest,expected,source,data,private,verify_only=False,fetch=No
             partial.replace(target)
         except BaseException:
             partial.unlink(missing_ok=True);raise
-    return dict(complete=True,manifest_sha256=expected,files=len(release['files']))
+    return dict(complete=True,manifest_sha256=expected,files=len(release['files']),overlay=sorted(overrides or {}))
 
 
 if __name__=='__main__':

@@ -130,7 +130,8 @@ def test_invalid_package_publishes_zero_versioned_score(tmp_path):
     report = json.loads((output / "report.json").read_text())
     reward = json.loads((output / "reward.json").read_text())
     assert report["aggregate"]["version"] == "crystal-potential-score-v2"
-    assert reward["reward"] == reward["crystal_potential_score"] == 0
+    assert report["ssi_v4"]["version"] == "ssi-atomistic-score-v4"
+    assert reward["score"] == reward["reward"] == reward["crystal_potential_score"] == 0
     assert reward["invalid_submission"] is True
     # Harbor rejects unavailable metrics serialized as null.
     assert all(isinstance(value, (int, float)) and np.isfinite(value) for value in reward.values())

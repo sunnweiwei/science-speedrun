@@ -20,6 +20,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cellscore import score_context  # noqa: E402
+from calibrated_reward_v2 import score_context as calibrated_skill, score_context_v3
+from population_metrics_v2 import load_or_build_bundle, prediction_means, score_against_bundle
 
 
 def main() -> None:
@@ -51,9 +53,21 @@ def main() -> None:
         baseline_dir = split / "noeffect" if (split / "noeffect").exists() else None  # shipped no-effect + real DE cache
         report = score_context(out / "predictions.h5ad", split / "basal.h5ad", split / "responses.h5ad",
                                split / "requests.jsonl", fold / "score", threads=a.threads, baseline_dir=baseline_dir)
-        summary[held] = {"score": report["all"]["score"], "normalised": report["all"]["normalised"],
+        bundle = load_or_build_bundle(split, split / 'requests.jsonl', fold / 'wmse_v2', development=True)
+        means = prediction_means(out / 'predictions.h5ad', split / 'basal.h5ad', split / 'requests.jsonl', bundle['roster'])
+        measured = score_against_bundle(means, bundle)
+        grade_v2 = calibrated_skill(loss=measured['loss'], negative_loss=bundle['negative_loss'],
+                                    repeat_loss=bundle['repeat_loss'], gap_lower95=bundle['gap_lower95'])
+        grade_v3 = score_context_v3(loss=measured['loss'], negative_loss=bundle['negative_loss'],
+                                    repeat_loss=bundle['repeat_loss'], gap_lower95=bundle['gap_lower95'],
+                                    nir=measured['nir'], repeat_nir=measured['repeat_nir'],
+                                    targets=len(bundle['roster']))
+        summary[held] = {"score": grade_v3['context_score'], "v3": grade_v3, "v2": grade_v2,
+                         "v1_score": report["all"]["score"], "normalised": report["all"]["normalised"],
                          "raw": report["all"]["raw"], "seconds": round(time.time() - t0, 1)}
-        print(f"[loco] holdout {held}: score {report['all']['score']:.4f} {report['all']['normalised']}")
+        print(f"[loco] holdout {held}: V3 context score {grade_v3['context_score']:.4f} "
+              f"(signed {grade_v3['signed_context']:.4f}, amp {grade_v3['amplitude_skill']:.4f}, "
+              f"id {grade_v3['identification_skill']:.4f})")
     summary["mean_score"] = sum(v["score"] for v in summary.values()) / len(summary)
     (a.outdir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(json.dumps({k: (v["score"] if isinstance(v, dict) else v) for k, v in summary.items()}, indent=2))

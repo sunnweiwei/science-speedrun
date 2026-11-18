@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ $# -ne 3 ]]; then
-  echo "usage: score.sh INPUT_DIR GENERATED_DIR SCORE_DIR" >&2
+if [[ $# -lt 3 || $# -gt 4 || ( $# == 4 && "$4" != "--as-submitted" ) ]]; then
+  echo "usage: score.sh INPUT_DIR GENERATED_DIR SCORE_DIR [--as-submitted]" >&2
   exit 2
 fi
 
@@ -18,4 +18,4 @@ export TRANSFORMERS_OFFLINE=1
 exec /opt/lemat/.venv/bin/python /workspace/evaluation/score.py \
   --input "$1" \
   --generated "$2" \
-  --output "$3"
+  --output "$3" "${@:4}"

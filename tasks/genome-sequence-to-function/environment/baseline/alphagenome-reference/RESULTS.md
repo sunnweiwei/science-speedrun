@@ -8,7 +8,7 @@ Reproduced on 2026-10-01 on one 8× H100 80 GB host with the commands in [README
 
 Checkpoint `last.pt`: sha256 `5388434c…77ee`. The package is 2.5 GB.
 
-## Tracks (reward metric)
+## Tracks (`tracks_axis`, weight `0.5`)
 
 | family | validation (200, `score.py`) | test (1,000, verifier) |
 |---|---:|---:|
@@ -23,24 +23,28 @@ Checkpoint `last.pt`: sha256 `5388434c…77ee`. The package is 2.5 GB.
 | splice usage | 0.028 | 0.023 |
 | junctions | 0.000 | 0.000 |
 | contact maps | 0.273 | 0.326 |
-| **mean over families (reward)** | **0.302** | **0.3106** |
+| **5-modality `tracks_axis`** | **0.318** | **0.332** |
+| mean over 11 families (diagnostic) | 0.302 | 0.3106 |
 
 The splicing families are near zero. The splice-site loss is a per-base binary cross-entropy
 averaged over 786,432 positions, of which about 0.1 % are sites. Its gradient therefore
 vanishes next to the dense losses. Usage and junction outputs depend on the predicted sites.
 This is the unchanged reference recipe. Fixing it is part of the research.
 
-## Variant evaluations
+## Variant evaluations (`variants_axis`, weight `0.5`)
 
-The anchor column is AlphaGenome's score, except for TraitGym, which shows CADD, the strongest of
-its anchors. Anchors are computed on the same rows.
+The anchor column reports pure single-genome sequence-to-function models on the exact same rows:
+AlphaGenome's released predictions on the first 4 branches (10 of the 12 calibrated evaluations;
+no released TraitGym predictions), and Enformer / Borzoi on TraitGym. Multi-species evolutionary
+conservation tools are excluded from pure-sequence anchor comparisons because cross-species
+alignments are outside the single-genome DNA-only contract.
 
-| evaluation | metric | chance | valid (dev split) | anchor (valid) | test | anchor (test) |
+| evaluation | metric | chance | valid (dev split) | pure-seq anchor (valid) | test | pure-seq anchor (test) |
 |---|---|---:|---:|---:|---:|---:|
-| eQTL sign | AUROC | 0.50 | 0.543 | 0.826 | 0.494 | 0.813 |
+| eQTL sign (diagnostic only) | AUROC | 0.50 | 0.543 | 0.826 | 0.494 | 0.813 |
 | eQTL causality | AUROC | 0.50 | 0.546 | 0.833 | 0.547 | 0.827 |
 | eQTL effect size | Spearman | 0 | 0.085 | 0.413 | −0.019 | 0.499 |
-| sQTL causality | AUPRC | — | 0.731 | 0.845 | 0.734 | 0.860 |
+| sQTL causality | AUPRC | 0.57 | 0.731 | 0.845 | 0.734 | 0.860 |
 | ClinVar non-coding | AUPRC | 0.20 | 0.168 | 0.941 | 0.207 | 0.928 |
 | ClinVar splice region | AUPRC | 0.20 | 0.201 | 0.722 | 0.209 | 0.581 |
 | ClinVar missense | AUPRC | 0.20 | 0.190 | 0.374 | 0.205 | 0.357 |
@@ -48,8 +52,10 @@ its anchors. Anchors are computed on the same rows.
 | caQTL | AUPRC | 0.20 | 0.147 | 0.808 | 0.178 | 0.762 |
 | SPI1 bQTL | AUPRC | 0.20 | 0.186 | 0.817 | 0.186 | 0.804 |
 | CRISPRi enhancer–gene | AUPRC | 0.20 | 0.407 | 0.959 | 0.393 | 0.869 |
-| TraitGym Mendelian | AUPRC | 0.10 | 0.184 | CADD 0.719 | 0.153 | CADD 0.743 |
-| TraitGym complex | AUPRC | 0.10 | 0.187 | CADD 0.413 | 0.192 | CADD 0.295 |
+| TraitGym Mendelian | AUPRC | 0.10 | 0.184 | Enformer 0.545 / Borzoi 0.503 | 0.153 | Enformer 0.471 / Borzoi 0.459 |
+| TraitGym complex | AUPRC | 0.10 | 0.187 | Borzoi 0.295 / Enformer 0.269 | 0.192 | Enformer 0.335 / Borzoi 0.290 |
+| **5-branch `variants_axis`** | — | 0.00 | **0.106** | — | **~0.091** | — |
+| **Combined V4 `score` (`0.5*tracks + 0.5*variants`)** | — | 0.00 | **0.2124** | — | **~0.2117** | — |
 
 Besides sQTL and enhancer–gene linking, the baseline is near chance on variant effects, although
 its track Pearson roughly doubled over the tiny model. Two checks rule out a scoring artifact:

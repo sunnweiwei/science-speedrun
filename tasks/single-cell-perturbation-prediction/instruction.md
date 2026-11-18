@@ -22,21 +22,39 @@ separately reported stratum of the score:
 | Q2 | For responsive targets, which part of the response is context-invariant (core complexes) and which part is rewired? | per-stratum DES / PDS; the operator report adds conserved vs. context-specific DE gene sets |
 | Q3 | Targets never perturbed in any training context | `seen` vs. `withheld` targets |
 
-Q1 decides most of the score (DES and PDS are both gated on predicting an effect at all), Q2 is
-where a scientific result would come from, and Q3 is the long-run capability.
+The primary score (`score` / `reward` in `reward.json`) measures both **response amplitude** and
+**perturbation-specific target identification** across the three held-out contexts (`near`, `mid`,
+`far`). For each context $c$, the grader converts each cell to `log1p(counts per 10,000)`, averages
+by target, and excludes the directly perturbed target gene's readout when present:
 
-The score of a test context is the mean of seven `cell-eval` 0.8.2 Generalist metrics (DES, PDS,
-MAE, Pearson-delta, Spearman of significant-gene LFC, AUPRC of DE recovery, Spearman of effect
-size), each normalised against the no-effect baseline and clipped at 0. The reward is the mean over
-the three test contexts of the final-subset score (200 of each context's 300 requests); the other
-100 form a separately reported leaderboard subset. Details: `/workspace/contract.md`.
+1. **Amplitude skill (`amplitude_skill`)**: cross-fitted gene-weighted MSE (`WMSE`) using squared,
+   min–max scaled one-vs-rest $|t|$-statistics from one half of the measured cells and truth means
+   from the other half (5 splits × 2 directions), calibrated between the generic perturbation mean
+   (`N`) and same-target split-half repeat (`P`):
+   $$\text{amplitude\_skill}_c = \frac{N_c - \text{WMSE}_c}{N_c - P_c}$$
+2. **Identification skill (`identification_skill`)**: Euclidean nearest-interventional retrieval
+   rate (`NIR`, half-credit ties, all roster target genes excluded from the retrieval panel),
+   calibrated between target-blind chance (`0.5`) and split-half repeatability (`repeat_NIR`):
+   $$\text{identification\_skill}_c = \frac{\text{NIR}_c - 0.5}{\text{repeat\_NIR}_c - 0.5}$$
+3. **Pre-clip context average, then zero floor**: the two signed skills are averaged **first**, and
+   clipped at zero **only after averaging**:
+   $$\text{signed\_context}_c = \frac{1}{2}\left(\text{amplitude\_skill}_c + \text{identification\_skill}_c\right), \qquad \text{context\_score}_c = \max\left(0.0,\; \text{signed\_context}_c\right)$$
+4. **Overall task score**: equal-weight mean across the three contexts (`near`, `mid`, `far`),
+   clipped to $[0, 1]$:
+   $$\text{score} = \text{reward} = \operatorname{clip}_{[0, 1]}\!\left(\frac{1}{3}\sum_{c \in \{\text{near}, \text{mid}, \text{far}\}} \text{context\_score}_c\right)$$
 
-| baseline | reward | near | mid | far |
+The v2 WMSE-only numbers, the seven cell-eval Generalist metrics, and the target strata are
+retained as diagnostics in `report.json`. See `/workspace/contract.md` for full scoring and
+per-request query-independence requirements.
+
+| v2 baseline | overall | near | mid | far |
 |---|---:|---:|---:|---:|
 | B0 no effect | 0.000 | 0.000 | 0.000 | 0.000 |
-| B1 cross-context mean delta | 0.103 | 0.150 | 0.118 | 0.042 |
-| B1g basal-gated mean delta | 0.102 | 0.150 | 0.118 | 0.039 |
-| B2 STATE zero-shot (SE-600M + ST, 20k steps) | 0.046 | 0.063 | 0.033 | 0.043 |
+| B1 cross-context mean delta | 0.11594 | 0.14866 | 0.07745 | 0.12173 |
+| B1g basal-gated mean delta | 0.11588 | 0.14866 | 0.07745 | 0.12154 |
+
+B2 STATE has a historical v1 score of 0.046. The archived development logs report the v1
+cell-eval panel. Use the v2 development scorer for comparisons with new runs.
 
 Aim to beat B1 on every context, and write the research report so that a reader learns what your
 model knows about Q1–Q3.
@@ -72,10 +90,15 @@ model knows about Q1–Q3.
 
 - **Closed world.** Only the mounted data and weights may be used; they are all listed in
   `data/manifest.json` with provenance and licence. There is no network; do not try to reach one.
-- **One generic model.** `infer.sh` implements `basal + targets -> predictions` for arbitrary
-  contexts, gene panels and target lists. Per-context lookups keyed on the shipped test inputs,
-  hard-coded test target lists, cached predictions and any attempt to recover the private responses
-  are forbidden.
+- **One generic, per-request query-independent model.** `infer.sh` implements
+  `basal + targets -> predictions` for arbitrary contexts, gene panels and target lists. Each
+  request must be predicted independently of batch composition, request ordering, or other targets
+  in `requests.jsonl`: seed any stochastic cell resampling or generative sampling deterministically
+  per `request_id` (or the request's `seed` field) so that per-request mean `log1p(CP10k)` profiles
+  match within `atol = 1e-4, rtol = 1e-4` across full-manifest and shuffled-subset inference passes
+  (`score = reward = 0.0` on violation). Per-context lookups keyed on the shipped test inputs,
+  hard-coded test target lists, cross-query shrinkage/adaptation, cached predictions and any
+  attempt to recover the private responses are forbidden.
 - Everything the package needs at inference must be in `/workspace/submission` or at `/opt/se600m`.
 - SE-600M is a frozen cell-state encoder whose embeddings are precomputed; treat it as a fixed
   representation unless you have a measured reason not to (raw counts are shipped too). The

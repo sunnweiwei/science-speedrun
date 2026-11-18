@@ -19,12 +19,18 @@ Reporting
 ---------
 Every track reports a `pass_rate` - the mean per-target fraction of requested designs
 that satisfy the track's PUBLISHED criterion, and nothing besides it - with `diversity`
-alongside. The task applied geometry and conditioning gates of its own before folding until
-2026-09-26; they are gone, because they discarded most of the signal while inventing a
-second criterion nobody publishes. See environment/evaluation/RESULTS.md. There is deliberately NO
-composite: the four tracks are judged by different published criteria, and the
-`unconditional` track is synthetic to this task, so any weighted mean would be a number
-this task invented rather than one it measured. See environment/evaluation/RESULTS.md.
+and global `backbone_sc_rmsd_mean` alongside as diagnostics. The task applied geometry and
+conditioning gates of its own before folding until 2026-09-26; they are gone, because they
+discarded most of the signal while inventing a second criterion nobody publishes. See
+environment/evaluation/RESULTS.md.
+
+Across the 51-target evaluation suite (`1` synthetic `unconditional` target + `50`
+conditioned RFdiffusion3 benchmark targets across `sm_binder` [4], `ppi_binder` [5], and
+`enzyme` [41]), `score` (and `reward`) is the target-weighted V3 combined score:
+
+    score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)
+
+matching `harness/ssi_index_v3.py::design()` exactly (`1/51 + 3 * 50/153 = 1.0`).
 """
 
 import argparse
@@ -38,7 +44,7 @@ from pathlib import Path
 import numpy as np
 
 from common import (DESIGN_FIELDS, LIGAND_CLASH_MIN, MOTIF_RMSD_MAX, MOTIF_TRACKS, NOVELTY_MAX_TM,
-                    PLDDT_MIN, REPORT_SCHEMA, SC_RMSD_MAX, SNAPSHOT_SCHEMA, TRACKS,
+                    PLDDT_MIN, PPI_SEQUENCE_PROTOCOL, REPORT_SCHEMA, SC_RMSD_MAX, SNAPSHOT_SCHEMA, TRACKS,
                     jsonl, sha256, write_json)
 from geometry import (cluster_designs, minimum_distance, parse_allatom_pdb)
 from pipeline import ScorerUnavailable
@@ -51,6 +57,21 @@ def harbor_reward(values):
     belong in report.json / status.json."""
     import math as _math
     return {k: v for k, v in values.items() if isinstance(v, (int, float)) and _math.isfinite(v)}
+
+
+def combined_score(rates):
+    """Target-weighted V3 combined score across the 51-target evaluation suite.
+
+    Weights reflect the 51 evaluation targets: 1 synthetic `unconditional` target (1/51)
+    and 50 conditioned RFdiffusion3 benchmark targets divided equally across the three
+    conditioned tracks `sm_binder`, `ppi_binder`, and `enzyme` (50/153 each;
+    1/51 + 3 * 50/153 = 1.0), matching `harness/ssi_index_v3.py::design()`.
+    """
+    values = {k: float(rates[k]) for k in ("unconditional", "sm_binder", "ppi_binder", "enzyme")}
+    if not all(math.isfinite(v) and 0.0 <= v <= 1.0 for v in values.values()):
+        raise ValueError("Invalid protein design pass rate")
+    return (values["unconditional"] / 51.0
+            + (50.0 / 153.0) * (values["sm_binder"] + values["ppi_binder"] + values["enzyme"]))
 
 
 def load_context(path):
@@ -189,6 +210,7 @@ def score_track(track, sealed_path, requests, context_root, scorer, novelty=None
                 "invalid_reason": str(error), **outcome}
 
     per_target_success, per_target_diversity = [], []
+    folded_sc_rmsds, designable_sc_rmsds = [], []
     structures_root = sealed_path.parent / "structures"
     designable = {}          # example_id -> [(order, CA trace, PDB path)], in submission order
 
@@ -250,8 +272,13 @@ def score_track(track, sealed_path, requests, context_root, scorer, novelty=None
             verdict = verdicts[order]
             if isinstance(verdict, BaseException):
                 raise verdict
+            raw_sc_rmsd = verdict.get("sc_rmsd", float("inf"))
+            if isinstance(raw_sc_rmsd, (int, float)) and np.isfinite(raw_sc_rmsd):
+                folded_sc_rmsds.append(float(raw_sc_rmsd))
             if verdict.get("passed"):
                 outcome["designs_designable"] += 1
+                if isinstance(raw_sc_rmsd, (int, float)) and np.isfinite(raw_sc_rmsd):
+                    designable_sc_rmsds.append(float(raw_sc_rmsd))
                 designable.setdefault(example_id, []).append(
                     (order, structure[0][:, 1], paths[order]))     # CA trace
             else:
@@ -295,11 +322,19 @@ def score_track(track, sealed_path, requests, context_root, scorer, novelty=None
 
     pass_rate = float(np.mean(per_target_success)) if per_target_success else 0.0
     diversity = float(np.mean(per_target_diversity)) if per_target_diversity else 0.0
-    # Reported side by side, never blended. Mode coverage answers a different question
-    # from foldability, and folding the two into one number would hide which moved.
-    # On `unconditional` diversity is the anti-degeneracy readout: a generator emitting
-    # one designable fold repeatedly reaches pass_rate 1.0 with diversity near zero.
-    outcome.update({"pass_rate": pass_rate, "diversity": diversity})
+    backbone_sc_rmsd_mean = float(np.mean(folded_sc_rmsds)) if folded_sc_rmsds else None
+    designable_backbone_sc_rmsd_mean = (
+        float(np.mean(designable_sc_rmsds)) if designable_sc_rmsds else None)
+    # Reported side by side, never blended into pass_rate. Mode coverage and global
+    # backbone self-consistency RMSD (critical diagnostic on `enzyme`, where pass_rate
+    # gates on catalytic motif recapitulation without an ad-hoc global sc_rmsd cut)
+    # answer distinct questions from per-track pass_rate.
+    outcome.update({
+        "pass_rate": pass_rate,
+        "diversity": diversity,
+        "backbone_sc_rmsd_mean": backbone_sc_rmsd_mean,
+        "designable_backbone_sc_rmsd_mean": designable_backbone_sc_rmsd_mean,
+    })
     outcome["invalid_reason"] = None
     return outcome
 
@@ -358,6 +393,8 @@ def main(scorer=None):
     if (set(snapshot) != {"schema", "input_manifest_sha256", "files", "structures"}
             or snapshot["schema"] != SNAPSHOT_SCHEMA):
         raise ValueError("invalid snapshot schema")
+    if snapshot["input_manifest_sha256"] != sha256(arguments.contexts / "manifest.json"):
+        raise ValueError("Sealed designs and scorer context manifests differ")
     for name, digest in snapshot["files"].items():
         if sha256(arguments.sealed / name) != digest:
             raise ValueError(f"sealed design hash mismatch: {name}")
@@ -385,16 +422,20 @@ def main(scorer=None):
                                   requests[track], arguments.contexts, scorer, novelty)
                for track in TRACKS}
 
+    score = combined_score({track: details[track]["pass_rate"] for track in TRACKS})
     arguments.output.mkdir(parents=True, exist_ok=True)
     write_json(arguments.output / "report.json", {
         "schema": REPORT_SCHEMA,
+        "score": score,
+        "reward": score,
+        "ppi_inverse_folding": PPI_SEQUENCE_PROTOCOL,
         "thresholds": {"sc_rmsd_max": SC_RMSD_MAX, "plddt_min": PLDDT_MIN,
                        "motif_rmsd_max": MOTIF_RMSD_MAX, "novelty_max_tm": NOVELTY_MAX_TM},
         "tracks": details,
     })
-    # reward.json is the file CONTRIBUTING requires; it carries the per-track numeric
-    # metrics. No composite key: see the module docstring.
-    flat = {}
+    # reward.json carries the V3 target-weighted combined score (`score` and `reward`)
+    # alongside the flattened per-track numeric metrics (`<track>_pass_rate`, `<track>_diversity`, etc.).
+    flat = {"score": score, "reward": score}
     for track, result in details.items():
         flatten(track, result, flat)
     write_json(arguments.output / "reward.json", harbor_reward(flat))

@@ -6,8 +6,10 @@ import gzip
 import hashlib
 import json
 import math
+from itertools import combinations
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from .errors import ContractError
@@ -94,6 +96,33 @@ def _overlaps_any(frame: pd.DataFrame, heldout: pd.DataFrame) -> pd.Series:
                 break
         flags.append(hit)
     return pd.Series(flags, index=frame.index, dtype=bool)
+
+
+def check_input_window_isolation(manifests: dict[str, pd.DataFrame]) -> dict[str, int]:
+    """Validate cross-split intersection of the actual published, half-open input spans."""
+    for split, frame in manifests.items():
+        coords = frame[["input_start", "input_end"]]
+        if (frame.chromosome.isna().any() or frame.chromosome.eq("").any()
+                or coords.isna().any().any()
+                or not all(pd.api.types.is_integer_dtype(dtype) for dtype in coords.dtypes)
+                or (frame.input_end <= frame.input_start).any()):
+            raise ContractError(f"{split}: invalid genomic input window")
+    counts = {}
+    for left, right in combinations(manifests, 2):
+        training = manifests[left]
+        queries = manifests[right]
+        total = 0
+        for chrom, rows in queries.groupby("chromosome"):
+            ref = training.loc[training.chromosome == chrom]
+            starts = np.sort(ref.input_start.to_numpy())
+            ends = np.sort(ref.input_end.to_numpy())
+            begun = np.searchsorted(starts, rows.input_end, side="left")
+            finished = np.searchsorted(ends, rows.input_start, side="right")
+            total += int((begun - finished).sum())
+        if total:
+            raise ContractError(f"{left}/{right}: {total} overlapping pairs of full genomic input windows")
+        counts[f"{left}/{right}"] = total
+    return counts
 
 
 def apply_train_exclusion(full: pd.DataFrame) -> pd.DataFrame:

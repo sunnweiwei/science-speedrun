@@ -92,7 +92,15 @@ class TestScreening(unittest.TestCase):
                 ]
             output = root / "view"
             try:
-                result = screening.prepare(root / "data", output, fraction=1)
+                result = screening.prepare(
+                    root / "data",
+                    output,
+                    fraction=1,
+                    awf_dev_splits={
+                        "train": ["train-a", "train-b"],
+                        "val": ["val-a", "val-b"],
+                    },
+                )
                 self.assertEqual(result["test_rows_in_view"], 0)
                 self.assertEqual(result["kind"], "fixed_validation_view")
                 self.assertEqual(
@@ -122,9 +130,23 @@ class TestScreening(unittest.TestCase):
                         (output / task / "inputs.h5").stat().st_mode & 0o222, 0
                     )
                 with self.assertRaises(FileExistsError):
-                    screening.prepare(root / "data", output)
+                    screening.prepare(
+                        root / "data",
+                        output,
+                        awf_dev_splits={
+                            "train": ["train-a", "train-b"],
+                            "val": ["val-a", "val-b"],
+                        },
+                    )
                 with self.assertRaises(ValueError):
-                    screening.prepare(root / "data", root / "data" / "eval" / "view")
+                    screening.prepare(
+                        root / "data",
+                        root / "data" / "eval" / "view",
+                        awf_dev_splits={
+                            "train": ["train-a", "train-b"],
+                            "val": ["val-a", "val-b"],
+                        },
+                    )
             finally:
                 # Let TemporaryDirectory remove the immutable test fixture.
                 if output.exists():

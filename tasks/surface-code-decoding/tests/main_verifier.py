@@ -142,7 +142,7 @@ def invalid(output: Path, status: str, error: Exception) -> None:
     write_json(output / "report.json", {"schema": "surface-code-decoding-report/v1", "status": status,
         "model_quality_measured": False, "score": 0.0, "score_unclipped": None, "performance": None,
         "error": f"{type(error).__name__}: {error}"})
-    write_json(output / "reward.json", {"reward": 0.0})
+    write_json(output / "reward.json", {"score": 0.0, "reward": 0.0})
 
 
 def evaluate(args: argparse.Namespace) -> None:

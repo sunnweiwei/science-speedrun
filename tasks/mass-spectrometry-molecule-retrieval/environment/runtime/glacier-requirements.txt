@@ -1,6 +1,5 @@
 # Runtime frozen from the verified GLACIER environment; Python 3.11.14.
 --extra-index-url https://download.pytorch.org/whl/cu124
---find-links https://data.dgl.ai/wheels/torch-2.6/cu124/repo.html
 --find-links https://data.pyg.org/whl/torch-2.6.0+cu124.html
 setuptools==80.9.0
 wheel==0.45.1
@@ -31,7 +30,7 @@ cython==3.3.0
 debugpy==1.8.21
 decorator==5.3.1
 defusedxml==0.7.1
-dgl==2.5.0+cu124
+dgl @ file:///wheels/dgl-2.5-cp311-cp311-linux_x86_64.whl
 dill==0.4.1
 easydict==1.13
 einops==0.8.2
@@ -107,7 +106,7 @@ pycparser==3.0
 pydantic==2.13.5
 pydantic-core==2.46.5
 pygments==2.21.0
-pygmtools @ git+https://github.com/Thinklab-SJTU/pygmtools.git@5b7b3f84a34528e455a6df6404822c306aa45dc1
+pygmtools @ https://github.com/Thinklab-SJTU/pygmtools/archive/5b7b3f84a34528e455a6df6404822c306aa45dc1.tar.gz#sha256=7bc995e3b9e92644199bce7c2a9dc3958bdc2c2167cfcb1282fec5a4510b7af3
 pyparsing==3.3.2
 pysocks==1.7.1
 python-dateutil==2.9.0.post0

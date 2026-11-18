@@ -55,11 +55,13 @@ the policy response timeout independently of the research budget.
 1. `reset` describes the environment and begins a new episode:
 
    ```json
-   {"protocol":"hydrogym-policy/v1","op":"reset","request_id":"episode-x","context":{"environment":"Cylinder_2D_Re200","family":"cylinder","seed":7},"observation_shape":[2],"action_shape":[1],"action_low":[-1.0],"action_high":[1.0]}
+   {"protocol":"hydrogym-policy/v1","op":"reset","request_id":"episode-x","context":{"environment":"Cylinder_2D_Re200","family":"cylinder","seed":0,"episode_index":0},"observation_shape":[2],"action_shape":[1],"action_low":[-1.0],"action_high":[1.0]}
    ```
 
    Reply: `{"request_id":"episode-x","ready":true}`. Shapes above are a
-   protocol illustration, not the benchmark's sensor configuration.
+   protocol illustration, not the benchmark's sensor configuration. Note that
+   `context.seed` and `context.episode_index` expose only the 0-based public
+   episode index within the case (never the simulator's secret perturbation seed).
 2. `act` gives one current observation as a row-major flat array:
 
    ```json
@@ -106,13 +108,21 @@ resets the resident policy, sends observations, applies returned native actions,
 and reports the fixed per-case `primary_metric`, with native episode returns
 retained as diagnostics. It never trains or resumes the model.
 The direct replay and Harbor verifier use the same approved resource/runtime
-profiles. Neither requires reference anchors or an additional suite.json.
-Harbor's tests/test.sh invokes harbor_verify.py for the 26-case verifier suite
+profiles. Development replay defaults to `seeds=[123]`; the sealed Harbor verifier
+replays private blind perturbation seeds per case (masked from `policy.reset`),
+averaging complete-episode primary physical metrics across seeds for each case and
+failing the case if any episode diverges, violates operating bounds, or errors.
+Harbor's `tests/test.sh` invokes `harbor_verify.py` for the 26-case verifier suite
 (`case_spec.VERIFIER_CASES`: every 2D case and one 3D case per family) and writes
-26 named physical values to /logs/verifier/reward.json; cases run side by side, each
-on its own GPUs. `--case all` replays the complete 39-case suite. Units and directions
-remain per-case; there is no mixed-unit total. An explicit --case subset is
-for development only, never a full-benchmark score. See the evaluator README.
+the original physical measurements plus scalar `score` and `reward` to `/logs/verifier/reward.json`.
+Each of the 26 verifier cases computes its clipped signed relative improvement over paired zero control `z`:
+`gain = clip(((val - z) / |z|) * (-1 if lower_is_better else +1), -1.0, 1.0)`, with any failed or
+nonfinite case contributing `-1.0`. The 26 cases are grouped by prefix `case.split("_")[0]` into
+**10 equal-weight flow families** (`1/10` each): `signed_score = mean_10_families(mean_family(gain))`,
+and `score = reward = clip(signed_score, 0.0, 1.0)`. `grading.json` and `report.json` record
+`signed_score`, per-family means, and per-case contributions. An infrastructure failure
+invalidates the run. `--case all` additionally reports the other 13 cases. Development subsets
+that omit any verifier case have no overall score. See the evaluator README.
 
 The organizer's evaluator first checks the entire declared release, then copies
 one stable submission snapshot and uses that same snapshot for **every** case.

@@ -41,7 +41,18 @@ def grade(sealed: Path, inputs: Path, labels: Path, config: Path, output: Path,
                 "performance": None, "error": str(error)}
         result["run_id"] = run_id
         write_json(target / "report.json", result)
-        write_json(target / "reward.json", {"reward": result["performance"]})  # raw P; the normalized score stays in report.json
+        if result.get("performance") is None:
+            reward_payload: dict[str, Any] = {"score": 0.0, "reward": 0.0}
+        else:
+            by_dist = result["failure_by_distance"]
+            raw_p = 0.5 * ((1.0 - float(by_dist["d3"])) + (1.0 - float(by_dist["d5"])))
+            raw_p = max(0.0, min(1.0, raw_p))
+            reward_payload = {
+                "score": raw_p,
+                "reward": raw_p,
+                "failure_by_distance": by_dist,
+            }
+        write_json(target / "reward.json", reward_payload)  # V3/V4 primary score P = 1 - 0.5*(fail_d3 + fail_d5)
     except Exception as error:
         write_json(target / "report.json", {"schema": "surface-code-decoding-report/v1", "run_id": run_id,
             "status": "infrastructure_error", "model_quality_measured": False,

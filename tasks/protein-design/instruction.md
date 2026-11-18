@@ -15,15 +15,25 @@ RoseTTAFold3 refolds the complex, and the result must satisfy that track's publi
 criterion. That criterion is the whole measurement — the task adds nothing to it. The exact
 rule differs per track; `/workspace/contract.md` has all of them.
 
-Each track is reported as a **pass rate**, the fraction of requested designs that satisfy it,
-with a **diversity** number beside it. There is no single combined score: the tracks apply
-different published criteria, so they are compared individually.
+Each track is reported as a **pass rate**, the mean per-target fraction of requested designs
+that satisfy its published criterion, with a **diversity** number beside it. Across the
+51-target evaluation suite (`1` synthetic `unconditional` target plus `50` conditioned
+RFdiffusion3 benchmark targets across `sm_binder`, `ppi_binder`, and `enzyme`), the primary
+combined score (`score` and `reward` in `reward.json`) is the target-weighted mean:
+
+```text
+score = unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme)
+```
+
+where `1/51 + 3 * (50/153) = 1.0`, giving the single synthetic unconditional target its `1/51`
+target share and dividing the `50/51` conditioned-target share equally (`50/153` each) across
+the three conditioned design tracks.
 
 This is the whole difficulty. Producing a chain with correct bond lengths that threads a
 catalytic motif is mechanical, and the baseline already does it for every design — which is
 why none of that is scored. Producing one that a sequence actually folds into is the research
-problem. The baseline's measured pass rates are low but not zero on every track, a few percent
-on the conditioned tracks, and that is what to beat.
+problem. The baseline's measurements and the scoring protocol for each are in
+`/workspace/baseline/rfd3-small/RESULTS.md`.
 
 Each target asks for **20 designs** (RFdiffusion3's protocol asks for 100; a pass rate is a per-target
 fraction either way), so a pass rate is a per-target fraction out of 20. Designs you do not emit stay in

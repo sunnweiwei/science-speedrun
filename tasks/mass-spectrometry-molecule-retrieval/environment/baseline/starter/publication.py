@@ -60,6 +60,8 @@ def publish_directory(destination, build):
         # remain immutable and inside the package, including during live snapshots.
         if (destination / 'infer.sh').exists() and not (destination / 'dispatch.py').exists():
             shutil.copyfile(destination / 'infer.sh', destination / 'legacy-infer.sh')
+        if (destination / 'serve.sh').exists() and not (destination / 'dispatch.py').exists():
+            shutil.copyfile(destination / 'serve.sh', destination / 'legacy-serve.sh')
         dispatch = '''import json, os, pathlib, sys
 root = pathlib.Path(__file__).resolve().parent
 manifest = json.loads((root / 'model_manifest.json').read_text())
@@ -67,7 +69,10 @@ config = (root / manifest['model_config']).resolve()
 if not config.is_relative_to(root):
     raise ValueError('manifest path escapes package')
 generation = config.parent
-script = generation / ('legacy-infer.sh' if generation == root else 'infer.sh')
+entry = os.environ.get('MASSSPECGYM_DISPATCH_ENTRY', 'infer.sh')
+if entry not in ('infer.sh', 'serve.sh'):
+    raise ValueError('unsupported dispatch entry')
+script = generation / (('legacy-' + entry) if generation == root else entry)
 os.execv('/bin/bash', ['bash', str(script), *sys.argv[1:]])
 '''
         atomic_text(destination / 'dispatch.py', dispatch)
@@ -75,6 +80,13 @@ os.execv('/bin/bash', ['bash', str(script), *sys.argv[1:]])
                     'root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"\n'
                     'exec python3 "$root/dispatch.py" "$@"\n')
         (destination / 'infer.sh').chmod(0o755)
+        if (stage / 'serve.sh').is_file():
+            atomic_text(destination / 'serve.sh', '#!/usr/bin/env bash\nset -euo pipefail\n'
+                        'root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"\n'
+                        'MASSSPECGYM_DISPATCH_ENTRY=serve.sh exec python3 "$root/dispatch.py" "$@"\n')
+            (destination / 'serve.sh').chmod(0o755)
+        else:
+            (destination / 'serve.sh').unlink(missing_ok=True)
         atomic_text(destination / 'README.md', (stage / 'README.md').read_text())
         atomic_text(destination / 'model_manifest.json', json.dumps(manifest, indent=2) + '\n')
         stage = None

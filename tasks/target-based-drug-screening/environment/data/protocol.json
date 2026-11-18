@@ -5,7 +5,7 @@
   "pocket_cutoff_angstrom": 6.0,
   "protein_identity_threshold_percent": 30.0,
   "protein_coverage_threshold": 0.8,
-  "mmseqs_cov_mode": 0,
+  "mmseqs_cov_mode": 1,
   "ligand_tanimoto_threshold": 0.60,
   "morgan_radius": 2,
   "morgan_nbits": 2048,

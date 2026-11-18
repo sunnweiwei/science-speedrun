@@ -163,9 +163,9 @@ def load_output(output_root: Path, requests: dict[str, dict]) -> tuple[dict[tupl
                     if key in invalid_keys:
                         continue
                     records[key] = path
-                except (OSError, ValueError) as error:
+                except (FileNotFoundError, NotADirectoryError, IsADirectoryError, ValueError) as error:
                     errors.append(f"line {line_number}: {error}")
-    except (OSError, csv.Error, UnicodeDecodeError) as error:
+    except (FileNotFoundError, NotADirectoryError, IsADirectoryError, csv.Error, UnicodeDecodeError) as error:
         return {}, [f"manifest.csv could not be read: {error}"]
     missing = expected - set(records)
     if missing:
@@ -182,6 +182,8 @@ def validate_submission(root: Path) -> dict:
     for path in root.rglob("*"):
         if path.is_symlink():
             raise ValueError("submission symlinks are not allowed")
+        if not path.is_file() and not path.is_dir():
+            raise ValueError("special files are not allowed in a submission")
         if path.is_file():
             file_count += 1
             byte_count += path.stat().st_size
@@ -192,7 +194,7 @@ def validate_submission(root: Path) -> dict:
         "schema", "checkpoint", "parameter_count", "one_parameter_set",
         "trained_from_scratch", "training_data", "model_config",
     }
-    if set(manifest) != required or manifest["schema"] != MODEL_SCHEMA:
+    if not isinstance(manifest, dict) or set(manifest) != required or manifest["schema"] != MODEL_SCHEMA:
         raise ValueError("invalid model manifest fields/schema")
     checkpoint_spec = manifest["checkpoint"]
     if (not isinstance(checkpoint_spec, dict)

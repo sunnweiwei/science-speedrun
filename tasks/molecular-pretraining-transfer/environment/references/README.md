@@ -23,6 +23,8 @@ this task's verifier protocol (15 epochs, seed 0, test MA-RAE):
 | COMPAS-1D | 0.121 | 0.166 | 0.662 |
 | ExpansionRx | 0.668 | 0.744 | 1.078 |
 | ASAP | 0.644 | 0.636 | 1.315 |
+| **Mean MA-RAE (4 groups)** | **0.406** | **0.432** | **0.867** |
+| **Score (`1 / (1 + Mean MA-RAE)`)** | **0.711** | **0.698** | **0.536** |
 
 With the official 40-epoch recipe on all 107k training molecules, the released model reaches QM9 HOMO/LUMO/gap
 agg-MAE 0.0055 Ha. The 5k-molecule, 15-epoch protocol here gives 0.0087 Ha. The ExpansionRx leaderboard winner

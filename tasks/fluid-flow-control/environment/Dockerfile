@@ -29,8 +29,13 @@ ENV PATH=/home/easybuild/venvs/hydrogym_gpu/bin:${PATH} \
     HYDROGYM_UPSTREAM_SOURCE=/opt/hydrogym \
     PYTHONPATH=/opt/hydrogym \
     HYDROGYM_EVALUATOR_CODE=/opt/hydrogym-task/evaluation \
+    OMPI_MCA_btl=self,vader,tcp \
+    OMPI_MCA_btl_vader_single_copy_mechanism=none \
+    OMPI_MCA_coll_hcoll_enable=0 \
+    HYDROGYM_ALLOW_SHARED_GPU=1 \
     HF_HOME=/tmp/huggingface HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1
 COPY environment/evaluation /opt/hydrogym-task/evaluation
+COPY environment/references/specialists/verified/results.json /opt/hydrogym-task/references/specialists/verified/results.json
 COPY environment/data /opt/hydrogym-task/data
 WORKDIR /workspace
 # Unprivileged accounts for submitted policy processes (see evaluation/protocol.py): one per case
@@ -45,6 +50,7 @@ RUN useradd --create-home --uid 10001 hydrogym-policy && \
 
 FROM runtime AS verifier
 COPY tests/test.sh /tests/test.sh
+COPY tests/sealed /tests/sealed
 CMD ["sleep", "infinity"]
 
 FROM runtime AS development

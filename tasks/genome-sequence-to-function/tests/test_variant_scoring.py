@@ -61,3 +61,13 @@ def test_splice_score_is_the_largest_probability_change(tmp_path):
     score = perturbation_scores("clinvar_noncoding", pd.DataFrame({"perturbation_id": ["v0"]}),
                                 outputs, {"v0": 0}, pd.DataFrame()).iloc[0]
     assert score == pytest.approx(1 / (1 + np.exp(-5)) - 1 / (1 + np.exp(5)))
+
+
+def test_constant_prediction_on_eqtl_coefficient_scores_zero():
+    from variant_scoring import metric
+    frame = pd.DataFrame({
+        "tissue": ["Whole_Blood"] * 4,
+        "target": [-0.4, -0.1, 0.2, 0.7],
+        "prediction": [0.0, 0.0, 0.0, 0.0],
+    })
+    assert metric("eqtl_coefficient", frame) == 0.0

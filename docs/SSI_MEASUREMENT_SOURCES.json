@@ -1,0 +1,253 @@
+{
+  "schema": "ssi-measurement-sources/v4",
+  "tasks": {
+    "atomistic-materials": {
+      "published_measurement": "Matbench Discovery evaluates stability classification and thermal-conductivity error, among other physical endpoints.",
+      "ssi_implementation": "SSI computes the equal arithmetic mean (1/8 each) of signed skills across eight physical suites (Discovery, Phonons, Elasticity, Thermal conductivity, Metal–organic frameworks, Amorphous materials, Cleavage, and Migration barriers) anchored against zero-force controls (including D3(BJ) dispersion on MOF bulk modulus), clipped to [0, 1] at the top level.",
+      "sources": [
+        {
+          "title": "Matbench Discovery, Nature Machine Intelligence",
+          "url": "https://doi.org/10.1038/s42256-025-01055-1"
+        }
+      ]
+    },
+    "brain-computer-interface-decoding": {
+      "published_measurement": "CBraMod reports held-out decoding results per dataset, including balanced accuracy for TUEV.",
+      "ssi_implementation": "SSI averages subject/session-stratified chance-adjusted balanced accuracy equally across four EEG tracks (TUEV, AD65, OpenBMI, and longitudinal decoding), omitting the deprecated FACED track due to cross-subject stimulus recurrence and excluding overlapping TUEV pretrained weights (BIOT).",
+      "sources": [
+        {
+          "title": "CBraMod, ICLR",
+          "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/bbbd6d915cb90be21c1254a82d45cedd-Paper-Conference.pdf"
+        }
+      ]
+    },
+    "crystal-structure-generation": {
+      "published_measurement": "LeMat-GenBench reports stability, uniqueness and novelty using reference hulls, and compares generated and relaxed structures. MatterGen also evaluates stability relative to a convex hull.",
+      "ssi_implementation": "SSI computes (SUN + 0.5 * MetaSUN) / 2,500 requested structures after UMA-200 relaxation with matched three-potential convex hulls (delta E_hull <= 0 for strict SUN, 0 < delta E_hull <= 0.1 eV/atom for MetaSUN). As-submitted geometry, negative formation energy, relaxation RMSD, and element-arity distributions are retained as separate diagnostics.",
+      "sources": [
+        {
+          "title": "LeMat-GenBench",
+          "url": "https://arxiv.org/abs/2512.04562"
+        },
+        {
+          "title": "MatterGen, Nature",
+          "url": "https://doi.org/10.1038/s41586-025-08628-5"
+        },
+        {
+          "title": "LeMat authors on the reference MACE checkpoint",
+          "url": "https://github.com/LeMaterial/lemat-genbench/blob/fbf1ba4855934acb8fe87135315504899064080d/README.md"
+        }
+      ]
+    },
+    "earth-observation-pretraining-transfer": {
+      "published_measurement": "OlmoEarth evaluates African Wildlife Foundation land-cover classification and live fuel moisture regression as distinct downstream tasks.",
+      "ssi_implementation": "SSI takes the equal mean of majority-class chance-adjusted AWF classification skill on the spatially disjoint 205-window blind test split ((acc - 59/205) / (1 - 59/205) via frozen 20-NN probe) and LFMC test MAE skill (1 - lfmc_test_mae / 24.435180349813233), clipped to [0, 1]. All test-overlapping spatial windows are removed from the development container.",
+      "sources": [
+        {
+          "title": "OlmoEarth paper",
+          "url": "https://arxiv.org/abs/2511.13655"
+        },
+        {
+          "title": "Authors’ LFMC protocol",
+          "url": "https://github.com/allenai/olmoearth_projects/blob/main/docs/lfmc.md"
+        }
+      ]
+    },
+    "fluid-flow-control": {
+      "published_measurement": "HydroGym evaluates physical objectives such as drag and lift using controlled and uncontrolled flows.",
+      "ssi_implementation": "Across 26 CFD cases grouped into 10 physical flow families (equal 1/10 family weight), SSI computes direction-corrected signed improvement relative to paired zero actuation clipped to [-1, 1] per case (failed/diverged cases score -1) on blind initial-state perturbation seeds, clipped to [0, 1] at the top level.",
+      "sources": [
+        {
+          "title": "HydroGym, Nature",
+          "url": "https://doi.org/10.1038/s41586-026-10917-6"
+        }
+      ]
+    },
+    "fruit-fly-neuron-reconstruction": {
+      "published_measurement": "FFN measures the error-free neurite path length and reports merge errors. Local Shape Descriptors reports ERL and variation of information. PATHFINDER reports normalized ERL, splits and merges.",
+      "ssi_implementation": "[HOLD — Metric redesign deferred to dedicated standalone review] Currently retains the frozen SHAPE local sparse nERL on the archived MaleCNS core, with image-free oversegmentation controls recorded as diagnostics.",
+      "sources": [
+        {
+          "title": "FFN, Nature Methods",
+          "url": "https://doi.org/10.1038/s41592-018-0049-4"
+        },
+        {
+          "title": "Local Shape Descriptors, Nature Methods",
+          "url": "https://doi.org/10.1038/s41592-022-01711-z"
+        },
+        {
+          "title": "PATHFINDER, primary preprint",
+          "url": "https://doi.org/10.1101/2025.05.16.654254"
+        }
+      ]
+    },
+    "genome-sequence-to-function": {
+      "published_measurement": "Enformer evaluates genome-track predictions by correlation. AlphaGenome reports assay-specific metrics, including separate splice metrics.",
+      "ssi_implementation": "SSI combines 0.5 * Functional genomic tracks (equal mean across 5 track modalities pooling 11 assay families by Pearson correlation) + 0.5 * Variant and perturbation effects (equal mean across 5 chance-calibrated benchmark branches, excluding redundant eqtl_sign).",
+      "sources": [
+        {
+          "title": "Enformer, Nature Methods",
+          "url": "https://doi.org/10.1038/s41592-021-01252-x"
+        },
+        {
+          "title": "AlphaGenome, Nature",
+          "url": "https://doi.org/10.1038/s41586-025-10014-0"
+        }
+      ]
+    },
+    "mass-spectrometry-molecule-retrieval": {
+      "published_measurement": "MassSpecGym evaluates candidate retrieval separately per query spectrum using accuracy at k.",
+      "ssi_implementation": "SSI evaluates top-1 identification accuracy (Hit@1) with equal spectrum weights over all 17,556 MassSpecGym v1.5 mass-pool spectra using a persistent single-spectrum sequential streaming protocol (massspecgym-retrieval-stream/v2) paired with a 128-query repeated-pool-stratified shuffled cold-start full-ranking statelessness spot-check. Top-5, top-20 and MCES@1 remain diagnostics.",
+      "sources": [
+        {
+          "title": "MassSpecGym, NeurIPS §3.2",
+          "url": "https://papers.nips.cc/paper/2024/file/c6c31413d5c53b7d1c343c1498734b0f-Paper-Datasets_and_Benchmarks_Track.pdf"
+        }
+      ]
+    },
+    "molecular-pretraining-transfer": {
+      "published_measurement": "Uni-Mol2 evaluates downstream molecular-property regression errors, including MAE on QM9 and COMPAS-1D.",
+      "ssi_implementation": "SSI computes macro-averaged relative absolute error (MA-RAE) across 24 endpoints grouped equally into four benchmark families (QM9, COMPAS-1D, ExpansionRx, and ASAP) and maps the equal four-group mean to 1 / (1 + mean_4_groups(MA-RAE)).",
+      "sources": [
+        {
+          "title": "Uni-Mol2, NeurIPS",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/53923bb44655a7defb31c7744c01b62b-Paper-Conference.pdf"
+        }
+      ]
+    },
+    "natural-disease-progression": {
+      "published_measurement": "Prospective disease trajectory work evaluates future coded diagnoses. Clinical alert studies evaluate sensitivity against alert workload.",
+      "ssi_implementation": "SSI measures 365-day incident case capture (Recall@5% alert budget) equally weighted across 17 eligible disease endpoints on the held-out 11,424-patient MIMIC-IV cohort with prior family-history exclusions.",
+      "sources": [
+        {
+          "title": "Delphi-2M, Nature",
+          "url": "https://doi.org/10.1038/s41586-025-09529-3"
+        },
+        {
+          "title": "Clinical alert tradeoffs, JAMA Network Open",
+          "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2824885"
+        }
+      ]
+    },
+    "pde-surrogate": {
+      "published_measurement": "The Well reports variance-scaled rollout errors. Numerical baseline studies emphasize comparison with competitive conventional solvers.",
+      "ssi_implementation": "SSI takes the equal mean across four rollout dataset groups (ape2d, pdearena, well/active_matter, and well/turbulent_radiative_layer_2D) of (1 - log10(clip(VRMSE, 0.01, 10))) / 3. Inference wall-clock time is logged in report.json alongside an observation-grid coarse numerical solver control.",
+      "sources": [
+        {
+          "title": "The Well, NeurIPS",
+          "url": "https://arxiv.org/abs/2412.00568"
+        },
+        {
+          "title": "Weak baselines and numerical methods, Nature Machine Intelligence",
+          "url": "https://doi.org/10.1038/s42256-024-00897-5"
+        }
+      ]
+    },
+    "probabilistic-global-weather": {
+      "published_measurement": "GenCast and WeatherBench 2 evaluate probabilistic forecasts with CRPS across variables and lead times. WeatherBench 2 includes climatological comparisons.",
+      "ssi_implementation": "SSI evaluates empirical ensemble CRPS (fair=False, per contract) normalized by frozen training scales across a 10-variable global forecast panel and maps the equal-weighted panel mean to 1 / (1 + normalized_crps).",
+      "sources": [
+        {
+          "title": "GenCast, Nature",
+          "url": "https://doi.org/10.1038/s41586-024-08252-9"
+        },
+        {
+          "title": "WeatherBench 2, JAMES",
+          "url": "https://doi.org/10.1029/2023MS004019"
+        }
+      ]
+    },
+    "protein-design": {
+      "published_measurement": "RFdiffusion3 uses structure- and interaction-specific success criteria for distinct design tasks.",
+      "ssi_implementation": "SSI weights the four native novel designability pass rates by target count: unconditional / 51 + (50 / 153) * (sm_binder + ppi_binder + enzyme). PPI inverse-folds only the binder conditioned on the fixed target structure before RF3 complex refolding; enzyme retains the upstream RFdiffusion3 AME catalytic-motif all-atom RMSD <= 1.5 A and non-motif ligand clash criteria.",
+      "sources": [
+        {
+          "title": "RFdiffusion3, authors’ evaluation",
+          "url": "https://doi.org/10.1101/2025.09.18.676967"
+        },
+        {
+          "title": "ProteinMPNN, Science",
+          "url": "https://doi.org/10.1126/science.add2187"
+        },
+        {
+          "title": "RFdiffusion binder design and computational filtering, Nature",
+          "url": "https://www.nature.com/articles/s41586-023-06415-8"
+        }
+      ]
+    },
+    "protein-folding-prediction": {
+      "published_measurement": "FoldBench evaluates monomers by structural agreement and interfaces by task-specific success criteria, including DockQ and ligand metrics.",
+      "ssi_implementation": "SSI takes the equal mean across five structural modalities (Protein monomers, Nucleic-acid monomers, Protein interfaces, Protein–nucleic acid, and Protein–ligand) aggregating nine FoldBench tracks in a label-isolated two-container sandbox. Interface success requires DockQ >= 0.23 AND (LRMSD <= 10.0 A OR iRMSD <= 4.0 A), with missing or invalid targets included in denominators.",
+      "sources": [
+        {
+          "title": "FoldBench, Nature Communications",
+          "url": "https://doi.org/10.1038/s41467-025-67127-3"
+        }
+      ]
+    },
+    "protein-sequence-modeling": {
+      "published_measurement": "PEER reports task-specific prediction quality for protein functions, structure and other sequence tasks.",
+      "ssi_implementation": "SSI computes the equal mean across four PEER capability pillars (Function, Localization, Structure, and Protein interactions) using chance-calibrated balanced accuracy for six classification tasks, baseline-calibrated SS3 accuracy, Spearman correlation, affinity RMSE skill, and symmetric (A,B)/(B,A) probability averaging on undirected PPI tasks.",
+      "sources": [
+        {
+          "title": "PEER, NeurIPS",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2022/file/e467582d42d9c13fa9603df16f31de6d-Paper-Datasets_and_Benchmarks.pdf"
+        }
+      ]
+    },
+    "single-cell-perturbation-prediction": {
+      "published_measurement": "A calibration study evaluates weighted error of mean perturbation profiles against positive and negative controls. Independent benchmarking motivates comparison with simple across-perturbation baselines.",
+      "ssi_implementation": "Across near, mid and far contexts, SSI computes signed amplitude skill (cross-fitted WMSE excluding target-gene readout) and masked-gene identification skill (calibrated NIR), takes their signed mean first and applies a per-context floor max(0, 0.5 * amplitude_skill + 0.5 * identification_skill), then averages equally across the three contexts while enforcing two-pass (full + shuffled subset) query independence.",
+      "sources": [
+        {
+          "title": "Calibrated perturbation metrics, Nature Biotechnology",
+          "url": "https://doi.org/10.1038/s41587-026-03307-w"
+        },
+        {
+          "title": "Perturbation baselines, Nature Methods",
+          "url": "https://doi.org/10.1038/s41592-025-02772-6"
+        }
+      ]
+    },
+    "surface-code-decoding": {
+      "published_measurement": "AlphaQubit measures logical decoding errors on experimental surface codes and reports the logical error rate per round.",
+      "ssi_implementation": "SSI averages logical decoding success (1 - logical failure probability) equally across code distances 3 and 5 over its frozen Sycamore panel with keyed HMAC-SHA256 shuffled test sample identifiers. Per-round logical error rate remains a diagnostic.",
+      "sources": [
+        {
+          "title": "AlphaQubit, Nature",
+          "url": "https://doi.org/10.1038/s41586-024-08148-8"
+        }
+      ]
+    },
+    "target-based-drug-screening": {
+      "published_measurement": "BEDROC weights early recognition of active compounds in ranked screening lists.",
+      "ssi_implementation": "SSI computes BEDROC (alpha = 80.5) per target and takes 0.5 * DUD-E + 0.5 * LIT-PCBA macro-averaged BEDROC under unidirectional target pocket coverage decontamination (--cov-mode 1 -c 0.8 --min-seq-id 0.3). EF1% and swapped-pocket counterfactual BEDROC are reported as diagnostics.",
+      "sources": [
+        {
+          "title": "Truchon and Bayly, Journal of Chemical Information and Modeling",
+          "url": "https://doi.org/10.1021/ci600426e"
+        }
+      ]
+    },
+    "timeseries-forecasting": {
+      "published_measurement": "GIFT-Eval evaluates point and probabilistic forecasting after scaling errors against seasonal naive forecasts, aggregating relative metrics geometrically.",
+      "ssi_implementation": "Over 97 unique GIFT-Eval configurations, SSI scales MASE and WQL against frozen Seasonal Naive references (with single-application log-linear penalty toward 10.0 for partial coverage), aggregates log-ratios hierarchically across 7 domains -> 23 sources -> forecast horizons, and maps to 1 - exp(mean_domain(log_ratio)) clipped to [0, 1].",
+      "sources": [
+        {
+          "title": "GIFT-Eval, original benchmark",
+          "url": "https://arxiv.org/abs/2410.10393"
+        }
+      ]
+    },
+    "tokamak-magnetic-control": {
+      "published_measurement": "Magnetic-control experiments evaluate plasma tracking, including boundary shape, position and current.",
+      "ssi_implementation": "SSI evaluates joint shape-control successes out of all 105 scheduled episodes (7 plasma scenarios x 15 private perturbation seeds, counting void/disrupted episodes in the denominator) while passing only an independent public policy seed to controller reset_context().",
+      "sources": [
+        {
+          "title": "Magnetic control of tokamak plasmas, Nature",
+          "url": "https://doi.org/10.1038/s41586-021-04301-9"
+        }
+      ]
+    }
+  }
+}

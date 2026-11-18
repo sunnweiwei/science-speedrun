@@ -1,16 +1,27 @@
-"""One backbone per family must receive gradients from each of five tracks."""
+"""One backbone per authorized family must receive gradients from each of the four tracks."""
 import argparse
 import json
 import sys
+import unittest
 from pathlib import Path
 
-import torch
+try:
+    import torch
+except ModuleNotFoundError as exc:
+    if __name__ == '__main__':
+        raise
+    raise unittest.SkipTest(f'Requires PyTorch container runtime: {exc}')
 
 HERE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(HERE / 'environment/baseline/braindecode'))
-from model import MODELS, SPECS
-from pretrained import load_backbone
-from shared import SharedModel
+try:
+    from model import MODELS, SPECS
+    from pretrained import load_backbone
+    from shared import SharedModel
+except ModuleNotFoundError as exc:
+    if __name__ == '__main__':
+        raise
+    raise unittest.SkipTest(f'Requires braindecode container runtime: {exc}')
 
 
 def main():

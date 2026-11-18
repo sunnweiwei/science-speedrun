@@ -1,5 +1,15 @@
 # rfd3-small: results
 
+Under the 20-design protocol the author reports 47 novel enzyme designs out of 820,
+4 small-molecule binders out of 80, 0 protein binders out of 100 and 7 unconditional
+folds out of 20. The four-track mean was 0.114329. That run used binder-only
+ProteinMPNN. Under `proteinmpnn-fixed-target/v2` the protein-binder component needs a
+new measurement. The other three counts carry forward. The original 100 binder
+backbones, or the retained epoch-100 weights for regenerating them, suffice for an
+independent measurement. [Author's report and checkpoint identity](https://github.com/openssi-dev/ai4sci-tasks/pull/52#issuecomment-6618380001)
+
+The figures in the tables below describe the historical protocols in their headings.
+
 The reproduced numbers for this baseline. The criteria behind them, the enzyme-target
 distribution and the full write-up of how the graded and operator paths were reconciled are
 in [../../evaluation/RESULTS.md](../../evaluation/RESULTS.md).

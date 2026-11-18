@@ -26,11 +26,28 @@ def cuda_uuids():
     return result
 
 
-def select_device(rank,devices):
-    if (type(rank) is not int or not 1<=rank<=len(devices)
-            or len(set(devices))!=len(devices)):
+SHARED_GPU_ENV = 'HYDROGYM_ALLOW_SHARED_GPU'
+
+
+def allow_shared_gpu(allow_shared=None):
+    if allow_shared is not None:
+        return bool(allow_shared)
+    value = os.environ.get(SHARED_GPU_ENV, '1').strip().lower()
+    if value in ('1', 'true', 'yes', 'on'):
+        return True
+    if value in ('0', 'false', 'no', 'off'):
+        return False
+    raise ValueError(f'Invalid {SHARED_GPU_ENV}={value!r}; expected 0 or 1')
+
+
+def select_device(rank, devices, allow_shared=None):
+    if type(rank) is not int or rank < 1 or not devices or len(set(devices)) != len(devices):
         raise ValueError('Need one distinct visible GPU for every MAIA solver rank')
-    return devices[rank-1]
+    if rank <= len(devices):
+        return devices[rank - 1]
+    if allow_shared_gpu(allow_shared):
+        return devices[(rank - 1) % len(devices)]
+    raise ValueError('Need one distinct visible GPU for every MAIA solver rank')
 
 
 def main():
@@ -49,6 +66,7 @@ def main():
     if cuda_uuids()!=[selected]:
         raise RuntimeError('CUDA rank isolation did not take effect')
     record={'global_rank':rank,'visible_cuda_devices':1,'cuda_device_uuid':selected,
+            'visible_pool_size':len(devices),'shared_gpu_mode':rank>len(devices),
             'container_pid':os.getpid()}
     output=Path(os.environ.get('HYDROGYM_GPU_BINDING_DIR','.'))
     (output/f'gpu-binding-rank-{rank}.json').write_text(json.dumps(record,indent=2)+'\n')

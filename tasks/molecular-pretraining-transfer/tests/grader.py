@@ -2,9 +2,9 @@
 """Trusted grader: score the sealed test predictions against the private labels. Never runs package code.
 
 Waits for the main verifier's READY (or INVALID) marker, checks the snapshot hashes, and writes
-OUT/reward.json (flat numbers: valid, per-group MA-RAE and mean Spearman, per-task MAE / RAE / R2 / Spearman /
-Kendall) and OUT/report.json (the same with encoder check and fine-tune timings). Raw metrics, no aggregate
-(TASK_STANDARD.md multi-metric exception).
+OUT/reward.json (`score` and `reward` = `1 / (1 + mean_4_groups(MA_RAE))`, `mean_ma_rae`, `valid`, per-group MA-RAE
+and mean Spearman, per-task MAE / RAE / R2 / Spearman / Kendall) and OUT/report.json (the same with encoder check
+and fine-tune timings).
 """
 import argparse
 import csv
@@ -16,7 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "protocol"))
-from tasks import GROUPS, NUM_TARGETS, TASKS, group_summary, task_metrics  # noqa: E402
+from tasks import GROUPS, NUM_TARGETS, TASKS, group_summary, ssi_v4_molecule_score, task_metrics  # noqa: E402
 
 
 def harbor_reward(values):
@@ -68,13 +68,28 @@ def score(sealed: Path, labels: Path) -> tuple[dict, dict]:
             raise ValueError(f"{t}: predictions cover {len(set(pred) & set(truth))} of {len(truth)} test molecules")
         per_task[t] = task_metrics(pred, truth)
     groups = group_summary(per_task)
-    reward = {"valid": 1.0, **groups}
+    v4 = ssi_v4_molecule_score(groups)
+    reward = {
+        "score": v4["score"],
+        "reward": v4["reward"],
+        "mean_ma_rae": v4["mean_ma_rae"],
+        "valid": 1.0,
+        **groups,
+    }
     for t, m in per_task.items():
         for name in ("mae", "rae", "r2", "spearman", "kendall"):
             reward[f"{t}_{name}"] = m[name]
-    report = {"groups": groups, "tasks": per_task, "group_tasks": GROUPS,
-              "encoder_check": json.loads((sealed / "encoder_check.json").read_text()),
-              "fine_tunes": json.loads((sealed / "suite.json").read_text())}
+    report = {
+        "score": v4["score"],
+        "reward": v4["reward"],
+        "mean_ma_rae": v4["mean_ma_rae"],
+        "ssi_v4": v4,
+        "groups": groups,
+        "tasks": per_task,
+        "group_tasks": GROUPS,
+        "encoder_check": json.loads((sealed / "encoder_check.json").read_text()),
+        "fine_tunes": json.loads((sealed / "suite.json").read_text()),
+    }
     return reward, report
 
 
@@ -100,7 +115,7 @@ def main() -> None:
     (tmp / "report.json").write_text(json.dumps(report, indent=1) + "\n")
     (tmp / "reward.json").write_text(json.dumps(harbor_reward(reward), indent=1) + "\n")
     tmp.rename(a.output)
-    print(json.dumps({k: v for k, v in reward.items() if "_ma_rae" in k or k == "valid"}))
+    print(json.dumps({k: v for k, v in reward.items() if "_ma_rae" in k or k in {"score", "reward", "mean_ma_rae", "valid"}}))
 
 
 if __name__ == "__main__":

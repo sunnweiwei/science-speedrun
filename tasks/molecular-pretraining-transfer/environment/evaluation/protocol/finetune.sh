@@ -11,15 +11,18 @@ set -euo pipefail
 task=$1; data=$2; enc=$3; out=$4
 here=$(cd "$(dirname "$0")" && pwd)
 num=$(python3 -c "import sys; sys.path.insert(0, '$here'); from tasks import NUM_TARGETS; print(NUM_TARGETS['$task'])")
+mkdir -p "$out/tmp"
+out=$(cd "$out" && pwd)
 arch=unimol2_84M; weights=()
 if [ "$enc" != none ]; then
   arch=$(python3 -c "import json; print(json.load(open('$enc/encoder.json')).get('arch', 'unimol2_84M'))")
   ud=$(python3 -c "import json; print(json.load(open('$enc/encoder.json')).get('user_dir') or '')")
   [ -n "$ud" ] && export UNIMOL2X_SUBMISSION_USER_DIR=$enc/$ud
-  weights=(--finetune-from-model "$enc/checkpoint.pt")
+  python3 -I "$here/encoder_checkpoint.py" "$enc/checkpoint.pt" "$out/tmp/encoder-state.pt"
+  weights=(--finetune-from-model "$out/tmp/encoder-state.pt")
 fi
 export OMP_NUM_THREADS=1 PYTORCH_JIT=0 UNIMOL2X_METAINFO=$data/task_metainfo.json
-mkdir -p "$out/tmp"; cd "$out"
+cd "$out"
 common=(--task-name $task --user-dir $here/unimol2x --conf-size 11 --num-workers 4
         --task mol_finetune --loss finetune_smooth_mae --arch $arch
         --classification-head-name $task --num-classes $num --fp16 --reg --drop-feat-prob 1.0 --use-2d-pos-prob 0.0)

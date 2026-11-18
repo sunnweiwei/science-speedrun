@@ -1,56 +1,58 @@
-# Pretrained initialization audit
+# Pretrained initialization audit (V4)
 
-The allowlist is `baseline/braindecode/pretrained.lock.json`: immutable Hub
+The active allowlist is `baseline/braindecode/pretrained.lock.json`: immutable Hub
 revisions, filenames, SHA-256 values, published license labels and source
-Braindecode versions. Only these files may be mounted read-only for the agent.
-Weight integrity and core compatibility have been checked; this is not a
-claim that pretraining records were independently reconstructed.
+Braindecode versions. Only allowlisted files may be mounted read-only for the agent,
+and `tests/main_verifier.py` enforces this policy at evaluation time.
 
-| Family | Initialization / published pretraining source | Overlap limitation |
-| --- | --- | --- |
-| EEGNet | Random initialization | No external pretraining |
-| ContraWR | Random initialization | No external pretraining |
-| CBraMod | TUEG, as described in the [original paper](https://openreview.net/pdf?id=NPNUHgHF2w) | TUEG and downstream TUH subsets can overlap; exact records for the rehosted weights are not supplied |
-| BIOT | MGH/PREST, SHHS, and training splits of TUAB, TUEV, CHB-MIT and IIIC, as described for the [six-dataset checkpoint](https://github.com/ycq091044/BIOT#2-eeg-pre-trained-models-all-re-sampled-to-200hz) | Explicit TUEV pretraining exposure; a training-split claim does not prove disjointness from this task's frozen split |
-| CodeBrain | TUEG, as described in the [original paper](https://arxiv.org/html/2506.09110v2) | No per-record pretraining manifest for the rehosted weights; downstream TUH overlap cannot be excluded |
+## V4 De-Contamination: Removal of `BIOT`
 
-The Braindecode Hub cards do not include detailed conversion or pretraining
-manifests. The corpus descriptions above are author-reported provenance, not
-an independently verified mapping of every Hub tensor to a pretraining run.
-We do not claim strictly unseen test signals for any pretrained family.
-Private task test labels are never used in joint training or checkpoint selection.
+In SSI Benchmark V4, **`BIOT` (`braindecode/biot-pretrained-six-datasets-18chs`, SHA-256
+`a218f4054ae29962c6fd9d23d94c446d354c4f53e805a6771c85749ccc20baaa`) is removed from
+authorized pretrained weights and explicitly blocked** (`disallowed_models` in
+`pretrained.lock.json`, enforced in `pretrained.py`, `validate_pretrained.py`, and
+`tests/main_verifier.py`). Upstream documentation for the six-dataset BIOT checkpoint
+([ycq091044/BIOT](https://github.com/ycq091044/BIOT#2-eeg-pre-trained-models-all-re-sampled-to-200hz))
+states that it was pretrained directly on labeled/unlabeled splits of **TUEV** alongside
+MGH/PREST, SHHS, TUAB, CHB-MIT and IIIC, without a verifiable recording-level manifest
+proving zero patient/recording overlap with our frozen `TUEV` evaluation cohort.
 
-The pinned [CBraMod](https://huggingface.co/braindecode/cbramod-pretrained/tree/584cdc415913739a05d84bf0c1cb3db397764507),
-[BIOT](https://huggingface.co/braindecode/biot-pretrained-six-datasets-18chs/tree/7e9aabf302870012f73773276803aab97993951c),
+| Family | Status in V4 | Initialization / published pretraining source | Overlap audit note |
+| --- | --- | --- | --- |
+| EEGNet | **Authorized** | Random initialization | Zero external pretraining overlap |
+| ContraWR | **Authorized** | Random initialization | Zero external pretraining overlap |
+| CBraMod | **Authorized** | Self-supervised TUEG pretraining ([Wang et al., ICLR 2025](https://openreview.net/pdf?id=NPNUHgHF2w)) | Zero overlap with AD65, OpenBMI, and Longitudinal; unlabeled TUEG corpus provenance noted below |
+| CodeBrain | **Authorized** | Self-supervised TUEG pretraining ([Ma et al., ICLR 2026](https://arxiv.org/html/2506.09110v2)) | Zero overlap with AD65, OpenBMI, and Longitudinal; unlabeled TUEG corpus provenance noted below |
+| BIOT | **DISALLOWED (Removed in V4)** | Six-dataset checkpoint including TUEV | **Prohibited**: direct downstream `TUEV` pretraining corpus overlap |
+
+The Braindecode Hub cards do not include per-recording pretraining manifests for
+unlabeled TUEG; private task test labels are never used in joint training or
+checkpoint selection.
+
+The pinned [CBraMod](https://huggingface.co/braindecode/cbramod-pretrained/tree/584cdc415913739a05d84bf0c1cb3db397764507)
 and [CodeBrain](https://huggingface.co/braindecode/codebrain-pretrained/tree/1ba45893685e6d5d2d51967cb48b1992c61668ef)
-Hub releases declare BSD-3-Clause. Original implementation repositories carry
-their own licenses (CBraMod and BIOT: MIT; CodeBrain: Apache-2.0); the Hub license
-label does not change dataset access terms. No checkpoint is redistributed in Git.
+Hub releases declare BSD-3-Clause (original repositories: CBraMod MIT, CodeBrain Apache-2.0).
+No checkpoint is redistributed in Git.
 
 ## Tensor compatibility and adaptation
 
-`pretrained.py` validates the complete file hash, then requires every backbone
-state tensor by exact key and shape with `strict=True`. Missing, mismatched or
-unexpected core tensors stop the run. The published `final_layer.*` is removed;
-BIOT's obsolete `encoder.index` buffer is also excluded. The selected classifier
-is replaced with an identity before loading. Successfully loaded core tensor
-counts are CBraMod 211, BIOT 56 and CodeBrain 269, including buffers.
+`pretrained.py` validates the complete file hash against `pretrained.lock.json`, rejects
+any disallowed family (`biot`), and requires every backbone state tensor by exact key and
+shape with `strict=True`. Missing, mismatched or unexpected core tensors stop the run.
+The published `final_layer.*` is removed and replaced with an identity before loading.
+Successfully loaded core tensor counts are CBraMod 211 and CodeBrain 269, including buffers.
 
-All task-specific channel projections and five classifier heads are newly
-initialized. The shared input representation uses 18 channels (19 for CodeBrain)
-at 200 Hz in chronological 2-second chunks, retaining all channels within each
-chunk. Pooling over chunks and replacing the published classifier are task-side
-adaptations. This differs from the published downstream training recipes and
-is not a reproduction of their reported accuracy. `training.json` and
+All four task-specific channel projections (`tuev`, `ad65`, `openbmi`, `longitudinal`) and
+four classifier heads are newly initialized. The shared input representation uses 18 channels
+(19 for CodeBrain) at 200 Hz in chronological 2-second chunks. `training.json` and
 `config.json` retain the loaded revision, hash, counts and initialization mode.
 
 ## Operator reproduction
 
-Before starting an agent, download the three pinned `model.safetensors` files
-from the revisions in the lock file into `$TASK_DATA_DIR/pretrained/` (mounted at
-`/workspace/data/pretrained/`) as
-`bci-cbramod.safetensors`, `bci-biot.safetensors`, and
-`bci-codebrain.safetensors`, then run:
+Before starting an agent, stage ONLY the two allowlisted `model.safetensors` files from
+`pretrained.lock.json` into `$TASK_DATA_DIR/pretrained/` (mounted at
+`/workspace/data/pretrained/`) as `bci-cbramod.safetensors` and
+`bci-codebrain.safetensors` (ensure `bci-biot.safetensors` is NOT present), then run:
 
 ```bash
 python environment/baseline/braindecode/validate_pretrained.py "$TASK_DATA_DIR/pretrained"

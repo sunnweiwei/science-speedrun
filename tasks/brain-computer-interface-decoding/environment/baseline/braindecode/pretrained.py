@@ -1,4 +1,4 @@
-"""Load only audited, pinned backbone tensors; reject partial core loading."""
+"""Load only audited, pinned backbone tensors; reject disallowed or partial checkpoints."""
 import hashlib
 import json
 from pathlib import Path
@@ -11,7 +11,13 @@ LOCK = Path(__file__).with_name('pretrained.lock.json')
 def load_backbone(model, family, directory):
     if family in ('eegnet', 'contrawr'):
         return {'initialization': 'scratch', 'loaded_core_tensors': 0}
-    locked = json.loads(LOCK.read_text())['models'][family]
+    manifest = json.loads(LOCK.read_text())
+    if family in manifest.get('disallowed_models', {}):
+        reason = manifest['disallowed_models'][family]['reason']
+        raise ValueError(f'{family}: disallowed pretrained checkpoint ({reason})')
+    if family not in manifest['models']:
+        raise ValueError(f'{family}: not in authorized pretrained allowlist')
+    locked = manifest['models'][family]
     path = Path(directory) / f'bci-{family}.safetensors'
     hasher = hashlib.sha256()
     with path.open('rb') as stream:
@@ -25,7 +31,7 @@ def load_backbone(model, family, directory):
     mismatch = sorted(k for k in set(expected) & set(source)
                       if expected[k].shape != source[k].shape)
     extra = sorted(k for k in set(source) - set(expected)
-                   if not k.startswith('final_layer.') and k != 'encoder.index')
+                   if not k.startswith('final_layer.'))
     if missing or mismatch or extra:
         raise ValueError(f'{family}: incompatible core checkpoint: '
                          f'missing={missing[:5]}, shape={mismatch[:5]}, extra={extra[:5]}')
@@ -33,4 +39,4 @@ def load_backbone(model, family, directory):
     return {'initialization': 'pretrained', 'repo': locked['repo'],
             'revision': locked['revision'], 'sha256': locked['sha256'],
             'license': locked['license'], 'source_braindecode': locked['source_braindecode'],
-            'loaded_core_tensors': len(expected), 'skipped_classifier_tensors': len(set(source)-set(expected))}
+            'loaded_core_tensors': len(expected), 'skipped_classifier_tensors': len(set(source) - set(expected))}

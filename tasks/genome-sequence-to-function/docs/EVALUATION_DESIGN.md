@@ -1,18 +1,17 @@
 # Evaluation design (v4)
 
-The verifier measures two things on one model:
-- how well it predicts held-out functional-genomics tracks, which is the reward;
-- what it says about genetic variants, which is where such models are used and where they are
-  furthest from solved.
+The verifier measures two equally weighted (`0.5` each) axes on one model (`score = reward = clip(0.5 * tracks_axis + 0.5 * variants_axis, 0, 1)`):
+- **Axis 1 (`tracks_axis`)**: how well it predicts held-out functional-genomics tracks across 5 biological modalities;
+- **Axis 2 (`variants_axis`)**: what it predicts about genetic variants and perturbations across 5 chance-calibrated biological branches (`eqtl_sign` retained as diagnostic only), which is where sequence-to-function models are used and furthest from solved.
 
-Both follow published protocols. Every reported number has an anchor computed on the same rows.
+Both follow published protocols. Every reported number has a pure single-genome sequence-to-function anchor computed on the same rows (`AlphaGenome` on 4 of 5 branches; `Borzoi` and `Enformer` on `TraitGym`).
 
-## 1. Track prediction (reward)
+## 1. Track prediction (`tracks_axis`, weight `0.5`)
 
 - **Data.** 1,000 test intervals of fold 1 (AlphaGenome `FOLD_0`), with full-precision targets
   and all 5,930 human tracks.
 - **Metric.** Pearson per track over valid targets in `asinh` space, averaged within each of
-  eleven families, then equally across families (`overall_mean_family_pearson`).
+  eleven families, then grouped into 5 equal-weight `TRACK_GROUPS` modalities (`Open chromatin`: `atac, dnase`; `Transcription`: `procap, cage, rna_seq`; `Protein binding and histones`: `chip_tf, chip_histone`; `Splicing`: `splice_sites, splice_usage, junctions`; `Chromatin contacts`: `contact_maps`) to form `tracks_axis` (ungrouped `overall_mean_family_pearson` is retained as a diagnostic).
   - Dense families are scored at 128-bp bins of the 196,608-bp target window.
   - `splice_sites` is scored per base.
   - Contact maps are scored per 2,048-bp pair.
@@ -25,13 +24,16 @@ Both follow published protocols. Every reported number has an anchor computed on
   equally. The number is therefore comparable across submissions to this task, but not to the
   paper's per-assay tables.
 
-## 2. Variant and perturbation effects (reported, not in the reward)
+## 2. Variant and perturbation effects (`variants_axis`, weight `0.5`)
 
 Each query is one *perturbation*: a 1,048,576-bp window and two sequences, A and B. B differs from
 A either by one SNV allele or by an N-masked interval. The submission's `perturb.sh` returns both
 predictions over a requested slice. The grader turns them into a variant score with the published
-scorer of each evaluation (`environment/evaluation/variant_scoring.py`). The scores are computed
-on the grader side, so a submission cannot tailor its scores to the metric.
+scorer of each evaluation (`environment/evaluation/variant_scoring.py`), calibrates the 12 non-redundant
+evaluations (excluding diagnostic `eqtl_sign`) against frozen `GENOME_CONSTANT` chance anchors, and
+averages them equally across 5 branches (`eQTL`, `Other molecular QTL`, `CRISPRi enhancer–gene`,
+`Clinical and functional assays`, `Human traits`). The scores are computed on the grader side, so a
+submission cannot tailor its scores to the metric.
 
 ### Evaluations
 
@@ -39,9 +41,9 @@ The first eleven are AlphaGenome's own variant evaluations, from its released ta
 (`storage.googleapis.com/alphagenome/evals`, CC-BY 4.0). The last two are TraitGym (Benegas et al.
 2025). "Chance" is the positive fraction for AUPRC, 0.5 for AUROC and 0 for Spearman.
 
-| evaluation | question | readout | metric | rows (perturbations) | chance | AlphaGenome on these rows |
+| evaluation | question | readout | metric | rows (perturbations) | chance | pure-sequence anchor on these rows |
 |---|---|---|---|---:|---:|---:|
-| eQTL sign | direction of a fine-mapped eQTL's effect on its gene | Δ log mean exon RNA-seq, signed | AUROC, tissue-weighted | 48,020 (452) | 0.50 | 0.813 |
+| eQTL sign (diagnostic only) | direction of a fine-mapped eQTL's effect on its gene | Δ log mean exon RNA-seq, signed | AUROC, tissue-weighted | 48,020 (452) | 0.50 | 0.813 |
 | eQTL causality | causal eQTL vs matched non-causal variant | \|Δ log exon RNA-seq\| | AUROC, tissue-weighted | 44,590 (430) | 0.50 | 0.827 |
 | eQTL effect size | fine-mapped eQTL coefficient | Δ log exon RNA-seq, signed | Spearman, tissue-weighted | 23,961 (451) | 0 | 0.499 |
 | sQTL causality | causal sQTL vs matched variant | max \|Δ splice-site probability\| within ±2.5 kb | AUPRC, tissue-weighted | 53,680 (487) | 0.57 | 0.860 |
@@ -52,8 +54,8 @@ The first eleven are AlphaGenome's own variant evaluations, from its released ta
 | caQTL | causal chromatin-accessibility QTL (African ancestry) | mean \|Δ log2 DNase\| over ±250 bp | AUPRC | 477 | 0.20 | 0.762 |
 | SPI1 bQTL | causal SPI1-binding QTL | mean \|Δ log2 SPI1 ChIP\| over ±250 bp | AUPRC | 494 | 0.20 | 0.804 |
 | CRISPRi enhancer–gene | does silencing this enhancer change this gene (ENCODE-rE2G) | \|Δ log exon RNA-seq\| when the enhancer is masked to N | AUPRC | 325 | 0.20 | 0.869 |
-| TraitGym Mendelian | causal variant for a Mendelian disease vs 9 matched controls | L2 of Δ over all tracks, ±1 kb | AUPRC by chromosome | 784 | 0.10 | Borzoi 0.459, Enformer 0.471, CADD 0.743, GPN-MSA 0.744 |
-| TraitGym complex | causal fine-mapped GWAS variant vs 9 matched controls | same | AUPRC by chromosome | 789 | 0.10 | Borzoi 0.290, Enformer 0.335, CADD 0.295, GPN-MSA 0.290 |
+| TraitGym Mendelian | causal variant for a Mendelian disease vs 9 matched controls | L2 of Δ over all tracks, ±1 kb | AUPRC by chromosome | 784 | 0.10 | Borzoi 0.459, Enformer 0.471 |
+| TraitGym complex | causal fine-mapped GWAS variant vs 9 matched controls | same | AUPRC by chromosome | 789 | 0.10 | Borzoi 0.290, Enformer 0.335 |
 
 ### Why these evaluations
 
@@ -61,9 +63,9 @@ The first eleven are AlphaGenome's own variant evaluations, from its released ta
   chromatin and TF binding, clinical classification and enhancer–gene regulation. They are the
   questions a sequence-to-function model is used to answer.
 - **TraitGym adds the hardest, most clinically relevant setting.** It asks for causal variants for
-  human disease and traits against matched controls. Sequence-to-function models trail
-  conservation-based scores (CADD, GPN-MSA) by a wide margin on the Mendelian set, so a gain there
-  would be new.
+  human disease and traits against matched controls using pure single-genome DNA sequence (note:
+  multi-species conservation tools use cross-species evolutionary alignments outside this task's
+  single-genome DNA-only contract and are therefore excluded from pure-sequence anchor comparisons).
 - **Each evaluation is rigorous on its own terms.** Labels come from fine-mapping, clinical
   curation or perturbation experiments, not from the model's training targets.
 
@@ -104,7 +106,7 @@ progress on it.
 | sQTL | 0.568 | 0.845 |
 | ClinVar non-coding / splice region / missense | 0.200 / 0.272 / 0.253 | 0.941 / 0.722 / 0.374 |
 | MFASS / caQTL / bQTL / enhancer–gene | 0.188 / 0.320 / 0.265 / 0.480 | 0.734 / 0.808 / 0.817 / 0.959 |
-| TraitGym Mendelian / complex | 0.222 / 0.187 | CADD 0.719 / 0.413, Borzoi 0.503 / 0.295 |
+| TraitGym Mendelian / complex | 0.222 / 0.187 | Enformer 0.545 / 0.269, Borzoi 0.503 / 0.295 |
 
 ### Checks
 

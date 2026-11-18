@@ -10,6 +10,7 @@ import pwd
 import shutil
 import signal
 import subprocess
+import sys
 import time
 
 from scoring.contract import load_requests, validate_submission
@@ -62,16 +63,68 @@ def freeze_submission(source: Path, destination: Path) -> Path:
     """Copy the validated package into a root-owned read-only replay tree."""
     if destination.exists():
         raise FileExistsError("frozen submission destination already exists")
-    shutil.copytree(source, destination, symlinks=False)
+    shutil.copytree(source, destination, symlinks=True)
     for path in destination.rglob("*"):
         if path.is_symlink():
-            raise ValueError("submission symlinks are not allowed")
+            raise InvalidSubmission("submission symlinks are not allowed")
         if path.is_file():
             path.chmod(0o444 | (path.stat().st_mode & 0o111))
     for path in sorted((item for item in destination.rglob("*") if item.is_dir()), reverse=True):
         path.chmod(0o555)
     destination.chmod(0o555)
     return destination
+
+
+class InvalidSubmission(ValueError):
+    """The sealed package or its execution violated the generation contract."""
+
+
+def validate_package(path):
+    try:
+        validate_submission(path)
+    except (ValueError, FileNotFoundError, NotADirectoryError, IsADirectoryError) as error:
+        raise InvalidSubmission(str(error)) from error
+
+
+def oom_kills():
+    """Read the current container cgroup's kernel counter if the runtime exposes it."""
+    paths = []
+    for line in Path("/proc/self/cgroup").read_text().splitlines():
+        _, controllers, directory = line.split(":", 2)
+        if not controllers:
+            group = Path("/sys/fs/cgroup") / directory.lstrip("/")
+            paths.extend([group / "memory.events.local", group / "memory.events"])
+        elif "memory" in controllers.split(","):
+            paths.append(Path("/sys/fs/cgroup/memory") / directory.lstrip("/") / "memory.oom_control")
+    for path in paths:
+        try:
+            fields = dict(line.split() for line in path.read_text().splitlines())
+        except (FileNotFoundError, PermissionError):
+            continue
+        if "oom_kill" in fields:
+            return int(fields["oom_kill"])
+    return None
+
+
+def check_exit(code, prior_oom, work):
+    after = oom_kills()
+    if prior_oom is not None and after is not None and after > prior_oom:
+        raise RuntimeError("Kernel reported an OOM kill during this invocation; resource attribution is required")
+    if code in (-signal.SIGKILL, 128 + signal.SIGKILL):
+        raise RuntimeError(f"Generator ended with unattributed SIGKILL ({code}); no scientific score")
+    if code:
+        fs = os.statvfs(work)
+        if fs.f_bavail == 0 or (fs.f_files and fs.f_favail == 0):
+            raise RuntimeError("Generator failed on an exhausted verifier filesystem")
+        raise InvalidSubmission(f"generate.sh exited with status {code}")
+
+
+def invalid_report(reason, input_root):
+    return {"schema": "crystalgen-report/v4-uma200-hull-aligned",
+            "protocol": "crystalgen-evaluation/v4-uma200-hull-aligned",
+            "evaluation_mode": "sealed_replay_invalid_submission", "status": "invalid_submission",
+            "primary_geometry": "uma200_relaxed", "pre_scoring_relaxation": True,
+            "requests_sha256": sha256(input_root / "requests.jsonl"), "error": reason[:4000]}
 
 
 def run_submission(submission: Path, input_root: Path, work: Path, timeout: int) -> Path:
@@ -93,10 +146,12 @@ def run_submission(submission: Path, input_root: Path, work: Path, timeout: int)
     }
 
     def demote() -> None:
+        os.setgroups([])
         os.setgid(agent.pw_gid)
         os.setuid(agent.pw_uid)
 
     process = None
+    prior_oom = oom_kills()
     try:
         with log.open("wb") as stream:
             process = subprocess.Popen(
@@ -109,12 +164,9 @@ def run_submission(submission: Path, input_root: Path, work: Path, timeout: int)
                 preexec_fn=demote,
             )
             code = process.wait(timeout=timeout)
-        if code:
-            raise subprocess.CalledProcessError(code, process.args)
-    except subprocess.TimeoutExpired:
-        if process:
-            os.killpg(process.pid, signal.SIGKILL)
-        raise
+        check_exit(code, prior_oom, work)
+    except subprocess.TimeoutExpired as error:
+        raise InvalidSubmission(f"Generator exceeded its {timeout}-second time budget") from error
     finally:
         if process:
             try:
@@ -174,39 +226,64 @@ def main() -> None:
     parser.add_argument("--allow-small-suite", action="store_true")
     parser.add_argument("--no-wait", action="store_true")
     args = parser.parse_args()
+    try:
+        run(args)
+    except Exception as error:
+        # Source/input/operator failures can occur before model invocation as well as during it.
+        # Even if one filesystem is exhausted, try to notify the peer on its separate volume.
+        reason = f"{type(error).__name__}: {error}"[:4000]
+        for path, text in ((args.output / "error.json", json.dumps({"status": "infrastructure_error", "error": reason})),
+                           (args.sealed.parent / "GENERATION_ERROR", reason)):
+            try:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(text + "\n")
+            except OSError as notice_error:
+                print(f"Could not publish {path.name}: {notice_error}", file=sys.stderr)
+        raise
+
+
+def run(args):
     args.output.mkdir(parents=True, exist_ok=True)
     args.sealed.parent.mkdir(parents=True, exist_ok=True)
-    os.chmod(args.output, 0o777)
+    os.chmod(args.output, 0o755)
+    os.chmod(args.sealed.parent, 0o755)
     validate_final_suite(args.input, args.allow_small_suite)
     work = args.output / "main"
     work.mkdir()
     try:
-        validate_submission(args.submission)
+        validate_package(args.submission)
         frozen_submission = freeze_submission(args.submission, work / "frozen-submission")
-        validate_submission(frozen_submission)
+        validate_package(frozen_submission)
         untrusted = run_submission(frozen_submission, args.input, work, args.timeout)
-    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        try:
+            seal_output(untrusted, args.sealed, args.input / "requests.jsonl")
+        except ValueError as error:
+            raise InvalidSubmission(str(error)) from error
+    except InvalidSubmission as error:
         # An invalid package, a failed generate.sh or a timeout scores 0 (TASK_STANDARD.md). The
         # INVALID marker tells the grader there is nothing to score.
         reason = f"{type(error).__name__}: {error}"
+        (args.output / "report.json").write_text(json.dumps(invalid_report(reason, args.input), indent=2) + "\n")
         (args.output / "reward.json").write_text(json.dumps(
-            {"reward": 0.0, "unconditional_sun_metasun": 0.0, "invalid_submission": 1.0},
+            {"score": 0.0, "reward": 0.0, "unconditional_ssi_score": 0.0,
+             "unconditional_sun_metasun": 0.0, "invalid_submission": 1.0},
             indent=2, sort_keys=True) + "\n")
-        (args.output / "report.json").write_text(json.dumps(
-            {"status": "invalid_submission", "error": reason[:4000]}, indent=2) + "\n")
         (args.sealed.parent / "INVALID").write_text(reason + "\n")
         print(f"invalid submission: {reason}")
         return
-    seal_output(untrusted, args.sealed, args.input / "requests.jsonl")
     if not args.no_wait:
         trusted_output = args.sealed.parent / "results"
         deadline = time.monotonic() + args.grader_wait
         while not (trusted_output / "reward.json").is_file():
+            if (trusted_output / "error.json").exists():
+                raise RuntimeError("Trusted grader failed; inspect its error.json")
             if time.monotonic() >= deadline:
                 raise TimeoutError("trusted grader did not publish reward.json")
             time.sleep(1)
         for name in ("report.json", "reward.json"):
-            shutil.copyfile(trusted_output / name, args.output / name)
+            partial = args.output / (name + ".tmp")
+            shutil.copyfile(trusted_output / name, partial)
+            partial.replace(args.output / name)
 
 
 if __name__ == "__main__":

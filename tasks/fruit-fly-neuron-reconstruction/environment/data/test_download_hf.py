@@ -38,6 +38,34 @@ class DownloadTests(unittest.TestCase):
             args.data=args.cache/'nested'
             with self.assertRaisesRegex(ValueError,'disjoint'):run(args)
 
+    def test_overlay_replaces_listed_files_from_its_own_pinned_repo(self):
+        with tempfile.TemporaryDirectory() as d:
+            r=Path(d);base=r/'base';extra=r/'extra'
+            for remote in (base,extra):(remote/'blobs').mkdir(parents=True)
+            files={}
+            for name in ('development/runtime/lib.so','private/suite/value'):
+                value=name.encode();sha=hashlib.sha256(value).hexdigest()
+                (base/'blobs'/sha).write_bytes(value);files[name]={'bytes':len(value),'sha256':sha}
+            m=base/'release.json';m.write_text(json.dumps({'schema':'pathfinder-resources/v1','files':files}))
+            rebuilt=b'rebuilt for two architectures';sha=hashlib.sha256(rebuilt).hexdigest()
+            (extra/'blobs'/sha).write_bytes(rebuilt)
+            overlay={'repo_id':'owner/overlay','revision':'b'*40,'files':{'development/runtime/lib.so':{'bytes':len(rebuilt),'sha256':sha}}}
+            config=r/'source.json'
+            def write(o):config.write_text(json.dumps({'repo_id':'owner/data','revision':'a'*40,'manifest_sha256':hashlib.sha256(m.read_bytes()).hexdigest(),'overlay':o}))
+            write(overlay)
+            args=argparse.Namespace(source=config,cache=r/'cache',data=r/'dev',private=r/'private',verify_only=False)
+            calls=[]
+            def fetch(**kw):
+                calls.append(kw);return (extra if kw['repo_id']=='owner/overlay' else base)/kw['filename']
+            with patch.dict('sys.modules',{'huggingface_hub':types.SimpleNamespace(hf_hub_download=fetch)}):
+                result=run(args)
+                self.assertEqual((args.data/'runtime/lib.so').read_bytes(),rebuilt)
+                self.assertEqual(result['overlay'],['development/runtime/lib.so'])
+                self.assertEqual([(c['repo_id'],c['revision']) for c in calls if c['filename']=='blobs/'+sha],[('owner/overlay','b'*40)])
+                args.verify_only=True;run(args)
+                overlay['files']={'development/runtime/new.so':overlay['files']['development/runtime/lib.so']};write(overlay)
+                with self.assertRaisesRegex(ValueError,'outside the release'):run(args)
+
     def test_mutable_revision_rejected(self):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/'source.json';p.write_text(json.dumps({'revision':'main'}))

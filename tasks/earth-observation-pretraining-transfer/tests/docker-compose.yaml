@@ -13,6 +13,8 @@ services:
       - apparmor:unconfined
       - systempaths=unconfined
     cap_add: [SYS_ADMIN]
+    environment:
+      OLMO_AWF_KNN_ROSTER: "${OLMO_AWF_KNN_ROSTER:-}"
     volumes:
       - type: bind
         source: "${TASK_PRIVATE_DIR:?Set TASK_PRIVATE_DIR}"

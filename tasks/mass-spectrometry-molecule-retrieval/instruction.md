@@ -7,7 +7,8 @@ experimental MS/MS spectrum of MassSpecGym v1.5. The same trained model must han
 query and unseen conforming queries.
 
 Hit rate at 1 on the 17,556 test queries is the primary objective. Hit rates at 5 and 20 and
-MCES distance at 1 are secondary. The reward is the raw test Hit@1.
+MCES distance at 1 are secondary. Both `score` and `reward` in `reward.json` equal the raw test
+`Hit@1` (`mean(1[top_1_candidate == true_candidate])` over all 17,556 test spectra).
 
 | system | Hit@1 (reward) |
 | --- | ---: |
@@ -50,8 +51,18 @@ monitoring Hit@5, Hit@20 and MCES@1.
   previously secret test set. Candidate SMILES are legitimate model inputs at inference time.
 - The only operator-supplied pretrained assets are the ones documented as such, and none are
   supplied in this release. Published GLACIER weights are not authorized initialization assets.
+- Return one candidate ranking per test spectrum, strictly independent of every other test query:
+  - **Recommended streaming entrypoint (`serve.sh` or `predict_server.py`)**: loads your model once
+    and ranks strictly one spectrum + its candidate SMILES pool per request over `stdin`/`stdout`
+    (`massspecgym-retrieval-stream/v2`), emitting `{"query_id": ..., "ranking": [...]}` with
+    deterministic tie-breaking on equal internal scores (for example by `candidate_id`) and zero
+    cross-query state. A cold-start spot-check verifies exact full `ranking` parity across query
+    orders and candidate shuffles.
+  - **Legacy batch fallback (`infer.sh`)**: if `serve.sh` / `predict_server.py` is absent, the
+    verifier falls back to isolated per-pool batches, with at most one spectrum from each candidate
+    pool visible per call (`contract.md`).
 - Deliver one fixed package that runs on the verifier's single GPU. These are forbidden:
-  - query-specific fitted parameters;
+  - query-specific fitted parameters or cross-query state / transductive pool caching;
   - true test formulae;
   - candidate-position shortcuts;
   - answer tables.
@@ -69,7 +80,8 @@ Directions worth trying:
 
 ## Submission
 
-Keep a complete package at `/workspace/submission`, starting early: `infer.sh`,
+Keep a complete package at `/workspace/submission`, starting early: `serve.sh` (recommended
+persistent single-query server) and/or `infer.sh` (legacy batch entrypoint),
 `model_manifest.json`, `README.md`, model code, configuration, weights and every runtime asset
 not supplied by the verifier image. It must run without network, the live trainer, development
 data or an undeclared cache, within the replay limits in the contract. First make the starter

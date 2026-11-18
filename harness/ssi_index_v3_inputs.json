@@ -1,0 +1,830 @@
+{
+ "flow_cases": {
+  "Channel_3D_Retau180": {
+   "direction": "lower_is_better",
+   "metric": "wall_shear",
+   "zero": 0.24757446825504303
+  },
+  "Cube_3D_Re3700": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 1.1395125469582512
+  },
+  "Cylinder_2D_Re1000": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 1.5312950175473634
+  },
+  "Cylinder_2D_Re200": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 1.3518501582562816
+  },
+  "Cylinder_2D_Re3900": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 1.5993988111912503
+  },
+  "Kolmogorov_2D": {
+   "direction": "lower_is_better",
+   "metric": "tke",
+   "zero": 3.302265527974719
+  },
+  "NACA0012Gust_2D_Re1000_AOA20": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.5021863702607336
+  },
+  "NACA0012Gust_2D_Re1000_AOA40": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.9399089754457899
+  },
+  "NACA0012Gust_2D_Re100_AOA20": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.21736600860455668
+  },
+  "NACA0012Gust_2D_Re100_AOA40": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.3252841697421993
+  },
+  "NACA0012Gust_3D_Re1000_AOA20": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.3981644146410356
+  },
+  "NACA0012Gust_3D_Re100_AOA20": {
+   "direction": "lower_is_better",
+   "metric": "gust_load_error",
+   "zero": 0.35131895185537776
+  },
+  "NACA0012_2D_Re1000_AOA20": {
+   "direction": "higher_is_better",
+   "metric": "lift_drag",
+   "zero": 1.9768029756311647
+  },
+  "NACA0012_2D_Re1000_AOA40": {
+   "direction": "higher_is_better",
+   "metric": "lift_drag",
+   "zero": 1.1113405731308548
+  },
+  "NACA0012_2D_Re100_AOA20": {
+   "direction": "higher_is_better",
+   "metric": "lift_drag",
+   "zero": 1.3564256825135526
+  },
+  "NACA0012_2D_Re100_AOA40": {
+   "direction": "higher_is_better",
+   "metric": "lift_drag",
+   "zero": 0.9452999364464827
+  },
+  "Nozzle2D_coarse": {
+   "direction": "lower_is_better",
+   "metric": "nozzle_angle_mae",
+   "zero": 6.185710134063164
+  },
+  "Nozzle2D_fine": {
+   "direction": "lower_is_better",
+   "metric": "nozzle_angle_mae",
+   "zero": 6.185440878361154
+  },
+  "Pinball_2D_Re100": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 2.905425664753513
+  },
+  "Pinball_2D_Re150": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 2.8828111347219614
+  },
+  "Pinball_2D_Re30": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 3.5269786609713485
+  },
+  "Pinball_2D_Re75": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 3.022054566512075
+  },
+  "Pinball_3D_Re100": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 2.8885058827985524
+  },
+  "Sphere_3D_Re300": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 0.6617253720262413
+  },
+  "SquareCylinder_2D_Re1000": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 2.4806304986299708
+  },
+  "SquareCylinder_2D_Re200": {
+   "direction": "lower_is_better",
+   "metric": "drag_cd",
+   "zero": 1.489142050535206
+  }
+ },
+ "genome_constant": {
+  "bqtl_spi1": 0.20040485829959515,
+  "caqtl": 0.20125786163522014,
+  "clinvar_missense": 0.20366598778004075,
+  "clinvar_noncoding": 0.20040080160320642,
+  "clinvar_splice_region": 0.20040899795501022,
+  "enhancer_gene": 0.2,
+  "eqtl_causality": 0.5,
+  "eqtl_coefficient": 0,
+  "eqtl_sign": 0.5,
+  "mfass": 0.19936708860759494,
+  "sqtl_causality": 0.5693860386879731,
+  "traitgym_complex": 0.10012674271229405,
+  "traitgym_mendelian": 0.10182767624020887
+ },
+ "timeseries_roster": {
+  "bitbrains_fast_storage/5T/long": [
+   "Web/CloudOps",
+   "bitbrains_fast_storage",
+   "long",
+   1.1366422318753115,
+   1.1773077032683998
+  ],
+  "bitbrains_fast_storage/5T/medium": [
+   "Web/CloudOps",
+   "bitbrains_fast_storage",
+   "medium",
+   1.2202713595882653,
+   1.1979128978088514
+  ],
+  "bitbrains_fast_storage/5T/short": [
+   "Web/CloudOps",
+   "bitbrains_fast_storage",
+   "short",
+   1.1360241737534567,
+   1.210386425305063
+  ],
+  "bitbrains_fast_storage/H/short": [
+   "Web/CloudOps",
+   "bitbrains_fast_storage",
+   "short",
+   1.2985124569638047,
+   1.0222395520114795
+  ],
+  "bitbrains_rnd/5T/long": [
+   "Web/CloudOps",
+   "bitbrains_rnd",
+   "long",
+   3.501257904408163,
+   1.175220506770106
+  ],
+  "bitbrains_rnd/5T/medium": [
+   "Web/CloudOps",
+   "bitbrains_rnd",
+   "medium",
+   4.542392314855541,
+   1.169291300089368
+  ],
+  "bitbrains_rnd/5T/short": [
+   "Web/CloudOps",
+   "bitbrains_rnd",
+   "short",
+   1.9708126376716957,
+   1.1015904440824371
+  ],
+  "bitbrains_rnd/H/short": [
+   "Web/CloudOps",
+   "bitbrains_rnd",
+   "short",
+   6.0373618687533925,
+   1.2432170953390527
+  ],
+  "bizitobs_application/10S/long": [
+   "Web/CloudOps",
+   "bizitobs_application",
+   "long",
+   3.2063450561622804,
+   0.04573090228155046
+  ],
+  "bizitobs_application/10S/medium": [
+   "Web/CloudOps",
+   "bizitobs_application",
+   "medium",
+   2.6914183385868085,
+   0.04268912394422428
+  ],
+  "bizitobs_application/10S/short": [
+   "Web/CloudOps",
+   "bizitobs_application",
+   "short",
+   2.2423302386755415,
+   0.03483868247005456
+  ],
+  "bizitobs_l2c/5T/long": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "long",
+   1.4542830442631411,
+   0.6484921267253538
+  ],
+  "bizitobs_l2c/5T/medium": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "medium",
+   1.2435997989335994,
+   0.5203917750796179
+  ],
+  "bizitobs_l2c/5T/short": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "short",
+   0.9860210805885202,
+   0.26206838623738704
+  ],
+  "bizitobs_l2c/H/long": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "long",
+   1.4260541525613812,
+   0.9410651242377539
+  ],
+  "bizitobs_l2c/H/medium": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "medium",
+   1.5102861226255864,
+   0.9042051354742671
+  ],
+  "bizitobs_l2c/H/short": [
+   "Web/CloudOps",
+   "bizitobs_l2c",
+   "short",
+   1.2140641267600039,
+   0.5211675771895117
+  ],
+  "bizitobs_service/10S/long": [
+   "Web/CloudOps",
+   "bizitobs_service",
+   "long",
+   1.367193469742303,
+   0.05345299584740217
+  ],
+  "bizitobs_service/10S/medium": [
+   "Web/CloudOps",
+   "bizitobs_service",
+   "medium",
+   1.3205790727650968,
+   0.04755831292581585
+  ],
+  "bizitobs_service/10S/short": [
+   "Web/CloudOps",
+   "bizitobs_service",
+   "short",
+   1.225305042620374,
+   0.03998233993351736
+  ],
+  "car_parts/M/short": [
+   "Sales",
+   "car_parts_with_missing",
+   "short",
+   1.2014638390969912,
+   1.7217438941460104
+  ],
+  "covid_deaths/D/short": [
+   "Healthcare",
+   "covid_deaths",
+   "short",
+   46.91239825526407,
+   0.12672327831223676
+  ],
+  "electricity/15T/long": [
+   "Energy",
+   "electricity",
+   "long",
+   1.1635317075319347,
+   0.11255332426055248
+  ],
+  "electricity/15T/medium": [
+   "Energy",
+   "electricity",
+   "medium",
+   1.1507882041044137,
+   0.11275485280084273
+  ],
+  "electricity/15T/short": [
+   "Energy",
+   "electricity",
+   "short",
+   1.7170601412372184,
+   0.16489261500071847
+  ],
+  "electricity/D/short": [
+   "Energy",
+   "electricity",
+   "short",
+   1.987041399842847,
+   0.10405987098536745
+  ],
+  "electricity/H/long": [
+   "Energy",
+   "electricity",
+   "long",
+   1.5240786163496851,
+   0.15341839756227935
+  ],
+  "electricity/H/medium": [
+   "Energy",
+   "electricity",
+   "medium",
+   1.3924537851702354,
+   0.12738701179892217
+  ],
+  "electricity/H/short": [
+   "Energy",
+   "electricity",
+   "short",
+   1.3577726051465433,
+   0.10566499518474065
+  ],
+  "electricity/W/short": [
+   "Energy",
+   "electricity",
+   "short",
+   2.0896995064573947,
+   0.0993032024444414
+  ],
+  "ett1/15T/long": [
+   "Energy",
+   "ett1",
+   "long",
+   1.190885705867336,
+   0.3401793468576481
+  ],
+  "ett1/15T/medium": [
+   "Energy",
+   "ett1",
+   "medium",
+   1.188305978388322,
+   0.32155116949786394
+  ],
+  "ett1/15T/short": [
+   "Energy",
+   "ett1",
+   "short",
+   0.9341549587802876,
+   0.24136394938567346
+  ],
+  "ett1/D/short": [
+   "Energy",
+   "ett1",
+   "short",
+   1.7783697877928102,
+   0.40843357791503654
+  ],
+  "ett1/H/long": [
+   "Energy",
+   "ett1",
+   "long",
+   1.4787012870437326,
+   0.47106248989542887
+  ],
+  "ett1/H/medium": [
+   "Energy",
+   "ett1",
+   "medium",
+   1.5678007461285395,
+   0.4349118298516912
+  ],
+  "ett1/H/short": [
+   "Energy",
+   "ett1",
+   "short",
+   0.9773176243434534,
+   0.24036844107833774
+  ],
+  "ett1/W/short": [
+   "Energy",
+   "ett1",
+   "short",
+   1.7689207877683926,
+   0.3118251468740881
+  ],
+  "ett2/15T/long": [
+   "Energy",
+   "ett2",
+   "long",
+   1.0126577751121104,
+   0.13282444765695306
+  ],
+  "ett2/15T/medium": [
+   "Energy",
+   "ett2",
+   "medium",
+   1.0512391501712754,
+   0.12412877798161984
+  ],
+  "ett2/15T/short": [
+   "Energy",
+   "ett2",
+   "short",
+   1.067314800011479,
+   0.09638438775638664
+  ],
+  "ett2/D/short": [
+   "Energy",
+   "ett2",
+   "short",
+   1.3901143157307532,
+   0.15331100213050436
+  ],
+  "ett2/H/long": [
+   "Energy",
+   "ett2",
+   "long",
+   1.1284016697207502,
+   0.20790633225768584
+  ],
+  "ett2/H/medium": [
+   "Energy",
+   "ett2",
+   "medium",
+   1.2384249730532626,
+   0.1862050814081793
+  ],
+  "ett2/H/short": [
+   "Energy",
+   "ett2",
+   "short",
+   0.9231678277377344,
+   0.08895289185095483
+  ],
+  "ett2/W/short": [
+   "Energy",
+   "ett2",
+   "short",
+   0.7785209533197451,
+   0.13367758870767996
+  ],
+  "hierarchical_sales/D/short": [
+   "Sales",
+   "hierarchical_sales",
+   "short",
+   1.1348033996861053,
+   1.7364572065613715
+  ],
+  "hierarchical_sales/W/short": [
+   "Sales",
+   "hierarchical_sales",
+   "short",
+   1.0250133777288337,
+   0.8322267526416594
+  ],
+  "hospital/M/short": [
+   "Healthcare",
+   "hospital",
+   "short",
+   0.9205278266364826,
+   0.06248817651596496
+  ],
+  "jena_weather/10T/long": [
+   "Nature",
+   "jena_weather",
+   "long",
+   0.7614923703210493,
+   0.2371949131202996
+  ],
+  "jena_weather/10T/medium": [
+   "Nature",
+   "jena_weather",
+   "medium",
+   0.7160100391723763,
+   0.21183609008512827
+  ],
+  "jena_weather/10T/short": [
+   "Nature",
+   "jena_weather",
+   "short",
+   0.7428874675800381,
+   0.15520092375681044
+  ],
+  "jena_weather/D/short": [
+   "Nature",
+   "jena_weather",
+   "short",
+   1.5734140297468562,
+   0.2105908566035542
+  ],
+  "jena_weather/H/long": [
+   "Nature",
+   "jena_weather",
+   "long",
+   1.2677178473920059,
+   0.41914340130808575
+  ],
+  "jena_weather/H/medium": [
+   "Nature",
+   "jena_weather",
+   "medium",
+   0.8886133410507664,
+   0.3428055217231077
+  ],
+  "jena_weather/H/short": [
+   "Nature",
+   "jena_weather",
+   "short",
+   0.7229102185557323,
+   0.15420788787522166
+  ],
+  "kdd_cup_2018/D/short": [
+   "Nature",
+   "kdd_cup_2018_with_missing",
+   "short",
+   1.4970343738270926,
+   0.674506129145155
+  ],
+  "kdd_cup_2018/H/long": [
+   "Nature",
+   "kdd_cup_2018_with_missing",
+   "long",
+   1.3355336658089667,
+   0.9362833347539716
+  ],
+  "kdd_cup_2018/H/medium": [
+   "Nature",
+   "kdd_cup_2018_with_missing",
+   "medium",
+   1.4289997072062277,
+   0.7587892026846513
+  ],
+  "kdd_cup_2018/H/short": [
+   "Nature",
+   "kdd_cup_2018_with_missing",
+   "short",
+   1.340425278558367,
+   0.547536580422314
+  ],
+  "loop_seattle/5T/long": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "long",
+   1.2506857542807588,
+   0.12716656087996273
+  ],
+  "loop_seattle/5T/medium": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "medium",
+   1.1532851467900647,
+   0.11727937998585615
+  ],
+  "loop_seattle/5T/short": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "short",
+   0.7623397118337274,
+   0.08083202568463041
+  ],
+  "loop_seattle/D/short": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "short",
+   1.7323957056549062,
+   0.1032547596878987
+  ],
+  "loop_seattle/H/long": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "long",
+   1.5460268753677606,
+   0.18709450197084374
+  ],
+  "loop_seattle/H/medium": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "medium",
+   1.4805126192799751,
+   0.16208090743299983
+  ],
+  "loop_seattle/H/short": [
+   "Transport",
+   "LOOP_SEATTLE",
+   "short",
+   1.2928412613913995,
+   0.10423508438727377
+  ],
+  "m4_daily/D/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   3.278424296610481,
+   0.024356147648337902
+  ],
+  "m4_hourly/H/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   1.1932101877276544,
+   0.03757255147212195
+  ],
+  "m4_monthly/M/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   1.259717038974429,
+   0.12192063664829357
+  ],
+  "m4_quarterly/Q/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   1.602247174616002,
+   0.09805397548466407
+  ],
+  "m4_weekly/W/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   2.777295047362158,
+   0.06087039452311706
+  ],
+  "m4_yearly/A/short": [
+   "Econ/Fin",
+   "m4",
+   "short",
+   3.965954931783283,
+   0.13714565740983498
+  ],
+  "m_dense/D/short": [
+   "Transport",
+   "M_DENSE",
+   "short",
+   1.6693368812171987,
+   0.22686565739428607
+  ],
+  "m_dense/H/long": [
+   "Transport",
+   "M_DENSE",
+   "long",
+   1.4779178744488217,
+   0.4189507904607682
+  ],
+  "m_dense/H/medium": [
+   "Transport",
+   "M_DENSE",
+   "medium",
+   1.569946511898904,
+   0.3773835994986822
+  ],
+  "m_dense/H/short": [
+   "Transport",
+   "M_DENSE",
+   "short",
+   1.4875444172240992,
+   0.27479786933969136
+  ],
+  "restaurant/D/short": [
+   "Sales",
+   "restaurant",
+   "short",
+   1.0060757450046092,
+   0.6770164746085788
+  ],
+  "saugeen/D/short": [
+   "Nature",
+   "saugeenday",
+   "short",
+   3.413049305768806,
+   0.5850141736335629
+  ],
+  "saugeen/M/short": [
+   "Nature",
+   "saugeenday",
+   "short",
+   0.9763741730697157,
+   0.4450846286544009
+  ],
+  "saugeen/W/short": [
+   "Nature",
+   "saugeenday",
+   "short",
+   1.990658004828632,
+   0.7340352210434381
+  ],
+  "solar/10T/long": [
+   "Energy",
+   "solar",
+   "long",
+   0.8709317964102903,
+   0.6738494837655387
+  ],
+  "solar/10T/medium": [
+   "Energy",
+   "solar",
+   "medium",
+   0.9270005404761702,
+   0.6550635536405177
+  ],
+  "solar/10T/short": [
+   "Energy",
+   "solar",
+   "short",
+   1.1057028063509833,
+   0.8595386998005952
+  ],
+  "solar/D/short": [
+   "Energy",
+   "solar",
+   "short",
+   1.155861190610263,
+   0.5590651164917229
+  ],
+  "solar/H/long": [
+   "Energy",
+   "solar",
+   "long",
+   1.0711966477927781,
+   1.0779764182077312
+  ],
+  "solar/H/medium": [
+   "Energy",
+   "solar",
+   "medium",
+   0.9349685908749716,
+   0.9459874672135314
+  ],
+  "solar/H/short": [
+   "Energy",
+   "solar",
+   "short",
+   0.9519362458316395,
+   0.5916559631947232
+  ],
+  "solar/W/short": [
+   "Energy",
+   "solar",
+   "short",
+   1.4703506784640206,
+   0.20974762813186765
+  ],
+  "sz_taxi/15T/long": [
+   "Transport",
+   "SZ_TAXI",
+   "long",
+   0.6909431344941248,
+   0.4279704063043717
+  ],
+  "sz_taxi/15T/medium": [
+   "Transport",
+   "SZ_TAXI",
+   "medium",
+   0.7134840540400068,
+   0.379172158612487
+  ],
+  "sz_taxi/15T/short": [
+   "Transport",
+   "SZ_TAXI",
+   "short",
+   0.7644167735543712,
+   0.3087068505119876
+  ],
+  "sz_taxi/H/short": [
+   "Transport",
+   "SZ_TAXI",
+   "short",
+   0.7381672994945998,
+   0.21382494112013678
+  ],
+  "temperature_rain/D/short": [
+   "Nature",
+   "temperature_rain_with_missing",
+   "short",
+   2.0115357653222166,
+   1.2679455200160903
+  ],
+  "us_births/D/short": [
+   "Healthcare",
+   "us_births",
+   "short",
+   1.8648391912491094,
+   0.11952686561898423
+  ],
+  "us_births/M/short": [
+   "Healthcare",
+   "us_births",
+   "short",
+   0.7605310792868888,
+   0.016825596814792485
+  ],
+  "us_births/W/short": [
+   "Healthcare",
+   "us_births",
+   "short",
+   1.5634204337929731,
+   0.01929679613291714
+  ]
+ }
+}

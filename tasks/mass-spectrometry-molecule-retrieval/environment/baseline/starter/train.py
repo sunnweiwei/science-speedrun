@@ -153,9 +153,13 @@ def main():
         summary = dict(identity, selected_epoch=best_epoch, best_validation_cosine_loss=best_loss,
                        elapsed_seconds=prior + time.monotonic() - started)
         def build(stage):
-            for name in ("infer.sh", "predict.py", "model.py", "common.py", "train.py", "publication.py"):
+            for name in (
+                "infer.sh", "serve.sh", "predict.py", "predict_server.py",
+                "model.py", "common.py", "train.py", "publication.py",
+            ):
                 shutil.copyfile(source / name, stage / name)
             (stage / "infer.sh").chmod(0o755)
+            (stage / "serve.sh").chmod(0o755)
             checkpoint = stage / "model.pt"
             torch.save({"state_dict": best_state, "model_config": config}, checkpoint)
             (stage / "model_config.json").write_text(compact_json(config) + "\n")

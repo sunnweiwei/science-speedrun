@@ -1,0 +1,135 @@
+{
+ "schema": "ssi-v4-starter-and-reference-manifest/v1",
+ "task_id": "timeseries-forecasting",
+ "contract": "timeseries-forecast/v1",
+ "primary_metric": "7 domains -> 23 sources -> horizon hierarchical log-ratio skill over Seasonal Naive: clip(1 - exp(mean_domain(mean_source(mean_horizon(0.5 * (log(rel_mase) + log(rel_wql)))))), 0.0, 1.0)",
+ "split_manifest": {
+  "path": "environment/data/split.json",
+  "n_configs": 97,
+  "n_domains": 7,
+  "n_sources": 23,
+  "n_test_instances": 326490,
+  "context_cap_observations": 16384,
+  "targets_only": true
+ },
+ "trivial_control_T19": {
+  "role": "T_19",
+  "name": "trivial-context-quantiles",
+  "package_dir": "docs/validation/released_models/trivial_context_quantiles",
+  "receipt_path": "docs/validation/trivial_control.json",
+  "receipt_sha256": "489ff7258e48a59f3c8fafab7cdad98c1a9f6c0490b5335bf5a919fd654adf7b",
+  "parameters": 0,
+  "has_97_config_rows": true,
+  "score": 0.0,
+  "signed_score": -0.38935578377476987,
+  "flat_97_skill_diagnostic": -0.3098726533512246
+ },
+ "normalizer_replay_control": {
+  "role": "seasonal_naive_contract_replay",
+  "name": "seasonal-naive-16384-cap",
+  "package_dir": "environment/baseline/seasonal_naive",
+  "receipt_path": "docs/validation/seasonal_naive_replay.json",
+  "receipt_sha256": "ab01640c5bba2e92fe6d05b5e272c849583a742b607f1c6248c487dfba44ccf2",
+  "parameters": 0,
+  "has_97_config_rows": true,
+  "score": 0.0036919698345322383,
+  "signed_score": 0.0036919698345322383,
+  "flat_97_skill_diagnostic": 0.007538125598493983
+ },
+ "official_starter_B19": {
+  "role": "B_19",
+  "name": "starter-patch-transformer-v3",
+  "package_dir": "environment/baseline/starter",
+  "receipt_path": "docs/validation/task_trained_baseline.json",
+  "receipt_sha256": "77a9a5f42c4d9705fff66228706067001a185e0eca61b1d90114d69deea2e61e",
+  "parameters": 6404864,
+  "parameter_label": "6.4M",
+  "weights_sha256": "6f91d4cc3ee2a7d9646aff9fd84fc901e2be83533764527dd059e36a626fdfcc",
+  "corpus": "81 non-leaking GiftEvalPretrain directories + 10% KernelSynth synthetic",
+  "has_97_config_rows": true,
+  "eligible_for_B19": true,
+  "score": 0.19347315873897375,
+  "signed_score": 0.19347315873897375,
+  "flat_97_skill_diagnostic": 0.15301884549063893,
+  "identity_lock_note": "Official B_19 is strictly locked to the 6.4M container starter (starter-patch-transformer-v3) with verified 97-config rows; never relabel this score as 50.9M."
+ },
+ "named_scaled_controls": [
+  {
+   "role": "scaled_starter_control",
+   "name": "starter-patch-transformer-41m",
+   "package_dir": "environment/baseline/starter-41m",
+   "receipt_path": "docs/validation/task_starter_scaled_41m.json",
+   "receipt_sha256": "cf922be549e431e89046be18e3c8abb445582c2f8796fe6148931f9c85aa6aa0",
+   "parameters": 41815296,
+   "parameter_label": "41.8M",
+   "weights_sha256": "51ce6185a907689d1b7f59ea03f5caa82b035ff314a0b73f37e36769fd36bc74",
+   "has_97_config_rows": true,
+   "eligible_for_B19": false,
+   "score": 0.246377677266857,
+   "signed_score": 0.246377677266857,
+   "flat_97_skill_diagnostic": 0.20709647991297808
+  },
+  {
+   "role": "summary_only_unverified_hierarchical",
+   "name": "timesfm3-50m-from-scratch",
+   "package_dir": "environment/baseline/timesfm3-50m",
+   "receipt_path": "docs/validation/timesfm3_50m_baseline.json",
+   "receipt_sha256": "9d4e7e75f47bbdde2c7bc7f5caa402dc4bf6df0e370c9e74919c07ff2e47b5fd",
+   "parameters": 50918592,
+   "parameter_label": "50.9M",
+   "has_97_config_rows": false,
+   "eligible_for_B19": false,
+   "score": null,
+   "signed_score": null,
+   "flat_97_skill_diagnostic": 0.2745007730085822,
+   "note": "Summary-only receipt lacking per-config 97-row breakdown; excluded from B_19 until replayed through tests/main_verifier.py on GPU to emit full 97-row report.json."
+  }
+ ],
+ "external_frontier_single_system": {
+  "role": "F_single",
+  "track_type": "frontier_single_system",
+  "name": "TimesFM-3 (google/timesfm-3.0-pytorch @ 43046b85)",
+  "receipt_path": "docs/validation/timesfm3_zero_shot.json",
+  "receipt_sha256": "dfb7d8ebb0e6ce6fbce24a5affd96b9c016742c071be867b74d07b3751397617",
+  "parameters": 331000000,
+  "parameter_label": "331M",
+  "same_local_context_cap_16384": true,
+  "targets_only_no_past_covariates": true,
+  "stage2_calibration_eligible": true,
+  "has_97_config_rows": true,
+  "score": 0.44001043721132516,
+  "signed_score": 0.44001043721132516,
+  "flat_97_skill_diagnostic": 0.4465018139971103,
+  "published_unlimited_context_with_covariates_flat_97_note": 0.4487653643944475
+ },
+ "companion_local_zero_shot_replays": [
+  {
+   "name": "Chronos-2 (amazon/chronos-2)",
+   "receipt_path": "docs/validation/chronos2_zero_shot.json",
+   "receipt_sha256": "ad739c6cdcf330b4408fb45690d7dcf2a90c45778a6c8fc09cbb239e781e050d",
+   "parameter_label": "119M",
+   "same_local_context_cap_16384": true,
+   "has_97_config_rows": true,
+   "score": 0.4160855426034209,
+   "flat_97_skill_diagnostic": 0.41801786626536475
+  },
+  {
+   "name": "TimesFM-2.5",
+   "receipt_path": "docs/validation/timesfm25_zero_shot.json",
+   "receipt_sha256": "92b6ae03837bdebcb1920244b527ce01ef3a93ee7839b59a093486888b3cbba7",
+   "same_local_context_cap_16384": true,
+   "has_97_config_rows": true,
+   "score": 0.40893922576833597,
+   "flat_97_skill_diagnostic": 0.4120644638919422
+  },
+  {
+   "name": "Chronos-Bolt-Base",
+   "receipt_path": "docs/validation/chronos_bolt_zero_shot.json",
+   "receipt_sha256": "b6efbfd60de16d6c7ee5fc75bb218b4047256447971d6ecbac4e41f8a29984d1",
+   "same_local_context_cap_16384": true,
+   "has_97_config_rows": true,
+   "score": 0.3229265794737308,
+   "flat_97_skill_diagnostic": 0.32538353910061146
+  }
+ ]
+}

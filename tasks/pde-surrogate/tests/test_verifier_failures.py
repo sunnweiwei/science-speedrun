@@ -185,16 +185,21 @@ def test_non_finite_truth_is_a_grader_error_not_a_score():
             score(root / "input", root / "truth", root / "output")
 
 
-def test_reward_json_names_the_isolation_mode_and_the_bounds_resolve_in_the_image_layout():
-    """`reward.json` carries the isolation mode; the bounds file is found next to the grader modules,
-    which is where the verifier image bakes it (/tests/evaluation), not two directories up."""
+def test_reward_json_has_score_and_reward_without_stale_normalised_score():
+    """`reward.json` carries unified `score` and `reward` (no legacy `normalised_score`), and
+    `report.json` records `inference_wall_seconds` as an unpenalized diagnostic."""
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp); data, man = make_source(root)
         pkg = make_package(root, PERSIST)
         r = run_verifier(pkg, data, man, root / "out", root / "work")
         assert r.returncode == 0, r.stderr[-800:]
         rew = json.loads((root / "out" / "reward.json").read_text())
-        assert all(isinstance(v, (int, float)) for v in rew.values()) and "normalised_score" in rew
+        assert all(isinstance(v, (int, float)) for v in rew.values())
+        assert set(rew.keys()) >= {"score", "reward"} and rew["score"] == rew["reward"]
+        assert "normalised_score" not in rew
+        rep = json.loads((root / "out" / "report.json").read_text())
+        assert rep["score"] == rep["reward"] == rew["score"]
+        assert isinstance(rep.get("inference_wall_seconds"), (int, float)) and rep["inference_wall_seconds"] >= 0.0
         st = json.loads((root / "out" / "status.json").read_text())
         assert st["inference"]["isolation"] in ("bwrap", "uid", "subprocess")
         assert st["determinism"].get("isolation") == st["inference"]["isolation"], "the rerun must use the same isolation"
@@ -205,8 +210,10 @@ def test_reward_json_names_the_isolation_mode_and_the_bounds_resolve_in_the_imag
         (image / "evaluation").mkdir(exist_ok=True)
         for name in ("score.py", "make_cases.py", "pde_io.py", "score_bounds.json"):
             shutil.copy(TASK / "environment" / "evaluation" / name, image / "evaluation" / name)
-        probe = subprocess.run([sys.executable, "-c", "import main_verifier as m; print(m.normalised(0.3)['normalised_score'])"],
-                               cwd=image, capture_output=True, text=True)
+        probe = subprocess.run(
+            [sys.executable, "-c", "import main_verifier as m; from score import reward_from_vrmse; assert not hasattr(m, 'normalised'); print(reward_from_vrmse(0.1))"],
+            cwd=image, capture_output=True, text=True,
+        )
         assert probe.returncode == 0 and probe.stdout.strip(), probe.stderr[-500:]
 
 

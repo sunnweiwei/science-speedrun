@@ -72,12 +72,20 @@ syndromes, including validation syndromes, but no logical labels or odd shots.
 No historical decoder predictions or full raw data are copied into development.
 
 ```bash
-# Run with the pinned AlphaQubit runtime (NumPy + Stim installed).
+# Run with the pinned AlphaQubit runtime (NumPy + Stim installed) and an explicit operator HMAC key (>=16 bytes).
 python environment/data/materialize.py --from-sources \
   --source /path/to/original/sycamore \
   --reference-results /path/to/reference-results \
+  --hmac-key-file /path/to/secret_hmac.key \
   --output /path/to/new-release
 ```
+
+`build_release.py` requires an explicit secret key via `--hmac-key-file` or
+`SSI_SURFACE_CODE_HMAC_KEY`, derives test `sample_ids` via keyed HMAC-SHA256
+(`hmac.new(secret_key, f"{folder}:{index}", sha256).hexdigest()[:32]` projected to
+`uint64`), deterministically permutes test shot order per condition using a keyed PRNG,
+and writes the reverse `(sample_id -> folder, source_shot_index)` table solely to
+`grader/private_sample_id_map.json` inside `grader-labels.tar.gz` (`TASK_PRIVATE_DIR`).
 
 The builder returns `materialized/{development,verifier,grader}`, the three
 archives and `release-manifest.json`. Its archive bytes are deterministic for

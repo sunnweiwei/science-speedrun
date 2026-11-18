@@ -166,14 +166,20 @@ def main():
     start = time.monotonic()
     try:
         if not args.worker:
+            from maia_gpu_rank import allow_shared_gpu
             helper = EVALUATION / 'maia_gpu_rank.py'
             devices = json.loads(subprocess.check_output([sys.executable, str(helper), '--list-gpus'], text=True))
-            if len(devices) != case['solver_processes'] or len(set(devices)) != len(devices):
-                raise ValueError('Need exactly the frozen number of distinct solver GPUs')
+            if not devices or len(set(devices)) != len(devices):
+                raise ValueError('Need distinct visible CUDA devices')
+            if len(devices) < case['solver_processes']:
+                if not (case['backend'] == 'maia' and allow_shared_gpu()):
+                    raise ValueError('Need exactly the frozen number of distinct solver GPUs')
+            else:
+                devices = devices[:case['solver_processes']]
             os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(devices)
             write_json(args.output / 'launch.json', {'arguments': vars(args) | {
                 'data': str(args.data), 'output': str(args.output), 'author_source': str(args.author_source)},
-                'gpu_uuids': devices, 'case': case})
+                'gpu_uuids': devices, 'shared_gpu': len(devices) < case['solver_processes'], 'case': case})
         if case['backend'] != 'maia' or args.worker:
             worker(args, spec, case)
         else:
@@ -181,10 +187,18 @@ def main():
             work, props = prepare_maia_workspace(case['id'], work_dir=str(args.output / 'cfd'),
                 use_clean_cache=False, local_fallback_dir=str(args.data / 'environments'))
             solver = [sys.executable, str(EVALUATION / 'maia_gpu_rank.py')]
-            cmd = ['mpirun', '--bind-to', 'none', '-np', '1', sys.executable, str(Path(__file__).resolve()),
-                *sys.argv[1:], '--worker', ':', '-np', str(case['solver_processes']), *solver, props, '--silent']
-            subprocess.run(cmd, cwd=work, env=dict(os.environ, OMPI_ALLOW_RUN_AS_ROOT='1',
-                OMPI_ALLOW_RUN_AS_ROOT_CONFIRM='1', OMPI_MCA_coll_hcoll_enable='0'), check=True)
+            cmd = ['mpirun', '--oversubscribe', '--bind-to', 'none', '-np', '1', sys.executable,
+                str(Path(__file__).resolve()), *sys.argv[1:], '--worker', ':',
+                '-np', str(case['solver_processes']), *solver, props, '--silent']
+            subprocess.run(cmd, cwd=work, env=dict(
+                os.environ,
+                OMPI_ALLOW_RUN_AS_ROOT='1',
+                OMPI_ALLOW_RUN_AS_ROOT_CONFIRM='1',
+                OMPI_MCA_coll_hcoll_enable=os.environ.get('OMPI_MCA_coll_hcoll_enable', '0'),
+                OMPI_MCA_btl=os.environ.get('OMPI_MCA_btl', 'self,vader,tcp'),
+                OMPI_MCA_btl_vader_single_copy_mechanism=os.environ.get(
+                    'OMPI_MCA_btl_vader_single_copy_mechanism', 'none'),
+            ), check=True)
         if not args.worker:
             write_json(args.output / 'training-finished.json', {'wall_seconds': time.monotonic() - start,
                 'status': 'trained-and-exported-awaiting-independent-evaluation'})

@@ -28,15 +28,34 @@ network, the verifier image's pinned runtime (nothing is installed), up to eight
 (`CUDA_VISIBLE_DEVICES`), and 24 hours of wall time for the whole request. Output is limited to
 20 GiB and 20,100 files. Processes left behind after `generate.sh` exits are killed.
 
-After sealing the generated outputs, the trusted grader relaxes a separate copy
-using frozen UMA `uma-s-1` (`omat`), BFGSLineSearch + FrechetCellFilter,
-`fmax=0.02` eV/Å, at most 200 steps and 300 seconds per structure. It then
-scores those geometries with the pinned LeMat ensemble. The package cannot skip
-or modify this step and does not receive pretrained scoring weights. Failed
-refinements retain the original candidate; finite unconverged iterates are kept.
-All requested samples remain in the denominator. The same relaxation is available
-during development through `/workspace/evaluation/relax.sh` and is included
-automatically in `/workspace/evaluation/score.sh`.
+The grader first relaxes a separate copy of each submitted crystal with the frozen UMA
+`uma-s-1` (`omat`), BFGSLineSearch and FrechetCellFilter, up to 200 steps at 0.02 eV/Å and
+300 seconds per crystal. It retains finite unconverged iterates and uses the original
+candidate when refinement fails. It then scores the resulting geometry with ORB-v3, MACE-MP
+and UMA. Mean energy above hull defines stable (≤0 eV/atom) and metastable (0–0.1 eV/atom)
+bins, with stable structures excluded from the metastable bin. Let `a = SUN / 2,500` (`ΔE_hull ≤ 0 eV/atom`)
+and `b = (SUN + MetaSUN) / 2,500` (`ΔE_hull ≤ 0.1 eV/atom`), where SUN and MetaSUN counts are unique within
+their bin and novel relative to LeMat-Bulk over all 2,500 requested slots. The primary score written to
+`reward.json["score"]` and `reward.json["reward"]` is:
+
+```text
+score = reward = (a + b) / 2 = (SUN + 0.5 * MetaSUN) / 2,500
+```
+
+Unweighted `unconditional_sun_metasun` (`b`), `unconditional_sun` (`a`), `unconditional_metasun`,
+`negative_formation_energy_fraction` (`E_form < 0`), `relaxation_rmsd`, `as_submitted` pre-relaxation counts,
+and element-arity (`n_elements`) distributions are retained as diagnostics in `report.json` (no ad-hoc gates).
+
+For equal compositions, CrystalGen applies MatterGen's v1.0.3 ordered-disordered matcher.
+The additional dilute-parent guard identifies a known lattice decorated with a substituent
+occupying ≤25% of the host-plus-guest sites. It requires relative radius difference ≤0.3 and
+electronegativity difference ≤1.0. Supercells, symmetry copies and dilute variants of a known
+compound such as GdDy7Cu8 from DyCu are covered by these comparisons. A cross-element substitution requires both the measured radii and the electronegativities. Ordinary same-species geometric matches still apply to materials such as XeF₂ when a radius is unavailable.
+
+The optional `--as-submitted` evaluation scores the raw lattice and coordinates. It also
+measures displacement from the raw geometry under all three potentials on 250 prespecified
+slots (50 steps, 0.02 eV/Å), with coverage and a 95% structure-bootstrap interval.
+This result is recorded separately from the primary UMA-200 reward.
 
 ## Requests
 

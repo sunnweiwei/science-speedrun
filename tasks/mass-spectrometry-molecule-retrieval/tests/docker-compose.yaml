@@ -11,16 +11,17 @@ services:
     # Main resources come from task.toml or the explicit evaluation profile.
     shm_size: "16gb"
     volumes:
+      # Below the root-only /verifier-input: inference only sees its own per-pool batch.
       - type: bind
         source: ${TASK_DATA_DIR:?Set TASK_DATA_DIR}/verifier
-        target: /benchmark
+        target: /verifier-input/benchmark
         read_only: true
         bind:
           create_host_path: false
       - sealed:/sealed
       - verifier_logs:/logs/verifier
     healthcheck:
-      test: ["CMD-SHELL", "test -s /benchmark/manifest.json && test -s /benchmark/queries.jsonl && test -s /benchmark/candidate_pools.jsonl"]
+      test: ["CMD-SHELL", "test -s /verifier-input/benchmark/manifest.json && test -s /verifier-input/benchmark/queries.jsonl && test -s /verifier-input/benchmark/candidate_pools.jsonl"]
       interval: 5s
       timeout: 5s
       retries: 3

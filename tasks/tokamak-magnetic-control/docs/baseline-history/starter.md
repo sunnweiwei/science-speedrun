@@ -32,7 +32,7 @@ The published BC package through the trusted verifier (`tests/test.sh`, all five
 
 That is 15/30 episodes kept, against 6/18 for the deployable PID on the first three seeds.
 
-- Two sealed seeds fail across the board: seed 1004 stalls the solver in every case, and seed 1005
+- Two harder sealed draws fail across the board: one stalls the solver in every case, and one
   loses the plasma within 25 ms in five cases. Both are low-pressure draws the demonstrations barely
   covered.
 - The weak spot is the plasma current: 7.5 % error at 750 kA and 12.4 % during the ramp.

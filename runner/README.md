@@ -38,6 +38,11 @@ task's own verifier. It is the tooling behind the agent-behavior tests of the ta
    - Add every data root outside `EVAL_ROOT` to `MOUNT_ROOTS`.
    - natural-disease-progression is MIMIC-IV derived: its release is credentialed and its terms forbid redistribution.
 
+6. **Sealed verifier files.** tokamak-magnetic-control, fluid-flow-control and earth-observation-pretraining-transfer
+   score against sealed seeds or rosters (`tests/sealed/`, listed by hash in `tests/sealed/SHA256SUMS`). They are not in
+   this public repository: set `SEALED_DIR` to a checkout of the private task repository. `stage_sealed.sh` (run by
+   `run_verify.sh`) copies them in and stops the verification if a file is missing or differs.
+
 Then `runner/selftest.sh`.
 
 ## Running

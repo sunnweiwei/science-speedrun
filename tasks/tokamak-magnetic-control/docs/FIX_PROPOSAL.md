@@ -24,7 +24,7 @@ Goals: (1) make the task useful for fusion research; (2) keep it close to Degrav
 ## Findings while implementing (2026-10-03)
 
 - The privileged PID never fed back on the lower X-point height (the v0.1 baseline left it out of its virtual circuits), so it drifted by several cm; with that feedback, now the default, it holds the gaps and X-point height within 1 cm.
-- On sealed seeds 1001-1002 it keeps the plasma in 12 of 13 scored episodes but succeeds in 1, because the 32-point boundary RMS stays at 1.4-2.1 cm while the gaps, X-point height and current are within tolerance.
+- On a 2-seed sealed check it keeps the plasma in 12 of 13 scored episodes but succeeds in 1, because the 32-point boundary RMS stays at 1.4-2.1 cm while the gaps, X-point height and current are within tolerance.
 - The verifier replays the hold-current anchor end to end (14/14 plasma lost, `reward` 0.0, `policy_compute_ms` 0.13).
 - FreeGSNKE 3.1.0 drops `ny` when it copies a profile, which caused the "'ny'" failures; `tokagym.env.patch_freegsnke` fixes it.
 - Profile updates double the cost of a step, so slow drifts are sent in 0.2% increments.
@@ -34,7 +34,7 @@ Goals: (1) make the task useful for fusion research; (2) keep it close to Degrav
 
 - Success keeps 1 cm on both the 32-point boundary RMS and the gaps, and 3% on the plasma current, as implemented.
 - The 1 cm is the MAST-U team's controller requirement, "small steady-state error (about 1 cm or less)" (Lvovskiy et al. 2025), which is 2% of MAST-U's 0.5 m minor radius against the 8% of Degrave et al.'s 2 cm on TCV.
-- MAST-U states it for the controlled gaps, so applying it to the whole-boundary RMS is the stricter reading, and it keeps the privileged PID at 1 success in 13 on sealed seeds 1001-1002 (12 of 13 kept).
+- MAST-U states it for the controlled gaps, so applying it to the whole-boundary RMS is the stricter reading, and it keeps the privileged PID at 1 success in 13 on a 2-seed sealed check (12 of 13 kept).
 - The alternative considered was 2 cm on the 32-point RMS (Degrave et al.'s shape aim), under which the reference would succeed in 7 of 13; switching later needs only `SUCCESS_SHAPE_M` in `tokagym/metrics.py` and the METRICS.md text.
 
 ## Main gap

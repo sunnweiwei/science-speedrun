@@ -6,6 +6,7 @@ Both development replay and the Harbor verifier use these exact profiles.
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import sys
 
@@ -17,13 +18,33 @@ from public_release import load_release, digest
 from materialize import file_digest
 
 PROFILE_VERSION = 'hydrogym-native-replay/v1'
+BLIND_SEEDS_ENV = 'HYDROGYM_BLIND_SEEDS_FILE'
 DATA = Path(__file__).resolve().parent.parent / 'data'
 
 
-def specifications():
+def load_blind_seeds(path=None):
+    target = path if path is not None else os.environ.get(BLIND_SEEDS_ENV, '').strip()
+    if not target:
+        return None
+    seed_path = Path(target)
+    if not seed_path.is_file():
+        raise InfrastructureError(f'Missing sealed blind seed roster: {seed_path}')
+    payload = json.loads(seed_path.read_text())
+    if payload.get('schema') != 'hydrogym-blind-seeds/v1' or not isinstance(payload.get('cases'), dict):
+        raise InfrastructureError(f'Invalid blind seed roster schema in {seed_path}')
+    for case_id, seeds in payload['cases'].items():
+        if (not isinstance(seeds, list) or not seeds or len(set(seeds)) != len(seeds)
+                or any(type(s) is not int or s < 0 or s == 123 for s in seeds)):
+            raise InfrastructureError(
+                f'Invalid blind seeds for {case_id}: require unique non-negative ints != 123')
+    return payload
+
+
+def specifications(blind_seeds_path=None):
     release = load_release()
     if {c['id'] for c in release['cases']} != set(CASE_METRICS):
         raise InfrastructureError('Frozen data and physical metric coverage differ')
+    blind_roster = load_blind_seeds(blind_seeds_path)
     cases = []
     evidence = {c['case']: c for c in json.loads((DATA / 'cost-evidence-coverage-v1.json').read_text())['cases']}
     for row in release['cases']:
@@ -32,14 +53,23 @@ def specifications():
         horizon = row['selection_review']['native_episode_controls_for_costing']
         observation_shape = profile.get('observation_shape', [128 if name.startswith('Channel') else 64])
         action_shape = profile.get('action_shape', [24 if name.startswith('Channel') else 4])
+        if blind_roster is not None:
+            if name not in blind_roster['cases']:
+                raise InfrastructureError(f'Sealed blind seed roster missing case: {name}')
+            case_seeds = list(blind_roster['cases'][name])
+            init_note = (f'Native reset and supplied source initial states; {len(case_seeds)} sealed '
+                         'blind perturbation seeds (masked from policy.reset).')
+        else:
+            case_seeds = [123]
+            init_note = 'Native reset and supplied source initial states; seed 123. No independent-flow-sample claim.'
         case = dict(id=name, environment=name, family=row['family'], backend=backend,
             observation_size=math.prod(observation_shape), action_size=math.prod(action_shape),
             observation_shape=observation_shape, action_shape=action_shape,
-            horizon=horizon, seeds=[123], solver_processes=row['required_solver_gpus'],
-            timeout_sec=max(1800, math.ceil(900 + 2 * (evidence[name]['startup_seconds']
+            horizon=horizon, seeds=case_seeds, solver_processes=row['required_solver_gpus'],
+            timeout_sec=max(1800, math.ceil(900 + 2 * len(case_seeds) * (evidence[name]['startup_seconds']
                 + horizon * evidence[name]['seconds_per_control']))),
             runtime_profile=profile, runtime_profile_sha256=digest(profile),
-            initialization='Native reset and supplied source initial states; seed 123. No independent-flow-sample claim.',
+            initialization=init_note,
             provenance='Organizer native replay profile adopted unchanged from the approved source/cost specification; not paper certification.',
             episode_end='native', strict_horizon=True, primary_metric=definition(name))
         if backend == 'maia':
@@ -79,8 +109,8 @@ def estimated_seconds(case_id):
     return evidence[case_id]['startup_seconds'] + horizon * evidence[case_id]['seconds_per_control']
 
 
-def select_cases(names):
-    spec = specifications()
+def select_cases(names, blind_seeds_path=None):
+    spec = specifications(blind_seeds_path=blind_seeds_path)
     indexed = {c['id']: c for c in spec['cases']}
     if names == ['all']:
         names = list(indexed)

@@ -156,28 +156,32 @@ leaderboard's own `Seasonal_Naive` row at the pinned Space revision
 (`evaluation/seasonal_naive_reference.json`; the task's contract-compliant
 Seasonal Naive package, `baseline/seasonal_naive`, reproduces those values
 except where the context cap changes its interval width,
-`docs/validation/seasonal_naive_replay.json`), clipped to [1e-3, 10], and aggregated
-with a geometric mean over the 97 configs, which is how the leaderboard
-aggregates. Every config weighs the same, so the 21 dataset-frequency variants
-that have all three terms carry three times the weight of the other 34, as on
-the board. Then
+`docs/validation/seasonal_naive_replay.json`), clipped to `[1e-3, 10]`, and aggregated
+hierarchically across `7 domains -> 23 sources -> horizon` so that multi-frequency
+or multi-horizon sources do not over-weight the benchmark:
 
-    skill  = 1 − sqrt(gmean(rel MASE) × gmean(rel WQL))
-    reward = clip(skill, 0, 1)
+1. Compute `0.5 * (log(rel_mase) + log(rel_wql))` per configuration;
+2. Average within each `(domain, source, horizon)` cell across frequencies;
+3. Average across horizons (`short`, `medium`, `long`) within each of the `23` sources;
+4. Average across sources within each of the `7` domains (`mean_domain`);
+5. Set
 
-A reward of 0 means no better than the leaderboard's Seasonal Naive row on the
-geometric average, 1 would be a perfect forecast; the unclipped `skill_score`
-is reported alongside so that progress below that floor stays visible. The
-task's own contract-compliant Seasonal Naive scores 0.008 rather than exactly
-0, because the context cap narrows its prediction intervals on three
-jena_weather configs (`docs/validation/seasonal_naive_replay.json`); that offset
-applies to every package equally. For orientation on the leaderboard's own
-per-config numbers (relative MASE / relative WQL → reward): Naive 1.27 / 1.59 →
-0, PatchTST per-dataset supervised 0.849 / 0.587 → 0.294, chronos_bolt_base
-0.808 / 0.574 → 0.319, TimesFM-2.5 0.705 / 0.490 → 0.412, TimesFM-3 0.667 /
-0.456 → 0.449. The report also carries the leaderboard's breakdowns (term,
-domain, frequency, uni/multivariate) and a per-config CSV in the leaderboard's
-column names, so any submission can be placed on the public board directly.
+    signed_score = 1 − exp(mean_domain)
+    score = reward = clip(signed_score, 0, 1)
+
+Both `score` and `reward` in `reward.json` and `report.json` hold this hierarchical
+skill score, while `signed_score` (`skill_score`) preserves the unclipped value
+below 0 and `flat_97_skill_diagnostic` (`1 − sqrt(gmean(rel MASE) × gmean(rel WQL))`)
+retains the legacy flat 97-configuration geometric skill for direct comparison
+with the public GIFT-Eval board. Under this hierarchical metric on the sealed
+local contract (16,384-observation context cap, targets only): Seasonal Naive
+scores `0.0037` (`flat_97` `0.0075`), the official 6.4M starter
+(`starter-patch-transformer-v3`) scores `0.1935` (`flat_97` `0.1530`), the 41.8M
+scaled starter scores `0.2464` (`flat_97` `0.2071`), Chronos-2 (119M) scores
+`0.4161` (`flat_97` `0.4180`), and TimesFM-3 (331M) scores `0.4400` (`flat_97`
+`0.4465`). The report also carries domain/source hierarchical scores, the
+leaderboard's breakdowns (term, domain, frequency, uni/multivariate), and a
+per-config CSV in the leaderboard's column names.
 
 A config whose prediction file is missing, unreadable, mis-shaped or
 non-finite scores the clip maximum (10) on both metrics; it never aborts the

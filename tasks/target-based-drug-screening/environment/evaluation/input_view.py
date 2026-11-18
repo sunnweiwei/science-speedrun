@@ -85,14 +85,50 @@ def redact_lmdb(source: Path, destination: Path, kind: str,
     return count
 
 
+def build_pocket_derangement(targets: dict) -> dict[tuple[str, str], tuple[str, str]]:
+    """Deterministically assign each target a donor pocket from a dissimilar target.
+
+    Within each benchmark with >= 2 targets, sorted targets are shifted by half the
+    roster (`N // 2`), guaranteeing a fixed-point-free derangement and separating
+    alphabetically adjacent gene-family paralogs (e.g. akt1/akt2, esr1/esr2).
+    If any benchmark has < 2 targets (e.g. minimal unit-test fixtures), derangement
+    is performed across all discovered targets.
+    """
+    all_keys = sorted(targets.keys())
+    if len(all_keys) < 2:
+        raise ValueError("swapped-pocket counterfactual requires at least 2 targets")
+    by_benchmark: dict[str, list[tuple[str, str]]] = {}
+    for key in all_keys:
+        by_benchmark.setdefault(key[0], []).append(key)
+    mapping: dict[tuple[str, str], tuple[str, str]] = {}
+    if all(len(group) >= 2 for group in by_benchmark.values()):
+        for group in by_benchmark.values():
+            n = len(group)
+            shift = n // 2
+            for idx, recipient in enumerate(group):
+                donor = group[(idx + shift) % n]
+                mapping[recipient] = donor
+    else:
+        n = len(all_keys)
+        shift = n // 2
+        for idx, recipient in enumerate(all_keys):
+            donor = all_keys[(idx + shift) % n]
+            mapping[recipient] = donor
+    return mapping
+
+
 def stage_inputs(root: Path, destination: Path, private_mapping: Path, *,
-                 full_suite: bool = True, seed: bytes | None = None) -> dict:
+                 full_suite: bool = True, seed: bytes | None = None,
+                 swap_pockets: bool = False) -> dict:
     """Shuffle each molecule target; keep the seed/index map outside inputs.
 
     A controller may reuse a private 32-byte seed for acceptance comparisons.
     Never supply this seed, manifest or original indices to candidate code.
+    When `swap_pockets=True`, each target receives a deterministic donor pocket
+    from a dissimilar target for label-free counterfactual specificity replay.
     """
     targets = discover_targets(root, full_suite=full_suite)
+    pocket_donors = build_pocket_derangement(targets) if swap_pockets else None
     if (private_mapping.resolve().is_relative_to(destination.resolve()) or
             destination.resolve().is_relative_to(private_mapping.resolve())):
         raise ValueError("private mapping and inference inputs must be separate")
@@ -130,11 +166,18 @@ def stage_inputs(root: Path, destination: Path, private_mapping: Path, *,
             "path": relative, "count": count,
             "sha256": hashlib.sha256(mapping.read_bytes()).hexdigest()}
         pocket_name = "pocket.lmdb" if benchmark == "dude" else "pockets.lmdb"
-        redact_lmdb(pocket, output / pocket_name, "pocket")
+        pocket_source = targets[pocket_donors[key]][1] if pocket_donors is not None else pocket
+        redact_lmdb(pocket_source, output / pocket_name, "pocket")
         counts[key] = count
     manifest = {"schema": "drugclip-private-order/v1", "seed_hex": seed.hex(),
                 "algorithm": "HMAC-SHA256 target seed / NumPy PCG64 permutation",
                 "numpy_version": np.__version__, "targets": mappings}
+    if pocket_donors is not None:
+        manifest["pocket_mode"] = "swapped_counterfactual"
+        manifest["swapped_pocket_donors"] = {
+            f"{b}/{t}": f"{db}/{dt}"
+            for (b, t), (db, dt) in sorted(pocket_donors.items())
+        }
     receipt = private_mapping / "manifest.json"
     receipt.write_text(json.dumps(manifest, sort_keys=True, indent=2) + "\n")
     receipt.chmod(0o600)

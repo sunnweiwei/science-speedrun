@@ -136,9 +136,21 @@ The verifier scores each of the nine tracks with the pinned official FoldBench s
 monomers, DockQ or ligand success rates for interfaces, each in [0, 1]). A protein or nucleic-acid
 interface succeeds when DockQ ≥ 0.23 and its geometry is CAPRI acceptable: ligand RMSD ≤ 10 Å or
 interface RMSD ≤ 4 Å. Chains collapsed onto each other recover every native contact and pass
-DockQ alone; they do not pass this rule. The reward is the
-unweighted mean of the nine track scores. Each track score is reported next to it, and the research
-objective is to improve every track, not only the mean.
+DockQ alone; they do not pass this rule. A protein–ligand target succeeds when ligand RMSD < 2.0 Å
+and lDDT-PLI > 0.8.
+
+Both `score` and `reward` in `reward.json` equal the **5-modality equal-weighted mean** across
+FoldBench's five biomolecular interaction classes (`FOLD_GROUPS`), averaging tracks within each
+modality before taking the unweighted mean across modalities:
+
+1. `Protein monomers`: `monomer_protein`
+2. `Nucleic-acid monomers`: mean(`monomer_rna`, `monomer_dna`)
+3. `Protein interfaces`: mean(`interface_protein_protein`, `interface_antibody_antigen`, `interface_protein_peptide`)
+4. `Protein–nucleic acid`: mean(`interface_protein_rna`, `interface_protein_dna`)
+5. `Protein–ligand`: `interface_protein_ligand`
+
+Each individual track score and the 5-modality breakdown (`modalities`) are reported alongside
+`score` and `reward`, and the research objective is to improve every track, not only the aggregate.
 
 Missing or invalid predictions count as failures, not a smaller benchmark. The
 scorer retains every original target row in its denominator and uses model-

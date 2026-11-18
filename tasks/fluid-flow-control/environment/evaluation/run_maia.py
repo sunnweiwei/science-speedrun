@@ -62,8 +62,8 @@ def evaluate_worker(case, suite, data, submission, output):
     result = {"status": "ok", "episodes": [], "native_protocol": env.reviewed_protocol}
     try:
         policy = Policy(submission, output.with_suffix(".policy.log"), suite["policy_timeout_sec"])
-        for seed in case["seeds"]:
-            result["episodes"].append(replay_episode(Adapter(), policy, case, seed))
+        for idx, seed in enumerate(case["seeds"]):
+            result["episodes"].append(replay_episode(Adapter(), policy, case, seed, episode_index=idx))
         policy.close()
         policy = None
     except PolicyError as error:
@@ -121,14 +121,22 @@ def main():
         local_fallback_dir=str(args.data / "environments"))
     solver = ([sys.executable, str(Path(__file__).resolve().with_name("maia_gpu_rank.py"))]
               if case["solver_processes"] > 1 else ["maia"])
-    command = ["mpirun", "--bind-to", "none", "-np", "1", sys.executable, str(Path(__file__).resolve()),
-               args.mode, "--worker", "--data", str(args.data), "--case", args.case,
-               "--submission", str(args.submission), "--output", str(args.output),
+    command = ["mpirun", "--oversubscribe", "--bind-to", "none", "-np", "1", sys.executable,
+               str(Path(__file__).resolve()), args.mode, "--worker", "--data", str(args.data),
+               "--case", args.case, "--submission", str(args.submission), "--output", str(args.output),
                "--steps", str(args.steps), "--resume", str(args.resume),
                ":", "-np", str(case["solver_processes"]), *solver, properties, "--silent"]
-    environment = dict(os.environ, HF_HUB_OFFLINE="1", PYTHONDONTWRITEBYTECODE="1",
-                       OMPI_ALLOW_RUN_AS_ROOT="1", OMPI_ALLOW_RUN_AS_ROOT_CONFIRM="1",
-                       OMPI_MCA_coll_hcoll_enable="0")
+    environment = dict(
+        os.environ,
+        HF_HUB_OFFLINE="1",
+        PYTHONDONTWRITEBYTECODE="1",
+        OMPI_ALLOW_RUN_AS_ROOT="1",
+        OMPI_ALLOW_RUN_AS_ROOT_CONFIRM="1",
+        OMPI_MCA_coll_hcoll_enable=os.environ.get("OMPI_MCA_coll_hcoll_enable", "0"),
+        OMPI_MCA_btl=os.environ.get("OMPI_MCA_btl", "self,vader,tcp"),
+        OMPI_MCA_btl_vader_single_copy_mechanism=os.environ.get(
+            "OMPI_MCA_btl_vader_single_copy_mechanism", "none"),
+    )
     subprocess.run(command, cwd=work, env=environment, check=True)
 
 

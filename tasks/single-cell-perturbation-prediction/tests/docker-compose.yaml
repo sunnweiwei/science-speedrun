@@ -39,7 +39,7 @@ services:
   grader:
     build: .
     network_mode: none
-    command: ["python", "/tests/grader.py", "--sealed", "/sealed/run", "--benchmark", "/benchmark", "--private", "/private", "--output", "/sealed/results"]
+    command: ["python", "/tests/grader.py", "--sealed", "/sealed/run", "--benchmark", "/benchmark", "--private", "/private", "--output", "/sealed/results", "--expected-contexts", "ctx_near", "ctx_mid", "ctx_far", "--require-query-independence"]
     volumes:
       - type: bind
         source: "${TASK_DATA_DIR:?Set TASK_DATA_DIR to the release's dev/ tree}/test"

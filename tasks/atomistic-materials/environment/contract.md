@@ -77,29 +77,40 @@ done
 
 ## Scoring
 
-**Crystal Potential Score v2** is the headline objective (0–100, higher is better).
-For each primary error below, divide by its fixed scale; discovery uses `(1 − F1) / 0.144`.
-Average the two normalized errors within elasticity and amorphous, then compute
-`100 × exp(−mean(log(1 + suite_error)))` over the eight suites.
+The primary task score (`score` and `reward` in `reward.json`, in `[0, 1]`, higher is better) is the
+**SSI V4 eight-suite equal arithmetic mean** (`1/8` weight per suite), calibrated against frozen
+zero-force error anchors stored in `/workspace/evaluation/atom_zero_force_anchors.json`:
 
-| Suite | Primary error scale(s) |
-| --- | --- |
-| Discovery | 1 − F1: 0.144 |
-| Phonons | Mean-frequency MAE: 18.2 K |
-| Elasticity | Bulk: 5.560 GPa; shear: 7.277 GPa |
-| κ | SRME: 0.455 |
-| MOF | Bulk-modulus MAPE: 26.6% |
-| Amorphous | Energy RelRMSE: 8.780%; force RelRMSE: 14.8% |
-| Cleavage | Relative MAE: 6.598% |
-| NEB | Barrier MAE: 0.147 eV |
+1. Let `base = 2 * 0.1648 / (1 + 0.1648)` (`≈ 0.28296703296703296`, the F1 of predicting all WBM
+   candidates stable at positive prevalence `0.1648`), and for each error metric `k` with anchor `d_k`
+   define `v[k] = 1 - metric[k] / d_k`.
+2. Compute the eight unclipped suite skill terms (`1/8` weight each):
 
-Scales are frozen from the MP fine-tune's rounded 3-epoch **validation** table, before expanded scratch
-results, and reused on test. 50 matches that reference profile; 100 is ideal. This is a custom
-index, not percent accuracy or an official leaderboard metric. It is not comparable to the old
-three-suite Score v1. Missing/invalid primary metrics give 0; per-case failures retain the caps
-below. `reward.json` contains `reward = score / 100`, `crystal_potential_score`, and all 15 raw
-metrics. `report.json` records the score version and suite breakdown. For flat validation metrics,
-run `python /workspace/evaluation/aggregate.py --metrics /workspace/research/val-metrics.json`.
+| Suite (`1/8` weight) | Metric(s) | Zero-force anchor(s) | Suite skill term |
+| --- | --- | --- | --- |
+| `Discovery` | `discovery_F1` | `base = 2 × 0.1648 / (1 + 0.1648)` | `(discovery_F1 − base) / (1 − base)` |
+| `Phonons` | `phonon_avg_freq_MAE_K` | `419.2277237301322` K | `v["phonon_avg_freq_MAE_K"]` |
+| `Elasticity` | `bulk_modulus_MAE_GPa`, `shear_modulus_MAE_GPa` | `107.020216` GPa, `54.186936` GPa | `0.5 × (v["bulk_modulus_MAE_GPa"] + v["shear_modulus_MAE_GPa"])` |
+| `Thermal conductivity` | `kappa_SRME` | `2.0` | `v["kappa_SRME"]` |
+| `Metal–organic frameworks` | `mof_bulk_modulus_MAPE_pct` | `atom_zero_force_anchors["mof_bulk_modulus_MAPE_pct"]` (ZeroForce + PBE-D3(BJ) anchor) | `v["mof_bulk_modulus_MAPE_pct"]` |
+| `Amorphous materials` | `amorphous_energy_RelRMSE_pct`, `amorphous_force_RelRMSE_pct` | `100.0%`, `100.0%` | `0.5 × (v["amorphous_energy_RelRMSE_pct"] + v["amorphous_force_RelRMSE_pct"])` |
+| `Cleavage` | `cleavage_relMAE_pct` | `100.0%` | `v["cleavage_relMAE_pct"]` |
+| `Migration barriers` | `neb_barrier_MAE_eV` | `0.6803895877435844` eV | `v["neb_barrier_MAE_eV"]` |
+
+3. Average the eight suite terms with equal `1/8` weight (`signed_score = mean(terms)`), and clip once
+   at the top level: `score = reward = clip(signed_score, 0.0, 1.0)`.
+   Note that because the MOF driver adds `TorchDFTD3Calculator(damping="bj", xc="pbe", cutoff=40.0 Bohr)`
+   via `SumCalculator`, the MOF anchor in `/workspace/evaluation/atom_zero_force_anchors.json` is
+   parameterized by the unrounded `ZeroForce + D3(BJ)` bulk-modulus MAPE so a zero-force calculator
+   scores exact `0.0` on the MOF component.
+
+Missing or invalid primary metrics give `score = reward = 0.0`; per-case failures retain the caps below.
+`reward.json` contains `score`, `reward` (`= score`), `signed_score`, the retained historical diagnostic
+`crystal_potential_score` (Crystal Potential Score v2, 0–100 geometric mean), and all 15 raw metrics.
+`report.json` records `ssi_v4` (version, score, signed_score, per-suite components and anchors) alongside
+`aggregate` (historical v2 breakdown). For flat validation metrics, run:
+`python /workspace/evaluation/aggregate.py --metrics /workspace/research/val-metrics.json` (pass
+`--version v2` to inspect the historical 0–100 v2 diagnostic).
 
 All raw metrics remain available:
 

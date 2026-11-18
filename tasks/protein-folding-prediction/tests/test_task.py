@@ -546,7 +546,10 @@ class TaskTests(unittest.TestCase):
                                      ground_truth=natives, submission=model, output=output))()
         with patch.object(grade.subprocess, "run", side_effect=score_or_run):
             grade.run(args)
-        self.assertEqual(json.loads((output / "reward.json").read_text()), {"reward": 0.75, "monomer_protein": 0.75})
+        self.assertEqual(
+            json.loads((output / "reward.json").read_text()),
+            {"reward": 0.75, "score": 0.75, "monomer_protein": 0.75},
+        )
         self.assertFalse(json.loads((output / "report.json").read_text())["label_isolated_sandbox"])
 
     @unittest.skipUnless(os.environ.get("FOLDBENCH_NATIVE_SMOKE_DIR"), "optional native-scorer fixture")

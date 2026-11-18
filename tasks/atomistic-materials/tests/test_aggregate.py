@@ -3,11 +3,14 @@ from copy import deepcopy
 import pytest
 
 from aggregate import (
+    ATOM_ZERO_FORCE_ANCHORS,
+    DISCOVERY_F1_BASE,
     REFERENCE,
     REFERENCE_V2,
     SUITE_INPUTS_V2,
     aggregate_score,
     expanded_score,
+    ssi_v4_score,
 )
 
 
@@ -138,9 +141,120 @@ def test_expanded_score_grader_consumes_flat_metrics(tmp_path, monkeypatch):
                                     "--labels", str(labels), "--output", str(output)])
     grader.main()
     reward = json.loads((output / "reward.json").read_text())
-    assert reward["reward"] == pytest.approx(0.5)
+    report_out = json.loads((output / "report.json").read_text())
+    expected_v4 = ssi_v4_score(grader.flatten(report))
+    assert reward["score"] == pytest.approx(expected_v4["score"], abs=1e-12)
+    assert reward["reward"] == pytest.approx(expected_v4["score"], abs=1e-12)
+    assert reward["signed_score"] == pytest.approx(expected_v4["signed_score"], abs=1e-12)
     assert reward["crystal_potential_score"] == pytest.approx(50)
     assert reward["discovery_F1"] == report["physical"]["metrics"]["discovery"]["F1"]
     assert "phonon_entropy_MAE" not in reward
     assert all(isinstance(value, (int, float)) for value in reward.values())
-    assert json.loads((output / "report.json").read_text())["aggregate"]["score"] == pytest.approx(50)
+    assert report_out["ssi_v4"]["score"] == pytest.approx(expected_v4["score"], abs=1e-12)
+    assert report_out["aggregate"]["score"] == pytest.approx(50)
+
+
+def test_ssi_v4_score_parity_with_harness_v3():
+    import importlib.util
+    from pathlib import Path
+
+    harness_path = next(p for p in Path(__file__).resolve().parents if (p / "harness" / "ssi_index_v3.py").is_file()) / "harness" / "ssi_index_v3.py"
+    spec = importlib.util.spec_from_file_location("ssi_index_v3", harness_path)
+    harness = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(harness)
+
+    perfect = {k: 0.0 for k in ATOM_ZERO_FORCE_ANCHORS}
+    perfect["discovery_F1"] = 1.0
+
+    zero_force = {"discovery_F1": DISCOVERY_F1_BASE, **ATOM_ZERO_FORCE_ANCHORS}
+
+    partial_negative_suite = {
+        **REFERENCE_V2,
+        "mof_bulk_modulus_MAPE_pct": 180.0,  # worse than zero-force -> negative suite term, positive mean
+    }
+
+    failed_all = {
+        "discovery_F1": 0.0,
+        "phonon_avg_freq_MAE_K": 600.0,
+        "bulk_modulus_MAE_GPa": 150.0,
+        "shear_modulus_MAE_GPa": 80.0,
+        "kappa_SRME": 2.0,
+        "mof_bulk_modulus_MAPE_pct": 200.0,
+        "amorphous_energy_RelRMSE_pct": 200.0,
+        "amorphous_force_RelRMSE_pct": 200.0,
+        "cleavage_relMAE_pct": 200.0,
+        "neb_barrier_MAE_eV": 2.0,
+    }
+
+    for fixture in (perfect, zero_force, REFERENCE_V2, partial_negative_suite, failed_all):
+        got = ssi_v4_score(fixture)
+        ref = harness.atom(fixture)
+        assert abs(got["score"] - ref["score"]) < 1e-12
+        assert abs(got["signed_score"] - ref["signed_score"]) < 1e-12
+        assert set(got["components"]) == set(ref["components"])
+        for comp_name, comp_val in ref["components"].items():
+            assert abs(got["components"][comp_name] - comp_val) < 1e-12
+
+    assert abs(ssi_v4_score(perfect)["score"] - 1.0) < 1e-15
+    zf_res = ssi_v4_score(zero_force)
+    assert abs(zf_res["score"]) < 1e-15
+    assert abs(zf_res["signed_score"]) < 1e-15
+    assert all(abs(v) < 1e-15 for v in zf_res["components"].values())
+    assert ssi_v4_score(failed_all)["signed_score"] < 0.0
+    assert ssi_v4_score(failed_all)["score"] == 0.0
+
+
+@pytest.mark.parametrize("value", [None, float("nan"), float("inf"), -1, True])
+def test_ssi_v4_score_invalid_or_missing_suite_is_zero(value):
+    metrics = {**REFERENCE_V2, "kappa_SRME": value}
+    assert ssi_v4_score(metrics)["score"] == 0.0
+    assert ssi_v4_score({})["score"] == 0.0
+    assert ssi_v4_score(REFERENCE_V2, valid=False)["score"] == 0.0
+
+
+def test_dev_dockerfile_and_compose_exclude_sealed_tests():
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    dockerfile = (root / "environment" / "Dockerfile").read_text()
+    compose = (root / "environment" / "docker-compose.yaml").read_text()
+    assert "tests" not in dockerfile
+    assert "tests" not in compose
+
+    readme = (root / "tests" / "README.md").read_text()
+    assert "## Scientific & Literature Justification of Verifier Design" in readme
+    assert "### 1. Primary Metric & Upstream Paper Provenance" in readme
+    assert "### 2. Why Additional Ad-Hoc Constraints Are Intentionally Omitted" in readme
+    assert "### 3. Diagnostic Signals Retained in report.json" in readme
+
+
+def test_main_verifier_invalid_submission_writes_zero_v4_score(tmp_path):
+    import json
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    script = Path(__file__).with_name("main_verifier.py")
+    output = tmp_path / "output"
+    subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--submission",
+            str(tmp_path / "missing"),
+            "--input",
+            str(tmp_path / "inputs"),
+            "--sealed",
+            str(tmp_path / "sealed"),
+            "--output",
+            str(output),
+        ],
+        check=True,
+    )
+    report = json.loads((output / "report.json").read_text())
+    reward = json.loads((output / "reward.json").read_text())
+    assert report["ssi_v4"]["version"] == "ssi-atomistic-score-v4"
+    assert report["ssi_v4"]["score"] == 0.0
+    assert report["aggregate"]["version"] == "crystal-potential-score-v2"
+    assert reward["score"] == reward["reward"] == reward["crystal_potential_score"] == 0.0
+    assert reward["invalid_submission"] is True

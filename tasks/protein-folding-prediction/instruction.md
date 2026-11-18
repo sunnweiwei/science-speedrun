@@ -15,10 +15,18 @@ structure module, confidence head and modality-specific component in the candida
 
 Each track is scored by the pinned official FoldBench scorer. Monomers are scored by lDDT and
 interfaces by DockQ or ligand success rates, each in [0, 1]. An interface succeeds with DockQ ≥ 0.23
-and CAPRI acceptable geometry (ligand RMSD ≤ 10 Å or interface RMSD ≤ 4 Å). The reward is the unweighted mean of the
-nine track scores. The research objective is a significant improvement over the pinned frozen
-ESMFold2-Fast reference (reward 0.545) on **every** FoldBench track, not only in the mean. The
-from-scratch starter currently reaches 0.037.
+and CAPRI acceptable geometry (ligand RMSD ≤ 10 Å or interface RMSD ≤ 4 Å). Both `score` and
+`reward` in `reward.json` equal the **5-modality equal-weighted mean** (`FOLD_GROUPS`):
+
+1. **Protein monomers**: `monomer_protein`
+2. **Nucleic-acid monomers**: mean(`monomer_rna`, `monomer_dna`)
+3. **Protein interfaces**: mean(`interface_protein_protein`, `interface_antibody_antigen`, `interface_protein_peptide`)
+4. **Protein–nucleic acid**: mean(`interface_protein_rna`, `interface_protein_dna`)
+5. **Protein–ligand**: `interface_protein_ligand`
+
+The research objective is a significant improvement over the pinned frozen ESMFold2-Fast reference
+(5-modality `score` 0.575; flat 9-track mean 0.545) on **every** FoldBench track, not only in the
+aggregate. The from-scratch starter currently reaches 0.027 (flat 9-track mean 0.037).
 
 ## Workspace
 

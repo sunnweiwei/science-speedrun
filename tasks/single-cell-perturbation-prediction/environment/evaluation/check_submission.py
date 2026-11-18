@@ -20,6 +20,7 @@ from scipy import sparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cellscore import read_requests  # noqa: E402
+from query_independence import DEFAULT_ATOL, DEFAULT_RTOL, compare_prediction_files, select_probe_subset  # noqa: E402
 
 
 def validate(pred_path: Path, basal_path: Path, requests_path: Path) -> dict:
@@ -70,7 +71,42 @@ def main() -> None:
     if proc.returncode != 0:
         result.update(ok=False, problems=["infer.sh failed"], stderr_tail=proc.stderr[-4000:])
     else:
-        result.update(validate(out / "predictions.h5ad", a.input / "basal.h5ad", a.input / "requests.jsonl"))
+        val = validate(out / "predictions.h5ad", a.input / "basal.h5ad", a.input / "requests.jsonl")
+        result.update(val)
+        if val["ok"]:
+            sub_in = tmp / "subset_in"
+            sub_out = tmp / "subset_out"
+            sub_in.mkdir()
+            full_reqs = read_requests(a.input / "requests.jsonl")
+            sub_reqs = select_probe_subset(full_reqs, context_name=a.input.name)
+            shutil.copyfile(a.input / "basal.h5ad", sub_in / "basal.h5ad")
+            (sub_in / "requests.jsonl").write_text("".join(json.dumps(r) + "\n" for r in sub_reqs))
+            if (a.input / "context.json").is_file():
+                meta = json.loads((a.input / "context.json").read_text())
+                meta["n_requests"] = len(sub_reqs)
+                (sub_in / "context.json").write_text(json.dumps(meta, indent=2) + "\n")
+            proc2 = subprocess.run(["bash", str(pkg / "infer.sh"), str(sub_in), str(sub_out)], cwd=pkg, env=env,
+                                   capture_output=True, text=True, timeout=a.timeout)
+            if proc2.returncode != 0:
+                result.update(ok=False, problems=["subset infer.sh failed"], stderr_tail=proc2.stderr[-4000:])
+            else:
+                qi = compare_prediction_files(
+                    out / "predictions.h5ad", sub_out / "predictions.h5ad",
+                    a.input / "basal.h5ad", a.input / "requests.jsonl", sub_in / "requests.jsonl",
+                    atol=DEFAULT_ATOL, rtol=DEFAULT_RTOL,
+                )
+                result["query_independence"] = {
+                    "passed": qi["passed"],
+                    "changed_requests": qi["changed_requests"],
+                    "max_difference": qi["max_difference"],
+                    "atol": qi["atol"],
+                    "rtol": qi["rtol"],
+                }
+                if not qi["passed"]:
+                    result["ok"] = False
+                    result["problems"].append(
+                        f"query independence failed on {qi['changed_requests']}/{qi['checked_requests']} subset requests"
+                    )
     print(json.dumps(result, indent=2))
     if not a.keep:
         shutil.rmtree(tmp, ignore_errors=True)

@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[0] / 'campaign'))
 from check_receipt import checked_rewards
 
-TRACKS = ('faced', 'tuev', 'ad65', 'openbmi', 'longitudinal')
+TRACKS = ('tuev', 'ad65', 'openbmi', 'longitudinal')
 
 
 def run(command, log):

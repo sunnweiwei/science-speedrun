@@ -17,7 +17,8 @@ def reaggregate(report, source_sha256):
     if report.get("valid") is not True:
         raise ValueError("only valid, trusted full-suite reports can be migrated")
     summary = summarize_targets(report["per_target"], require_full_suite=True)
-    result = {**report, **summary, "reward": summary["dataset_balanced_bedroc"]}
+    primary_score = summary["dataset_balanced_bedroc"]
+    result = {**report, **summary, "score": primary_score, "reward": primary_score}
     result["migration"] = {
         "kind": "reaggregation of stored per-target metrics; no new inference",
         "source_report_sha256": source_sha256,

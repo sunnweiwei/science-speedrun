@@ -14,16 +14,15 @@ sets:
 
 - **Reference.** The official Uni-Mol2 code and 84M architecture, with the paper's pretraining recipe. The model is
   capped at 90 M encoder parameters.
-- **Metric.** Raw metrics, with no aggregate yet (a unified score map will be defined later). Per group:
-  MA-RAE (mean relative absolute error, the ExpansionRx/ASAP leaderboard metric) and mean Spearman. Per task: MAE,
-  RAE, R², Spearman and Kendall.
-- **Anchors** (test MA-RAE for QM9 / COMPAS-1D / ExpansionRx / ASAP):
+- **Primary Score (`score` / `reward`).** `1 / (1 + mean_4_groups(MA_RAE))`, where `mean_4_groups(MA_RAE) = 0.25 * (qm9_ma_rae + compas1d_ma_rae + expansionrx_ma_rae + asap_ma_rae)` weights all four project groups equally (`1/4` each). Per group: MA-RAE (mean relative absolute error, the ExpansionRx/ASAP leaderboard metric) and mean Spearman. Per task: MAE, RAE, R², Spearman and Kendall.
+- **Anchors** (test MA-RAE for QM9 / COMPAS-1D / ExpansionRx / ASAP and `score`):
 
-  | encoder | QM9 | COMPAS-1D | ExpansionRx | ASAP |
-  |---|---:|---:|---:|---:|
-  | no pretraining | 0.413 | 0.662 | 1.078 | 1.315 |
-  | baseline: 84M, paper recipe, 30k updates (5.1 h on 8 H100) | 0.183 | 0.166 | 0.744 | 0.636 |
-  | released Uni-Mol2 84M (paper-length pretraining), known-answer reference | 0.192 | 0.121 | 0.668 | 0.644 |
+  | encoder | QM9 | COMPAS-1D | ExpansionRx | ASAP | Mean MA-RAE | Score |
+  |---|---:|---:|---:|---:|---:|---:|
+  | trivial mean predictor | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.500 |
+  | no pretraining | 0.413 | 0.662 | 1.078 | 1.315 | 0.867 | 0.536 |
+  | baseline: 84M, paper recipe, 30k updates (5.1 h on 8 H100) | 0.183 | 0.166 | 0.744 | 0.636 | 0.432 | 0.698 |
+  | released Uni-Mol2 84M (paper-length pretraining), known-answer reference | 0.192 | 0.121 | 0.668 | 0.644 | 0.406 | 0.711 |
 
 - **Status.** Verified: see section 6 and [`docs/VALIDATION.md`](docs/VALIDATION.md).
 
@@ -91,12 +90,12 @@ Verifier code: [`tests/`](tests/).
 
 **`reward.json`.** Flat numbers:
 
+- `score` and `reward` (`1 / (1 + mean_4_groups(MA_RAE))`), plus `mean_ma_rae`;
 - `valid`;
 - `{qm9,compas1d,expansionrx,asap}_ma_rae` and `_mean_spearman`;
 - `<task>_{mae,rae,r2,spearman,kendall}` for all 24 tasks.
 
-An invalid package gets `valid: 0` and the reason. There is no aggregate `reward` yet (the TASK_STANDARD.md
-multi-metric exception). `report.json` adds the encoder check and fine-tune timings.
+An invalid package gets `score: 0.0`, `reward: 0.0`, `valid: 0.0`, and the reason. `report.json` adds `ssi_v4` components, the encoder check, and fine-tune timings.
 
 **Cost.** One evaluation is 24 fine-tunes, 31 min on 8 H100 in the acceptance replay (three per GPU).
 

@@ -1,0 +1,52 @@
+{
+  "reward": 0.6666666666666666,
+  "by_length": {
+    "100": {
+      "slots": 10,
+      "emitted": 10,
+      "refolded": 10,
+      "passes": 8,
+      "passing_clusters": 5,
+      "pass_rate": 0.8,
+      "clustered_pass_rate": 0.5,
+      "generation_seconds": 59.753935110988095,
+      "timed_out": false,
+      "reserved_trunk_passes": 1800
+    },
+    "150": {
+      "slots": 10,
+      "emitted": 10,
+      "refolded": 10,
+      "passes": 8,
+      "passing_clusters": 8,
+      "pass_rate": 0.8,
+      "clustered_pass_rate": 0.8,
+      "generation_seconds": 90.28076906991191,
+      "timed_out": false,
+      "reserved_trunk_passes": 1800
+    },
+    "250": {
+      "slots": 10,
+      "emitted": 10,
+      "refolded": 10,
+      "passes": 7,
+      "passing_clusters": 7,
+      "pass_rate": 0.7,
+      "clustered_pass_rate": 0.7,
+      "generation_seconds": 233.0223428660538,
+      "timed_out": false,
+      "reserved_trunk_passes": 1800
+    }
+  },
+  "af3_seconds": 341.77992670284584,
+  "clusters_per_allocated_gpu_hour": 99.33268115107643,
+  "protocol": "rfd4-monomer-v1",
+  "development_seed": 727000,
+  "device": "NVIDIA RTX A6000",
+  "generation_seed_rule": "727000 + length",
+  "af3_recycles": 5,
+  "af3_samples": 1,
+  "af3_model_seed": 727000,
+  "checkpoint_sha256": "5b549dd61adb2f6c6b5cb95bda13f40f5e31556b4e6c755edc0ca6f011c68fb0",
+  "policy_sha256": "52bf462cbc36649eeeaa1fea43703ffd3961cf83155d020547fba7d60e31ca21"
+}

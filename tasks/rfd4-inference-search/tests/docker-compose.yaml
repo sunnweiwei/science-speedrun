@@ -1,0 +1,18 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: verifier
+    shm_size: 8gb
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Run the materializer}/assets
+        target: /workspace/data/assets
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${TASK_PRIVATE_DIR:?Set the private data directory}/seed
+        target: /private/seed
+        read_only: true
+        bind: {create_host_path: false}

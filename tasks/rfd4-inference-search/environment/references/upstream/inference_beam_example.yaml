@@ -1,0 +1,63 @@
+# @package _global_
+#
+# Beam search inference example.
+# BeamSearchStrategy with an AF3 reward on the monomer-short benchmark:
+#   - 60 model evaluations, checkpointed at [0, 20, 40, 50, 60]
+#   - n_branch=2, beam_width=3
+#   - shared matched-noise stochastic TSR defaults
+#   - AF3 reward: pLDDT (chain-of-interest) only
+#
+# Usage: rfd4-generate inference_experiment=inference_beam_example
+
+defaults:
+  - inference_on_user_inputs
+  - _self_
+
+
+inputs: ${oc.env:PROJECT_ROOT}/data/benchmarks/monomer
+subset_to_examples: monomer-short
+
+num_replicates: 2
+batch_size: 1
+global_prefix: beam_example
+
+out_dir: outputs/beam_example
+run_name_: beam_example
+
+# Outer metrics_tags: controls which metrics run in the epoch-end oracle loop.
+# With unconditional_refolding, the epoch-end loop calls the oracle on final outputs but
+# finds cached results from beam scoring — so it is fast and populates columns
+# in per_example_metrics.csv.
+metrics_tags: [design, unconditional_refolding]
+
+search:
+  n_branch: 2
+  beam_width: 3
+  save_rollouts: true
+  save_criteria:
+    search.reward: {min: 80.0}
+  checkpoints:
+    "20":
+      metrics: [oracle]
+      rewards:
+        oracle.plddt_coi:
+          weight: 1.0
+          clip: {min: 50.0}
+    "40":
+      metrics: [oracle]
+      rewards:
+        oracle.plddt_coi:
+          weight: 1.0
+          clip: {min: 50.0}
+    "50":
+      metrics: [oracle]
+      rewards:
+        oracle.plddt_coi:
+          weight: 1.0
+          clip: {min: 50.0}
+    "60":
+      metrics: [oracle]
+      rewards:
+        oracle.plddt_coi:
+          weight: 1.0
+          clip: {min: 50.0}

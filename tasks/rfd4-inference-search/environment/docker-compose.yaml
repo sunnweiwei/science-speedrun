@@ -1,0 +1,17 @@
+services:
+  main:
+    build:
+      context: ..
+      dockerfile: environment/Dockerfile
+      target: development
+    shm_size: 8gb
+    volumes:
+      - type: bind
+        source: ${TASK_DATA_DIR:?Run the materializer}/assets
+        target: /workspace/data/assets
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${TASK_RESEARCH_DIR:?Set the research directory}
+        target: /workspace/research
+        bind: {create_host_path: false}

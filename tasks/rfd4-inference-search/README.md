@@ -1,0 +1,58 @@
+# RFD4-Proteina inference search
+
+## Overview
+
+Develop an inference policy for a frozen RFD4-Proteina model generating unconditioned monomers. The score is the fraction of fixed output slots that yield **distinct folds passing independent refolding**, averaged across 100, 150 and 250 residues. The development prompt, data mounts, atomic submission and separate verifier follow the Science Speedrun task standard. This task is under behavior review.
+
+## Data
+
+Three upstream annotated inputs encode chain lengths. The materializer fetches and verifies the public RFD4 checkpoint, official AF3 parameters and the Foldseek executable. Downloads total about 2.8 GB. The verifier additionally sees a 32-byte private seed. The public and private problems use the same lengths. [Materialization instructions](environment/data/MATERIALIZE.md)
+
+## Workspace
+
+The agent receives the frozen assets, development evaluator, three runnable baseline policies, offline reference configuration, submission contract and writable research directory. It can change recycle allocation, trajectory length, checkpoint positions, width, branching, lookahead and the numerical rule that selects survivors. Development results are in the two baseline directories. [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
+
+## Evaluation
+
+Final evaluation draws 50 output slots at each length. At most 9,000 trunk passes and 1,800 elapsed seconds are available per length on one GPU. Every sibling and scoring rollout is charged. Decoding and geometry-scoring overhead consume elapsed time. The refolder runs on every valid finalist, once. Search only sees the generated monomer's geometry.
+
+For each length, the verifier counts the Foldseek clusters that contain at least one sample with AF3 backbone scRMSD ≤ 1.5 Å. It divides by 50, including failures and empty slots. Reward is the mean of those three fractions. The result also includes ordinary pass rate, emitted and refolded counts, reserved passes, generation time, AF3 time and unique passing clusters per allocated GPU-hour. The time ratio includes process startup and compilation. Repeated hits in one fold earn one point. [Contract](environment/contract.md) · [Scientific basis](environment/references/README.md)
+
+## Running
+
+Use the standard runner environment from the repository root.
+
+```bash
+runner/prepare.sh rfd4-inference-search /data/rfd4
+export MOUNT_ROOTS="${MOUNT_ROOTS:-} /data/rfd4"
+AGENT_KIND=codex runner/run.sh rfd4-inference-search
+```
+
+The declared development allocation is one H100 for 48 hours. The separate verifier uses one H100. The verification command below replays a saved package on the private suite.
+
+```bash
+runner/run_verify.sh rfd4-baseline rfd4-inference-search \
+  tasks/rfd4-inference-search/environment/baseline/stochastic-tsr
+```
+
+The public development set uses 30 slots. The public paper-size reproduction uses 150. Each release campaign must share a private seed across submissions. [Reproduction and score audit](docs/REPRODUCE.md)
+
+## Results and validation
+
+| Policy | Development passing clusters / 30 | Paper-size AF3 passes / 150 | Paper-size passing clusters / 150 |
+| --- | ---: | ---: | ---: |
+| [Released stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) | 20/30 | 123/150 | **82/150 (54.7%)** |
+| [Width-one branching](environment/baseline/geometry-beam/RESULTS.md) | 21/30 | 112/150 | **71/150 (47.3%)** |
+| [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md) | 11/30 | 101/150 | **46/150 (30.7%)** |
+
+These are paired public experiments at 27,000 allocated trunk passes per full policy. Use the paper-size column for a comparison at the S15 sample count. Each length in the two-wide reproduction ran independently, so its timing diagnostic includes three AF3 startups. The production verifier runs the three lengths on a single device with one AF3 process.
+
+The published stochastic TSR value is 34.7% clustered passes over 150 attempts in supplementary Table S15. Local results use released weights, a recorded public seed and a fresh AF3 evaluation. The manuscript also reports 37.3% for its 400-step sampler, at 17.68 s versus 2.99 s for 60-step stochastic TSR. The task has its own equal-cost search comparison. [Run record and acceptance](docs/ACCEPTANCE.md)
+
+## Limitations
+
+This task measures inference for unconditioned, canonical single-chain monomers. A passing fold is a computational result. A private replay changes the sampling seeds. Table S15 does not identify every historical seed or runtime flag, so a new run can differ from its printed values. Fifty slots per length give a finite-sample comparison. A public tuning result should be interpreted alongside held-out replay. A trunk pass is a reproducible accounting unit at a fixed length. Actual GPU time also depends on batching and the cost of decoding. Timing comparisons require matched hardware and software.
+
+## Citation and licenses
+
+Cite Corley, Didi, Kazman, Brent et al. for RFD4-Proteina, Abramson et al. for AlphaFold 3 and van Kempen et al. for Foldseek. The RFD4 source, monomer inputs and model are released with the upstream BSD 3-clause license. Foldseek is GPL-3.0. This task fetches each model and the Foldseek binary from its publisher. Google’s model parameter and output terms apply to AF3. The repository distributes the task and aggregate scores. [References and code provenance](environment/references/README.md) · [Google model terms](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md) · [Google output terms](https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md)

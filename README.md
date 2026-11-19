@@ -114,7 +114,7 @@ Notes on the table:
   found a 64 MB /dev/shm and a relative-path bug in the baseline's inference wrapper, both fixed in ai4sci-tasks#158.
   Baseline = shared CodeBrain, pretrained, five-seed test mean; the verifier takes about 4 min.
 
-## Additional task under behavior review
+## Additional tasks under behavior review
 
 [target-based-drug-screening](tasks/target-based-drug-screening) develops a
 DrugCLIP-style pocket–ligand retrieval model. Its task format, isolated
@@ -130,6 +130,8 @@ controller. The [acceptance record](tasks/target-based-drug-screening/docs/ACCEP
 separates the released-model replay, small training checks and historical
 results. No datasets, private labels or released baseline weights are
 included in this repository.
+
+[rfd4-inference-search](tasks/rfd4-inference-search) optimizes inference for frozen RFD4-Proteina on three unconditional monomer lengths. It scores distinct AF3-refolding passes at fixed generation compute, with released stochastic TSR and matched-cost native search baselines. The task README records the reproduction and acceptance status.
 
 ## Quick start
 

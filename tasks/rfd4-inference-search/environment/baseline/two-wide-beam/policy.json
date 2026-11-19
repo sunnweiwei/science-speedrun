@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "default": {
+    "bands": [[40, 2], [20, 1]],
+    "width": 2,
+    "checkpoints": [
+      {"step": 20, "branches": 2, "score": "clean"},
+      {"step": 40, "branches": 2, "score": "clean"}
+    ]
+  },
+  "by_length": {}
+}

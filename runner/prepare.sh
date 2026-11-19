@@ -59,6 +59,9 @@ case "$task" in
   probabilistic-global-weather)           # frozen prepared resources (~206 GB, public HF, pinned commit)
     inbox "huggingface_hub>=1.0,<2" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;
+  rfd4-inference-search)
+    bash "$t/environment/data/materialize.sh" "$root"
+    data=$root/development; private=$root/private ;;
   protein-folding-prediction)             # FoldBench release (73 GB, pinned HF commit, every file checksummed)
     inbox "huggingface_hub[hf_xet]>=1.0" "bash environment/data/materialize.sh $root"
     data=$root; private=$root ;;

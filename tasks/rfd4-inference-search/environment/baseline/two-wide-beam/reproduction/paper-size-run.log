@@ -1,0 +1,10 @@
+L=100 native-config-sha256=cae43f21e48bb994191b2badaf7fb47a7c974a09edde652178d0503ebc990778
+[2026-11-19 19:01:14,007][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete!
+L=150 native-config-sha256=8e744a2a3f909bfe636c43d509c16b1070da3aba4fac0cb01dbd8b8854bd6e01
+[2026-11-19 18:45:40,406][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete!
+L=250 native-config-sha256=d0d653da4ddce22f7c3449e21e60db6253039c342be9bdbd3aeaa0269195df2b
+[2026-11-19 18:55:16,024][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete!
+Done running 50 fold jobs.
+Done running 50 fold jobs.
+Done running 50 fold jobs.
+Foldseek 10-941cd33 completed on each length. See per-slot cluster assignments.

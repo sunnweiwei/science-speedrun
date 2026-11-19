@@ -1,0 +1,19 @@
+table,comparison,method,steps,clustered_pass_pct,reported_seconds,mean_hbond_count,completed,passing_designs,passing_clusters,gpu_hours,clusters_h
+S15,Unconditional sampling,Stochastic TSR,60,34.7,2.99,,,,,,
+S15,Unconditional sampling,Stochastic TSR (prior schedule),60,0.0,2.97,,,,,,
+S15,Unconditional sampling,ODE TSR,60,33.3,3.04,,,,,,
+S15,Unconditional sampling,Full-length SDE,400,37.3,17.68,,,,,,
+S15,Unconditional sampling,Shortened SDE,60,0.0,2.95,,,,,,
+S16,Contacts in a separate search study,Stochastic TSR (default),60,,,14.24,,,,,
+S16,Contacts in a separate search study,Stochastic TSR (prior schedule),60,,,5.18,,,,,
+S16,Contacts in a separate search study,Full-length SDE,400,,,12.72,,,,,
+S16,Contacts in a separate search study,Shortened SDE,60,,,3.31,,,,,
+S18,Single target,Naive,,,,,23316,3,3,24.00,0.13
+S18,Single target,Constant,,,,,10676,0,0,24.00,0.00
+S18,Single target,Temporal,,,,,4057,35,9,24.00,0.38
+S22,Regular,Naive best-of-N,,,,,,,984,24.00,41.00
+S22,Regular,Temporal,,,,,,,603,24.00,25.13
+S22,Regular,Constant criteria,,,,,,,639,24.00,26.63
+S22,Burial > 85%,Naive best-of-N,,,,,,,177,24.00,7.38
+S22,Burial > 85%,Temporal,,,,,,,217,24.00,9.04
+S22,Burial > 85%,Constant criteria,,,,,,,165,24.00,6.88

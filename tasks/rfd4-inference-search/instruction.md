@@ -11,13 +11,15 @@ Develop a search policy for a frozen flow model that generates unconditional pro
 - `/workspace/contract.md` describes the policy language, resource bounds and scoring.
 - `/workspace/research` is writable scratch. Keep the current package in `/workspace/submission`.
 
+The official four-suite numerical reference is in `/workspace/references/overall/`. Its reference CSV identifies the fastest high-quality alternatives and the best end-to-end yield per suite. These published curves and the live monomer reward have separate evaluation protocols.
+
 ## Rules
 
 Use the supplied assets offline. Optimize the inference policy. Model parameters, the monomer problems, final refolding and clustering are fixed. Evaluation seeds are private. Work from development results only.
 
 ## Submission
 
-Publish a complete `policy.json` early and replace it atomically as performance improves. The baseline READMEs give the commands.
+Start by publishing the strongest locally measured monomer policy, stochastic TSR (82 distinct passing clusters in 150 public slots). From `/workspace` run `bash baseline/publish.sh baseline/stochastic-tsr`, then continue from that package and replace it atomically as performance improves.
 
 ## Continuous research
 

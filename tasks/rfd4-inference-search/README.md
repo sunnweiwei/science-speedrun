@@ -2,9 +2,11 @@
 
 ## Overview
 
-Develop an inference policy for a frozen RFD4-Proteina model generating unconditioned monomers. The score is the fraction of fixed output slots that yield **distinct folds passing independent refolding**, averaged across 100, 150 and 250 residues. The development prompt, data mounts, atomic submission and separate verifier follow the Science Speedrun task standard. This task is under behavior review.
+The primary scientific comparison uses the official four-suite RFD4 evaluation in Figure 2 and supplementary Table S29. The offline scorer reconstructs all 16 published Low, Medium, High and Search operating points from 564 target records. It also accepts independent, controller-owned per-attempt or per-target measurements and plots their quality–throughput frontiers. [Official metrics, reference curves and starting points](environment/references/overall/README.md)
 
-The selected reference for an equal-GPU-time improvement is the paper’s Table S28. Its ten-target source counts and audit are available separately. The published aggregate has been checked against the v1 PDF. Independent regeneration of S28 remains open. The runnable monomer task below retains its own metric. [S28 reference and reproduction status](environment/references/s28/README.md)
+![Four-suite RFD4 quality–throughput comparison](environment/references/overall/quality-throughput.png)
+
+The live Harbor task runs unconditioned monomers with an independent AF3 and Foldseek verifier. It has three locally measured baselines. The four-suite curves use the authors’ run records. An independent end-to-end reproduction of those four suites remains outstanding. Table S28 is an additional strict fixed-budget comparison. [S28 results](environment/references/s28/README.md)
 
 ## Data
 
@@ -12,9 +14,14 @@ Three upstream annotated inputs encode chain lengths. The materializer fetches a
 
 ## Workspace
 
-The agent receives the frozen assets, development evaluator, three runnable baseline policies, offline reference configuration, submission contract and writable research directory. It can change recycle allocation, trajectory length, checkpoint positions, width, branching, lookahead and the numerical rule that selects survivors. Development results are in the two baseline directories. [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
+The agent receives the frozen assets, development evaluator, three runnable baseline policies, offline reference configuration, submission contract and writable research directory. It can change recycle allocation, trajectory length, checkpoint positions, width, branching, lookahead and the numerical rule that selects survivors. Development and 150-slot results are in all three baseline directories. The initial monomer policy is the best locally measured one, stochastic TSR. [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
 
 ## Evaluation
+
+The four-suite evaluator is `environment/references/overall/benchmark_curve.py`. Figure 2 uses generation attempts per GPU-hour on the horizontal axis. An alternate view includes final AF3 time. Report unique passing clusters per end-to-end GPU-hour separately for each suite. [Numerical results](environment/references/overall/operating_points.csv)
+
+### Live monomer verification
+
 
 Final evaluation draws 50 output slots at each length. At most 9,000 trunk passes and 1,800 elapsed seconds are available per length on one GPU. Every sibling and scoring rollout is charged. Decoding and geometry-scoring overhead consume elapsed time. The refolder runs on every valid finalist, once. Search only sees the generated monomer's geometry.
 
@@ -39,7 +46,7 @@ runner/run_verify.sh rfd4-baseline rfd4-inference-search \
 
 The public development set uses 30 slots. The public paper-size reproduction uses 150. Each release campaign must share a private seed across submissions. [Reproduction and score audit](docs/REPRODUCE.md)
 
-## Results and validation
+## Locally measured monomer results
 
 | Policy | Development passing clusters / 30 | Paper-size AF3 passes / 150 | Paper-size passing clusters / 150 |
 | --- | ---: | ---: | ---: |

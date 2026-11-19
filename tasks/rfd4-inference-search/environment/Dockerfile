@@ -13,6 +13,7 @@ COPY environment/evaluation /workspace/evaluation
 
 FROM runtime AS verifier
 COPY tests/test.sh /tests/test.sh
+COPY environment/references/overall /opt/rfd4-overall
 
 FROM runtime AS development
 COPY instruction.md environment/contract.md /workspace/

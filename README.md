@@ -131,7 +131,7 @@ separates the released-model replay, small training checks and historical
 results. No datasets, private labels or released baseline weights are
 included in this repository.
 
-[rfd4-inference-search](tasks/rfd4-inference-search) optimizes inference for frozen RFD4-Proteina on three unconditional monomer lengths. It scores distinct AF3-refolding passes at fixed generation compute, with released stochastic TSR and matched-cost native search baselines. The task README records the reproduction and acceptance status.
+[rfd4-inference-search](tasks/rfd4-inference-search) optimizes inference for frozen RFD4-Proteina on three unconditional monomer lengths. It ships a four-suite numerical replay of the official Figure 2 / S29 quality–throughput measurements. Its live monomer verifier scores distinct AF3-refolding passes at fixed generation compute, with released stochastic TSR and matched-cost search baselines. The task README records the reproduction and acceptance status.
 
 ## Quick start
 

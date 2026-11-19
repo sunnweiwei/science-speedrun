@@ -14,9 +14,13 @@ These paper values describe 150 trials per row. The 400-step result illustrates 
 
 The released default uses stochastic TSR and a medium recycle schedule. Beam search is optional. The authors also provide a monomer example that ranks rollouts by refolder confidence. The full example uses additional refolder calls during search. Here the independent final AF3 budget is one invocation per output slot, and intermediate geometry is computed directly from the decoded monomer. The upstream monomer YAML and BSD license are in `upstream/`. The installed `rfproteina` package contains the native source and example YAML for offline inspection. [Default config](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/configs/inference.yaml) · [Monomer beam example](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/configs/inference_experiment/inference_beam_example.yaml) · [Native search implementation](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/src/rfproteina/search/beam_search.py)
 
-## Official equal-cost search comparison
+## Official overall benchmark
 
-Table S28 is the selected reference for improving yield at matched GPU cost. The accompanying audit extracts the original ten target rows and verifies the published comparison. [S28 reference](s28/README.md)
+Figure 2 and S29 are the primary comparison for quality and throughput across the four official suites. The offline scorer includes all four RFD4 settings, both throughput views, and the strongest measured point per objective. [Official curves and source audit](overall/README.md)
+
+## Additional fixed-budget search comparison
+
+Table S28 is a separate comparison of yield at matched GPU cost on ten targets. The accompanying audit extracts the original ten target rows and verifies the published comparison. [S28 reference](s28/README.md)
 
 ## Related work
 

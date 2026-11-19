@@ -1,4 +1,10 @@
-# Reproduce the public comparison
+# Reproduce the evaluation
+
+## Official four-suite measurements
+
+Run `python environment/references/overall/verify_sources.py` from the task root to validate all 16 published operating points. For an additional independent measurement, run the official curve scorer on a controller-owned target or attempt CSV. The same CLI runs offline in the verifier image. [Curve definitions and commands](../environment/references/overall/README.md)
+
+## Local monomer runs
 
 1. Run the materializer on the controller and build the development image. Mount the `development/assets` directory at `/workspace/data/assets` read-only and a fresh writable directory at `/workspace/research`.
 2. Use a separate empty run directory per policy. Keep the GPU exclusive during each measurement. Run the command in the baseline README once with the default size and, for the Table S15 sample count, once with `--paper-size`.

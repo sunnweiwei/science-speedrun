@@ -13,3 +13,7 @@ The first private control completed 150 generations, refolds and clustering. Har
 On 2026-11-19 the corrected package also completed a fresh `runner/run_verify.sh` trial with the Harbor copy agent and a separate offline verifier. Its low-compute control used 20 trunk passes per slot. All 150 outputs were generated and refolded, with zero AF3 passes. Harbor recorded reward 0.0, accepted 33 numeric fields, and finished without an exception. Both Docker images built, the invalid-package probe returned zero, and all seven protocol and record tests passed.
 
 Baseline results and compact receipts are under each baseline's `reproduction/`. Dates and hardware refer to this reproduction. A full interactive research-agent behavior trial on the declared H100 allocation is pending.
+
+## Official equal-cost result
+
+On 2026-11-19 the S28 reference audit checked all ten target rows, twenty per-target rates, the pooled row and the resulting 24.6% relative increase against the v1 supplementary PDF. This is a published-data reanalysis. The repository has no independent S28 generation or timing receipt. The monomer runs above validate a separate problem. [S28 audit](../environment/references/s28/README.md)

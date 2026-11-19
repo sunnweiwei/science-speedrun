@@ -4,6 +4,8 @@
 
 Develop an inference policy for a frozen RFD4-Proteina model generating unconditioned monomers. The score is the fraction of fixed output slots that yield **distinct folds passing independent refolding**, averaged across 100, 150 and 250 residues. The development prompt, data mounts, atomic submission and separate verifier follow the Science Speedrun task standard. This task is under behavior review.
 
+The selected reference for an equal-GPU-time improvement is the paper’s Table S28. Its ten-target source counts and audit are available separately. The published aggregate has been checked against the v1 PDF. Independent regeneration of S28 remains open. The runnable monomer task below retains its own metric. [S28 reference and reproduction status](environment/references/s28/README.md)
+
 ## Data
 
 Three upstream annotated inputs encode chain lengths. The materializer fetches and verifies the public RFD4 checkpoint, official AF3 parameters and the Foldseek executable. Downloads total about 2.8 GB. The verifier additionally sees a 32-byte private seed. The public and private problems use the same lengths. [Materialization instructions](environment/data/MATERIALIZE.md)

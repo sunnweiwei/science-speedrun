@@ -14,6 +14,10 @@ These paper values describe 150 trials per row. The 400-step result illustrates 
 
 The released default uses stochastic TSR and a medium recycle schedule. Beam search is optional. The authors also provide a monomer example that ranks rollouts by refolder confidence. The full example uses additional refolder calls during search. Here the independent final AF3 budget is one invocation per output slot, and intermediate geometry is computed directly from the decoded monomer. The upstream monomer YAML and BSD license are in `upstream/`. The installed `rfproteina` package contains the native source and example YAML for offline inspection. [Default config](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/configs/inference.yaml) · [Monomer beam example](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/configs/inference_experiment/inference_beam_example.yaml) · [Native search implementation](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/src/rfproteina/search/beam_search.py)
 
+## Official equal-cost search comparison
+
+Table S28 is the selected reference for improving yield at matched GPU cost. The accompanying audit extracts the original ten target rows and verifies the published comparison. [S28 reference](s28/README.md)
+
 ## Related work
 
 - Proteína reports designability, diversity and novelty for unconditional samples. A structurally clustered numerator prevents repeated instances of one successful fold from dominating this benchmark. Novelty relative to a training corpus would require a separate reference database. [Geffner et al., ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/f4e9121ad30cd4e5528042fbfd835b3f-Abstract-Conference.html)

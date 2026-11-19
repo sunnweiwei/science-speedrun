@@ -10,7 +10,7 @@ The live Harbor task runs unconditioned monomers with an independent AF3 and Fol
 
 ## Validation and test access
 
-The agent sees the published suite-level baselines and curves. The operator retains the per-target archive and scores frozen submissions. The upstream validation configs overlap the Figure 2 targets. A four-suite policy-selection panel needs additional disjoint target families. The current live monomer verifier holds out random draws at the three public lengths. [Validation design and upstream overlap audit](docs/VALIDATION.md)
+The agent sees the published suite-level baselines and curves. The operator retains the per-target archive and scores frozen submissions. The upstream validation configs overlap the Figure 2 targets. The fixed-target protocol allows policy selection on development runs using these targets. Final comparisons use frozen policies and fresh draws on the same roster. An additional family-disjoint panel is optional for studying generalization. The current live monomer verifier holds out random draws at the three public lengths. [Validation design and upstream overlap audit](docs/VALIDATION.md)
 
 ## Data
 

@@ -16,24 +16,14 @@ The following public configs directly reuse official target identities. Matching
 
 Recheck these counts from the task directory with `python docs/check_validation_overlap.py /path/to/RFD4-Proteina`. The script reads upstream Git revision `6306a210dd17dcae8e4e0f381b5b74a719d9b30e` and the same official roster used for the reference curves. [Upstream configs](https://github.com/RosettaCommons/RFD4-Proteina/tree/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/configs/datasets/val)
 
-## Proposed four-suite protocol
+## Fixed-target evaluation
 
-| Use | Cases and access | Decision |
-| --- | --- | --- |
-| Development / validation | A separately sourced panel in each suite. The agent may see its inputs, scores and curves. | Repeated policy comparisons and selection of operating points. |
-| Published comparison | All 141 original Figure 2 targets. Only historical suite aggregates are included with the agent's references. | After the policy and operating points are frozen, the controller scores the submission and reports curves directly comparable to Figure 2 / S29. |
-| Private generalization test | An additional, unpublished panel of disjoint target families with private seeds, held by the controller. | Estimate performance on unseen families. Releasing results after the campaign prevents test feedback from selecting the submitted policy. |
+In feedback relayed by the benchmark maintainers, a paper author suggested working directly on the benchmark set. We adopt the full 141-target Figure 2 roster as the task definition. The question is how well a policy performs on these known targets at a stated cost. The separation of development and final draws below is our evaluation design.
 
-Choose development and private cohorts before observing candidate results. Match the official suites' inclusion criteria and distribution of target characteristics. Group aliases, alternative input conditions, related protein families, related chemical scaffolds and shared complexes as applicable. Audit overlap across suites as well as within each suite. Document independent family counts, provenance and any known overlap with model training data. For DNA there are only three official targets. Keep those together for the public comparison and source other groups for development and private evaluation.
-
-Use the same pass decisions, within-target clustering and GPU accounting on all panels. Measure baselines and candidates on the same validation targets, hardware and paired random seeds. A quick screen can use a small subset of development families. For a paper-comparable curve, use 200 original attempts per target and method, count failures and report the same target-averaged yield. A clustered rate from a smaller sample can change simply because fewer duplicate folds have been seen. Estimate uncertainty across targets or families and paired repeated runs. A new seed on a familiar target measures sampling variation.
-
-If only the existing public target records are available, grouped cross-validation can serve as an internal sensitivity analysis. Label the result with the reduced roster and keep it separate from the published full-panel score. With three DNA targets, report target-level variability and defer strong generalization claims until independent cases are available.
-
-Fix the selected policy package hash, resource settings and list of operating points before the controller evaluates the official or private cohorts. Keep candidate test scores out of the iterative research loop. Historical official scores are already public and were visible in earlier task versions. Treat the full official panel as a public reporting benchmark. Use the additional sealed panel for an unseen-target claim.
+- **Development.** The agent may use development results on the public target roster to select a policy and its quality–throughput operating points. Keep the same development seeds across methods where possible. Small pilots can screen ideas. Label their sample counts because the clustered pass rate depends on the number of attempts.
+- **Final comparison.** Freeze the policy package, operating points and compute accounting before evaluation. The controller uses independent random seeds on the same targets, with 200 fresh original attempts per target and method at each reported point. Score the baseline and candidate under matched conditions. Count failures, search costs and final AF3 costs using the official conventions. Keep final results outside the agent's selection loop. When reporting variability across repeats, compute each repeat's curve before summarizing across repeats.
+- **Interpretation.** A gain on independent final draws supports a gain on the official fixed targets. A separate claim about unseen target families calls for an additional family-disjoint cohort. Such a cohort is optional for the fixed-target benchmark.
 
 ## Implementation status
 
-The development image contains the historical suite-level scores and plots, the locally measured monomer baselines and the upstream monomer example. The operator's checkout and verifier retain the official per-target archive and four-suite scorer. Published benchmark inputs can still exist in upstream software and remain publicly available.
-
-The current live Harbor monomer task has three public lengths, a public development seed and a separate verifier seed. It measures transfer across draws at those lengths. The four-suite disjoint development and private panels described above have not yet been assembled or measured. The existing official curve scorer checks the exact published roster.
+The development image supplies historical suite-level scores and plots. The operator's checkout and verifier retain the official per-target archive and four-suite scorer. The live Harbor monomer task already separates public development and private final draws on its three fixed lengths. The four-suite implementation currently scores archived or operator-supplied observations. The fixed-target protocol above does not imply that an independent four-suite campaign has been run.

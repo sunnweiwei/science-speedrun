@@ -11,7 +11,7 @@ Develop a search policy for a frozen flow model that generates unconditional pro
 - `/workspace/contract.md` describes the policy language, resource bounds and scoring.
 - `/workspace/research` is writable scratch. Keep the current package in `/workspace/submission`.
 
-The official four-suite numerical reference is in `/workspace/references/overall/`. Its reference CSV identifies the fastest high-quality alternatives and the best end-to-end yield per suite. These published curves and the live monomer reward have separate evaluation protocols.
+The historical suite-level summaries are in `/workspace/references/overall/`. Its reference CSV identifies the fastest high-quality alternatives and the best end-to-end yield per suite. Use development draws to choose a policy. The controller owns the per-target archive and the final evaluation. The live monomer development and private runs share the same lengths.
 
 ## Rules
 

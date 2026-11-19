@@ -8,6 +8,10 @@ The primary scientific comparison uses the official four-suite RFD4 evaluation i
 
 The live Harbor task runs unconditioned monomers with an independent AF3 and Foldseek verifier. It has three locally measured baselines. The four-suite curves use the authors’ run records. An independent end-to-end reproduction of those four suites remains outstanding. Table S28 is an additional strict fixed-budget comparison. [S28 results](environment/references/s28/README.md)
 
+## Validation and test access
+
+The agent sees the published suite-level baselines and curves. The operator retains the per-target archive and scores frozen submissions. The upstream validation configs overlap the Figure 2 targets. A four-suite policy-selection panel needs additional disjoint target families. The current live monomer verifier holds out random draws at the three public lengths. [Validation design and upstream overlap audit](docs/VALIDATION.md)
+
 ## Data
 
 Three upstream annotated inputs encode chain lengths. The materializer fetches and verifies the public RFD4 checkpoint, official AF3 parameters and the Foldseek executable. Downloads total about 2.8 GB. The verifier additionally sees a 32-byte private seed. The public and private problems use the same lengths. [Materialization instructions](environment/data/MATERIALIZE.md)

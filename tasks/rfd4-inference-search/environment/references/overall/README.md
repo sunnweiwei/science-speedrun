@@ -32,6 +32,18 @@ The CSV also reports ordinary pass rate, covered targets and generation-only uni
 
 Higher quality and higher throughput are both preferred. A point dominates another when it is at least as good on both axes and strictly better on one. Each panel has its own frontier. Connecting segments indicate the order of measured points. They do not establish performance at intermediate budgets. The budget-prefix curves in Supplementary Fig. 16 additionally require timed individual attempts and reclustering of subsets.
 
+## Rebuild from the source tables
+
+Run this operator command in this directory with Python and Matplotlib installed. Choose a new output directory. The script downloads and checks the pinned source tables, then derives the coordinates before reading any figure data for comparison.
+
+```bash
+python verify_sources.py --rebuild /tmp/rfd4-figure2
+```
+
+The output includes the two upstream CSVs under `inputs/`, the 564 RFD4 target measurements, 16 RFD4 operating points, both throughput plots, all 42 entries from the authors' plotting export, the comparator overlay and `receipt.json` with the source, code and output hashes. To repeat offline, use `--source-dir /tmp/rfd4-figure2/inputs --rebuild /tmp/rfd4-figure2-repeat`. The numeric replay uses the deposited target counts and time measurements. Image bytes can depend on the renderer and installed fonts.
+
+The 38 displayed Figure 2 points plus the four S29 search overlays comprise 16 RFD4 settings and 26 other method/track points. On these archived data Low has higher clustered pass rate and generation throughput than every displayed external comparator in each panel. All four RFD4 settings lie on each panel’s measured frontier. The comparison uses the conditioning and timing accounting the authors specify for each method. The PPI Search timing note designates 20 of 4,800 original attempts as using an approved cost proxy. Eighteen comparator rows omit the end-to-end yield from the plotting export. For these rows the extra CSV reports the value derived from the target-level export and flags its provenance. The claim of frontier membership applies to this published comparison. [Compared points](comparison_field.csv) · [Four panels with comparators](quality-throughput-with-comparators.png)
+
 ## Reproduce or compare measurements
 
 Run in this directory. Computing points and validating external observations use Python’s standard library. Rendering uses Matplotlib.

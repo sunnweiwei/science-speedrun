@@ -6,7 +6,7 @@ from matplotlib.ticker import FuncFormatter, LogLocator, MaxNLocator
 from benchmark_curve import ARMS, TRACKS, frontier
 
 
-def plot(points, path, include_af3=False):
+def plot(points, path, include_af3=False, peers=()):
     speed = "total_attempts_h" if include_af3 else "generation_attempts_h"
     colors = ["#198572", "#2674aa", "#b06b16", "#803f87"]
     markers = ["o", "s", "^", "D"]
@@ -23,12 +23,19 @@ def plot(points, path, include_af3=False):
     fig.text(.066, .913, f"{scope}    ·    200 attempts per target", fontsize=11, color="#445361")
     handles = [Line2D([], [], linestyle="none", marker=styles[m][1], color=styles[m][0], label=m)
                for m in methods]
+    if peers:
+        handles.append(Line2D([], [], linestyle="none", marker="o", markerfacecolor="none",
+                              color="#71808d", label="Other Fig. 2 methods"))
     handles.append(Line2D([], [], linestyle=":", color="#687681", label="Measured Pareto frontier"))
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(.058, .895), frameon=False,
                ncol=min(6, len(handles)), fontsize=9.5, columnspacing=1.7, handletextpad=.5)
     for ax, (track, (_, _, n)) in zip(axes.flat, TRACKS.items()):
         cohort = [p for p in points if p["track"] == track]
-        edge = sorted(frontier(cohort, speed), key=lambda p: p[speed])
+        background = [p for p in peers if p["track"] == track]
+        if background:
+            ax.scatter([p[speed] for p in background], [p["clustered_pct"] for p in background],
+                       facecolors="none", edgecolors="#71808d", s=35, linewidths=1, zorder=2)
+        edge = sorted(frontier(cohort + background, speed), key=lambda p: p[speed])
         ax.plot([p[speed] for p in edge], [p["clustered_pct"] for p in edge], ":",
                 linewidth=1.3, color="#939ea4", zorder=1)
         for p in cohort:
@@ -40,7 +47,7 @@ def plot(points, path, include_af3=False):
         ax.xaxis.set_major_locator(LogLocator(base=10, subs=(1, 3)))
         ax.xaxis.set_major_formatter(FuncFormatter(lambda x, pos: f"{x:,.0f}" if x >= 1 else f"{x:g}"))
         ax.tick_params(which="minor", bottom=False)
-        ax.set_ylim(0, max(1, max(p["clustered_pct"] for p in cohort) * 1.15))
+        ax.set_ylim(0, max(1, max(p["clustered_pct"] for p in cohort + background) * 1.15))
         ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
         ax.grid(axis="both", color="#dde3e6", linewidth=.65)
         ax.spines[["top", "right"]].set_visible(False)

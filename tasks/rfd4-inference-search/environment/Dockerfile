@@ -21,4 +21,4 @@ COPY environment/data/README.md /workspace/data/README.md
 COPY environment/baseline /workspace/baseline
 COPY environment/references/agent.md /workspace/references/README.md
 COPY environment/references/upstream /workspace/references/upstream
-COPY environment/references/overall/operating_points.csv environment/references/overall/quality-throughput*.png /workspace/references/overall/
+COPY environment/references/overall/operating_points.csv environment/references/overall/comparison_field.csv environment/references/overall/quality-throughput*.png /workspace/references/overall/

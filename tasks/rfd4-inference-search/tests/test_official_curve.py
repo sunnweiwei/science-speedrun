@@ -12,7 +12,7 @@ from benchmark_curve import (
     FIELDS, TRIAL_FIELDS, Measurement, frontier, operating_points, read_trials,
     summarize, write_points,
 )
-from verify_sources import S29
+from verify_sources import METRICS, S29, check_point
 
 
 def csv_file(path, fields, rows):
@@ -38,6 +38,31 @@ class OfficialCurveTest(unittest.TestCase):
             if p["method"] in ("High", "Search"):
                 actual = tuple(round(p[k], 1) for k in ("clustered_pct", "generation_clusters_h", "total_clusters_h"))
                 self.assertEqual(actual, S29[p["track"]][p["method"]])
+
+    def test_full_publication_field(self):
+        with (OVERALL / "comparison_field.csv").open() as f:
+            peers = list(csv.DictReader(f))
+        reference = operating_points(OVERALL / "targets.csv")
+        self.assertEqual(len(peers), 42)
+        self.assertEqual(sum(p["figure2_displayed"] == "True" for p in peers), 38)
+        self.assertEqual(sum(p["is_rfd4"] == "False" for p in peers), 26)
+        for track in {r["track"] for r in reference}:
+            group = [p for p in peers if p["track"] == track]
+            low = next(p for p in reference if p["track"] == track and p["method"] == "Low")
+            for p in group:
+                if p["is_rfd4"] == "False":
+                    self.assertGreater(low["generation_attempts_h"], float(p["generation_attempts_h"]))
+                    self.assertGreater(low["clustered_pct"], float(p["clustered_pct"]))
+                self.assertEqual(p["field_generation_pareto"], p["is_rfd4"])
+
+    def test_optional_figure_column_cannot_mask_axis_drift(self):
+        p = summarize("test", "test", {"x": Measurement(200, 200, 6, 4, 1800, 1800)}, "fixture")
+        golden = {col: str(p[key]) for key, col in METRICS.items()}
+        golden["mean_unique_passers_per_gpu_hour_including_af3"] = ""
+        check_point(p, golden, allow_missing_total=True)
+        golden["designs_per_gpu_hour"] = "250"
+        with self.assertRaises(ValueError):
+            check_point(p, golden, allow_missing_total=True)
 
     def test_macro_yield_and_pooled_speed(self):
         a = Measurement(200, 200, 6, 4, 1800, 1800)

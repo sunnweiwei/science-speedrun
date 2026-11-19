@@ -2,7 +2,7 @@
 
 ## Official four-suite measurements
 
-Run `python environment/references/overall/verify_sources.py` from the task root to validate all 16 published operating points. For an additional independent measurement, run the official curve scorer on a controller-owned target or attempt CSV. The same CLI runs offline in the verifier image. [Curve definitions and commands](../environment/references/overall/README.md)
+Run `python environment/references/overall/verify_sources.py --rebuild /tmp/rfd4-figure2` from the task root with a fresh output path. It regenerates all 16 RFD4 points, checks the published comparison field, renders the curves and saves the inputs for offline replay. For an additional independent measurement, run the official curve scorer on a controller-owned target or attempt CSV. The same CLI runs offline in the verifier image. [Curve definitions and commands](../environment/references/overall/README.md)
 
 ## Local monomer runs
 

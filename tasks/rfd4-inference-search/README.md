@@ -4,7 +4,9 @@
 
 The primary scientific comparison uses the official four-suite RFD4 evaluation in Figure 2 and supplementary Table S29. The offline scorer reconstructs all 16 published Low, Medium, High and Search operating points from 564 target records. It also accepts independent, controller-owned per-attempt or per-target measurements and plots their quality–throughput frontiers. [Official metrics, reference curves and starting points](environment/references/overall/README.md)
 
-![Four-suite RFD4 quality–throughput comparison](environment/references/overall/quality-throughput.png)
+![Four-suite RFD4 quality–throughput comparison with other published methods](environment/references/overall/quality-throughput-with-comparators.png)
+
+The 16 RFD4 points form the measured frontier among the 42 included protocol/track points under the paper’s conditioning and timing conventions. [Clean rebuild and provenance](environment/references/overall/README.md#rebuild-from-the-source-tables)
 
 The live Harbor task runs unconditioned monomers with an independent AF3 and Foldseek verifier. It has three locally measured baselines. The four-suite curves use the authors’ run records. An independent end-to-end reproduction of those four suites remains outstanding. Table S28 is an additional strict fixed-budget comparison. [S28 results](environment/references/s28/README.md)
 

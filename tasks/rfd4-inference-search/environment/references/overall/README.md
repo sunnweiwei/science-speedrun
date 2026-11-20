@@ -70,6 +70,16 @@ python benchmark_curve.py --trials new-attempts.csv --output /tmp/comparison.csv
 - For native evaluator exports, append `pre_oracle_pass,all_metrics_present` to the attempt header. Map the latter from the applicable criterion’s completeness field. A passed prefilter followed by missing final metrics requires investigation. The pilot observed this exact state after an AF3 runtime failure even though the upstream evaluator wrote a zero pass flag. Pre-oracle rejections remain chargeable attempts. Archives using the shorter schema rely on prior controller adjudication.
 - The scorer checks for duplicated attempts or targets, missing suites or targets, invalid counts and invalid costs. It counts distinct passing cluster IDs within target and method. The combined file and plot label operator-supplied observations separately and recompute the measured frontier. Statistical claims about a new algorithm require independent repeats under comparable conditions.
 
+## Lowest-cost complete RFD4 point
+
+Ranking the 16 RFD4 points by summed generation and common AF3 GPU-seconds gives DNA Low. Its archived three cohorts have 600 attempts, 17 passes and 17 passing clusters. Recorded generation used 220.50 GPU-seconds and common AF3 used 901.63 GPU-seconds. This yields 2.833% clustered passes, 9,795.97 attempts per generation GPU-hour and 54.43 distinct passing clusters per end-to-end GPU-hour (mean across targets). The 18.70 GPU-minutes are warm, batch-amortized publisher timings. An independent sampling run on other hardware can take a different amount of time.
+
+An operator with trusted, frozen per-attempt records can check this single suite without supplying the other three suites. The `--track` view still requires all three targets and all 200 originals per target for each supplied method.
+
+```bash
+python benchmark_curve.py --track "DNA binding" --trials /path/to/trusted-attempts.csv --output /tmp/dna-check.csv
+```
+
 ## Which paper experiments the archive supports
 
 | Experiments | Evidence available here |

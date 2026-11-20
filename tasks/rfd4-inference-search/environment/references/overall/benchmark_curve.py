@@ -117,9 +117,9 @@ def read_targets(path):
     return groups
 
 
-def validate_rosters(groups, methods, reference):
-    if not methods or set(groups) != {(track, method) for track in TRACKS for method in methods}:
-        raise ValueError("Each method needs a complete cohort on every benchmark")
+def validate_rosters(groups, methods, reference, tracks=TRACKS):
+    if not methods or set(groups) != {(track, method) for track in tracks for method in methods}:
+        raise ValueError("Each method needs a complete cohort on every selected benchmark")
     for (track, method), targets in groups.items():
         if len(targets) != TRACKS[track][2] or targets.keys() != reference[track, "Low"].keys():
             raise ValueError(f"{track} / {method}: incomplete or different target roster")
@@ -150,22 +150,26 @@ def frontier(points, speed):
         for q in points)]
 
 
-def operating_points(reference_file, observations=None, trials=None):
+def operating_points(reference_file, observations=None, trials=None, only_track=None):
     groups = read_targets(reference_file)
     validate_rosters(groups, ARMS, groups)
+    if only_track is not None and only_track not in TRACKS:
+        raise ValueError(f"Unknown benchmark: {only_track}")
+    tracks = (only_track,) if only_track is not None else tuple(TRACKS)
     methods = list(ARMS)
     if observations is not None and trials is not None:
         raise ValueError("Choose one input measurement level")
     if observations is not None or trials is not None:
         more = read_trials(trials) if trials is not None else read_targets(observations)
+        more = {key: cohort for key, cohort in more.items() if key[0] in tracks}
         names = sorted({method for _, method in more})
         if set(names).intersection(ARMS):
             raise ValueError("Observation names must be distinct from the four official arms")
-        validate_rosters(more, names, groups)
+        validate_rosters(more, names, groups, tracks)
         groups.update(more)
         methods.extend(names)
     points = []
-    for track in TRACKS:
+    for track in tracks:
         track_points = [summarize(track, m, groups[track, m], "author archive" if m in ARMS else "supplied observations")
                         for m in methods]
         reference_points = [p for p in track_points if p["method"] in ARMS]
@@ -198,11 +202,12 @@ def main():
     inputs = parser.add_mutually_exclusive_group()
     inputs.add_argument("--observations", type=Path, help="Optional trusted per-target results for additional methods")
     inputs.add_argument("--trials", type=Path, help="Trusted attempt-level scores, cluster assignments and timings")
+    parser.add_argument("--track", choices=tuple(TRACKS), help="Score a single complete suite")
     parser.add_argument("--output", type=Path, help="Output CSV, defaults to stdout")
-    parser.add_argument("--plot", type=Path, help="Save a four-panel plot, e.g. as PNG or PDF")
+    parser.add_argument("--plot", type=Path, help="Save a plot of the selected suites, e.g. as PNG or PDF")
     parser.add_argument("--include-af3", action="store_true", help="Include common AF3 in the plot's throughput axis")
     args = parser.parse_args()
-    points = operating_points(HERE / "targets.csv", args.observations, args.trials)
+    points = operating_points(HERE / "targets.csv", args.observations, args.trials, only_track=args.track)
     if args.output:
         with args.output.open("w", newline="") as f:
             write_points(points, f)

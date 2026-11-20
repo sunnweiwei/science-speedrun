@@ -16,7 +16,11 @@ def plot(points, path, include_af3=False, peers=()):
     for i, method in enumerate(extras):
         styles[method] = (plt.get_cmap("tab10")(i % 10), ["P", "X", "v", "h"][i % 4])
 
-    fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.3), sharex=True)
+    tracks = [track for track in TRACKS if any(p["track"] == track for p in points)]
+    if len(tracks) == 1:
+        fig, axes = plt.subplots(1, 1, figsize=(10.2, 5.8), squeeze=False)
+    else:
+        fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.3), sharex=True)
     fig.subplots_adjust(left=.102, right=.98, bottom=.15, top=.79, wspace=.19, hspace=.38)
     fig.text(.064, .956, "RFD4-Proteina   /   Quality and throughput", fontsize=20, weight="bold", color="#162b36")
     scope = "Generation + common AF3 evaluation" if include_af3 else "Generation including internal search"
@@ -29,7 +33,10 @@ def plot(points, path, include_af3=False, peers=()):
     handles.append(Line2D([], [], linestyle=":", color="#687681", label="Measured Pareto frontier"))
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(.058, .895), frameon=False,
                ncol=min(6, len(handles)), fontsize=9.5, columnspacing=1.7, handletextpad=.5)
-    for ax, (track, (_, _, n)) in zip(axes.flat, TRACKS.items()):
+    for unused in list(axes.flat)[len(tracks):]:
+        unused.set_visible(False)
+    for ax, track in zip(axes.flat, tracks):
+        n = TRACKS[track][2]
         cohort = [p for p in points if p["track"] == track]
         background = [p for p in peers if p["track"] == track]
         if background:

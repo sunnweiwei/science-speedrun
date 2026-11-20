@@ -100,6 +100,30 @@ class OfficialCurveTest(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     operating_points(OVERALL / "targets.csv", observations=path)
 
+    def test_single_complete_track(self):
+        original = OVERALL / "targets.csv"
+        track = "DNA binding"
+        official = [p for p in operating_points(original) if p["track"] == track]
+        self.assertEqual(operating_points(original, only_track=track), official)
+        with original.open() as f:
+            rows = [dict(r, method="Archive control") for r in csv.DictReader(f)
+                    if r["dataset"] == "dna_unfixed" and r["method"] == "Low"]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "control.csv"
+            csv_file(path, FIELDS, rows)
+            points = operating_points(original, observations=path, only_track=track)
+            self.assertEqual(len(points), 5)
+            self.assertTrue(all(p["track"] == track for p in points))
+            self.assertEqual(points[-1]["attempts"], 600)
+            self.assertEqual(points[-1]["total_clusters_h"], official[0]["total_clusters_h"])
+            with self.assertRaises(ValueError):
+                operating_points(original, observations=path)
+            with self.assertRaises(ValueError):
+                operating_points(original, observations=path, only_track="Enzyme scaffolding")
+            csv_file(path, FIELDS, rows[:-1])
+            with self.assertRaises(ValueError):
+                operating_points(original, observations=path, only_track=track)
+
     def test_attempt_counts_clusters_and_failed_cost(self):
         base = dict(dataset="dna_unfixed", criterion="dna", method="Fixture", target="toy",
                     scored=0, passed=0, cluster_id="", generation_gpu_s="2", af3_gpu_s="0")

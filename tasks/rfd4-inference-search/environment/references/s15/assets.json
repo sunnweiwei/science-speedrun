@@ -1,0 +1,27 @@
+{
+  "python": "3.12.12",
+  "native_package": "0.0.3",
+  "torch": "2.14.1+cu126",
+  "native_model_revision": "a06e2509c7033b010fc43614e9fd840303588502",
+  "native_code_reference": "6306a210dd17dcae8e4e0f381b5b74a719d9b30e",
+  "foldseek_version": "10-941cd33",
+  "af3_version": "3.0.2",
+  "af3_seed": 727000,
+  "af3_recycles": 5,
+  "af3_diffusion_samples": 1,
+  "device": "NVIDIA RTX A6000 48GB",
+  "driver": "535.309.01",
+  "precision": "bf16-mixed",
+  "compile": false,
+  "batch_size": 5,
+  "sha256": {
+    "native_weights": "5b549dd61adb2f6c6b5cb95bda13f40f5e31556b4e6c755edc0ca6f011c68fb0",
+    "model_config": "154ea927ab8005b7eac2d047a792147fb4606ab4878e496aa8414b6b40dad368",
+    "af3_weights": "74d0258616917cd122f5eab6d076afe4a8930e96823851e65e4f777dfb1f33ff",
+    "foldseek": "4db94a7825d409e416643772860ddf7cfe328d582679b47e6dffda7df4d41ea0",
+    "product_space_flow_matcher.py": "1cb3aae69401b28b770d48c133ba31dd801d9e58b674bee7120a763c4ffafa60",
+    "rdn_flow_matcher.py": "56bed7b72bd7906006d1d9f3f0654c41769db8aabc1c173e051d60e589d7dda7",
+    "inference_base.yaml": "1abbc9fb8c27f16df6ba21bae5b47fc039473d78efb47c8ff841bbe24bd563ac",
+    "front_loaded.yaml": "7207ea58d33d79569a529dce05eb2cadc415ed19a7bf158a08a366d15a43bdde"
+  }
+}

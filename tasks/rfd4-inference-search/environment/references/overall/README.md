@@ -85,7 +85,7 @@ python benchmark_curve.py --track "DNA binding" --trials /path/to/trusted-attemp
 | Experiments | Evidence available here |
 | --- | --- |
 | Figure 2 and S29, Low / Medium / High / Search | Target-level numerical replay, checked against the figure export and the paper. Fresh independent four-suite model runs remain outstanding. |
-| S15, stochastic TSR, prior-schedule TSR, ODE TSR, full and shortened SDE | Five author-reported sampler points. A separate local monomer experiment has real run records for the released stochastic sampler and two geometry search controls. |
+| S15, stochastic TSR, prior-schedule TSR, ODE TSR, full and shortened SDE | All five author-reported sampler points have a [local 150-attempt comparison](../s15/summary.csv) on the released model. The task additionally measures two monomer geometry search controls. |
 | S16, four sampler variants within a search study | Four author-reported contact outcomes with a different endpoint. |
 | S18 and S22, naive, constant-criteria and temporal search | Three and six reported rows respectively. Their reported clustered yields are checked from counts and budgets. |
 | S28, independent sampling / interaction-guided early stopping | A separate ten-target fixed-budget study. The target counts reproduce its reported 24.6% gain. [S28 audit](../s28/README.md) |

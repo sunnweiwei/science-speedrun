@@ -48,6 +48,7 @@ def collect(root, output):
                 counts = baseline["by_length"][str(n)]
                 measurements = {r["slot"]: r for r in prior_records if int(r["length"]) == n and r["scRMSD_A"]}
                 gen_seconds, warm_seconds = counts["generation_seconds"], None
+                cohort_af3 = None
             else:
                 path = root / arm / str(n)
                 gen = read_json(path / "generation.json")
@@ -60,7 +61,8 @@ def collect(root, output):
                 gen_seconds = gen["generation_seconds"]
                 warm = gen["batches"][1:]
                 warm_seconds = math.fsum(b["seconds"] for b in warm) / sum(b["size"] for b in warm)
-                seconds_af3 += scored["af3_seconds"]
+                cohort_af3 = scored["af3_seconds"]
+                seconds_af3 += cohort_af3
             if any(not math.isfinite(float(v["scRMSD_A"])) or float(v["scRMSD_A"]) < 0 or not v["foldseek_cluster"]
                    for v in measurements.values()):
                 raise ValueError(f"Invalid structure measurement for {arm}, L={n}")
@@ -77,19 +79,26 @@ def collect(root, output):
             lengths.append(dict(sampler=arm, length=n, slots=SLOTS, emitted=counts["emitted"],
                                 refolded=len(measurements), passes=len(hits), passing_clusters=len(set(hits)),
                                 trunk_passes_per_slot=passes_per_slot, generation_seconds=gen_seconds,
+                                af3_seconds=cohort_af3,
                                 local_warm_predict_s_per_design=warm_seconds))
         rows = [r for r in lengths if r["sampler"] == arm]
         originals = sum(r["slots"] for r in rows)
         unique = sum(r["passing_clusters"] for r in rows)
         paper_row = paper[PAPER_NAMES[arm]]
         pct = 100 * unique / originals
+        gen_seconds = sum(r["generation_seconds"] for r in rows)
+        hours = (gen_seconds + seconds_af3) / 3600
+        warm_seconds = None if reused else fmean(r["local_warm_predict_s_per_design"] for r in rows)
         points.append(dict(sampler=arm, steps=int(paper_row["steps"]), slots=originals,
                            refolded=sum(r["refolded"] for r in rows), passes=sum(r["passes"] for r in rows),
                            passing_clusters=unique, local_clustered_pct=pct, paper_clustered_pct=float(paper_row["clustered_pass_pct"]),
                            difference_pp=pct-float(paper_row["clustered_pass_pct"]),
                            total_trunk_passes=sum(r["slots"]*r["trunk_passes_per_slot"] for r in rows),
-                           generation_seconds=sum(r["generation_seconds"] for r in rows), af3_seconds=seconds_af3,
-                           local_warm_predict_s_per_design=None if reused else fmean(r["local_warm_predict_s_per_design"] for r in rows),
+                           generation_seconds=gen_seconds, af3_seconds=seconds_af3,
+                           local_warm_predict_s_per_design=warm_seconds,
+                           warm_generation_attempts_per_gpu_h=None if reused else 3600 / warm_seconds,
+                           generation_and_af3_attempts_per_gpu_h=originals / hours,
+                           generation_and_af3_passing_clusters_per_gpu_h=unique / hours,
                            paper_reported_seconds=float(paper_row["reported_seconds"]),
                            source="previous local release run" if reused else "new local release run"))
     if output.exists():

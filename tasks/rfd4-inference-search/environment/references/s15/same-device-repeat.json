@@ -1,0 +1,16 @@
+{
+  "reference": "fresh S15 stochastic TSR L150 vs same-device repeat, same public seeds and driver, neither used to select the other",
+  "by_length": {
+    "150": {
+      "slots": 50,
+      "identical_sequences": 50,
+      "identical_serialized_backbone_coordinates": 50,
+      "max_native_backbone_rmsd_A": 1.8045625113539464e-14,
+      "max_scRMSD_abs_difference_A": 0.5265283554096272,
+      "pass_decisions_changed": 0,
+      "identical_cluster_partition": true,
+      "previous_passing_clusters": 28,
+      "fresh_passing_clusters": 28
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "reference": "prior local stochastic TSR, public RFD4 and AF3 seeds",
+  "by_length": {
+    "100": {
+      "slots": 50,
+      "identical_sequences": 15,
+      "identical_serialized_backbone_coordinates": 0,
+      "max_native_backbone_rmsd_A": 3.9890180586154123,
+      "max_scRMSD_abs_difference_A": 4.821894429043783,
+      "pass_decisions_changed": 2,
+      "identical_cluster_partition": false,
+      "previous_passing_clusters": 15,
+      "fresh_passing_clusters": 15
+    },
+    "150": {
+      "slots": 50,
+      "identical_sequences": 4,
+      "identical_serialized_backbone_coordinates": 0,
+      "max_native_backbone_rmsd_A": 2.86892471551912,
+      "max_scRMSD_abs_difference_A": 17.151380256850217,
+      "pass_decisions_changed": 6,
+      "identical_cluster_partition": false,
+      "previous_passing_clusters": 31,
+      "fresh_passing_clusters": 28
+    },
+    "250": {
+      "slots": 50,
+      "identical_sequences": 1,
+      "identical_serialized_backbone_coordinates": 0,
+      "max_native_backbone_rmsd_A": 3.743005536674232,
+      "max_scRMSD_abs_difference_A": 23.87142689956851,
+      "pass_decisions_changed": 10,
+      "identical_cluster_partition": false,
+      "previous_passing_clusters": 36,
+      "fresh_passing_clusters": 30
+    }
+  }
+}

@@ -3,7 +3,7 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/rfd4-inference-search"
-version = "0.2.3"
+version = "0.2.4"
 description = "Optimize frozen RFD4-Proteina monomer sampling and checkpoint search under a per-length compute budget."
 authors = [{name = "Science Speedrun contributors"}]
 keywords = ["model-development", "inference-time-search", "structural-biology"]

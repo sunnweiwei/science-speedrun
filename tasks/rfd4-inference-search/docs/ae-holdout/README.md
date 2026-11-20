@@ -21,3 +21,15 @@ python docs/ae-holdout/validate.py /path/to/ae_pdb_temporal_holdout_2026_10_04 \
 ```
 
 Add `--smoke` to check one input from each file panel on CPU. The GPU run writes its measured example count, residue counts and reconstruction errors to `summary.json`.
+
+## Local GPU results
+
+The RTX A6000 run processed all 640 released inputs exactly once in 143.6 seconds of validation. The rows group residues across inputs. Each file panel contributed 128 structures. [Machine-readable result, hashes and settings](results.json)
+
+| Residue group | Supervised residues | Mean per-residue RMSD (Å) |
+| --- | ---: | ---: |
+| Standard amino acids | 154,844 | 0.0864 |
+| Nonstandard amino acids | 198 | 0.1193 |
+| Glycans | 229 | 0.0853 |
+| DNA | 6,108 | 0.1338 |
+| RNA | 4,541 | 0.1008 |

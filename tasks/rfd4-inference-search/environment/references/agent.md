@@ -4,4 +4,6 @@
 
 The live research workspace evaluates monomer policies on development draws. The baseline directories include public development run records. Use these results to choose policies. The controller evaluates a frozen submission on private draws. Current monomer development and verification use the same three lengths.
 
+The local S15 comparison measures five unconditional samplers on the same lengths, seeds and RTX A6000 hardware. It includes warm generation speed, throughput including final AF3 and clustered pass rates for 150 attempts per sampler. Each 60-step arm used 180 trunk passes per slot. The 400-step arm used 1,199 and exceeds the live compute allowance. [Measured S15 operating points](s15/summary.csv)
+
 The [native monomer search example](upstream/inference_beam_example.yaml) and its [license](upstream/LICENSE) are available offline. See the published study for the interpretation of other benchmarks. [RFD4-Proteina paper](https://doi.org/10.64898/2026.11.12.766037)

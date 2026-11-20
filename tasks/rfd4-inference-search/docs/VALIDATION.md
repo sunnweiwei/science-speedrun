@@ -26,4 +26,6 @@ In feedback relayed by the benchmark maintainers, a paper author suggested worki
 
 ## Implementation status
 
+The frozen autoencoder passed through the released reconstruction evaluator on all 640 temporal-holdout structures on an RTX A6000. The reported metrics group supervised residues across the full panel. Policy selection for monomer inference uses AF3 self-consistency and structural clustering on independent sampling draws. [AE results](ae-holdout/README.md#local-gpu-results)
+
 The development image supplies historical suite-level scores and plots. The operator's checkout and verifier retain the official per-target archive and four-suite scorer. The live Harbor monomer task already separates public development and private final draws on its three fixed lengths. The four-suite implementation currently scores archived or operator-supplied observations. The fixed-target protocol above does not imply that an independent four-suite campaign has been run.

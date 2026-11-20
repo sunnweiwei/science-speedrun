@@ -1,0 +1,40 @@
+{
+  "examples": 640,
+  "input_classes": {
+    "dna": 128,
+    "glycan": 128,
+    "protein_ligand": 128,
+    "ptm": 128,
+    "rna": 128
+  },
+  "checkpoint_sha256": "24536372f3fc9a5083b6b813baa80630d2287a5d61fbf2f126c9735802e1d21a",
+  "dataset_revision": "95a7d244d64343de40784ecb9238ef9de4e0db37",
+  "holdout_digest": "829866da16bf1a72267d64e9719edae6e56914d4b51d3eff4b88faf6926f507c",
+  "seed": 43,
+  "precision": "bf16-mixed",
+  "batch_size": 1,
+  "device": "NVIDIA RTX A6000",
+  "elapsed_seconds": 143.64678057096899,
+  "residue_groups": {
+    "aa": {
+      "supervised_residues": 154844,
+      "mean_per_residue_rmsd_A": 0.08639302966163412
+    },
+    "ncaa": {
+      "supervised_residues": 198,
+      "mean_per_residue_rmsd_A": 0.11929875024537923
+    },
+    "glycan": {
+      "supervised_residues": 229,
+      "mean_per_residue_rmsd_A": 0.08529545226862337
+    },
+    "dna": {
+      "supervised_residues": 6108,
+      "mean_per_residue_rmsd_A": 0.13381745509367823
+    },
+    "rna": {
+      "supervised_residues": 4541,
+      "mean_per_residue_rmsd_A": 0.10076368003794453
+    }
+  }
+}

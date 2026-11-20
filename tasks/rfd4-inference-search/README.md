@@ -66,7 +66,9 @@ The published seed-42 monomer agrees with a fresh local sample to 0.119 Å Cα R
 
 These are paired public experiments at 27,000 allocated trunk passes per full policy. Use the paper-size column for a comparison at the S15 sample count. Each length in the two-wide reproduction ran independently, so its timing diagnostic includes three AF3 startups. The production verifier runs the three lengths on a single device with one AF3 process.
 
-The published stochastic TSR value is 34.7% clustered passes over 150 attempts in supplementary Table S15. Local results use released weights, a recorded public seed and a fresh AF3 evaluation. The manuscript also reports 37.3% for its 400-step sampler, at 17.68 s versus 2.99 s for 60-step stochastic TSR. The task has its own equal-cost search comparison. [Run record and acceptance](docs/ACCEPTANCE.md)
+In a second campaign, all five S15 samplers ran on the released checkpoint with the same three monomer lengths, public seeds, AF3 and Foldseek. The stochastic TSR repeat produced 73/150 passing clusters (48.7%) versus 82/150 (54.7%) above and 34.7% in the paper. ODE TSR produced 70/150 (46.7%). The report includes the timings and all 750 slot measurements. The 400-step arm exceeds the live task's compute cap. [Five-sampler protocol](docs/s15/README.md) · [Operating points](environment/references/s15/summary.csv) · [Local quality and throughput](environment/references/s15/quality-time.png)
+
+The released autoencoder also completed reconstruction on all 640 official temporal-holdout structures. These measurements assess the autoencoder component. Inference policy evaluation uses AF3 self-consistency and distinct passing clusters. [AE holdout results](docs/ae-holdout/README.md#local-gpu-results)
 
 ## Limitations
 

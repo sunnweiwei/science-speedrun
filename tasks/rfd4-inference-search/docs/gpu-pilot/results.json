@@ -1,0 +1,689 @@
+{
+  "scope": "Independent GPU checks of published fixtures and the target-free monomer search example; not a new Figure 2 or S29 operating point.",
+  "hardware": "NVIDIA RTX A6000 48 GB, driver 535.309.01, one device per run. Concurrent jobs used separate devices.",
+  "source": {
+    "rfd4_code": "6306a210dd17dcae8e4e0f381b5b74a719d9b30e",
+    "native_version": "0.0.3",
+    "native_weights_sha256": "5b549dd61adb2f6c6b5cb95bda13f40f5e31556b4e6c755edc0ca6f011c68fb0",
+    "diffusers_code": "537887041938fc6fe61ad583c3ae77477c9ebac9",
+    "prep_code": "199dfd7f83db1487a02fc1f9f15536e32a9a6a6b",
+    "google_af3_parameters_sha256": "74d0258616917cd122f5eab6d076afe4a8930e96823851e65e4f777dfb1f33ff",
+    "oracle_runtime_revision": "598acab93d5d0aeacc4362f6e88dc20e7db85ef6",
+    "oracle_sqsh_sha256": "6013f17d43d5be70fcad6bb9c674a96803023c418ea0c3dde08f8e1d61ad4719"
+  },
+  "published_monomer": {
+    "model_revision": "92fc3ae50e336b2ec59c713c19cfd43e5d3e923b",
+    "gpu": "NVIDIA RTX A6000",
+    "torch": "2.14.1+cu126",
+    "diffusers": "0.42.0.dev0",
+    "dtype": "bfloat16",
+    "loading_seconds": 1.0156862258445472,
+    "runs": [
+      {
+        "id": "local42",
+        "seed": 42,
+        "sampling_seconds": 16.276787612820044
+      },
+      {
+        "id": "repeat42",
+        "seed": 42,
+        "sampling_seconds": 15.737911415984854
+      },
+      {
+        "id": "local43",
+        "seed": 43,
+        "sampling_seconds": 15.745950385928154
+      }
+    ],
+    "comparisons": {
+      "official_to_local": {
+        "residues": 250,
+        "matching_residues": 235,
+        "sequence_identity": 0.94,
+        "ca_rmsd_A": 0.11872694741688035,
+        "backbone_rmsd_A": 0.12041231604494144
+      },
+      "local_repeat": {
+        "residues": 250,
+        "matching_residues": 250,
+        "sequence_identity": 1.0,
+        "ca_rmsd_A": 5.1817682404970574e-15,
+        "backbone_rmsd_A": 1.981827834465454e-14,
+        "common_atoms": 2039,
+        "all_atom_rmsd_A": 1.9158743910462444e-14,
+        "same_serialized_coordinates": true
+      },
+      "seed_control": {
+        "residues": 250,
+        "matching_residues": 24,
+        "sequence_identity": 0.096,
+        "ca_rmsd_A": 24.79184232385109,
+        "backbone_rmsd_A": 24.761971280191794
+      }
+    }
+  },
+  "monomer_refold": {
+    "af3_version": "3.0.2",
+    "af3_seed": 727000,
+    "af3_seconds": 118.04391429387033,
+    "cases_in_measurement_order": [
+      "official_seed42",
+      "local_seed42",
+      "local_repeat42",
+      "local_seed43"
+    ],
+    "measurements": {
+      "l250d000": {
+        "scRMSD_A": 0.44436604293009113,
+        "cluster": "l250d002"
+      },
+      "l250d001": {
+        "scRMSD_A": 0.4511097027961354,
+        "cluster": "l250d002"
+      },
+      "l250d002": {
+        "scRMSD_A": 0.4511097027961354,
+        "cluster": "l250d002"
+      },
+      "l250d003": {
+        "scRMSD_A": 1.0339885376530933,
+        "cluster": "l250d003"
+      }
+    }
+  },
+  "fixed_complex": {
+    "origin": "NVIDIA Diffusers small-molecule gallery, single frozen design with no identified original Figure 2 attempt",
+    "design_sha256": "0d48010d7cd60b3d8fe9c00018074b1d28be7d116a4069bd67d57306b8559e50",
+    "input_sha256": "3e54da99120f11ea7f643fd3bfde5e4ea953c8ade6d1cb1685db21693af53d04",
+    "af3_seed": 42,
+    "attempted_runtimes": [
+      {
+        "runtime": "Google AF3 v3.0.2",
+        "pre_oracle_pass": "1.0",
+        "all_metrics_present": "0.0",
+        "raw_pass": 0,
+        "adjudicated": false
+      },
+      {
+        "runtime": "Google AF3 v3.0.3",
+        "pre_oracle_pass": "1.0",
+        "all_metrics_present": "0.0",
+        "raw_pass": 0,
+        "adjudicated": false
+      },
+      {
+        "runtime": "Published RFD4 CUDA 12 runtime",
+        "pre_oracle_pass": "1.0",
+        "all_metrics_present": "1.0",
+        "raw_pass": 1,
+        "adjudicated": true,
+        "measurements": {
+          "oracle.min_ipae_coi": 1.305,
+          "oracle.iptm_coi": 91.0,
+          "refolded_backbone_rmsd.rmsd": 0.5106,
+          "refolded_backbone_aligned_ligand_rmsd.rmsd": 1.0287
+        }
+      }
+    ]
+  },
+  "crystal_regression": {
+    "pdb": "1y26",
+    "pdb_sha256": "f1fc86d69da8f089707e10335d583551ee26317541fc04aa1f44a6045cb20fb7",
+    "source_test_sha256": "3143f77b1088062cb2fc745a221393bde33176dc6046ece60d264871cbcf1e97",
+    "seed": 1,
+    "elapsed_s": 54.78307230491191,
+    "atom_order_matches": true,
+    "rmsd_A": 0.6814303398132324,
+    "official_rmsd_bound_A": 0.75,
+    "unreasonable_bond_fraction": 0.0,
+    "clashing_fraction": 0.0,
+    "passed_selected_upstream_assertions": true
+  },
+  "native_beam": {
+    "config_sha256": "c683615af27bcfdb3d5fba51f30356932603f72dc834c742877c4ab3d8d4769c",
+    "implementation_sha256": "bd9e6e80ee5d9cfc83a9ef270c648dd5a382444775f0acb5198770cf5c39ebf9",
+    "length": 100,
+    "native_seed": 42,
+    "oracle_seed": 42,
+    "width": 3,
+    "branches": 2,
+    "replicates_per_run": 2,
+    "checkpoint_steps": [
+      20,
+      40,
+      50,
+      60
+    ],
+    "completed_worker_jobs": [
+      48,
+      48
+    ],
+    "native_main_wall_seconds": [
+      483.09501150483266,
+      510.5686779159587
+    ],
+    "first_checkpoint_scores": [
+      {
+        "step": 20,
+        "quality": [
+          92.61,
+          85.96000000000001,
+          94.41000000000001,
+          93.13,
+          94.54,
+          93.73
+        ],
+        "reward": [
+          92.61000061035156,
+          85.95999908447266,
+          94.41000366210938,
+          93.12999725341797,
+          94.54000091552734,
+          93.7300033569336
+        ]
+      },
+      {
+        "step": 40,
+        "quality": [
+          94.62,
+          95.15,
+          94.05,
+          94.75,
+          94.04,
+          94.96
+        ],
+        "reward": [
+          94.62000274658203,
+          95.1500015258789,
+          94.05000305175781,
+          94.75,
+          94.04000091552734,
+          94.95999908447266
+        ]
+      },
+      {
+        "step": 50,
+        "quality": [
+          94.78,
+          95.28999999999999,
+          94.96,
+          94.96,
+          94.5,
+          94.91000000000001
+        ],
+        "reward": [
+          94.77999877929688,
+          95.29000091552734,
+          94.95999908447266,
+          94.95999908447266,
+          94.5,
+          94.91000366210938
+        ]
+      },
+      {
+        "step": 60,
+        "quality": [
+          95.28999999999999,
+          95.28999999999999,
+          94.96,
+          94.96,
+          94.96,
+          94.96
+        ],
+        "reward": [
+          95.29000091552734,
+          95.29000091552734,
+          94.95999908447266,
+          94.95999908447266,
+          94.95999908447266,
+          94.95999908447266
+        ]
+      },
+      {
+        "step": 20,
+        "quality": [
+          93.83,
+          84.82,
+          91.62,
+          87.13,
+          94.28,
+          93.2
+        ],
+        "reward": [
+          93.83000183105469,
+          84.81999969482422,
+          91.62000274658203,
+          87.12999725341797,
+          94.27999877929688,
+          93.19999694824219
+        ]
+      },
+      {
+        "step": 40,
+        "quality": [
+          94.47,
+          94.67,
+          94.28999999999999,
+          94.17,
+          91.4,
+          93.63
+        ],
+        "reward": [
+          94.47000122070312,
+          94.66999816894531,
+          94.29000091552734,
+          94.16999816894531,
+          91.4000015258789,
+          93.62999725341797
+        ]
+      },
+      {
+        "step": 50,
+        "quality": [
+          94.12,
+          94.41000000000001,
+          94.45,
+          94.8,
+          94.35,
+          94.19
+        ],
+        "reward": [
+          94.12000274658203,
+          94.41000366210938,
+          94.44999694824219,
+          94.80000305175781,
+          94.3499984741211,
+          94.19000244140625
+        ]
+      },
+      {
+        "step": 60,
+        "quality": [
+          94.8,
+          94.8,
+          94.45,
+          94.45,
+          94.41000000000001,
+          94.41000000000001
+        ],
+        "reward": [
+          94.80000305175781,
+          94.80000305175781,
+          94.44999694824219,
+          94.44999694824219,
+          94.41000366210938,
+          94.41000366210938
+        ]
+      }
+    ],
+    "repeat_checkpoint_scores": [
+      {
+        "step": 20,
+        "quality": [
+          92.60000000000001,
+          85.9,
+          94.38,
+          93.14,
+          94.52000000000001,
+          93.7
+        ],
+        "reward": [
+          92.5999984741211,
+          85.9000015258789,
+          94.37999725341797,
+          93.13999938964844,
+          94.5199966430664,
+          93.69999694824219
+        ]
+      },
+      {
+        "step": 40,
+        "quality": [
+          94.56,
+          95.14,
+          94.04,
+          94.72,
+          94.02000000000001,
+          94.89999999999999
+        ],
+        "reward": [
+          94.55999755859375,
+          95.13999938964844,
+          94.04000091552734,
+          94.72000122070312,
+          94.0199966430664,
+          94.9000015258789
+        ]
+      },
+      {
+        "step": 50,
+        "quality": [
+          94.77,
+          95.28,
+          94.89999999999999,
+          94.89999999999999,
+          94.48,
+          94.89
+        ],
+        "reward": [
+          94.7699966430664,
+          95.27999877929688,
+          94.9000015258789,
+          94.9000015258789,
+          94.4800033569336,
+          94.88999938964844
+        ]
+      },
+      {
+        "step": 60,
+        "quality": [
+          95.28,
+          95.28,
+          94.89999999999999,
+          94.89999999999999,
+          94.89999999999999,
+          94.89999999999999
+        ],
+        "reward": [
+          95.27999877929688,
+          95.27999877929688,
+          94.9000015258789,
+          94.9000015258789,
+          94.9000015258789,
+          94.9000015258789
+        ]
+      },
+      {
+        "step": 20,
+        "quality": [
+          93.84,
+          84.83000000000001,
+          91.58,
+          87.17,
+          94.25,
+          93.17
+        ],
+        "reward": [
+          93.83999633789062,
+          84.83000183105469,
+          91.58000183105469,
+          87.16999816894531,
+          94.25,
+          93.16999816894531
+        ]
+      },
+      {
+        "step": 40,
+        "quality": [
+          94.44,
+          94.63000000000001,
+          94.27,
+          94.17,
+          91.39,
+          93.62
+        ],
+        "reward": [
+          94.44000244140625,
+          94.62999725341797,
+          94.2699966430664,
+          94.16999816894531,
+          91.38999938964844,
+          93.62000274658203
+        ]
+      },
+      {
+        "step": 50,
+        "quality": [
+          94.07,
+          94.38,
+          94.42,
+          94.77,
+          94.33,
+          94.17
+        ],
+        "reward": [
+          94.06999969482422,
+          94.37999725341797,
+          94.41999816894531,
+          94.7699966430664,
+          94.33000183105469,
+          94.16999816894531
+        ]
+      },
+      {
+        "step": 60,
+        "quality": [
+          94.77,
+          94.77,
+          94.42,
+          94.42,
+          94.38,
+          94.38
+        ],
+        "reward": [
+          94.7699966430664,
+          94.7699966430664,
+          94.41999816894531,
+          94.41999816894531,
+          94.37999725341797,
+          94.37999725341797
+        ]
+      }
+    ],
+    "first_terminal_rewards": [
+      [
+        95.29000091552734,
+        95.29000091552734,
+        94.95999908447266
+      ],
+      [
+        94.80000305175781,
+        94.80000305175781,
+        94.44999694824219
+      ]
+    ],
+    "repeat_terminal_rewards": [
+      [
+        95.27999877929688,
+        95.27999877929688,
+        94.9000015258789
+      ],
+      [
+        94.7699966430664,
+        94.7699966430664,
+        94.41999816894531
+      ]
+    ],
+    "repeat_observed_selections": [
+      {
+        "step": 20,
+        "original_candidate_indices": [
+          [
+            4,
+            2,
+            5
+          ]
+        ]
+      },
+      {
+        "step": 40,
+        "original_candidate_indices": [
+          [
+            1,
+            5,
+            3
+          ]
+        ]
+      },
+      {
+        "step": 50,
+        "original_candidate_indices": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      {
+        "step": 60,
+        "original_candidate_indices": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "step": 20,
+        "original_candidate_indices": [
+          [
+            4,
+            0,
+            5
+          ]
+        ]
+      },
+      {
+        "step": 40,
+        "original_candidate_indices": [
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "step": 50,
+        "original_candidate_indices": [
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      {
+        "step": 60,
+        "original_candidate_indices": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      }
+    ],
+    "same_ranked_selections": 8,
+    "max_raw_plddt_difference": 0.060000000000002274,
+    "terminal_output_comparisons": [
+      {
+        "replicate": 0,
+        "rank": 1,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 7.369139595642416e-15
+      },
+      {
+        "replicate": 0,
+        "rank": 2,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 3.825869257799721e-15
+      },
+      {
+        "replicate": 0,
+        "rank": 3,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 6.2984695528607954e-15
+      },
+      {
+        "replicate": 1,
+        "rank": 1,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 2.422612653702003e-15
+      },
+      {
+        "replicate": 1,
+        "rank": 2,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 8.114190456403136e-15
+      },
+      {
+        "replicate": 1,
+        "rank": 3,
+        "residues": 100,
+        "matching_residues": 100,
+        "ca_rmsd_A": 1.5773611791049038e-15
+      }
+    ]
+  },
+  "independent_native_final_check": {
+    "af3_seed": 314159,
+    "af3_seconds": 141.92466878914274,
+    "groups": {
+      "low": {
+        "attempts": 2,
+        "scRMSD_A": [
+          0.25524555236227703,
+          0.5633809819555806
+        ],
+        "passes": 2,
+        "unique_passing_clusters": 2,
+        "foldseek_cluster": [
+          "d0",
+          "d1"
+        ]
+      },
+      "medium": {
+        "attempts": 2,
+        "scRMSD_A": [
+          0.4574561949201481,
+          0.3625318664374991
+        ],
+        "passes": 2,
+        "unique_passing_clusters": 2,
+        "foldseek_cluster": [
+          "d0",
+          "d1"
+        ]
+      },
+      "high": {
+        "attempts": 2,
+        "scRMSD_A": [
+          0.311630467599616,
+          0.22738276943681718
+        ],
+        "passes": 2,
+        "unique_passing_clusters": 2,
+        "foldseek_cluster": [
+          "d0",
+          "d1"
+        ]
+      },
+      "beam": {
+        "attempts": 2,
+        "scRMSD_A": [
+          0.3164444344189546,
+          0.3449470975036328
+        ],
+        "passes": 2,
+        "unique_passing_clusters": 2,
+        "foldseek_cluster": [
+          "d0",
+          "d1"
+        ]
+      }
+    }
+  },
+  "one_shot_wall_seconds_including_startup": {
+    "low": 33.48115177289583,
+    "medium": 36.44768911693245,
+    "high": 45.75422177906148
+  }
+}

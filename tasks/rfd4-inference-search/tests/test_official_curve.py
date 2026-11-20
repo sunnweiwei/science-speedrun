@@ -9,7 +9,7 @@ import unittest
 OVERALL = Path(__file__).resolve().parents[1] / "environment/references/overall"
 sys.path.insert(0, str(OVERALL))
 from benchmark_curve import (
-    FIELDS, TRIAL_FIELDS, Measurement, frontier, operating_points, read_trials,
+    FIELDS, NATIVE_STATUS_FIELDS, TRIAL_FIELDS, Measurement, frontier, operating_points, read_trials,
     summarize, write_points,
 )
 from verify_sources import METRICS, S29, check_point
@@ -117,6 +117,26 @@ class OfficialCurveTest(unittest.TestCase):
                 csv_file(path, TRIAL_FIELDS, bad)
                 with self.assertRaises(ValueError):
                     read_trials(path)
+
+    def test_missing_native_oracle_metrics_are_indeterminate(self):
+        # A real upstream refold failure emitted pass=0, all_metrics_present=0 after a valid prefilter.
+        # Legitimate pre-oracle rejections still occupy an attempt and consume generation time.
+        row = dict(dataset="dna_unfixed", criterion="dna", method="Fixture", target="toy",
+                   scored=0, passed=0, cluster_id="", generation_gpu_s=2, af3_gpu_s=0,
+                   pre_oracle_pass="0.0", all_metrics_present="0.0")
+        rows = [dict(row, attempt_id=i) for i in range(200)]
+        fields = TRIAL_FIELDS + NATIVE_STATUS_FIELDS
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "trials.csv"
+            csv_file(path, fields, rows)
+            self.assertEqual(read_trials(path)["DNA binding", "Fixture"]["toy"].generation, 400)
+            rows[0].update(pre_oracle_pass="1.0", scored=1)
+            csv_file(path, fields, rows)
+            with self.assertRaisesRegex(ValueError, "Indeterminate"):
+                read_trials(path)
+            rows[0].update(all_metrics_present="1.0", af3_gpu_s=5)
+            csv_file(path, fields, rows)
+            self.assertEqual(read_trials(path)["DNA binding", "Fixture"]["toy"].passes, 0)
 
     def test_complete_trial_file_adds_one_point_per_suite(self):
         # Pure accounting fixture. Two successful attempts share one cluster per target.

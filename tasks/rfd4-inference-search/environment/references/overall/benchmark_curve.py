@@ -34,14 +34,29 @@ TRIAL_FIELDS = ("dataset", "criterion", "method", "target", "attempt_id", "score
                 "cluster_id", "generation_gpu_s", "af3_gpu_s")
 
 
+NATIVE_STATUS_FIELDS = ("pre_oracle_pass", "all_metrics_present")
+
+
+def validate_native_status(row, scored, passed):
+    pre, complete = (float(row[k]) for k in NATIVE_STATUS_FIELDS)
+    if pre not in (0, 1) or complete not in (0, 1):
+        raise ValueError("Invalid native scorer status")
+    if pre and not complete:
+        raise ValueError("Indeterminate final metrics after passing the native filter")
+    if (passed and not pre) or (pre and complete and not scored):
+        raise ValueError("Inconsistent native pass decision")
+
+
 def read_trials(path):
     """Reduce an external evaluator's sealed pass decisions, cluster IDs and cost ledger."""
     tracks = {(d, c): key for key, (d, c, _) in TRACKS.items()}
     trials = {}
     with Path(path).open(newline="") as f:
         reader = csv.DictReader(f)
-        if tuple(reader.fieldnames or ()) != TRIAL_FIELDS:
+        header = tuple(reader.fieldnames or ())
+        if header not in (TRIAL_FIELDS, TRIAL_FIELDS + NATIVE_STATUS_FIELDS):
             raise ValueError(f"{path}: invalid attempt columns")
+        native_status = header == TRIAL_FIELDS + NATIVE_STATUS_FIELDS
         for row in reader:
             track = tracks.get((row["dataset"], row["criterion"]))
             if track is None or None in row or None in row.values():
@@ -56,6 +71,8 @@ def read_trials(path):
             cluster = row["cluster_id"].strip()
             if scored not in (0, 1) or passed not in (0, 1) or passed > scored or (passed and not cluster):
                 raise ValueError(f"{path}:{reader.line_num}: invalid adjudication or missing cluster ID")
+            if native_status:
+                validate_native_status(row, scored, passed)
             gen, af3 = float(row["generation_gpu_s"]), float(row["af3_gpu_s"])
             if not all(math.isfinite(v) and v >= 0 for v in (gen, af3)):
                 raise ValueError(f"{path}:{reader.line_num}: missing or invalid GPU time")

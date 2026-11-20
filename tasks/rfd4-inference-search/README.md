@@ -52,6 +52,10 @@ runner/run_verify.sh rfd4-baseline rfd4-inference-search \
 
 The public development set uses 30 slots. The public paper-size reproduction uses 150. Each release campaign must share a private seed across submissions. [Reproduction and score audit](docs/REPRODUCE.md)
 
+## GPU fixture checks
+
+The published seed-42 monomer agrees with a fresh local sample to 0.119 Å Cα RMSD, with 235 of 250 residue identities matching across hardware. Two independent runs of the released AF3-guided monomer beam made 48 internal AF3 evaluations each and agreed on all eight checkpoint rankings. A frozen gallery complex and an upstream crystal regression also exercised the released scoring runtime. These are direct GPU measurements on fixed examples. The four-suite operating points above remain numerical reconstructions from the authors’ archive. [Conformance results and replay](docs/gpu-pilot/README.md)
+
 ## Locally measured monomer results
 
 | Policy | Development passing clusters / 30 | Paper-size AF3 passes / 150 | Paper-size passing clusters / 150 |

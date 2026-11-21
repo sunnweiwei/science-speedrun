@@ -7,6 +7,7 @@ import subprocess
 import time
 
 import numpy as np
+from biotite import InvalidFileError
 from biotite.sequence import ProteinSequence
 from biotite.structure.io.pdbx import CIFFile
 
@@ -76,10 +77,12 @@ def score(outputs, slots, assets, work, af_seed):
         folder.mkdir(parents=True)
         valid = {}
         for i, path in enumerate(paths):
+            if path is None:
+                continue
             key = f"l{length}d{i:03d}"
             try:
                 seq, coords = backbone(path, length)
-            except (ValueError, KeyError):
+            except (ValueError, KeyError, IndexError, InvalidFileError, UnicodeError):
                 continue  # Invalid native samples still occupy their allocated slot.
             valid[key] = (seq, coords)
             (folder / f"{key}.cif").symlink_to(path.resolve())
@@ -117,7 +120,7 @@ def score(outputs, slots, assets, work, af_seed):
         unique = len({assignments[k] for k in passed})
         (work / str(length) / "measurements.json").write_text(json.dumps({
             k: {"scRMSD_A": v, "cluster": assignments[k]} for k, v in measurements.items()}, indent=2))
-        breakdown[length] = {"slots": slots, "emitted": len(outputs[length]), "refolded": len(valid),
+        breakdown[length] = {"slots": slots, "emitted": sum(p is not None for p in outputs[length]), "refolded": len(valid),
                              "passes": len(passed), "passing_clusters": unique,
                              "pass_rate": len(passed) / slots, "clustered_pass_rate": unique / slots}
     reward = sum(x["clustered_pass_rate"] for x in breakdown.values()) / len(breakdown)

@@ -22,18 +22,24 @@ Three upstream annotated inputs encode chain lengths. The materializer fetches a
 
 ## Workspace
 
-The agent receives the frozen assets, development evaluator, three runnable baseline policies, offline reference configuration, submission contract and writable research directory. It can change recycle allocation, trajectory length, checkpoint positions, width, branching, lookahead and the numerical rule that selects survivors. Development and 150-slot results are in all three baseline directories. The initial monomer policy is the best locally measured one, stochastic TSR. [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
+The agent receives the frozen assets, development evaluator, executable starter, three runnable reference policies, their development and 150-slot results, and a writable research directory. It starts from stochastic TSR and can replace the inference code. [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
 
 ## Evaluation
+
+Executable submissions receive one versioned request at a time through `infer.py --request FILE --output DIRECTORY`. The runtime supplies the input, output count, generation seed, frozen model and budget. The default paper-size test retains the original 100-, 150- and 250-residue cohorts. A controller-supplied request roster supports other monomer lengths through the same entry point. [Program contract](environment/contract.md)
+
+The verifier replays the selected human baseline on the same GPU and requests as each submitted program. The comparison reports both quality and measured cost, including final AF3, alongside the original clustered-pass reward. Reference choices include the reproduced stochastic TSR, width-one branching, two-wide beam and native Low and High. Varying the budget yields additional measured quality–throughput points. The archived run records are the standard historical comparisons. [Build an executable copy of a baseline](environment/evaluation/reference.py) · [Starter program](environment/baseline/program/infer.py) · [Export the measured curve](environment/evaluation/cost_curve.py)
+
+The executable stochastic TSR replay at 100 residues matched the original public 10-slot cohort with eight AF3 passes and five passing clusters. A separate GPU test passed a 117-residue request through both isolated programs and their independent final scorer. [GPU check record](docs/program-reference-check.json)
 
 The four-suite evaluator is `environment/references/overall/benchmark_curve.py`. Figure 2 uses generation attempts per GPU-hour on the horizontal axis. An alternate view includes final AF3 time. Report unique passing clusters per end-to-end GPU-hour separately for each suite. [Numerical results](environment/references/overall/operating_points.csv)
 
 ### Live monomer verification
 
 
-Final evaluation draws 50 output slots at each length. At most 9,000 trunk passes and 1,800 elapsed seconds are available per length on one GPU. Every sibling and scoring rollout is charged. Decoding and geometry-scoring overhead consume elapsed time. The refolder runs on every valid finalist, once. Search only sees the generated monomer's geometry.
+Final evaluation draws 50 output slots at each length. The default generation/search limit is 1,800 elapsed seconds per length on one GPU. Legacy policy submissions additionally have the original 9,000 trunk-pass allowance per length. Executable programs are timed around their whole invocation, including discarded work and any internal scoring. The independent final refolder runs once on every valid finalist.
 
-For each length, the verifier counts the Foldseek clusters that contain at least one sample with AF3 backbone scRMSD ≤ 1.5 Å. It divides by 50, including failures and empty slots. Reward is the mean of those three fractions. The result also includes ordinary pass rate, emitted and refolded counts, reserved passes, generation time, AF3 time and unique passing clusters per allocated GPU-hour. The time ratio includes process startup and compilation. Repeated hits in one fold earn one point. [Contract](environment/contract.md) · [Scientific basis](environment/references/README.md)
+For each length, the verifier counts the Foldseek clusters that contain at least one sample with AF3 backbone scRMSD ≤ 1.5 Å. It divides by 50, including failures and empty slots. Reward is the mean of those three fractions. The result includes ordinary pass rate, emitted and refolded counts, generation time, AF3 time and unique passing clusters per allocated GPU-hour. The legacy policy evaluator also reports reserved trunk passes. Timing includes process startup and compilation. Repeated hits in one fold earn one point. [Contract](environment/contract.md) · [Scientific basis](environment/references/README.md)
 
 ## Running
 
@@ -45,11 +51,11 @@ export MOUNT_ROOTS="${MOUNT_ROOTS:-} /data/rfd4"
 AGENT_KIND=codex runner/run.sh rfd4-inference-search
 ```
 
-The declared development allocation is one H100 for 48 hours. The separate verifier uses one H100. The verification command below replays a saved package on the private suite.
+The declared development allocation is one H100 for 48 hours. The separate verifier uses one H100. To replay the executable stochastic TSR baseline on the private suite, package the pinned policy from the repository root into a fresh directory.
 
 ```bash
-runner/run_verify.sh rfd4-baseline rfd4-inference-search \
-  tasks/rfd4-inference-search/environment/baseline/stochastic-tsr
+python tasks/rfd4-inference-search/environment/evaluation/reference.py stochastic-tsr /tmp/rfd4-reference
+runner/run_verify.sh rfd4-baseline rfd4-inference-search /tmp/rfd4-reference
 ```
 
 The public development set uses 30 slots. The public paper-size reproduction uses 150. Each release campaign must share a private seed across submissions. [Reproduction and score audit](docs/REPRODUCE.md)

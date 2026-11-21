@@ -5,6 +5,15 @@ services:
       dockerfile: environment/Dockerfile
       target: verifier
     shm_size: 8gb
+    # The trusted verifier creates the submission's offline, capability-free PID/mount namespace.
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+      - systempaths=unconfined
+    cap_add: [SYS_ADMIN]
+    environment:
+      RFD4_REFERENCE: "${RFD4_REFERENCE:-stochastic-tsr}"
+      RFD4_SECONDS_PER_SLOT: "${RFD4_SECONDS_PER_SLOT:-36}"
     volumes:
       - type: bind
         source: ${TASK_DATA_DIR:?Run the materializer}/assets
@@ -12,7 +21,7 @@ services:
         read_only: true
         bind: {create_host_path: false}
       - type: bind
-        source: ${TASK_PRIVATE_DIR:?Set the private data directory}/seed
-        target: /private/seed
+        source: ${TASK_PRIVATE_DIR:?Set the private data directory}
+        target: /private
         read_only: true
         bind: {create_host_path: false}

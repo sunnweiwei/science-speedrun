@@ -1,0 +1,38 @@
+{
+  "scope": "Executable interface and baseline replay checks on RTX A6000",
+  "archived_reference": "environment/baseline/stochastic-tsr/reproduction/development.json",
+  "policy_sha256": "52bf462cbc36649eeeaa1fea43703ffd3961cf83155d020547fba7d60e31ca21",
+  "length": 100,
+  "input_sha256": "5e66073220a3314d3426ca5d7828c02492e61d24321966d4d73dff08481cfa37",
+  "generation_seed": 727100,
+  "final_af3_seed": 727000,
+  "archived": {
+    "slots": 10,
+    "refolded": 10,
+    "passes": 8,
+    "passing_clusters": 5
+  },
+  "executable": {
+    "slots": 10,
+    "refolded": 10,
+    "passes": 8,
+    "passing_clusters": 5
+  },
+  "off_suite_private_namespace_check": {
+    "length": 117,
+    "generation_seed": 7223,
+    "final_af3_seed": 906117,
+    "candidate": {
+      "slots": 3,
+      "refolded": 3,
+      "passes": 3,
+      "passing_clusters": 3
+    },
+    "paired_stochastic_tsr": {
+      "slots": 3,
+      "refolded": 3,
+      "passes": 3,
+      "passing_clusters": 3
+    }
+  }
+}

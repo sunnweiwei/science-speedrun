@@ -10,8 +10,14 @@ ENV HF_HUB_OFFLINE=1 WANDB_MODE=disabled MPLBACKEND=Agg XLA_FLAGS=--xla_gpu_enab
 WORKDIR /workspace
 RUN mkdir -p /workspace/submission /workspace/research
 COPY environment/evaluation /workspace/evaluation
+RUN --mount=type=bind,source=environment/references,target=/published,ro \
+    for f in s15/summary.csv s15/base_schedule_summary.csv monomer_beam/scaling_150slot_summary.csv monomer_beam/matched_30slot_summary.csv; do \
+      if [ -f "/published/$f" ]; then install -D -m 644 "/published/$f" "/workspace/references/$f"; fi; \
+    done
 
 FROM runtime AS verifier
+RUN apt-get update && apt-get install -y --no-install-recommends bubblewrap && rm -rf /var/lib/apt/lists/*
+COPY environment/baseline /workspace/baseline
 COPY tests/test.sh /tests/test.sh
 COPY environment/references/overall /opt/rfd4-overall
 
@@ -21,5 +27,4 @@ COPY environment/data/README.md /workspace/data/README.md
 COPY environment/baseline /workspace/baseline
 COPY environment/references/agent.md /workspace/references/README.md
 COPY environment/references/upstream /workspace/references/upstream
-COPY environment/references/s15/summary.csv /workspace/references/s15/
 COPY environment/references/overall/operating_points.csv environment/references/overall/comparison_field.csv environment/references/overall/quality-throughput*.png /workspace/references/overall/

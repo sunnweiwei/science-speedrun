@@ -13,7 +13,7 @@ import yaml
 from policy import SECONDS_PER_SLOT, cost, native_config
 
 
-def generate(plan, length, slots, seed, assets, work):
+def generate(plan, length, slots, seed, assets, work, *, seconds_per_slot=SECONDS_PER_SLOT):
     work.mkdir(parents=True, exist_ok=False)
     cfg = native_config(plan, length, slots, seed, assets, work / "outputs")
     (work / "monomer_run.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
@@ -30,11 +30,11 @@ def generate(plan, length, slots, seed, assets, work):
         with subprocess.Popen(cmd, env=env, cwd=work, stdout=log, stderr=subprocess.STDOUT,
                               start_new_session=True) as process:
             try:
-                status = process.wait(timeout=SECONDS_PER_SLOT * slots)
+                status = process.wait(timeout=seconds_per_slot * slots)
             except subprocess.TimeoutExpired:
                 os.killpg(process.pid, signal.SIGKILL)
                 process.wait()
-                return [], {"generation_seconds": SECONDS_PER_SLOT * slots, "timed_out": True,
+                return [], {"generation_seconds": time.monotonic() - t0, "timed_out": True,
                             "reserved_trunk_passes": slots * cost(plan)}
             if status:
                 raise subprocess.CalledProcessError(status, cmd)

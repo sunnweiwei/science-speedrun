@@ -78,7 +78,7 @@ def cost(plan):
     return spent
 
 
-def load_policy(package):
+def load_policy(package, lengths=LENGTHS):
     f = Path(package) / "policy.json"
     require(not f.is_symlink() and f.is_file() and f.stat().st_size <= 65536, "Expected regular policy.json, at most 64 KiB")
     try:
@@ -90,13 +90,12 @@ def load_policy(package):
     overrides = doc["by_length"]
     require(isinstance(overrides, dict) and set(overrides) <= set(map(str, LENGTHS)), "Unknown length")
     cost(doc["default"])
-    plans = {n: overrides.get(str(n), doc["default"]) for n in LENGTHS}
-    for plan in plans.values():
+    for plan in overrides.values():
         cost(plan)
-    return plans
+    return {n: overrides.get(str(n), doc["default"]) for n in lengths}
 
 
-def native_config(plan, length, slots, seed, assets, run):
+def native_config(plan, length, slots, seed, assets, run, *, input_file=None):
     cost(plan)
     width = plan["width"]
     require(slots > 0 and slots % width == 0, "Slot count must be a positive multiple of beam width")
@@ -105,7 +104,7 @@ def native_config(plan, length, slots, seed, assets, run):
     batch = min(5, slots // width, max(1, 10 // widest))
     cfg = {
         "defaults": ["inference", "_self_"],
-        "inputs": str(assets / "monomers" / f"monomer-{LENGTHS[length]}.cif.zst"),
+        "inputs": str(input_file or assets / "monomers" / f"monomer-{LENGTHS[length]}.cif.zst"),
         "out_dir": str(run),
         "hf_ckpt_path": str(assets / "rfd4"),
         "compile_lengths": None, "num_workers": 0, "seed": seed,

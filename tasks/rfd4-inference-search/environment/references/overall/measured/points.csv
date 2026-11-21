@@ -1,0 +1,4 @@
+track,method,source,targets,attempts,scored,passes,clusters,covered_targets,pass_pct,clustered_pct,generation_attempts_h,total_attempts_h,generation_clusters_h,total_clusters_h,gain_pp_at_matched_or_faster_baseline
+DNA binding,Low,local baseline,3,600,600,15,15,3,2.5,2.5,673.0934058289708,247.14512592684423,16.85116174866861,6.17664808752917,
+DNA binding,Medium,local baseline,3,600,600,13,12,3,2.1666666666666665,2.0,460.5462895328382,211.60636903218239,9.199575854841433,4.228357886795348,
+DNA binding,High,local baseline,3,600,600,19,17,3,3.1666666666666665,2.8333333333333335,283.0048513609137,164.3027585739664,8.023886343653881,4.6586222505729795,

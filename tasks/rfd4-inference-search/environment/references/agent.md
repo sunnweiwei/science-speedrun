@@ -1,5 +1,7 @@
 # References for the research workspace
 
+The independent official-suite baseline currently contains three DNA operating points. The charts retain all four official panels and identify missing measurements. Use these local measurements for comparisons within their recorded scope. The live monomer score has a separate endpoint. [Measured points](overall/measured/points.csv) · [Measured quality and throughput](overall/measured/generation.png)
+
 The executable evaluator runs a matched human reference on each request. The standard report also includes the archived baseline points at the same sample count. Compare actual GPU time, including final AF3, alongside clustered quality. [Submission and comparison protocol](../contract.md)
 
 [Official suite-level operating points](overall/operating_points.csv) summarize the Low, Medium, High and Search results for each public Figure 2 / S29 suite. Use them as historical starting points. [Published comparator field](overall/comparison_field.csv) · [Generation throughput](overall/quality-throughput.png) · [Throughput including final AF3](overall/quality-throughput-af3.png)

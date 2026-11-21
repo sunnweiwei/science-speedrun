@@ -36,6 +36,14 @@ Run `python evaluation/cost_curve.py budget1.json budget2.json --output points.c
 
 The controller can pass `--suite FILE` containing `{"version":1,"requests":[{"id":"other-length","kind":"unconditional_monomer","input":{"length":117}}]}`. Harbor uses an optional `suite.json` beside the operator's private seed, plus the controller settings `RFD4_REFERENCE` and `RFD4_SECONDS_PER_SLOT`. The monomer grader weights distinct lengths equally. The default suite measures its three published lengths; a separate suite can test unseen lengths. The worker receives only its current request.
 
+## Independent official-suite report
+
+For a valid program evaluation, `/logs/verifier/figure2/` contains `points.csv`, `coverage.json`, and four-panel figures on both throughput axes. Only measurements from independent runs appear in these figures. Three of the sixteen human baseline points currently have local data. The RFD4 Figure 2 definitions and target identities come from the publication. Paper performance values are excluded from the comparison. The live Harbor reward continues to describe the monomer run.
+
+A candidate appears only for suites with independent measurements of that exact package. The operator may mount a completed trial ledger at `/private/figure2/<submission_sha256>.csv` and its receipt at the same path with extension `.json`. The receipt has `submission_sha256`, `trials_sha256` and `profile` fields. The comparison profile `rfd4-a6000-warm-v1` denotes the released model and common AF3 assessment, RTX A6000 and warm, batch-amortized GPU time, counting internal search in generation. The operator verifies the measurement provenance and conditions before sealing the records. An empty submission list in the coverage file means the verifier has no independent official-suite records for this package. The report does not execute a submission on functional targets.
+
+An optional controller-supplied `/private/figure2/baselines.csv` adds independently measured reference settings in the same profile. The scorer checks the complete official roster for each supplied point and the denominator of 200 original attempts per target. A missing suite stays unmeasured. A malformed or mismatched receipt fails verification before publication of the reward. [Public baseline coverage](references/overall/measured/coverage.json)
+
 ## Legacy policy packages
 
 An `infer.py` entry selects program evaluation. Harbor wraps a valid legacy `policy.json` in the trusted program adapter so saved policies receive the same paired evaluation. Direct `run.py` replay of a bare policy retains the original v1 measurement; add `--program-track` for the paired comparison.

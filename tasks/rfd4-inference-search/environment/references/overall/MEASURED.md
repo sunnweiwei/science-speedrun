@@ -1,0 +1,7 @@
+# Independent Figure 2 measurements
+
+The local baseline currently covers DNA Low, Medium and High. These three points contain 1,800 independent attempts on RTX A6000. The source warm attempt ledger has SHA-256 `89864211d00d039b6148ca1621d0beec77a09c3ccbfebbfe58bbfe465c94266d`. Its nine target aggregates are preserved in [reproduced_targets.csv](reproduced_targets.csv). The local rates are 2.50%, 2.00% and 2.83%, respectively. Per-target structural cluster counts and GPU times determine the plotted coordinates. [Full-precision points](measured/points.csv) · [Missing settings](measured/coverage.json)
+
+From this directory, run `python measured_report.py --output /tmp/rfd4-independent-report` with a fresh output path. Generation throughput includes search. The second figure also includes common final AF3 time. Each panel uses the official target roster. The charts use locally measured baselines throughout. The separate `benchmark_curve.py` archive replay retains the authors' published operating points.
+
+The verifier uses this reporter for completed, controller-owned measurements bound to a submission digest. The independent run supplying those records takes place outside the reporter. A submission without sealed functional-suite measurements has zero submission points in the coverage report. Directions for importing frozen numeric records are in the [contract](../../contract.md#independent-official-suite-report).

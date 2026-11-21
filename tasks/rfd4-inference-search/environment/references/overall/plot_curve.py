@@ -6,7 +6,7 @@ from matplotlib.ticker import FuncFormatter, LogLocator, MaxNLocator
 from benchmark_curve import ARMS, TRACKS, frontier
 
 
-def plot(points, path, include_af3=False, peers=()):
+def plot(points, path, include_af3=False, peers=(), *, panel_tracks=None, source_note=None):
     speed = "total_attempts_h" if include_af3 else "generation_attempts_h"
     colors = ["#198572", "#2674aa", "#b06b16", "#803f87"]
     markers = ["o", "s", "^", "D"]
@@ -16,7 +16,8 @@ def plot(points, path, include_af3=False, peers=()):
     for i, method in enumerate(extras):
         styles[method] = (plt.get_cmap("tab10")(i % 10), ["P", "X", "v", "h"][i % 4])
 
-    tracks = [track for track in TRACKS if any(p["track"] == track for p in points)]
+    tracks = list(panel_tracks) if panel_tracks is not None else [
+        track for track in TRACKS if any(p["track"] == track for p in points)]
     if len(tracks) == 1:
         fig, axes = plt.subplots(1, 1, figsize=(10.2, 5.8), squeeze=False)
     else:
@@ -39,6 +40,15 @@ def plot(points, path, include_af3=False, peers=()):
         n = TRACKS[track][2]
         cohort = [p for p in points if p["track"] == track]
         background = [p for p in peers if p["track"] == track]
+        if not cohort and not background:
+            ax.set_title(f"{track}  ·  {n} targets", loc="left", fontsize=12, weight="bold", pad=8)
+            ax.text(.5, .5, "No independent measurement", ha="center", va="center",
+                    transform=ax.transAxes, color="#62737c")
+            ax.tick_params(axis="x", which="both", bottom=False, labelbottom=False)
+            ax.set_yticks([])
+            for spine in ax.spines.values():
+                spine.set_visible(False)
+            continue
         if background:
             ax.scatter([p[speed] for p in background], [p["clustered_pct"] for p in background],
                        facecolors="none", edgecolors="#71808d", s=35, linewidths=1, zorder=2)
@@ -63,7 +73,7 @@ def plot(points, path, include_af3=False, peers=()):
         ax.set_axisbelow(True)
     fig.supylabel("Clustered pass rate (%)", x=.025, y=.48, fontsize=11)
     fig.supxlabel("Attempts per GPU-hour (log scale)", y=.068, fontsize=11)
-    provenance = "Author archive and supplied observations" if extras else "Author archive for Figure 2 and Table S29"
+    provenance = source_note or ("Author archive and supplied observations" if extras else "Author archive for Figure 2 and Table S29")
     fig.text(.066, .021, f"{provenance}. Dotted segments join measured points.",
              fontsize=8.5, color="#54636b")
     fig.savefig(path, dpi=185, bbox_inches="tight", facecolor="white")

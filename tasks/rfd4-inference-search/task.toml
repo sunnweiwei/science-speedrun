@@ -3,7 +3,7 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/rfd4-inference-search"
-version = "0.3.1"
+version = "0.3.2"
 description = "Develop an executable inference program for frozen RFD4-Proteina on runtime monomer requests under a one-GPU time budget."
 authors = [{name = "Science Speedrun contributors"}]
 keywords = ["model-development", "inference-time-search", "structural-biology"]
@@ -13,6 +13,7 @@ data_status = "Pinned length-only monomer inputs, generation and refolding weigh
 primary_metric = "mean_per_length_clustered_pass_rate"
 primary_metric_direction = "maximize"
 official_reference = "Figure 2 and Table S29, four-suite archived quality-throughput curves"
+official_comparison = "Independent local measurements; sealed submission records required for candidate points"
 live_score_scope = "Unconditional monomers"
 
 [agent]

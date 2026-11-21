@@ -2,7 +2,7 @@ services:
   main:
     build:
       context: ..
-      dockerfile: environment/Dockerfile
+      dockerfile: tests/Dockerfile
       target: verifier
     shm_size: 8gb
     # The trusted verifier creates the submission's offline, capability-free PID/mount namespace.

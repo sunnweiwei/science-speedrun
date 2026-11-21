@@ -1,4 +1,5 @@
 import copy
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -65,6 +66,16 @@ class ContractTest(unittest.TestCase):
         self.assertTrue(all(type(v) in (int, float) for v in values.values()))
         self.assertEqual(harbor_metrics({"reward": 0, "invalid_submission": "reason"}),
                          {"reward": 0, "invalid_submission": 1})
+
+    def test_paired_reward_exposes_reference_and_candidate_raw_metrics(self):
+        record = TASK / "environment/baseline/program/reproduction/public-119.json"
+        detail = json.loads(record.read_text())
+        flat = harbor_metrics(detail)
+        for prefix, measurement in (("", detail), ("reference_", detail["reference"])):
+            self.assertEqual(flat[prefix + "length_119_passing_clusters"], 2)
+            self.assertEqual(flat[prefix + "generation_seconds"], measurement["generation_seconds"])
+            self.assertEqual(flat[prefix + "af3_seconds"], measurement["af3_seconds"])
+        self.assertTrue(all(type(value) in (int, float) for value in flat.values()))
 
     def test_backbone_alignment(self):
         x = np.eye(4, 3)

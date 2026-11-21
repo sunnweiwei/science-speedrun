@@ -1,26 +1,52 @@
-# Optimize RFD4-Proteina inference
+# Continuously improve inference for RFD4-Proteina
 
-Develop an executable inference program for frozen RFD4-Proteina. Each runtime request specifies the monomer input, number of outputs, seed and time budget. Choose the sampling, refinement, branching and selection algorithm in code. Maximize the number of structurally distinct folds that independently refold within 1.5 Å of their generated backbone. Compare quality and measured GPU time against the reproduced human baseline on the same requests.
+## Task and goal
+
+Develop an inference program for the supplied frozen RFD4-Proteina model. Given a runtime request for unconditional protein monomers, generate structurally distinct folds that AlphaFold 3 (AF3) can independently recover from their sequences. Repeated copies of one successful fold earn one point for that fold.
+
+The reward is the mean clustered pass rate across the evaluated lengths. At each length, count the distinct Foldseek clusters with at least one backbone self-consistency RMSD ≤ 1.5 Å, then divide by all requested output slots. Missing and failed outputs stay in that denominator. Improve this score under the request budget and compare actual cost against a reproduced human baseline. The development report includes the paired quality difference and end-to-end GPU time, including final AF3.
 
 ## Workspace
 
-- `/workspace/data` holds monomer inputs and frozen model assets.
-- `/workspace/baseline` contains independent stochastic sampling, width-one branching and a two-wide, two-checkpoint beam, each with a policy and run record.
-- `/workspace/references` links the original implementations, protocol and published comparisons.
-- `/workspace/evaluation` runs development evaluation and contains the same scoring implementation used in verification.
-- `/workspace/contract.md` describes the request/response interface, legacy policies, resource bounds and scoring.
-- `/workspace/research` is writable scratch. Keep the current package in `/workspace/submission`.
-
-The historical suite-level summaries are in `/workspace/references/overall/`. Its reference CSV identifies the fastest high-quality alternatives and the best end-to-end yield per suite. Use development draws to choose a policy. The controller owns the per-target archive and the final evaluation. The live monomer development and private runs share the same lengths.
+- `/workspace/instruction.md` describes the research objective.
+- `/workspace/contract.md` specifies the program interface, request types, resource limits and scoring.
+- `/workspace/data/` contains the data guide and read-only monomer inputs, RFD4 weights, AF3 parameters and Foldseek executable.
+- `/workspace/baseline/` contains the executable starter, stochastic TSR, two branching policies, and native Low and High presets, with public run records.
+- `/workspace/references/` contains the upstream monomer example and published quality–throughput comparisons.
+- `/workspace/evaluation/` contains the development evaluator, package builder and curve exporter.
+- `/workspace/submission/` holds your current complete, runnable package.
+- `/workspace/research/` is writable scratch for candidates, logs, measurements and derived data.
 
 ## Rules
 
-Use the supplied frozen model offline for inference on the current request. Produce new outputs from its input and seed. Model parameters, final refolding and clustering are fixed. The verifier supplies a per-request generation seed and keeps its private final AF3 seed separate. Use development measurements to select a program.
+Use the supplied assets offline. Keep the model parameters fixed and generate fresh outputs from each request's input and seed. You may change the sampling algorithm, search, branching, batching, stopping decisions and use of intermediate scores. Read the request at runtime so the same package can handle other supported lengths and output counts.
+
+Use public development draws to select algorithms. Private evaluation data and seeds are off limits. Final AF3 refolding and structural clustering use the common evaluator.
 
 ## Submission
 
-Start from the reproduced stochastic TSR program. From `/workspace`, run `python evaluation/reference.py stochastic-tsr submission` with an empty submission directory. Edit `submission/infer.py` and include any helper modules it imports. The starter's policy adapter reproduces the human settings; your program may replace the entire implementation. Each program is called as `python infer.py --request FILE --output DIRECTORY`. Check a length outside the standard suite using `python evaluation/run.py --length 117 --slots 5 --work /tmp/rfd4-dev-117 --output /tmp/rfd4-dev-117.json` with fresh output paths.
+Publish a complete package that follows `/workspace/contract.md` early. Its entry point is `infer.py --request FILE --output DIRECTORY`. Bundle every helper module and runtime file your code needs besides the supplied assets and installed dependencies.
+
+From `/workspace`, build and publish the reproduced stochastic TSR as a starting point.
+
+```bash
+candidate=$(mktemp -d /workspace/research/candidate.XXXXXX)
+python evaluation/reference.py stochastic-tsr "$candidate"
+bash baseline/publish.sh "$candidate"
+```
+
+Develop in the candidate directory. For a short check, score it on a public request using the development evaluator.
+
+```bash
+run=$(mktemp -d /workspace/research/check.XXXXXX)
+python evaluation/run.py --submission "$candidate" --length 117 --slots 5 \
+  --work "$run/work" --output "$run/score.json"
+```
+
+Whenever a candidate improves, publish its entire directory with `bash baseline/publish.sh "$candidate"`. The publisher stages and atomically exchanges the complete package at `/workspace/submission`.
 
 ## Continuous research
 
-Use the reproduced development results and their logs. Check your own workflow with a short run. Keep experimenting and publishing improvements throughout the session.
+The baselines have already been reproduced. Each baseline's `RESULTS.md` and `reproduction/` contain its measured evidence. Check your own pipeline with a short run, then use development measurements to guide improvements. Compare quality and actual cost on matched requests and seeds, including cases where search spends more time for little quality gain.
+
+There is no end point. Keep a working submission available, record what changed and what it achieved, and start another experiment after each improvement. Continue researching and publishing throughout the session without stopping to hand in a final answer.

@@ -1,0 +1,44 @@
+Length 100
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=63` in the `DataLoader` to improve performance.
+crunching... 🔢 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10/10 0:01:57 • 0:00:00 0.09it/s
+[2026-11-20 09:54:17,601][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete! Results saved to /usr1/data/weiweis/tmp/rfd4-complete-repro-20261120/monomer_50slot/low/100/outputs
+
+Length 150
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=63` in the `DataLoader` to improve performance.
+crunching... 🔢 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10/10 0:03:50 • 0:00:00 0.04it/s
+[2026-11-20 09:55:19,392][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete! Results saved to /usr1/data/weiweis/tmp/rfd4-complete-repro-20261120/monomer_50slot/low/150/outputs
+
+Length 250
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+/usr1/data/weiweis/tmp/rfd4-speedrun-20261119/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=63` in the `DataLoader` to improve performance.
+crunching... 🔢 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10/10 0:11:48 • 0:00:00 0.00it/s
+[2026-11-20 10:00:18,890][rfproteina.generate][INFO] - [rank: 0] ✓ Generation complete! Results saved to /usr1/data/weiweis/tmp/rfd4-complete-repro-20261120/monomer_50slot/low/250/outputs

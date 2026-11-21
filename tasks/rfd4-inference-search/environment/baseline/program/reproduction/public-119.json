@@ -1,0 +1,74 @@
+{
+  "reward": 1.0,
+  "by_length": {
+    "119": {
+      "slots": 2,
+      "emitted": 2,
+      "refolded": 2,
+      "passes": 2,
+      "passing_clusters": 2,
+      "pass_rate": 1.0,
+      "clustered_pass_rate": 1.0,
+      "generation_seconds": 36.53740504197776,
+      "timed_out": false,
+      "program_exit_code": 0
+    }
+  },
+  "af3_seconds": 99.63131165597588,
+  "protocol": "rfd4-program-v1",
+  "evaluated_lengths": [
+    119
+  ],
+  "seconds_per_slot": 36,
+  "generation_seconds": 36.53740504197776,
+  "generation_attempts_per_gpu_hour": 197.05832944972232,
+  "total_gpu_seconds": 136.16871669795364,
+  "attempts_per_gpu_hour": 52.87558093075722,
+  "clusters_per_allocated_gpu_hour": 52.87558093075722,
+  "reference_name": "native-low",
+  "reference": {
+    "reward": 1.0,
+    "by_length": {
+      "119": {
+        "slots": 2,
+        "emitted": 2,
+        "refolded": 2,
+        "passes": 2,
+        "passing_clusters": 2,
+        "pass_rate": 1.0,
+        "clustered_pass_rate": 1.0,
+        "generation_seconds": 29.32301245094277,
+        "timed_out": false,
+        "program_exit_code": 0
+      }
+    },
+    "af3_seconds": 110.214159703115,
+    "protocol": "rfd4-program-v1",
+    "evaluated_lengths": [
+      119
+    ],
+    "seconds_per_slot": 36,
+    "generation_seconds": 29.32301245094277,
+    "generation_attempts_per_gpu_hour": 245.5409386073671,
+    "total_gpu_seconds": 139.53717215405777,
+    "attempts_per_gpu_hour": 51.599153751308286,
+    "clusters_per_allocated_gpu_hour": 51.599153751308286
+  },
+  "comparison": {
+    "quality_delta_pp": 0.0,
+    "total_cost_ratio": 0.9758597984744514,
+    "yield_delta_per_gpu_hour": 1.2764271794489375,
+    "reference_complete": 1,
+    "program_complete": 1,
+    "dominates_reference": 1,
+    "reference_dominates": 0
+  },
+  "historical_baselines": {},
+  "device": {
+    "name": "NVIDIA RTX A6000",
+    "uuid": "GPU-61e522fd-be7c-dbd5-695a-f7dfa62dba55",
+    "driver": "535.309.01"
+  },
+  "workload_sha256": "5f4cccdac9a8f1c3e7a8754bf2f99da12cf995565fad0c59d36cfc0df13901ff",
+  "development_seed": 727000
+}

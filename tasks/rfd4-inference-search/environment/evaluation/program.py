@@ -44,34 +44,14 @@ def gpu_device():
     raise RuntimeError("Select one allocated GPU through CUDA_VISIBLE_DEVICES")
 
 
-def private_namespace(package, request, output, assets):
-    """The trusted verifier exposes only this request, the runtime and frozen assets."""
-    command = ["bwrap", "--unshare-all", "--die-with-parent", "--new-session",
-               "--cap-drop", "ALL", "--clearenv"]
-    for root in ("/usr", "/bin", "/sbin", "/lib", "/lib64", "/sys", "/etc/ld.so.cache", "/etc/alternatives",
-                 "/opt/af3", "/opt/af3env"):
-        if Path(root).exists():
-            command += ["--ro-bind", root, root]
-    command += ["--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp"]
-    nodes = sorted(Path("/dev").glob("nvidia*"))
-    selected = gpu_device()["device_file"] if any(d.name[6:].isdigit() for d in nodes) else None
-    for dev in nodes:
-        if not dev.name[6:].isdigit() or str(dev) == selected:
-            command += ["--dev-bind", str(dev), str(dev)]
-    command += ["--ro-bind", str(assets / "rfd4"), "/assets/rfd4",
-                "--ro-bind", str(assets / "af3"), "/assets/af3",
-                "--ro-bind", str(package), "/submission", "--ro-bind", str(request.parent), "/request",
-                "--bind", str(output), "/output", "--chdir", "/submission"]
-    env = {"PATH": "/usr/local/bin:/usr/bin:/bin", "RFD4_MODEL": "/assets/rfd4", "DATA_PATH": "/assets",
-           "HOME": "/tmp", "TMPDIR": "/tmp", "HF_HUB_OFFLINE": "1", "WANDB_MODE": "disabled",
-           "PYTHONDONTWRITEBYTECODE": "1", "OMP_NUM_THREADS": "2", "OPENBLAS_NUM_THREADS": "1",
-           "XLA_PYTHON_CLIENT_PREALLOCATE": "false", "XLA_FLAGS": "--xla_gpu_enable_triton_gemm=false"}
-    for key in ("CUDA_VISIBLE_DEVICES", "LD_LIBRARY_PATH"):
-        if key in os.environ:
-            env[key] = os.environ[key]
-    for key, value in env.items():
-        command += ["--setenv", key, value]
-    return command + ["--"]
+def verifier_runtime():
+    directory = Path(__file__).resolve().parents[2] / "tests"
+    if not (directory / "rfd4_private.py").is_file():
+        raise RuntimeError("Private replay requires the verifier environment")
+    if str(directory) not in sys.path:
+        sys.path.insert(0, str(directory))
+    import rfd4_private
+    return rfd4_private
 
 
 def collect_outputs(output, slots, length, sealed):
@@ -105,7 +85,7 @@ def invoke_program(package, request, output, assets, seconds, log_path, *, priva
     if private:
         if not shutil.which("bwrap"):
             raise RuntimeError("Private program runtime requires bubblewrap")
-        namespace = private_namespace(package, request, output, assets)
+        namespace = verifier_runtime().private_namespace(package, request, output, assets)
         # A broken namespace setup is an infrastructure failure, including on GPU hosts.
         subprocess.run(namespace + ["/bin/true"], stdin=subprocess.DEVNULL, check=True, timeout=30)
         command = namespace + ["/usr/local/bin/python", "/submission/infer.py", "--request",

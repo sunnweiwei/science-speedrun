@@ -18,7 +18,7 @@ RUN --mount=type=bind,source=environment/references,target=/published,ro \
 FROM runtime AS verifier
 RUN apt-get update && apt-get install -y --no-install-recommends bubblewrap && rm -rf /var/lib/apt/lists/*
 COPY environment/baseline /workspace/baseline
-COPY tests/test.sh /tests/test.sh
+COPY tests/test.sh tests/rfd4_private.py /tests/
 COPY environment/references/overall /opt/rfd4-overall
 
 FROM runtime AS development

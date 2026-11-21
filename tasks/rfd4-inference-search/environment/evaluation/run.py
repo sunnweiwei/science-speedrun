@@ -1,6 +1,5 @@
 import argparse
 import hashlib
-import hmac
 import json
 import math
 import os
@@ -10,7 +9,7 @@ import tempfile
 from generate import generate
 from policy import LENGTHS, SECONDS_PER_SLOT, InvalidPolicy, load_policy
 from score import score
-from program import gpu_device, package_digest, run_program
+from program import gpu_device, package_digest, run_program, verifier_runtime
 from requests_io import suite_requests
 from reference import NAMES, historical_points, package_policy, package_reference
 
@@ -83,14 +82,22 @@ def harbor_metrics(report):
         return dict(values, invalid_submission=1)
     for key in ("af3_seconds", "clusters_per_allocated_gpu_hour"):
         values[key] = report[key]
+    for key in ("seconds_per_slot", "generation_seconds", "total_gpu_seconds", "attempts_per_gpu_hour",
+                "generation_attempts_per_gpu_hour"):
+        if key in report:
+            values[key] = report[key]
+    cohorts = [("", report["by_length"])]
     if "comparison" in report:
-        values.update(report["comparison"], reference_quality=report["reference"]["reward"],
-                      reference_gpu_seconds=report["reference"]["total_gpu_seconds"],
-                      generation_attempts_per_gpu_hour=report["generation_attempts_per_gpu_hour"],
-                      total_gpu_seconds=report["total_gpu_seconds"], attempts_per_gpu_hour=report["attempts_per_gpu_hour"])
-    for length, row in report["by_length"].items():
-        for name, value in row.items():
-            values[f"length_{length}_{name}"] = int(value) if isinstance(value, bool) else value
+        ref = report["reference"]
+        values.update(report["comparison"], reference_quality=ref["reward"], reference_gpu_seconds=ref["total_gpu_seconds"])
+        for key in ("generation_seconds", "af3_seconds", "generation_attempts_per_gpu_hour",
+                    "attempts_per_gpu_hour", "clusters_per_allocated_gpu_hour"):
+            values[f"reference_{key}"] = ref[key]
+        cohorts.append(("reference_", ref["by_length"]))
+    for prefix, rows in cohorts:
+        for length, row in rows.items():
+            for name, value in row.items():
+                values[f"{prefix}length_{length}_{name}"] = int(value) if isinstance(value, bool) else value
     return values
 
 
@@ -136,11 +143,7 @@ def main():
     seed = 727000
     final_seed = None
     if args.private_seed:
-        data = args.private_seed.read_bytes()
-        if len(data) != 32:
-            raise RuntimeError("Private seed must contain 32 bytes")
-        seed = int.from_bytes(hashlib.sha256(data).digest()[:4], "big") % (2**31 - 1024)
-        final_seed = int.from_bytes(hmac.digest(data, b"rfd4-program-final-af3", "sha256")[:4], "big") % 2**31
+        seed, final_seed, suite_digest = verifier_runtime().suite_seeds(args.private_seed)
     slots = args.slots or (50 if args.private_seed or args.paper_size else 10)
     try:
         requests = suite_requests(args.suite) if args.suite else None
@@ -174,7 +177,7 @@ def main():
                 cases.append(case)
             report["workload_sha256"] = hashlib.sha256(json.dumps(cases, sort_keys=True).encode()).hexdigest()
         if args.private_seed:
-            report["suite_sha256"] = hashlib.sha256(data).hexdigest()
+            report["suite_sha256"] = suite_digest
         else:
             report["development_seed"] = seed
     except InvalidPolicy as exc:

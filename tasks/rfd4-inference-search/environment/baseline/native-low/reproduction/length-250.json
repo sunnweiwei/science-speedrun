@@ -1,0 +1,31 @@
+{
+  "generation": {
+    "arm": "stochastic-tsr",
+    "schedule_mode": "low",
+    "length": 250,
+    "gen_seed": 727250,
+    "slots": 50,
+    "batch_size": 5,
+    "trunk_passes_per_slot": 120,
+    "generation_seconds": 727.4576826530974,
+    "warm_predict_s_per_design": 13.961642791356685
+  },
+  "af3_seed": 727000,
+  "score": {
+    "reward": 0.68,
+    "by_length": {
+      "250": {
+        "slots": 50,
+        "emitted": 50,
+        "refolded": 50,
+        "passes": 34,
+        "passing_clusters": 34,
+        "pass_rate": 0.68,
+        "clustered_pass_rate": 0.68
+      }
+    },
+    "af3_seconds": 544.4879655269906
+  },
+  "extra_af3_seed": null,
+  "extra_score": null
+}

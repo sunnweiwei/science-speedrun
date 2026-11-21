@@ -4,7 +4,9 @@ Run 60 stochastic TSR steps with two trunk passes each. At step 30 score the cle
 
 ```bash
 cd /workspace
-bash baseline/publish.sh baseline/geometry-beam
+candidate=$(mktemp -d /workspace/research/geometry-beam-package.XXXXXX)
+python evaluation/reference.py geometry-beam "$candidate"
+bash baseline/publish.sh "$candidate"
 run=$(mktemp -d /workspace/research/geometry-beam.XXXXXX)
 python evaluation/run.py --work "$run/work" --output "$run/score.json"
 ```

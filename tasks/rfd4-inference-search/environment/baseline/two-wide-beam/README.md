@@ -4,7 +4,9 @@ Keep two survivors per independent group. At steps 20 and 40, each survivor bran
 
 ```bash
 cd /workspace
-bash baseline/publish.sh baseline/two-wide-beam
+candidate=$(mktemp -d /workspace/research/two-wide-beam-package.XXXXXX)
+python evaluation/reference.py two-wide-beam "$candidate"
+bash baseline/publish.sh "$candidate"
 run=$(mktemp -d /workspace/research/two-wide-beam.XXXXXX)
 python evaluation/run.py --work "$run/work" --output "$run/score.json"
 ```

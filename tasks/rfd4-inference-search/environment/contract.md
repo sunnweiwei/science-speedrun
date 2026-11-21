@@ -4,6 +4,8 @@ Submit a Python program at `/workspace/submission/infer.py`. Include additional 
 
 ## Request and response
 
+Build and edit a complete candidate directory under `/workspace/research/`. From `/workspace`, publish it with `bash baseline/publish.sh "$candidate"`. The helper stages a copy on the submission filesystem and exchanges the complete directory at `/workspace/submission` in one operation.
+
 The entry point is `python infer.py --request FILE --output DIRECTORY`. The output directory exists and starts empty. Resolve input files relative to the request file. `RFD4_MODEL` points to the frozen model and `DATA_PATH` to its assets parent. Private evaluation gives the worker a read-only package, request, runtime and model assets, writable temporary storage and its own output mount. Each request gets a fresh process.
 
 ```json
@@ -38,7 +40,7 @@ The controller can pass `--suite FILE` containing `{"version":1,"requests":[{"id
 
 An `infer.py` entry selects program evaluation. Harbor wraps a valid legacy `policy.json` in the trusted program adapter so saved policies receive the same paired evaluation. Direct `run.py` replay of a bare policy retains the original v1 measurement; add `--program-track` for the paired comparison.
 
-Submit one UTF-8 file, `/workspace/submission/policy.json`, up to 64 KiB. The verifier interprets the policy and owns both model executions. See either baseline for a complete example. Use a temporary file followed by `mv` on the same filesystem to publish.
+Submit one UTF-8 file, `/workspace/submission/policy.json`, up to 64 KiB. The verifier interprets the policy and owns both model executions. The same publisher accepts a directory containing the legacy policy and replaces the entire previous package.
 
 ### Policy
 

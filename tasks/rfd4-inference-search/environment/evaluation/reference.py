@@ -59,7 +59,7 @@ def package_reference(name, destination):
     destination.mkdir(parents=True, exist_ok=True)
     if any(destination.iterdir()):
         raise ValueError("Choose an empty reference package directory")
-    (destination / "reference-preset.json").write_text(json.dumps(name.removeprefix("native-")) + "\n")
+    shutil.copyfile(BASELINES / name / "reference-preset.json", destination / "reference-preset.json")
     shutil.copyfile(BASELINES / "program/infer.py", destination / "infer.py")
     return destination
 

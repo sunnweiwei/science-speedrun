@@ -4,7 +4,9 @@ Run the frozen release’s 60-step stochastic TSR sampler with its default 180-p
 
 ```bash
 cd /workspace
-bash baseline/publish.sh baseline/stochastic-tsr
+candidate=$(mktemp -d /workspace/research/stochastic-tsr-package.XXXXXX)
+python evaluation/reference.py stochastic-tsr "$candidate"
+bash baseline/publish.sh "$candidate"
 run=$(mktemp -d /workspace/research/stochastic-tsr.XXXXXX)
 python evaluation/run.py --work "$run/work" --output "$run/score.json"
 ```

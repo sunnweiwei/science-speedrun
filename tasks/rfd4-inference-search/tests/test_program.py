@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -17,6 +18,36 @@ from cost_curve import points as curve_points
 
 
 class ProgramContractTest(unittest.TestCase):
+    def test_publish_replaces_the_whole_package_and_preserves_it_on_failure(self):
+        publish = TASK / "environment/baseline/publish.sh"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = root / "submission"
+            out.mkdir()
+            candidate = root / "candidate"
+            candidate.mkdir()
+            (candidate / "infer.py").write_text("from helper import model\n")
+            (candidate / "helper.py").write_text("model = 1\n")
+            subprocess.run([publish, candidate, out], check=True)
+            self.assertEqual({p.name for p in out.iterdir()}, {"infer.py", "helper.py"})
+            (candidate / "helper.py").unlink()
+            (candidate / "infer.py").write_text("model = 2\n")
+            subprocess.run([publish, candidate, out], check=True)
+            self.assertEqual([p.name for p in out.iterdir()], ["infer.py"])
+            (candidate / "infer.py").unlink()
+            (candidate / "policy.json").write_text("invalid")
+            self.assertNotEqual(subprocess.run([publish, candidate, out], capture_output=True).returncode, 0)
+            self.assertEqual((out / "infer.py").read_text(), "model = 2\n")
+            legacy = TASK / "environment/baseline/stochastic-tsr"
+            subprocess.run([publish, legacy, out], check=True)
+            self.assertEqual([p.name for p in out.iterdir()], ["policy.json"])
+            self.assertEqual((out / "policy.json").read_bytes(), (legacy / "policy.json").read_bytes())
+            other = root / "notes"
+            other.mkdir()
+            (other / "experiment.md").write_text("working notes")
+            self.assertNotEqual(subprocess.run([publish, legacy, other], capture_output=True).returncode, 0)
+            self.assertEqual((other / "experiment.md").read_text(), "working notes")
+
     def test_unseen_request_and_slot_identity(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

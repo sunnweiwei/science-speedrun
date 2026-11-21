@@ -8,6 +8,18 @@ TASK = Path(__file__).resolve().parents[1]
 
 
 class TaskLayoutTest(unittest.TestCase):
+    def test_distributed_text_and_filenames_have_no_chinese_script(self):
+        han = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\U00020000-\U0002fa1f\U00030000-\U0003347f]")
+        text_formats = {".md", ".py", ".sh", ".toml", ".yaml", ".yml", ".json", ".csv", ".tsv", ".txt",
+                        ".log", ".sha256", ".rst", ".html", ".js", ".svg"}
+        for path in TASK.rglob("*"):
+            relative = path.relative_to(TASK)
+            if any(part in {"__pycache__", ".git", ".pytest_cache"} for part in relative.parts):
+                continue
+            self.assertNotRegex(relative.as_posix(), han)
+            if path.is_file() and (path.suffix.lower() in text_formats or path.name in {"Dockerfile", "LICENSE", ".dockerignore"}):
+                self.assertIsNone(han.search(path.read_text(encoding="utf-8")), f"Chinese text in {relative}")
+
     def test_agent_and_developer_sections(self):
         prompt = (TASK / "instruction.md").read_text()
         self.assertEqual(re.findall(r"^## (.+)$", prompt, re.M),

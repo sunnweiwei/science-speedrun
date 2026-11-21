@@ -12,7 +12,7 @@ The 16 RFD4 points form the measured frontier among the 42 included protocol/tra
 
 The live Harbor task runs unconditioned monomers with an independent AF3 and Foldseek verifier. It has three locally measured baselines. The four-suite curves use the authors’ run records. An independent end-to-end reproduction of those four suites remains outstanding. Table S28 is an additional strict fixed-budget comparison. [S28 results](environment/references/s28/README.md)
 
-[论文复现交接与待办（中文）](docs/REPRODUCTION_HANDOFF.zh-CN.md)
+[Paper reference results and reproduction handoff](docs/REPRODUCTION_HANDOFF.md) · [Reproduction guide](docs/REPRODUCE.md)
 
 ## 2. Data
 

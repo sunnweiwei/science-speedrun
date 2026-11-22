@@ -26,6 +26,8 @@ The agent receives the frozen assets, development evaluator, executable starter,
 
 ## 4. Evaluation
 
+The frozen three-budget reporting standard measures one submission at one tenth, one quarter and all of the maximum generation/search allowance. Standard caps are 6, 15 and 60 seconds per original attempt. Report full-budget quality and the two lower-budget absolute qualities separately. Only matched, frozen measurements qualify as a three-tier curve. [Scoring and reporting contract](environment/references/overall/BUDGET_CURVE.md)
+
 Executable submissions receive one versioned request at a time through `infer.py --request FILE --output DIRECTORY`. The runtime supplies the input, output count, generation seed, frozen model and budget. The default paper-size test retains the original 100-, 150- and 250-residue cohorts. A controller-supplied request roster supports other monomer lengths through the same entry point. [Program contract](environment/contract.md)
 
 The verifier replays the selected human baseline on the same GPU and requests as each submitted program. The comparison reports both quality and measured cost, including final AF3, alongside the original clustered-pass reward. Reference choices include the reproduced stochastic TSR, width-one branching, two-wide beam and native Low and High. Varying the budget yields additional measured quality–throughput points. The archived run records are the standard historical comparisons. [Build an executable copy of a baseline](environment/evaluation/reference.py) · [Starter program](environment/baseline/program/infer.py) · [Export the measured curve](environment/evaluation/cost_curve.py)

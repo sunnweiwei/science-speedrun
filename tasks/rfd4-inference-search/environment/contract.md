@@ -4,6 +4,8 @@ Submit a Python program at `/workspace/submission/infer.py`. Include additional 
 
 ## Request and response
 
+The versioned three-budget reporting contract uses `B/10`, `B/4` and `B` (standard caps of 6, 15 and 60 generation/search seconds per original attempt). A single-run reward describes its own allowance. The frozen three-tier report records full-budget quality, low-budget quality, paired gains and actual measured cost. [Budget curve standard](references/overall/BUDGET_CURVE.md)
+
 Build and edit a complete candidate directory under `/workspace/research/`. From `/workspace`, publish it with `bash baseline/publish.sh "$candidate"`. The helper stages a copy on the submission filesystem and exchanges the complete directory at `/workspace/submission` in one operation.
 
 The entry point is `python infer.py --request FILE --output DIRECTORY`. The output directory exists and starts empty. Resolve input files relative to the request file. `RFD4_MODEL` points to the frozen model and `DATA_PATH` to its assets parent. Private evaluation gives the worker a read-only package, request, runtime and model assets, writable temporary storage and its own output mount. Each request gets a fresh process.

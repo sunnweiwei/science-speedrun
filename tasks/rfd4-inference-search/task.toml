@@ -9,6 +9,9 @@ authors = [{name = "Science Speedrun contributors"}]
 keywords = ["model-development", "inference-time-search", "structural-biology"]
 
 [metadata]
+budget_curve_protocol = "rfd4-budget-curve-v1"
+budget_curve_seconds_per_slot = [6, 15, 60]
+budget_curve_scope = "Retrospective scorecard for matched frozen measurements"
 data_status = "Pinned length-only monomer inputs, generation and refolding weights, private replay seeds."
 primary_metric = "mean_per_length_clustered_pass_rate"
 primary_metric_direction = "maximize"

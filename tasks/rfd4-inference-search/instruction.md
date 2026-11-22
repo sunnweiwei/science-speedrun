@@ -8,6 +8,8 @@ The reward is the mean clustered pass rate across the evaluated lengths. At each
 
 ## Workspace
 
+The scoring contract also defines a three-budget report for a frozen program. Full-budget quality and absolute quality at one tenth and one quarter of that allowance are separate endpoints. Read `/workspace/references/overall/BUDGET_CURVE.md` for the reporting convention.
+
 - `/workspace/instruction.md` describes the research objective.
 - `/workspace/contract.md` specifies the program interface, request types, resource limits and scoring.
 - `/workspace/data/` contains the data guide and read-only monomer inputs, RFD4 weights, AF3 parameters and Foldseek executable.

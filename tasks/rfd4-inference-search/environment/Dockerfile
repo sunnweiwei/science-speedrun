@@ -22,6 +22,7 @@ COPY tests/test.sh tests/rfd4_private.py /tests/
 COPY environment/references/overall /opt/rfd4-overall
 
 FROM runtime AS development
+COPY environment/references/overall/BUDGET_CURVE.md environment/references/overall/dna-cost-quality-example.png /workspace/references/overall/
 COPY instruction.md environment/contract.md /workspace/
 COPY environment/data/README.md /workspace/data/README.md
 COPY environment/baseline /workspace/baseline

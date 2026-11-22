@@ -22,11 +22,11 @@ COPY tests/test.sh tests/rfd4_private.py /tests/
 COPY environment/references/overall /opt/rfd4-overall
 
 FROM runtime AS development
-COPY environment/references/overall/BUDGET_CURVE.md environment/references/overall/dna-cost-quality-example.png /workspace/references/overall/
+COPY environment/references/overall/BUDGET_CURVE.md environment/references/overall/budget_scorecard.py environment/references/overall/dna-cost-quality-example.png environment/references/overall/MEASURED.md /workspace/references/overall/
 COPY instruction.md environment/contract.md /workspace/
 COPY environment/data/README.md /workspace/data/README.md
 COPY environment/baseline /workspace/baseline
 COPY environment/references/agent.md /workspace/references/README.md
 COPY environment/references/upstream /workspace/references/upstream
 COPY environment/references/overall/measured /workspace/references/overall/measured
-COPY environment/references/overall/operating_points.csv environment/references/overall/comparison_field.csv environment/references/overall/quality-throughput*.png /workspace/references/overall/
+COPY environment/references/overall/benchmark_curve.py environment/references/overall/plot_curve.py environment/references/overall/reproduced_targets.csv environment/references/overall/targets.csv environment/references/overall/operating_points.csv environment/references/overall/comparison_field.csv environment/references/overall/quality-throughput*.png /workspace/references/overall/

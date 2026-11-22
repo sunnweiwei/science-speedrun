@@ -1,0 +1,28 @@
+{
+  "model_package": "rfproteina 0.0.3",
+  "model_revision": "a06e2509c7033b010fc43614e9fd840303588502",
+  "upstream_code_and_benchmark_revision": "6306a210dd17dcae8e4e0f381b5b74a719d9b30e",
+  "oracle_runtime_squashfs_sha256": "6013f17d43d5be70fcad6bb9c674a96803023c418ea0c3dde08f8e1d61ad4719",
+  "af3_parameters_sha256": "74d0258616917cd122f5eab6d076afe4a8930e96823851e65e4f777dfb1f33ff",
+  "foldseek_version": "10-941cd33",
+  "device": "NVIDIA RTX A6000 48GB",
+  "driver": "535.309.01",
+  "precision": "bf16-mixed (eager)",
+  "batch_size": 5,
+  "generation_seeds": {
+    "7m5w": 727001,
+    "7n5u": 727002,
+    "7rte": 727003
+  },
+  "af3_seed": 727000,
+  "af3_recycles": 5,
+  "af3_diffusion_samples": 1,
+  "af3_buckets": [
+    256
+  ],
+  "input_cif_sha256": {
+    "7m5w_sequence_context.cif.zst": "718c8a81d98d5723977d05eb40f6cb26d2c9f9ff0715c8b6606f1a0871399720",
+    "7n5u_sequence_context.cif.zst": "003cdb4b4331d3e1709b51085abf7d948cb606bf7728c7b4c7c8ba7ec4ab3aca",
+    "7rte_sequence_context.cif.zst": "6a13b1c5dfff944ea286c02492e7f732da37d36cf16471e8b0fcbad0b4275565"
+  }
+}

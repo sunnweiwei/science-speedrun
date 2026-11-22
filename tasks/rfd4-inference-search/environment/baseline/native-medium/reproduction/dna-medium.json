@@ -1,0 +1,43 @@
+{
+  "profile": "rfd4-a6000-warm-v1",
+  "device": "NVIDIA RTX A6000",
+  "dataset": "dna_unfixed",
+  "track": "DNA binding",
+  "method": "Medium",
+  "recycle_strategy": "medium/front_loaded",
+  "af3_seed": 727000,
+  "targets": {
+    "7m5w": {
+      "attempts": 200,
+      "scored": 200,
+      "passes": 5,
+      "clusters": 5,
+      "generation_gpu_s": 1553.816459618079,
+      "af3_gpu_s": 1844.8822115631774
+    },
+    "7n5u": {
+      "attempts": 200,
+      "scored": 200,
+      "passes": 6,
+      "clusters": 5,
+      "generation_gpu_s": 1581.067495884326,
+      "af3_gpu_s": 1837.6081949837971
+    },
+    "7rte": {
+      "attempts": 200,
+      "scored": 200,
+      "passes": 2,
+      "clusters": 2,
+      "generation_gpu_s": 1555.1983426114878,
+      "af3_gpu_s": 1835.059560280526
+    }
+  },
+  "summary": {
+    "attempts": 600,
+    "passes": 13,
+    "clusters": 12,
+    "clustered_pct": 2.0,
+    "generation_attempts_h": 460.5461,
+    "total_attempts_h": 211.6104
+  }
+}

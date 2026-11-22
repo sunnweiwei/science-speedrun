@@ -1,0 +1,32 @@
+{
+  "profile": "rfd4-a6000-warm-v1",
+  "device": "NVIDIA RTX A6000",
+  "method": "High",
+  "af3_seed": 727000,
+  "completed_suites": {
+    "Enzyme scaffolding": {
+      "targets": 37,
+      "attempts": 7400,
+      "passes": 1074,
+      "clusters": 876,
+      "clustered_pct": 11.8378,
+      "paper_clustered_pct": 12.0676,
+      "rate_diff_pp": -0.2297,
+      "local_warm_gen_attempts_h": 231.11,
+      "local_warm_total_attempts_h": 142.85,
+      "local_warm_total_clusters_h": 18.671
+    },
+    "DNA binding": {
+      "targets": 3,
+      "attempts": 600,
+      "passes": 19,
+      "clusters": 17,
+      "clustered_pct": 2.8333,
+      "paper_clustered_pct": 3.5,
+      "rate_diff_pp": -0.6667,
+      "local_warm_gen_attempts_h": 283.0,
+      "local_warm_total_attempts_h": 164.3,
+      "local_warm_total_clusters_h": 4.659
+    }
+  }
+}

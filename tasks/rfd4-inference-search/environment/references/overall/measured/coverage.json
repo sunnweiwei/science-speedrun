@@ -1,36 +1,39 @@
 {
   "profile": "rfd4-a6000-warm-v1",
   "submission_sha256": null,
-  "baseline_points": 3,
+  "baseline_points": 10,
   "official_baseline_points": 16,
   "submission_points": 0,
   "tracks": {
     "Protein binding": {
-      "reproduced": [],
-      "missing": [
+      "reproduced": [
         "Low",
-        "Medium",
+        "Medium"
+      ],
+      "missing": [
         "High",
         "Search"
       ],
       "submission": []
     },
     "Small-molecule binding": {
-      "reproduced": [],
-      "missing": [
+      "reproduced": [
         "Low",
-        "Medium",
+        "Medium"
+      ],
+      "missing": [
         "High",
         "Search"
       ],
       "submission": []
     },
     "Enzyme scaffolding": {
-      "reproduced": [],
-      "missing": [
+      "reproduced": [
         "Low",
         "Medium",
-        "High",
+        "High"
+      ],
+      "missing": [
         "Search"
       ],
       "submission": []

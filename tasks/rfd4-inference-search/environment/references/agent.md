@@ -1,13 +1,14 @@
 # References for the research workspace
 
-The independent official-suite baseline currently contains three DNA operating points. The charts retain all four official panels and identify missing measurements. Use these local measurements for comparisons within their recorded scope. The live monomer score has a separate endpoint. [Measured points](overall/measured/points.csv) · [Measured quality and throughput](overall/measured/generation.png)
+Your goal is to design **one unified inference-time strategy** (`infer.py`) and strictly advance the quality-cost Pareto frontier across all four Figure 2 tracks (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, `DNA binding`) using `evaluation/evaluate_tracks.py`.
 
-The executable evaluator runs a matched human reference on each request. The standard report also includes the archived baseline points at the same sample count. Compare actual GPU time, including final AF3, alongside clustered quality. [Submission and comparison protocol](../contract.md)
-
-[Official suite-level operating points](overall/operating_points.csv) summarize the Low, Medium, High and Search results for each public Figure 2 / S29 suite. Use them as historical starting points. [Published comparator field](overall/comparison_field.csv) · [Generation throughput](overall/quality-throughput.png) · [Throughput including final AF3](overall/quality-throughput-af3.png)
-
-The live research workspace evaluates monomer policies on development draws. The baseline directories include public development run records. Use these results to choose policies. The controller evaluates a frozen submission on private draws. Current monomer development and verification use the same three lengths.
-
-The local S15 comparison measures five unconditional samplers on the same lengths, seeds and RTX A6000 hardware. It includes warm generation speed, throughput including final AF3 and clustered pass rates for 150 attempts per sampler. Each 60-step arm used 180 trunk passes per slot. The 400-step arm used 1,199 and exceeds the legacy policy allowance. Executable programs are timed under the request budget. [Measured S15 operating points](s15/summary.csv)
-
-The [native monomer search example](upstream/inference_beam_example.yaml) and its [license](upstream/LICENSE) are available offline. See the published study for the interpretation of other benchmarks. [RFD4-Proteina paper](https://doi.org/10.64898/2026.11.12.766037)
+- **Four-track baseline frontier (`Low`, `Medium`, `High`, `Search`) and local RTX A6000 reproduction logs**:
+  - [Consolidated 16-point baseline frontier table](overall/measured/baseline_frontier_reference.csv) merges all 16 official `Low / Medium / High / Search` reference points with independent local RTX A6000 measurements (`rfd4-a6000-warm-v1`, 10/16 complete covering all 4 `Low`, all 4 `Medium`, `Enzyme High`, and `DNA High`).
+  - [Locally reproduced RTX A6000 points](overall/measured/points.csv) · [Local vs paper comparison](overall/measured/comparison_vs_paper.csv) · [Measured four-panel plots](overall/measured/generation.png) · [Coverage status](overall/measured/coverage.json) · [Timing boundary guide](overall/MEASURED.md)
+  - [Per-target local vs paper breakdown (322 completed cohorts)](overall/measured/logs/per_target_comparison.csv) · [Campaign progress logs](overall/measured/logs/campaign_progress.jsonl) · [Cluster sync logs](overall/measured/logs/babel_sync.jsonl) · [GPU preflight receipt](overall/measured/logs/preflight_phase0.json)
+  - [Three-budget scorecard standard (`rfd4-budget-curve-v1`, 6/15/60 s/slot)](overall/BUDGET_CURVE.md) · [Scorecard builder](overall/budget_scorecard.py)
+  - [Author H200 operating points](overall/operating_points.csv) · [External comparator field](overall/comparison_field.csv) · [Author plots](overall/quality-throughput.png)
+- **Monomer ablations and search examples**:
+  - [Measured S15 sampler operating points](s15/summary.csv)
+  - [Native search config example](upstream/inference_beam_example.yaml) · [License](upstream/LICENSE)
+  - [Submission and Pareto evaluation contract](../contract.md) · [RFD4-Proteina paper](https://doi.org/10.64898/2026.11.12.766037)

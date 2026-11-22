@@ -1,0 +1,56 @@
+{
+  "profile": "rfd4-a6000-warm-v1",
+  "device": "NVIDIA RTX A6000",
+  "method": "Medium",
+  "af3_seed": 727000,
+  "completed_suites": {
+    "Protein binding": {
+      "targets": 24,
+      "attempts": 4800,
+      "passes": 839,
+      "clusters": 481,
+      "clustered_pct": 10.0208,
+      "paper_clustered_pct": 9.7083,
+      "rate_diff_pp": 0.3125,
+      "local_warm_gen_attempts_h": 91.27,
+      "local_warm_total_attempts_h": 67.95,
+      "local_warm_total_clusters_h": 8.551
+    },
+    "Small-molecule binding": {
+      "targets": 77,
+      "attempts": 15400,
+      "passes": 4543,
+      "clusters": 2052,
+      "clustered_pct": 13.3247,
+      "paper_clustered_pct": 12.5779,
+      "rate_diff_pp": 0.7468,
+      "local_warm_gen_attempts_h": 444.42,
+      "local_warm_total_attempts_h": 217.26,
+      "local_warm_total_clusters_h": 29.559
+    },
+    "Enzyme scaffolding": {
+      "targets": 37,
+      "attempts": 7400,
+      "passes": 933,
+      "clusters": 766,
+      "clustered_pct": 10.3514,
+      "paper_clustered_pct": 10.6081,
+      "rate_diff_pp": -0.2568,
+      "local_warm_gen_attempts_h": 274.57,
+      "local_warm_total_attempts_h": 157.92,
+      "local_warm_total_clusters_h": 18.119
+    },
+    "DNA binding": {
+      "targets": 3,
+      "attempts": 600,
+      "passes": 13,
+      "clusters": 12,
+      "clustered_pct": 2.0,
+      "paper_clustered_pct": 3.0,
+      "rate_diff_pp": -1.0,
+      "local_warm_gen_attempts_h": 460.55,
+      "local_warm_total_attempts_h": 211.61,
+      "local_warm_total_clusters_h": 4.228
+    }
+  }
+}

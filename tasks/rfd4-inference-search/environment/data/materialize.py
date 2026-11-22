@@ -1,5 +1,6 @@
 """Controller-only downloads and sealed seed initialization."""
 import hashlib
+import json
 import os
 from pathlib import Path
 import secrets
@@ -9,8 +10,12 @@ import tarfile
 import tempfile
 from urllib.request import urlopen
 
+HERE = Path(__file__).resolve().parent
 MODEL = "https://huggingface.co/nvidia/RFD4-Proteina/resolve/a06e2509c7033b010fc43614e9fd840303588502"
-SOURCE = "https://raw.githubusercontent.com/RosettaCommons/RFD4-Proteina/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/data/benchmarks/monomer"
+OF3_REPO = "https://huggingface.co/nvidia/RFD4-Proteina/resolve/598acab93d5d0aeacc4362f6e88dc20e7db85ef6"
+REPO_RAW = "https://raw.githubusercontent.com/RosettaCommons/RFD4-Proteina/6306a210dd17dcae8e4e0f381b5b74a719d9b30e"
+SOURCE = REPO_RAW + "/data/benchmarks/monomer"
+
 FILES = {
     "rfd4/config.json": (MODEL + "/config.json", "154ea927ab8005b7eac2d047a792147fb4606ab4878e496aa8414b6b40dad368"),
     "rfd4/model.safetensors": (MODEL + "/model.safetensors", "5b549dd61adb2f6c6b5cb95bda13f40f5e31556b4e6c755edc0ca6f011c68fb0"),
@@ -24,6 +29,13 @@ for size, digest in (
 ):
     name = f"monomer-{size}.cif.zst"
     FILES["monomers/" + name] = (SOURCE + "/" + name, digest)
+
+BENCHMARK_MANIFEST = HERE / "figure2_benchmarks.json"
+if BENCHMARK_MANIFEST.is_file():
+    manifest = json.loads(BENCHMARK_MANIFEST.read_text())
+    raw_base = f"https://raw.githubusercontent.com/{manifest['upstream_repo']}/{manifest['upstream_commit']}"
+    for target_key, info in manifest["targets"].items():
+        FILES[f"benchmarks/{target_key}.cif.zst"] = (f"{raw_base}/{info['upstream_rel']}", info["sha256"])
 
 
 def verified(path, digest):

@@ -84,9 +84,9 @@ python benchmark_curve.py --track "DNA binding" --trials /path/to/trusted-attemp
 
 | Experiments | Evidence available here |
 | --- | --- |
-| Figure 2 and S29, Low / Medium / High / Search | Target-level numerical replay, checked against the figure export and the paper. Fresh independent four-suite model runs remain outstanding. |
-| S15, stochastic TSR, prior-schedule TSR, ODE TSR, full and shortened SDE | All five author-reported sampler points have a [local 150-attempt comparison](../s15/summary.csv) on the released model. The task additionally measures two monomer geometry search controls. |
-| S16, four sampler variants within a search study | Four author-reported contact outcomes with a different endpoint. |
+| Figure 2 and S29, Low / Medium / High / Search | Target-level numerical replay, checked against the figure export and the paper. Three DNA-binding settings (`Low`, `Medium`, `High`, 1,800 fresh attempts) have [independent local GPU runs](../dna_binding/README.md); the remaining 13 points remain outstanding. |
+| S15, stochastic TSR, prior-schedule TSR, ODE TSR, full and shortened SDE | All five author-reported sampler points have local 150-attempt comparisons under both [`thinking_medium`](../s15/summary.csv) and [`n_recycle=0`](../s15/base_schedule_summary.csv), plus five-seed paired repeats and a [three-length native AF3 beam comparison](../monomer_beam/README.md). |
+| S16, four sampler variants within a search study | Four author-reported contact outcomes plus an [independent local `SAM_hbonds` beam-search reproduction](../s16/README.md) across 700 final designs. |
 | S18 and S22, naive, constant-criteria and temporal search | Three and six reported rows respectively. Their reported clustered yields are checked from counts and budgets. |
 | S28, independent sampling / interaction-guided early stopping | A separate ten-target fixed-budget study. The target counts reproduce its reported 24.6% gain. [S28 audit](../s28/README.md) |
 | Recycling-window and schedule-shape ablations (S7.2), specificity and other Fig. 3 workflows, budget-prefix discovery curves (Figs. S16–S17) | Separate experiments with different cohorts, metrics or per-attempt data requirements. Their configurations have no validated four-suite operating point in this package. |

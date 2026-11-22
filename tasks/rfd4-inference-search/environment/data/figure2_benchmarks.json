@@ -1,0 +1,711 @@
+{
+  "upstream_repo": "RosettaCommons/RFD4-Proteina",
+  "upstream_commit": "6306a210dd17dcae8e4e0f381b5b74a719d9b30e",
+  "targets": {
+    "dna_unfixed/7m5w": {
+      "upstream_rel": "data/benchmarks/dna_binder/dna_binder_denovo_val/7m5w_sequence_context.cif.zst",
+      "sha256": "718c8a81d98d5723977d05eb40f6cb26d2c9f9ff0715c8b6606f1a0871399720",
+      "bytes": 9240
+    },
+    "dna_unfixed/7n5u": {
+      "upstream_rel": "data/benchmarks/dna_binder/dna_binder_denovo_val/7n5u_sequence_context.cif.zst",
+      "sha256": "003cdb4b4331d3e1709b51085abf7d948cb606bf7728c7b4c7c8ba7ec4ab3aca",
+      "bytes": 9405
+    },
+    "dna_unfixed/7rte": {
+      "upstream_rel": "data/benchmarks/dna_binder/dna_binder_denovo_val/7rte_sequence_context.cif.zst",
+      "sha256": "6a13b1c5dfff944ea286c02492e7f732da37d36cf16471e8b0fcbad0b4275565",
+      "bytes": 8733
+    },
+    "mcsa_fixed/M0040_13pk": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0040_13pk.cif.zst",
+      "sha256": "a1d786537e697458ca00948de0275bf7bdec36d3a32b53ef81a3023114c7ef39",
+      "bytes": 8397
+    },
+    "mcsa_fixed/M0050_1dbt": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0050_1dbt.cif.zst",
+      "sha256": "2ae2258758be0c087f8327f5ac7a11072f5fd0f93cbd7782b36f55e15b1732cd",
+      "bytes": 8039
+    },
+    "mcsa_fixed/M0058_1cju": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0058_1cju.cif.zst",
+      "sha256": "5b405b94363bb699b4e41d50fff3f63f24194c4d8c95cf00b1e0fd25d9e4f1dd",
+      "bytes": 8727
+    },
+    "mcsa_fixed/M0078_1al6": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0078_1al6.cif.zst",
+      "sha256": "700831a35321613af40db3ef2cf18875332b70181c2620ff876c75187d31a1a3",
+      "bytes": 11535
+    },
+    "mcsa_fixed/M0092_1dli": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0092_1dli.cif.zst",
+      "sha256": "543af15babe68d2a17eb2fac8e7db2459e3e011c3d98a36d62d23acfa5f170c7",
+      "bytes": 14165
+    },
+    "mcsa_fixed/M0093_1dqa": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0093_1dqa.cif.zst",
+      "sha256": "bfee5206e5bef3ba3289621d7fee07f6096e63acced2771d9980c6020966caa0",
+      "bytes": 14607
+    },
+    "mcsa_fixed/M0096_1chm": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0096_1chm.cif.zst",
+      "sha256": "a144f6626e2c9b70589376451f82c5030ca9ba0755ccd27e67951e23387a9c1b",
+      "bytes": 4400
+    },
+    "mcsa_fixed/M0097_1ctt": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0097_1ctt.cif.zst",
+      "sha256": "a7c90492003a86346a9f99a86e166e90cee81f3395d5688bb34ed74df4076897",
+      "bytes": 5969
+    },
+    "mcsa_fixed/M0110_1c0p": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0110_1c0p.cif.zst",
+      "sha256": "f194181b7b79336d5fee95e43b62a5bbc4a1c975952ad2d1befb78f1830abfa0",
+      "bytes": 10156
+    },
+    "mcsa_fixed/M0129_1os7": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0129_1os7.cif.zst",
+      "sha256": "c92ad59f0ccd964ff038607262f02b5205fd2d93953358ad18c95f969c8926bf",
+      "bytes": 6551
+    },
+    "mcsa_fixed/M0151_1q0n": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0151_1q0n.cif.zst",
+      "sha256": "97548075e50493ac3033216e0b802bca036ded66bf44a26cc0742842304f29e1",
+      "bytes": 8766
+    },
+    "mcsa_fixed/M0157_1qh5": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0157_1qh5.cif.zst",
+      "sha256": "df901490bcd8b856d3592b7944a5838a7d4a14c60d3eba8b4c50755dfce2daf9",
+      "bytes": 7142
+    },
+    "mcsa_fixed/M0179_1q3s": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0179_1q3s.cif.zst",
+      "sha256": "b65f07938e05e7950645c6b9385f40cb41faef7e7afe68699a02cb92eb97fda6",
+      "bytes": 6405
+    },
+    "mcsa_fixed/M0188_1xel": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0188_1xel.cif.zst",
+      "sha256": "d726a0818b331873aaaa3b6deb1f215cf62f923821d35766d801055b37589b44",
+      "bytes": 12303
+    },
+    "mcsa_fixed/M0209_1lij": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0209_1lij.cif.zst",
+      "sha256": "bb802e1519670d13a11245ef15b0c97266779bb8f4cafb45f22aa7ba4f7a7d34",
+      "bytes": 8687
+    },
+    "mcsa_fixed/M0255_1mg5": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0255_1mg5.cif.zst",
+      "sha256": "2aa1484daa6da354cb0a1da657ccc1ba123c0e9111d57ad746b81012a16dd444",
+      "bytes": 9584
+    },
+    "mcsa_fixed/M0315_1ey3": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0315_1ey3.cif.zst",
+      "sha256": "2385de12e0cbffeca4fdb5e935c00084f01837fa209d0197f06905b4f831a50b",
+      "bytes": 10272
+    },
+    "mcsa_fixed/M0349_1e3v": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0349_1e3v.cif.zst",
+      "sha256": "b38ae1402909745f8de718edd8bf3d1d8ea71e899d74c00b961d0c850f9d52f7",
+      "bytes": 7232
+    },
+    "mcsa_fixed/M0365_1pfk": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0365_1pfk.cif.zst",
+      "sha256": "ece193a3a61068c95eaab201bffdeb449fde1577d2f34321f9ced3ba82d8c9dc",
+      "bytes": 10341
+    },
+    "mcsa_fixed/M0375_4ts9": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0375_4ts9.cif.zst",
+      "sha256": "69ad47a2855705972162b15b989aafc9c6c5da786c168257be8d261d95659cd5",
+      "bytes": 8120
+    },
+    "mcsa_fixed/M0500_1e3i": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0500_1e3i.cif.zst",
+      "sha256": "f77c8ab797c5e68d659681cb8260ebfaf5fed4357fe382b791c07d876e0ee03a",
+      "bytes": 11050
+    },
+    "mcsa_fixed/M0552_1fgh": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0552_1fgh.cif.zst",
+      "sha256": "ca87cc130ba790b09377c4018ec5a4296d163f2bc61cdcd323bd5c14c08644cc",
+      "bytes": 6891
+    },
+    "mcsa_fixed/M0555_1f8r": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0555_1f8r.cif.zst",
+      "sha256": "220f4d9ede91593d22472c18e62a054c48bf1c0f31a07f9133a808b09838a588",
+      "bytes": 10145
+    },
+    "mcsa_fixed/M0584_1ldm": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0584_1ldm.cif.zst",
+      "sha256": "17323c451365808f998fa2971a6f4b928f3952e7f436c13f5b835977e19f5fe3",
+      "bytes": 9664
+    },
+    "mcsa_fixed/M0630_1j79": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0630_1j79.cif.zst",
+      "sha256": "88597ec5b09962f5f5e9147a734483f65ebb2a718d4f3f7e62e9f3fe4ae8ab27",
+      "bytes": 3128
+    },
+    "mcsa_fixed/M0636_1uaq": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0636_1uaq.cif.zst",
+      "sha256": "a52f820488dd4916d420b992527e4917fd4b1e13ca07e5aefb615f7167a774c9",
+      "bytes": 4454
+    },
+    "mcsa_fixed/M0663_1rk2": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0663_1rk2.cif.zst",
+      "sha256": "b6cea5a1951ceeaceedd0aa2f9991881528a1ac7475923772209a8e133f98742",
+      "bytes": 7509
+    },
+    "mcsa_fixed/M0664_2dhn": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0664_2dhn.cif.zst",
+      "sha256": "f5dc38ce1646b56252dbc7fecda320691caa19ddc806a592c449e588080fd237",
+      "bytes": 4770
+    },
+    "mcsa_fixed/M0674_1uf7": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0674_1uf7.cif.zst",
+      "sha256": "189efc81a1cd575990444d180b7550a5cb7e25de62a1e2d0d1694d0e9ed63dc0",
+      "bytes": 5168
+    },
+    "mcsa_fixed/M0710_1ra0": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0710_1ra0.cif.zst",
+      "sha256": "ae09646bc21c1a5b2141c6d15288a3d2d78b6b13f7a5cba66544cdc27f38343f",
+      "bytes": 4139
+    },
+    "mcsa_fixed/M0717_1x7d": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0717_1x7d.cif.zst",
+      "sha256": "b1ce34cfb97c972c833998572a9ed2e4d16c881d45da32340f843a0aee5be073",
+      "bytes": 8564
+    },
+    "mcsa_fixed/M0732_1xs1": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0732_1xs1.cif.zst",
+      "sha256": "db98e04535a2eaa14d000e30ecb07666119ff6adef17c9899ca50ba156099d6b",
+      "bytes": 7936
+    },
+    "mcsa_fixed/M0738_1o98": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0738_1o98.cif.zst",
+      "sha256": "a1c13c7597c8e5971446e37874e99c891da417993537b34b20e1ea0e7a54341c",
+      "bytes": 5209
+    },
+    "mcsa_fixed/M0739_1knp": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0739_1knp.cif.zst",
+      "sha256": "41f23ec7e65d57edf53e419fc68667b404eafabf482569cac1e53249b4389175",
+      "bytes": 10765
+    },
+    "mcsa_fixed/M0870_1oh9": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0870_1oh9.cif.zst",
+      "sha256": "ca0af9e4d97e23f90c3236483db4223ecaed6c357376778449a2edbbdac10c6e",
+      "bytes": 8486
+    },
+    "mcsa_fixed/M0904_1qgx": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0904_1qgx.cif.zst",
+      "sha256": "5d57380caf8c1f0b3fc6a29903194ef330f90eb101d784d5f3bc553bdb2a57a1",
+      "bytes": 8225
+    },
+    "mcsa_fixed/M0907_1rbl": {
+      "upstream_rel": "data/benchmarks/mcsa/mcsa_37_fixed_ligand/M0907_1rbl.cif.zst",
+      "sha256": "b0b93b5204b78d4375267ee3be73b5b3ca661caebee11620dd7a67467af1aecd",
+      "bytes": 8068
+    },
+    "ppi_backbone/01_PD1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/01_PD1.cif.zst",
+      "sha256": "5e871819773c9cd0fba2dabaf6b2eec7531252b108fd81e268911611ca67fe77",
+      "bytes": 45739
+    },
+    "ppi_backbone/04_IFNAR2": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/04_IFNAR2.cif.zst",
+      "sha256": "347da9607e394eb228c4124fbe566356746780e0a2b13dea39b102d5d533e0fd",
+      "bytes": 41908
+    },
+    "ppi_backbone/05_CD45": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/05_CD45.cif.zst",
+      "sha256": "58ff6e4f48496f15b20d71c49c3e447fb50713ada7084c06fe9715fbfa626249",
+      "bytes": 38295
+    },
+    "ppi_backbone/12_Claudin1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/12_Claudin1.cif.zst",
+      "sha256": "cdbe5470337408cfd6c3af3fcef3029c1366363e8a9125fbb6e872a516a040d0",
+      "bytes": 66030
+    },
+    "ppi_backbone/13_BBF14": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/13_BBF14.cif.zst",
+      "sha256": "26a2829c34a5a5c975b591605d33d5916799f43f03d0bf4a9fdfb90238fe4c0a",
+      "bytes": 46190
+    },
+    "ppi_backbone/14_CrSAS6": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/14_CrSAS6.cif.zst",
+      "sha256": "73d7a3f31f5e2a8423a154a53e0fedff04d048fd7fb4e9d77dc3700602c393a7",
+      "bytes": 53302
+    },
+    "ppi_backbone/15_DerF7": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/15_DerF7.cif.zst",
+      "sha256": "3526469d34da32fb100a4bf70ce144f8688b81e9039f89133f10f3222c3bc132",
+      "bytes": 67599
+    },
+    "ppi_backbone/18_DerF21": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/18_DerF21.cif.zst",
+      "sha256": "bd542bdeb61e3085328c9696b3e7b99fa1789e41ceb932493a4bc744ac9faa7a",
+      "bytes": 46369
+    },
+    "ppi_backbone/23_BetV1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/23_BetV1.cif.zst",
+      "sha256": "c273daa016414747b3d880152d44c5b0a532b1eb7a2a7b25fb7549d4d4d0d043",
+      "bytes": 56386
+    },
+    "ppi_backbone/24_SpCas9": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/24_SpCas9.cif.zst",
+      "sha256": "b00774cb02d094ffe288c9d10f432da4c0e970b362f114f20da2a7208c843fe3",
+      "bytes": 74338
+    },
+    "ppi_backbone/26_CbAgo": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/26_CbAgo.cif.zst",
+      "sha256": "474de5357ff6ce045383d1a8413479cf5222198bd9460d614a5de50caeb954bf",
+      "bytes": 38334
+    },
+    "ppi_backbone/28_HER2_AAV": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/28_HER2_AAV.cif.zst",
+      "sha256": "61fbb68fd5fe138626149f843948bfa3a5ae226b51578bfbc7a57923515192ef",
+      "bytes": 85105
+    },
+    "ppi_backbone/29_BHRF1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/29_BHRF1.cif.zst",
+      "sha256": "483884a62e1ed7ce9961c72c9160786d050969fc437e0fc8a774bc73df664451",
+      "bytes": 60967
+    },
+    "ppi_backbone/30_SC2RBD": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/30_SC2RBD.cif.zst",
+      "sha256": "9948c9f8f278cc215570111630b3451976ac2ce6af665aa06b2678a9b06a155d",
+      "bytes": 73147
+    },
+    "ppi_backbone/33_TrkA": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/33_TrkA.cif.zst",
+      "sha256": "60e77e59f9f7e81bd0b6da303c8a91d6e5f5ca055b2d3cb1f7b301d9b5bc8afa",
+      "bytes": 42413
+    },
+    "ppi_backbone/35_H1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/35_H1.cif.zst",
+      "sha256": "137b29cdd805c72facf0f3cfa43584d82bba76b47fcdef3498a7094ef72e409d",
+      "bytes": 99956
+    },
+    "ppi_backbone/36_VEGFA": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/36_VEGFA.cif.zst",
+      "sha256": "f2ada450cb15735812a061d378cec6195187287853b3126514555d246256ec28",
+      "bytes": 71119
+    },
+    "ppi_backbone/37_IL17A": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/37_IL17A.cif.zst",
+      "sha256": "ca7178553dd7bd44bc74afd990fd55fbabac3e6efc35e184c8903d0a73403a45",
+      "bytes": 81167
+    },
+    "ppi_backbone/38_TNFalpha": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/38_TNFalpha.cif.zst",
+      "sha256": "503bb90fa291fac269da4689165ec73efb580823cd30d654c44291eb0912a2b3",
+      "bytes": 145042
+    },
+    "ppi_backbone/rfd3_il2ra": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/il2ra.cif.zst",
+      "sha256": "656037a8f3408ff373195c81c73f32c09017f08055453770322bc0477fe436d6",
+      "bytes": 48831
+    },
+    "ppi_backbone/rfd3_il7ra": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/il7ra.cif.zst",
+      "sha256": "44460914c3d91b8e6223d23eaa893c29d3f2dbe5631f91b20688d8486ebf9a01",
+      "bytes": 74210
+    },
+    "ppi_backbone/rfd3_insulinr": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/insulinr.cif.zst",
+      "sha256": "06a7a8bb362ec269e66a9618f6a19989a7a7437ddf7b67d268c6a8fd46027e74",
+      "bytes": 61102
+    },
+    "ppi_backbone/rfd3_pdl1": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/pdl1.cif.zst",
+      "sha256": "ecbf0995d90836f1caeddcffd4aab28926dd4e3c98642e61c0921658004c209b",
+      "bytes": 48509
+    },
+    "ppi_backbone/rfd3_tie2": {
+      "upstream_rel": "data/benchmarks/ppi/ppi_bb_only/tie2.cif.zst",
+      "sha256": "4b0eb356584bc6bedad24ecad2183a965dc22628c506e013193d65dfc82f81e3",
+      "bytes": 71577
+    },
+    "studio_figure_2c_unfixed/6PPD-q_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/6PPD-q_final_0.cif.zst",
+      "sha256": "f00263829d39d686c53612721a47f5bbc2c688b588727ccba7b9cf6445d024fc",
+      "bytes": 1968
+    },
+    "studio_figure_2c_unfixed/ADP_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/ADP_final_0.cif.zst",
+      "sha256": "d00f187fa51cc26238f915493b275d09577269e7ca8be460c48651ae639c672f",
+      "bytes": 2411
+    },
+    "studio_figure_2c_unfixed/BODIPY_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/BODIPY_final_0.cif.zst",
+      "sha256": "e650fdbb97f79072d205b85aa74883cecc6e93351e6d3595ccfb2405c13945b1",
+      "bytes": 2084
+    },
+    "studio_figure_2c_unfixed/Cu_Cu_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Cu_Cu_ideal.cif.zst",
+      "sha256": "8770fce82b3415da3da5e0352c10fbb49dcf9784f0947ac176e5cb87f7135baf",
+      "bytes": 848
+    },
+    "studio_figure_2c_unfixed/Cu_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Cu_ideal.cif.zst",
+      "sha256": "fa5698b146645dfe64e58b953579c717811ed82c9f886f151470ecf404240899",
+      "bytes": 768
+    },
+    "studio_figure_2c_unfixed/DDT_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/DDT_final_0.cif.zst",
+      "sha256": "7b0a0807c5cc52a0acb28dfb9dcf38112d573ec9413641e9bb79285f4c78c665",
+      "bytes": 1952
+    },
+    "studio_figure_2c_unfixed/DFHBI_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/DFHBI_final_0.cif.zst",
+      "sha256": "9f23a42074a072117d71e55b71de3336047fa0f54013ee985d68ceb1efc297c3",
+      "bytes": 1933
+    },
+    "studio_figure_2c_unfixed/DPA_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/DPA_final_0.cif.zst",
+      "sha256": "28503768922bb0a08b800164944baad38982f64a226472f0585111daf552cc38",
+      "bytes": 2319
+    },
+    "studio_figure_2c_unfixed/Fe4-S4_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Fe4-S4_ideal.cif.zst",
+      "sha256": "811d12d7b8efb9a3c7b7dcc185fbf1ce12c986912017eddf710de7c7cc59772d",
+      "bytes": 1289
+    },
+    "studio_figure_2c_unfixed/Mn_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Mn_ideal.cif.zst",
+      "sha256": "f5ceabd84d633462d6be1d137365fc1daab8b6197f4069d8db71c1d4ebdcb727",
+      "bytes": 766
+    },
+    "studio_figure_2c_unfixed/N-acetyl-alpha-neuraminic_acid_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/N-acetyl-alpha-neuraminic_acid_final_0.cif.zst",
+      "sha256": "a8787a09992780d3e25718ed2ef9a642e22add6f7f6369d9f5b68e98386c455f",
+      "bytes": 2086
+    },
+    "studio_figure_2c_unfixed/NAD_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/NAD_final_0.cif.zst",
+      "sha256": "7d2c87217b808c789c571284873c799df3f8f3af0cbda9b39ff767ed1bc94d0f",
+      "bytes": 3798
+    },
+    "studio_figure_2c_unfixed/NDI_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/NDI_final_0.cif.zst",
+      "sha256": "471ef411a2f65f0579d4a49ed55f7ef0dc74e568f6e49ec778bec76758e337a4",
+      "bytes": 2679
+    },
+    "studio_figure_2c_unfixed/Ni_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Ni_ideal.cif.zst",
+      "sha256": "7038f068d68249aa370756ace3066b3537afc34c5b5355e95e089256f9563062",
+      "bytes": 767
+    },
+    "studio_figure_2c_unfixed/PDI_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/PDI_final_0.cif.zst",
+      "sha256": "fcc93f302d136dc2f4cde1d90501fb8b878c86ca78e43160b30f17166b570b19",
+      "bytes": 3195
+    },
+    "studio_figure_2c_unfixed/PFOA_final_0_PFOS_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/PFOA_final_0_PFOS_final_0_combined.cif.zst",
+      "sha256": "14b5371c5e0a792ecb82613dcfd3aad5a88e7ef3533b85540c5cf973fe088004",
+      "bytes": 3832
+    },
+    "studio_figure_2c_unfixed/PLP_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/PLP_final_0.cif.zst",
+      "sha256": "53d280492f8a7ac8354a2844a7dbf8f736b0662506e8dd9277d5c2fa0f4adcb0",
+      "bytes": 1792
+    },
+    "studio_figure_2c_unfixed/Rose_Bengal_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Rose_Bengal_final_0.cif.zst",
+      "sha256": "87c4d0d6096efce6c927d8993a3211add54f84901bebcae4a0c2c7b507f2bc8f",
+      "bytes": 2742
+    },
+    "studio_figure_2c_unfixed/UV-328_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/UV-328_final_0.cif.zst",
+      "sha256": "047bcd467e4f88dc80295ceacb1483f0e288f2ecc6600333150148b2f6d251ce",
+      "bytes": 2312
+    },
+    "studio_figure_2c_unfixed/Zn_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/Zn_ideal.cif.zst",
+      "sha256": "e5a907577d3f2d74ef35552919d34d46c592cb03c668ebfd15c2167e01c86371",
+      "bytes": 768
+    },
+    "studio_figure_2c_unfixed/acetyl_coenzyme_a_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/acetyl_coenzyme_a_final_0.cif.zst",
+      "sha256": "d2fc762e86204e0589aa78fecd43fcad9c1c880aaa2a9c2148c46c9697452773",
+      "bytes": 3750
+    },
+    "studio_figure_2c_unfixed/aflatoxin_B1_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/aflatoxin_B1_final_0.cif.zst",
+      "sha256": "447e110daede9f1f21d452b1c0b7dd0aa8af320f81124cfe7faf7afce1fd580d",
+      "bytes": 2190
+    },
+    "studio_figure_2c_unfixed/apixaban_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/apixaban_final_0.cif.zst",
+      "sha256": "734f1a98ee3cda70943f66b81f5b1c463a0e1acc858ecb5fd34b81f4392695d2",
+      "bytes": 2823
+    },
+    "studio_figure_2c_unfixed/benzo_a_pyrene_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/benzo_a_pyrene_final_0.cif.zst",
+      "sha256": "a6ee65deae38c4dac4935cd4ae38542009591d75a9605af591faad04c0ea26df",
+      "bytes": 1976
+    },
+    "studio_figure_2c_unfixed/beta-d-mannopyranose_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/beta-d-mannopyranose_final_0.cif.zst",
+      "sha256": "0170477dfdc23c92730afd37cbc94a07c1f901c95f65787fa4e1dfebad6a51ae",
+      "bytes": 1550
+    },
+    "studio_figure_2c_unfixed/bilirubin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/bilirubin_final_0.cif.zst",
+      "sha256": "ad5e94ff1925633a92a551ee30bc6ef253c94adf2a1220f8e39a2e0cadbdc8c4",
+      "bytes": 3270
+    },
+    "studio_figure_2c_unfixed/biotin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/biotin_final_0.cif.zst",
+      "sha256": "d34c2dfa1daf2e983281e2745ef4f6518349fd4017a1762c01b5fb4b83e9c64a",
+      "bytes": 1748
+    },
+    "studio_figure_2c_unfixed/caffeine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/caffeine_final_0.cif.zst",
+      "sha256": "942a11d3504cf193642040e72b6ca2fa6b88dac7d5a17fef2241b64265726c46",
+      "bytes": 1709
+    },
+    "studio_figure_2c_unfixed/chloramphenicol_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/chloramphenicol_final_0.cif.zst",
+      "sha256": "250460b76bd3b02ad2548cc00ba62ed68784ea81953cf896274321e2cee72a85",
+      "bytes": 2028
+    },
+    "studio_figure_2c_unfixed/cholesterol_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/cholesterol_final_0.cif.zst",
+      "sha256": "a13f55262dc23aa45c3638db9bf466c688386f569dd0020728f300cc932717ff",
+      "bytes": 2393
+    },
+    "studio_figure_2c_unfixed/cholic_acid_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/cholic_acid_final_0.cif.zst",
+      "sha256": "da5921fc484a42cf1cf2f9ca9d072f6e67046eef04e24ad2ad4448e44e1f4f22",
+      "bytes": 2478
+    },
+    "studio_figure_2c_unfixed/coenzyme_A_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/coenzyme_A_final_0.cif.zst",
+      "sha256": "1a042021de5efaf6714ba9e820c5af48284eeaeff10e34951a272aa8c9391024",
+      "bytes": 3571
+    },
+    "studio_figure_2c_unfixed/coenzyme_f420_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/coenzyme_f420_final_0.cif.zst",
+      "sha256": "03d1e398c271ccbc38908d0dfde2fb1f363c897b150483b3dd2b58fd58c3d6c0",
+      "bytes": 3809
+    },
+    "studio_figure_2c_unfixed/colchicine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/colchicine_final_0.cif.zst",
+      "sha256": "fdfc732e0cac50afee5fb5334eeb89d2c1843137cf5d5d1ec2042c8fab226683",
+      "bytes": 2539
+    },
+    "studio_figure_2c_unfixed/digoxigenin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/digoxigenin_final_0.cif.zst",
+      "sha256": "725035494e4b9dd67ece251d6b59b1ca64a18a8012c41c0f66bace9a63183fe3",
+      "bytes": 2454
+    },
+    "studio_figure_2c_unfixed/domoic_acid_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/domoic_acid_final_0.cif.zst",
+      "sha256": "7b1c8901d81a77d826d4513d79e12204f6a5dc1a7ef50c238ed4683012139826",
+      "bytes": 2139
+    },
+    "studio_figure_2c_unfixed/dopamine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/dopamine_final_0.cif.zst",
+      "sha256": "af0e39ab62cbe920505950c7516eebb8f6140d80c6dde3541b5521d3703b4a88",
+      "bytes": 1494
+    },
+    "studio_figure_2c_unfixed/erythromycin_a_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/erythromycin_a_final_0.cif.zst",
+      "sha256": "5cc69c53f2ffdfc09a2ce955d0e0264d2eeef696f1d7c91b2afb6fe2ed7a1000",
+      "bytes": 3626
+    },
+    "studio_figure_2c_unfixed/estradiol_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/estradiol_final_0.cif.zst",
+      "sha256": "eb94190b28e504761a3de6581c2bb205df579e843646e9edaac0d1b6e3e8a333",
+      "bytes": 1980
+    },
+    "studio_figure_2c_unfixed/fe-akg_ideal": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/fe-akg_ideal.cif.zst",
+      "sha256": "a97f87bb3252d7e378ea78f6240017ecf3302c2fb6a5149d1474d7e5c5f0dc40",
+      "bytes": 1501
+    },
+    "studio_figure_2c_unfixed/fentanyl_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/fentanyl_final_0.cif.zst",
+      "sha256": "9e677242947fec7ba66956c700f13ac1002f4f31c3f0f830379ae3e286d4369f",
+      "bytes": 2261
+    },
+    "studio_figure_2c_unfixed/flavin_mononucleotide_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/flavin_mononucleotide_final_0.cif.zst",
+      "sha256": "49c84e51df6dcd1191cd4a2f811993b3bfa50f33cd1a513ee46c95d0d0d5fbc1",
+      "bytes": 2644
+    },
+    "studio_figure_2c_unfixed/flavin_mononucleotide_final_0_Fe2-S2_ideal_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/flavin_mononucleotide_final_0_Fe2-S2_ideal_combined.cif.zst",
+      "sha256": "30ba0dac62613691838dd603210ef60fdedebb536da95aef66009f3572fc2f35",
+      "bytes": 2856
+    },
+    "studio_figure_2c_unfixed/flavin_mononucleotide_final_0_NAD_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/flavin_mononucleotide_final_0_NAD_final_0_combined.cif.zst",
+      "sha256": "eb8a991c931a6d0cefadbf08c6b07d7a2fe48acd5d43b3df96a23a57d1b00e72",
+      "bytes": 5515
+    },
+    "studio_figure_2c_unfixed/flavin_mononucleotide_final_0_heme_b_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/flavin_mononucleotide_final_0_heme_b_final_0_combined.cif.zst",
+      "sha256": "b119f3831a441c4c0f829b1d2437772ca5c77bb61be7d6003f8d1ac748abee85",
+      "bytes": 4845
+    },
+    "studio_figure_2c_unfixed/geosmin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/geosmin_final_0.cif.zst",
+      "sha256": "9424502c9c213ef1902ff06c3aa752b6eda7501bae6aacb87d69a984ef62e043",
+      "bytes": 1586
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0.cif.zst",
+      "sha256": "7d8c616d2c68339c3c9e380ef3ffa4540b07a5b71366ad7616e3aa15fcd8199d",
+      "bytes": 3261
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0_Cu_ideal_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0_Cu_ideal_combined.cif.zst",
+      "sha256": "15045480c5c8b123f8180515d9eb7ba0b8546b28ce6df804ab89f2c61edbb0b8",
+      "bytes": 3330
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0_NAD_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0_NAD_final_0_combined.cif.zst",
+      "sha256": "0ad2f270dddfad3ac2f2741744ef6185061621e099c873d47e6dfa0c6847e512",
+      "bytes": 6113
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0_PLP_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0_PLP_final_0_combined.cif.zst",
+      "sha256": "feba197062b504f3a508799fa46eff03f111d446f455d19dbbf4c82d950fc955",
+      "bytes": 4186
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0_pyrroloquinoline_quinone_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0_pyrroloquinoline_quinone_final_0_combined.cif.zst",
+      "sha256": "a46badd3faee3f19431cd84b509b4bce7503d34c07789bd016b70439b5cc54f4",
+      "bytes": 4556
+    },
+    "studio_figure_2c_unfixed/heme_b_final_0_thiamine_diphosphate_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/heme_b_final_0_thiamine_diphosphate_final_0_combined.cif.zst",
+      "sha256": "360595f4efd0312393e29486044e0f48862a9e96235e9c98dadb0eece7d18f2c",
+      "bytes": 4720
+    },
+    "studio_figure_2c_unfixed/histamine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/histamine_final_0.cif.zst",
+      "sha256": "57dcdf9bb4d74587347af230578922a445f8b993c72b9ec83b189c05c0c69517",
+      "bytes": 1320
+    },
+    "studio_figure_2c_unfixed/methotrexate_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/methotrexate_final_0.cif.zst",
+      "sha256": "8ef9d05418df931052a8ec232f09d84b87f12b8a261ab64dd03e2004283904db",
+      "bytes": 2736
+    },
+    "studio_figure_2c_unfixed/perfluorooctanoic_acid_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/perfluorooctanoic_acid_final_0.cif.zst",
+      "sha256": "8ef1c56336054bd2121090d8a1d3f3ba1d3b92e00b044394a5a9882055f40b75",
+      "bytes": 2286
+    },
+    "studio_figure_2c_unfixed/phylloquinone_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/phylloquinone_final_0.cif.zst",
+      "sha256": "f81d02d85f56f1f1cd08a79ee4e91a1aa0c5572341c1fb0b2cd418484675958d",
+      "bytes": 2628
+    },
+    "studio_figure_2c_unfixed/pyrroloquinoline_quinone_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/pyrroloquinoline_quinone_final_0.cif.zst",
+      "sha256": "2f94f7b68ff6233e6417715aedbd3c84a11d1393b15d35aaee5b16c539a711d9",
+      "bytes": 2279
+    },
+    "studio_figure_2c_unfixed/pyrroloquinoline_quinone_final_0_Cu_ideal_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/pyrroloquinoline_quinone_final_0_Cu_ideal_combined.cif.zst",
+      "sha256": "72c5b196786eafa11699867e353ccbf35698404cf759a908833bf93c3618911e",
+      "bytes": 2351
+    },
+    "studio_figure_2c_unfixed/resazurin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/resazurin_final_0.cif.zst",
+      "sha256": "41a35d9cd5f5fa05d6d5b9cd3ba16d0fc162b796fe21aa9ca9dfe5924ef9214e",
+      "bytes": 1862
+    },
+    "studio_figure_2c_unfixed/retinal_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/retinal_final_0.cif.zst",
+      "sha256": "6964b2414eb8a5877e8d4fa67e710d3549593997dd3117f6778d5570d1486ced",
+      "bytes": 2023
+    },
+    "studio_figure_2c_unfixed/rocuronium_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/rocuronium_final_0.cif.zst",
+      "sha256": "f7ca1b759f24f9d7dd5d5ec5e9227810e13e7482345c36d904185cb85282b799",
+      "bytes": 3030
+    },
+    "studio_figure_2c_unfixed/s-adenosylmethionine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/s-adenosylmethionine_final_0.cif.zst",
+      "sha256": "f30a99550f112ce6f351441b181af87194337f0fbffe4e2a66dc7e83c2456449",
+      "bytes": 2456
+    },
+    "studio_figure_2c_unfixed/s-adenosylmethionine_final_0_Fe2-S2_ideal_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/s-adenosylmethionine_final_0_Fe2-S2_ideal_combined.cif.zst",
+      "sha256": "95497bf16b2146bae94db0bc0ff93502e5b82b2b198258effbdc527502123f08",
+      "bytes": 2661
+    },
+    "studio_figure_2c_unfixed/saxitoxin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/saxitoxin_final_0.cif.zst",
+      "sha256": "e587d0482ccf4816c85fa85d9880fff4d5edf5efd602fb71ef82ff9c55717889",
+      "bytes": 2077
+    },
+    "studio_figure_2c_unfixed/serotonin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/serotonin_final_0.cif.zst",
+      "sha256": "b6b162ac82308c8b2befcbd4958d0701f08a26bc44f63d286367132db886bf75",
+      "bytes": 1616
+    },
+    "studio_figure_2c_unfixed/tetrachlorodibenzodioxin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/tetrachlorodibenzodioxin_final_0.cif.zst",
+      "sha256": "f44354a0746729f8b0965bc94fd93887bf0a80cd17304cc22bbdf6b481c2172c",
+      "bytes": 1949
+    },
+    "studio_figure_2c_unfixed/tetrahydrofolate_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/tetrahydrofolate_final_0.cif.zst",
+      "sha256": "c3df0ba2da5c276687ad22c502f1a9cfcedb013320e30a57306276f91b92cc58",
+      "bytes": 2715
+    },
+    "studio_figure_2c_unfixed/thiamine_diphosphate_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/thiamine_diphosphate_final_0.cif.zst",
+      "sha256": "520f9d485ebce9067d797936d0c0fbce296d3134186bd3abb89026baffd1a9a5",
+      "bytes": 2387
+    },
+    "studio_figure_2c_unfixed/thyroxine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/thyroxine_final_0.cif.zst",
+      "sha256": "3e231e0c7374ceb9ae1290bf261bf2a9f955a91d48acd7bc5fcc75ae92f6701a",
+      "bytes": 2277
+    },
+    "studio_figure_2c_unfixed/ubiquinone-10_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/ubiquinone-10_final_0.cif.zst",
+      "sha256": "8a61bffa4ead271975e7ef9beadad49303cceb0849f460a0b8a2acf59ac2888e",
+      "bytes": 4151
+    },
+    "studio_figure_2c_unfixed/ubiquinone-10_final_0_flavin_mononucleotide_final_0_combined": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/ubiquinone-10_final_0_flavin_mononucleotide_final_0_combined.cif.zst",
+      "sha256": "61b72ec73f1ea58209fd18b59de869c8ad7828ee6c45b5da865080e713f86712",
+      "bytes": 5827
+    },
+    "studio_figure_2c_unfixed/urea_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/urea_final_0.cif.zst",
+      "sha256": "58a1341753976459808e52d98c0ae8f4a81048e104dbc1ef86bc40b94be3d0e9",
+      "bytes": 1061
+    },
+    "studio_figure_2c_unfixed/uric_acid_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/uric_acid_final_0.cif.zst",
+      "sha256": "a9cc8feced9872d01dfc68a39933d7d17705edfb18ce4007545b8f58af1e2479",
+      "bytes": 1579
+    },
+    "studio_figure_2c_unfixed/vitamin_K1_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/vitamin_K1_final_0.cif.zst",
+      "sha256": "80a7437d354ee3ec4541dc31475ff4929aa1cfd6345e99000fa7af58202781f0",
+      "bytes": 2626
+    },
+    "studio_figure_2c_unfixed/vitamin_b12_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/vitamin_b12_final_0.cif.zst",
+      "sha256": "fbbea3521c64e96903d0a4b44ebd987e461c83194cc21f523c6b0e2d4aed6fe5",
+      "bytes": 5428
+    },
+    "studio_figure_2c_unfixed/warfarin_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/warfarin_final_0.cif.zst",
+      "sha256": "d0f4883935fce6f8e970294a8f0cd3bde03b9f41ea6f0ee66ab94a3f3b09a275",
+      "bytes": 2145
+    },
+    "studio_figure_2c_unfixed/xylazine_final_0": {
+      "upstream_rel": "data/benchmarks/small_molecule_binder/disco_figure_2c/xylazine_final_0.cif.zst",
+      "sha256": "74d9e2d73fec66192707e22001c84825403aaee4951db683e5ed0d9e12350cff",
+      "bytes": 1735
+    }
+  }
+}

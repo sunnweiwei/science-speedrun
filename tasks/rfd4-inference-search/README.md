@@ -2,97 +2,97 @@
 
 ## 1. Overview
 
-Develop an executable inference program for frozen RFD4-Proteina. On runtime monomer requests, the live reward is the mean per-length fraction of distinct AF3-passing structural clusters. Paired runs also measure actual GPU cost against a reproduced human reference.
+Develop **one unified inference-time search or sampling strategy** (`infer.py`) for frozen RFD4-Proteina that strictly advances the **quality-cost Pareto frontier** across **all four official Figure 2 biomolecular design tracks** (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, and `DNA binding`), evaluated against the RFD4 baseline family (`Low`, `Medium`, `High`, and `Search`).
 
-**Independent Figure 2 baselines cover 3 of 16 reference settings.** The local DNA Low, Medium and High runs yielded 15, 12 and 17 distinct passing clusters in 600 attempts each. All four Search settings and the other nine one-shot settings still lack independent baseline measurements in this release. The measured comparison leaves those entries open. [Local-only four-panel plot](environment/references/overall/measured/generation.png) · [Coverage by suite and setting](environment/references/overall/measured/coverage.json) · [Reproduction gap report and acceptance checklist](docs/FIGURE2_REPRODUCTION_GAPS.md)
+**Independent Figure 2 baselines now cover 10 of 16 official settings locally on RTX A6000 (all 4 `Low`, all 4 `Medium`, `Enzyme scaffolding High`, and `DNA binding High` — 64,400 completed attempts across 322 target cohorts), with the final 25 `High` cohorts (`Protein High` 18/24, `Small-molecule High` 58/77) actively completing in parallel.** Completed RTX A6000 runs (`rfd4-a6000-warm-v1`) closely match the paper across every track: `Protein binding` (`Low 8.88% vs 7.73%`, `Medium 10.02% vs 9.71%`), `Small-molecule binding` (`Low 13.05% vs 12.12%`, `Medium 13.32% vs 12.58%`), `Enzyme scaffolding` (`Low 10.18% vs 9.78%`, `Medium 10.35% vs 10.61%`, `High 11.84% vs 12.07%`), and `DNA binding` (`Low 2.50%`, `Medium 2.00%`, `High 2.83%`). All 16 `Low / Medium / High / Search` reference coordinates, per-target tables, and reproduction logs are packaged into the agent workspace under `environment/references/overall/measured/`. [Consolidated frontier table](environment/references/overall/measured/baseline_frontier_reference.csv) · [Local four-panel plot](environment/references/overall/measured/generation.png) · [Local vs paper table](environment/references/overall/measured/comparison_vs_paper.csv) · [Per-target breakdown](environment/references/overall/measured/logs/per_target_comparison.csv) · [Coverage JSON](environment/references/overall/measured/coverage.json) · [Reproduction status & checklist](docs/FIGURE2_REPRODUCTION_GAPS.md)
 
-The primary scientific comparison uses the official four-suite RFD4 evaluation in Figure 2 and supplementary Table S29. The offline scorer reconstructs all 16 published Low, Medium, High and Search operating points from 564 target records. It also accepts independent, controller-owned per-attempt or per-target measurements and plots their quality–throughput frontiers. [Official metrics, reference curves and starting points](environment/references/overall/README.md)
+Official Harbor scoring (`tests/test.sh`) and agent self-evaluation both run [evaluate_tracks.py](environment/evaluation/evaluate_tracks.py) across all four functional suites (`ppi_backbone`, `studio_figure_2c_unfixed`, `mcsa_fixed`, `dna_unfixed`), pairing the submitted `infer.py` package directly against same-GPU executable human baselines (`native-low`, `native-medium`, `native-high`) under identical per-request subprocess and persistent-AF3 timing boundaries (`rfd4-paired-program-v1`), matched attempt counts, and strict Pareto advancement criteria. [Official metrics and reference curves](environment/references/overall/README.md) · [Three-budget scorecard](environment/references/overall/BUDGET_CURVE.md) · [Task metadata](task.toml)
 
-![Four-suite RFD4 quality–throughput comparison with other published methods](environment/references/overall/quality-throughput-with-comparators.png)
+![Four-suite RFD4 quality-throughput comparison with other published methods](environment/references/overall/quality-throughput-with-comparators.png)
 
-The 16 RFD4 points form the measured frontier among the 42 included protocol/track points under the paper’s conditioning and timing conventions. [Clean rebuild and provenance](environment/references/overall/README.md#rebuild-from-the-source-tables)
-
-The live Harbor task runs unconditioned monomers with an independent AF3 and Foldseek verifier. It has three locally measured baselines. The four-suite curves use the authors’ run records. An independent end-to-end reproduction of those four suites remains outstanding. Table S28 is an additional strict fixed-budget comparison. [S28 results](environment/references/s28/README.md)
-
-[Paper reference results and reproduction handoff](docs/REPRODUCTION_HANDOFF.md) · [Reproduction guide](docs/REPRODUCE.md)
+The repository also retains auxiliary unconditional monomer evaluation (`evaluation/run.py`), a multi-seed Table S15 sampler and recycling study, a 3-length comparison with the official AF3-guided monomer beam, an independent Table S16 SAM hydrogen-bond search reproduction, and the Table S28 audit. [DNA-binding runs](environment/references/dna_binding/README.md) · [Monomer beam & scaling](environment/references/monomer_beam/README.md) · [Table S16 H-bond search](environment/references/s16/README.md) · [Paper reproduction overview and commands](docs/REPRODUCE.md) · [Acceptance log](docs/ACCEPTANCE.md)
 
 ## 2. Data
 
-From the repository root, run `runner/prepare.sh rfd4-inference-search /data/rfd4`. The materializer verifies about 2.8 GB of downloads. It writes the RFD4 checkpoint (NVIDIA revision `a06e2509c7033b010fc43614e9fd840303588502`), three length-only CIFs (RosettaCommons revision `6306a210dd17dcae8e4e0f381b5b74a719d9b30e`), Google AF3 parameters and Foldseek 10-941cd33 under `development/assets/`. The controller creates `private/seed` once per evaluation campaign. RFD4 assets are BSD-3-Clause, Foldseek is GPL-3.0, and Google’s parameter terms apply to AF3. [Sizes, hashes, commands and directory layout](environment/data/MATERIALIZE.md)
+From the repository root, run `runner/prepare.sh rfd4-inference-search /data/rfd4`. The materializer verifies SHA-256 digests for the RFD4 checkpoint (NVIDIA revision `a06e2509c7033b010fc43614e9fd840303588502`), **all 141 official Figure 2 conditioned benchmark `.cif.zst` inputs across all four tracks** (`24` PPI, `77` small-molecule, `37` enzyme/MCSA, `3` DNA, `2.07 MB` total from RosettaCommons revision `6306a210dd17dcae8e4e0f381b5b74a719d9b30e`), three monomer length templates, Google AF3 parameters, and Foldseek `10-941cd33` under `development/assets/`. [Sizes, hashes and directory layout](environment/data/MATERIALIZE.md) · [Pinned 141-target manifest](environment/data/figure2_benchmarks.json)
 
 ## 3. Workspace
 
-The agent receives the frozen assets, development evaluator, executable starter, three runnable reference policies, their development and 150-slot results, the native Low and High monomer presets, and a writable research directory. It starts from stochastic TSR and can replace the inference code. On the 150-slot public suite the three policies produced 82, 71 and 46 distinct passing clusters, respectively. Native Low and High gave 82 and 83 on their 150-slot runs. [Native Low](environment/baseline/native-low/RESULTS.md) · [Native High](environment/baseline/native-high/RESULTS.md) [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one greedy branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
+The agent receives the frozen model and evaluation assets, all 141 four-track benchmark inputs, the official four-track paired Pareto evaluator (`evaluation/evaluate_tracks.py`, supporting `--gpus auto` target-level parallelism across allocated GPUs), the monomer evaluator (`evaluation/run.py`), the unified executable starter (`baseline/program/infer.py` with automatic §S8.3 chemical-composition schedule selection across all 141 targets), packaged `native-low` / `native-medium` / `native-high` and monomer reference policies, all locally reproduced 10/16 RTX A6000 baseline tables, plots and campaign logs under `references/overall/measured/`, the frozen three-budget scorecard (`references/overall/budget_scorecard.py`), and a writable `/workspace/research` directory. [Native Low](environment/baseline/native-low/RESULTS.md) · [Native Medium](environment/baseline/native-medium/RESULTS.md) · [Native High](environment/baseline/native-high/RESULTS.md) · [Stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) · [Width-one branching](environment/baseline/geometry-beam/RESULTS.md) · [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md)
 
 ## 4. Evaluation
 
-The frozen three-budget reporting standard measures one submission at one tenth, one quarter and all of the maximum generation/search allowance. Standard caps are 6, 15 and 60 seconds per original attempt. Report full-budget quality and the two lower-budget absolute qualities separately. Only matched, frozen measurements qualify as a three-tier curve. [Scoring and reporting contract](environment/references/overall/BUDGET_CURVE.md)
+The frozen three-budget reporting standard (`rfd4-budget-curve-v1`) measures one submission at one tenth, one quarter and all of the maximum generation/search allowance (`6`, `15` and `60` seconds per original attempt), consuming `evaluate_tracks.py` summaries and trial ledgers directly. [Scoring and reporting contract](environment/references/overall/BUDGET_CURVE.md)
 
-Executable submissions receive one versioned request at a time through `infer.py --request FILE --output DIRECTORY`. The runtime supplies the input, output count, generation seed, frozen model and budget. The default paper-size test retains the original 100-, 150- and 250-residue cohorts. A controller-supplied request roster supports other monomer lengths through the same entry point. [Program contract](environment/contract.md)
+Executable submissions implement one unified entry point, `infer.py --request FILE --output DIRECTORY`, handling both four-track conditioned design requests (`kind = "conditioned_design"`) and monomer requests (`kind = "unconditional_monomer"`). Request payloads omit track labels so a single inference-time strategy must operate across protein binding, small-molecule binding, enzyme scaffolding and DNA binding without per-track hardcoding. [Program contract](environment/contract.md)
 
-The verifier replays the selected human baseline on the same GPU and requests as each submitted program. The comparison reports both quality and measured cost, including final AF3, alongside the original clustered-pass reward. Reference choices include the reproduced stochastic TSR, width-one branching, two-wide beam and native Low and High. Varying the budget yields additional measured quality–throughput points. The archived run records are the standard historical comparisons. [Build an executable copy of a baseline](environment/evaluation/reference.py) · [Starter program](environment/baseline/program/infer.py) · [Export the measured curve](environment/evaluation/cost_curve.py)
+### Official four-track Harbor verification and strict Pareto grading
 
-The executable stochastic TSR replay at 100 residues matched the original public 10-slot cohort with eight AF3 passes and five passing clusters. A separate GPU test passed a 117-residue request through both isolated programs and their independent final scorer. [GPU check record](docs/program-reference-check.json)
+Harbor's official entry point (`tests/test.sh`) calls `evaluation/evaluate_tracks.py` to grade `/workspace/submission` across all four tracks and write `/logs/verifier/reward.json` (`primary_metric = "four_track_mean_clustered_pass_rate"`), `/logs/verifier/details.json`, `/logs/verifier/report.json`, and `/logs/verifier/four_track/`:
 
-The four-suite evaluator is `environment/references/overall/benchmark_curve.py`. Figure 2 uses generation attempts per GPU-hour on the horizontal axis. An alternate view includes final AF3 time. Report unique passing clusters per end-to-end GPU-hour separately for each suite. [Numerical results](environment/references/overall/operating_points.csv)
+- **Matched timing boundaries (`rfd4-paired-program-v1` vs `rfd4-a6000-warm-v1`)**: Candidate and paired baselines (`--references native-low native-high`, with `native-medium` also available) execute through the exact same per-request `infer.py` subprocess boundary on the same dedicated GPU and share a per-GPU persistent warm AF3 batch server (excluding per-bucket XLA compilation warmup). Warm batch-amortized 200-attempt campaign receipts (`rfd4-a6000-warm-v1`) are kept strictly separate in `measured_report.py` (`/logs/verifier/figure2/`).
+- **Matched attempt counts (`--attempts K`)**: Because Foldseek deduplicated pass rate (`clusters / attempts`) varies nonlinearly with `K`, `evaluate_tracks.py` compares candidates exclusively against paired baselines run at the exact same `K` and target roster, rejecting cross-`K` or cross-boundary comparisons.
+- **Strict frontier advancement vs weak nondominance**: Exact copies of a baseline satisfy weak nondominance (`on_total_pareto = true`) but score `strictly_advances_total_pareto = false`, `total_hypervolume_gain_pct = 0.0`, and `dominates_any_reference_total = false`. Multi-seed `--repeats R` runs compute each repeat's curve independently before reporting `mean` and sample `stdev` (`*_sd`).
 
-### Validation and test access
+### Validation and held-out verification panels
 
-The agent sees the published suite-level baselines and curves. The operator retains the per-target archive and scores frozen submissions. The upstream validation configs overlap the Figure 2 targets. The fixed-target protocol allows policy selection on development runs using these targets. Final comparisons use frozen policies and fresh draws on the same roster. An additional family-disjoint panel is optional for studying generalization. The current live monomer verifier holds out random draws at the three public lengths. [Validation design and upstream overlap audit](docs/VALIDATION.md)
+Agents screen ideas on `--panel dev` (12 public targets, 3 per track) and full-roster runs (`--panel full`), while `tests/test.sh` defaults to `--panel verify` (a quartile-balanced held-out target roster in `/tests/rfd4_private.py` disjoint from `dev` on PPI, small-molecule, and enzyme suites, evaluated with private HMAC seeds from `/private/seed`) or a full 141-target × 200-attempt campaign (`RFD4_VERIFY_PANEL=full RFD4_VERIFY_ATTEMPTS=200`). [Validation design](docs/VALIDATION.md)
 
-### Live monomer verification
+### Auxiliary monomer verification
 
-Final evaluation draws 50 output slots at each length. The default generation/search limit is 1,800 elapsed seconds per length on one GPU. Legacy policy submissions additionally have the original 9,000 trunk-pass allowance per length. Executable programs are timed around their whole invocation, including discarded work and any internal scoring. The independent final refolder runs once on every valid finalist.
-
-For each length, the verifier counts the Foldseek clusters that contain at least one sample with AF3 backbone scRMSD ≤ 1.5 Å. It divides by 50, including failures and empty slots. Reward is the mean of those three fractions. The result includes ordinary pass rate, emitted and refolded counts, generation time, AF3 time and unique passing clusters per allocated GPU-hour. The legacy policy evaluator also reports reserved trunk passes. Timing includes process startup and compilation. Repeated hits in one fold earn one point. [Contract](environment/contract.md) · [Scientific basis](environment/references/README.md)
+`evaluation/run.py` remains available for fast monomer checks (`100`, `150`, and `250` residues) or explicit monomer-mode verification (`RFD4_VERIFIER_MODE=monomer`). [Build a reference package](environment/evaluation/reference.py) · [Export paired monomer curves](environment/evaluation/cost_curve.py)
 
 <a id="running"></a>
 
 ## 5. Running
 
-Use the standard runner environment from the repository root.
+Prepare data and launch a continuous AutoResearch session from the repository root (for example, on 8 RTX A6000 GPUs with periodic snapshot collection via `runner/snapshot.sh` and checkpoint scoring via `runner/score_snapshots.sh`):
 
 ```bash
 runner/prepare.sh rfd4-inference-search /data/rfd4
-export MOUNT_ROOTS="${MOUNT_ROOTS:-} /data/rfd4"
-AGENT_KIND=codex runner/run.sh rfd4-inference-search
+export EVAL_ROOT=/persistent/speedrun MOUNT_ROOTS="/data/rfd4"
+GPUS=8 GPU_IDS=0,1,2,3,4,5,6,7 HOURS=48 AGENT_KIND=codex runner/run.sh rfd4-inference-search
 ```
 
-The runner mounts `TASK_DATA_DIR/assets` read-only and `TASK_RESEARCH_DIR` writable in development. The verifier also receives `TASK_PRIVATE_DIR` read-only. Its optional `suite.json` selects an alternate request roster. The controller can set `RFD4_REFERENCE` (default `stochastic-tsr`) and `RFD4_SECONDS_PER_SLOT` (default `36`). The development and verifier images use the same pinned runtime. Their Compose files select the appropriate image targets. [Development Compose](environment/docker-compose.yaml) · [Verifier Compose](tests/docker-compose.yaml)
-
-The declared development allocation is one H100 for 48 hours. The separate verifier uses one H100. To replay the executable stochastic TSR baseline on the private suite, package the pinned policy from the repository root into a fresh directory.
+To evaluate a candidate unified strategy across all four tracks against paired same-GPU `Low`, `Medium`, and `High` baselines across all allocated GPUs with multi-seed dispersion:
 
 ```bash
-python tasks/rfd4-inference-search/environment/evaluation/reference.py stochastic-tsr /tmp/rfd4-reference
-runner/run_verify.sh rfd4-baseline rfd4-inference-search /tmp/rfd4-reference
+python tasks/rfd4-inference-search/environment/evaluation/reference.py native-medium /tmp/rfd4-cand
+python tasks/rfd4-inference-search/environment/evaluation/evaluate_tracks.py \
+  --submission /tmp/rfd4-cand --method-name cand-med --panel dev --attempts 20 --repeats 3 \
+  --gpus auto --references native-low native-medium native-high \
+  --assets /data/rfd4/development/assets --work /tmp/rfd4-work --output /tmp/rfd4-report
 ```
 
-The public development set uses 30 slots. The public paper-size reproduction uses 150. Each release campaign must share a private seed across submissions. [Reproduction and score audit](docs/REPRODUCE.md)
+[Development Compose](environment/docker-compose.yaml) · [Verifier Compose](tests/docker-compose.yaml)
 
 ## 6. Results and validation
 
-### GPU fixture checks
+### Independent Figure 2 baseline reproduction (RTX A6000 vs Paper — 10/16 complete)
 
-The published seed-42 monomer agrees with a fresh local sample to 0.119 Å Cα RMSD, with 235 of 250 residue identities matching across hardware. Two independent runs of the released AF3-guided monomer beam made 48 internal AF3 evaluations each and agreed on all eight checkpoint rankings. A frozen gallery complex and an upstream crystal regression also exercised the released scoring runtime. These are direct GPU measurements on fixed examples. The official comparison uses the authors’ archived operating points. Independent measurements are documented separately in the paper reproduction report. [Conformance results and replay](docs/gpu-pilot/README.md)
+| Track | Setting | Targets (Attempts) | Paper Clustered % | Local RTX A6000 Clustered % | Diff (pp) | Local Warm Gen (att/GPU-h) | Local Total incl. AF3 (att/GPU-h) |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Protein binding | `Low` | 24 (4,800) | 7.73% | **8.88%** | +1.15 | 136.0 | 89.5 |
+| Protein binding | `Medium` | 24 (4,800) | 9.71% | **10.02%** | +0.31 | 91.3 | 68.0 |
+| Small-molecule binding | `Low` | 77 (15,400) | 12.12% | **13.05%** | +0.92 | 551.1 | 241.6 |
+| Small-molecule binding | `Medium` | 77 (15,400) | 12.58% | **13.32%** | +0.75 | 444.4 | 217.3 |
+| Enzyme scaffolding | `Low` | 37 (7,400) | 9.78% | **10.18%** | +0.39 | 323.7 | 160.9 |
+| Enzyme scaffolding | `Medium` | 37 (7,400) | 10.61% | **10.35%** | -0.26 | 274.6 | 157.9 |
+| Enzyme scaffolding | `High` | 37 (7,400) | 12.07% | **11.84%** | -0.23 | 231.1 | 142.9 |
+| DNA binding | `Low` | 3 (600) | 2.83% | **2.50%** | -0.33 | 673.1 | 247.1 |
+| DNA binding | `Medium` | 3 (600) | 3.00% | **2.00%** | -1.00 | 460.5 | 211.6 |
+| DNA binding | `High` | 3 (600) | 3.50% | **2.83%** | -0.67 | 283.0 | 164.3 |
 
-### Locally measured monomer results
+All 16 published `Low / Medium / High / Search` baseline points across the four tracks are retained in [operating_points.csv](environment/references/overall/operating_points.csv) and merged with live local A6000 measurements in [baseline_frontier_reference.csv](environment/references/overall/measured/baseline_frontier_reference.csv).
 
-| Policy | Development passing clusters / 30 | Paper-size AF3 passes / 150 | Paper-size passing clusters / 150 |
-| --- | ---: | ---: | ---: |
-| [Released stochastic TSR](environment/baseline/stochastic-tsr/RESULTS.md) | 20/30 | 123/150 | **82/150 (54.7%)** |
-| [Width-one branching](environment/baseline/geometry-beam/RESULTS.md) | 21/30 | 112/150 | **71/150 (47.3%)** |
-| [Two-wide beam](environment/baseline/two-wide-beam/RESULTS.md) | 11/30 | 101/150 | **46/150 (30.7%)** |
+### GPU fixture checks and monomer ablations
 
-These are paired public experiments at 27,000 allocated trunk passes per full policy. Use the paper-size column for a comparison at the S15 sample count. Each length in the two-wide reproduction ran independently, so its timing diagnostic includes three AF3 startups. The production verifier runs the three lengths on a single device with one AF3 process.
-
-In a second campaign, all five S15 samplers ran on the released checkpoint with the same three monomer lengths, public seeds, AF3 and Foldseek. The stochastic TSR repeat produced 73/150 passing clusters (48.7%) versus 82/150 (54.7%) above and 34.7% in the paper. ODE TSR produced 70/150 (46.7%). The report includes the timings and all 750 slot measurements. The 400-step arm exceeds the legacy policy track’s trunk-pass limit. Executable programs are charged for their measured runtime. [Five-sampler protocol](docs/s15/README.md) · [Operating points](environment/references/s15/summary.csv) · [Local quality and throughput](environment/references/s15/quality-time.png)
-
-The released autoencoder also completed reconstruction on all 640 official temporal-holdout structures. These measurements assess the autoencoder component. Inference policy evaluation uses AF3 self-consistency and distinct passing clusters. [AE holdout results](docs/ae-holdout/README.md#local-gpu-results)
+The published seed-42 monomer agrees with a fresh local sample to 0.119 A Ca RMSD. Locally reproduced 150-slot monomer policies (`stochastic-tsr`, `geometry-beam`, `two-wide-beam`) achieved `82/150 (54.7%)`, `71/150 (47.3%)` and `46/150 (30.7%)` passing clusters, alongside 5-sampler S15 ablations, 3-length AF3-guided monomer beam scaling, Table S16 SAM H-bond search, and 640-structure autoencoder holdout checks. [Conformance pilot](docs/gpu-pilot/README.md) · [Five-sampler protocol](docs/s15/README.md) · [AE holdout](docs/ae-holdout/README.md#local-gpu-results)
 
 ## 7. Limitations
 
-This task measures inference for unconditioned, canonical single-chain monomers. A passing fold is a computational result. A private replay changes the sampling seeds. Table S15 does not identify every historical seed or runtime flag, so a new run can differ from its printed values. Fifty slots per length give a finite-sample comparison. A public tuning result should be interpreted alongside held-out replay. A trunk pass is a reproducible accounting unit at a fixed length. Actual GPU time also depends on batching and the cost of decoding. Timing comparisons require matched hardware and software.
+Computational AF3 refolding and Foldseek clustering measure in-silico structural self-consistency and interface confidence rather than wet-lab binding affinity or catalytic turnover. Throughput comparisons require identical GPU hardware, identical sample counts (`attempts`), and identical timing boundaries: live per-request subprocess runs (`rfd4-paired-program-v1`) compare exclusively against paired same-GPU `infer.py` baselines at matched `attempts`, whereas warm batch-amortized 200-attempt native campaigns (`rfd4-a6000-warm-v1`) compare only against matched warm 200-attempt campaigns. While the final 25 `High` cohorts (`Protein High` 18/24, `Small-molecule High` 58/77) complete in the background, `baseline_frontier_reference.csv` explicitly labels locally reproduced RTX A6000 rows versus H200 author archive rows.
 
 ## 8. Citation and licenses
 
-Cite Corley, Didi, Kazman, Brent et al. for RFD4-Proteina, Abramson et al. for AlphaFold 3 and van Kempen et al. for Foldseek. The RFD4 source, monomer inputs and model are released with the upstream BSD 3-clause license. Foldseek is GPL-3.0. This task fetches each model and the Foldseek binary from its publisher. Google’s model parameter and output terms apply to AF3. The repository distributes the task and aggregate scores. [References and code provenance](environment/references/README.md) · [Google model terms](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md) · [Google output terms](https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md)
+Cite Corley, Didi, Kazman, Brent et al. for RFD4-Proteina, Abramson et al. for AlphaFold 3 and van Kempen et al. for Foldseek. The RFD4 source, benchmark inputs and model are released under the BSD 3-clause license. Foldseek is GPL-3.0. Google's model parameter and output terms apply to AF3. [References and code provenance](environment/references/README.md) · [Google model terms](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md) · [Google output terms](https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md)

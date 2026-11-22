@@ -1,14 +1,34 @@
 # Submission contract
 
-Submit a Python program at `/workspace/submission/infer.py`. Include additional modules and data in the same package. The controller starts one offline process per request on one GPU. The program must use the supplied frozen RFD4 model to produce fresh outputs from the current input and seed. It controls sampling, search, batching and stopping decisions. The controller measures cost and owns final refolding, clustering and reward. The output score verifies structural quality; verifying the implementation used the model as declared requires reviewing the submitted code.
+Submit a single unified Python inference program at `/workspace/submission/infer.py`. Include any helper modules and configuration files in the same directory. The controller invokes one offline process per target request on one GPU. The program must use the supplied frozen RFD4-Proteina weights to generate fresh designs from the current request's input CIF and seed. It controls sampling, recycling, search, branching, early stopping and batching. The controller measures wall/GPU cost and owns final common AlphaFold 3 (AF3) refolding, Foldseek structural clustering and paired Pareto frontier scoring across all four Figure 2 tracks (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, `DNA binding`).
 
 ## Request and response
 
-The versioned three-budget reporting contract uses `B/10`, `B/4` and `B` (standard caps of 6, 15 and 60 generation/search seconds per original attempt). A single-run reward describes its own allowance. The frozen three-tier report records full-budget quality, low-budget quality, paired gains and actual measured cost. [Budget curve standard](references/overall/BUDGET_CURVE.md)
+The versioned three-budget reporting contract uses `B/10`, `B/4` and `B` (standard caps of `6`, `15` and `60` generation/search seconds per original attempt). A single-run reward describes its own allowance. The frozen three-tier report (`references/overall/budget_scorecard.py`) records full-budget quality, low-budget quality, paired gains and actual measured cost directly from `evaluate_tracks.py` outputs. [Budget curve standard](references/overall/BUDGET_CURVE.md)
 
-Build and edit a complete candidate directory under `/workspace/research/`. From `/workspace`, publish it with `bash baseline/publish.sh "$candidate"`. The helper stages a copy on the submission filesystem and exchanges the complete directory at `/workspace/submission` in one operation.
+Build and test a complete candidate directory under `/workspace/research/`. From `/workspace`, publish it atomically with `bash baseline/publish.sh "$candidate"`.
 
-The entry point is `python infer.py --request FILE --output DIRECTORY`. The output directory exists and starts empty. Resolve input files relative to the request file. `RFD4_MODEL` points to the frozen model and `DATA_PATH` to its assets parent. Private evaluation gives the worker a read-only package, request, runtime and model assets, writable temporary storage and its own output mount. Each request gets a fresh process.
+The entry point is `python infer.py --request FILE --output DIRECTORY`. The output directory exists and starts empty. Resolve input files relative to the request file. `RFD4_MODEL` points to the frozen RFD4 checkpoint directory and `DATA_PATH` points to the read-only assets root. Each request runs in a fresh process.
+
+### Conditioned four-track design requests (`kind = "conditioned_design"`)
+
+Official four-track evaluation (`evaluation/evaluate_tracks.py`, invoked by Harbor's `tests/test.sh`) dispatches a uniform request envelope across all four suites (`ppi_backbone`, `studio_figure_2c_unfixed`, `mcsa_fixed`, `dna_unfixed`) without revealing privileged suite labels:
+
+```json
+{
+  "version": 1,
+  "id": "ppi_backbone/rfd3_pdl1",
+  "kind": "conditioned_design",
+  "input": {"file": "rfd3_pdl1.cif.zst"},
+  "num_outputs": 20,
+  "seed": 727201,
+  "budget": {"wall_seconds": 1200.0}
+}
+```
+
+The annotated input mmCIF (`input.file`) carries the standard RFD4/AtomWorks molecular conditioning (target protein backbone + hotspots, small-molecule ligand, unindexed catalytic motif + fixed ligand, or DNA duplex). Because the same `infer.py` package is invoked across every track, the submitted strategy must generalize across all four tracks automatically.
+
+### Unconditional monomer requests (`kind = "unconditional_monomer"`)
 
 ```json
 {
@@ -22,55 +42,36 @@ The entry point is `python infer.py --request FILE --output DIRECTORY`. The outp
 }
 ```
 
-Read the input, count, seed and time allowance on every invocation. Treat the id as opaque. Optional `metadata` carries controller-provided context. Exit 0 on completion, or 64 for an unsupported version or kind. Programs can ignore additive envelope fields. Future kinds define their payload and output semantics and need a scoring adapter. The current grader evaluates unconditional canonical protein monomers at a requested positive length within model and device capacity.
+Read `input`, `num_outputs`, `seed` and `budget` on every invocation. Treat `id` as opaque. Exit `0` on completion, or `64` for an unsupported `version` or `kind`.
 
-For slot 0 write `slot-000000.cif`, for slot 1 write `slot-000001.cif`, and so on. Write regular, uncompressed mmCIF files containing one canonical protein chain of the requested length. Missing and invalid slots stay in the denominator. The per-file limit is the larger of 1 MiB or 8 KiB per requested residue. Timeout or nonzero exit gives that request zero outputs.
+For slot `0` write `slot-000000.cif`, for slot `1` write `slot-000001.cif`, and so on up to `num_outputs - 1`. Write regular, uncompressed mmCIF files (`<= 8 MiB` per file). For conditioned tasks, preserve input target/motif conditioning annotations as emitted by RFD4 so downstream refolding and motif/interface RMSD checks succeed. Missing, corrupt, or conditioning-violating outputs remain in the `num_outputs` denominator. Timeout or nonzero exit yields zero outputs for that request while still charging elapsed generation time.
 
-## Baselines, cost and quality
+## Timing boundaries, sample-count matching, and strict Pareto evaluation
 
-The standard setup retains lengths 100, 150 and 250, with 10 slots per length in development and 50 in paper-size or private runs. The frozen weights, independent AF3 settings, Foldseek clustering and mean per-length clustered pass rate follow the original task. A candidate and a packaged human reference run sequentially on the same GPU with identical request data, seeds, slot counts, scoring and budgets. The reference policies retain their 180 trunk passes per slot on the standard suite. Free programs allocate their computation within the common elapsed generation/search limit, by default 36 seconds per requested slot. Startup, discarded trajectories and intermediate scoring count. The measured comparison uses GPU time; a program's trunk-call count is unverified.
+### 1. Matched timing boundaries (`rfd4-paired-program-v1` vs `rfd4-a6000-warm-v1`)
 
-The reward is the original quality metric at the stated budget. The paired report includes generation throughput, end-to-end throughput and distinct passing clusters per end-to-end GPU-hour. End-to-end cost sums generation/search and final AF3 time on the allocated GPU. CPU clustering is excluded. `quality_delta_pp` measures the quality difference in percentage points and `total_cost_ratio` divides candidate cost by reference cost. Dominance requires equal or higher quality and equal or lower actual cost, with at least one strict improvement and all requested slots successfully refolded in both arms. Higher quality at higher cost is a trade-off. Repeat at other `--seconds-per-slot` budgets on the same workload to measure additional curve points.
+Cost comparisons are valid **only** when candidate and baseline share the exact same hardware and timing boundary. The benchmark keeps two timing profiles strictly separate:
 
-The default paired baseline is the reproduced stochastic TSR. Other choices for `--reference` are `geometry-beam`, `two-wide-beam`, `native-low` and `native-high`. Low and High replay the released monomer presets at 120 and 300 passes per sample. On standard 30- and 150-slot suites, `historical_baselines` retains the original public measurements from `baseline/*/reproduction/` and the corresponding available S15 and monomer comparison tables. Each archived point identifies its source. The paired difference uses the fresh measurement on the candidate's actual requests and hardware. An unexpected error in the trusted reference aborts the paired measurement.
+- **`rfd4-paired-program-v1` (live paired `infer.py` evaluation in `evaluation/evaluate_tracks.py` and `tests/test.sh`)**: Both the candidate package and the packaged human baselines (`native-low`, `native-medium`, `native-high` via `--references`) are invoked through the **exact same per-request `infer.py` subprocess boundary** on the **exact same dedicated GPU** and scored through a **per-GPU persistent AF3 batch socket server** (whose per-bucket XLA compilation warmup is excluded from `af3_gpu_s`). When multiple homogeneous GPUs are allocated (`--gpus auto`), targets are distributed across dedicated single-GPU workers so each target's candidate and paired baselines still run sequentially on the exact same GPU with zero GPU sharing.
+- **`rfd4-a6000-warm-v1` (archived warm 200-attempt native campaigns in `references/overall/reproduced_targets.csv` and `measured_report.py`)**: Warm, batch-amortized native GPU kernel timings across all 141 targets at 200 attempts/target. `evaluate_tracks.py` never stamps per-request subprocess runs as `rfd4-a6000-warm-v1` and never mixes `rfd4-a6000-warm-v1` or H200 archive timings onto `rfd4-paired-program-v1` Pareto axes.
 
-Run `python evaluation/cost_curve.py budget1.json budget2.json --output points.csv` to export the measured curve. Supply full development reports or private `details.json` files from the same requests, seeds and device. The CSV includes both programs, timing, quality and observed frontier membership for complete cohorts. Historical points have their original timing, hardware and seeds and are available separately in the JSON.
+### 2. Sample-count matching (`--attempts K`) and panels
 
-The controller can pass `--suite FILE` containing `{"version":1,"requests":[{"id":"other-length","kind":"unconditional_monomer","input":{"length":117}}]}`. Harbor uses an optional `suite.json` beside the operator's private seed, plus the controller settings `RFD4_REFERENCE` and `RFD4_SECONDS_PER_SLOT`. The monomer grader weights distinct lengths equally. The default suite measures its three published lengths; a separate suite can test unseen lengths. The worker receives only its current request.
+Foldseek clustered pass rate (`100 * clusters / attempts`) is a nonlinear, sample-size-dependent statistic because structural collisions accumulate as `attempts` grows. Therefore, `20`-attempt screening runs (`--panel dev`) are **never** compared directly against `200`-attempt archived tables; `evaluate_tracks.py` enforces `b.attempts == candidate.attempts` and `b.targets == candidate.targets` across every Pareto comparison:
 
-## Independent official-suite report
+- **Development panel (`--panel dev`)**: 12 public targets (3 per track in `requests_io.DEV_4TRACK_TARGETS`), default `20` attempts/target, paired against `--references` at the same `20` attempts/target for rapid screening.
+- **Official verifier panel (`--panel verify`, default in `tests/test.sh`)**: quartile-balanced held-out target roster (`VERIFY_4TRACK_TARGETS` in `/tests/rfd4_private.py`, target-disjoint from `dev` on PPI, small-molecule, and enzyme suites) with private HMAC seeds (`/private/seed`), paired on the same GPU against `RFD4_REFERENCES` (default `native-low native-high`). Operators can also set `RFD4_VERIFY_PANEL=full RFD4_VERIFY_ATTEMPTS=200` or supply `/private/four_track_suite.json`.
+- **Full Figure 2 panel (`--panel full`)**: all 141 official targets (`24` PPI, `77` small-molecule, `37` enzyme/MCSA, `3` DNA), default `200` attempts/target.
 
-For a valid program evaluation, `/logs/verifier/figure2/` contains `points.csv`, `coverage.json`, and four-panel figures on both throughput axes. Only measurements from independent runs appear in these figures. Three of the sixteen human baseline points currently have local data. The RFD4 Figure 2 definitions and target identities come from the publication. Paper performance values are excluded from the comparison. The live Harbor reward continues to describe the monomer run.
+### 3. Strict Pareto frontier advancement vs weak nondominance
 
-A candidate appears only for suites with independent measurements of that exact package. The operator may mount a completed trial ledger at `/private/figure2/<submission_sha256>.csv` and its receipt at the same path with extension `.json`. The receipt has `submission_sha256`, `trials_sha256` and `profile` fields. The comparison profile `rfd4-a6000-warm-v1` denotes the released model and common AF3 assessment, RTX A6000 and warm, batch-amortized GPU time, counting internal search in generation. The operator verifies the measurement provenance and conditions before sealing the records. An empty submission list in the coverage file means the verifier has no independent official-suite records for this package. The report does not execute a submission on functional targets.
+For each track with completed paired baselines `B` on speed axis `x` (`generation_attempts_h` or `total_attempts_h`) and quality `y = clustered_pct`:
 
-An optional controller-supplied `/private/figure2/baselines.csv` adds independently measured reference settings in the same profile. The scorer checks the complete official roster for each supplied point and the denominator of 200 original attempts per target. A missing suite stays unmeasured. A malformed or mismatched receipt fails verification before publication of the reward. [Public baseline coverage](references/overall/measured/coverage.json)
+- **`on_generation_pareto` / `on_total_pareto` (weak nondominance)**: no baseline `b in B` has `x(b) >= x(c)` and `y(b) >= y(c)` with at least one strict inequality. **An exact copy of a baseline satisfies weak nondominance (`True`) and must not be interpreted as advancing the frontier.**
+- **`strictly_advances_generation_pareto` / `strictly_advances_total_pareto` (strict frontier advancement)**: candidate completed cleanly, meets at least the lowest paired baseline quality floor (`y(c) >= min_{b in B} y(b)`), and strictly beats **every** paired baseline on either speed or quality (`forall b in B: x(c) > x(b) or y(c) > y(b)`). Exact clones and trivial fast zero-quality emitters receive `False` and `0.0` `*_hypervolume_gain_pct`.
+- **`dominates_any_reference_*` and `dominates_strongest_reference_*`**: whether the candidate achieves `>=` speed and `>=` clustered pass rate (with at least one strict inequality) relative to any paired baseline or the highest-quality paired baseline (`High`).
+- **Multi-seed repeats (`--repeats R`)**: runs `R` independent seed streams for both candidate and paired baselines, computing each repeat's Pareto curve independently before aggregating `mean` and sample standard deviation (`*_sd`).
 
-## Legacy policy packages
+## Official Harbor outputs and auxiliary monomer tools
 
-An `infer.py` entry selects program evaluation. Harbor wraps a valid legacy `policy.json` in the trusted program adapter so saved policies receive the same paired evaluation. Direct `run.py` replay of a bare policy retains the original v1 measurement; add `--program-track` for the paired comparison.
-
-Submit one UTF-8 file, `/workspace/submission/policy.json`, up to 64 KiB. The verifier interprets the policy and owns both model executions. The same publisher accepts a directory containing the legacy policy and replaces the entire previous package.
-
-### Policy
-
-`version` is 1. `default` is a complete plan. Optional per-length replacements go in the required `by_length` object, with keys `"100"`, `"150"` and/or `"250"`. A plan has three required fields and one optional solver setting.
-
-| Field | Meaning |
-| --- | --- |
-| `solver` (optional) | `"stochastic-tsr"` (default) or `"ode-tsr"`. The ODE uses the native zero-diffusion schedule for both modalities. |
-| `bands` | An ordered list of `[number_of_steps, trunk_passes_per_step]`. Each depth is 1–8 including the initial pass. Use 20–180 steps in total and at most 60 bands. |
-| `width` | Concurrent surviving trajectories per independent group. Use 1, 2 or 5. The runner fixes the number of groups so their final capacity equals the slot count. |
-| `checkpoints` | Up to eight checkpoints in increasing integration-step order. An empty list and width 1 gives independent sampling. |
-
-Each checkpoint has an integer `step`, `branches` (1–8 children per parent on the incoming interval), and `score`. The value `"clean"` scores the intermediate clean estimate. The value `"rollout"` advances every sibling to completion for scoring, then continues surviving intermediate states. Use `"rollout"` at a terminal checkpoint. With no terminal checkpoint, each survivor finishes once. Only the final survivors occupy submission slots.
-
-An optional `priority` at each checkpoint defines a new pruning rule. The default keeps the largest geometry scores. Features are `"quality"` (negative fraction of atoms clashing under the native 1.5 Å definition), `"rank"` (best geometry rank 1, worst 0, stable ties), `"parent"` (best previous survivor index 1, last 0, with 1 for width one), and `"draw"` (independent seeded uniform random number). A priority is a feature, a number in [−16,16], or `[operator, left, right]`, nested up to five levels. Operators are `+`, `-`, `*`, `min`, and `max`. Intermediate values are clipped to [−10000,10000]. Native selection keeps the highest priorities within each group. For example, `["+", "rank", ["*", 0.25, "draw"]]` randomizes near ties. The search runtime receives only the geometry score and these numerical features.
-
-### Legacy cost and outcome
-
-Each length receives 50 final slots and 9,000 trunk passes in final evaluation. The development default is 10 slots and 1,800 passes per length. Use `--length 100`, `150` or `250` for a single-length development check. The private verifier always covers all three lengths. Each plan may spend at most 180 passes per slot. A denoising interval costs the sum of its step depths, multiplied by the number of children. Rollout scoring also charges each child the unused suffix of the schedule. After the last checkpoint, surviving branches pay for the remaining steps. This counts initial trunk evaluations, recycles and discarded work. Repeating a width-W group W fewer times keeps the accounting per delivered slot unchanged.
-
-A second bound is 36 elapsed seconds per allocated slot on one GPU, per length, including sampler startup, decoding and search scoring. A cohort exceeding its limit earns zero for that length. Actual elapsed times are reported independently. Each final slot admits at most one common AF3 call. The returned timing diagnostic includes generation and AF3 startup/compilation on the allocated GPU and excludes CPU Foldseek. Compare it only on matched hosts.
-
-The verifier refolds each complete canonical monomer with single-sequence, template-free AF3. It aligns N, CA, C and O atoms to the generated backbone and passes scRMSD ≤ 1.5 Å. Foldseek clusters the valid generated structures within each length. A cluster contributes one point if any member passes. Failed, incomplete or missing outputs stay in the denominator. Reward is the arithmetic mean of the three per-length clustered pass rates. The controller receives flat numerical metrics in `/logs/verifier/reward.json`. Full per-length records, the suite digest and any invalid-package reason are in `/logs/verifier/details.json`. Infrastructure errors abort evaluation. Malformed or over-budget packages receive zero.
+Harbor's official verifier (`tests/test.sh`) runs `evaluation/evaluate_tracks.py` and writes flat numeric metrics to `/logs/verifier/reward.json` (`reward` = 4-track mean clustered pass rate in `[0, 1]`, plus `tracks_strictly_advancing_total_pareto`, `macro_total_hypervolume_gain_pct`, and paired cost/quality ratios against the strongest and fastest references), full structured diagnostics to `/logs/verifier/details.json` and `/logs/verifier/report.json`, paired plots/tables to `/logs/verifier/four_track/`, and any sealed `rfd4-a6000-warm-v1` campaign plots to `/logs/verifier/figure2/`. Auxiliary paired monomer verification remains available via `evaluation/run.py` (or `RFD4_VERIFIER_MODE=monomer`).

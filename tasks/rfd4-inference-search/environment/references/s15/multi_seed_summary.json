@@ -1,0 +1,76 @@
+{
+  "seeds": [
+    727000,
+    728000,
+    729000,
+    730000,
+    731000
+  ],
+  "af3_seed": 727000,
+  "slots_per_seed": 150,
+  "stochastic_tsr": {
+    "clusters_per_seed": [
+      73,
+      64,
+      75,
+      72,
+      82
+    ],
+    "pct_per_seed": [
+      48.667,
+      42.667,
+      50.0,
+      48.0,
+      54.667
+    ],
+    "mean_clusters": 73.2,
+    "stdev_clusters": 6.457553716385176,
+    "min_clusters": 64,
+    "max_clusters": 82,
+    "mean_pct": 48.8,
+    "stdev_pct": 4.305035810923451,
+    "prior_campaign_seed_727000_clusters": 82
+  },
+  "ode_tsr": {
+    "clusters_per_seed": [
+      70,
+      69,
+      67,
+      76,
+      72
+    ],
+    "pct_per_seed": [
+      46.667,
+      46.0,
+      44.667,
+      50.667,
+      48.0
+    ],
+    "mean_clusters": 70.8,
+    "stdev_clusters": 3.420526275297414,
+    "min_clusters": 67,
+    "max_clusters": 76,
+    "mean_pct": 47.2,
+    "stdev_pct": 2.2803508501982757
+  },
+  "paired_stochastic_minus_ode": {
+    "cluster_diffs": [
+      3,
+      -5,
+      8,
+      -4,
+      10
+    ],
+    "pp_diffs": [
+      2.0,
+      -3.333,
+      5.333,
+      -2.667,
+      6.667
+    ],
+    "mean_clusters_diff": 2.4,
+    "stdev_clusters_diff": 6.8044103344816,
+    "mean_pp_diff": 1.6,
+    "stdev_pp_diff": 4.536273556321067
+  }
+}

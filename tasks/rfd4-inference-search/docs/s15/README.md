@@ -10,51 +10,47 @@ This experiment is restricted to three fixed length-only monomer inputs. Followi
 | Full-length SDE | 400 | Native score-based SDE with unscaled β and the same two variance multipliers. |
 | Shortened SDE | 60 | Same native SDE and variance multipliers at 60 steps. |
 
-**Release-specific choices.** We use the public native 0.0.3 checkpoint, released default modality time-grid settings and modality-specific β functions, eager BF16, batch size five and the released medium recycling profile. The 60-step rows have 180 trunk passes per slot. The paper does not give an exact historical checkpoint, seed list or 400-step recycling schedule for Table S15. For 400 steps we proportionally expand the cumulative boundaries of the same profile, giving 1,199 passes per slot. Results measure the stated reconstruction on the public release. The 400-step row cannot be submitted under the live task's standard compute cap. [Release implementation](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/src/rfproteina/flow_matching/product_space_flow_matcher.py)
+**Release-specific choices.** We use the public native 0.0.3 checkpoint, released default modality time-grid settings and modality-specific β functions, eager BF16, and batch size five. In the initial local campaign (`summary.csv`), `run_cohort.py` inherited the user-facing `thinking_medium` recycling profile from `configs/inference.yaml` (180 trunk passes for 60-step rows and 1,199 passes proportionally expanded for 400 steps). Because supplementary §S5.1.1 precedes the recycling study in §S7.2 and the underlying `configs/generation/inference_base.yaml` specifies `n_recycle: 0` (`n_recycle_schedule: null`, i.e., 1 trunk pass per step = 60 passes for 60-step rows and 400 passes for 400-step SDE), we also ran a complete second 750-slot campaign under `n_recycle: 0` (`base_schedule_summary.csv`). [Release implementation](https://github.com/RosettaCommons/RFD4-Proteina/blob/6306a210dd17dcae8e4e0f381b5b74a719d9b30e/src/rfproteina/flow_matching/product_space_flow_matcher.py)
 
-The local scorer fits N, Cα, C and O across the generated and refolded backbone. Missing or noncanonical native outputs retain their original slots as failures. In the reused 150-sample baseline the generated structures omitted terminal OXT while their AF3 refolds contained it. The four common backbone atoms are measured throughout.
+The local scorer fits N, Cα, C and O across the generated and refolded backbone. Missing or noncanonical native outputs retain their original slots as failures. RFD4 uses seed `727000 + length`. AF3 uses seed `727000`, five recycles, one diffusion sample, empty MSAs and no templates. Foldseek `10-941cd33` clusters all valid generated structures separately per method and length. Warm sampling times exclude the first batch of each length, process startup, output files and final AF3.
 
-RFD4 uses seed 727000 + length. AF3 uses seed 727000, five recycles, one diffusion sample, empty MSAs and no templates. Foldseek 10-941cd33 clusters all valid generated structures separately per method and length. The score includes every original slot, including failures. The existing stochastic TSR baseline used this configuration. Its saved design/refold atom coordinates and cluster memberships were rechecked. New cohorts time native prediction with CUDA synchronization. Warm sampling times exclude the first batch of each length, process startup, output files and final AF3. End-to-end wall times and authors' reported seconds are distinct measurements.
+## Measured operating points: `n_recycle=0` vs `thinking_medium`
 
-The local throughput including AF3 divides 150 attempts by the sum of elapsed generation and AF3 GPU-hours across the three lengths. Each length had its own generation and AF3 process, including startup and AF3 compilation. The yield column uses distinct passing clusters in the numerator with the same pooled hours. CPU-only postprocessing is excluded. This S15 monomer rate and the mean of per-target yields in Figure 2 have different aggregation rules.
+Both local campaigns below consist of 750 fresh generations and 750 final AF3 refolds verified with independent Gemmi CIF alignments (`max_abs_scRMSD_difference_A < 10⁻⁶ Å`). [`thinking_medium` operating points](../../environment/references/s15/summary.csv) · [`n_recycle=0` operating points](../../environment/references/s15/base_schedule_summary.csv) · [`n_recycle=0` coordinate check](../../environment/references/s15/base_schedule_coordinate_check.json)
 
-## Measured operating points
+| Sampler | S15 rate / time (s) | Local `n_recycle=0` clusters / 150 (rate / warm s) | Local `thinking_medium` clusters / 150 (rate / warm s) | `n_recycle=0` clusters/GPU-h incl. AF3 | `thinking_medium` clusters/GPU-h incl. AF3 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Stochastic TSR | 34.7% / 2.99 | **57 (38.0% / 3.62s)** | 73 (48.7% / 10.06s) | **96.3** | 85.3 |
+| Stochastic TSR, prior schedule | 0.0% / 2.97 | **0 (0.0% / 3.63s)** | 0 (0.0% / 9.95s) | 0.0 | 0.0 |
+| ODE TSR | 33.3% / 3.04 | **48 (32.0% / 3.64s)** | 70 (46.7% / 10.12s) | 80.9 | 81.5 |
+| Full-length SDE | 37.3% / 17.68 | **65 (43.3% / 22.39s)** | 74 (49.3% / 65.27s) | 47.4 | 23.4 |
+| Shortened SDE | 0.0% / 2.95 | **0 (0.0% / 3.62s)** | 1 (0.7% / 10.02s) | 0.0 | 1.2 |
 
-Each row below has 150 fresh generations and 150 final AF3 refolds. The five rows used 6.57 GPU-hours of generation and final AF3 across 15 cohorts. [Full-precision operating points](../../environment/references/s15/summary.csv) · [By length](../../environment/references/s15/by_length.csv) · [All 750 slots](../../environment/references/s15/slots.tsv)
+Removing the 3× `thinking_medium` recycling overhead accounts for almost the entire 12–14 percentage-point elevation over printed Table S15: Stochastic TSR moves from `48.7%` to `38.0%` (`+3.3 pp` vs `34.7%`), ODE TSR moves from `46.7%` to `32.0%` (`-1.3 pp` vs `33.3%`), Shortened SDE matches `0.0%` (`0/150`), and the 400-to-60-step warm generation time ratio is `22.39 / 3.62 = 6.19×` (vs `5.91×` in the paper). Remaining unknowns relative to the paper's exact numbers are the historical checkpoint commit, random seeds, and H100/H200 batch size used when timing Table S15. [Schedule & multi-seed plot](../../environment/references/s15/s15-schedule-and-repeats.png) · [Original `thinking_medium` plot](../../environment/references/s15/quality-time.png)
 
-| Sampler | AF3 passes | Passing clusters | Local rate | S15 rate | Attempts/GPU-h including AF3 | Passing clusters/GPU-h including AF3 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Stochastic TSR | 111 | 73 | 48.7% | 34.7% | 175.2 | 85.3 |
-| Stochastic TSR, prior schedule | 0 | 0 | 0.0% | 0.0% | 177.8 | 0.0 |
-| ODE TSR | 121 | 70 | 46.7% | 33.3% | 174.5 | 81.5 |
-| Full-length SDE | 126 | 74 | 49.3% | 37.3% | 47.5 | 23.4 |
-| Shortened SDE | 1 | 1 | 0.7% | 0.0% | 176.8 | 1.2 |
+## Repeatability and BF16 trajectory sensitivity
 
-The full-length SDE gained one distinct passer over stochastic TSR in this draw. Stochastic TSR delivered 85.3 distinct passers per GPU-hour and had the highest clustered pass rate of the four 60-step settings. Local warm generation took 10.06 s per design for stochastic TSR and 65.27 s for full-length SDE (6.49×). The paper reports 2.99 s and 17.68 s (5.91×). The three highest local rates have the same order as in S15 and exceed its absolute values by 12.0–14.0 percentage points. [Measured quality–throughput plot](../../environment/references/s15/quality-time.png) · [Pinned assets](../../environment/references/s15/assets.json)
-
-## Repeatability
-
-The earlier public stochastic TSR run produced 82 passing clusters (15, 31 and 36 by length). A coordinate and cluster recheck recovered all 82. The newly generated comparison run produced 73 (15, 28 and 30). Its resolved Hydra settings matched the earlier run apart from file locations, and the input bytes matched. The cause of the difference between campaigns has not been isolated. Both results are retained. [Between-campaign check](../../environment/references/s15/default-repeat.json)
-
-A separate same-device repeat of the new 150-residue cohort regenerated all 50 sequences and their serialized backbone coordinates exactly. A fresh final AF3 run changed individual scRMSDs by up to 0.527 Å. All 50 pass decisions and the entire Foldseek partition agreed, yielding 28 passing clusters both times. This extra cohort is excluded from the five-method comparison. [Same-device control](../../environment/references/s15/same-device-repeat.json)
+1. **Between-campaign `82` vs `73` root cause.** Checking SHA-256 digests confirmed identical weights, model config, and monomer CIFs between the earlier `82/150` run and the `73/150` `thinking_medium` rerun. Slot-by-slot Kabsch alignment shows median native backbone RMSD of `0.052 Å` at `L=100` (with 35/50 slots `< 0.1 Å`, versus `24.79 Å` across distinct seeds), proving identical initial Gaussian noise draws. Under `bf16-mixed` with `torch_deterministic=false`, 1-ULP non-associative kernel reductions accumulate across 180 trunk evaluations (`0.052 Å` median at `L=100`, `0.269 Å` at `L=150`, `0.742 Å` at `L=250`), flipping `2`, `6`, and `10` marginal pass decisions near `1.5 Å`. [Root-cause receipt](../../environment/references/s15/bf16_divergence_root_cause.json) · [Between-campaign check](../../environment/references/s15/default-repeat.json) · [Same-device control](../../environment/references/s15/same-device-repeat.json)
+2. **Five-seed paired repeatability.** Across five pre-registered 150-slot seeds (`727000`, `728000`, `729000`, `730000`, `731000`, 1,500 total slots under `thinking_medium`), Stochastic TSR achieved `73, 64, 75, 72, 82` passing clusters (**mean `73.2 / 150 = 48.8% ± 4.3%`**, range `42.7%–54.7%`), while ODE TSR achieved `70, 69, 67, 76, 72` (**mean `70.8 / 150 = 47.2% ± 2.3%`**, range `44.7%–50.7%`). The mean paired advantage of Stochastic TSR over ODE TSR is **`+1.60 pp`** (`+1.4 pp` in Table S15), with single-seed paired differences spanning `-3.33 pp` to `+6.67 pp`. [Multi-seed CSV](../../environment/references/s15/multi_seed_repeats.csv) · [Multi-seed summary JSON](../../environment/references/s15/multi_seed_summary.json)
 
 ## Reproduction
-
-Use the task's pinned generation and AF3 environments and materialized data. From the task root run the CPU schedule preflight and the following commands. Give each concurrent cohort its own GPU. Use fresh work and report directories. The AF3 subprocess defaults to `/opt/af3env/bin/python` and `/opt/af3/run_alphafold.py`. Outside the image, set `AF3_PYTHON` and `AF3_SCRIPT` to the corresponding local paths.
 
 ```bash
 python docs/s15/check_schedules.py
 for sampler in stochastic-tsr prior-tsr ode-tsr full-sde short-sde; do
   for length in 100 150 250; do
+    # 1. thinking_medium (180 / 1,199 passes)
     python docs/s15/run_cohort.py "$sampler" "$length" generate --assets /workspace/data/assets --root /work/s15 || exit 1
     python docs/s15/run_cohort.py "$sampler" "$length" score --assets /workspace/data/assets --root /work/s15 || exit 1
+    # 2. n_recycle=0 base schedule (60 / 400 passes)
+    python docs/s15/run_monomer_cohort.py --arm "$sampler" --schedule-mode base_1pass --length "$length" \
+      --gen-seed $((727000 + length)) --assets /workspace/data/assets --work "/work/s15_base1pass/$sampler/$length" || exit 1
   done
 done
 python docs/s15/collect.py /work/s15 /work/s15-report
 python docs/s15/plot_results.py /work/s15-report/summary.csv /work/s15-report/quality-time.png
 python docs/s15/check_coordinates.py /work/s15 /work/s15-report/coordinate-check.json
+python docs/s15/plot_schedule_and_repeats.py --s15-dir environment/references/s15
 ```
 
-The collector uses the checked-in 150-slot stochastic TSR run when that method has no directory in the new campaign. It verifies all per-slot outcomes against the scorer's counts and requires the remaining four complete 150-slot cohorts. Preserve the native config, native manifest, batch timings, AF3 log and cluster assignments for each cohort. AF3-derived observations are subject to the [AF3 output terms](https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md).
-
-The optional coordinate check needs raw files for all five local runs. It parses the original generated and AF3 CIFs with Gemmi, recomputes their least-squares backbone fits and cross-checks AF3 query identities and Foldseek memberships against the saved slot observations.
+AF3-derived observations are subject to the [AF3 output terms](https://github.com/google-deepmind/alphafold3/blob/main/OUTPUT_TERMS_OF_USE.md).

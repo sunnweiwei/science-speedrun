@@ -1,0 +1,38 @@
+{
+  "weights_sha256_equal": true,
+  "config_json_sha256_equal": true,
+  "input_cif_sha256_equal": true,
+  "mechanism": "Both runs used identical initial Gaussian noise (seed = 727000 + L) and identical 180-pass recycling schedules, as shown by 0.029-0.052 A median backbone RMSD at L=100 (vs 24.79 A when changing the seed). With torch_deterministic=false in bf16-mixed mode, 1-ULP non-associative BF16 kernel reductions accumulate across 180 trunk evaluations, growing with sequence length (median native backbone RMSD 0.052 A at L=100, 0.269 A at L=150, 0.742 A at L=250) and flipping marginal trajectories near the 1.5 A AF3 scRMSD threshold.",
+  "by_length": {
+    "100": {
+      "slots": 50,
+      "identical_sequences": 15,
+      "min_native_backbone_rmsd_A": 0.02872883040910865,
+      "median_native_backbone_rmsd_A": 0.049873089828513156,
+      "p90_native_backbone_rmsd_A": 0.7086890156397186,
+      "max_native_backbone_rmsd_A": 3.9890180586154123,
+      "slots_under_0p1A_rmsd": 32,
+      "slots_under_0p5A_rmsd": 42
+    },
+    "150": {
+      "slots": 50,
+      "identical_sequences": 4,
+      "min_native_backbone_rmsd_A": 0.033528247293369534,
+      "median_native_backbone_rmsd_A": 0.2657594714032798,
+      "p90_native_backbone_rmsd_A": 1.7521184728908759,
+      "max_native_backbone_rmsd_A": 2.86892471551912,
+      "slots_under_0p1A_rmsd": 17,
+      "slots_under_0p5A_rmsd": 32
+    },
+    "250": {
+      "slots": 50,
+      "identical_sequences": 1,
+      "min_native_backbone_rmsd_A": 0.03456855885452249,
+      "median_native_backbone_rmsd_A": 0.6979436516743249,
+      "p90_native_backbone_rmsd_A": 2.6228851731169334,
+      "max_native_backbone_rmsd_A": 3.743005536674232,
+      "slots_under_0p1A_rmsd": 4,
+      "slots_under_0p5A_rmsd": 20
+    }
+  }
+}

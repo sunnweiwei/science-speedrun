@@ -1,0 +1,124 @@
+{
+  "mcsa_fixed:M0630_1j79": {
+    "profile": "rfd4-a6000-warm-v1",
+    "dataset": "mcsa_fixed",
+    "criterion": "ame",
+    "method": "Low",
+    "target": "M0630_1j79",
+    "attempts": 4,
+    "batch_size": 2,
+    "gen_seed": 727900,
+    "af3_seed": 727000,
+    "scored": 4,
+    "passes": 1,
+    "clusters": 1,
+    "clustered_pass_pct": 25.0,
+    "generation_gpu_s": 32.28485807031393,
+    "af3_gpu_s": 35.495067726122215,
+    "cold_generation_wall_s": 61.71134740393609,
+    "cold_eval_wall_s": 108.22468007588759,
+    "af3_warmup_compile_s": 55.037723165005445,
+    "batches": [
+      {
+        "size": 2,
+        "seconds": 23.106378064956516
+      },
+      {
+        "size": 2,
+        "seconds": 16.142429035156965
+      }
+    ],
+    "ame_s8_no_clash_filter_passes": 1,
+    "ame_s8_no_clash_filter_clusters": 1
+  },
+  "ppi_backbone:rfd3_pdl1": {
+    "profile": "rfd4-a6000-warm-v1",
+    "dataset": "ppi_backbone",
+    "criterion": "ppi",
+    "method": "Low",
+    "target": "rfd3_pdl1",
+    "attempts": 4,
+    "batch_size": 2,
+    "gen_seed": 727902,
+    "af3_seed": 727000,
+    "scored": 4,
+    "passes": 1,
+    "clusters": 1,
+    "clustered_pass_pct": 25.0,
+    "generation_gpu_s": 38.315305567812175,
+    "af3_gpu_s": 36.086894885171205,
+    "cold_generation_wall_s": 68.24388274201192,
+    "cold_eval_wall_s": 106.91024559899233,
+    "af3_warmup_compile_s": 53.008823522832245,
+    "batches": [
+      {
+        "size": 2,
+        "seconds": 26.742239852901548
+      },
+      {
+        "size": 2,
+        "seconds": 19.157652783906087
+      }
+    ]
+  },
+  "studio_figure_2c_unfixed:ubiquinone-10_final_0_flavin_mononucleotide_final_0_combined": {
+    "profile": "rfd4-a6000-warm-v1",
+    "dataset": "studio_figure_2c_unfixed",
+    "criterion": "sm_binder",
+    "method": "Low",
+    "target": "ubiquinone-10_final_0_flavin_mononucleotide_final_0_combined",
+    "attempts": 4,
+    "batch_size": 2,
+    "gen_seed": 727903,
+    "af3_seed": 727000,
+    "scored": 4,
+    "passes": 0,
+    "clusters": 0,
+    "clustered_pass_pct": 0.0,
+    "generation_gpu_s": 53.68794177379459,
+    "af3_gpu_s": 33.93122767866589,
+    "cold_generation_wall_s": 76.91089168004692,
+    "cold_eval_wall_s": 104.30057773506269,
+    "af3_warmup_compile_s": 54.50933629088104,
+    "batches": [
+      {
+        "size": 2,
+        "seconds": 28.153865591157228
+      },
+      {
+        "size": 2,
+        "seconds": 26.843970886897296
+      }
+    ]
+  },
+  "ppi_backbone:38_TNFalpha": {
+    "profile": "rfd4-a6000-warm-v1",
+    "dataset": "ppi_backbone",
+    "criterion": "ppi",
+    "method": "Low",
+    "target": "38_TNFalpha",
+    "attempts": 4,
+    "batch_size": 2,
+    "gen_seed": 727901,
+    "af3_seed": 727000,
+    "scored": 4,
+    "passes": 0,
+    "clusters": 0,
+    "clustered_pass_pct": 0.0,
+    "generation_gpu_s": 348.79394057765603,
+    "af3_gpu_s": 249.47622768580914,
+    "cold_generation_wall_s": 369.28901245910674,
+    "cold_eval_wall_s": 382.369020414073,
+    "af3_warmup_compile_s": 111.71278266701847,
+    "batches": [
+      {
+        "size": 2,
+        "seconds": 170.34692606586032
+      },
+      {
+        "size": 2,
+        "seconds": 174.39697028882802
+      }
+    ]
+  }
+}

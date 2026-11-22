@@ -3,21 +3,21 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/rfd4-inference-search"
-version = "0.3.2"
-description = "Develop an executable inference program for frozen RFD4-Proteina on runtime monomer requests under a one-GPU time budget."
+version = "0.4.0"
+description = "Develop one unified executable inference-time search or sampling strategy for frozen RFD4-Proteina across all four Figure 2 conditioned biomolecular design tracks under a matched single-GPU quality-cost Pareto evaluation."
 authors = [{name = "Science Speedrun contributors"}]
-keywords = ["model-development", "inference-time-search", "structural-biology"]
+keywords = ["model-development", "inference-time-search", "structural-biology", "pareto-frontier"]
 
 [metadata]
 budget_curve_protocol = "rfd4-budget-curve-v1"
 budget_curve_seconds_per_slot = [6, 15, 60]
 budget_curve_scope = "Retrospective scorecard for matched frozen measurements"
-data_status = "Pinned length-only monomer inputs, generation and refolding weights, private replay seeds."
-primary_metric = "mean_per_length_clustered_pass_rate"
+data_status = "Pinned 141-target four-track conditioned benchmark inputs (PPI, small-molecule, enzyme/MCSA, DNA), monomer inputs, frozen RFD4 and AF3 weights, Foldseek binary, and private replay seeds."
+primary_metric = "four_track_mean_clustered_pass_rate"
 primary_metric_direction = "maximize"
-official_reference = "Figure 2 and Table S29, four-suite archived quality-throughput curves"
-official_comparison = "Independent local measurements; sealed submission records required for candidate points"
-live_score_scope = "Unconditional monomers"
+official_reference = "Figure 2 and Table S29 four-suite Low/Medium/High/Search curves plus live same-GPU paired native baselines"
+official_comparison = "Matched-attempt, matched-boundary same-GPU paired four-track evaluation (rfd4-paired-program-v1) and warm batch-amortized full-suite campaign receipts (rfd4-a6000-warm-v1)"
+live_score_scope = "Four-track conditioned biomolecular design (Protein binding, Small-molecule binding, Enzyme scaffolding, DNA binding)"
 
 [agent]
 timeout_sec = 172800.0
@@ -27,8 +27,7 @@ network_mode = "no-network"
 cpus = 64
 memory_mb = 131072
 storage_mb = 512000
-gpus = 1
-gpu_types = ["H100"]
+gpus = 8
 build_timeout_sec = 7200.0
 
 [verifier]
@@ -37,9 +36,8 @@ timeout_sec = 14400.0
 
 [verifier.environment]
 network_mode = "no-network"
-cpus = 16
-memory_mb = 98304
+cpus = 32
+memory_mb = 131072
 storage_mb = 131072
-gpus = 1
-gpu_types = ["H100"]
+gpus = 8
 build_timeout_sec = 7200.0

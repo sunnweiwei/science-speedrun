@@ -1,5 +1,6 @@
-"""Create one public, versioned request for a length-only monomer."""
+"""Create versioned requests for conditioned four-track design and length-only monomers."""
 import json
+from pathlib import Path
 import shutil
 
 import gemmi
@@ -7,9 +8,42 @@ import zstandard
 
 from policy import LENGTHS
 
+# Balanced 4-track development panel (3 targets per track = 12 targets) for rapid multi-track iteration.
+DEV_4TRACK_TARGETS = {
+    "ppi_backbone": ("01_PD1", "15_DerF7", "rfd3_pdl1"),
+    "studio_figure_2c_unfixed": ("BODIPY_final_0", "biotin_final_0", "retinal_final_0"),
+    "mcsa_fixed": ("M0097_1ctt", "M0157_1qh5", "M0630_1j79"),
+    "dna_unfixed": ("7m5w", "7n5u", "7rte"),
+}
+FOUR_TRACK_DATASETS = ("ppi_backbone", "studio_figure_2c_unfixed", "mcsa_fixed", "dna_unfixed")
+
+
+def conditioned_suite_requests(path):
+    """Load a versioned four-track target roster supplied by the controller."""
+    suite = json.loads(Path(path).read_text())
+    if not isinstance(suite, dict) or suite.get("version") != 1:
+        raise ValueError("Expected a version 1 conditioned suite")
+    targets = suite.get("targets")
+    if not isinstance(targets, dict) or set(targets) != set(FOUR_TRACK_DATASETS):
+        raise ValueError("Conditioned suite must specify target lists for all four Figure 2 datasets")
+    roster = {}
+    for ds in FOUR_TRACK_DATASETS:
+        items = targets[ds]
+        if not isinstance(items, list) or not items:
+            raise ValueError(f"Expected a nonempty target list for {ds}")
+        seen = set()
+        cleaned = []
+        for tgt in items:
+            if not isinstance(tgt, str) or not tgt.strip() or tgt in seen:
+                raise ValueError(f"Invalid or duplicate target id in {ds}")
+            seen.add(tgt)
+            cleaned.append(tgt)
+        roster[ds] = cleaned
+    return roster
+
 
 def suite_requests(path):
-    suite = json.loads(path.read_text())
+    suite = json.loads(Path(path).read_text())
     if not isinstance(suite, dict) or suite.get("version") != 1:
         raise ValueError("Expected a version 1 suite")
     requests = suite.get("requests")
@@ -45,8 +79,6 @@ def write_monomer_request(directory, assets, length, slots, seed, seconds, descr
     if length in LENGTHS:
         shutil.copyfile(source / f"monomer-{LENGTHS[length]}.cif.zst", target)
     else:
-        # The released length-only CIF represents one expandable segment.
-        # Keep its molecular annotations and replace just the segment bounds and identity.
         with (source / "monomer-short.cif.zst").open("rb") as f:
             with zstandard.ZstdDecompressor().stream_reader(f) as reader:
                 doc = gemmi.cif.read_string(reader.read().decode())
@@ -65,6 +97,32 @@ def write_monomer_request(directory, assets, length, slots, seed, seconds, descr
     request = {"id": f"monomer-{length}", **(descriptor or {}), "version": 1, "kind": "unconditional_monomer",
                "input": {"length": length, "file": target.name}, "num_outputs": slots,
                "seed": seed, "budget": {"wall_seconds": seconds}}
+    path = directory / "request.json"
+    path.write_text(json.dumps(request, indent=2) + "\n")
+    return path
+
+
+def write_conditioned_request(directory, input_cif, request_id, slots, seed, seconds, metadata=None):
+    """Write a track-agnostic conditioned biomolecular design request for any of the four Figure 2 suites."""
+    if type(slots) is not int or slots < 1:
+        raise ValueError("output count must be a positive integer")
+    input_cif = Path(input_cif).resolve()
+    if not input_cif.is_file():
+        raise FileNotFoundError(f"Missing conditioned benchmark input: {input_cif}")
+    directory.mkdir(parents=True, exist_ok=False)
+    staged = directory / input_cif.name
+    shutil.copyfile(input_cif, staged)
+    request = {
+        "version": 1,
+        "id": str(request_id),
+        "kind": "conditioned_design",
+        "input": {"file": staged.name},
+        "num_outputs": slots,
+        "seed": int(seed),
+        "budget": {"wall_seconds": float(seconds)},
+    }
+    if metadata is not None:
+        request["metadata"] = metadata
     path = directory / "request.json"
     path.write_text(json.dumps(request, indent=2) + "\n")
     return path

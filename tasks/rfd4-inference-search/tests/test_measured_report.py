@@ -17,12 +17,27 @@ class MeasuredReportTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "report"
             status = render(out)
-            self.assertEqual((status["baseline_points"], status["submission_points"]), (3, 0))
-            self.assertEqual(sum(len(s["missing"]) for s in status["tracks"].values()), 13)
+            self.assertEqual(status["submission_points"], 0)
+            self.assertGreaterEqual(status["baseline_points"], 10)
+            self.assertEqual(status["baseline_points"] + sum(len(s["missing"]) for s in status["tracks"].values()), 16)
             with (out / "points.csv").open() as f:
                 rows = list(csv.DictReader(f))
-            self.assertEqual([int(r["clusters"]) for r in rows], [15, 12, 17])
-            self.assertTrue(all(r["track"] == "DNA binding" and r["source"] == "local baseline" for r in rows))
+            self.assertEqual(len(rows), status["baseline_points"])
+            by_key = {(r["track"], r["method"]): int(r["clusters"]) for r in rows}
+            for key, expected in (
+                (("Protein binding", "Low"), 426),
+                (("Protein binding", "Medium"), 481),
+                (("Small-molecule binding", "Low"), 2009),
+                (("Small-molecule binding", "Medium"), 2052),
+                (("Enzyme scaffolding", "Low"), 753),
+                (("Enzyme scaffolding", "Medium"), 766),
+                (("Enzyme scaffolding", "High"), 876),
+                (("DNA binding", "Low"), 15),
+                (("DNA binding", "Medium"), 12),
+                (("DNA binding", "High"), 17),
+            ):
+                self.assertEqual(by_key.get(key), expected)
+            self.assertTrue(all(r["source"] == "local baseline" for r in rows))
             self.assertEqual((out / "points.csv").read_bytes(), (OVERALL / "measured/points.csv").read_bytes())
             self.assertTrue(all((out / f).is_file() for f in ("generation.png", "including-af3.png")))
 

@@ -8,7 +8,8 @@ from policy import load_policy
 
 BASELINES = Path(__file__).resolve().parents[1] / "baseline"
 POLICIES = ("stochastic-tsr", "geometry-beam", "two-wide-beam")
-NAMES = POLICIES + ("native-low", "native-high")
+NATIVE_PRESETS = ("native-low", "native-medium", "native-high")
+NAMES = POLICIES + NATIVE_PRESETS
 
 
 def historical_points(lengths, slots):

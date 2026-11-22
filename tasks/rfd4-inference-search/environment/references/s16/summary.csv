@@ -1,0 +1,8 @@
+schedule_mode,sampler,paper_method,steps,search_runs,final_designs,local_mean_hbonds,local_stdev_hbonds,local_median_hbonds,paper_mean_hbonds,difference_hbonds,warm_s_per_search_run,wall_seconds
+base_1pass,stochastic-tsr,Stochastic TSR (default),60,50,100,11.98,2.991503118683133,12.0,14.24,-2.26,31.678930337452847,1613.2625861030538
+base_1pass,prior-tsr,Stochastic TSR (prior schedule),60,50,100,0.0,0.0,0.0,5.18,-5.18,31.770280418803708,1618.7064549038187
+base_1pass,full-sde,Full-length SDE,400,50,100,10.18,2.9589105284126984,10.0,12.72,-2.540000000000001,188.21826398345746,9427.865247647977
+base_1pass,short-sde,Shortened SDE,60,50,100,2.6,2.9473494341303828,1.0,3.31,-0.71,31.570339394091732,1608.7332177290227
+midpeak,stochastic-tsr,Stochastic TSR (default),60,50,100,13.71,2.5792293892603353,14.0,14.24,-0.5299999999999994,72.33016673825267,3643.418956665788
+midpeak,prior-tsr,Stochastic TSR (prior schedule),60,50,100,0.04,0.19694638556693236,0.0,5.18,-5.14,72.53152442013638,3652.4459530380554
+midpeak,short-sde,Shortened SDE,60,50,100,2.92,3.193048003954146,2.0,3.31,-0.3900000000000001,72.02684611737625,3628.422642888967

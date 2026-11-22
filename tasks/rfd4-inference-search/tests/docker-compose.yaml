@@ -12,8 +12,13 @@ services:
       - systempaths=unconfined
     cap_add: [SYS_ADMIN]
     environment:
+      RFD4_VERIFIER_MODE: "${RFD4_VERIFIER_MODE:-four_track}"
+      RFD4_VERIFY_PANEL: "${RFD4_VERIFY_PANEL:-verify}"
+      RFD4_VERIFY_ATTEMPTS: "${RFD4_VERIFY_ATTEMPTS:-20}"
+      RFD4_VERIFY_REPEATS: "${RFD4_VERIFY_REPEATS:-1}"
+      RFD4_REFERENCES: "${RFD4_REFERENCES:-native-low native-high}"
+      RFD4_SECONDS_PER_SLOT: "${RFD4_SECONDS_PER_SLOT:-60}"
       RFD4_REFERENCE: "${RFD4_REFERENCE:-stochastic-tsr}"
-      RFD4_SECONDS_PER_SLOT: "${RFD4_SECONDS_PER_SLOT:-36}"
     volumes:
       - type: bind
         source: ${TASK_DATA_DIR:?Run the materializer}/assets

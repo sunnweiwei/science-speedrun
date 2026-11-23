@@ -131,7 +131,7 @@ separates the released-model replay, small training checks and historical
 results. No datasets, private labels or released baseline weights are
 included in this repository.
 
-[rfd4-inference-search](tasks/rfd4-inference-search) optimizes inference for frozen RFD4-Proteina on three unconditional monomer lengths. It ships a four-suite numerical replay of the official Figure 2 / S29 quality–throughput measurements. Its live monomer verifier scores distinct AF3-refolding passes at fixed generation compute, with released stochastic TSR and matched-cost search baselines. The task README records the reproduction and acceptance status.
+[rfd4-inference-search](tasks/rfd4-inference-search) develops one unified inference-time search or sampling strategy (`infer.py`) for frozen RFD4-Proteina across all four Figure 2 conditioned biomolecular design tracks (protein binding, small-molecule binding, enzyme scaffolding, and DNA binding; 8 GPUs for development and verification). Its official Harbor verifier executes paired same-GPU baselines under matched attempt counts and timing boundaries (`rfd4-paired-program-v1`), reports strict Pareto frontier advancement alongside the frozen three-budget scorecard (`rfd4-budget-curve-v1`, 6/15/60 s/slot), and ships independent RTX A6000 Figure 2 baseline measurements (`rfd4-a6000-warm-v1`, 11/16 settings completed locally). The task README records the reproduction and acceptance status.
 
 ## Quick start
 

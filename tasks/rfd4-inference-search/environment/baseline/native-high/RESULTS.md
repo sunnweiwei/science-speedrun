@@ -2,10 +2,11 @@
 
 ## Four-track Figure 2 local baselines (`rfd4-a6000-warm-v1`)
 
-Independent RTX A6000 measurements (`200` fresh attempts per target, common AF3 5-recycle refolding with seed `727000`, Foldseek `10-941cd33` clustering at `TM-score >= 0.5` on `designed_chain_path`) are complete for `Enzyme scaffolding` (`high/midpeak`, 37/37 targets) and `DNA binding` (`high/flat`, 3/3 targets), with `Protein binding High` (18/24) and `Small-molecule binding High` (58/77) completing in the background:
+Independent RTX A6000 measurements (`200` fresh attempts per target, common AF3 5-recycle refolding with seed `727000`, Foldseek `10-941cd33` clustering at `TM-score >= 0.5` on `designed_chain_path`) are complete for `Small-molecule binding` (`high/midpeak`, 77/77 targets), `Enzyme scaffolding` (`high/midpeak`, 37/37 targets), and `DNA binding` (`high/flat`, 3/3 targets), with `Protein binding High` (23/24) completing its final target in the background:
 
 | Track | Targets (Attempts) | Local Passes | Local Clusters (%) | Paper Clusters (%) | Diff (pp) | Local Warm Gen (att/GPU-h) | Local Total incl. AF3 (att/GPU-h) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Small-molecule binding | 77 (15,400) | 5,140 | **2,288 (14.86%)** | 2,205 (14.32%) | +0.54 | 373.6 | 198.9 |
 | Enzyme scaffolding | 37 (7,400) | 1,074 | **876 (11.84%)** | 893 (12.07%) | -0.23 | 231.1 | 142.9 |
 | DNA binding | 3 (600) | 19 | **17 (2.83%)** | 21 (3.50%) | -0.67 | 283.0 | 164.3 |
 

@@ -1,6 +1,6 @@
 # RFD4-Proteina Figure 2 baseline status and multi-track evaluation
 
-**10 of 16 official baseline points now have complete independent RTX A6000 measurements across all four Figure 2 panels (`Low` 4/4, `Medium` 4/4, `Enzyme High`, and `DNA High`, totaling 64,400 completed attempts across 322 cohorts), with the final 25 `High` cohorts (`Protein High` 18/24, `Small-molecule High` 58/77) actively completing in the background.** All 16 official reference settings (`Low`, `Medium`, `High`, and `Search` across `Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, and `DNA binding`) are retained as the benchmark baseline frontier in [baseline_frontier_reference.csv](../environment/references/overall/measured/baseline_frontier_reference.csv) and [operating_points.csv](../environment/references/overall/operating_points.csv). [Paper](https://www.biorxiv.org/content/10.64898/2026.11.12.766037v1) · [Coverage JSON](../environment/references/overall/measured/coverage.json) · [Local vs paper CSV](../environment/references/overall/measured/comparison_vs_paper.csv) · [Per-target comparison CSV](../environment/references/overall/measured/logs/per_target_comparison.csv)
+**11 of 16 official baseline points now have complete independent RTX A6000 measurements across all four Figure 2 panels (`Low` 4/4, `Medium` 4/4, `Small-molecule High`, `Enzyme High`, and `DNA High`, totaling 79,800 completed attempts across 399 cohorts), with only 1 `High` target (`Protein High` 23/24) remaining in the background.** All 16 official reference settings (`Low`, `Medium`, `High`, and `Search` across `Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, and `DNA binding`) are retained as the benchmark baseline frontier in [baseline_frontier_reference.csv](../environment/references/overall/measured/baseline_frontier_reference.csv) and [operating_points.csv](../environment/references/overall/operating_points.csv). [Paper](https://www.biorxiv.org/content/10.64898/2026.11.12.766037v1) · [Coverage JSON](../environment/references/overall/measured/coverage.json) · [Local vs paper CSV](../environment/references/overall/measured/comparison_vs_paper.csv) · [Per-target comparison CSV](../environment/references/overall/measured/logs/per_target_comparison.csv)
 
 ## Completed independent local baselines (`rfd4-a6000-warm-v1`)
 
@@ -12,6 +12,7 @@ All four Figure 2 suites now have verified end-to-end local baselines (200 fresh
 | Protein binding | Medium | 24 | 4,800 | 466 (9.71%) | **481 (10.02%)** | +0.31 | 91.3 | 68.0 |
 | Small-molecule binding | Low | 77 | 15,400 | 1,867 (12.12%) | **2,009 (13.05%)** | +0.92 | 551.1 | 241.6 |
 | Small-molecule binding | Medium | 77 | 15,400 | 1,937 (12.58%) | **2,052 (13.32%)** | +0.75 | 444.4 | 217.3 |
+| Small-molecule binding | High | 77 | 15,400 | 2,205 (14.32%) | **2,288 (14.86%)** | +0.54 | 373.6 | 198.9 |
 | Enzyme scaffolding | Low | 37 | 7,400 | 724 (9.78%) | **753 (10.18%)** | +0.39 | 323.7 | 160.9 |
 | Enzyme scaffolding | Medium | 37 | 7,400 | 785 (10.61%) | **766 (10.35%)** | -0.26 | 274.6 | 157.9 |
 | Enzyme scaffolding | High | 37 | 7,400 | 893 (12.07%) | **876 (11.84%)** | -0.23 | 231.1 | 142.9 |
@@ -23,9 +24,8 @@ All four Figure 2 suites now have verified end-to-end local baselines (200 fresh
 
 | Suite | Setting | Targets | Original attempts | Author clustered pass rate | Author generation attempts/GPU-h | Local status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| Protein binding | High | 24 | 4,800 | 10.63% | 985.6 | 18/24 complete on RTX A6000 cluster |
+| Protein binding | High | 24 | 4,800 | 10.63% | 985.6 | 23/24 complete on RTX A6000 cluster |
 | Protein binding | Search | 24 | 4,800 | 14.92% | 57.4 | Reference frontier (`operating_points.csv`) |
-| Small-molecule binding | High | 77 | 15,400 | 14.32% | 5,242.3 | 58/77 complete on RTX A6000 cluster |
 | Small-molecule binding | Search | 77 | 15,400 | 20.94% | 110.6 | Reference frontier (`operating_points.csv`) |
 | Enzyme scaffolding | Search | 37 | 7,400 | 16.64% | 84.9 | Reference frontier (`operating_points.csv`) |
 | DNA binding | Search | 3 | 600 | 4.83% | 111.5 | Reference frontier (`operating_points.csv`) |

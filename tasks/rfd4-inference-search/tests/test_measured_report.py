@@ -18,7 +18,7 @@ class MeasuredReportTest(unittest.TestCase):
             out = Path(tmp) / "report"
             status = render(out)
             self.assertEqual(status["submission_points"], 0)
-            self.assertGreaterEqual(status["baseline_points"], 10)
+            self.assertGreaterEqual(status["baseline_points"], 11)
             self.assertEqual(status["baseline_points"] + sum(len(s["missing"]) for s in status["tracks"].values()), 16)
             with (out / "points.csv").open() as f:
                 rows = list(csv.DictReader(f))
@@ -29,6 +29,7 @@ class MeasuredReportTest(unittest.TestCase):
                 (("Protein binding", "Medium"), 481),
                 (("Small-molecule binding", "Low"), 2009),
                 (("Small-molecule binding", "Medium"), 2052),
+                (("Small-molecule binding", "High"), 2288),
                 (("Enzyme scaffolding", "Low"), 753),
                 (("Enzyme scaffolding", "Medium"), 766),
                 (("Enzyme scaffolding", "High"), 876),

@@ -4,6 +4,18 @@
   "method": "High",
   "af3_seed": 727000,
   "completed_suites": {
+    "Small-molecule binding": {
+      "targets": 77,
+      "attempts": 15400,
+      "passes": 5140,
+      "clusters": 2288,
+      "clustered_pct": 14.8571,
+      "paper_clustered_pct": 14.3182,
+      "rate_diff_pp": 0.539,
+      "local_warm_gen_attempts_h": 373.61,
+      "local_warm_total_attempts_h": 198.91,
+      "local_warm_total_clusters_h": 30.136
+    },
     "Enzyme scaffolding": {
       "targets": 37,
       "attempts": 7400,

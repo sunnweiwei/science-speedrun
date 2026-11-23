@@ -5,7 +5,7 @@ Protein binding,High,24,4800,10.625,985.56,551.37,66.476,author_reference_only,,
 Protein binding,Search,24,4800,14.9167,57.43,54.91,8.403,author_reference_only,,,,
 Small-molecule binding,Low,77,15400,12.1234,7740.76,1813.84,223.321,reproduced,13.0455,551.13,241.63,31.917
 Small-molecule binding,Medium,77,15400,12.5779,5973.69,1691.13,216.158,reproduced,13.3247,444.42,217.26,29.559
-Small-molecule binding,High,77,15400,14.3182,5242.28,1631.37,237.107,author_reference_only,,,,
+Small-molecule binding,High,77,15400,14.3182,5242.28,1631.37,237.107,reproduced,14.8571,373.61,198.91,30.136
 Small-molecule binding,Search,77,15400,20.9351,110.56,105.64,22.006,author_reference_only,,,,
 Enzyme scaffolding,Low,37,7400,9.7838,5160.84,1335.88,142.1,reproduced,10.1757,323.68,160.87,17.349
 Enzyme scaffolding,Medium,37,7400,10.6081,3745.12,1214.35,143.794,reproduced,10.3514,274.57,157.92,18.119

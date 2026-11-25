@@ -7,15 +7,19 @@ from pathlib import Path
 from program import gpu_device
 
 
-# Quartile-balanced 12-target verification roster (target-disjoint from DEV_4TRACK_TARGETS on PPI, SM, and MCSA).
+# Quartile-balanced 16-target verification roster (4 PPI, 5 SM, 4 Enzyme, 3 DNA = 2 full waves on 8 GPUs;
+# target-disjoint from DEV_4TRACK_TARGETS on PPI, SM, and MCSA; matches full 141-target Paper Low/High/Search
+# macro clustered pass rates within 0.08 pp and every individual track within 0.31 pp at K=200).
 VERIFY_4TRACK_TARGETS = {
-    "ppi_backbone": ("33_TrkA", "37_IL17A", "rfd3_il7ra"),
+    "ppi_backbone": ("30_SC2RBD", "33_TrkA", "37_IL17A", "rfd3_il7ra"),
     "studio_figure_2c_unfixed": (
+        "N-acetyl-alpha-neuraminic_acid_final_0",
         "Zn_ideal",
+        "perfluorooctanoic_acid_final_0",
         "s-adenosylmethionine_final_0_Fe2-S2_ideal_combined",
         "thiamine_diphosphate_final_0",
     ),
-    "mcsa_fixed": ("M0179_1q3s", "M0315_1ey3", "M0732_1xs1"),
+    "mcsa_fixed": ("M0179_1q3s", "M0315_1ey3", "M0710_1ra0", "M0732_1xs1"),
     "dna_unfixed": ("7m5w", "7n5u", "7rte"),
 }
 

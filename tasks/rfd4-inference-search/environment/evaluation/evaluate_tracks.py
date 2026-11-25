@@ -597,6 +597,44 @@ def load_archive_context_for_targets(
     return by_track
 
 
+def summarize_archive_200_quality(
+    summary: dict,
+    archive_by_track: dict[str, list[dict]],
+    *,
+    attempts_per_target: int,
+) -> dict[str, dict]:
+    """Compare K=200 candidate clustered pass rates against target-matched 200-attempt archive quality (quality only, never timing)."""
+    if int(attempts_per_target) != 200:
+        return {}
+    eval_tracks = summary.get("evaluated_tracks") or []
+    if not eval_tracks:
+        return {}
+    cand_by_track = {t: summary["by_track"][t]["candidate"] for t in eval_tracks if t in summary.get("by_track", {})}
+    if len(cand_by_track) != len(eval_tracks):
+        return {}
+    out: dict[str, dict] = {}
+    for method in ARMS:
+        arch_pts = {}
+        for t in eval_tracks:
+            matched = next((p for p in archive_by_track.get(t, []) if p.get("method") == method), None)
+            if matched is not None:
+                arch_pts[t] = matched
+        if len(arch_pts) != len(eval_tracks):
+            continue
+        arch_macro = fmean(float(arch_pts[t]["clustered_pct"]) for t in eval_tracks)
+        cand_macro = float(summary["macro_clustered_pct"])
+        out[method] = {
+            "archive_macro_clustered_pct": arch_macro,
+            "quality_delta_pp": cand_macro - arch_macro,
+            "tracks_beating_archive": sum(
+                int(float(cand_by_track[t]["clustered_pct"]) > float(arch_pts[t]["clustered_pct"]))
+                for t in eval_tracks
+            ),
+            "by_track_clustered_pct": {t: float(arch_pts[t]["clustered_pct"]) for t in eval_tracks},
+        }
+    return out
+
+
 def hypervolume_2d(points: list[dict], speed_axis: str, ref_speed: float = 0.0, ref_quality: float = 0.0) -> float:
     """Exact 2D dominated hypervolume above (ref_speed, ref_quality) on a maximize-(speed, clustered_pct) plane."""
     valid = [
@@ -1030,6 +1068,12 @@ def four_track_harbor_metrics(report: dict) -> dict[str, int | float]:
             for bk in ("clusters", "clustered_pct", "generation_attempts_h", "total_attempts_h", "total_clusters_h"):
                 if bk in b and b[bk] is not None and math.isfinite(float(b[bk])):
                     values[f"track_{short}_ref_{bslug}_{bk}"] = _num(b[bk])
+
+    for arm, acomp in (report.get("archive_200attempt_quality_comparisons") or {}).items():
+        aslug = arm.lower().replace("-", "_").replace(" ", "_")
+        for ak in ("archive_macro_clustered_pct", "quality_delta_pp", "tracks_beating_archive"):
+            if ak in acomp and acomp[ak] is not None and math.isfinite(float(acomp[ak])):
+                values[f"archive_200_{aslug}_{ak}"] = _num(acomp[ak])
     return values
 
 
@@ -1043,7 +1087,7 @@ def render_paired_pareto_plot(
     repeats: int = 1,
     panel_name: str = "dev",
 ):
-    """Render 4-panel paired quality-throughput curves labeled with exact target counts, attempt count, and boundary."""
+    """Render 4-panel quality-throughput curves labeled with exact target counts, attempt count, and boundary."""
     from matplotlib import pyplot as plt
     from matplotlib.lines import Line2D
     from matplotlib.ticker import FuncFormatter, LogLocator, MaxNLocator
@@ -1063,13 +1107,16 @@ def render_paired_pareto_plot(
     else:
         fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.3), sharex=True)
     fig.subplots_adjust(left=.102, right=.98, bottom=.15, top=.79, wspace=.19, hspace=.38)
-    fig.text(.064, .956, "RFD4-Proteina   /   Paired 4-track quality and throughput", fontsize=19, weight="bold", color="#162b36")
-    scope = "Generation + shared warm AF3 evaluation" if include_af3 else "Generation/search (matched subprocess boundary)"
+    has_paired = any(m in ARMS for m in methods)
+    banner = "Paired 4-track quality and throughput" if has_paired else "4-track search quality and throughput"
+    fig.text(.064, .956, f"RFD4-Proteina   /   {banner}", fontsize=19, weight="bold", color="#162b36")
+    scope = "Generation + shared warm AF3 evaluation" if include_af3 else "Generation/search (per-request subprocess boundary)"
     rep_tag = f"    ·    {repeats} repeats (mean ± SD)" if repeats >= 2 else ""
     fig.text(.066, .913, f"{scope}    ·    {attempts_per_target} attempts/target ({panel_name} panel){rep_tag}", fontsize=10.5, color="#445361")
 
     handles = [Line2D([], [], linestyle="none", marker=styles[m][1], color=styles[m][0], label=m, markersize=8) for m in methods]
-    handles.append(Line2D([], [], linestyle=":", color="#687681", label="Observed nondominated curve"))
+    if has_paired:
+        handles.append(Line2D([], [], linestyle=":", color="#687681", label="Observed nondominated curve"))
     fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(.058, .895), frameon=False,
                ncol=min(6, len(handles)), fontsize=9.5, columnspacing=1.7, handletextpad=.5)
     for unused in list(axes.flat)[len(tracks):]:
@@ -1079,7 +1126,7 @@ def render_paired_pareto_plot(
         cohort = [p for p in points if p["track"] == track]
         n_tgts = cohort[0]["targets"] if cohort else 0
         edge = sorted(frontier(cohort, speed), key=lambda p: p[speed])
-        if edge:
+        if edge and len(edge) > 1:
             ax.plot([p[speed] for p in edge], [p["clustered_pct"] for p in edge], ":", linewidth=1.3, color="#939ea4", zorder=1)
         for p in cohort:
             color, marker = styles[p["method"]]
@@ -1107,12 +1154,14 @@ def render_paired_pareto_plot(
 
     fig.supylabel("Clustered pass rate (%)", x=.025, y=.48, fontsize=11)
     fig.supxlabel("Attempts per GPU-hour (log scale)", y=.068, fontsize=11)
-    fig.text(
-        .066, .021,
+    footnote = (
         f"Same-GPU paired evaluation ({PAIRED_TIMING_PROFILE}): candidate and baselines share identical target roster, "
-        f"{attempts_per_target} attempts/target, seeds, and timing boundary.",
-        fontsize=8.3, color="#54636b",
+        f"{attempts_per_target} attempts/target, seeds, and timing boundary."
+        if has_paired else
+        f"Candidate-only evaluation ({PAIRED_TIMING_PROFILE}): {attempts_per_target} attempts/target per-request subprocess "
+        f"wall clock plus shared persistent warm AF3 folding."
     )
+    fig.text(.066, .021, footnote, fontsize=8.3, color="#54636b")
     fig.savefig(path, dpi=185, bbox_inches="tight", facecolor="white")
     plt.close(fig)
 
@@ -1207,16 +1256,17 @@ def main():
     p.add_argument("--submission", type=Path, default=Path("/workspace/submission"))
     p.add_argument("--method-name", default="candidate", help="Display label for the evaluated strategy")
     p.add_argument("--panel", choices=("dev", "verify", "full"), default="dev",
-                   help="'dev': 12 public targets; 'verify': 12 held-out verifier targets; 'full': all 141 Figure 2 targets")
+                   help="'dev': 12 public targets; 'verify': 16 held-out verifier targets (4 PPI, 5 SM, 4 Enzyme, 3 DNA); 'full': all 141 Figure 2 targets")
     p.add_argument("--suite", type=Path, default=None, help="Optional controller-owned four-track JSON target suite")
     p.add_argument("--tracks", nargs="*", help="Optional subset of datasets or track names for local debugging")
-    p.add_argument("--attempts", type=int, default=None, help="Attempts per target (default: 20 for dev/verify, 200 for full)")
+    p.add_argument("--attempts", type=int, default=None, help="Attempts per target (default: 20 for dev, 200 for verify and full)")
     p.add_argument("--repeats", type=int, default=1, help="Number of independent seed repeats for mean ± SD frontier evaluation")
     p.add_argument("--references", nargs="+", default=["native-low", "native-high"],
                    help="Paired executable baselines run on the same GPU and timing boundary (native-low, native-medium, native-high, or 'none')")
     p.add_argument("--gpus", default="auto",
                    help="GPUs for target-level parallel paired evaluation ('auto', 'single', or comma-separated indices/UUIDs)")
-    p.add_argument("--seconds-per-slot", type=float, default=60.0, help="Generation/search wall budget per attempt")
+    p.add_argument("--seconds-per-slot", type=float, default=25.0,
+                   help="Generation/search wall budget per output (default: 25.0 s/slot calibrated for 8xH100 <=4h verification)")
     p.add_argument("--seed-offset", type=int, default=0, help="Additive seed offset for public repeat runs")
     p.add_argument("--af3-seed", type=int, default=727000)
     p.add_argument("--private-seed", type=Path, default=None, help="32-byte private controller seed file for Harbor verification")
@@ -1259,11 +1309,8 @@ def main():
         p.error(str(exc))
 
     is_private = bool(args.private or args.private_seed is not None)
-    if args.private_seed is not None:
-        if args.tracks:
-            p.error("Private verification requires all four tracks")
-        if not paired_refs:
-            p.error("Private verification requires at least one paired reference baseline")
+    if args.private_seed is not None and args.tracks:
+        p.error("Private verification requires all four tracks")
 
     work = args.work.resolve()
     out_dir = args.output.resolve()
@@ -1278,7 +1325,7 @@ def main():
         base_seed_offset, af3_seed, suite_digest = verifier_runtime().four_track_seeds(args.private_seed)
 
     panel_label = "custom_suite" if args.suite is not None else args.panel
-    attempts = args.attempts or (200 if panel_label == "full" else 20)
+    attempts = args.attempts or (200 if panel_label in ("verify", "full") else 20)
 
     try:
         package = args.submission.resolve()
@@ -1434,6 +1481,8 @@ def main():
             w.writeheader()
             w.writerows(all_trials)
 
+        archive_by_track = load_archive_context_for_targets(roster)
+        archive_q = summarize_archive_200_quality(summary, archive_by_track, attempts_per_target=attempts)
         summary.update({
             "panel": panel_label,
             "attempts_per_target": attempts,
@@ -1445,14 +1494,16 @@ def main():
             "generation_timing_boundary": "per_request_infer_subprocess_wall_clock",
             "af3_timing_boundary": "shared_persistent_af3_server_warm_fold",
             "trials_sha256": hashlib.sha256(trials_path.read_bytes()).hexdigest(),
+            "archive_200attempt_quality_comparisons": archive_q,
             "archive_200attempt_context": {
                 "directly_comparable_to_live_run": False,
                 "reason": (
                     "Archived reference tables cluster 200 attempts/target under warm batch-amortized native timing "
-                    f"({WARM_CAMPAIGN_PROFILE}) or H200 archive timing; live Pareto claims use only same-GPU paired "
-                    f"baselines at matched attempts={attempts} and boundary {PAIRED_TIMING_PROFILE}."
+                    f"({WARM_CAMPAIGN_PROFILE}) or H200 archive timing; live Pareto timing claims use only same-GPU "
+                    f"paired baselines at matched attempts={attempts} and boundary {PAIRED_TIMING_PROFILE}. "
+                    "When attempts=200, target-matched quality-only deltas appear in archive_200attempt_quality_comparisons."
                 ),
-                "by_track": load_archive_context_for_targets(roster),
+                "by_track": archive_by_track,
             },
         })
         if suite_digest is not None:

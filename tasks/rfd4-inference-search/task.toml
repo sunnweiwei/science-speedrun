@@ -3,21 +3,21 @@ artifacts = ["/workspace/submission"]
 
 [task]
 name = "ai4sci/rfd4-inference-search"
-version = "0.4.0"
-description = "Develop one unified executable inference-time search or sampling strategy for frozen RFD4-Proteina across all four Figure 2 conditioned biomolecular design tracks under a matched single-GPU quality-cost Pareto evaluation."
+version = "0.5.0"
+description = "Develop one unified executable inference-time search strategy for frozen RFD4-Proteina that maximizes four-track Foldseek-deduplicated pass rate at paper-matched K=200 outputs/target within a 25 s/slot (<=4h on 8xH100) budget across all four Figure 2 conditioned biomolecular design tracks."
 authors = [{name = "Science Speedrun contributors"}]
-keywords = ["model-development", "inference-time-search", "structural-biology", "pareto-frontier"]
+keywords = ["model-development", "inference-time-search", "structural-biology", "biomolecular-design"]
 
 [metadata]
 budget_curve_protocol = "rfd4-budget-curve-v1"
-budget_curve_seconds_per_slot = [6, 15, 60]
-budget_curve_scope = "Retrospective scorecard for matched frozen measurements"
+budget_curve_seconds_per_slot = [2.5, 6.25, 25]
+budget_curve_scope = "Retrospective scorecard for matched frozen measurements (with optional 6/15/60 s/slot A6000 profile)"
 data_status = "Pinned 141-target four-track conditioned benchmark inputs (PPI, small-molecule, enzyme/MCSA, DNA), monomer inputs, frozen RFD4 and AF3 weights, Foldseek binary, and private replay seeds."
 primary_metric = "four_track_mean_clustered_pass_rate"
 primary_metric_direction = "maximize"
-official_reference = "Figure 2 and Table S29 four-suite Low/Medium/High/Search curves plus live same-GPU paired native baselines"
-official_comparison = "Matched-attempt, matched-boundary same-GPU paired four-track evaluation (rfd4-paired-program-v1) and warm batch-amortized full-suite campaign receipts (rfd4-a6000-warm-v1)"
-live_score_scope = "Four-track conditioned biomolecular design (Protein binding, Small-molecule binding, Enzyme scaffolding, DNA binding)"
+official_reference = "Figure 2 and Table S29 four-suite Low/Medium/High/Search 200-attempt curves (14.33% macro Search ceiling across 141 targets; 14.25% on the 16-target verify roster)"
+official_comparison = "Candidate-only 16-target x 200-attempt verification (3,200 outputs, 25 s/slot on 8xH100 within 4h) under rfd4-paired-program-v1 with optional same-GPU paired native baselines and warm batch-amortized 200-attempt receipts (rfd4-a6000-warm-v1)"
+live_score_scope = "Four-track conditioned biomolecular design (Protein binding, Small-molecule binding, Enzyme scaffolding, DNA binding; 16 held-out targets x 200 outputs/target)"
 
 [agent]
 timeout_sec = 172800.0

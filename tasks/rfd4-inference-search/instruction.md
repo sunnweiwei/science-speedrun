@@ -1,36 +1,36 @@
-# Continuously improve inference for RFD4-Proteina
+# Continuously improve inference-time search for RFD4-Proteina
 
 ## Task and goal
 
-Develop **one unified inference-time strategy** (`infer.py`) for the supplied frozen RFD4-Proteina model that strictly advances the **quality-cost Pareto frontier** across **all four Figure 2 biomolecular design tracks**:
+Develop **one unified inference-time search strategy** (`infer.py`) for the supplied frozen RFD4-Proteina model that **maximizes Foldseek-deduplicated pass rate** across **all four Figure 2 biomolecular design tracks** within a practical wall-time search budget:
 
-1. **Protein binding** (`ppi_backbone`, 24 targets)
-2. **Small-molecule binding** (`studio_figure_2c_unfixed`, 77 targets)
-3. **Enzyme scaffolding** (`mcsa_fixed`, 37 targets)
-4. **DNA binding** (`dna_unfixed`, 3 targets)
+1. **Protein binding** (`ppi_backbone`, 24 targets; Paper `High` 10.63%, Paper `Search` 14.92%)
+2. **Small-molecule binding** (`studio_figure_2c_unfixed`, 77 targets; Paper `High` 14.32%, Paper `Search` 20.94%)
+3. **Enzyme scaffolding** (`mcsa_fixed`, 37 targets; Paper `High` 12.07%, Paper `Search` 16.64%)
+4. **DNA binding** (`dna_unfixed`, 3 targets; Paper `High` 3.50%, Paper `Search` 4.83%)
 
-Given a runtime request specifying an annotated input structure (`input.cif.zst`), output count, seed and wall-time budget, generate structurally diverse designs that pass the official common AlphaFold 3 (AF3) refolding criteria for that task. Distinct Foldseek structural clusters (`TM-score >= 0.5` on the designed chain) containing at least one AF3 passer count once; duplicate hits in the same cluster earn no extra credit, and failed or missing slots remain in the denominator.
+Given a runtime request specifying an annotated input structure (`input.cif.zst`), a **fixed output candidate count** (`num_outputs = K`, matching the paper's `K = 200` on official verification and full Figure 2 panels), a random seed, and a per-request wall-time budget (`budget.wall_seconds = K * seconds_per_slot`), generate structurally diverse designs that pass the official common AlphaFold 3 (AF3) refolding criteria for that task. Distinct Foldseek structural clusters (`TM-score >= 0.5` on the designed chain) containing at least one AF3 passer count once; duplicate hits in the same cluster earn no extra credit, and failed or missing slots remain in the `K` denominator.
 
-Official Harbor verification executes your single `infer.py` package across all four tracks alongside **live same-GPU paired human baselines** (`native-low`, `native-medium`, `native-high`) under an identical per-request subprocess and shared warm-AF3 timing boundary (`rfd4-paired-program-v1`), matched attempt count per target, and held-out seeds/targets. Simply tying a baseline makes a point weakly nondominated (`on_total_pareto = true`) without advancing the frontier; your goal is **strict Pareto advancement** (`strictly_advances_total_pareto = true`, positive `total_hypervolume_gain_pct`, or `dominates_any_reference_total = true`) across all four tracks with one general inference/search algorithm.
+**Primary objective (`reward`)**: maximize the **four-track equal-weight mean Foldseek-deduplicated pass rate** (`reward = macro_clustered_pct / 100.0`) under the fixed output budget `K = 200` and wall-time search budget **`25 s / output` calibrated on 8 x H100 GPUs** (fitting the full 16-target x 200-output = 3,200-output official verification cleanly inside 4 hours in two full 8-GPU waves). Aim to **significantly surpass all published baselines**, including RFD4-Proteina's own `Search` operating point (`14.33%` macro across all 141 targets; `14.25%` on the 16-target `verify` roster, where Paper `Search` spent 17-47x more compute than `High`). Do **not** hold back quality merely to match `native-low` runtime: use the allowed wall-time search budget effectively (leaving a safe margin against timeouts) while keeping throughput and cost metrics recorded as secondary diagnostics.
 
 ## Workspace
 
-The scoring contract also defines a frozen three-budget report (`rfd4-budget-curve-v1`, at `B/10 = 6 s`, `B/4 = 15 s`, and `B = 60 s` per original attempt) so full-budget quality and low-budget quality are reported cleanly side-by-side. Read `/workspace/references/overall/BUDGET_CURVE.md` for the reporting convention.
+Official Harbor verification (`tests/test.sh`) runs candidate-only evaluation on the held-out **16-target `verify` panel** (`4` PPI, `5` small-molecule, `4` enzyme, `3` DNA) at **`K = 200` outputs/target** and **`25 s / output`** (`budget.wall_seconds = 5000.0` per target) so 100% of the 4-hour 8 x H100 budget is dedicated to inference-time search. Optional same-GPU paired baselines (`--references native-low native-medium native-high`) and the frozen three-budget scorecard (`rfd4-budget-curve-v1`, `/workspace/references/overall/BUDGET_CURVE.md`) remain supported for ablations and cost-curve analysis.
 
-- `/workspace/instruction.md` describes the multi-track Pareto-frontier research objective.
-- `/workspace/contract.md` specifies the `infer.py` request/response interface (`conditioned_design` and `unconditional_monomer`), matched-boundary timing rules and strict Pareto scoring.
+- `/workspace/instruction.md` describes the four-track inference-time search objective.
+- `/workspace/contract.md` specifies the `infer.py` request/response interface (`conditioned_design` and `unconditional_monomer`), candidate-budget definition, wall-time enforcement, and scoring rules.
 - `/workspace/data/` contains the data guide and read-only benchmark inputs (`assets/benchmarks/` for all 141 official four-track targets and `assets/monomers/`), frozen RFD4 weights, AF3 parameters and Foldseek executable.
 - `/workspace/baseline/` contains the unified executable starter (`baseline/program/infer.py`), `native-low`, `native-medium` and `native-high` conditioned/monomer presets with measured RTX A6000 results, and monomer branching policies.
 - `/workspace/references/` contains the four-track `Low / Medium / High / Search` baseline reference curves (`overall/measured/baseline_frontier_reference.csv`, `overall/measured/points.csv`, `overall/measured/comparison_vs_paper.csv`), per-target local RTX A6000 reproduction data and campaign logs (`overall/measured/logs/per_target_comparison.csv`, `overall/measured/logs/*.jsonl`), the three-budget scorecard (`overall/BUDGET_CURVE.md`, `overall/budget_scorecard.py`), and monomer ablations.
-- `/workspace/evaluation/` contains the official four-track paired Pareto evaluator (`evaluate_tracks.py`, supporting `--gpus auto` across all allocated GPUs), auxiliary monomer evaluator (`run.py`), package builder (`reference.py`) and monomer curve exporter (`cost_curve.py`).
+- `/workspace/evaluation/` contains the official four-track evaluator (`evaluate_tracks.py`, supporting `--gpus auto` across all allocated GPUs, candidate-only `--references none`, or paired baselines), auxiliary monomer evaluator (`run.py`), package builder (`reference.py`) and monomer curve exporter (`cost_curve.py`).
 - `/workspace/submission/` holds your current complete, runnable package.
 - `/workspace/research/` is writable scratch for candidates, logs, measurements and derived data.
 
 ## Rules
 
-Use the supplied assets offline. Keep the RFD4 model weights fixed and generate fresh outputs from each request's input structure and seed. Your submission must implement **one unified inference-time strategy** that handles any conditioned biomolecular request (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, `DNA binding`) as well as unconditional monomers through the same `infer.py` entry point.
+Use the supplied assets offline. Keep the RFD4 model weights fixed and generate fresh outputs from each request's input structure and seed. Your submission must implement **one unified inference-time search strategy** that handles any conditioned biomolecular request (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, `DNA binding`) as well as unconditional monomers through the same `infer.py` entry point without privileged track labels.
 
-You may design adaptive recycling schedules, trajectory branching and pruning, intermediate clean-state or rollout scoring, geometry/chemical filters, predictor-guided search, early stopping and batching. All internal search, discarded branches and intermediate scoring count toward your generation GPU cost. Final common AF3 refolding and Foldseek clustering are owned by the evaluator.
+The **output candidate budget** is strictly fixed to `num_outputs` (`K`), which is the exact number of designs forwarded to common AF3 refolding and Foldseek clustering. **Internal search trajectory count is unconstrained**: you may freely combine fast kernel/engine acceleration, adaptive or cross-step recycling schedules, oversampling pools (`M > K`), trajectory branching and progressive pruning, intermediate clean-state or self-consistency scoring, geometry/physics filters, predictor-guided or evolutionary search, and Foldseek/diversity-aware selection. All internal search, discarded candidates, and intermediate scoring run inside your single-GPU process and are strictly bounded by `budget.wall_seconds` (`K * seconds_per_slot`); a timeout or nonzero exit scores zero for that request.
 
 ## Submission
 
@@ -40,23 +40,30 @@ From `/workspace`, build and publish a starting baseline package:
 
 ```bash
 candidate=$(mktemp -d /workspace/research/candidate.XXXXXX)
-python evaluation/reference.py native-low "$candidate"
+python evaluation/reference.py native-high "$candidate"
 bash baseline/publish.sh "$candidate"
 ```
 
-Evaluate your unified strategy across all four tracks on the balanced 12-target development panel (`3` targets per track) against paired same-GPU baselines (`native-low`, `native-medium`, `native-high`) at the exact same attempt count (`--gpus auto` parallelizes targets across all allocated GPUs while keeping each target's candidate and paired baselines strictly isolated on a single dedicated GPU):
+Screen candidate strategies rapidly on the 12-target development panel (`--panel dev`, `3` targets/track) at `K = 20` (with optional `--references native-high`), and validate promising candidates at the **paper-matched `K = 200` outputs/target** before publishing (because Foldseek deduplicated pass rate `clusters / K` decreases nonlinearly as `K` grows from `20` to `200`):
 
 ```bash
-run=$(mktemp -d /workspace/research/dev4track.XXXXXX)
-python evaluation/evaluate_tracks.py --submission "$candidate" --method-name candidate-v1 \
-  --panel dev --attempts 20 --gpus auto --references native-low native-medium native-high \
+# Fast screening (K = 20)
+run=$(mktemp -d /workspace/research/dev20.XXXXXX)
+python evaluation/evaluate_tracks.py --submission "$candidate" --method-name search-v1 \
+  --panel dev --attempts 20 --seconds-per-slot 25 --gpus auto --references native-high \
   --work "$run/work" --output "$run/report"
+
+# Paper-matched validation (K = 200, directly comparable in quality to Paper High / Search)
+run200=$(mktemp -d /workspace/research/dev200.XXXXXX)
+python evaluation/evaluate_tracks.py --submission "$candidate" --method-name search-v1 \
+  --panel dev --attempts 200 --seconds-per-slot 25 --gpus auto --references none \
+  --work "$run200/work" --output "$run200/report"
 ```
 
-Because Foldseek deduplicated pass rate (`clusters / attempts`) changes nonlinearly with sample size, never compare a `20`-attempt `dev` run directly against `200`-attempt archived tables; always compare against the paired baselines run at the same `--attempts` count and timing boundary, and use `--repeats 3` to verify that gains exceed seed-to-seed dispersion (`*_sd`) before publishing with `bash baseline/publish.sh "$candidate"`.
+Read `budget.wall_seconds` dynamically on every invocation so your search automatically scales its internal search depth/pool to fit safely within whatever GPU speed and wall-time budget the controller grants (e.g., `25 s/slot` on H100, or scaled budgets on slower development GPUs), with zero timeouts. Publish validated improvements atomically with `bash baseline/publish.sh "$candidate"`.
 
 ## Continuous research
 
-Start by inspecting `/workspace/references/overall/measured/baseline_frontier_reference.csv`, `/workspace/references/overall/measured/comparison_vs_paper.csv`, and `/workspace/references/overall/measured/logs/per_target_comparison.csv` (322 completed local RTX A6000 target cohorts covering 10 of 16 Figure 2 settings: `Low` 4/4, `Medium` 4/4, `Enzyme High`, and `DNA High`). Analyze where `Low`, `Medium`, `High`, and `Search` gain or waste compute across targets (for instance, naive extrinsic search improves clustered pass rate over `High` but spends 17-47x more generation GPU time). Design inference-time strategies — such as cheap early clean-prediction pruning, adaptive per-step recycling, uncertainty-gated branching, or selective rollout evaluation — that strictly advance the quality-cost frontier across all four tracks, including under tight budgets (`6 s`, `15 s`, `60 s` per slot).
+Start by inspecting `/workspace/references/overall/operating_points.csv`, `/workspace/references/overall/measured/baseline_frontier_reference.csv`, `/workspace/references/overall/measured/comparison_vs_paper.csv`, and `/workspace/references/overall/measured/logs/per_target_comparison.csv`. Notice that RFD4-Proteina's `Search` operating point lifted 200-attempt macro clustered pass rate from `10.13%` (`High`) to `14.33%` (`Search`), yet spent 17-47x more generation GPU time than `High`. By combining inference acceleration (so each internal trajectory costs a fraction of `High`) with high-recall trajectory search, strong self-consistency / interface predictors, and diversity-preserving submodular selection at `K = 200`, a unified strategy can spend its full `25 s/slot` H100 budget to push four-track clustered pass rate far beyond all previously reported results.
 
-There is no end point. Keep a working submission published, log every hypothesis and its paired four-track metrics (`strictly_advances_total_pareto`, `total_hypervolume_gain_pct`, `dominates_strongest_reference_total`, `pareto_including_af3.png`), validate promising candidates with multi-seed `--repeats`, and iterate continuously to push out the four-track Pareto frontier.
+There is no end point. Keep a working submission published, log every hypothesis and its four-track clustered pass rate (`reward`, per-track `clustered_pct`, `archive_200_search_quality_delta_pp` at `K = 200`, and measured GPU seconds), verify gains at paper-matched `K = 200` (where cluster saturation matters most), and iterate continuously to push the four-track clustered pass rate as high as possible within budget.

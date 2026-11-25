@@ -33,9 +33,11 @@ from evaluate_tracks import (
     four_track_harbor_metrics,
     load_archive_context_for_targets,
     pareto_summary_across_tracks,
+    parse_references,
     render_paired_pareto_plot,
     resolve_gpus,
     resolve_target_roster,
+    summarize_archive_200_quality,
     summarize_paired_baselines,
     write_paired_points_csv,
 )
@@ -167,7 +169,8 @@ class ProgramContractTest(unittest.TestCase):
         self.assertEqual(set(dev_roster), set(TRACK_SPECS))
         self.assertEqual(set(verify_roster), set(TRACK_SPECS))
         self.assertEqual(sum(len(v) for v in dev_roster.values()), 12)
-        self.assertEqual(sum(len(v) for v in verify_roster.values()), 12)
+        self.assertEqual(sum(len(v) for v in verify_roster.values()), 16)
+        self.assertEqual([len(verify_roster[ds]) for ds in TRACK_SPECS], [4, 5, 4, 3])
         self.assertEqual(sum(len(v) for v in full_roster.values()), 141)
         # Held-out verify targets are disjoint from dev targets on all multi-target suites.
         for ds in ("ppi_backbone", "studio_figure_2c_unfixed", "mcsa_fixed"):
@@ -317,16 +320,50 @@ class ProgramContractTest(unittest.TestCase):
         meta = tomllib.loads((TASK / "task.toml").read_text())
         self.assertEqual(meta["metadata"]["primary_metric"], "four_track_mean_clustered_pass_rate")
         self.assertEqual(meta["metadata"]["budget_curve_protocol"], "rfd4-budget-curve-v1")
+        self.assertEqual(meta["metadata"]["budget_curve_seconds_per_slot"], [2.5, 6.25, 25])
         self.assertIn("Four-track", meta["metadata"]["live_score_scope"])
         self.assertEqual(meta["environment"]["gpus"], 8)
         self.assertEqual(meta["verifier"]["environment"]["gpus"], 8)
+        self.assertEqual(meta["verifier"]["timeout_sec"], 14400.0)
         self.assertNotIn("gpu_types", meta["environment"])
         self.assertNotIn("gpu_types", meta["verifier"]["environment"])
         test_sh = (TASK / "tests/test.sh").read_text()
         self.assertIn("/workspace/evaluation/evaluate_tracks.py", test_sh)
+        self.assertIn("${RFD4_REFERENCES:-none}", test_sh)
+        self.assertIn("${RFD4_VERIFY_ATTEMPTS:-200}", test_sh)
+        self.assertIn("${RFD4_SECONDS_PER_SLOT:-25}", test_sh)
         self.assertIn("--reward-output", test_sh)
         self.assertIn("/logs/verifier/report.json", test_sh)
         self.assertIn("native-medium", NAMES)
+        self.assertEqual(parse_references(["none"]), ())
+
+        # Verify candidate-only K=200 verify summary and target-matched archive quality deltas.
+        verify_roster = resolve_target_roster("verify")
+        cand_200 = {
+            TRACK_SPECS[ds]["track"]: {t: Measurement(200, 200, 50, 40, 2400.0, 460.0) for t in tgts}
+            for ds, tgts in verify_roster.items()
+        }
+        cand_only = pareto_summary_across_tracks(cand_200, {}, method_name="search-200")
+        self.assertAlmostEqual(cand_only["reward"], 0.20)
+        self.assertEqual(cand_only["paired_comparisons"], {})
+        archive_ctx = load_archive_context_for_targets(verify_roster)
+        self.assertEqual(summarize_archive_200_quality(cand_only, archive_ctx, attempts_per_target=20), {})
+        arch_q = summarize_archive_200_quality(cand_only, archive_ctx, attempts_per_target=200)
+        self.assertEqual(set(arch_q), {"Low", "Medium", "High", "Search"})
+        self.assertAlmostEqual(arch_q["Search"]["archive_macro_clustered_pct"], 14.25, places=1)
+        self.assertAlmostEqual(arch_q["Search"]["quality_delta_pp"], 20.0 - arch_q["Search"]["archive_macro_clustered_pct"], places=4)
+        cand_only["archive_200attempt_quality_comparisons"] = arch_q
+        flat = four_track_harbor_metrics(cand_only)
+        self.assertAlmostEqual(flat["reward"], 0.20)
+        self.assertAlmostEqual(flat["archive_200_search_archive_macro_clustered_pct"], arch_q["Search"]["archive_macro_clustered_pct"])
+        self.assertAlmostEqual(flat["archive_200_search_quality_delta_pp"], arch_q["Search"]["quality_delta_pp"])
+        self.assertTrue(all(type(v) in (int, float) for v in flat.values()))
+        with tempfile.TemporaryDirectory() as tmp:
+            render_paired_pareto_plot(
+                cand_only["plot_rows"], Path(tmp) / "cand_only.png", include_af3=True,
+                evaluated_tracks=cand_only["evaluated_tracks"], attempts_per_target=200, repeats=1, panel_name="verify",
+            )
+            self.assertTrue((Path(tmp) / "cand_only.png").is_file())
 
     def test_multi_gpu_resolution_and_budget_scorecard_compatibility(self):
         fake_gpus = [

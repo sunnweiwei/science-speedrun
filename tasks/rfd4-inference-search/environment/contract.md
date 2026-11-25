@@ -1,10 +1,12 @@
 # Submission contract
 
-Submit a single unified Python inference program at `/workspace/submission/infer.py`. Include any helper modules and configuration files in the same directory. The controller invokes one offline process per target request on one GPU. The program must use the supplied frozen RFD4-Proteina weights to generate fresh designs from the current request's input CIF and seed. It controls sampling, recycling, search, branching, early stopping and batching. The controller measures wall/GPU cost and owns final common AlphaFold 3 (AF3) refolding, Foldseek structural clustering and paired Pareto frontier scoring across all four Figure 2 tracks (`Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, `DNA binding`).
+Submit a single unified Python inference-time search program at `/workspace/submission/infer.py`. Include any helper modules and configuration files in the same directory. The controller invokes one offline process per target request on one dedicated GPU. The program must use the supplied frozen RFD4-Proteina weights to generate fresh designs from the current request's input CIF and seed. It controls sampling, recycling, internal oversampling/search, branching, pruning, scoring, early stopping and batching within the request wall-time budget. The controller enforces the hard wall-time budget, measures wall/GPU cost, and owns final common AlphaFold 3 (AF3) refolding, Foldseek structural clustering, and four-track scoring across `Protein binding`, `Small-molecule binding`, `Enzyme scaffolding`, and `DNA binding`.
 
 ## Request and response
 
-The versioned three-budget reporting contract uses `B/10`, `B/4` and `B` (standard caps of `6`, `15` and `60` generation/search seconds per original attempt). A single-run reward describes its own allowance. The frozen three-tier report (`references/overall/budget_scorecard.py`) records full-budget quality, low-budget quality, paired gains and actual measured cost directly from `evaluate_tracks.py` outputs. [Budget curve standard](references/overall/BUDGET_CURVE.md)
+**Candidate budget and search budget**:
+- **Output candidate budget (`num_outputs = K`)**: strictly fixed per target (`K = 200` on official `verify` and `full` panels, matching RFD4-Proteina Figure 2; `K = 20` supported for rapid `dev` screening). Exactly `K` output slots are forwarded to common AF3 refolding and Foldseek clustering, and the denominator of clustered pass rate is always `K`.
+- **Internal search budget (`budget.wall_seconds = K * seconds_per_slot`)**: internal trajectory count is unconstrained (oversampling pools `M > K`, tree branching/pruning, rollout/self-consistency scoring, and diversity selection are all permitted), subject strictly to the per-request wall-time budget. Official Harbor verification on **8 x H100 GPUs** uses **`seconds_per_slot = 25`** across **16 held-out targets x 200 outputs** (`3,200` outputs total, 2 full 8-GPU waves, fitting cleanly within 4 hours). For multi-tier budget sweeps (`references/overall/budget_scorecard.py`), `rfd4-budget-curve-v1` supports `B/10`, `B/4`, and `B` relative to any declared maximum (`25 s/slot` on H100, or `60 s/slot` on slower GPUs). [Budget curve standard](references/overall/BUDGET_CURVE.md)
 
 Build and test a complete candidate directory under `/workspace/research/`. From `/workspace`, publish it atomically with `bash baseline/publish.sh "$candidate"`.
 
@@ -20,9 +22,9 @@ Official four-track evaluation (`evaluation/evaluate_tracks.py`, invoked by Harb
   "id": "ppi_backbone/rfd3_pdl1",
   "kind": "conditioned_design",
   "input": {"file": "rfd3_pdl1.cif.zst"},
-  "num_outputs": 20,
+  "num_outputs": 200,
   "seed": 727201,
-  "budget": {"wall_seconds": 1200.0}
+  "budget": {"wall_seconds": 5000.0}
 }
 ```
 
@@ -57,10 +59,10 @@ Cost comparisons are valid **only** when candidate and baseline share the exact 
 
 ### 2. Sample-count matching (`--attempts K`) and panels
 
-Foldseek clustered pass rate (`100 * clusters / attempts`) is a nonlinear, sample-size-dependent statistic because structural collisions accumulate as `attempts` grows. Therefore, `20`-attempt screening runs (`--panel dev`) are **never** compared directly against `200`-attempt archived tables; `evaluate_tracks.py` enforces `b.attempts == candidate.attempts` and `b.targets == candidate.targets` across every Pareto comparison:
+Foldseek clustered pass rate (`100 * clusters / attempts`) is a nonlinear, sample-size-dependent statistic because structural collisions accumulate as `attempts` grows. Therefore, `20`-attempt screening runs (`--panel dev`) are **never** compared directly against `200`-attempt archived tables; `evaluate_tracks.py` enforces `b.attempts == candidate.attempts` and `b.targets == candidate.targets` across every paired comparison, and only computes target-matched archive quality deltas (`archive_200attempt_quality_comparisons`) when `attempts == 200`:
 
-- **Development panel (`--panel dev`)**: 12 public targets (3 per track in `requests_io.DEV_4TRACK_TARGETS`), default `20` attempts/target, paired against `--references` at the same `20` attempts/target for rapid screening.
-- **Official verifier panel (`--panel verify`, default in `tests/test.sh`)**: quartile-balanced held-out target roster (`VERIFY_4TRACK_TARGETS` in `/tests/rfd4_private.py`, target-disjoint from `dev` on PPI, small-molecule, and enzyme suites) with private HMAC seeds (`/private/seed`), paired on the same GPU against `RFD4_REFERENCES` (default `native-low native-high`). Operators can also set `RFD4_VERIFY_PANEL=full RFD4_VERIFY_ATTEMPTS=200` or supply `/private/four_track_suite.json`.
+- **Development panel (`--panel dev`)**: 12 public targets (3 per track in `requests_io.DEV_4TRACK_TARGETS`), default `20` attempts/target for rapid screening (use `--attempts 200` to validate paper-matched cluster saturation before publishing).
+- **Official verifier panel (`--panel verify`, default in `tests/test.sh`)**: quartile-balanced **16-target held-out roster** (`4` PPI, `5` small-molecule, `4` enzyme, `3` DNA in `/tests/rfd4_private.py`, 2 full waves on 8 GPUs, target-disjoint from `dev` on PPI, small-molecule, and enzyme suites) with private HMAC seeds (`/private/seed`), default **`K = 200` outputs/target** (`3,200` outputs total), **`seconds_per_slot = 25`** (calibrated to complete within 4 hours on 8 x H100 GPUs), and **candidate-only** by default (`RFD4_REFERENCES=none`) so 100% of the verifier budget goes to Search quality. Operators can also enable live paired references (`RFD4_REFERENCES="native-high"`), change `RFD4_SECONDS_PER_SLOT`, run `--panel full`, or supply `/private/four_track_suite.json`.
 - **Full Figure 2 panel (`--panel full`)**: all 141 official targets (`24` PPI, `77` small-molecule, `37` enzyme/MCSA, `3` DNA), default `200` attempts/target.
 
 ### 3. Strict Pareto frontier advancement vs weak nondominance

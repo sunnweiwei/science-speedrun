@@ -16,15 +16,15 @@ if [[ "${RFD4_VERIFIER_MODE:-four_track}" == "monomer" ]]; then
   python /workspace/evaluation/run.py "${args[@]}" \
     --work "$(mktemp -d)" --output "$stage/reward.json"
 else
-  read -r -a refs <<< "${RFD4_REFERENCES:-native-low native-high}"
+  read -r -a refs <<< "${RFD4_REFERENCES:-none}"
   args=(
     --private-seed /private/seed
     --panel "${RFD4_VERIFY_PANEL:-verify}"
-    --attempts "${RFD4_VERIFY_ATTEMPTS:-20}"
+    --attempts "${RFD4_VERIFY_ATTEMPTS:-200}"
     --repeats "${RFD4_VERIFY_REPEATS:-1}"
     --references "${refs[@]}"
     --gpus "${RFD4_EVAL_GPUS:-auto}"
-    --seconds-per-slot "${RFD4_SECONDS_PER_SLOT:-60}"
+    --seconds-per-slot "${RFD4_SECONDS_PER_SLOT:-25}"
     --work "$(mktemp -d)"
     --output "$stage/four_track"
     --reward-output "$stage/reward.json"

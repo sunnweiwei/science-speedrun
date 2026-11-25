@@ -1,17 +1,17 @@
 {
   "profile": "rfd4-a6000-warm-v1",
   "submission_sha256": null,
-  "baseline_points": 11,
+  "baseline_points": 12,
   "official_baseline_points": 16,
   "submission_points": 0,
   "tracks": {
     "Protein binding": {
       "reproduced": [
         "Low",
-        "Medium"
+        "Medium",
+        "High"
       ],
       "missing": [
-        "High",
         "Search"
       ],
       "submission": []
